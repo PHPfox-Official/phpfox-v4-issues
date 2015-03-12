@@ -1,3 +1,13 @@
+a.page_section_menu_link,
+a.page_section_menu_link:hover,
+a.page_section_menu_link,
+.page_section_menu_header,
+.pages_type_add_form_title,
+a.pages_type_add_inner_link span,
+.pages_type_add_form,
+a.pages_type_add_inner_link,
+a.pages_type_add_inner_link:hover,
+.pages_type_add_holder,
 ul#js_user_browse_advanced_link,
 #user_browse_advanced_link,
 #user_browse_advanced_link:hover,
@@ -20,6 +30,8 @@ div.main_break,
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  width: auto;
+  float: none;
 }
 .js_feed_comment_view_more_holder {
   display: none;
@@ -190,7 +202,8 @@ input[type="email"],
 input[type="password"],
 textarea,
 input:focus,
-textarea:focus {
+textarea:focus,
+select {
   background: #e5e5e5;
   color: #808080;
   border: 1px #dfdfdf solid;
@@ -198,6 +211,10 @@ textarea:focus {
   text-indent: 10px;
   outline: 0px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+select {
+  text-indent: 0px;
 }
 .table {
   background: #ffffff;
@@ -244,6 +261,45 @@ input.button_off {
   border: 4px transparent solid;
   background: transparent;
   color: #9a9a9a;
+}
+.page_section_menu ul li {
+  float: none;
+}
+.page_section_menu_header {
+  width: 250px;
+  position: absolute;
+  left: -270px;
+  top: 0px;
+  padding-bottom: 50px;
+}
+.page_section_menu_header ul li a,
+.page_section_menu_header ul li a:hover {
+  display: block;
+  background: transparent;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: normal;
+  padding: 10px 0px;
+  color: #9a9a9a;
+  text-indent: 10px;
+  border-radius: 0px;
+}
+.page_section_menu_header ul li a:hover {
+  transition: all 0.5s ease;
+  color: #343434;
+}
+.page_section_menu_header ul li.active a,
+.page_section_menu_header ul li.active a:hover {
+  background: #d8d8d8;
+  color: #343434;
+}
+a.page_section_menu_link,
+a.page_section_menu_link:hover {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
 }
 #header_left {
   width: auto;
@@ -358,19 +414,43 @@ input.button_off {
   padding: 0px;
   opacity: 0.4;
 }
-.block .sub_section_menu > ul > li {
+.block .sub_section_menu > ul li {
   display: inline-block;
   margin: 0px 5px 10px 0px;
 }
-.block .sub_section_menu > ul > li > a,
-.block .sub_section_menu > ul > li > a:hover {
+.block .sub_section_menu > ul li > a,
+.block .sub_section_menu > ul li > a:hover {
   padding: 8px 15px;
   height: auto;
   line-height: normal;
   color: #298ada;
   background: #fafafa;
+  border: 0px;
 }
-.block .sub_section_menu > ul > li > a:hover {
+.block .sub_section_menu > ul li > a:hover {
+  background: #298ada;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+.block > .content > ul.action {
+  margin: 0px;
+  padding: 0px;
+  opacity: 0.4;
+}
+.block > .content > ul.action li {
+  display: inline-block;
+  margin: 0px 5px 10px 0px;
+}
+.block > .content > ul.action li > a,
+.block > .content > ul.action li > a:hover {
+  padding: 8px 15px;
+  height: auto;
+  line-height: normal;
+  color: #298ada;
+  background: #fafafa;
+  border: 0px;
+}
+.block > .content > ul.action li > a:hover {
   background: #298ada;
   color: #ffffff;
   transition: all 0.5s ease;
@@ -382,6 +462,10 @@ input.button_off {
   opacity: 1;
   transition: all 0.5s ease;
 }
+.block:hover > .content > ul.action {
+  opacity: 1;
+  transition: all 0.5s ease;
+}
 #left > .sub_section_menu {
   margin: 0px;
   padding: 0px;
@@ -389,6 +473,7 @@ input.button_off {
 }
 #left > .sub_section_menu ul li a,
 #left > .sub_section_menu ul li a:hover {
+  display: block;
   background: transparent;
   font-weight: 300;
   font-size: 16px;
@@ -396,6 +481,7 @@ input.button_off {
   padding: 10px 0px;
   color: #9a9a9a;
   text-indent: 10px;
+  border-radius: 0px;
 }
 #left > .sub_section_menu ul li a:hover {
   transition: all 0.5s ease;
@@ -424,6 +510,8 @@ input.button_off {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  width: auto;
+  float: none;
   display: block;
   text-align: center;
   border: 3px #298ada solid;
@@ -559,6 +647,7 @@ div.row_title_info div.extra_info {
   padding: 0px;
   right: 0px;
   top: 0px;
+  z-index: 10;
 }
 a.item_bar_action,
 a.item_bar_action:hover {
@@ -747,6 +836,8 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  width: auto;
+  float: none;
   opacity: 0.6;
 }
 .global_attachment_manage {
@@ -960,6 +1051,8 @@ div.sub_menu_bar_main a:hover {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  width: auto;
+  float: none;
 }
 div.sub_menu_bar_main {
   position: absolute;
@@ -1106,6 +1199,8 @@ div.sub_menu_bar_main a:hover {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  width: auto;
+  float: none;
   padding: 8px 12px;
   border: 4px transparent solid;
   color: #999999;
@@ -1170,6 +1265,8 @@ div.sub_menu_bar_main a:hover {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  width: auto;
+  float: none;
   display: none;
   position: absolute;
   bottom: -30px;
@@ -1190,6 +1287,47 @@ div.sub_menu_bar_main a:hover {
   color: #ffffff;
   text-transform: uppercase;
   text-indent: 0px;
+}
+#page_pages_add #js_pages_add_holder > .extra_info,
+#page_pages_add #js_pages_add_holder > form > strong,
+#page_pages_add #js_pages_add_holder > form > select {
+  display: none;
+}
+#page_pages_add .pages_type_add_form_input input.button {
+  margin-top: 40px;
+}
+#page_pages_add input.pages_type_add_input {
+  width: 100%;
+}
+#page_pages_add .pages_type_add_holder {
+  text-align: left;
+  background: #ffffff;
+  color: #999999;
+  border-bottom: 1px #f2f2f2 solid;
+}
+#page_pages_add a.pages_type_add_inner_link,
+#page_pages_add a.pages_type_add_inner_link:hover {
+  text-align: left;
+  display: block;
+  padding: 10px;
+  background: #ffffff;
+  color: #999999;
+}
+#page_pages_add a.pages_type_add_inner_link:hover {
+  background: #fafafa;
+  color: #8c8c8c;
+}
+#page_pages_add .pages_type_add_form {
+  padding: 10px;
+  background: #0c0c0c;
+  color: #808080 !important;
+}
+#page_pages_add #js_pages_block_info {
+  background: #ffffff;
+  padding: 10px;
+}
+#page_pages_add #js_pages_block_info div.table_clear {
+  padding-top: 10px;
 }
 @media (max-device-width: 1430px), (max-width: 1430px) {
   .holder {

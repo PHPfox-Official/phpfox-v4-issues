@@ -130,30 +130,46 @@
 }
 
 .block {
+
+	.block_menu() {
+		li {
+			display:inline-block;
+			margin:0px 5px 10px 0px;
+
+			> a, > a:hover {
+				padding:8px 15px;
+				height:auto;
+				line-height:normal;
+				color:@brandPrimary;
+				background:darken(@blockBg, 2%);
+				border:0px;
+			}
+
+			> a:hover {
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+				transition:@transition;
+			}
+		}
+	}
+
 	.sub_section_menu {
 		margin:0px;
 		padding:0px;
 		opacity:0.4;
 
 		> ul {
-			> li {
-				display:inline-block;
-				margin:0px 5px 10px 0px;
+			.block_menu();
+		}
+	}
 
-				> a, > a:hover {
-					padding:8px 15px;
-					height:auto;
-					line-height:normal;
-					color:@brandPrimary;
-					background:darken(@blockBg, 2%);
-				}
+	> .content {
+		> ul.action {
+			margin:0px;
+			padding:0px;
+			opacity:0.4;
 
-				> a:hover {
-					background:@brandPrimary;
-					color:@brandPrimaryColor;
-					transition:@transition;
-				}
-			}
+			.block_menu();
 		}
 	}
 }
@@ -167,6 +183,13 @@
 		opacity:1;
 		transition:@transition;
 	}
+
+	> .content {
+		> ul.action {
+			opacity:1;
+			transition:@transition;
+		}
+	}
 }
 
 #left {
@@ -175,25 +198,7 @@
 		padding:0px;
 		margin-bottom:@blockMarginBottom;
 
-		ul li a, ul li a:hover {
-			background:transparent;
-			font-weight:300;
-			font-size:@fontSizeBase + 2;
-			line-height:normal;
-			padding:10px 0px;
-			color:lighten(@textColor, 10%);
-			text-indent:10px;
-		}
-
-		ul li a:hover {
-			transition:@transition;
-			color:darken(@textColor, 30%);
-		}
-
-		ul li.active a, ul li.active a:hover {
-			background:darken(@bodyBg, 5%);
-			color:darken(@textColor, 30%);
-		}
+		.nav();
 	}
 }
 

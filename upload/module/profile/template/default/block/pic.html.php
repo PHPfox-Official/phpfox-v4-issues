@@ -1,14 +1,14 @@
-<?php 
+<?php
 /**
  * [PHPFOX_HEADER]
- * 
+ *
  * @copyright		[PHPFOX_COPYRIGHT]
  * @author  		Raymond Benc
  * @package  		Module_Profile
  * @version 		$Id: pic.html.php 7305 2014-05-07 19:35:55Z Fern $
  */
- 
-defined('PHPFOX') or exit('NO DICE!'); 
+
+defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if Phpfox::getService('profile')->timeline()}
@@ -77,7 +77,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 {/if}
 <div class="sub_section_menu">
-	<ul>		
+	<ul>
 		{foreach from=$aProfileLinks item=aProfileLink}
 			<li class="{if isset($aProfileLink.is_selected)} active{/if}">
 				<a href="{url link=$aProfileLink.url}" class="ajax_link"{if isset($aProfileLink.icon)} style="background-image:url('{img theme=$aProfileLink.icon' return_url=true}');"{/if}>{$aProfileLink.phrase}{if isset($aProfileLink.total)}<span>({$aProfileLink.total|number_format})</span>{/if}</a>

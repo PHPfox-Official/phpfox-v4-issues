@@ -13,6 +13,8 @@
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	width:auto;
+	float:none;
 }
 
 .button() {
@@ -33,4 +35,28 @@
 	background:@brandPrimary;
 	color:@brandPrimaryColor;
 	transition:@transition;
+}
+
+.nav() {
+	ul li a, ul li a:hover {
+		display:block;
+		background:transparent;
+		font-weight:300;
+		font-size:@fontSizeBase + 2;
+		line-height:normal;
+		padding:10px 0px;
+		color:lighten(@textColor, 10%);
+		text-indent:10px;
+		border-radius:0px;
+	}
+
+	ul li a:hover {
+		transition:@transition;
+		color:darken(@textColor, 30%);
+	}
+
+	ul li.active a, ul li.active a:hover {
+		background:darken(@bodyBg, 5%);
+		color:darken(@textColor, 30%);
+	}
 }

@@ -1,5 +1,5 @@
 
-input[type="text"], input[type="email"], input[type="password"], textarea, input:focus, textarea:focus {
+input[type="text"], input[type="email"], input[type="password"], textarea, input:focus, textarea:focus, select {
 	background:@formBg;
 	color:@formColor;
 	border:@formBorder;
@@ -7,6 +7,11 @@ input[type="text"], input[type="email"], input[type="password"], textarea, input
 	text-indent:10px;
 	outline:0px;
 	font-family:@fontFamilyBase;
+	font-size:@fontSizeBase;
+}
+
+select {
+	text-indent:0px;
 }
 
 .table {
@@ -62,4 +67,27 @@ input.button_off {
 	border:4px transparent solid;
 	background:transparent;
 	color:lighten(@textColor, 10%);
+}
+
+.page_section_menu ul li {
+	float:none;
+}
+
+.page_section_menu_header {
+	width:@columnLeftWidth;
+	position:absolute;
+	left:-(@columnLeftWidth + 20);
+	top:0px;
+	padding-bottom:50px;
+
+	.nav();
+
+}
+
+a.page_section_menu_link, a.page_section_menu_link:hover {
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	text-align:center;
 }

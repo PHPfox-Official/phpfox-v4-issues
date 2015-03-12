@@ -36,7 +36,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<ul>		
 		{foreach from=$aPageLinks item=aPageLink}
 			<li class="{if isset($aPageLink.is_selected)} active{/if}">
-				<a href="{$aPageLink.url}" class="ajax_link"{if isset($aPageLink.icon)} style="background-image:url('{if isset($aPageLink.icon_pass) && $aPageLink.icon_pass}{img thickbox=true server_id=$aPageLink.icon_server path='pages.url_image' file=$aPageLink.icon suffix='_16' return_url=true}{else}{img theme=$aPageLink.icon' return_url=true}{/if}');"{/if}>{$aPageLink.phrase}{if isset($aPageLink.total)}<span>({$aPageLink.total|number_format})</span>{/if}</a>				
+				<a href="{$aPageLink.url}" class="ajax_link">{$aPageLink.phrase}{if isset($aPageLink.total)}<span>({$aPageLink.total|number_format})</span>{/if}</a>
 				{if isset($aPageLink.sub_menu) && is_array($aPageLink.sub_menu) && count($aPageLink.sub_menu)}
 				<ul>
 				{foreach from=$aPageLink.sub_menu item=aProfileLinkSub}

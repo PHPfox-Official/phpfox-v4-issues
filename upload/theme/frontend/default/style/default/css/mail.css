@@ -1,0 +1,222 @@
+
+.mail_holder
+{
+	border-bottom:1px #dfdfdf solid;
+	padding:10px 0px 5px 0px;
+	position:relative;
+	min-height:60px;	
+}
+
+.mail_holder .extra_info
+{
+	font-size:10px;
+	padding-top:5px;
+}
+
+.mail_image
+{
+	position:absolute;
+	left:25px;
+	width:50px;
+	height:50px;
+}
+
+.mail_content
+{
+	margin-left:85px;
+	position:relative;
+}
+
+.mail_action
+{
+	position:absolute;
+	right:4px;
+	top:8px;
+	font-size:10px;
+	color:#808080;
+}
+
+.mail_action li
+{
+	float:left;
+	height:16px;
+	line-height:16px;
+	padding-left:6px;
+}
+
+.mail_link
+{
+	font-weight:bold;
+	font-size:13px;
+}
+
+.mail_preview
+{
+	padding:5px 0px 0px 0px;
+	color:#808080;	
+}
+
+.mail_delete,
+.mail_delete:hover,
+.mail_read,
+.mail_read:hover
+{	
+	display:block;
+	width:16px;
+	height:16px;
+	position:relative;
+	overflow:hidden;
+	text-indent:-1000px;
+}
+
+.mail_delete
+{
+	background:url('../image/layout/action_delete.png') no-repeat;
+}
+
+.mail_read
+{
+	background:url('../image/layout/mail_read.png') no-repeat;
+}
+
+.mail_delete:hover
+{
+	background-color:#333;
+}
+
+.mail_read:hover
+{
+	background-color:#333;
+}
+
+.mail_is_new
+{
+	background:#EDEFF4;
+}
+
+.mail_moderation
+{
+	position:absolute;
+	left:2px;
+	top:20px;
+}
+
+#js_mail_textarea #message
+{
+	height:30px;
+}
+
+.mail_next_prev
+{
+	position:absolute;
+	right:0px;
+	background:#f9f9f9;
+	border:1px #dfdfdf solid;	
+	
+  	-moz-box-shadow:3px 3px 3px #f9f9f9;
+  	-webkit-box-shadow:3px 3px 3px #f9f9f9;
+  	box-shadow:3px 3px 3px #f9f9f9;
+}
+
+.mail_next_prev ul li a,
+.mail_next_prev ul li a:hover
+{
+	display:block;
+	width:30px;
+	height:30px;
+	line-height:50px;
+	overflow:hidden;
+	text-indent:-1000px;
+	position:relative;
+	float:left;
+	margin:0px;
+	padding:0px;
+	background:transparent;
+}
+
+.mail_next_prev ul li.next_message a,
+.mail_next_prev ul li.next_message a:hover
+{
+	border-left:1px #dfdfdf solid;
+	background:url('../image/layout/next_message.png') no-repeat;
+}
+
+.mail_next_prev ul li.previous_message a,
+.mail_next_prev ul li.previous_message a:hover
+{
+	background:url('../image/layout/previous_message.png') no-repeat;
+}
+
+.mail_next_prev ul li.next_message a:hover,
+.mail_next_prev ul li.previous_message a:hover
+{
+	background-color:#f1f1f1;
+}
+
+.mail_thread_holder
+{
+	position:relative;
+}
+
+#js_mail_thread_current_cnt
+{
+	display:none;
+}
+
+.mail_thread_user
+{
+	font-weight:bold;
+	padding-bottom:4px;	
+	width:85%;
+	overflow:hidden;
+}
+
+.mail_thread_time
+{
+	position:absolute;
+	right:0px;
+	top:0px;	
+}
+
+.mail_thread_holder .mail_action
+{
+	top:0px;
+}
+
+#js_main_mail_thread_holder .global_attachment
+{
+	border-top:0px;
+}
+
+div.is_last_submessage
+{
+	border-bottom:0px;
+}
+
+.mail_thread_forward
+{
+	border-left:3px #EFEFEF solid;
+	padding-left:5px;
+	margin-top:5px;
+}
+
+.mail_thread_forward .row_title_image
+{
+	width:36px;
+}
+
+.mail_thread_forward .row_title_info
+{
+	margin-left:42px;
+}
+
+#js_main_mail_thread_holder a.global_view_more,
+#js_main_mail_thread_holder a.global_view_more:hover
+{
+	margin-top:0px;
+}
+
+#js_main_mail_thread_holder .item_bar
+{
+	padding-bottom:0px;
+}

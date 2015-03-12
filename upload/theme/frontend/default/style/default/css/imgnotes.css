@@ -1,0 +1,46 @@
+.note 
+{
+	display: none;
+	background: url(../image/jquery/spacer.gif); 	
+	overflow: hidden; 
+	position: absolute; 	
+	cursor:pointer;	
+	z-index:20000000;	
+}
+
+.note_hover
+{
+	border:5px #D8DFEA solid;
+}
+
+.notep 
+{
+	display: none; 
+	background:#000; 
+	color:#fff;
+	font-size: 9pt; 
+	font-weight:bold;
+	margin-top: 0px; 
+	padding: 4px;
+	position: absolute;	
+	cursor: text;
+}
+
+.notep a, .notep a:hover
+{
+	color:#fff;
+	text-decoration:none;
+}
+
+#noteform
+{
+	display: none;
+	position: absolute;
+	background:#fff;
+	color:#333;
+	border:1px #DFDFDF solid;
+	padding:5px;
+  	-moz-box-shadow:6px 6px 6px #ccc;
+  	-webkit-box-shadow:6px 6px 6px #ccc;
+  	box-shadow:6px 6px 6px #ccc;	
+}

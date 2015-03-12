@@ -1,0 +1,32 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>event</module_id>
+			<version_id>3.0.0rc1</version_id>
+			<var_name>invites</var_name>
+			<added>1321288957</added>
+			<value>Invites</value>
+		</phrase>
+		<phrase>
+			<module_id>event</module_id>
+			<version_id>3.0.0rc1</version_id>
+			<var_name>yes</var_name>
+			<added>1321288970</added>
+			<value>Yes</value>
+		</phrase>
+		<phrase>
+			<module_id>event</module_id>
+			<version_id>3.0.0rc1</version_id>
+			<var_name>no</var_name>
+			<added>1321288983</added>
+			<value>No</value>
+		</phrase>
+		<phrase>
+			<module_id>event</module_id>
+			<version_id>3.0.0rc2</version_id>
+			<var_name>by</var_name>
+			<added>1321364518</added>
+			<value>by</value>
+		</phrase>
+	</phrases>
+</upgrade>

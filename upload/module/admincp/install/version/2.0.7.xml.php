@@ -1,0 +1,64 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>you_have_logged_out_of_the_site</var_name>
+			<added>1288205070</added>
+			<value>You have logged out of the site. Redirecting you to the login page...</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>missing_api_key</var_name>
+			<added>1289989043</added>
+			<value>Missing API Key</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>enter_your_api_key</var_name>
+			<added>1289989168</added>
+			<value><![CDATA[Enter your API key <a href="{link}">here</a> for additional IP information.]]></value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>city</var_name>
+			<added>1289989619</added>
+			<value>City</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>zip_postal_code</var_name>
+			<added>1289989718</added>
+			<value>ZIP / Postal Code</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>latitude</var_name>
+			<added>1289989746</added>
+			<value>Latitude</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>longitude</var_name>
+			<added>1289989773</added>
+			<value>Longitude</value>
+		</phrase>
+	</phrases>
+	<hooks>
+		<hook>
+			<module_id>admincp</module_id>
+			<hook_type>service</hook_type>
+			<module>admincp</module>
+			<call_name>admincp.service_product_product_export</call_name>
+			<added>1286546859</added>
+			<version_id>2.0.7</version_id>
+			<value />
+		</hook>
+	</hooks>
+</upgrade>

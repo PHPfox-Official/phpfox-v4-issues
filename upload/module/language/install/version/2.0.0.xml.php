@@ -1,0 +1,32 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>language</module_id>
+			<version_id>2.0.0</version_id>
+			<var_name>translate_css_position_top</var_name>
+			<added>1261335237</added>
+			<value>Top</value>
+		</phrase>
+		<phrase>
+			<module_id>language</module_id>
+			<version_id>2.0.0</version_id>
+			<var_name>translate_css_position_right</var_name>
+			<added>1261335323</added>
+			<value>Right</value>
+		</phrase>
+		<phrase>
+			<module_id>language</module_id>
+			<version_id>2.0.0</version_id>
+			<var_name>translate_css_position_bottom</var_name>
+			<added>1261335334</added>
+			<value>Bottom</value>
+		</phrase>
+		<phrase>
+			<module_id>language</module_id>
+			<version_id>2.0.0</version_id>
+			<var_name>translate_css_position_left</var_name>
+			<added>1261335349</added>
+			<value>Left</value>
+		</phrase>
+	</phrases>
+</upgrade>

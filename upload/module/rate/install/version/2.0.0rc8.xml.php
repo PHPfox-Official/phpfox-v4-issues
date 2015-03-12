@@ -1,0 +1,11 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>rate</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>rate</var_name>
+			<added>1258557372</added>
+			<value>Rate</value>
+		</phrase>
+	</phrases>
+</upgrade>

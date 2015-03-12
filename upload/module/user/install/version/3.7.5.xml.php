@@ -1,0 +1,60 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.7.5</version_id>
+			<var_name>cookie</var_name>
+			<added>1392650792</added>
+			<value>cookie</value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.7.5</version_id>
+			<var_name>session</var_name>
+			<added>1392650797</added>
+			<value>session</value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.7.5</version_id>
+			<var_name>name_photo_detail</var_name>
+			<added>1392650885</added>
+			<value><![CDATA[Name, Photo & Details]]></value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.7.5</version_id>
+			<var_name>name_photo</var_name>
+			<added>1392650908</added>
+			<value><![CDATA[Name & Photo]]></value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.7.5</version_id>
+			<var_name>full_birthday</var_name>
+			<added>1392651018</added>
+			<value>Full birthday</value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.7.5</version_id>
+			<var_name>month_day</var_name>
+			<added>1392651040</added>
+			<value><![CDATA[Month & Day]]></value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.7.5</version_id>
+			<var_name>show_age</var_name>
+			<added>1392651054</added>
+			<value>Show age only</value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.7.5</version_id>
+			<var_name>hide</var_name>
+			<added>1392651068</added>
+			<value>Hide</value>
+		</phrase>
+	</phrases>
+</upgrade>

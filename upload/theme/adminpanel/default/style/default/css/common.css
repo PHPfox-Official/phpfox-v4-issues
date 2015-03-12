@@ -1,0 +1,63 @@
+div.row_title
+{
+	position:relative;		
+}
+
+div.row_title_image_header
+{
+	position:absolute;
+	left:0px;
+	width:130px;
+	text-align:center;
+	border-right:1px #DFDFDF solid;	
+}
+
+div.row_title_image_header_body
+{
+	margin-left:138px;	
+	min-height:140px;
+}
+
+div.row_title_image
+{
+	position:absolute;
+	width:54px;
+	text-align:center;
+	left:0;		
+	border:1px transparent solid;
+	padding:2px 0px 5px 0px;
+}
+
+div.row_title_image:hover
+{
+	background:#fff;
+	border:1px #ccc solid;
+	z-index:2000;
+	
+  	-moz-box-shadow:6px 6px 6px #CFCFCF;
+  	-webkit-box-shadow:6px 6px 6px #CFCFCF;
+  	box-shadow:4px 4px 4px #EFEFEF;
+}
+
+div.row_title_info
+{
+	margin-left:60px;	
+	min-height:55px;
+}
+
+.softNoticePositive
+{
+	position: fixed; 
+	display:none; 
+	top:75px; 
+	left:0px;
+	width:100%;
+	height:50px;
+	line-height:50px;
+	font-size:16px;
+	text-align: center; 
+	z-index:9999;
+	background:url('../image/layout/softNoticePositive.png') repeat-x;
+	color:#333;
+	font-weight:bold;
+}

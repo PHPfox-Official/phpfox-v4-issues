@@ -1,0 +1,20 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc3</version_id>
+			<var_name>admincp_menu_reparser</var_name>
+			<added>1253959468</added>
+			<value>Reparser</value>
+		</phrase>
+	</phrases>
+	<phpfox_update_phrases>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc2</version_id>
+			<var_name>click_a_href_url_link_admincp_setting_edit_group_id_ftp_here_a_to_enable_ftp_support</var_name>
+			<added>1252909066</added>
+			<value><![CDATA[Click <a href="{link}">here</a> to enable FTP support.]]></value>
+		</phrase>
+	</phpfox_update_phrases>
+</upgrade>

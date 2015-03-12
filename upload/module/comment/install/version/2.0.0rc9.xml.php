@@ -1,0 +1,60 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>comment</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>new_comments_stats</var_name>
+			<added>1258756851</added>
+			<value>Comments</value>
+		</phrase>
+		<phrase>
+			<module_id>comment</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>you_cannot_write_a_comment_on_your_own_profile</var_name>
+			<added>1258848075</added>
+			<value>You cannot write a comment on your own profile.</value>
+		</phrase>
+		<phrase>
+			<module_id>comment</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>user_setting_can_comment_on_own_profile</var_name>
+			<added>1258848146</added>
+			<value>Can comment on own profile?</value>
+		</phrase>
+		<phrase>
+			<module_id>comment</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>update_owner_id_for_comments_only_for_those_that_upgraded_from_v1_6_21</var_name>
+			<added>1258985244</added>
+			<value>Update Owner ID# for Comments (Only for those that upgraded from v1.6.21).</value>
+		</phrase>
+		<phrase>
+			<module_id>comment</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>your_old_v1_6_21_setting_file_must_exist</var_name>
+			<added>1258985284</added>
+			<value>Your old v1.6.21 setting file must exist in order for us to continue. Old setting file: {file}</value>
+		</phrase>
+		<phrase>
+			<module_id>comment</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>the_database_table_table_does_not_exist</var_name>
+			<added>1258985369</added>
+			<value><![CDATA[The database table "{table}" does not exist. We cannot update this counter.]]></value>
+		</phrase>
+	</phrases>
+	<user_group_settings>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>comment</module_id>
+			<type>boolean</type>
+			<admin>1</admin>
+			<user>1</user>
+			<guest>0</guest>
+			<staff>1</staff>
+			<module>comment</module>
+			<ordering>0</ordering>
+			<value>can_comment_on_own_profile</value>
+		</setting>
+	</user_group_settings>
+</upgrade>

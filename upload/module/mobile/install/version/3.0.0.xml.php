@@ -1,0 +1,11 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>mobile</module_id>
+			<version_id>3.0.0</version_id>
+			<var_name>notifications</var_name>
+			<added>1322737627</added>
+			<value>Notifications</value>
+		</phrase>
+	</phrases>
+</upgrade>

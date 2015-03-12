@@ -1,0 +1,40 @@
+
+ul#rate_bar
+{
+	margin:0px 0px 15px 0px;
+}
+
+ul#rate_bar li
+{
+	display:inline;	
+}
+
+ul#rate_bar li a
+{
+	padding:2px 6px 1px 6px;
+	background:#03B0EC;
+	color:#fff;
+	margin:0px 3px 0px 0px;
+	text-decoration:none;
+	font-size:18px;	
+}
+
+ul#rate_bar li a:hover
+{
+	background:#195B85;
+	color:#fff;
+	text-decoration:none;
+}
+
+#js_photo_average_rating
+{
+	font-size:30px;
+	font-weight:bold;
+	text-align:center;
+}
+
+#js_photo_average_rating .extra_info
+{
+	font-size:12px;
+	font-weight:normal;
+}

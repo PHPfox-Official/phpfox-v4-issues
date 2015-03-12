@@ -1,0 +1,45 @@
+
+#privacy_holder_table .table
+{
+	position:relative;
+	border-bottom:1px #dfdfdf solid;
+	padding:8px 0px 8px 0px;
+}
+
+#privacy_holder_table .table_left
+{
+	position:absolute;
+	width:295px;
+	font-size:11px;
+	color:#333;
+	font-weight:bold;
+	padding:10px 0px 0px 10px;
+}
+
+#privacy_holder_table .table_right
+{
+	margin-left:300px;
+}
+
+#privacy_holder_table .table:hover
+{
+	background:#FFFFCF;
+}
+
+#privacy_holder_table .extra_info
+{
+	border-bottom:1px #dfdfdf solid;
+	font-size:12px;
+	padding-bottom:15px;
+}
+
+#privacy_holder_table .table_clear
+{
+	margin-top:20px;
+}
+
+
+#privacy_holder_table .extra_info_custom .extra_info
+{
+	border-bottom:0px;
+}

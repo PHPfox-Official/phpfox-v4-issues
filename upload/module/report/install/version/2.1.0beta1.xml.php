@@ -1,0 +1,12 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>report</module_id>
+			<version_id>2.0.8</version_id>
+			<var_name>feedback</var_name>
+			<added>1297091784</added>
+			<value>Feedback</value>
+		</phrase>
+	</phrases>
+	<sql><![CDATA[a:1:{s:9:"ADD_FIELD";a:1:{s:18:"phpfox_report_data";a:1:{s:8:"feedback";a:4:{i:0;s:5:"MTEXT";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}}}}]]></sql>
+</upgrade>

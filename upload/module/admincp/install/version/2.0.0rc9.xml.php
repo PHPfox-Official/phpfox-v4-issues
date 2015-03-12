@@ -1,0 +1,215 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>sql</var_name>
+			<added>1258744172</added>
+			<value>SQL</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>sql_maintenance</var_name>
+			<added>1258744239</added>
+			<value>Maintenance</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>table_s_successfully_optimized</var_name>
+			<added>1258745778</added>
+			<value>Table(s) successfully optimized.</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>table_s_successfully_repaired</var_name>
+			<added>1258745790</added>
+			<value>Table(s) successfully repaired.</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>sql_maintenance_title</var_name>
+			<added>1258745827</added>
+			<value>SQL Maintenance</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>database_size</var_name>
+			<added>1258746004</added>
+			<value>Database Size</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>overhead</var_name>
+			<added>1258746010</added>
+			<value>Overhead</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>total_tables</var_name>
+			<added>1258746230</added>
+			<value>Total Tables</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>sql_tables</var_name>
+			<added>1258746241</added>
+			<value>SQL Tables</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>table</var_name>
+			<added>1258746253</added>
+			<value>Table</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>size</var_name>
+			<added>1258746266</added>
+			<value>Size</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>optimize_table_s</var_name>
+			<added>1258746303</added>
+			<value>Optimize Table(s)</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>repair_table_s</var_name>
+			<added>1258746310</added>
+			<value>Repair Table(s)</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>sql_backup</var_name>
+			<added>1258746653</added>
+			<value>Backup</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>sql_backup_successfully_created_and_can_be_downloaded_here_path</var_name>
+			<added>1258754213</added>
+			<value>SQL backup successfully created and can be downloaded here: {path}</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>the_path_you_provided_is_not_a_valid_directory</var_name>
+			<added>1258754263</added>
+			<value>The path you provided is not a valid directory.</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>backup</var_name>
+			<added>1258754347</added>
+			<value>Backup</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>sql_backup_header</var_name>
+			<added>1258754406</added>
+			<value>SQL Backup</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>path</var_name>
+			<added>1258754414</added>
+			<value>Path</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>provide_the_full_path_to_where_we_should_save_the_sql_backup</var_name>
+			<added>1258754422</added>
+			<value>Provide the full path to where we should save the SQL backup.</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>your_operating_system_does_not_support_the_method_of_backup_we_provide</var_name>
+			<added>1258754523</added>
+			<value>Your operating system does not support the method of backup we provide. We advice you contact your host and ask the best method to backup your database as most hosting companies provide these options from a hosting control panel (eg. cPanel, Plesk etc...).</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>today_s_site_stats</var_name>
+			<added>1258756073</added>
+			<value><![CDATA[Today's Site Stats]]></value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>counters</var_name>
+			<added>1258900597</added>
+			<value>Counters</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>update_of_counter_successfully_completed</var_name>
+			<added>1258979452</added>
+			<value>Update of counter successfully completed.</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>update_counters</var_name>
+			<added>1258979493</added>
+			<value>Update Counters</value>
+		</phrase>
+		<phrase>
+			<module_id>admincp</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>updating_counters_processing_page_current_out_of_page</var_name>
+			<added>1258979529</added>
+			<value>Updating counters. Processing page {current} out of {page}.</value>
+		</phrase>
+	</phrases>
+	<hooks>
+		<hook>
+			<module_id>admincp</module_id>
+			<hook_type>controller</hook_type>
+			<module>admincp</module>
+			<call_name>admincp.component_controller_maintain_counter_clean</call_name>
+			<added>1259160644</added>
+			<version_id>2.0.0rc9</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>admincp</module_id>
+			<hook_type>controller</hook_type>
+			<module>admincp</module>
+			<call_name>admincp.component_controller_sql_index_clean</call_name>
+			<added>1259160644</added>
+			<version_id>2.0.0rc9</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>admincp</module_id>
+			<hook_type>controller</hook_type>
+			<module>admincp</module>
+			<call_name>admincp.component_controller_sql_backup_clean</call_name>
+			<added>1259160644</added>
+			<version_id>2.0.0rc9</version_id>
+			<value />
+		</hook>
+	</hooks>
+</upgrade>

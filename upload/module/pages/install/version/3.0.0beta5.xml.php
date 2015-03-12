@@ -1,0 +1,559 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>invitations_sent_out</var_name>
+			<added>1319112534</added>
+			<value>Invitations sent out.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>unable_to_find_the_page</var_name>
+			<added>1319112551</added>
+			<value>Unable to find the page.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>unable_to_moderate_this_page</var_name>
+			<added>1319112561</added>
+			<value>Unable to moderate this page.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>go_to_app</var_name>
+			<added>1319112599</added>
+			<value>Go to App</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>create_a_page</var_name>
+			<added>1319112605</added>
+			<value>Create a Page</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>join</var_name>
+			<added>1319112623</added>
+			<value>Join</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>like</var_name>
+			<added>1319112629</added>
+			<value>Like</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>no_members_yet</var_name>
+			<added>1319112645</added>
+			<value>No members yet.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>person_likes_this</var_name>
+			<added>1319112678</added>
+			<value>person likes this</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>people_like_this</var_name>
+			<added>1319112686</added>
+			<value>people like this</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>manage</var_name>
+			<added>1319112696</added>
+			<value>Manage</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>are_you_sure</var_name>
+			<added>1319112714</added>
+			<value>Are you sure?</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>select_switch_below_to_use_this_site_as_a_page</var_name>
+			<added>1319112741</added>
+			<value><![CDATA[Select "Switch" below to use this site as a Page and interact with others as that Page.]]></value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>switch</var_name>
+			<added>1319112752</added>
+			<value>Switch</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>you_currently_do_not_have_any_pages</var_name>
+			<added>1319112778</added>
+			<value><![CDATA[You currently do not have any pages. Create a new page <a href="{link}">here</a>.]]></value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>edit_page</var_name>
+			<added>1319112827</added>
+			<value>Edit Page</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>remove_membership</var_name>
+			<added>1319112839</added>
+			<value>Remove Membership</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>unlike</var_name>
+			<added>1319112846</added>
+			<value>Unlike</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>more</var_name>
+			<added>1319112897</added>
+			<value>More</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>category_details</var_name>
+			<added>1319112915</added>
+			<value>Category Details</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>parent_category</var_name>
+			<added>1319112923</added>
+			<value>Parent Category</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>none</var_name>
+			<added>1319112929</added>
+			<value>None</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>name</var_name>
+			<added>1319112939</added>
+			<value>Name</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>is_a_group</var_name>
+			<added>1319112947</added>
+			<value>Is a group?</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>yes</var_name>
+			<added>1319112956</added>
+			<value>Yes</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>no</var_name>
+			<added>1319112961</added>
+			<value>No</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>if_a_page_is_considered_a_group_it_will_require_users_to_become_members</var_name>
+			<added>1319112975</added>
+			<value>If a page is considered a group it will require users to become members of that page, instead of just allowing users to Like a page.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>submit</var_name>
+			<added>1319112982</added>
+			<value>Submit</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>active</var_name>
+			<added>1319113002</added>
+			<value>Active</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>edit</var_name>
+			<added>1319113016</added>
+			<value>Edit</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>manage_sub_categories_total</var_name>
+			<added>1319113029</added>
+			<value>Manage Sub-Categories ({total})</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>deactivate</var_name>
+			<added>1319113064</added>
+			<value>Deactivate</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>activate</var_name>
+			<added>1319113071</added>
+			<value>Activate</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>category</var_name>
+			<added>1319113085</added>
+			<value>Category</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>app</var_name>
+			<added>1319113090</added>
+			<value>App</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>landing_page</var_name>
+			<added>1319113115</added>
+			<value>Landing Page</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>update</var_name>
+			<added>1319113124</added>
+			<value>Update</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>vanity_url</var_name>
+			<added>1319113132</added>
+			<value>Vanity URL</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>check_url</var_name>
+			<added>1319113147</added>
+			<value>Check URL</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>click_here_to_change_this_photo</var_name>
+			<added>1319113175</added>
+			<value><![CDATA[Click <a href="#" id="js_pages_add_change_photo">here</a> to change this photo.]]></value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>upload_photo</var_name>
+			<added>1319113186</added>
+			<value>Upload Photo</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>page_privacy</var_name>
+			<added>1319113202</added>
+			<value>Page Privacy</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>control_who_can_see_this_page</var_name>
+			<added>1319113214</added>
+			<value>Control who can see this page.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>page_registration_method</var_name>
+			<added>1319113231</added>
+			<value>Page Registration Method</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>anyone</var_name>
+			<added>1319113237</added>
+			<value>Anyone</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>approval_first</var_name>
+			<added>1319113248</added>
+			<value>Approval First</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>members_only</var_name>
+			<added>1319113255</added>
+			<value>Members Only</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>admins_only</var_name>
+			<added>1319113263</added>
+			<value>Admins Only</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>remove</var_name>
+			<added>1319113282</added>
+			<value>Remove</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>search_friends_by_their_name</var_name>
+			<added>1319113296</added>
+			<value>Search friends by their name...</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>create_new_widget</var_name>
+			<added>1319113311</added>
+			<value>Create New Widget</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>actions</var_name>
+			<added>1319113335</added>
+			<value>Actions</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>connect_with_friends_associates_amp_fans</var_name>
+			<added>1319113360</added>
+			<value><![CDATA[Connect with friends, associates &amp; fans.]]></value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>choose_a_category</var_name>
+			<added>1319113390</added>
+			<value>Choose a category</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>get_started</var_name>
+			<added>1319113406</added>
+			<value>Get Started</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>invite_only</var_name>
+			<added>1319114205</added>
+			<value>Invite Only</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>note_that_pages_displayed_here_are_pages_created_by_the_page</var_name>
+			<added>1319114265</added>
+			<value>Note that Pages displayed here are pages created by the Page ({global_full_name}) and not by the parent user ({profile_full_name}).</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>moderate</var_name>
+			<added>1319114337</added>
+			<value>Moderate</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>total_members</var_name>
+			<added>1319114360</added>
+			<value>{total} members</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>1_member</var_name>
+			<added>1319114380</added>
+			<value>1 member</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>no_members</var_name>
+			<added>1319114389</added>
+			<value>No members</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>no_pages_found</var_name>
+			<added>1319114396</added>
+			<value>No pages found.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>this_page_is_pending_an_admins_approval_before_it_can_be_displayed_publicly</var_name>
+			<added>1319114407</added>
+			<value>This page is pending an Admins approval before it can be displayed publicly.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>you_have_been_invited_to_join_this_community</var_name>
+			<added>1319114443</added>
+			<value>You have been invited to join this community.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>due_to_privacy_settings_this_page_is_not_visible</var_name>
+			<added>1319114456</added>
+			<value>Due to privacy settings this page is not visible.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>this_page_is_also_invite_only</var_name>
+			<added>1319114467</added>
+			<value><![CDATA[This page is also "Invite Only".]]></value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>title</var_name>
+			<added>1319114483</added>
+			<value>Title</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>is_a_block</var_name>
+			<added>1319114491</added>
+			<value>Is a block?</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>menu_title</var_name>
+			<added>1319114510</added>
+			<value>Menu Title</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>content</var_name>
+			<added>1319114526</added>
+			<value>Content</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>successfully_moderated_user_s</var_name>
+			<added>1319183922</added>
+			<value>Successfully moderated user(s).</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>events</var_name>
+			<added>1319187962</added>
+			<value>Events</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>music</var_name>
+			<added>1319187976</added>
+			<value>Music</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>photos</var_name>
+			<added>1319187984</added>
+			<value>Photos</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0beta5</version_id>
+			<var_name>discussions</var_name>
+			<added>1319187992</added>
+			<value>Discussions</value>
+		</phrase>
+	</phrases>
+	<phpfox_update_blocks>
+		<block>
+			<type_id>0</type_id>
+			<m_connection>pages.view</m_connection>
+			<module_id>pages</module_id>
+			<component>like</component>
+			<location>1</location>
+			<is_active>1</is_active>
+			<ordering>2</ordering>
+			<disallow_access />
+			<can_move>0</can_move>
+			<title>Pages Likes/Members</title>
+			<source_code />
+			<source_parsed />
+		</block>
+		<block>
+			<type_id>0</type_id>
+			<m_connection>pages.view</m_connection>
+			<module_id>pages</module_id>
+			<component>widget</component>
+			<location>3</location>
+			<is_active>1</is_active>
+			<ordering>4</ordering>
+			<disallow_access />
+			<can_move>1</can_move>
+			<title />
+			<source_code />
+			<source_parsed />
+		</block>
+	</phpfox_update_blocks>
+</upgrade>

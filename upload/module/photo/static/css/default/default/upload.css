@@ -1,0 +1,24 @@
+.swfuText
+{
+	background-color: #006E2E;
+	font-size: 18px;
+	font-weight: bold;
+	border: solid 2px;
+}
+#swfUploaderContainer
+{
+	position: absolute;
+	z-index:880;
+	top: 0;
+}
+
+#swfUploadText
+{
+	position: absolute;
+	left: 0;
+	clear: right;
+}
+.swfupload
+{
+	z-index: 880;
+}

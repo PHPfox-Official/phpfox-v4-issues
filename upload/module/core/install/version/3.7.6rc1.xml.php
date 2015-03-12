@@ -1,0 +1,26 @@
+<upgrade>
+	<phpfox_update_settings>
+		<setting>
+			<group>image_processing</group>
+			<module_id>core</module_id>
+			<is_hidden>0</is_hidden>
+			<type>drop</type>
+			<var_name>watermark_option</var_name>
+			<phrase_var_name>setting_watermark_option</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.0rc1</version_id>
+			<value><![CDATA[a:2:{s:7:"default";s:4:"none";s:6:"values";a:3:{i:0;s:4:"none";i:1;s:5:"image";i:2;s:4:"text";}}]]></value>
+		</setting>
+		<setting>
+			<group>image_processing</group>
+			<module_id>core</module_id>
+			<is_hidden>0</is_hidden>
+			<type>drop</type>
+			<var_name>watermark_image_position</var_name>
+			<phrase_var_name>setting_watermark_image_position</phrase_var_name>
+			<ordering>4</ordering>
+			<version_id>2.0.0rc1</version_id>
+			<value><![CDATA[a:2:{s:7:"default";s:12:"bottom_right";s:6:"values";a:4:{i:0;s:12:"bottom_right";i:1;s:11:"bottom_left";i:2;s:8:"top_left";i:3;s:9:"top_right";}}]]></value>
+		</setting>
+	</phpfox_update_settings>
+</upgrade>

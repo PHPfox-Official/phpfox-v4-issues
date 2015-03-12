@@ -1,0 +1,131 @@
+.label_hover_background
+{
+	background:#F4F4F4;
+}
+
+.button_hover
+{
+	border:1px #54A4DE solid;
+	background:#54A4DE;
+	margin:0px;
+	border:1px #B2B2B2 solid;
+} 
+
+.separate
+{
+	margin-top:2px;
+	margin-bottom:0px;
+	padding:0px;
+}
+
+#js_inline_search ul
+{
+	margin-left:3px;
+}
+
+.p_relative
+{
+	position:relative;
+}
+
+.fix_input_length
+{
+	position:absolute;
+}
+
+.fix_input_height
+{
+	height:25px;
+}
+
+.fix_left_margin
+{
+	margin-left:3px;
+}
+
+.comment_info
+{
+	margin-right:25px;
+}
+
+h3
+{
+	position:relative;
+}
+
+.forum_menu li a
+{
+	padding:2px 3px 2px 3px;		
+}
+
+div#content div.header
+{
+	position:relative;
+}
+
+.position_fixed
+{
+	position:absolute;
+}
+
+div#footer_bar 
+{
+	right: auto; 
+	bottom: auto;
+  	left: expression( ( -0 - footer_bar.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+  	top: expression( ( -0 - footer_bar.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+}
+
+div#footer_bar_favorite 
+{
+	right: auto; 
+	bottom: auto;
+  	left: expression( ( -0 - footer_bar_favorite.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+  	top: expression( ( -25 - footer_bar_favorite.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+}
+
+div#footer_bar_open
+{
+	right: auto; 
+	bottom: auto;
+  	left: expression( ( -0 - footer_bar_open.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+  	top: expression( ( -0 - footer_bar_open.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+}
+
+div#footer_menu 
+{
+	left: expression( ( 0 + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+	top: expression( ( -25 - footer_menu.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+}
+
+div#footer_notification 
+{
+	right: auto; 
+	bottom: auto;
+  	left: expression( ( -0 - footer_notification.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+  	top: expression( ( -25 - footer_notification.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+}
+
+div#js_style_holder
+{
+  left: expression( ( ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+  top: expression( ( ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+}
+
+div#top_nav_holder
+{
+	height: 0;  
+	he\ight: auto;  
+	zoom: 1;
+}
+
+
+div#js_temp_image_block 
+{
+  	top: expression( ( -25 - js_temp_image_block.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );  	
+}
+
+div#js_cache_extra_rooms 
+{
+  	top: expression( ( -25 - js_cache_extra_rooms.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );  	
+}

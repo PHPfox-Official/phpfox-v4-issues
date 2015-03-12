@@ -1,0 +1,17 @@
+
+.comment_view_holder
+{
+	position:relative;
+	border-bottom:1px #dfdfdf solid;
+	padding-bottom:8px;
+	margin-bottom:10px;
+}
+
+.comment_view_link
+{
+	position:absolute;
+	right:0px;
+	top:4px;
+	font-weight:bold;
+	font-size:13px;
+}

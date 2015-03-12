@@ -1,0 +1,24 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>cache</group>
+			<module_id>photo</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>pre_load_header_view</var_name>
+			<phrase_var_name>setting_pre_load_header_view</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>1</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>photo</module_id>
+			<version_id>3.6.0rc1</version_id>
+			<var_name>setting_pre_load_header_view</var_name>
+			<added>1371732031</added>
+			<value><![CDATA[<title>Pre-load JavaScript for Photo Theater Mode</title><info>Enable to pre-load all the needed JS/CSS files for viewing a photo. Makes it faster to get the popup.</info>]]></value>
+		</phrase>
+	</phrases>
+</upgrade>

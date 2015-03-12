@@ -1,0 +1,75 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>forum</module_id>
+			<version_id>3.0.0rc1</version_id>
+			<var_name>view_additional_options</var_name>
+			<added>1320326265</added>
+			<value>View Additional Options</value>
+		</phrase>
+		<phrase>
+			<module_id>forum</module_id>
+			<version_id>3.0.0rc1</version_id>
+			<var_name>update</var_name>
+			<added>1320326274</added>
+			<value>Update</value>
+		</phrase>
+		<phrase>
+			<module_id>forum</module_id>
+			<version_id>3.0.0rc1</version_id>
+			<var_name>view_thread</var_name>
+			<added>1320326350</added>
+			<value>View Thread</value>
+		</phrase>
+		<phrase>
+			<module_id>forum</module_id>
+			<version_id>3.0.0rc1</version_id>
+			<var_name>pages</var_name>
+			<added>1320414326</added>
+			<value>Pages</value>
+		</phrase>
+		<phrase>
+			<module_id>forum</module_id>
+			<version_id>3.0.0rc1</version_id>
+			<var_name>discussions</var_name>
+			<added>1320414336</added>
+			<value>Discussions</value>
+		</phrase>
+		<phrase>
+			<module_id>forum</module_id>
+			<version_id>3.0.0rc1</version_id>
+			<var_name>unable_to_view_this_item_due_to_privacy_settings</var_name>
+			<added>1320414345</added>
+			<value>Unable to view this item due to privacy settings.</value>
+		</phrase>
+	</phrases>
+	<hooks>
+		<hook>
+			<module_id>forum</module_id>
+			<hook_type>component</hook_type>
+			<module>forum</module>
+			<call_name>forum.component_ajax_reply</call_name>
+			<added>1319729453</added>
+			<version_id>3.0.0rc1</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>forum</module_id>
+			<hook_type>component</hook_type>
+			<module>forum</module>
+			<call_name>forum.component_block_stat_clean</call_name>
+			<added>1319729453</added>
+			<version_id>3.0.0rc1</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>forum</module_id>
+			<hook_type>template</hook_type>
+			<module>forum</module>
+			<call_name>forum.template_controller_post_ajax_onsubmit</call_name>
+			<added>1319729453</added>
+			<version_id>3.0.0rc1</version_id>
+			<value />
+		</hook>
+	</hooks>
+</upgrade>

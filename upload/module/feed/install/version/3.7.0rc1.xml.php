@@ -1,0 +1,25 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>feed</module_id>
+			<version_id>3.7.0rc1</version_id>
+			<var_name>user_setting_can_view_feed</var_name>
+			<added>1377073464</added>
+			<value>Can members of this user group view feeds anywhere in the site?</value>
+		</phrase>
+	</phrases>
+	<user_group_settings>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>feed</module_id>
+			<type>boolean</type>
+			<admin>true</admin>
+			<user>true</user>
+			<guest>true</guest>
+			<staff>true</staff>
+			<module>feed</module>
+			<ordering>0</ordering>
+			<value>can_view_feed</value>
+		</setting>
+	</user_group_settings>
+</upgrade>

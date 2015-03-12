@@ -1,0 +1,470 @@
+ 
+body
+{
+	text-align:center;
+	padding:0px;
+	background:#F1F1F1 url('../image/layout/install_bg.png') repeat-x;
+	font-family:Arial,sans-serif;
+	color:#2D2E30;
+	font-size:10pt;
+	text-align:center;
+	margin:0px;
+}
+
+a
+{
+	color:#495A77;
+}
+
+a:hover
+{
+	color:#495A77;
+	text-decoration:none;
+}
+
+img
+{
+	border:0;
+}
+
+form
+{
+	margin:0px;
+}
+
+select
+{
+	font-size:14px;
+	background:#fff;
+	color:#000;
+	border:1px #B2B2B2 solid;
+	padding:8px 4px 8px 4px;
+	vertical-align:middle;
+}
+
+input
+{
+	font-size:10pt;
+	padding:8px 4px 8px 4px;
+	border:1px #B2B2B2 solid;
+	background: #f3f3f3 url('../image/layout/bg_form.png') left top repeat-x;	
+	vertical-align:top;
+	color:#000;	
+}
+
+input:focus,
+select:focus
+{
+	border:1px #7FDF6F solid;
+  	-moz-box-shadow:4px 4px 4px #DFDFDF;
+  	-webkit-box-shadow:4px 4px 4px #DFDFDF;
+  	box-shadow:4px 4px 4px #DFDFDF;		
+}
+
+textarea
+{
+	font-size:10pt;
+	padding:4px;
+	border:1px #B2B2B2 solid;
+	background:#F4F4F4;
+	color:#000;
+}
+
+div#container
+{
+	width:980px;
+	margin:auto;
+	position:relative;	
+}
+
+.button
+{
+	cursor:pointer;
+	border:none;
+	font-size:12px;
+	margin:0px;
+	padding:12px;
+	vertical-align:middle;
+	font-weight:bold;
+	overflow: visible;	
+	color:#fff;	
+	background:#009AEF;
+	text-transform:uppercase;
+}
+
+.button:hover
+{
+	background:#007BBF;
+	-webkit-transition: all 0.50s ease;
+	-moz-transition: all 0.50s ease;
+	-o-transition: all 0.50s ease;		
+}
+
+.warning
+{
+	background:#CC0000;
+	color:#fff;
+	border:1px #D01F3C solid;
+}
+
+/* Hides from IE5-mac */
+* html div#main {height: 1%;}
+/* End hide from IE5-mac */ /*— Holly Hack for IE 6 Peekaboo bug —*/
+
+#main
+{
+	text-align:left;	
+}
+
+#main .left
+{
+	position:absolute;
+	width:200px;
+	left:0;
+	top:0px;
+	color:#6F6F6F;
+		
+}
+
+#main .logo
+{
+	height:50px;
+	line-height:50px;
+	margin-bottom:5px;
+	text-align:center;
+	padding-left:30px;
+}
+
+#main .right
+{
+	margin-left:200px;	
+	min-height:500px;
+	height:auto !important;
+	height:500px;	
+	background:#fff;
+	padding:20px 20px 20px 20px;
+	border:1px #dfdfdf solid;
+	border-top:0px;	
+}
+
+#main h3
+{
+	font-size:12pt;
+	margin:15px 0 10px 0;
+	border-bottom:1px #F4F4F3 solid;
+	padding:5px;	
+	background:#495A77;
+	color:#fff;
+}
+
+#main .p_4 {padding:4px;}
+#main .mT10 {margin-top:10px;}
+
+#main .valid_message 
+{
+ 	background:green;
+ 	margin:4px 0 4px 0;
+ 	color:#fff;
+ 	font-weight:bold;
+ 	font-size:10pt;
+ 	padding:4px;
+}
+
+#main .error_message 
+{
+ 	background:#b70000;
+ 	margin:4px 0 4px 0;
+ 	color:#fff;
+ 	font-weight:bold;
+ 	font-size:10pt;
+ 	padding:4px;
+}
+
+#main .public_message, #main .message
+{
+ 	margin:4px 0px 4px 0px;
+ 	color:#6B6B6B;
+ 	font-weight:bold;
+ 	font-size:10pt;
+ 	padding:4px;
+ 	display:none; 	
+	background:#FFF8CC;
+	border:1px #FFE222 solid; 	
+}
+
+#main .message
+{
+	display:block;
+}
+
+#main .alert_input 
+{
+	border:1px #b70000 solid;
+	background:#fff;
+}
+
+#main ul.step
+{
+	margin:0px;
+	padding:0px;
+	list-style-type:none;	
+}
+
+#main ul.step li
+{	
+	padding:0px 0px 0px 5px;
+	display:block;
+	height:40px;
+	line-height:40px;
+	font-size:12px;
+}
+
+#main ul.step li.active
+{
+	background:#009AEF;
+	color:#fff;
+	font-weight:bold;
+}
+
+#help a
+{
+	font-size: 10px;
+	text-decoration: none;
+	cursor: help;
+}
+
+#help
+{
+	position:relative;
+	bottom:20px;
+}
+
+#help .help_link
+{
+	position:absolute; 
+	right:0px;
+}
+
+#help .help_info
+{
+	display:none;
+}
+
+.t_center
+{
+	text-align:center;
+}
+
+.go_left
+{
+	float:left;
+	padding-right:10px;
+}
+
+.t_right
+{
+	text-align:right;
+}
+
+.clear
+{
+	clear:both;
+}
+
+.table_header
+{
+	background:#5B5B5B;
+	padding:5px;
+	color:#fff;
+	font-weight:bold;	
+	font-size:13px;
+	height:24px;
+	line-height:24px;
+}
+
+.table_header a { color:#fff; text-decoration:underline; }
+.table_header a:hover { color:#fff; text-decoration:none; }
+
+.table_sub_header
+{
+	background:#DFE4EE;
+	padding:4px;
+	color:#000;
+	font-size:10pt;
+	font-weight:bold;
+}
+
+.table
+{
+	padding:10px 0px 10px 0px;
+	position:relative;
+	border-bottom:1px #dfdfdf solid;	
+}
+
+.table:hover
+{
+	background:#FFFFDF;
+}
+
+.table_left
+{
+	padding:2px 0px 6px 4px; 	
+	color:#666666;
+	font-weight:bold;
+	font-size:12px;
+	position:absolute;
+	left:0px;
+	width:290px;
+}
+
+.table_right
+{
+	margin-left:300px;
+}
+
+.table_clear
+{
+	text-align:left;
+	padding:10px 0px 0px 0px;
+	position:relative;	
+}
+
+.moduleList
+{
+	width:400px;
+	height:200px;
+	border:1px #E6E6E6 solid;
+	overflow:auto;
+	margin:5px;
+	background:#F4F4F4;
+    text-align:left;
+}
+
+div#copyright
+{
+	margin-left:200px;	
+	margin-top:15px;
+	font-size:9pt;
+	color:#9F9F9F;
+	text-align:left;
+}
+
+div#copyright a
+{
+	color:#9F9F9F;
+	text-decoration:none;	
+}
+
+div#copyright a:hover
+{
+	color:#9F9F9F;
+	text-decoration:underline;	
+}
+
+div#copyright div
+{
+	padding-top:4px;
+}
+
+ul.action
+{
+	list-style-type:none;
+	margin:10px 0px 0px 0px;
+	padding:0px;
+}
+
+ul.action li
+{
+	display:inline;
+}
+
+ul.action li a
+{
+	border:1px #f1f1f1 solid;
+	padding:0px 16px 0px 16px;
+	line-height:36px;
+	height:36px;
+	font-size:15px;
+	text-decoration:none;
+	display:block;
+	position:absolute;
+	color:#fff;
+	font-weight:bold;
+	background:#6EA4D7 url('../image/layout/install_button.png') repeat-x;
+	
+	border:1px #00437F solid;
+	
+  	-moz-box-shadow:3px 3px 3px #CFCFCF;
+  	-webkit-box-shadow:3px 3px 3px #CFCFCF;
+  	box-shadow:3px 3px 3px #CFCFCF;
+}
+
+.label_flow
+{
+	overflow:auto; 
+	border:1px #dfdfdf solid;
+	padding:4px;
+    text-align:left;
+}
+
+.completed_message,
+.nb_message_holder
+{
+	text-align:center;
+	margin-top:20px;
+	background:#CFFFDA;
+	padding:20px;
+	font-size:16px;
+	color:#8F8F8F;
+	border:1px #4FFF77 solid;
+}
+
+.nb_message_holder
+{
+	background:#FCFFDF;	
+	border:0px;
+}
+
+a.installed_link,
+a.installed_link:hover
+{
+	display:block;
+	width:40%;
+	margin:auto;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	text-transform:uppercase;
+	background:#FF7200;
+	margin-top:20px;
+	text-decoration:none;
+	color:#fff;
+	font-weight:bold;
+}
+
+a.installed_link:hover
+{
+	background:#CF5C00;
+	-webkit-transition: all 0.50s ease;
+	-moz-transition: all 0.50s ease;
+	-o-transition: all 0.50s ease;		
+}
+
+.nb_green
+{
+	color:#00BF2C;
+	text-transform:uppercase;
+	font-size:11px;
+}
+
+.nb_red
+{
+	color:#EF1100;
+	text-transform:uppercase;
+}
+
+.nb_message_image
+{
+	padding-top:20px;
+	text-align:center;
+}

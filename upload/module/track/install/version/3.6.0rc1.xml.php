@@ -1,0 +1,42 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>cache</group>
+			<module_id>track</module_id>
+			<is_hidden>0</is_hidden>
+			<type>integer</type>
+			<var_name>cache_recently_viewed_by_timeout</var_name>
+			<phrase_var_name>setting_cache_recently_viewed_by_timeout</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group>cache</group>
+			<module_id>track</module_id>
+			<is_hidden>0</is_hidden>
+			<type>integer</type>
+			<var_name>cache_allow_recurrent_visit</var_name>
+			<phrase_var_name>setting_cache_allow_recurrent_visit</phrase_var_name>
+			<ordering>2</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>track</module_id>
+			<version_id>3.6.0rc1</version_id>
+			<var_name>setting_cache_recently_viewed_by_timeout</var_name>
+			<added>1371723922</added>
+			<value><![CDATA[<title>Recently Viewed Refresh</title><info>The cache will be refreshed after X minutes. 0 for no cache.</info>]]></value>
+		</phrase>
+		<phrase>
+			<module_id>track</module_id>
+			<version_id>3.6.0rc1</version_id>
+			<var_name>setting_cache_allow_recurrent_visit</var_name>
+			<added>1371723988</added>
+			<value><![CDATA[<title>Refresh Profile Visitor List</title><info>How long before the same user is added to the list again. Minutes, 0 for no cache.</info>]]></value>
+		</phrase>
+	</phrases>
+</upgrade>

@@ -1,0 +1,31 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>attachment</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>attachment_activity</var_name>
+			<added>1258500262</added>
+			<value>Attachments</value>
+		</phrase>
+	</phrases>
+	<hooks>
+		<hook>
+			<module_id>attachment</module_id>
+			<hook_type>controller</hook_type>
+			<module>attachment</module>
+			<call_name>attachment.component_controller_admincp_index_clean</call_name>
+			<added>1258389334</added>
+			<version_id>2.0.0rc8</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>attachment</module_id>
+			<hook_type>controller</hook_type>
+			<module>attachment</module>
+			<call_name>attachment.component_controller_admincp_add_clean</call_name>
+			<added>1258389334</added>
+			<version_id>2.0.0rc8</version_id>
+			<value />
+		</hook>
+	</hooks>
+</upgrade>

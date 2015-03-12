@@ -1,0 +1,40 @@
+
+#main_registration_form
+{
+	margin:auto;
+	width:600px;
+	position:relative;	
+}
+
+#main_registration_form_holder
+{
+	border-top:1px #ccc solid;
+	background:#f1f1f1;
+	padding:10px;
+	margin-top:10px;
+}
+
+#main_registration_form_holder input
+{
+	background:#fff;
+}
+
+#main_registration_form h1
+{
+	margin:10px 0px 0px 0px;
+	padding:0px;
+}
+
+#main_registration_custom
+{
+	position:absolute;
+	right:10px;
+	width:200px;
+	background:#fff;
+	text-align:center;
+	padding:5px;
+	border:1px #dfdfdf solid;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+  	border-radius:8px;		
+}

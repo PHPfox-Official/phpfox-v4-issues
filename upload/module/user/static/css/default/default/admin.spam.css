@@ -1,0 +1,36 @@
+.valid_answer_action
+{
+	
+	float: left;
+}
+.valid_answer_text
+{
+	float: left;
+}
+
+#div_add_answers .extra_info, #div_add_answer, .valid_answer, #btn_edit_remove_image
+{
+	clear: both;
+}
+
+#tpl_answer, #tpl_question_tr, #div_edit_image
+{
+	display: none;
+}
+
+.img_delete, .img_delete_question
+{
+	cursor: pointer;
+}
+
+.tip
+{
+	border: 1px solid orange;
+	background-color: #333;	
+	padding: 6px;
+}
+.tip li
+{
+	background-color: #999;	
+	padding: 6px;
+}

@@ -1,0 +1,321 @@
+
+body
+{
+	background:#191919;
+}
+
+#header
+{
+	background:#fff;
+}
+
+#header_menu_page_holder
+{
+	/*background:#8FC53F url('../image/layout/altitude_header_menu_page_holder.png') repeat-x bottom;*/
+	background:#0F4E77 url('../image/layout/altitude_header.png') repeat-x;
+}
+
+#header_menu ul li a,
+#header_menu ul li a:hover
+{
+	border-right:0px;
+	color:#fff;
+	font-size:14px;
+	line-height: 40px;
+	height:40px;	
+	padding-left:0px;
+	padding-right:0px;
+	margin-right:20px;
+}
+
+#header_menu ul li a:hover
+{
+	background:transparent;
+	text-decoration:underline;
+}
+
+#main_footer_holder
+{
+	min-height:100px;	
+	background:url('../image/layout/main_footer_holder.png') repeat-x;
+	border-top:1px #ccc solid;
+}
+
+#footer
+{
+	border-top:0px;
+	color:#AFAFAF;
+	margin-top:0px;
+}
+
+#footer a,
+#footer a:hover
+{
+	color:#AFAFAF;
+}
+
+#header_menu
+{
+	background:transparent;
+}
+
+#left
+{
+	border-right:0px;
+}
+
+#left .block .title,
+#right .block .title
+{
+	height:35px;
+	line-height:35px;
+	border:1px #dfdfdf solid;
+	padding-left:8px;
+	font-size:13px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+  	border-radius:6px;
+	background:#fff url('../image/layout/altitude_block_title.png') repeat-x bottom;
+	font-weight:normal;
+}
+
+#holder_notify ul li a.friend_notification
+{
+	background:url('../image/layout/holder_notify_friend_request.png') no-repeat 50% 0px;
+}
+
+#holder_notify ul li.is_active a.friend_notification
+{
+	background:#fff url('../image/layout/holder_notify_friend_request.png') no-repeat 50% -40px;
+}
+
+#holder_notify ul li a.message
+{
+	background:url('../image/layout/holder_notify_message.png') no-repeat 50% 0px;
+}
+
+#holder_notify ul li.is_active a.message
+{
+	background:#fff url('../image/layout/holder_notify_message.png') no-repeat 50% -40px;
+}
+
+#holder_notify ul li a.notification
+{
+	background:url('../image/layout/holder_notify_notification.png') no-repeat 50% 0px;
+}
+
+#holder_notify ul li.is_active a.notification
+{
+	background:#fff url('../image/layout/holder_notify_notification.png') no-repeat 50% -40px;
+}
+
+#header_menu_holder ul li a,
+#header_menu_holder ul li a:hover,
+#header_menu_holder ul li a.has_drop_down,
+#holder_notify ul li a.notify_drop_link
+{
+	color:#333;
+}
+
+#header_menu_holder ul li a:hover,
+#header_menu_holder ul li a.has_drop_down:hover,
+#holder_notify ul li a.notify_drop_link:hover
+{
+	background-color:#f6f6f6;	
+}
+
+#header_menu_holder ul li a.active,
+#header_menu_holder ul li a.active:hover,
+#holder_notify ul li.is_active a.notify_drop_link:hover
+{
+	background-color:#191919;
+	color:#fff;
+}
+
+#header_menu_holder ul li ul li a:hover,
+.privacy_setting_holder ul li a:hover,
+.js_box_title
+{
+	background:#8DCF19;
+	color:#fff;
+}
+
+#header_menu_holder ul li ul li a,
+#header_menu_holder ul li ul li a:hover
+{
+	color:#fff;	
+}
+
+#header_menu ul li ul li a,
+#header_menu ul li ul li a:hover
+{
+	color:#fff;
+	height:15px;
+	line-height:15px;	
+	padding-left:5px;
+	text-decoration:none;	
+}
+
+.privacy_setting_holder ul li a
+{
+	color:#333;
+}
+
+#header_menu_holder ul li ul
+{
+	background-color:#191919;
+	color:#fff;
+}
+
+#header_menu_holder ul li.header_menu_user_link a,
+#header_menu_holder ul li.header_menu_user_link a:hover
+{
+	color:#fff;
+}
+
+#header_menu_holder ul li.header_menu_user_link
+{
+	border-bottom:1px #4F4F4F solid;
+}
+
+#logo, #logo:hover
+{
+	color:#8DCF19;
+	font-size:20px;
+}
+
+#js_main_debug_holder
+{
+	color:#fff;
+}
+
+#footer ul#footer_menu li a,
+#footer ul#footer_menu li a:hover
+{
+	border-left:1px #6F6F6F solid;		
+}
+
+input.button,
+a.button_off_link,
+a.button_off_link:hover
+{
+	background:#A3EF1D url('../image/layout/button.png') repeat-x bottom;
+	border:1px #7ABF00 solid;
+	font-weight:normal;
+	font-size:14px;
+}
+
+input.button_off,
+a.button_off_link,
+a.button_off_link:hover,
+input.button_not_active,
+input.button_not_active:hover
+{
+	background:#F2F2F2;
+	border:1px #dfdfdf solid;
+}
+
+input:focus, 
+textarea:focus
+{
+	border:1px #27729F solid;	
+}
+
+#main_content_holder
+{
+	padding-bottom:10px;
+}
+
+#holder_notify ul li.is_active a.notify_drop_link, #holder_notify ul li.is_active a.notify_drop_link:hover,
+#holder_notify ul li div.holder_notify_drop
+{
+	background-color:#191919;
+	color:#fff;
+}
+
+#holder_notify ul li div.holder_notify_drop .holder_notify_drop_title
+{
+	border-bottom:0px #4F4F4F solid;
+}
+
+.drop_data_empty
+{
+	border-top:1px #4F4F4F solid;
+}
+
+#holder_notify ul li div.holder_notify_drop a.holder_notify_drop_link, #holder_notify ul li div.holder_notify_drop a.holder_notify_drop_link:hover, .js_temp_friend_search_form_holder ul li a.holder_notify_drop_link, .js_temp_friend_search_form_holder ul li a.holder_notify_drop_link:hover, #holder_notify ul li .holder_notify_drop_data ul li a.main_link:hover
+{
+	background:#8DCF19;
+	color:#fff;
+}
+
+#holder_notify ul li .holder_notify_drop_data ul li.holder_notify_drop_data
+{
+	border-top:1px #4F4F4F solid;	
+}
+
+#holder_notify ul li .holder_notify_drop_data ul li a.main_link,
+#holder_notify ul li .holder_notify_drop_data ul li a.main_link:hover
+{
+	background:#191919;
+	color:#fff;
+}
+
+#holder_notify ul li .holder_notify_drop_data ul li a.main_link:hover,
+#holder_notify ul li div.holder_notify_drop a.holder_notify_drop_link:hover,
+.js_temp_friend_search_form_holder ul li a.holder_notify_drop_link:hover
+{
+	background:#8DCF19;
+	color:#fff;	
+}
+
+#holder_notify ul li div.holder_notify_drop .holder_notify_drop_title_link a,
+#holder_notify ul li div.holder_notify_drop .holder_notify_drop_title_link a:hover
+{
+	color:#fff;
+}
+
+.holder_notify_drop .drop_data_user
+{
+	color:#fff;
+}
+
+#header_sub_menu_search_input
+{
+	background:url('../image/layout/header_search_input.png') no-repeat;
+}
+
+#header_sub_menu_search .focus
+{
+	background:url('../image/layout/header_search_input.png') no-repeat 0px -26px;
+}
+
+a.page_section_menu_link,
+a.page_section_menu_link:hover
+{
+	background:#0F4C75;
+	color:#fff;
+}
+
+a.page_section_menu_link:hover
+{
+	background:#0A3A58;
+}
+
+.page_section_menu ul li.active a,
+.page_section_menu ul li.active a:hover
+{
+	background:#494849;
+}
+
+#header_menu_login .header_menu_login_label,
+#header_menu_login_custom
+{
+	color:#333;
+}
+
+/* Fixes bug 13957 and 14307 */
+#js_controller_photo_albums #content_load_data h1
+{
+	
+}

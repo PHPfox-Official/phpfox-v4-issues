@@ -1,0 +1,21 @@
+
+.music_title_link
+{
+	margin-left:35px; 
+	position:relative;
+}
+
+.music_title_link .extra_info
+{
+	padding:0px;
+	margin:0px;
+	position:absolute;
+	left:8px;
+	top:14px;
+}
+
+.music_title_link .extra_info a,
+.music_title_link .extra_info a:hover
+{
+	color:#808080;
+}

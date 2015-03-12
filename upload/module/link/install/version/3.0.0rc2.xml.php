@@ -1,0 +1,39 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>link</module_id>
+			<version_id>3.0.0rc2</version_id>
+			<var_name>no_thumbnail</var_name>
+			<added>1321364565</added>
+			<value>No Thumbnail</value>
+		</phrase>
+		<phrase>
+			<module_id>link</module_id>
+			<version_id>3.0.0rc2</version_id>
+			<var_name>previous</var_name>
+			<added>1321364574</added>
+			<value>Previous</value>
+		</phrase>
+		<phrase>
+			<module_id>link</module_id>
+			<version_id>3.0.0rc2</version_id>
+			<var_name>next</var_name>
+			<added>1321364582</added>
+			<value>Next</value>
+		</phrase>
+		<phrase>
+			<module_id>link</module_id>
+			<version_id>3.0.0rc2</version_id>
+			<var_name>choose_a_thumbnail</var_name>
+			<added>1321364589</added>
+			<value>Choose a Thumbnail</value>
+		</phrase>
+		<phrase>
+			<module_id>link</module_id>
+			<version_id>3.0.0rc2</version_id>
+			<var_name>play</var_name>
+			<added>1321446647</added>
+			<value>Play</value>
+		</phrase>
+	</phrases>
+</upgrade>

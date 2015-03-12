@@ -1,0 +1,69 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>music</module_id>
+			<version_id>2.0.0rc11</version_id>
+			<var_name>user_setting_can_access_music</var_name>
+			<added>1260286510</added>
+			<value>Can browse and view the music module?</value>
+		</phrase>
+	</phrases>
+	<user_group_settings>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>music</module_id>
+			<type>boolean</type>
+			<admin>1</admin>
+			<user>1</user>
+			<guest>1</guest>
+			<staff>1</staff>
+			<module>music</module>
+			<ordering>0</ordering>
+			<value>can_access_music</value>
+		</setting>
+	</user_group_settings>
+	<hooks>
+		<hook>
+			<module_id>music</module_id>
+			<hook_type>service</hook_type>
+			<module>music</module>
+			<call_name>music.service_process_upload__end</call_name>
+			<added>1260366442</added>
+			<version_id>2.0.0rc11</version_id>
+			<value />
+		</hook>
+	</hooks>
+	<phpfox_update_custom_field>
+		<field>
+			<group_name>music.custom_group_basics</group_name>
+			<field_name>record_label_name</field_name>
+			<module_id>music</module_id>
+			<type_id>user_panel</type_id>
+			<phrase_var_name>music.custom_record_label_name</phrase_var_name>
+			<type_name>VARCHAR(255)</type_name>
+			<var_type>text</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>8</ordering>
+			<value />
+		</field>
+		<field>
+			<group_name>music.custom_group_basics</group_name>
+			<field_name>record_label_type</field_name>
+			<module_id>music</module_id>
+			<type_id>user_panel</type_id>
+			<phrase_var_name>music.custom_record_label_type</phrase_var_name>
+			<type_name>VARCHAR(150)</type_name>
+			<var_type>select</var_type>
+			<is_active>1</is_active>
+			<is_required>1</is_required>
+			<ordering>9</ordering>
+			<value><![CDATA[a:3:{i:0;a:1:{s:15:"phrase_var_name";s:21:"music.cf_option_indie";}i:1;a:1:{s:15:"phrase_var_name";s:21:"music.cf_option_major";}i:2;a:1:{s:15:"phrase_var_name";s:24:"music.cf_option_unsigned";}}]]></value>
+		</field>
+	</phpfox_update_custom_field>
+	<update_templates>
+		<file type="block">entry.html.php</file>
+		<file type="block">menu-album.html.php</file>
+		<file type="block">latest.html.php</file>
+	</update_templates>
+</upgrade>

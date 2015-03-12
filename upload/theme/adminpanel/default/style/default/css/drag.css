@@ -1,0 +1,18 @@
+
+.drag_handle 
+{
+	width:20px;
+	background-image:url(../image/misc/drag.png);
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+.drag_show_handle 
+{
+	cursor: move;
+}
+
+.drag_my_class 
+{
+	background-color:#FEFBD9;        
+}

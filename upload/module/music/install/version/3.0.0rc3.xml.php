@@ -1,0 +1,32 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>music</module_id>
+			<version_id>3.0.0rc3</version_id>
+			<var_name>featured_albums</var_name>
+			<added>1321961384</added>
+			<value>Featured Albums</value>
+		</phrase>
+		<phrase>
+			<module_id>music</module_id>
+			<version_id>3.0.0rc3</version_id>
+			<var_name>featured_songs</var_name>
+			<added>1321961407</added>
+			<value>Featured Songs</value>
+		</phrase>
+		<phrase>
+			<module_id>music</module_id>
+			<version_id>3.0.0rc3</version_id>
+			<var_name>tracks_lowercase</var_name>
+			<added>1321961447</added>
+			<value>tracks</value>
+		</phrase>
+		<phrase>
+			<module_id>music</module_id>
+			<version_id>3.0.0rc3</version_id>
+			<var_name>plays_lowercase</var_name>
+			<added>1321961468</added>
+			<value>plays</value>
+		</phrase>
+	</phrases>
+</upgrade>

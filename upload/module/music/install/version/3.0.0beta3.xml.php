@@ -1,0 +1,3 @@
+<upgrade>
+	<sql><![CDATA[a:2:{s:11:"ALTER_FIELD";a:1:{s:18:"phpfox_music_album";a:1:{s:4:"year";a:4:{i:0;s:6:"CHAR:4";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}}}s:7:"ADD_KEY";a:2:{s:18:"phpfox_music_album";a:2:{s:9:"view_id_9";a:2:{i:0;s:5:"INDEX";i:1;a:4:{i:0;s:7:"view_id";i:1;s:7:"privacy";i:2;s:11:"total_track";i:3;s:7:"item_id";}}s:10:"_view_id_5";a:2:{i:0;s:5:"INDEX";i:1;a:3:{i:0;s:7:"view_id";i:1;s:7:"user_id";i:2;s:7:"item_id";}}}s:17:"phpfox_music_song";a:1:{s:10:"_view_id_7";a:2:{i:0;s:5:"INDEX";i:1;a:3:{i:0;s:7:"view_id";i:1;s:7:"privacy";i:2;s:7:"item_id";}}}}}]]></sql>
+</upgrade>

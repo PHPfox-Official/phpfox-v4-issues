@@ -1,0 +1,21 @@
+#swfUploadText
+{
+	position: absolute;
+	float: left;
+	display:inline;
+	z-index:2;
+}
+
+#swfuContainer
+{
+	position: absolute;
+	z-index:3;
+	overflow:hidden;
+	width: 100%;
+}
+
+#swfUploaderButton
+{
+	float: left;
+	z-index:3;
+}

@@ -1,0 +1,24 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>general</group>
+			<module_id>core</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>disable_ie_warning</var_name>
+			<phrase_var_name>setting_disable_ie_warning</phrase_var_name>
+			<ordering>16</ordering>
+			<version_id>3.0.1</version_id>
+			<value>0</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>core</module_id>
+			<version_id>3.0.1</version_id>
+			<var_name>setting_disable_ie_warning</var_name>
+			<added>1327406336</added>
+			<value><![CDATA[<title>Disable IE Warning</title><info>We display a warning for those that use Internet Explorer 7 or lower. Enable this setting if you do not want to display this warning.</info>]]></value>
+		</phrase>
+	</phrases>
+</upgrade>

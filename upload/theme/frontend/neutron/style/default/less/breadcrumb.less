@@ -1,0 +1,124 @@
+
+#breadcrumb_holder.has_section_menu {
+	height:auto !important;
+	min-height:auto !important;
+}
+
+#breadcrumb_holder {
+	border:0px;
+	background:transparent;
+	margin:0px 20px 0px 20px;
+	position:relative;
+}
+
+.header_bar_search {
+	background:@blockTitleBg;
+}
+
+.header_bar_search_holder {
+	height:auto;
+	line-height:normal;
+	width:auto;
+}
+
+.header_bar_search_input {
+	display:none;
+}
+
+.header_bar_search .txt_input, .header_bar_search .txt_input:focus {
+	background:transparent;
+	border:0px;
+	margin:0px;
+	padding:0px;
+	width:100%;
+	height:50px;
+	font-size:@fontSizeBase;
+	position:static;
+}
+
+div.header_bar_menu {
+	/*
+	background:@bodyBg;
+	border-bottom:1px darken(@bodyBg, 4%) solid;
+	margin:0px;
+	padding:0px;
+	font-size:@fontSizeBase;
+	height:40px;
+	line-height:40px;
+	*/
+	height:auto;
+	margin:0px;
+	padding:0px;
+	line-height:normal;
+	background:transparent;
+	background:@blockBg;
+}
+
+.header_filter_holder {
+	position:static;
+	padding:@blockContentPadding;
+}
+
+div.header_bar_float {
+	padding:10px 0px;
+	float:none;
+	border-top:1px darken(@blockBg, 5%) solid;
+	cursor:pointer;
+
+	.action_drop_holder {
+		width:100%;
+		top:35px;
+		background-position:95% 0;
+	}
+}
+
+div.header_bar_menu ul.action_drop li a, div.header_bar_menu ul.action_drop li a:hover {
+	width:auto;
+	padding:5px;
+}
+
+.header_filter_holder div.header_bar_float:first-of-type {
+	border-top:0px;
+}
+
+div.header_bar_menu ul.header_bar_drop li {
+	float:none;
+}
+
+div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_drop li a:hover {
+	position:absolute;
+	right:0px;
+	top:12px;
+	border:0px;
+	padding:0px;
+	background:transparent;
+	text-transform:uppercase;
+}
+
+#breadcrumb_list {
+	padding:10px 0px;
+}
+
+#breadcrumb_list ul li a.home, #breadcrumb_list ul li a.home:hover {
+	display:none;
+}
+
+#breadcrumb_list ul li {
+	line-height:normal;
+	float:left;
+	display:block;
+	margin-right:10px;
+}
+
+#breadcrumb_list ul li a, #breadcrumb_list ul li a:hover {
+	background:transparent;
+	line-height:normal;
+	padding:0px;
+	border:0px;
+	color:darken(@bodyBg, 40%);
+}
+
+#breadcrumb_list ul li a:hover {
+	color:@brandPrimary;
+	transition:@transition;
+}

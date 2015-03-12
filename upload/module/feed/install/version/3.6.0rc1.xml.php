@@ -1,0 +1,42 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>cache</group>
+			<module_id>feed</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>force_ajax_on_load</var_name>
+			<phrase_var_name>setting_force_ajax_on_load</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group>cache</group>
+			<module_id>feed</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>cache_each_feed_entry</var_name>
+			<phrase_var_name>setting_cache_each_feed_entry</phrase_var_name>
+			<ordering>2</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>feed</module_id>
+			<version_id>3.6.0rc1</version_id>
+			<var_name>setting_force_ajax_on_load</var_name>
+			<added>1371726736</added>
+			<value><![CDATA[<title>Activity Feed AJAX</title><info>Activity feed loads after the site loads via AJAX.</info>]]></value>
+		</phrase>
+		<phrase>
+			<module_id>feed</module_id>
+			<version_id>3.6.0rc1</version_id>
+			<var_name>setting_cache_each_feed_entry</var_name>
+			<added>1371726896</added>
+			<value><![CDATA[<title>Activity Feed Entries Cache</title><info>Cache each specific feed entry. Saves on queries to the database.</info>]]></value>
+		</phrase>
+	</phrases>
+</upgrade>

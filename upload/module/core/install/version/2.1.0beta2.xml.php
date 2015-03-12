@@ -1,0 +1,24 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>cdn_content_delivery_network</group>
+			<module_id>core</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>cdn_amazon_https</var_name>
+			<phrase_var_name>setting_cdn_amazon_https</phrase_var_name>
+			<ordering>7</ordering>
+			<version_id>2.1.0beta2</version_id>
+			<value>0</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>core</module_id>
+			<version_id>2.1.0beta2</version_id>
+			<var_name>setting_cdn_amazon_https</var_name>
+			<added>1301318031</added>
+			<value><![CDATA[<title>Enable HTTPS Support</title><info>Set this to TRUE if a user is on a secure page to use HTTPS with Amazon S3 items. Note you will need to create your own certificate to work with Amazon S3 as they do not provide support for this by default.</info>]]></value>
+		</phrase>
+	</phrases>
+</upgrade>

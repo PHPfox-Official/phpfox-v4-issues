@@ -1,0 +1,34 @@
+
+#chat_bar
+{
+	background:#000;
+}
+
+#chat_bar ul
+{
+	padding:0px;
+	margin:0px;
+}
+
+#chat_bar ul li
+{
+	list-style-type:none;
+	display:inline;
+}
+
+#chat_bar ul li a
+{
+	display:block;
+	width:100px;
+	background:#fff;
+	float:left;
+	line-height:30px;
+	padding-left:4px;
+	border-left:1px #ccc solid;
+	text-decoration:none;
+}
+
+#chat_bar ul li a.active
+{
+	background:yellow;
+}

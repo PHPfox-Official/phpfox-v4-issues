@@ -1,0 +1,46 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.3.0rc1</version_id>
+			<var_name>administrator</var_name>
+			<added>1341914231</added>
+			<value>Administrator</value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.3.0rc1</version_id>
+			<var_name>registered_user</var_name>
+			<added>1341914250</added>
+			<value>Registered User</value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.3.0rc1</version_id>
+			<var_name>guest</var_name>
+			<added>1341914265</added>
+			<value>Guest</value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.3.0rc1</version_id>
+			<var_name>staff</var_name>
+			<added>1341914276</added>
+			<value>Staff</value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.3.0rc1</version_id>
+			<var_name>banned</var_name>
+			<added>1341914289</added>
+			<value>Banned</value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.3.0rc1</version_id>
+			<var_name>user_banned</var_name>
+			<added>1342606816</added>
+			<value>Banned</value>
+		</phrase>
+	</phrases>
+</upgrade>

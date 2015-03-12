@@ -1,0 +1,10 @@
+<upgrade>
+	<crons>
+		<cron>
+			<module_id>subscribe</module_id>
+			<type_id>2</type_id>
+			<every>1</every>
+			<value><![CDATA[Phpfox::getService('subscribe.purchase.process')->downgradeExpiredSubscribers();]]></value>
+		</cron>
+	</crons>
+</upgrade>

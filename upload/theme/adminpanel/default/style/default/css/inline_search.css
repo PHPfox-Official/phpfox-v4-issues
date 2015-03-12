@@ -1,0 +1,28 @@
+
+div.inline_search_temp
+{
+	border:1px #01ADEF solid; 
+	padding:4px; 
+	background:#fff; 
+	margin-left:2px; 
+	float:left; 
+	margin-top:2px;
+}
+
+div.inline_search_temp:hover
+{
+	border:1px #11496E solid; 
+}
+
+div.inline_search_box
+{
+	display:none; 
+	padding:5px; 
+	font-size:10pt; 
+	background: #f3f3f3; 
+	border: solid 1px #c6c6c6; 
+	padding-right:3px; 
+	border-top:none; 
+	border-bottom: solid 1px #e3e3e3; 
+	color: #333;
+}

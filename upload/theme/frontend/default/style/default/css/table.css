@@ -1,0 +1,25 @@
+
+table.default_table
+{
+	width:100%;
+}
+
+table.default_table th
+{
+	background:#585858;
+	color:#fff;
+	font-size:12px;
+	font-weight:bold;
+	padding:8px;	
+}
+
+table.default_table td
+{
+	padding:6px 0px 6px 0px;	
+	border-bottom:1px #dfdfdf solid;
+}
+
+table.default_table tr.on
+{
+	background:#f9f9f9;
+}

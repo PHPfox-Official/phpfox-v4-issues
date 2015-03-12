@@ -1,0 +1,24 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>language</group>
+			<module_id>language</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>no_string_restriction</var_name>
+			<phrase_var_name>setting_no_string_restriction</phrase_var_name>
+			<ordering>3</ordering>
+			<version_id>3.7.0beta2</version_id>
+			<value>0</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>language</module_id>
+			<version_id>3.7.0beta2</version_id>
+			<var_name>setting_no_string_restriction</var_name>
+			<added>1376910146</added>
+			<value><![CDATA[<title>No String Restriction</title><info>Enable this option if your site is using characters other then alphanumeric.</info>]]></value>
+		</phrase>
+	</phrases>
+</upgrade>

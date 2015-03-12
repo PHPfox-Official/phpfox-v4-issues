@@ -1,0 +1,104 @@
+
+.edit_menu_container
+{
+	border:1px #ccc solid;
+	background:#f4f4f4 url('../image/layout/input.png') repeat-x 0px 30px;
+}
+
+.edit_menu_container textarea
+{
+	padding:0px;
+	margin:0px;
+	border:none;
+	background:transparent;
+	margin:4px;
+	width:99%;
+}
+
+.editor_menu 
+{
+	display:none;
+	background:#F0F0EE;
+	padding:4px;
+	/*width:98%;*/
+	/*
+	border-top:1px #CCCCCC solid;
+	border-left:1px #CCCCCC solid;
+	border-right:1px #CCCCCC solid;
+	*/
+	border-bottom:1px #dfdfdf solid;
+	
+	z-index:0;
+}
+
+.editor_button_holder
+{
+	float:left;
+	position:relative;
+}
+
+.editor_drop_holder
+{
+	position:absolute;	
+	background:url('../image/layout/action_drop.png') no-repeat 3px 0%;
+	z-index:800;
+	width:250px;
+	padding:8px 0px 0px 0px;	
+	display:none;
+}
+
+.editor_drop_content
+{
+	background:#333;
+	color:#fff;
+	padding:8px 8px 4px 8px;	
+}
+
+a.editor_button 
+{
+	display:block; 
+	border:1px solid #F0F0EE; 
+	margin-right:1px; 
+	cursor:default; 
+	padding:2px 4px 2px 4px;	
+}
+
+a.editor_button:hover 
+{
+	border:1px solid #0A246A; 
+	background-color:#B2BBD0; 
+	cursor:default;
+}
+
+.editor_separator
+{
+	margin:2px;
+	margin-left: 4px;
+	background-color: #F0F0EE;
+	border-top: 1px solid buttonshadow;
+	border-left: 1px solid buttonshadow;
+	border-bottom: 1px solid buttonhighlight;
+	border-right: 1px solid buttonhighlight;
+	width: 0;
+	height: 15px;
+	float:left;
+}
+
+/* Emoticon */
+
+.emoticon_preview
+{
+	width:44%;
+	border:1px #F1F1F1 solid;
+	margin:2px;
+	cursor:pointer;
+}
+
+.emoticon_preview:hover
+{
+	width:44%;
+	border:1px #F1F1F1 solid;
+	background:#F9F9F9;
+	margin:2px;
+	cursor:pointer;
+}

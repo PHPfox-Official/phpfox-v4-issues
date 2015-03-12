@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+	<link rel="stylesheet" type="text/css" href="imgnotes.css" >
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery.imgareaselect-0.4.js"></script>
+	<script type="text/javascript" src="jquery.imgnotes-0.2.js"></script>
+	
+	<script type="text/javascript">
+
+        	notes = [{"x1":"10","y1":"200","height":"150","width":"50","note":"This is a note"}, {"x1":"25","y1":"25","height":"70","width":"80","note":"<b>This</b> is a new note This is another note This is a new note"}];
+		
+		$(window).load(function () {
+			$('#tern').imgNotes(); //If your notes data is is not named notes pass it
+ 
+			//$('#tern').imgAreaSelect({ onSelectChange: showaddnote })
+ 
+			$('#cancelnote').click(function(){
+				$('#tern').imgAreaSelect({ hide: true });
+				$('#noteform').hide();
+			});
+
+			$('#addnotelink').click(function(){
+				$('#tern').imgAreaSelect({ onSelectChange: showaddnote, x1: 120, y1: 90, x2: 280, y2: 210 });
+				return false;
+			});
+		});
+		
+	function showaddnote (img, area) {
+		imgOffset = $(img).offset();
+		form_left  = parseInt(imgOffset.left) + parseInt(area.x1);
+		form_top   = parseInt(imgOffset.top) + parseInt(area.y1) + parseInt(area.height)+5;
+
+		$('#noteform').css({ left: form_left + 'px', top: form_top + 'px'});
+
+		$('#noteform').show();
+
+		$('#noteform').css("z-index", 10000);
+		$('#NoteX1').val(area.x1);
+		$('#NoteY1').val(area.y1);
+		$('#NoteHeight').val(area.height);
+		$('#NoteWidth').val(area.width);
+
+	}
+	</script>
+  </head>
+  <body>
+	<p style="text-align: center;">
+	<img id="tern" src="tern.jpg" alt="A clear blue sky for me to fly" title="A clear blue sky for me to fly" />
+	</p>
+	<a href="#" id='addnotelink' >Add a note</a>
+  <p><a href="http://www.sanisoft.com/blog/2008/05/26/img-notes-jquery-plugin/" >Back to blog post</a></p>
+	<div id="noteform" >
+	<form id="NoteAddForm" method="post" action="example.php">	
+		<fieldset>
+		<legend>Add Note</legend>
+		<input name="data[Note][x1]" type="text" value="" id="NoteX1" />
+		<input name="data[Note][y1]" type="text" value="" id="NoteY1" />
+		<input name="data[Note][height]" type="text" value="" id="NoteHeight" />
+		<input name="data[Note][width]" type="text" value="" id="NoteWidth" />
+		<textarea name="data[Note][note]" id="NoteNote" /></textarea>
+		</fieldset>
+		<div class="submit"><input type="submit" value="Submit" /> &nbsp;&nbsp;&nbsp;<input type="button" value="Cancel" id="cancelnote" ></div>
+		</form>
+	</div>
+  </body>
+</html>

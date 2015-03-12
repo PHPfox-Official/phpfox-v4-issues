@@ -1,0 +1,43 @@
+<upgrade>
+	<phpfox_update_custom_field>
+		<field>
+			<group_name>user.custom_group_interests</group_name>
+			<field_name>interests</field_name>
+			<module_id>user</module_id>
+			<type_id>user_main</type_id>
+			<phrase_var_name>user.custom_interests</phrase_var_name>
+			<type_name>MEDIUMTEXT</type_name>
+			<var_type>textarea</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>4</ordering>
+			<value />
+		</field>
+		<field>
+			<group_name>user.custom_group_interests</group_name>
+			<field_name>music</field_name>
+			<module_id>user</module_id>
+			<type_id>user_main</type_id>
+			<phrase_var_name>user.custom_music</phrase_var_name>
+			<type_name>MEDIUMTEXT</type_name>
+			<var_type>textarea</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>5</ordering>
+			<value />
+		</field>
+		<field>
+			<group_name>user.custom_group_interests</group_name>
+			<field_name>movies</field_name>
+			<module_id>user</module_id>
+			<type_id>user_main</type_id>
+			<phrase_var_name>user.custom_movies</phrase_var_name>
+			<type_name>MEDIUMTEXT</type_name>
+			<var_type>textarea</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>3</ordering>
+			<value />
+		</field>
+	</phpfox_update_custom_field>
+</upgrade>

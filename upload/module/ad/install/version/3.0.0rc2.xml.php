@@ -1,0 +1,11 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>ad</module_id>
+			<version_id>3.0.0rc2</version_id>
+			<var_name>blogs</var_name>
+			<added>1321448291</added>
+			<value>Blogs</value>
+		</phrase>
+	</phrases>
+</upgrade>

@@ -1,0 +1,25 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.0.0rc3</version_id>
+			<var_name>user_setting_can_view_browse_pages</var_name>
+			<added>1322053902</added>
+			<value>Can browse and view pages?</value>
+		</phrase>
+	</phrases>
+	<user_group_settings>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>pages</module_id>
+			<type>boolean</type>
+			<admin>1</admin>
+			<user>1</user>
+			<guest>1</guest>
+			<staff>1</staff>
+			<module>pages</module>
+			<ordering>0</ordering>
+			<value>can_view_browse_pages</value>
+		</setting>
+	</user_group_settings>
+</upgrade>

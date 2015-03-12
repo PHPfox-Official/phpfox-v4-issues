@@ -1,0 +1,19 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>music</module_id>
+			<version_id>3.5.0beta1</version_id>
+			<var_name>item_phrase_song</var_name>
+			<added>1352731847</added>
+			<value>song</value>
+		</phrase>
+		<phrase>
+			<module_id>music</module_id>
+			<version_id>3.5.0beta1</version_id>
+			<var_name>item_phrase_album</var_name>
+			<added>1352731874</added>
+			<value>music album</value>
+		</phrase>
+	</phrases>
+	<sql><![CDATA[a:1:{s:9:"ADD_FIELD";a:2:{s:18:"phpfox_music_album";a:1:{s:13:"total_dislike";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}s:17:"phpfox_music_song";a:1:{s:13:"total_dislike";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}}}]]></sql>
+</upgrade>

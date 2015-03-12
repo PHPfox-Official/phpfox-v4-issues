@@ -1,0 +1,74 @@
+######################################
+## [PHPFOX_HEADER]
+##
+## @copyright		[PHPFOX_COPYRIGHT]
+## @author  		Raymond Benc
+## @package 		PhpFox
+## @version 		$Id: htaccess.txt 7004 2013-12-20 14:23:28Z Raymond_Benc $
+######################################
+
+# Options -Indexes
+# Options -Multiviews
+
+# Header unset Pragma
+# FileETag None
+# Header unset ETag
+
+# URL Rewrite
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	#
+	#  Full path to your site
+	#
+	RewriteBase /
+
+	# Rename Photo Names
+	# RewriteRule ^file/pic/photo/([0-9]+)/([0-9]+)/([A-Za-z0-9]{32}+)\-(.*?)_([0-9]*?)\.(.*)$ file/pic/photo/$1/$2/$3_$5.$6
+	# RewriteRule ^file/pic/photo/([0-9]+)/([0-9]+)/([A-Za-z0-9]{32}+)\-(.*?)\.(.*)$ file/pic/photo/$1/$2/$3.$5	
+
+	# 301 redirect if missing www.
+	#RewriteCond %{HTTP_HOST} !^www\.
+	#RewriteRule ^(.*)$ http://www.% {HTTP_HOST}/$1 [R=301,L]
+
+	# 301 redirect if missing trailing slash
+	#RewriteCond %{REQUEST_FILENAME} !-f
+	#RewriteCond %{REQUEST_FILENAME} !-d
+	#RewriteRule [^/]$ %{REQUEST_URI}/ [R=301,L]
+
+	#
+	#  Rules
+	#
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*) index.php?do=/$1
+
+	# Image Access Protection
+	# RewriteRule ^file/pic/photo/(.*)\.(.*)$ static/image.php?file=$1&ext=$2
+</IfModule>
+
+# Modify Headers
+<IfModule mod_expires.c>
+	ExpiresActive ON
+
+	# Cache files
+	<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|swf|mp3|mp4)$">
+		Header set Cache-Control "public"
+		ExpiresDefault "access plus 2 months"
+		Header unset Last-Modified
+	</FilesMatch>
+
+	# Cache JavaScript & CSS
+	<FilesMatch "\.(js|css)$">
+		Header set Cache-Control "public"
+		ExpiresDefault "access plus 2 months"
+		Header unset Last-Modified
+	</FilesMatch>
+</IfModule>
+
+# Compress JavaScript & CSS
+<IfModule mod_deflate.c>
+	<FilesMatch "\.(js|css|php)$">
+		SetOutputFilter DEFLATE
+	</FilesMatch>
+</IfModule>

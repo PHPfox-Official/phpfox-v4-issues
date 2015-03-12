@@ -1,0 +1,42 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>video</module_id>
+			<version_id>2.0.0rc6</version_id>
+			<var_name>added</var_name>
+			<added>1256899507</added>
+			<value>Added</value>
+		</phrase>
+		<phrase>
+			<module_id>video</module_id>
+			<version_id>2.0.0rc6</version_id>
+			<var_name>comments</var_name>
+			<added>1256899516</added>
+			<value>Comments</value>
+		</phrase>
+		<phrase>
+			<module_id>video</module_id>
+			<version_id>2.0.0rc6</version_id>
+			<var_name>view</var_name>
+			<added>1256899530</added>
+			<value>View</value>
+		</phrase>
+		<phrase>
+			<module_id>video</module_id>
+			<version_id>2.0.0rc6</version_id>
+			<var_name>embedding_this_video_is_not_allowed_try_another_video</var_name>
+			<added>1256905055</added>
+			<value>Embedding this video is not allowed. Try another video.</value>
+		</phrase>
+		<phrase>
+			<module_id>video</module_id>
+			<version_id>2.0.0rc6</version_id>
+			<var_name>full_name_wrote_a_comment_on_your_video</var_name>
+			<added>1257316881</added>
+			<value><![CDATA[<a href="{user_link}">{full_name}</a> wrote a comment on your video "<a href="{link}">{title}</a>".]]></value>
+		</phrase>
+	</phrases>
+	<update_templates>
+		<file type="block">entry.html.php</file>
+	</update_templates>
+</upgrade>

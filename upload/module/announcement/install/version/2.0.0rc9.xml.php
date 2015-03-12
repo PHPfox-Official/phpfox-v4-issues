@@ -1,0 +1,29 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>announcement</module_id>
+			<version_id>2.0.0rc9</version_id>
+			<var_name>announcement_subject_1</var_name>
+			<added>1259167741</added>
+			<value>Test 1</value>
+		</phrase>
+		<phrase>
+			<module_id>announcement</module_id>
+			<version_id>2.0.0rc9</version_id>
+			<var_name>announcement_intro_1</var_name>
+			<added>1259167741</added>
+			<value>Intro</value>
+		</phrase>
+		<phrase>
+			<module_id>announcement</module_id>
+			<version_id>2.0.0rc9</version_id>
+			<var_name>announcement_content_1</var_name>
+			<added>1259167741</added>
+			<value>Announcement</value>
+		</phrase>
+	</phrases>
+	<sql><![CDATA[a:1:{s:9:"ADD_FIELD";a:1:{s:19:"phpfox_announcement";a:1:{s:10:"gmt_offset";a:4:{i:0;s:8:"VCHAR:15";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}}}}]]></sql>
+	<update_templates>
+		<file type="controller">index.html.php</file>
+	</update_templates>
+</upgrade>

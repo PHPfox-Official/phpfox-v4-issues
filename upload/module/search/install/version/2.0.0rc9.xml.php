@@ -1,0 +1,50 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>search</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>provide_a_search_query</var_name>
+			<added>1258738780</added>
+			<value>Provide a search query.</value>
+		</phrase>
+		<phrase>
+			<module_id>search</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>tags</var_name>
+			<added>1258740328</added>
+			<value>Tags</value>
+		</phrase>
+		<phrase>
+			<module_id>search</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>results</var_name>
+			<added>1259089709</added>
+			<value>Results</value>
+		</phrase>
+		<phrase>
+			<module_id>search</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>search</var_name>
+			<added>1259089719</added>
+			<value>Search</value>
+		</phrase>
+		<phrase>
+			<module_id>search</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>results_for</var_name>
+			<added>1259089736</added>
+			<value>Results for</value>
+		</phrase>
+	</phrases>
+	<hooks>
+		<hook>
+			<module_id>search</module_id>
+			<hook_type>controller</hook_type>
+			<module>search</module>
+			<call_name>search.component_controller_tag_clean</call_name>
+			<added>1259160644</added>
+			<version_id>2.0.0rc9</version_id>
+			<value />
+		</hook>
+	</hooks>
+</upgrade>

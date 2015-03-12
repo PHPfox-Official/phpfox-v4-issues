@@ -1,0 +1,24 @@
+<module>
+	<data>
+		<module_id>phpfoxsample</module_id>
+		<product_id>phpfox_sample</product_id>
+		<is_core>0</is_core>
+		<is_active>1</is_active>
+		<is_menu>0</is_menu>
+		<menu />
+		<phrase_var_name>module_phpfoxsample</phrase_var_name>
+	</data>
+	<blocks>
+		<block type_id="2" m_connection="core.index-member" module_id="phpfoxsample" component="" location="7" is_active="1" ordering="16" disallow_access="" can_move="0">
+			<title><![CDATA[Sample Block Title &#228;&#246;&#229;]]></title>
+			<source_code>Yup, a new test is coming up...</source_code>
+			<source_parsed><![CDATA[<?php /* Cached: November 27, 2009, 1:54 pm */ ?>Yup, a new test is coming up...]]></source_parsed>
+		</block>
+	</blocks>
+	<components>
+		<component module_id="phpfoxsample" component="sampleblock" m_connection="" module="phpfoxsample" is_controller="0" is_block="1" is_active="1" />
+	</components>
+	<phrases>
+		<phrase module_id="phpfoxsample" version_id="2.0.0rc10" var_name="module_phpfoxsample" added="1259325829">phpFox Sample Module</phrase>
+	</phrases>
+</module>

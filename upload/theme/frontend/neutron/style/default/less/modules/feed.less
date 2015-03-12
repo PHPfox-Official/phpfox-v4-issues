@@ -1,0 +1,178 @@
+
+.js_comment_like_holder {
+	min-height:40px;
+}
+
+.js_comment_feed_textarea, .js_comment_feed_textarea:focus {
+	width:100%;
+	padding:14px 0px 8px 0px;
+	text-indent:8px;
+	border:0px;
+	background:@blockBg;
+	color:@blockColor;
+	height:20px;
+}
+
+.row_feed_loop {
+	padding-bottom:0px !important;
+}
+
+.activity_feed_content {
+	margin:0px;
+}
+
+.activity_feed_image {
+	top:@blockContentPadding;
+	left:@blockContentPadding;
+}
+
+.activity_feed_content_info {
+	margin-left:70px;
+	height:50px;
+	margin-bottom:0px;
+	font-size:@fontSizeBase + 2;
+
+	time {
+		display:block;
+		font-size:@fontSizeBase - 1;
+
+		> a, > a:hover {
+			color:lighten(@blockColor, 10%);
+		}
+	}
+}
+
+.activity_feed_content_text {
+	margin:0px;
+}
+
+.activity_like_holder {
+	height:40px;
+	line-height:40px;
+}
+
+.feed_like_link {
+	> ul > li {
+		> a, > a:hover {
+			display:block;
+			width:40px;
+			height:40px;
+			overflow:hidden;
+			background:red;
+			text-indent:-1000px;
+		}
+	}
+}
+
+/**
+ * Comments
+ */
+.js_feed_comment_border {
+	background:darken(@blockBg, 3%);
+}
+
+.js_comment_feed_form div.comment_mini_image {
+	left:5px;
+	top:5px;
+}
+
+div.comment_mini_content {
+	.user_profile_link_span {
+		> a, > a:hover {
+			color:lighten(@linkFocus, 30%) !important;
+			font-weight:500 !important;
+		}
+	}
+}
+
+.js_comment_feed_form div.comment_mini_content {
+	margin:0px !important;
+
+	textarea, textarea:focus {
+		text-indent:50px !important;
+	}
+}
+
+div.comment_mini_content_holder_icon {
+	display:none;
+}
+
+div.comment_mini_content_border {
+	background:transparent;
+}
+
+div.comment_mini {
+	background:transparent;
+	border-top:1px darken(@blockBg, 10%) solid;
+	border-bottom:0px;
+	position:relative;
+}
+
+.comment_mini_link_like {
+	background:#0c0c0c;
+	color:#808080;
+	padding:15px;
+	display:none;
+
+	> ul {
+		> li {
+			float:none !important;
+			display:inline-block;
+			margin-left:0px;
+			margin-right:10px;
+
+			> a, > a:hover {
+				color:#808080 !important;
+			}
+
+			> a:hover {
+				color:#fff !important;
+				transition:@transition;
+			}
+		}
+
+		> li:not(:first-of-type):before {
+			content: '/';
+			margin-right:12px;
+			display:inline-block;
+		}
+	}
+}
+
+.comment_mini_link_like.active {
+	display:block;
+}
+
+div.comment_mini_end {
+	border-bottom:0px;
+	background:transparent;
+	border-radius:0px;
+	padding:0px;
+}
+
+.feed_options, .feed_options:hover {
+	display:block;
+	position:absolute;
+	right:0px;
+	top:0px;
+	background:blue;
+	width:40px;
+	height:40px;
+}
+
+.comment_mini_action {
+	color:@blockColor !important;
+
+	a, a:hover {
+		color:@blockColor !important;
+	}
+}
+
+.activity_feed_content_link, .activity_feed_content_status {
+	margin:0px;
+	padding:@blockContentPadding;
+}
+
+.activity_feed_content_status {
+	padding-bottom:0px;
+}

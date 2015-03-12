@@ -1,0 +1,16 @@
+<upgrade>
+	<phpfox_update_user_group_settings>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>announcement</module_id>
+			<type>boolean</type>
+			<admin>true</admin>
+			<user>true</user>
+			<guest>false</guest>
+			<staff>true</staff>
+			<module>announcement</module>
+			<ordering>0</ordering>
+			<value>can_close_announcement</value>
+		</setting>
+	</phpfox_update_user_group_settings>
+</upgrade>

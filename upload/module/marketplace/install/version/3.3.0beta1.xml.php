@@ -1,0 +1,18 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>marketplace</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>visted</var_name>
+			<added>1339155389</added>
+			<value>Visted</value>
+		</phrase>
+		<phrase>
+			<module_id>marketplace</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>invited</var_name>
+			<added>1339155396</added>
+			<value>Invited</value>
+		</phrase>
+	</phrases>
+</upgrade>

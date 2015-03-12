@@ -1,0 +1,27 @@
+
+
+.photo_stream_holder
+{
+	border-top:1px #ccc solid; 
+	text-align:center;
+	height:150px;
+	margin:15px 60px 0px 60px;	
+}
+
+.photo_stream_photo
+{
+	height:75px;
+	width:75px;
+	margin-right:4px;
+	background:#fff;
+	border:1px #ccc solid;
+	padding:2px;
+	
+}
+
+.photo_stream_photo_active
+{
+	background:#ccc;	
+	margin:auto;
+	text-align:center;
+}

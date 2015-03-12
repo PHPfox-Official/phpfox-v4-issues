@@ -1,0 +1,15 @@
+<upgrade>
+	<phpfox_update_settings>
+		<setting>
+			<group>formatting</group>
+			<module_id>core</module_id>
+			<is_hidden>0</is_hidden>
+			<type>large_string</type>
+			<var_name>html_purifier_allowed_html</var_name>
+			<phrase_var_name>setting_html_purifier_allowed_html</phrase_var_name>
+			<ordering>9</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value><![CDATA[br,p,i,em,u,ul,li,font,ol,div[class|style],span[id|class|style],blockquote,strike,b,strong,img[src|alt|class|height|width],a[class|href|rel|target],iframe[src|width|height|frameborder],object[width|height|data],param[name|value],embed[src|type|allowscriptaccess|allowfullscreen|width|height]]]></value>
+		</setting>
+	</phpfox_update_settings>
+</upgrade>

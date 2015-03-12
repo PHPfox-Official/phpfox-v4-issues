@@ -1,0 +1,24 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>cache</group>
+			<module_id>shoutbox</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>load_content_ajax</var_name>
+			<phrase_var_name>setting_load_content_ajax</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>shoutbox</module_id>
+			<version_id>3.6.0rc1</version_id>
+			<var_name>setting_load_content_ajax</var_name>
+			<added>1371731961</added>
+			<value><![CDATA[<title>Shoutbox Content via AJAX</title><info>Load shoutbox content after the site has loaded via AJAX.</info>]]></value>
+		</phrase>
+	</phrases>
+</upgrade>

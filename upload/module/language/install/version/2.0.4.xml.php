@@ -1,0 +1,12 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>language</module_id>
+			<version_id>2.0.4</version_id>
+			<var_name>attachments</var_name>
+			<added>1266500096</added>
+			<value>Attachments</value>
+		</phrase>
+	</phrases>
+	<sql><![CDATA[a:1:{s:11:"ALTER_FIELD";a:1:{s:22:"phpfox_language_phrase";a:1:{s:8:"var_name";a:4:{i:0;s:9:"VCHAR:255";i:1;N;i:2;s:0:"";i:3;s:2:"NO";}}}}]]></sql>
+</upgrade>

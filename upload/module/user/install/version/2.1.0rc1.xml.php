@@ -1,0 +1,31 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>force_user_to_upload_on_sign_up</var_name>
+			<phrase_var_name>setting_force_user_to_upload_on_sign_up</phrase_var_name>
+			<ordering>15</ordering>
+			<version_id>2.1.0rc1</version_id>
+			<value>0</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>2.1.0rc1</version_id>
+			<var_name>setting_force_user_to_upload_on_sign_up</var_name>
+			<added>1301564621</added>
+			<value><![CDATA[<title>Force Users to Upload Profile Image</title><info>Enable this option to force users to upload a profile image before they can register.</info>]]></value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>2.1.0rc1</version_id>
+			<var_name>profile_image</var_name>
+			<added>1301564651</added>
+			<value>Profile Image</value>
+		</phrase>
+	</phrases>
+</upgrade>

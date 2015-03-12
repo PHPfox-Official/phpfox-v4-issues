@@ -1,0 +1,190 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>user_id</var_name>
+			<added>1258553081</added>
+			<value>User ID#</value>
+		</phrase>
+	</phrases>
+	<hooks>
+		<hook>
+			<module_id>user</module_id>
+			<hook_type>component</hook_type>
+			<module>user</module>
+			<call_name>user.component_block_admincp_setting_clean</call_name>
+			<added>1258389334</added>
+			<version_id>2.0.0rc8</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>user</module_id>
+			<hook_type>component</hook_type>
+			<module>user</module>
+			<call_name>user.component_block_featured_clean</call_name>
+			<added>1258389334</added>
+			<version_id>2.0.0rc8</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>user</module_id>
+			<hook_type>component</hook_type>
+			<module>user</module>
+			<call_name>user.component_block_password_clean</call_name>
+			<added>1258389334</added>
+			<version_id>2.0.0rc8</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>user</module_id>
+			<hook_type>service</hook_type>
+			<module>user</module>
+			<call_name>user.service_featured__call</call_name>
+			<added>1258389334</added>
+			<version_id>2.0.0rc8</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>user</module_id>
+			<hook_type>service</hook_type>
+			<module>user</module>
+			<call_name>user.service_featured_feature_start</call_name>
+			<added>1258389334</added>
+			<version_id>2.0.0rc8</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>user</module_id>
+			<hook_type>service</hook_type>
+			<module>user</module>
+			<call_name>user.service_featured_feature_end</call_name>
+			<added>1258389334</added>
+			<version_id>2.0.0rc8</version_id>
+			<value />
+		</hook>
+	</hooks>
+	<phpfox_update_custom_group>
+		<group>
+			<module_id>user</module_id>
+			<type_id>user_profile</type_id>
+			<phrase_var_name>user.custom_group_about_me</phrase_var_name>
+			<is_active>1</is_active>
+			<ordering>2</ordering>
+			<value />
+		</group>
+		<group>
+			<module_id>user</module_id>
+			<type_id>user_profile</type_id>
+			<phrase_var_name>user.custom_group_interests</phrase_var_name>
+			<is_active>1</is_active>
+			<ordering>1</ordering>
+			<value />
+		</group>
+		<group>
+			<module_id>user</module_id>
+			<type_id>user_profile</type_id>
+			<phrase_var_name>user.custom_group_details</phrase_var_name>
+			<is_active>1</is_active>
+			<ordering>3</ordering>
+			<value />
+		</group>
+	</phpfox_update_custom_group>
+	<phpfox_update_custom_field>
+		<field>
+			<group_name>user.custom_group_about_me</group_name>
+			<field_name>about_me</field_name>
+			<module_id>user</module_id>
+			<type_id>user_main</type_id>
+			<phrase_var_name>user.custom_about_me</phrase_var_name>
+			<type_name>MEDIUMTEXT</type_name>
+			<var_type>textarea</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>5</ordering>
+			<value />
+		</field>
+		<field>
+			<group_name>user.custom_group_about_me</group_name>
+			<field_name>who_i_d_like_to_meet</field_name>
+			<module_id>user</module_id>
+			<type_id>user_main</type_id>
+			<phrase_var_name>user.custom_who_i_d_like_to_meet</phrase_var_name>
+			<type_name>MEDIUMTEXT</type_name>
+			<var_type>textarea</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>6</ordering>
+			<value />
+		</field>
+		<field>
+			<group_name>user.custom_group_interests</group_name>
+			<field_name>interests</field_name>
+			<module_id>user</module_id>
+			<type_id>profile_panel</type_id>
+			<phrase_var_name>user.custom_interests</phrase_var_name>
+			<type_name>MEDIUMTEXT</type_name>
+			<var_type>textarea</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>2</ordering>
+			<value />
+		</field>
+		<field>
+			<group_name>user.custom_group_interests</group_name>
+			<field_name>music</field_name>
+			<module_id>user</module_id>
+			<type_id>profile_panel</type_id>
+			<phrase_var_name>user.custom_music</phrase_var_name>
+			<type_name>MEDIUMTEXT</type_name>
+			<var_type>textarea</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>3</ordering>
+			<value />
+		</field>
+		<field>
+			<group_name>user.custom_group_interests</group_name>
+			<field_name>movies</field_name>
+			<module_id>user</module_id>
+			<type_id>profile_panel</type_id>
+			<phrase_var_name>user.custom_movies</phrase_var_name>
+			<type_name>MEDIUMTEXT</type_name>
+			<var_type>textarea</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>1</ordering>
+			<value />
+		</field>
+		<field>
+			<group_name>user.custom_group_details</group_name>
+			<field_name>smoker</field_name>
+			<module_id>user</module_id>
+			<type_id>user_panel</type_id>
+			<phrase_var_name>user.custom_smoker</phrase_var_name>
+			<type_name>VARCHAR(150)</type_name>
+			<var_type>select</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>7</ordering>
+			<value><![CDATA[a:3:{i:0;a:1:{s:15:"phrase_var_name";s:24:"user.cf_option_sometimes";}i:1;a:1:{s:15:"phrase_var_name";s:17:"user.cf_option_no";}i:2;a:1:{s:15:"phrase_var_name";s:18:"user.cf_option_yes";}}]]></value>
+		</field>
+		<field>
+			<group_name>user.custom_group_details</group_name>
+			<field_name>drinker</field_name>
+			<module_id>user</module_id>
+			<type_id>user_panel</type_id>
+			<phrase_var_name>user.custom_drinker</phrase_var_name>
+			<type_name>VARCHAR(150)</type_name>
+			<var_type>select</var_type>
+			<is_active>1</is_active>
+			<is_required>0</is_required>
+			<ordering>8</ordering>
+			<value><![CDATA[a:3:{i:0;a:1:{s:15:"phrase_var_name";s:18:"user.cf_option_yes";}i:1;a:1:{s:15:"phrase_var_name";s:17:"user.cf_option_no";}i:2;a:1:{s:15:"phrase_var_name";s:24:"user.cf_option_sometimes";}}]]></value>
+		</field>
+	</phpfox_update_custom_field>
+	<sql><![CDATA[a:1:{s:9:"ADD_FIELD";a:1:{s:20:"phpfox_user_activity";a:1:{s:14:"activity_video";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}}}]]></sql>
+	<update_templates>
+		<file type="controller">browse.html.php</file>
+	</update_templates>
+</upgrade>

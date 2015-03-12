@@ -1,0 +1,30 @@
+
+#sFriendInput
+{
+	margin-left :55px;
+	width : 310px
+}
+
+#relation_with .js_temp_friend_search_form
+{
+	margin-left : 55px;
+	margin-top: 0px;
+	position : absolute;
+	width : 300px
+}
+
+#sFriendImage
+{
+	left:0px;
+	top:0px;
+	position : absolute;
+	border: 1px dashed #6FC5FF;
+	width:50px;
+	height:50px;	
+}
+
+.edit_friend_relation
+{
+	margin:10px 0px 20px 0px;
+	position:relative;
+}

@@ -1,0 +1,20 @@
+.correctAnswer
+{	
+    background-color: #89c53c;
+}
+
+.answer_parent
+{
+	margin-bottom:5px;
+}
+
+.answer_parent img
+{
+	padding-left:5px;
+	vertical-align:middle;
+}
+
+.quiz_add_new_question
+{
+	padding:5px 0px 15px 0px;
+}

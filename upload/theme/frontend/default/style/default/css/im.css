@@ -1,0 +1,458 @@
+
+div.im_holder
+{
+	height:400px; 
+	border:1px #ccc solid; 
+	width:250px;
+	background:#fff;
+	border-bottom:0px;
+}
+
+#js_footer_im_holder
+{
+	background:#f9f9f9;
+	width:200px;
+}
+
+div.im_header
+{
+	background:#333 url('../image/layout/js_im_link.png') repeat-x;
+	padding:0px 5px 0px 5px;
+	line-height:22px;
+	height:22px;
+	color:#fff;
+	font-weight:bold;
+	position:relative;
+	cursor:pointer;	
+}
+
+.im_delete_button
+{
+	position:absolute;
+	right:2px;
+	top:4px;
+	cursor:default;
+	display:none;
+}
+
+.im_ajax_button
+{
+	position:absolute;
+	right:18px;
+	top:2px;
+	display:none;
+}
+
+#im_footer_bar li .js_im_link a:hover .im_delete_button
+{
+	display:block;
+}
+
+div.im_action_bar
+{
+	background:#DFE4EE;
+	padding:2px;
+}
+
+div.im_action_bar ul
+{
+	margin:0px;
+	padding:0px;
+}
+
+div.im_action_bar ul li
+{
+	display:inline;
+	list-style-type:none;
+}
+
+div.im_action_bar ul li a
+{
+	display:block;
+	float:left;
+	text-decoration:none;
+	padding:2px 4px 2px 4px;
+	border-left:1px #fff solid;
+}
+
+div.im_action_bar ul li a:hover
+{
+	background:#fff;
+	text-decoration:none;
+}
+
+div.im_action_bar ul li a.active
+{
+	background:#CED8EC;	
+}
+
+div.im_action_bar ul li a.first
+{
+	border-left:none;
+}
+
+div.im_text_form
+{
+	border-top:1px #dfdfdf solid;
+}
+
+div#js_im_text
+{
+	height: 60px;
+	width: 99%;
+}
+
+div.im_text
+{
+	position:relative;
+	color:#333;
+	margin-bottom:4px;
+	padding-top:8px;
+	border-top:1px #EFEFEF solid;
+}
+
+div.im_text_not_owner
+{
+	border:0px;
+	padding:0px;	
+}
+
+div.im_text_first
+{
+	border-top:none;
+}
+
+div.im_text div.im_date
+{
+	position:absolute;
+	right:2px;	
+	top:-8px;
+	display:none;
+	background:#f9f9f9;
+	border:1px #dfdfdf solid;
+	color:#808080;
+	padding:5px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+  	border-radius:4px; 	
+	font-size:10px;
+	z-index:2000;
+}
+
+div.im_text_actual_owner div.im_date
+{
+	right:auto;
+	left:0px;
+}
+
+div.im_text:hover div.im_date
+{
+	display:block;
+}
+
+.im_chat_image
+{
+	position:absolute;
+	left:0px;
+	top:6px;	
+}
+
+.im_chat_image_owner
+{
+	right:0px;
+	left:auto;	
+}
+
+div.im_text div.im_message
+{
+	margin-left:32px;		
+	width:160px;
+}
+
+.im_message_no_height
+{
+	min-height:30px;
+}
+
+.im_message_owner
+{
+	text-align:right;
+}
+
+ul.im_user_list
+{
+	margin:0px;
+	padding:0px;
+}
+
+ul.im_user_list li
+{
+	list-style-type:none;
+	display:inline;
+	margin:0px;
+}
+
+a.im_user_list,
+a.im_user_list:hover
+{
+	display:block;
+	padding:0px 4px 0px 4px;
+	text-decoration:none;
+	color:#333;
+	line-height:40px;
+	height:40px;
+	position:relative;
+}
+
+a.im_user_list:hover
+{
+	background:#fff;	
+}
+
+.im_user_list_name
+{
+	position:absolute;
+	left:35px;
+}
+
+.im_user_list_status
+{
+	position:absolute;
+	right:2px;
+}
+
+div.im_option
+{
+	position:absolute; 
+	background:#DFE4EE; 
+	top:28px; 
+	left:0; 
+	margin-left:-201px; 
+	width:200px; 
+	border:1px #ccc solid; 
+	height:250px; 
+	border-right:none;
+	display:none;
+}
+
+div.im_option ul
+{
+	margin:2px 2px 6px 2px;
+	padding:0px 0px 5px 0px;
+	border-bottom:1px #ccc solid;
+	width: 100%;
+}
+
+div.im_option ul li
+{
+	list-style-type:none;
+	display:inline;
+	width: 99%;
+}
+
+div.im_option ul li a
+{
+	display:block;
+	padding:2px;
+	text-decoration:none;
+	color:#535050;
+	font-weight:bold;
+	background:#CED8EC;
+	border-top:1px #fff solid;
+}
+
+div.im_option ul li a:hover
+{
+	background:#fff;
+}
+
+div.im_option ul li a.first
+{
+	border-top:none;
+}
+
+div.im_option div.im_option_body
+{
+	padding:2px;
+}
+
+div.im_option div.im_option_table
+{
+	margin-bottom:10px;
+}
+
+div.im_option div.im_option_table_title
+{
+	font-weight:bold;
+}
+
+div.im_option div.im_option_table_option
+{
+	padding:2px 0px 0px 6px;
+}
+
+span.im_user_info
+{
+	display:block;
+	font-size:7pt;
+	font-weight:normal;
+	color:#808080;
+}
+
+div.im_block
+{
+	position:absolute;
+}
+
+body > div.im_block
+{
+	position:fixed;
+}
+
+div.im_extra_room_holder
+{
+	position:absolute; background:#fff; border:1px #ccc solid; border-bottom:none; height:400px; width:250px; z-index:9999; display:none;
+}
+
+body > div.im_extra_room_holder
+{
+	position:fixed;
+}
+
+ul.im_extra_room
+{
+	margin:0px;
+	padding:0px;
+}
+
+ul.im_extra_room li
+{
+	list-style-type:none;
+	display:inline;	
+}
+
+ul.im_extra_room li a
+{
+	display:block;
+	border-top:1px #E6E6E6 solid;
+	padding:4px 0px 4px 2px;
+	text-decoration:none;
+	color:#535050;
+	font-weight:bold;
+	min-height:20px;
+	height:auto !important;
+	height:20px;	
+}
+
+ul.im_extra_room li a:hover
+{
+	background:#DFE4EE;
+	text-decoration:none;
+	color:#535050;
+}
+
+ul.im_extra_room li a.first
+{
+	border:none;
+}
+
+ul.im_extra_room li a.new
+{
+	background:#FFFF88;
+}
+
+/* Following is the main IM window (messenger), the one with the list of friends*/
+#main_messenger_holder
+{
+    /* We dont need it to show in the footer bar*/    
+    position: absolute;
+    bottom: 16px;
+}
+
+/* The list of users in the main block*/
+.im_user_list li
+{
+    width: 100%;
+}
+
+/* Turn into a pointer when hover on im.link */
+.js_im_link
+{
+	cursor: pointer;
+}
+
+div#js_im_content
+{
+	height:348px; 
+	overflow:auto;
+	cursor: auto;
+}
+
+textarea#js_im_text
+{
+	margin:auto; 
+	height:25px; 
+	width:230px; 
+	padding:2px 0px 2px 0px; 
+	border:0px;	
+	background:#fff;
+	font-size:11px;
+}
+
+.im_text_form
+{
+	position:relative;
+	text-align:right;
+}
+
+.im_text_form_img
+{
+	position:absolute;
+	left:0px;
+}
+
+div#js_friend_input_search
+{
+	bottom:0px;
+	left:0px;
+	margin:0px;
+	padding:0px;
+	position:absolute;
+	width:200px;		
+	background:#fff;
+	border-top:1px #dfdfdf solid;
+}
+
+#js_im_find_friend_value
+{
+	width:160px;
+	padding:5px 0px 5px 0px;	
+	border:0px;
+	font-size:10px;	
+	background:#fff;
+}
+
+#js_im_toggle_main_option
+{
+	position:absolute;	
+	right:0px;
+	bottom:0px;
+}
+
+#js_im_toggle_main_option a,
+#js_im_toggle_main_option a:hover
+{
+	display:block;
+	background:#5A5B5D url('../image/layout/im_option.png') no-repeat center center;
+	width:20px;
+	height:24px;
+	line-height:24px;
+	vertical-align: middle;
+	overflow:hidden;
+	text-indent:-1000px;
+}
+
+#im_footer_bar .focus
+{
+	background-color: yellow;
+}

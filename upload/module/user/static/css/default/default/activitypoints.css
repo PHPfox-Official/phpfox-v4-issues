@@ -1,0 +1,12 @@
+/* 
+    Used to improve the table look in the admincp/user/group/activitypoints/
+*/
+.table_left
+{
+	width: 35%;
+	margin-right: 10px;
+	float: left;
+	text-align: right;
+	position: relative;
+	padding: 0;
+}

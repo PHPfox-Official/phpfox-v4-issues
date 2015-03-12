@@ -1,0 +1,39 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.5.0beta2</version_id>
+			<var_name>use_timeline</var_name>
+			<added>1359447716</added>
+			<value>Use timeline?</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.5.0beta2</version_id>
+			<var_name>user_setting_can_add_cover_photo_pages</var_name>
+			<added>1359466780</added>
+			<value>Can add a cover photo on pages?</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.5.0beta2</version_id>
+			<var_name>position_set_correctly</var_name>
+			<added>1359469295</added>
+			<value>Position set correctly.</value>
+		</phrase>
+	</phrases>
+	<user_group_settings>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>pages</module_id>
+			<type>boolean</type>
+			<admin>1</admin>
+			<user>1</user>
+			<guest>0</guest>
+			<staff>1</staff>
+			<module>pages</module>
+			<ordering>0</ordering>
+			<value>can_add_cover_photo_pages</value>
+		</setting>
+	</user_group_settings>
+</upgrade>

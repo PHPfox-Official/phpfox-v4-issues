@@ -1,0 +1,33 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>full_name_tagged_you_on_a_page</var_name>
+			<added>1339081181</added>
+			<value>{full_name} tagged you on a page.</value>
+		</phrase>
+		<phrase>
+			<module_id>pages</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>user_setting_can_design_pages</var_name>
+			<added>1339066422</added>
+			<value>Can members of this user group design pages they have created?</value>
+		</phrase>
+	</phrases>
+	<user_group_settings>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>pages</module_id>
+			<type>boolean</type>
+			<admin>true</admin>
+			<user>false</user>
+			<guest>false</guest>
+			<staff>false</staff>
+			<module>pages</module>
+			<ordering>0</ordering>
+			<value>can_design_pages</value>
+		</setting>
+	</user_group_settings>
+	<sql><![CDATA[a:1:{s:9:"ADD_FIELD";a:1:{s:17:"phpfox_pages_feed";a:1:{s:14:"parent_feed_id";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}}}]]></sql>
+</upgrade>

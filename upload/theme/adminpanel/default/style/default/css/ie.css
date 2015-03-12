@@ -1,0 +1,45 @@
+
+.menujs iframe
+{
+	position: absolute;
+	display: none;
+	filter: alpha(opacity=0);
+	z-index: 99;
+}
+
+select,object,iframe
+{
+	z-index: 1;
+}
+
+.delay li.hide ul
+{
+	filter: alpha(opacity=0);
+}
+
+.vertical li.last
+{
+	border-bottom: none;
+	position: absolute;
+}
+
+div.vertical
+{
+	margin-bottom: 1.3em;
+}
+
+.menujs a
+{
+	padding: 0;
+	padding-left: 2px;
+}
+
+div.horizontal ul ul
+{
+	margin-top: 0;
+}
+
+.menujs,.menu
+{
+	z-index: 50;
+}

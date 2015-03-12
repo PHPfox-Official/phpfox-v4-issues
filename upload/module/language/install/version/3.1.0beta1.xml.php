@@ -1,0 +1,31 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>language</group>
+			<module_id>language</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>auto_detect_language_on_ip</var_name>
+			<phrase_var_name>setting_auto_detect_language_on_ip</phrase_var_name>
+			<ordering>2</ordering>
+			<version_id>3.1.0beta1</version_id>
+			<value>0</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>language</module_id>
+			<version_id>3.1.0beta1</version_id>
+			<var_name>setting_auto_detect_language_on_ip</var_name>
+			<added>1330012352</added>
+			<value><![CDATA[<title>Auto Detect Language Package</title><info>Enable this feature to auto detect a language package based on the users IP when they first visit the site. In order to use this option you must have an API key for the setting <b>"<a href="{url link='admincp/setting/edit/group-id_ip_infodb'}">IP InfoDB API Key</a>"</b>.</info>]]></value>
+		</phrase>
+		<phrase>
+			<module_id>language</module_id>
+			<version_id>3.1.0beta1</version_id>
+			<var_name>view_more_search_options</var_name>
+			<added>1331655642</added>
+			<value>View More Search Options</value>
+		</phrase>
+	</phrases>
+</upgrade>

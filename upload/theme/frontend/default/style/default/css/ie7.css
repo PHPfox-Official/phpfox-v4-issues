@@ -1,0 +1,27 @@
+
+input
+{
+	margin-bottom:-1px;
+}
+
+.separate
+{
+	margin-top:2px;
+	margin-bottom:0px;
+	padding:0px;
+}
+
+.fix_input_length
+{
+	position:absolute;
+}
+
+.fix_input_height
+{
+	height:25px;
+}
+
+.fix_left_margin
+{
+	margin-left:3px;
+}

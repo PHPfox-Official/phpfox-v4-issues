@@ -1,0 +1,99 @@
+
+.user_browse_user
+{
+	padding-top:4px;
+	overflow:hidden;
+}
+
+.user_browse_user .user_profile_link_span a,
+.user_browse_user .user_profile_link_span a:hover
+{
+	font-weight:bold;
+}
+
+.user_browse_add_friend
+{
+	padding-top:5px;
+}
+
+.user_browse_title
+{
+	font-weight:bold;
+}
+
+.user_browse_mutual_friend
+{
+	padding-top:4px;	
+}
+
+.user_browse_mutual_friend a,
+.user_browse_mutual_friend a:hover
+{
+	color:#808080;	
+}
+
+#js_user_browse_advanced
+{
+	position:absolute;
+	top:50px;
+	left:100px;
+	background:url('../image/layout/thickbox_bg.png');
+	z-index:1000;
+	width:750px;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+  	border-radius:10px;  	
+	padding:14px;		
+	display:none;
+}
+
+.user_browse_content
+{
+	clear:both;
+	background:#fff;
+	padding:15px 15px 15px 15px;
+	text-align:left;	
+	position:relative;
+}
+
+.user_browse_content .title
+{
+	font-weight:bold;
+	border-bottom:1px #dfdfdf solid;
+	padding-bottom:5px;
+	margin-bottom:5px;
+}
+
+ul#js_user_browse_advanced_link
+{
+	padding-top:16px;	
+}
+
+ul#js_user_browse_advanced_link li a,
+ul#js_user_browse_advanced_link li a:hover
+{
+	display:block;
+}
+
+#js_user_browse_advanced_link_close
+{
+	position:absolute;
+	right:10px;
+	padding-top:8px;	
+}
+
+
+#browse_custom_fields_popup_holder
+{
+    overflow: auto; 
+    height: 300px;
+}
+#browse_custom_fields_popup_holder .go_left
+{
+    width: 31%;   
+}
+
+#js_country_child_id_value
+{
+	width:150px;
+}

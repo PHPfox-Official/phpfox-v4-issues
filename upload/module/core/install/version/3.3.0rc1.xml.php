@@ -1,0 +1,11 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>core</module_id>
+			<version_id>3.3.0rc1</version_id>
+			<var_name>error</var_name>
+			<added>1341560923</added>
+			<value>Error</value>
+		</phrase>
+	</phrases>
+</upgrade>

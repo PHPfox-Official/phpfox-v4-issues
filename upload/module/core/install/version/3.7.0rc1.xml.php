@@ -1,0 +1,137 @@
+<upgrade>
+	<phpfox_update_settings>
+		<setting>
+			<group>formatting</group>
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>xhtml_valid</var_name>
+			<phrase_var_name>setting_xhtml_valid</phrase_var_name>
+			<ordering>0</ordering>
+			<version_id>2.0.0alpha1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group>ftp</group>
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>string</type>
+			<var_name>ftp_host</var_name>
+			<phrase_var_name>setting_host</phrase_var_name>
+			<ordering>2</ordering>
+			<version_id>2.0.0alpha1</version_id>
+			<value />
+		</setting>
+		<setting>
+			<group>ftp</group>
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>string</type>
+			<var_name>ftp_username</var_name>
+			<phrase_var_name>setting_username</phrase_var_name>
+			<ordering>3</ordering>
+			<version_id>2.0.0alpha1</version_id>
+			<value />
+		</setting>
+		<setting>
+			<group>ftp</group>
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>password</type>
+			<var_name>ftp_password</var_name>
+			<phrase_var_name>setting_password</phrase_var_name>
+			<ordering>4</ordering>
+			<version_id>2.0.0alpha1</version_id>
+			<value />
+		</setting>
+		<setting>
+			<group>ftp</group>
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>ftp_enabled</var_name>
+			<phrase_var_name>setting_ftp_enabled</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.0alpha1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group>ftp</group>
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>string</type>
+			<var_name>ftp_dir_path</var_name>
+			<phrase_var_name>setting_ftp_dir_path</phrase_var_name>
+			<ordering>5</ordering>
+			<version_id>2.0.0rc1</version_id>
+			<value />
+		</setting>
+		<setting>
+			<group />
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>integer</type>
+			<var_name>banned_user_group_id</var_name>
+			<phrase_var_name>setting_banned_user_group_id</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.0rc1</version_id>
+			<value>0</value>
+		</setting>
+	</phpfox_update_settings>
+	<hooks>
+		<hook>
+			<module_id>core</module_id>
+			<hook_type>library</hook_type>
+			<module>core</module>
+			<call_name>mail_send_call_4</call_name>
+			<added>1378372973</added>
+			<version_id>3.7.0rc1</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>core</module_id>
+			<hook_type>library</hook_type>
+			<module>core</module>
+			<call_name>get_master_files</call_name>
+			<added>1378374384</added>
+			<version_id>3.7.0rc1</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>core</module_id>
+			<hook_type>library</hook_type>
+			<module>core</module>
+			<call_name>get_service_1</call_name>
+			<added>1378455278</added>
+			<version_id>3.7.0rc1</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>core</module_id>
+			<hook_type>library</hook_type>
+			<module>core</module>
+			<call_name>library_phpfox_getlibclass_0</call_name>
+			<added>1378455278</added>
+			<version_id>3.7.0rc1</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>core</module_id>
+			<hook_type>library</hook_type>
+			<module>core</module>
+			<call_name>library_phpfox_getlib_0</call_name>
+			<added>1378455278</added>
+			<version_id>3.7.0rc1</version_id>
+			<value />
+		</hook>
+		<hook>
+			<module_id>core</module_id>
+			<hook_type>library</hook_type>
+			<module>core</module>
+			<call_name>run_get_header_file_1</call_name>
+			<added>1378455278</added>
+			<version_id>3.7.0rc1</version_id>
+			<value />
+		</hook>
+	</hooks>
+</upgrade>

@@ -1,0 +1,11 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>3.7.4</version_id>
+			<var_name>reason</var_name>
+			<added>1386000511</added>
+			<value>Reason</value>
+		</phrase>
+	</phrases>
+</upgrade>

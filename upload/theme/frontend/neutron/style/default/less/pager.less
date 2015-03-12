@@ -1,0 +1,17 @@
+
+.pager_view_more_link a, .pager_view_more_link a:hover {
+	text-align:center;
+	.button();
+	border-color:darken(@bodyBg, 2%);
+	color:lighten(@textColor, 10%);
+	height:50px;
+	line-height:50px;
+
+	> span {
+		display:none;
+	}
+}
+
+.pager_view_more_link a:hover {
+	.button_hover();
+}

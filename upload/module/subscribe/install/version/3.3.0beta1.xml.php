@@ -1,0 +1,61 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>subscribe</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>admin_menu_comparison</var_name>
+			<added>1336488124</added>
+			<value>Comparison</value>
+		</phrase>
+		<phrase>
+			<module_id>subscribe</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>purchase</var_name>
+			<added>1337772322</added>
+			<value>Purchase</value>
+		</phrase>
+		<phrase>
+			<module_id>subscribe</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>add_new_feature</var_name>
+			<added>1337772427</added>
+			<value>Add new feature</value>
+		</phrase>
+		<phrase>
+			<module_id>subscribe</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>fee</var_name>
+			<added>1337772472</added>
+			<value>Fee</value>
+		</phrase>
+		<phrase>
+			<module_id>subscribe</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>compare_subscription_packages</var_name>
+			<added>1338302115</added>
+			<value>Compare Subscription Packages</value>
+		</phrase>
+		<phrase>
+			<module_id>subscribe</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>comparison_page_updated_successfully</var_name>
+			<added>1338302266</added>
+			<value>Comparison page updated successfully</value>
+		</phrase>
+		<phrase>
+			<module_id>subscribe</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>compare</var_name>
+			<added>1338302553</added>
+			<value>Compare</value>
+		</phrase>
+		<phrase>
+			<module_id>subscribe</module_id>
+			<version_id>3.3.0beta1</version_id>
+			<var_name>add_a_feature</var_name>
+			<added>1338539919</added>
+			<value>Add a feature...</value>
+		</phrase>
+	</phrases>
+	<sql><![CDATA[a:1:{s:9:"ADD_FIELD";a:1:{s:24:"phpfox_subscribe_package";a:1:{s:16:"background_color";a:4:{i:0;s:8:"VCHAR:50";i:1;s:4:"null";i:2;s:0:"";i:3;s:3:"YES";}}}}]]></sql>
+</upgrade>

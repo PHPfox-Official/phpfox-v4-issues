@@ -1,0 +1,25 @@
+<?php
+
+#######################################
+## ADD CUSTOM SALTS TO SESSION COOKIE VALUES
+#######################################
+
+// Add a custom salt to cookie values
+$_CONF['core.use_custom_hash_salt'] = true;
+
+// Create your custom cookie salt.
+$_CONF['core.custom_hash_salt'] = $_SERVER['HTTP_USER_AGENT'] . '8f3f3/83hsWl2';
+
+#######################################
+## ENABLE BASIC HTTP AUTH FOR THE ADMINCP
+#######################################
+
+// Enable HTTP authentication in order to access the AdminCP
+$_CONF['core.admincp_http_auth'] = false;
+
+// Array of users that can access the AdminCP. The key "1" represents the users ID#. The "name" and "password" are unique for this user.
+$_CONF['core.admincp_http_auth_users'] = array(
+	'1' => array('name' => 'foo', 'password' => 'bar')
+);
+
+?>

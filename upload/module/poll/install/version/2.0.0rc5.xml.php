@@ -1,0 +1,31 @@
+<upgrade>
+	<phpfox_update_user_group_settings>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>poll</module_id>
+			<type>boolean</type>
+			<admin>true</admin>
+			<user>true</user>
+			<guest>false</guest>
+			<staff>true</staff>
+			<module>poll</module>
+			<ordering>0</ordering>
+			<value>poll_can_edit_own_polls</value>
+		</setting>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>poll</module_id>
+			<type>boolean</type>
+			<admin>true</admin>
+			<user>true</user>
+			<guest>false</guest>
+			<staff>true</staff>
+			<module>poll</module>
+			<ordering>0</ordering>
+			<value>poll_can_delete_own_polls</value>
+		</setting>
+	</phpfox_update_user_group_settings>
+	<update_templates>
+		<file type="controller">add.html.php</file>
+	</update_templates>
+</upgrade>

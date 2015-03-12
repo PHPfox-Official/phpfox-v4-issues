@@ -1,0 +1,317 @@
+
+body
+{
+	background:#000 url('../image/layout/bg.jpg') repeat-x;
+}
+
+#main_content_holder
+{
+	background:transparent;
+	border-top:1px #5F5F5F solid;
+}
+
+#header
+{
+	background:rgb(26, 26, 26) url('../image/layout/header.png') repeat-x;	
+}
+
+#header_menu
+{
+	background:url('../image/layout/header_menu.png') no-repeat;	
+}
+
+#header_menu ul li a,
+#header_menu ul li a:hover
+{
+	color:#333;
+	border-right:1px #CFCFCF solid;
+}
+
+#header_menu ul li a:hover
+{
+	background:#BFBFBF;
+}
+
+#header_menu_holder ul li a:hover,
+#header_menu_holder ul li a.has_drop_down:hover,
+#holder_notify ul li a.notify_drop_link:hover
+{
+	background-color:transparent;
+	text-decoration:underline;
+}
+
+#header_menu_holder ul li a.active,
+#header_menu_holder ul li a.active:hover,
+#holder_notify ul li.is_active a.notify_drop_link:hover
+{
+	background-color:#fff;
+}
+
+#header_menu_holder ul li ul li a:hover
+{
+	text-decoration:none;
+}
+
+#header_sub_menu_search_input
+{
+	background:url('../image/layout/header_search_input.png') no-repeat;
+}
+
+#header_sub_menu_search .focus
+{
+	background:url('../image/layout/header_search_input.png') no-repeat 0px -26px;
+}
+
+#holder_notify ul li a.friend_notification
+{
+	background:url('../image/layout/holder_notify_friend_request.png') no-repeat 50% 0px;
+}
+
+#holder_notify ul li a.message
+{
+	background:url('../image/layout/holder_notify_message.png') no-repeat 50% 0px;
+}
+
+#holder_notify ul li a.notification
+{
+	background:url('../image/layout/holder_notify_notification.png') no-repeat 50% 0px;
+}
+
+#header_search_button,
+#header_search_button:hover
+{
+	background:url('../image/layout/header_search_button.png') no-repeat;
+}
+
+#content_holder
+{
+	background:#fff url('../image/layout/content_holder.png') repeat-x;
+	padding:4px 6px;
+	
+	
+	-moz-border-radius-bottomright:10px;
+	-moz-border-radius-bottomleft:10px;
+	-webkit-border-bottom-right-radius:10px;
+	-webkit-border-bottom-left-radius:10px;
+  	border-bottom-right-radius:10px;	
+  	border-bottom-left-radius:10px;	
+	
+  	-moz-box-shadow:6px 6px 6px #17191F;
+  	-webkit-box-shadow:6px 6px 6px #17191F;
+  	box-shadow:6px 6px 6px #17191F;	
+}
+
+.content3
+{
+	width:505px;
+}
+
+.content4
+{
+	width:690px;
+}
+
+#right
+{
+	background:#3F3F3F;
+	padding:6px;
+	
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+  	border-radius:8px;
+	
+  	-moz-box-shadow:4px 4px 4px #CFCFCF;
+  	-webkit-box-shadow:4px 4px 4px #CFCFCF;
+  	box-shadow:4px 4px 4px #CFCFCF;	
+}
+
+#right .block .title
+{
+	background:transparent;
+	color:#fff;
+	font-size:13px;
+	border-bottom:0px;
+	padding-left:0px;
+}
+
+#right .block .content
+{
+	color:#fff;
+}
+
+#right .block .content a,
+#right .block .content a:hover
+{
+	color:#fff;
+}
+
+#right .block .content .button
+{
+  	-moz-box-shadow:2px 2px 2px #2F2F2F;
+  	-webkit-box-shadow:2px 2px 2px #2F2F2F;
+  	box-shadow:2px 2px 2px #2F2F2F;		
+}
+
+#right .block .content .label_flow
+{
+	border:1px #8F8F8F solid;
+}
+
+#right .block .content .row1,
+#right .block .content .row2
+{
+	border-bottom:1px #8F8F8F solid;
+}
+
+#right .block .content .block_headline
+{
+	border-top:1px #8F8F8F solid;
+	color:#CFCFCF;
+}
+
+#js_controller_video_view #right
+{
+	width:290px;	
+}
+
+#breadcrumb_holder
+{
+	position:relative;
+}
+
+#footer
+{
+	border:0px;
+	margin-top:0px;
+	padding:15px 10px 10px 10px;
+	color:#808080;
+}
+
+#footer a,
+#footer a:hover
+{
+	color:#DFDFDF;
+}
+
+#footer ul#footer_menu li a, #footer ul#footer_menu li a:hover
+{
+	border-left:1px #808080 solid;
+}
+
+.request_text
+{
+	margin-left: 135px;
+}
+
+/**
+#############
+Mobile
+#############
+*/
+
+/* Set the background color to contrast with the font color*/
+#mobile_holder #main_content_holder
+{
+	background-color: #FFFFFF;
+}
+
+/* Set the dimensions for the page categories when creating one*/
+#mobile_holder .pages_type_add_holder
+{
+	max-height: 200px;
+	width: 250px;
+}
+
+/* Set the max width for an input text field */
+#mobile_holder input[type=text]
+{
+	width:250px;
+	max-width: 250px;
+}
+
+/* js boxes are a tiny bit too small */
+.mobile_js_box
+{
+	width:350px;
+	max-width: 350px;
+}
+
+.mobile_js_box #profile_picture_container, .mobile_js_box .request_text
+{
+	clear: both;
+	width: 100%;
+	margin-left: 10px;
+}
+
+
+#mobile_holder .js_pages_block select
+{	
+	width: 250px;
+	max-width:250px;
+}
+#mobile_holder #mobile_content .page_section_menu
+{
+	height:80px;
+}
+#mobile_holder #mobile_content ul
+{
+	width:200px;
+	max-width: 200px;
+}
+#mobile_holder .pages_sub_category
+{
+	clear: both;
+	margin-left: 10px;
+}
+
+#mobile_holder textarea
+{
+	width:250px;
+	max-width: 250px;
+}
+
+#mobile_holder #js_poll_form input[type=text]
+{	
+	max-width: 170px;
+}
+
+#right .block .content .tag_cloud ul li a,
+#right .block .content .tag_cloud ul li a:hover
+{
+	color:#333;	
+}
+
+.profile_timeline_header_holder .no_cover_photo .profile_header_inner
+{
+	width:810px;
+}
+
+#timeline_dates ul li.parent:hover
+{
+	border-left:4px #000 solid;
+}
+
+#timeline_dates
+{
+	background:#3F3F3F;
+	border-left:0px;
+	border-right:0px;
+	border-top:0px;
+}
+
+#timeline_dates ul li a,
+#timeline_dates ul li a:hover
+{
+	color:#fff;	
+}
+
+.timeline_friendlist_row
+{
+	width:96px;	
+}
+
+/* Fixes bug 13957 and 14307 */
+#js_controller_photo_albums #content_load_data h1
+{
+	position: relative;
+}

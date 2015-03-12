@@ -1,0 +1,18 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>friend</module_id>
+			<version_id>3.3.0</version_id>
+			<var_name>confirmed</var_name>
+			<added>1343030392</added>
+			<value>Confirmed</value>
+		</phrase>
+		<phrase>
+			<module_id>friend</module_id>
+			<version_id>3.3.0</version_id>
+			<var_name>denied</var_name>
+			<added>1343030402</added>
+			<value>Denied</value>
+		</phrase>
+	</phrases>
+</upgrade>

@@ -1,0 +1,74 @@
+
+#left .block .title,
+#right .block .title
+{
+	padding-right:4px;
+}
+
+.global_apps_title,
+.global_apps_title_padding
+{
+	padding-right:5px;
+}
+
+div#welcome .welcome_profile_name
+{
+	margin-right: 160px;
+}
+
+#header_search_button, #header_search_button:hover
+{
+	left: 4px;
+	right: auto;
+}
+div.im_text div.im_message
+{
+    margin-left: 0px;
+    margin-right: 32px;
+}
+ 
+.im_message_owner,
+.user_display_name
+{
+    text-align:left;
+}
+ 
+.im_in_chat_menu
+{
+    left: 0;
+}
+
+#header_sub_menu_search
+{
+    position:absolute;
+    left:0px;
+}
+
+#header_left
+{
+    position:absolute;
+    left:0px;
+}
+
+#header_holder
+{
+    height:40px;
+    line-height:40px;
+}
+
+.like_count_link_holder
+{
+    position:absolute;
+    left:0px;
+}
+
+#content_editor_menu
+{
+    left:0px;
+    position:absolute;
+}
+
+#header_menu ul li
+{
+	float: right;
+}

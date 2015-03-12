@@ -1,0 +1,23 @@
+
+@media (max-device-width: 1430px), (max-width: 1430px) {
+
+	.holder {
+		width:auto;
+	}
+
+	#content {
+		margin-left:0px;
+	}
+
+	#panels {
+		position:absolute;
+		width:@columnWidth;
+		left:@contentWidth + 20;
+		top:0px;
+
+		#left, #right {
+			position:static;
+			width:auto;
+		}
+	}
+}

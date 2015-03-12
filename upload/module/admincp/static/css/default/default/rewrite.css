@@ -1,0 +1,51 @@
+
+#templateEntry
+{
+	display: none;
+}
+
+#thActions
+{
+	width: 25px;
+}
+
+#tdAddNew
+{
+	text-align: center;
+	cursor: pointer;
+}
+
+.sReplacement, .sOriginal
+{
+	width: 50%;
+	max-width: 50%;
+	min-width: 50%;
+}
+
+.left
+{
+	float: left;
+	width: 70%;
+}
+.right
+{
+	float: right;
+}
+
+#feedback
+{
+	height: 50px;
+}
+
+#processing, #message
+{
+	display: none;
+	float: left;	
+}
+
+
+.invalidOriginal
+{
+	display: none;
+	max-width: 30%;
+}

@@ -1,0 +1,11 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>friend</module_id>
+			<version_id>3.5.1</version_id>
+			<var_name>unfriend</var_name>
+			<added>1366634350</added>
+			<value>Unfriend</value>
+		</phrase>
+	</phrases>
+</upgrade>

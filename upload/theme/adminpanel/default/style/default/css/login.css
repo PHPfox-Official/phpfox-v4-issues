@@ -1,0 +1,60 @@
+
+body
+{
+	background:#333;
+}
+
+#admincp_login
+{		
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left:-200px;
+	margin-top:-150px;
+	width:550px;
+		
+	text-align:left;
+	background:#fff;
+	padding:10px;
+	
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+  	border-radius:8px;		
+	
+  	-moz-box-shadow:6px 6px 6px #1F1F1F;
+  	-webkit-box-shadow:6px 6px 6px #1F1F1F;
+  	box-shadow:6px 6px 6px #1F1F1F;	
+}
+
+div.adminp_login_body
+{	
+	position:relative;	
+}
+
+div#admincp_site_link
+{
+	position:absolute;
+	left:0px;
+	top:15px;	
+}
+
+div#admincp_site_link a,
+div#admincp_site_link a:hover
+{
+	color:#808080;
+}
+
+input#admincp_btn_login
+{
+	
+}
+
+.table_left
+{
+	width:190px;
+}
+
+.table_right
+{
+	margin-left: 200px;
+}

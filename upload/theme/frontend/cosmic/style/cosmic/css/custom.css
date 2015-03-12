@@ -1,0 +1,277 @@
+
+body
+{
+	background:#F5F6F7;
+}
+
+a,
+a:hover
+{
+	color:#0088CC;
+}
+
+h1,
+.h1
+{
+	padding-bottom:4px;
+	padding-left:10px;
+}
+
+#section_menu
+{	
+	right:4px;
+}
+
+#logo, #logo:hover
+{
+	color:#5F5F5F;
+}
+
+#header,
+#main_content_holder
+{
+	background:transparent;
+}
+
+#holder_notify ul li a.friend_notification
+{
+	background:url('../image/layout/holder_notify_friend_request.png') no-repeat 50% 0px;
+}
+
+#holder_notify ul li.is_active a.friend_notification
+{
+	background:#fff url('../image/layout/holder_notify_friend_request.png') no-repeat 50% -40px;
+}
+
+#holder_notify ul li a.message
+{
+	background:url('../image/layout/holder_notify_message.png') no-repeat 50% 0px;
+}
+
+#holder_notify ul li.is_active a.message
+{
+	background:#fff url('../image/layout/holder_notify_message.png') no-repeat 50% -40px;
+}
+
+#holder_notify ul li a.notification
+{
+	background:url('../image/layout/holder_notify_notification.png') no-repeat 50% 0px;
+}
+
+#holder_notify ul li.is_active a.notification
+{
+	background:#fff url('../image/layout/holder_notify_notification.png') no-repeat 50% -40px;
+}
+
+#content_holder
+{
+	background:#fff;
+	margin-top:10px;
+	/* padding:0px 8px 0px 8px; */
+	border:1px #dfdfdf solid;
+	
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+  	border-radius:10px;  	
+	
+  	-moz-box-shadow:6px 6px 6px #EFEFEF;
+  	-webkit-box-shadow:6px 6px 6px #EFEFEF;
+  	box-shadow:6px 6px 6px #EFEFEF;		
+}
+
+#footer
+{
+	border-top:0px;
+	padding:0px 10px 10px 10px;	
+}
+
+#header_menu
+{
+	background:rgb(128, 133, 130) url('../image/layout/cosmic_header_menu.png') repeat-x bottom;
+	position:relative;
+	
+	border:1px #000 solid;
+	
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+  	border-radius:10px;  	
+	
+  	-moz-box-shadow:3px 3px 3px #CFCFCF;
+  	-webkit-box-shadow:3px 3px 3px #CFCFCF;
+  	box-shadow:3px 3px 3px #CFCFCF;		
+}
+
+#header_menu ul li a,
+#header_menu ul li a:hover
+{
+	color:#fff;
+	border:0px;
+	line-height:36px;
+	height:40px;
+	border-right:1px #4F4F4F solid;
+	font-size:13px;	
+}
+
+#header_menu ul li a:hover
+{
+	background:#3F3F3F;
+	color:#fff;
+}
+
+.main_breadcrumb_holder
+{
+	position:relative;
+}
+
+#breadcrumb_list
+{
+	padding:0px;
+	margin:15px 0px 0px 0px;
+	background:#fff;
+	border:1px #dfdfdf solid;
+	padding:0px 10px 0px 10px;
+	
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+  	border-radius:10px;  	
+}
+
+#breadcrumb_list ul li
+{
+	line-height:30px;	
+}
+
+#breadcrumb_list ul li a,
+#breadcrumb_list ul li a:hover,
+#breadcrumb_list ul li a.home,
+#breadcrumb_list ul li a.home:hover
+{
+	color:#333;
+	line-height:30px;
+	height:30px;
+	padding:0px 10px 0px 10px;
+}
+
+#breadcrumb_list ul li a.home,
+#breadcrumb_list ul li a.home:hover
+{
+	padding-left:0px;
+}
+
+input.button,
+a.button_off_link,
+a.button_off_link:hover
+{
+	background:#3997E1 url('../image/layout/button.png') repeat-x bottom;
+	border:1px #0A69AF solid;
+	
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+  	border-radius:10px;  	
+}
+
+input.button_off,
+a.button_off_link,
+a.button_off_link:hover,
+input.button_not_active,
+input.button_not_active:hover
+{
+	background:#F2F2F2;
+	border:1px #dfdfdf solid;
+}
+
+#header_menu_holder ul li a,
+#header_menu_holder ul li a:hover,
+#header_menu_holder ul li a.has_drop_down,
+#holder_notify ul li a.notify_drop_link
+{
+	color:#333;
+	font-weight:normal;
+	
+	border-right:1px transparent solid;
+	border-left:1px transparent solid;	
+}
+
+#header_menu_holder ul li a:hover,
+#header_menu_holder ul li a.has_drop_down:hover,
+#holder_notify ul li a.notify_drop_link:hover
+{
+	background-color:transparent;	
+	text-decoration: underline;
+}
+
+#header_menu_holder ul li ul li a,
+#header_menu_holder ul li ul li a:hover
+{
+	text-decoration:none;
+}
+
+#header_menu_holder ul li a.active,
+#header_menu_holder ul li a.active:hover,
+#holder_notify ul li.is_active a.notify_drop_link:hover
+{
+	background-color:#fff;
+	border-right:1px #000 solid;
+	border-left:1px #000 solid;
+}
+
+#header_menu_holder ul li ul
+{
+	right:0px;
+}
+
+#holder_notify ul li a.notify_drop_link:hover
+{
+	background-color:#fff;
+}
+
+#header_sub_menu_search_input
+{
+	background:url('../image/layout/header_search_input.png') no-repeat;
+}
+
+#header_sub_menu_search .focus
+{
+	background:url('../image/layout/header_search_input.png') no-repeat 0px -26px;
+}
+
+.content3
+{
+	width:510px;
+}
+
+#header_menu_login .header_menu_login_label,
+#header_menu_login_custom
+{
+	color:#333;
+}
+
+/**
+Mobile
+*/
+#mobile_holder #holder
+{
+	background:#fff;
+}
+
+#mobile_footer
+{
+	color:#333;
+}
+
+#mobile_footer ul li a,
+#mobile_footer ul li a:hover
+{
+	color:#333;
+}
+
+.profile_timeline_header_holder .no_cover_photo .profile_header_inner
+{
+	width:800px;
+}
+
+/* Fixes bug 13957 and 14307 */
+#js_controller_photo_albums #content_load_data h1
+{
+	position: relative;
+}

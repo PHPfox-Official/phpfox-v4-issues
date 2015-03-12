@@ -1,0 +1,34 @@
+<upgrade>
+	<phpfox_update_settings>
+		<setting>
+			<group />
+			<module_id>core</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>keep_files_in_server</var_name>
+			<phrase_var_name>setting_keep_files_in_server</phrase_var_name>
+			<ordering>15</ordering>
+			<version_id>3.5.0beta1</version_id>
+			<value>0</value>
+		</setting>
+	</phpfox_update_settings>
+	<phpfox_update_phrases>
+		<phrase>
+			<module_id>core</module_id>
+			<version_id>3.5.0beta1</version_id>
+			<var_name>setting_keep_files_in_server</var_name>
+			<added>1353415860</added>
+			<value><![CDATA[<title>Keep Files In Server</title><info>Set this to TRUE to keep original files on the server.</info>]]></value>
+		</phrase>
+	</phpfox_update_phrases>
+	<reports>
+		<report>
+			<module_id>core</module_id>
+			<value>Test</value>
+		</report>
+		<report>
+			<module_id>core</module_id>
+			<value>test4</value>
+		</report>
+	</reports>
+</upgrade>

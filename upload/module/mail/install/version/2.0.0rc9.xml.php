@@ -1,0 +1,11 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>mail</module_id>
+			<version_id>2.0.0rc8</version_id>
+			<var_name>mesages_sent</var_name>
+			<added>1258845591</added>
+			<value>Messages</value>
+		</phrase>
+	</phrases>
+</upgrade>

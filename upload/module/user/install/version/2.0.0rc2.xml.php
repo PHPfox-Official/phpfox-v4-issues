@@ -1,0 +1,43 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>0</is_hidden>
+			<type>integer</type>
+			<var_name>min_length_for_username</var_name>
+			<phrase_var_name>setting_min_length_for_username</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.0rc2</version_id>
+			<value>5</value>
+		</setting>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>0</is_hidden>
+			<type>integer</type>
+			<var_name>max_length_for_username</var_name>
+			<phrase_var_name>setting_max_length_for_username</phrase_var_name>
+			<ordering>2</ordering>
+			<version_id>2.0.0rc2</version_id>
+			<value>25</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>2.0.0rc2</version_id>
+			<var_name>setting_min_length_for_username</var_name>
+			<added>1253525527</added>
+			<value><![CDATA[<title>Minimum Length for Username</title><info>Minimum Length for Username</info>]]></value>
+		</phrase>
+		<phrase>
+			<module_id>user</module_id>
+			<version_id>2.0.0rc2</version_id>
+			<var_name>setting_max_length_for_username</var_name>
+			<added>1253525598</added>
+			<value><![CDATA[<title>Maximum Length for Username</title><info>Maximum Length for Username</info>]]></value>
+		</phrase>
+	</phrases>
+	<sql><![CDATA[a:1:{s:9:"ADD_FIELD";a:1:{s:11:"phpfox_user";a:1:{s:15:"last_ip_address";a:4:{i:0;s:8:"VCHAR:15";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}}}}]]></sql>
+</upgrade>

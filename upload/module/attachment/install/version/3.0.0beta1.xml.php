@@ -1,0 +1,17 @@
+<upgrade>
+	<phpfox_update_user_group_settings>
+		<setting>
+			<is_admin_setting>0</is_admin_setting>
+			<module_id>attachment</module_id>
+			<type>string</type>
+			<admin>null</admin>
+			<user>null</user>
+			<guest>0</guest>
+			<staff>null</staff>
+			<module>attachment</module>
+			<ordering>1</ordering>
+			<value>attachment_limit</value>
+		</setting>
+	</phpfox_update_user_group_settings>
+	<sql><![CDATA[a:2:{s:11:"ALTER_FIELD";a:1:{s:17:"phpfox_attachment";a:5:{s:11:"category_id";a:4:{i:0;s:8:"VCHAR:75";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}s:9:"file_name";a:4:{i:0;s:9:"VCHAR:100";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}s:9:"extension";a:4:{i:0;s:8:"VCHAR:20";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}s:8:"is_image";a:4:{i:0;s:6:"TINT:1";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:9:"server_id";a:4:{i:0;s:6:"TINT:1";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}}s:9:"ADD_FIELD";a:1:{s:17:"phpfox_attachment";a:3:{s:7:"link_id";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:14:"video_duration";a:4:{i:0;s:7:"VCHAR:8";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}s:8:"is_video";a:4:{i:0;s:6:"TINT:1";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}}}]]></sql>
+</upgrade>

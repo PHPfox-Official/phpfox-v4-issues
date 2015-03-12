@@ -1,0 +1,66 @@
+
+.editor_holder {
+	position:relative;
+}
+
+.edit_menu_container {
+	background:@formBg;
+	padding:5px 5px 40px 5px;
+	position:relative;
+	border:@formBorder;
+}
+
+.edit_menu_container textarea, .edit_menu_container textarea:focus {
+	width:100%;
+	margin:0px;
+	padding:0px;
+	text-indent:0px;
+	border:inherit;
+	border-color:transparent;
+}
+
+.global_attachment {
+	background:darken(@formBg, 2%);
+	border:0px;
+	height:40px;
+	line-height:40px;
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	right:0px;
+}
+
+.global_attachment ul.global_attachment_list {
+	margin-left:5px;
+}
+
+.global_attachment ul.global_attachment_list li {
+	float:none;
+	line-height:normal;
+	padding:0px;
+	display:inline-block;
+}
+
+.global_attachment ul.global_attachment_list li a, .global_attachment ul.global_attachment_list li a:hover {
+	border:0px;
+	line-height:normal;
+}
+
+.global_attachment ul.global_attachment_list li.global_attachment_title {
+	display:none;
+}
+
+.global_attachment_manage, .global_attachment_manage a.is_not_active, .global_attachment_manage a.is_not_active:hover {
+	.reset();
+	opacity:0.6;
+}
+
+.global_attachment_manage {
+	position:absolute;
+	right:10px;
+	top:0px;
+}
+
+.global_attachment_manage:hover {
+	opacity:1;
+}

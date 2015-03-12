@@ -1,0 +1,16 @@
+
+#help .help_link
+{
+	right:15px;
+}
+
+.fix_left_margin
+{
+	margin-left:3px;
+}
+
+*html a.form_select_active
+{
+	border-color: pink;
+	filter: chroma(color=pink);
+}

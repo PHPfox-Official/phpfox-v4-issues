@@ -1,0 +1,11 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>attachment</module_id>
+			<version_id>2.0.4</version_id>
+			<var_name>attachments_activity</var_name>
+			<added>1266500120</added>
+			<value>Attachments</value>
+		</phrase>
+	</phrases>
+</upgrade>

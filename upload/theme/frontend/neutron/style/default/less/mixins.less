@@ -1,0 +1,36 @@
+
+.reset() {
+	background:transparent;
+	border-radius:0px;
+	box-shadow:none;
+	color:inherit;
+	height:auto;
+	line-height:normal;
+	position:static;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.button() {
+	display:block;
+	text-align:center;
+	border:3px @brandPrimary solid;
+	height:30px;
+	line-height:30px;
+	padding:0px 10px;
+	text-transform:uppercase;
+	font-weight:300;
+	font-size:(@fontSizeBase - 1) !important;
+	letter-spacing:1px;
+}
+
+.button_hover() {
+	border-color:darken(@brandPrimary, 10%);
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+	transition:@transition;
+}

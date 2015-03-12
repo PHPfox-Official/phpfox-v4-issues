@@ -1,0 +1,15 @@
+<upgrade>
+	<phpfox_update_settings>
+		<setting>
+			<group>image_processing</group>
+			<module_id>photo</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>enabled_watermark_on_photos</var_name>
+			<phrase_var_name>setting_enabled_watermark_on_photos</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.0rc1</version_id>
+			<value>0</value>
+		</setting>
+	</phpfox_update_settings>
+</upgrade>

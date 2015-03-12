@@ -1,0 +1,49 @@
+<upgrade>
+	<settings>
+		<setting>
+			<group />
+			<module_id>friend</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>hide_denied_requests_from_pending_list</var_name>
+			<phrase_var_name>setting_hide_denied_requests_from_pending_list</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.7</version_id>
+			<value>0</value>
+		</setting>
+	</settings>
+	<phrases>
+		<phrase>
+			<module_id>friend</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>loading</var_name>
+			<added>1288350596</added>
+			<value>Loading...</value>
+		</phrase>
+		<phrase>
+			<module_id>friend</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>setting_hide_denied_requests_from_pending_list</var_name>
+			<added>1288624002</added>
+			<value><![CDATA[<title>Hide denied requests from pending list</title><info>If enabled, friend requests that were denied will be hidden from the Pending Friend Requests list.</info>]]></value>
+		</phrase>
+		<phrase>
+			<module_id>friend</module_id>
+			<version_id>2.0.7</version_id>
+			<var_name>cannot_select_this_user</var_name>
+			<added>1289315360</added>
+			<value>(Based on privacy settings this user cannot be selected)</value>
+		</phrase>
+	</phrases>
+	<hooks>
+		<hook>
+			<module_id>friend</module_id>
+			<hook_type>service</hook_type>
+			<module>friend</module>
+			<call_name>friend.service_callback_getnewsfeed_start</call_name>
+			<added>1286546859</added>
+			<version_id>2.0.7</version_id>
+			<value />
+		</hook>
+	</hooks>
+</upgrade>

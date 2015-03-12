@@ -1,0 +1,72 @@
+/* 
+    Document   : index
+    Created on : Aug 9, 2011, 3:57:36 PM
+    Author     : purefan
+    Description:
+        This CSS file affects the main apps controller
+*/
+
+/* Container of one app in the directory page */
+.app_item
+{
+	text-align: center;
+	float:left;
+	width: 150px;
+}
+
+.app_item .app_title
+{
+	font-weight: bold;
+	font-size: large;
+}
+
+
+/* These are the categories shown in the Apps directory */
+#apps_categories
+{
+	margin-bottom: 15px;
+}
+
+#apps_categories ul
+{
+	list-style-type: none;
+}
+
+#apps_categories  ul li
+{
+	float: left;
+	display: block;	
+	border-left: 1px solid black;
+	position: relative;
+	margin-left: 10px;
+}
+
+/* This contains all the apps shown in the directory */
+#apps_directory
+{
+	clear: both;
+	margin-top: 15px;
+}
+
+/* Holds the links to mark an app and show the drop down menu*/
+.moderation_container
+{	
+	position: relative;
+	width:100%;
+}
+
+.moderation_container .moderate_link
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.moderation_container .row_edit_bar_parent
+{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 11px;
+	font-weight: normal;
+}

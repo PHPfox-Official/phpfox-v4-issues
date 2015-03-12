@@ -1,0 +1,11 @@
+<upgrade>
+	<phrases>
+		<phrase>
+			<module_id>ad</module_id>
+			<version_id>3.7.0beta2</version_id>
+			<var_name>sponsorships</var_name>
+			<added>1376307785</added>
+			<value>Sponsorships</value>
+		</phrase>
+	</phrases>
+</upgrade>

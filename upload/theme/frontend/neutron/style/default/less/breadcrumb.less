@@ -52,6 +52,7 @@ div.header_bar_menu {
 	line-height:normal;
 	background:transparent;
 	background:@blockBg;
+	margin-bottom:@blockMarginBottom;
 }
 
 .header_filter_holder {
@@ -96,7 +97,7 @@ div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_d
 }
 
 #breadcrumb_list {
-	padding:10px 0px;
+	padding:0px;
 }
 
 #breadcrumb_list ul li a.home, #breadcrumb_list ul li a.home:hover {
@@ -105,9 +106,22 @@ div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_d
 
 #breadcrumb_list ul li {
 	line-height:normal;
-	float:left;
-	display:block;
+	float:none;
+	display:inline-block;
 	margin-right:10px;
+	vertical-align:middle;
+}
+
+#breadcrumb_list ul li:nth-of-type(2) a:before {
+	content:'/';
+	display:inline-block;
+	margin:0px 15px 0px 5px;
+}
+
+#breadcrumb_list ul li:nth-of-type(n+3) a:before {
+	content:'\00BB';
+	display:inline-block;
+	margin:0px 15px 0px 5px;
 }
 
 #breadcrumb_list ul li a, #breadcrumb_list ul li a:hover {
@@ -121,4 +135,15 @@ div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_d
 #breadcrumb_list ul li a:hover {
 	color:@brandPrimary;
 	transition:@transition;
+}
+
+#breadcrumb_content {
+	h1, .h1, #breadcrumb_list ul li:first-of-type a, #breadcrumb_list ul li:first-of-type a:hover {
+		display:block;
+		padding:15px 0px;
+		font-size:22px;
+		color:darken(@textColor, 40%);
+		font-weight:300;
+		line-height:normal;
+	}
 }

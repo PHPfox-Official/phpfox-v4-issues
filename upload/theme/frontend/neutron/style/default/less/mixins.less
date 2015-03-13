@@ -38,13 +38,18 @@
 }
 
 .nav() {
+	ul {
+		background:@blockBg;
+	}
+
 	ul li a, ul li a:hover {
 		display:block;
 		background:transparent;
 		font-weight:300;
-		font-size:@fontSizeBase + 2;
-		line-height:normal;
-		padding:10px 0px;
+		font-size:@fontSizeBase;
+		height:35px;
+		line-height:35px;
+		padding:0px;
 		color:lighten(@textColor, 10%);
 		text-indent:10px;
 		border-radius:0px;
@@ -52,11 +57,11 @@
 
 	ul li a:hover {
 		transition:@transition;
-		color:darken(@textColor, 30%);
+		color:darken(@textColor, 50%);
 	}
 
 	ul li.active a, ul li.active a:hover {
-		background:darken(@bodyBg, 5%);
-		color:darken(@textColor, 30%);
+		background:@brandPrimary;
+		color:@brandPrimaryColor;
 	}
 }

@@ -272,26 +272,30 @@ input.button_off {
   top: 0px;
   padding-bottom: 50px;
 }
+.page_section_menu_header ul {
+  background: #ffffff;
+}
 .page_section_menu_header ul li a,
 .page_section_menu_header ul li a:hover {
   display: block;
   background: transparent;
   font-weight: 300;
-  font-size: 16px;
-  line-height: normal;
-  padding: 10px 0px;
+  font-size: 14px;
+  height: 35px;
+  line-height: 35px;
+  padding: 0px;
   color: #9a9a9a;
   text-indent: 10px;
   border-radius: 0px;
 }
 .page_section_menu_header ul li a:hover {
   transition: all 0.5s ease;
-  color: #343434;
+  color: #000000;
 }
 .page_section_menu_header ul li.active a,
 .page_section_menu_header ul li.active a:hover {
-  background: #d8d8d8;
-  color: #343434;
+  background: #298ada;
+  color: #ffffff;
 }
 a.page_section_menu_link,
 a.page_section_menu_link:hover {
@@ -471,29 +475,36 @@ a.page_section_menu_link:hover {
   padding: 0px;
   margin-bottom: 20px;
 }
+#left > .sub_section_menu ul {
+  background: #ffffff;
+}
 #left > .sub_section_menu ul li a,
 #left > .sub_section_menu ul li a:hover {
   display: block;
   background: transparent;
   font-weight: 300;
-  font-size: 16px;
-  line-height: normal;
-  padding: 10px 0px;
+  font-size: 14px;
+  height: 35px;
+  line-height: 35px;
+  padding: 0px;
   color: #9a9a9a;
   text-indent: 10px;
   border-radius: 0px;
 }
 #left > .sub_section_menu ul li a:hover {
   transition: all 0.5s ease;
-  color: #343434;
+  color: #000000;
 }
 #left > .sub_section_menu ul li.active a,
 #left > .sub_section_menu ul li.active a:hover {
-  background: #d8d8d8;
-  color: #343434;
+  background: #298ada;
+  color: #ffffff;
 }
 #section_menu {
-  top: 7px;
+  top: 10px;
+}
+#section_menu ul li {
+  margin-left: 10px;
 }
 #top #section_menu ul li a,
 #top #section_menu ul li a:hover {
@@ -713,6 +724,7 @@ div.header_bar_menu {
   line-height: normal;
   background: transparent;
   background: #ffffff;
+  margin-bottom: 20px;
 }
 .header_filter_holder {
   position: static;
@@ -751,7 +763,7 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
   text-transform: uppercase;
 }
 #breadcrumb_list {
-  padding: 10px 0px;
+  padding: 0px;
 }
 #breadcrumb_list ul li a.home,
 #breadcrumb_list ul li a.home:hover {
@@ -759,9 +771,20 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
 }
 #breadcrumb_list ul li {
   line-height: normal;
-  float: left;
-  display: block;
+  float: none;
+  display: inline-block;
   margin-right: 10px;
+  vertical-align: middle;
+}
+#breadcrumb_list ul li:nth-of-type(2) a:before {
+  content: '/';
+  display: inline-block;
+  margin: 0px 15px 0px 5px;
+}
+#breadcrumb_list ul li:nth-of-type(n+3) a:before {
+  content: '\00BB';
+  display: inline-block;
+  margin: 0px 15px 0px 5px;
 }
 #breadcrumb_list ul li a,
 #breadcrumb_list ul li a:hover {
@@ -774,6 +797,17 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
 #breadcrumb_list ul li a:hover {
   color: #298ada;
   transition: all 0.5s ease;
+}
+#breadcrumb_content h1,
+#breadcrumb_content .h1,
+#breadcrumb_content #breadcrumb_list ul li:first-of-type a,
+#breadcrumb_content #breadcrumb_list ul li:first-of-type a:hover {
+  display: block;
+  padding: 15px 0px;
+  font-size: 22px;
+  color: #1a1a1a;
+  font-weight: 300;
+  line-height: normal;
 }
 .editor_holder {
   position: relative;
@@ -1346,5 +1380,57 @@ div.sub_menu_bar_main a:hover {
   #panels #right {
     position: static;
     width: auto;
+  }
+}
+@media (max-device-width: 1160px), (max-width: 1160px) {
+  #header_menu > nav > ul {
+    overflow: hidden;
+  }
+  #header_menu {
+    width: 50px;
+  }
+  #main_core_body_holder {
+    margin-left: 70px;
+  }
+}
+@media (max-device-width: 1000px), (max-width: 1000px) {
+  #holder_notify {
+    position: fixed;
+  }
+  #panels {
+    display: none;
+  }
+}
+@media (max-device-width: 700px), (max-width: 700px) {
+  #header:before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: red;
+    z-index: 10000;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+  }
+  #holder_notify {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    top: auto;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  #content {
+    width: auto;
+  }
+  #main_core_body_holder,
+  #main_footer_holder {
+    margin: auto;
+    width: 95%;
+  }
+  #header_search,
+  #header_menu {
+    display: none;
   }
 }

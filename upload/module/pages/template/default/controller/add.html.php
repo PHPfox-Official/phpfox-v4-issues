@@ -52,7 +52,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				</div>
 			</div>	
 			
-			<div class="table">
+			<div class="table hide_it">
 				<div class="table_left">
 					{phrase var='pages.use_timeline'}
 				</div>
@@ -76,7 +76,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				</div>
 			</div>
 			
-			<div class="table">
+			<div class="table hide_it">
 				<div class="table_left">
 					{phrase var='pages.landing_page'}:
 				</div>
@@ -103,7 +103,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					{phrase var='pages.vanity_url'}:
 				</div>
 				<div class="table_right">
-					<span class="extra_info">{param var='core.path'}</span><input type="text" name="val[vanity_url]" value="{value type='input' id='vanity_url'}" size="20" id="js_vanity_url_new" /><span class="extra_info">/</span>
+					<input type="text" name="val[vanity_url]" value="{value type='input' id='vanity_url'}" size="20" id="js_vanity_url_new" />
 				</div>
 			</div>		
 			
@@ -212,31 +212,33 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		
 		<div id="js_pages_block_admins" class="js_pages_block page_section_menu_holder" style="display:none;">
-						
-			<div class="go_left" style="margin-right:5px;">
-				<div id="js_custom_search_friend"></div>
-				<div class="table_clear">
-					<input type="submit" value="{phrase var='pages.update'}" class="button" />
-				</div>						
+
+			<div class="table">
+				<div>
+					<div id="js_custom_search_friend_placement">{if count($aForms.admins)}
+						<div class="js_custom_search_friend_holder">
+							<ul>
+							{foreach from=$aForms.admins item=aAdmin}
+								<li>
+									<a href="#" class="friend_search_remove" title="Remove" onclick="$(this).parents('li:first').remove(); return false;">{phrase var='pages.remove'}</a>
+									<div class="friend_search_image">{img user=$aAdmin suffix='_50_square' max_width='25' max_height='25'}</div>
+									<div class="friend_search_name">{$aAdmin.full_name|clean}</div>
+									<div class="clear"></div>
+									<div><input type="hidden" name="admins[]" value="{$aAdmin.user_id}" /></div>
+								</li>
+							{/foreach}
+							</ul>
+						</div>
+						{/if}</div>
+				</div>
+				<div>
+					<div id="js_custom_search_friend"></div>
+				</div>
 			</div>
-			<div>		
-				<div id="js_custom_search_friend_placement">{if count($aForms.admins)}
-					<div class="js_custom_search_friend_holder">			
-						<ul>
-						{foreach from=$aForms.admins item=aAdmin}
-							<li>
-								<a href="#" class="friend_search_remove" title="Remove" onclick="$(this).parents('li:first').remove(); return false;">{phrase var='pages.remove'}</a>
-								<div class="friend_search_image">{img user=$aAdmin suffix='_50_square' max_width='25' max_height='25'}</div>
-								<div class="friend_search_name">{$aAdmin.full_name|clean}</div>
-								<div class="clear"></div>
-								<div><input type="hidden" name="admins[]" value="{$aAdmin.user_id}" /></div>
-							</li>
-						{/foreach}
-						</ul>
-					</div>
-					{/if}</div>					
+
+			<div class="table_clear">
+				<input type="submit" value="{phrase var='pages.update'}" class="button" />
 			</div>
-			<div class="clear"></div>		
 						
 			<script type="text/javascript">
 				$Behavior.pagesSearchFriends = function()
@@ -244,7 +246,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					$Core.searchFriends({l}
 						'id': '#js_custom_search_friend',
 						'placement': '#js_custom_search_friend_placement',
-						'width': '300px',
+						'width': '100%',
 						'max_search': 10,
 						'input_name': 'admins',
 						
@@ -254,60 +256,47 @@ defined('PHPFOX') or exit('NO DICE!');
 			</script>						
 		</div>
 		
-		<div id="js_pages_block_invite" class="js_pages_block page_section_menu_holder" style="display:none;">	
-				<div style="width:75%; float:left; position:relative;">
-					<h3 style="margin-top:0px; padding-top:0px;">{phrase var='pages.invite_friends'}</h3>
-					<div style="height:370px;">			
-						{if isset($aForms.page_id)}
-						{module name='friend.search' input='invite' hide=true friend_item_id=$aForms.page_id friend_module_id='pages'}
-						{/if}
-					</div>				
+		<div id="js_pages_block_invite" class="js_pages_block page_section_menu_holder" style="display:none;">
+			<div class="block">
+				<div class="content">
+					{if isset($aForms.page_id)}
+					{module name='friend.search' input='invite' hide=true friend_item_id=$aForms.page_id friend_module_id='pages'}
+					{/if}
 					<div class="p_top_8">
 						<input type="submit" value="{phrase var='pages.send_invitations'}" class="button" />
-					</div>		
-					<br />
-				</div>
-
-				<div style="margin-left:77%; position:relative;">
-					<div class="block">
-						<div class="title">{phrase var='pages.new_guest_list'}</div>				
-						<div class="content">
-							<div class="label_flow" style="height:330px;">
-								<div id="js_selected_friends"></div>
-							</div>
-						</div>
 					</div>
-				</div>		
-
-				<div class="clear"></div>		
+				</div>
+			</div>
 		</div>		
 		
 		<div id="js_pages_block_widget" class="js_pages_block page_section_menu_holder" style="display:none;">
-			<div class="pages_create_new_widget">
-				<a href="#" onclick="$Core.box('pages.widget', 700, 'page_id={$aForms.page_id}'); return false;">{phrase var='pages.create_new_widget'}</a>
+			<div class="table">
+				<div class="pages_create_new_widget">
+					<a href="#" onclick="$Core.box('pages.widget', 700, 'page_id={$aForms.page_id}'); return false;">{phrase var='pages.create_new_widget'}</a>
+				</div>
+				<ul class="pages_edit_widget">
+				{foreach from=$aWidgetEdits item=aWidgetEdit}
+					<li class="widget" id="js_pages_widget_{$aWidgetEdit.widget_id}">
+						<div class="pages_edit_widget_tools">
+
+							<div class="row_edit_bar_parent" style="display:block;">
+								<div class="row_edit_bar_holder">
+									<ul>
+										<li><a href="#" onclick="$Core.box('pages.widget', 700, 'widget_id={$aWidgetEdit.widget_id}'); return false;">{phrase var='pages.edit'}</a></li>
+										<li class="item_delete"><a href="#" onclick="if (confirm('Are you sure?')) {l} $.ajaxCall('pages.deleteWidget', 'widget_id={$aWidgetEdit.widget_id}'); {r} return false;">{phrase var='pages.delete'}</a></li>
+									</ul>
+								</div>
+								<div class="row_edit_bar">
+										<a href="#" class="row_edit_bar_action"><span>{phrase var='pages.actions'}</span></a>
+								</div>
+							</div>
+
+						</div>
+						{$aWidgetEdit.title|clean}
+					</li>
+				{/foreach}
+				</ul>
 			</div>
-			<ul class="pages_edit_widget">
-			{foreach from=$aWidgetEdits item=aWidgetEdit}
-				<li class="widget" id="js_pages_widget_{$aWidgetEdit.widget_id}">
-					<div class="pages_edit_widget_tools">
-						
-						<div class="row_edit_bar_parent" style="display:block;">
-							<div class="row_edit_bar_holder">
-								<ul>
-									<li><a href="#" onclick="$Core.box('pages.widget', 700, 'widget_id={$aWidgetEdit.widget_id}'); return false;">{phrase var='pages.edit'}</a></li>
-									<li class="item_delete"><a href="#" onclick="if (confirm('Are you sure?')) {l} $.ajaxCall('pages.deleteWidget', 'widget_id={$aWidgetEdit.widget_id}'); {r} return false;">{phrase var='pages.delete'}</a></li>
-								</ul>			
-							</div>
-							<div class="row_edit_bar">				
-									<a href="#" class="row_edit_bar_action"><span>{phrase var='pages.actions'}</span></a>							
-							</div>
-						</div>						
-						
-					</div>
-					{$aWidgetEdit.title|clean}				
-				</li>
-			{/foreach}
-			</ul>
 		</div>
 		
 		

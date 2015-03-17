@@ -190,7 +190,8 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		{
 			$iForumId = $this->request()->getInt('req2');		
 
-			$aForums = Phpfox::getService('forum')->live()->id($iForumId)->getForums();		
+			// $aForums = Phpfox::getService('forum')->live()->id($iForumId)->getForums();
+			$aForums = array();
 			$aForum = Phpfox::getService('forum')->id($iForumId)->getForum();
 		}
 		else
@@ -282,7 +283,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				{
 					$oSearch->setCondition("AND ft.group_id = 0 AND tag.tag_url = '" . Phpfox::getLib('database')->escape($this->request()->get('req3')) . "'");
 				}
-			}			
+			}
 
 			list($iCnt, $aThreads) = Phpfox::getService('forum.thread')->isSearch($bIsSearch)
 				->isTagSearch($bIsTagSearch)
@@ -372,7 +373,31 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				{
 					$this->template()->setHeader('<link rel="alternate" type="application/rss+xml" title="' . Phpfox::getPhrase('forum.group_forum') . ': ' . $aCallback['title'] . '" href="' . $this->url()->makeUrl('forum', array('rss', 'group' => $aCallback['group_id'])) . '" />');				
 				}
-			}					
+			}
+
+			if ($aCallback === null) {
+				if (!$aForum['is_closed'] && Phpfox::getUserParam('forum.can_add_new_thread') || Phpfox::getService('forum.moderate')->hasAccess($aForum['forum_id'], 'add_thread')) {
+					$this->template()->setMenu([
+						'forum.forum' => [
+							'menu_id' => null,
+							'module' => 'forum',
+							'url' => $this->url()->makeUrl('forum.post.thread', ['id' => $aForum['forum_id']]),
+							'var_name' => 'new_thread'
+						]
+					]);
+				}
+			}
+			else {
+
+			}
+			/*
+			{if !$aForumData.is_closed && Phpfox::getUserParam('forum.can_add_new_thread') || Phpfox::getService('forum.moderate')->hasAccess('' . $aForumData.forum_id . '', 'add_thread')}
+			<div class="sub_menu_bar_main"><a href="{url link='forum.post.thread' id=$aForumData.forum_id}">{phrase var='forum.new_thread'}</a></div>
+		{/if}
+	{else}
+		<div class="sub_menu_bar_main"><a href="{url link='forum.post.thread' module=$aCallback.module_id item=$aCallback.item_id}">{phrase var='forum.new_thread'}</a></div>
+	{/if}
+			*/
 			
 			if ($aParentModule === null)
 			{			

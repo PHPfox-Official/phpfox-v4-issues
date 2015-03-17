@@ -19,27 +19,24 @@ defined('PHPFOX') or exit('NO DICE!');
 				<li class="share">{phrase var='feed.share'}:</li>
 			{/if}
 			{if isset($aFeedCallback.module)}
-				<li><a href="#" style="background:url('{img theme='misc/comment_add.png' return_url=true}') no-repeat center left;" rel="global_attachment_status" class="active"><div>{phrase var='feed.post'}<span class="activity_feed_link_form_ajax">{$aFeedCallback.ajax_request}</span></div><div class="drop"></div></a></li>
+				<li><a href="#" rel="global_attachment_status" class="active"><div>{phrase var='feed.post'}<span class="activity_feed_link_form_ajax">{$aFeedCallback.ajax_request}</span></div><div class="drop"></div></a></li>
 			{elseif !isset($bFeedIsParentItem) && (!defined('PHPFOX_IS_USER_PROFILE') || (defined('PHPFOX_IS_USER_PROFILE') && isset($aUser.user_id) && $aUser.user_id == Phpfox::getUserId()))}
-				<li><a href="#" style="background:url('{img theme='misc/application_add.png' return_url=true}') no-repeat center left;" rel="global_attachment_status" class="active"><div>{phrase var='feed.status'}<span class="activity_feed_link_form_ajax">user.updateStatus</span></div><div class="drop"></div></a></li>
+				<li><a href="#" rel="global_attachment_status" class="active"><div>{phrase var='feed.status'}<span class="activity_feed_link_form_ajax">user.updateStatus</span></div><div class="drop"></div></a></li>
 			{else}
-				<li><a href="#" style="background:url('{img theme='misc/comment_add.png' return_url=true}') no-repeat center left;" rel="global_attachment_status" class="active"><div>{phrase var='feed.post'}<span class="activity_feed_link_form_ajax">feed.addComment</span></div><div class="drop"></div></a></li>
+				<li><a href="#" rel="global_attachment_status" class="active"><div>{phrase var='feed.post'}<span class="activity_feed_link_form_ajax">feed.addComment</span></div><div class="drop"></div></a></li>
 			{/if}
-			
 			{foreach from=$aFeedStatusLinks item=aFeedStatusLink name=feedlinks}
-			
+
 			{if $phpfox.iteration.feedlinks == 3 && Phpfox::getService('profile')->timeline()}
 			<li><a href="#" rel="view_more_link" class="timeline_view_more js_hover_title"><span class="js_hover_info">{phrase var='feed.view_more'}</span></a>
 				<ul class="view_more_drop">
 			{/if}
-			
-			
-			
+
 			{if isset($aFeedCallback.module) && $aFeedStatusLink.no_profile}
 			{else}
 				{if ($aFeedStatusLink.no_profile && !isset($bFeedIsParentItem) && (!defined('PHPFOX_IS_USER_PROFILE') || (defined('PHPFOX_IS_USER_PROFILE') && isset($aUser.user_id) && $aUser.user_id == Phpfox::getUserId()))) || !$aFeedStatusLink.no_profile}
 					<li>
-						<a href="#" style="background-image:url('{img theme='feed/'$aFeedStatusLink.icon'' return_url=true}'); background-repeat:no-repeat; background-position:{if Phpfox::getService('profile')->timeline() && $phpfox.iteration.feedlinks >= 3}5px center{else}center left{/if};" rel="global_attachment_{$aFeedStatusLink.module_id}"{if $aFeedStatusLink.no_input} class="no_text_input"{/if}>
+						<a href="#" rel="global_attachment_{$aFeedStatusLink.module_id}"{if $aFeedStatusLink.no_input} class="no_text_input"{/if}>
 							<div>
 								{$aFeedStatusLink.title|convert}
 								{if $aFeedStatusLink.is_frame}
@@ -54,13 +51,13 @@ defined('PHPFOX') or exit('NO DICE!');
 					</li>
 				{/if}
 			{/if}
-			
+
 			{if $phpfox.iteration.feedlinks == count($aFeedStatusLinks) && Phpfox::getService('profile')->timeline()}
 				</ul>
-			</li>			
-			{/if}			
-			
-			{/foreach}		
+			</li>
+			{/if}
+
+			{/foreach}
 		</ul>
 	{/if}
 	<div class="clear"></div>
@@ -194,9 +191,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/if}
 				<div class="clear"></div>
 			</div>
-			
-			
-			
+
 			{if Phpfox::getParam('feed.enable_check_in') && (Phpfox::getParam('core.ip_infodb_api_key') != '' || Phpfox::getParam('core.google_api_key') != '')}
 				<div id="js_add_location">					
 					<div><input type="hidden" id="val_location_latlng" name="val[location][latlng]"></div>
@@ -205,8 +200,6 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div id="js_feed_check_in_map"></div>
 				</div>
 			{/if}
-				
-				
 				
 		</div>			
 	</form>

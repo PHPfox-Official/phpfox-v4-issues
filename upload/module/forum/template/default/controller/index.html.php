@@ -11,6 +11,8 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+
+{*
 <div class="p_bottom_10">
 	<ul class="sub_menu_bar">
 		{if Phpfox::isUser()}
@@ -57,3 +59,9 @@ defined('PHPFOX') or exit('NO DICE!');
 {else}
 {template file='forum.block.entry'}
 {/if}
+
+*}
+
+{foreach from=$aThreads item=aThread}
+	{template file='forum.block.thread-entry'}
+{/foreach}

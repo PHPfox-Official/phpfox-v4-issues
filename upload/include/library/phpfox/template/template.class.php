@@ -2795,6 +2795,13 @@ class Phpfox_Template
 		
 		return $this;
 	}
+
+	private $_aMenus = [];
+	public function setMenu($menus) {
+		foreach ($menus as $connection => $menu) {
+			$this->_aMenus[$connection] = $menu;
+		}
+	}
 	
 	/**
 	 * Gets all the sites custom menus, such as the Main, Header, Footer and Sub menus.
@@ -2827,7 +2834,7 @@ class Phpfox_Template
 			}
 		}		
 		//$sConnection = strtolower($sConnection);			
-		$sConnection = strtolower(str_replace('/','.',$sConnection));			
+		$sConnection = strtolower(str_replace('/','.',$sConnection));
 		if ($sConnection == 'profile.private')
 		{
 			return array();
@@ -2888,7 +2895,7 @@ class Phpfox_Template
 				
 				$aMenus[$aMenu['menu_id']] = $aMenu;
 			}
-			
+
 			$aParents = Phpfox::getLib('database')->select('m.menu_id, m.parent_id, m.m_connection, m.var_name, m.disallow_access, mo.module_id AS module, m.url_value AS url, mo.is_active AS module_is_active')
 				->from(Phpfox::getT('menu'), 'm')
 				->join(Phpfox::getT('module'), 'mo', 'mo.module_id = m.module_id AND mo.is_active = 1')
@@ -2916,7 +2923,11 @@ class Phpfox_Template
 
             if ($sPlugin = Phpfox_Plugin::get('template_template_getmenu_2')){eval($sPlugin);}
 			$oCache->save($sCachedId, $aMenus);
-		}				
+		}
+
+		if (isset($this->_aMenus[$sConnection])) {
+			$aMenus = [$this->_aMenus[$sConnection]];
+		}
 
 		if (!is_array($aMenus))
 		{
@@ -3362,7 +3373,7 @@ class Phpfox_Template
 	 * @return array ARRAY of menus.
 	 */
 	private function _getMenu($sConnection = null, $iParent = 0)
-	{		
+	{
 		return Phpfox::getLib('database')->select('m.menu_id, m.parent_id, m.m_connection, m.var_name, m.disallow_access, mo.module_id AS module, m.url_value AS url, mo.is_active AS module_is_active, m.mobile_icon')
 			->from(Phpfox::getT('menu'), 'm')
 			->join(Phpfox::getT('module'), 'mo', 'mo.module_id = m.module_id AND mo.is_active = 1')

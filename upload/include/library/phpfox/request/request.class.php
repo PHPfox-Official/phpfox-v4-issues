@@ -68,7 +68,7 @@ class Phpfox_Request
 	 */
 	public function __construct()
 	{
-		$this->_aArgs = $this->_trimData(array_merge($_GET, $_POST, $_FILES, Phpfox::getLib('url')->getParams()));				
+		$this->_aArgs = $this->_trimData(array_merge($_GET, $_POST, $_FILES, Phpfox::getLib('url')->getParams()));
 	}
 	
 	/**
@@ -526,6 +526,61 @@ class Phpfox_Request
 	public function getSessionHash()
 	{
 		return md5(PHPFOX_TIME . Phpfox::getParam('core.path') . $this->getIdHash() . Phpfox::getParam('core.path') . rand(1, 1000000));
+	}
+
+	public function uri() {
+		$uri = (isset($_GET['do']) ? $_GET['do'] : '/');
+		return $uri;
+	}
+
+	public function cacheId() {
+		$id = $this->uri();
+
+		return 'request:is:cached:' . md5($id);
+	}
+
+	public function checkCache() {
+		if (($cache = \Cache::get($this->cacheId())) && $this->cache($cache->type, $cache->modified, $cache->days)) {
+			header('IS-FROM-CACHE: 1');
+			exit;
+		}
+	}
+
+	public function cache($type, $modified, $days) {
+
+		$id = $this->uri();
+		$expires = 60 * 60 * 24 * $days;
+
+		header('Pragma: public');
+		header('Cache-Control: max-age=' . $expires);
+		header('Expires: ' . gmdate('D, d M Y H:i:s', time() + $expires) . ' GMT');
+		header('Content-Type: ' . $type);
+
+		$last_modified  = $modified;
+		$modified_since = ( isset( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) ? strtotime( $_SERVER["HTTP_IF_MODIFIED_SINCE"] ) : false );
+		$etagHeader     = ( isset( $_SERVER["HTTP_IF_NONE_MATCH"] ) ? trim( $_SERVER["HTTP_IF_NONE_MATCH"] ) : false );
+		$etag = sprintf('"%s-%s"', $last_modified, md5($id));
+
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $last_modified) . ' GMT');
+		header('Etag: ' . $etag);
+
+		$key = $this->cacheId();
+		if ((int) $modified_since === (int) $last_modified && $etag === $etagHeader) {
+			header('HTTP/1.1 304 Not Modified');
+
+			return true;
+		}
+
+		/*
+		\Cache::set($key, [
+			'type' => $type,
+			'modified' => $modified,
+			'days' => $days,
+			'created' => \Date::now()
+		]);
+		*/
+
+		return false;
 	}
 
 	/**

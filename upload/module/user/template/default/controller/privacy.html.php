@@ -11,7 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div id="privacy_holder_table" class="p_4">
+<div id="_privacy_holder_table">
 	<form method="post" action="{url link='user.privacy'}">	
 		
 		{if Phpfox::getUserParam('user.can_be_invisible')}

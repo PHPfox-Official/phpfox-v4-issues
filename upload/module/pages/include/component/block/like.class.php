@@ -21,15 +21,10 @@ class Pages_Component_Block_Like extends Phpfox_Component
 	public function process()
 	{
 		$aPage = $this->getParam('aPage');
-		
-		$aMembers = array();
-		if ($aPage['page_type'] == '1')
-		{
-			list($iTotalMembers, $aMembers) = Phpfox::getService('pages')->getMembers($aPage['page_id']);
-		}
-		
+		list($iTotalMembers, $aMembers) = Phpfox::getService('pages')->getMembers($aPage['page_id'], 12);
+
 		$this->template()->assign(array(
-				'sHeader' => ($aPage['page_type'] == '1' ? '<a href="#" onclick="return $Core.box(\'like.browse\', 400, \'type_id=pages&amp;item_id=' . $aPage['page_id'] . '\');">' . Phpfox::getPhrase('pages.members_total', array('total' => $iTotalMembers)) . '</a>' : Phpfox::getPhrase('pages.likes')),
+				'sHeader' => ($aPage['page_type'] == '1' ? '<a href="#" onclick="return $Core.box(\'like.browse\', 400, \'type_id=pages&amp;item_id=' . $aPage['page_id'] . '\');">' . Phpfox::getPhrase('pages.members_total', array('total' => $iTotalMembers)) . '</a>' : $iTotalMembers . ' Followers'),
 				'aMembers' => $aMembers
 			)
 		);

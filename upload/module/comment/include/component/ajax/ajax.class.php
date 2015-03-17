@@ -37,7 +37,7 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		(($sPlugin = Phpfox_Plugin::get('comment.component_ajax_ajax_add_start')) ? eval($sPlugin) : false);		
 		
-		if (isset($bNoCaptcha) && $bCaptchaFailed === true)
+		if ((isset($bNoCaptcha) && isset($bCaptchaFailed)) && $bCaptchaFailed === true)
 		{			
 			$this->html('#js_comment_process', '');
 			$this->call("$('#js_comment_submit').removeAttr('disabled');");					
@@ -210,7 +210,7 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 						}
 						else
 						{
-							$this->call('$(\'#js_feed_comment_form_textarea_' . $aVals['is_via_feed'] .'\').val($(\'.js_comment_feed_value\').html()).addClass(\'js_comment_feed_textarea_focus\').removeAttr(\'style\');');					
+							$this->call('$(\'#js_feed_comment_form_textarea_' . $aVals['is_via_feed'] .'\').val(\'\').addClass(\'js_comment_feed_textarea_focus\').removeAttr(\'style\');');
 						}
 						
 						$this->call('$(\'#js_feed_comment_form_textarea_' . $aVals['is_via_feed'] .'\').parent().find(\'.js_feed_comment_process_form:first\').hide();');						

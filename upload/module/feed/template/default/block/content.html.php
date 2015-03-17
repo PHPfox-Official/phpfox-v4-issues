@@ -119,7 +119,7 @@ defined('PHPFOX') or exit('NO DICE!');
 </div>
 {/if}
 
-	{if isset($aFeed.feed_view_comment)}			
+	{if isset($aFeed.feed_view_comment)}
 		{module name='feed.comment'}
 	{else}
 		{template file='feed.block.comment'}

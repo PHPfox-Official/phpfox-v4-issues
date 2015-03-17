@@ -35,7 +35,7 @@ class Pages_Component_Controller_Add extends Phpfox_Component
 			
 			$aMenus = array(
 				'detail' => Phpfox::getPhrase('pages.details'),
-				'info' => Phpfox::getPhrase('pages.information')				
+				// 'info' => Phpfox::getPhrase('pages.information')
 			);
 			
 			if (!$aPage['is_app'])

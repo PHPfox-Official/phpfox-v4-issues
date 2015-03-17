@@ -211,8 +211,69 @@ $Core.loadCommentButton = function()
 	$('.feed_comment_buttons_wrap div input.button_set_off').show().removeClass('button_set_off');
 };
 
+var __ = function(e) {
+	$('.feed_stream[data-feed-url="' + e.url + '"]').replaceWith(e.content);
+	$Core.loadInit();
+};
+
+$Core.resetFeedForm = function(f) {
+	f.get()[0].reset();
+	$('.feed_form_share').removeClass('.active');
+	$('.feed_form_textarea textarea').removeClass('dont-unbind');
+};
 
 $Behavior.activityFeedProcess = function(){
+
+	$('.feed_form_share:not(.active)').click(function() {
+		var t = $(this),
+			f = t.parents('form:first');
+
+		t.addClass('feed_form_share');
+		$.ajax({
+			url: f.attr('action'),
+			type: 'POST',
+			data: f.serialize(),
+			complete: function(e) {
+				$Core.resetFeedForm(f);
+				eval(e.responseText);
+			}
+		});
+
+		return false;
+	});
+
+	$('.feed_form_textarea textarea:not(.dont-unbind)').click(function() {
+		var t = $(this);
+
+		t.addClass('dont-unbind');
+		t.parents('form:first').addClass('active');
+	});
+
+	$('.feed_stream:not(.built)').each(function() {
+		var t = $(this),
+			s = document.createElement('script');
+			t.addClass('built');
+
+		s.type = 'application/javascript';
+		s.src = t.data('feed-url');
+
+		document.head.appendChild(s);
+
+		/*
+		$.ajax({
+			url: t.data('feed-url'),
+			complete: function(e) {
+				e = $.parseJSON(e.responseText);
+
+				t.replaceWith(e.content);
+				$Core.loadInit();
+			}
+		});
+		*/
+
+
+		return false;
+	});
 
 	$('.feed_options').click(function() {
 		var t = $(this);
@@ -223,8 +284,8 @@ $Behavior.activityFeedProcess = function(){
 	});
 
 		if (!$Core.exists('#js_feed_content')){
-			$iReloadIteration = 0;
-			return;
+			// $iReloadIteration = 0;
+			// return;
 		}	
 		
 		if ($Core.exists('.global_view_more')){
@@ -627,6 +688,7 @@ $Behavior.activityFeedLoader = function()
 
 $Core.commentFeedTextareaClick = function($oObj)
 {
+	$($oObj).addClass('dont-unbind');
 	$($oObj).keydown(function(e)
 	{
 		if (e.which == 13) {

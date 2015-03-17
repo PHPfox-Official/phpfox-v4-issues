@@ -29,14 +29,12 @@ select {
 
     .table_right {
 		input[type="text"] {
-			background:@formBg;
-			color:@formColor;
-			border:@formBorder;
-			padding:10px 0px;
-			width:100%;
-			outline:none;
-			text-indent:10px;
+			.full_input();
 		}
+
+	    select {
+		    width:100%;
+	    }
 
 	    .extra_info {
 		    font-size:@fontSizeBase - 1;
@@ -90,4 +88,10 @@ a.page_section_menu_link, a.page_section_menu_link:hover {
 	left:0px;
 	right:0px;
 	text-align:center;
+	color:darken(@bodyBg, 30%);
+}
+
+a.page_section_menu_link:hover {
+	color:@linkColor;
+	transition:@transition;
 }

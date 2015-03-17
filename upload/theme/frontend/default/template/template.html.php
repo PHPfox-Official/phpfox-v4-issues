@@ -29,20 +29,9 @@ defined('PHPFOX') or exit('NO DICE!');
 					</div>
 					<div id="header_right">
 						<div id="header_top">
-							{if Phpfox::isUser() && !Phpfox::getUserBy('profile_page_id')}
-							<div id="holder_notify">																	
+							<div id="holder_notify">
 								{notification}
-								<div class="clear"></div>
 							</div>
-							{/if}
-							<div id="header_menu_holder">
-								{if Phpfox::isUser()}
-                                    {menu_account}
-                                    <div class="clear"></div>	
-                                {else}
-                                    {module name='user.login-header'}
-								{/if}							
-							</div>							
 							{if Phpfox::isUser() && !Phpfox::getUserBy('profile_page_id') && Phpfox::isModule('search')}
 							<div id="header_search">	
 								<div id="header_menu_space">
@@ -84,10 +73,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{block location='11'}
 				{block location='13'}
 				{block location='7'}
-				{if !defined('PHPFOX_IS_USER_PROFILE') && !defined('PHPFOX_IS_PAGES_VIEW')}
 				{breadcrumb}
-				{block location='12'}
-				{/if}
 			</div>
 
 			<div id="main_content_holder">
@@ -99,25 +85,13 @@ defined('PHPFOX') or exit('NO DICE!');
 
 					<div {is_page_view} class="holder">
 
-						
-						{module name='profile.logo'}
-						
+						{block location='12'}
+
 						<div id="content_holder"{if isset($sMicroPropType)} itemscope itemtype="http://schema.org/{$sMicroPropType}"{/if}>		
-
-
 
 							<div id="main_content">
 
 								<div id="main_content_padding">
-
-									{if defined('PHPFOX_IS_USER_PROFILE') || defined('PHPFOX_IS_PAGES_VIEW') || (isset($aPage) && isset($aPage.use_timeline) && $aPage.use_timeline)}
-									    {if $bLoadedProfileHeader = true}{/if}
-									    {module name='profile.header'}
-									{/if}
-									{if defined('PHPFOX_IS_PAGES_VIEW') && !isset($bLoadedProfileHeader)}
-									    {block location='12'}
-									    {module name='pages.header'}
-									{/if}
 
 									<div id="content_load_data">
 										{if isset($bIsAjaxLoader) || defined('PHPFOX_IS_USER_PROFILE') || defined('PHPFOX_IS_PAGES_VIEW')}
@@ -176,7 +150,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				</div>			
 			</div>
                         
-                        {footer}		
+            {footer}
 		</div>        
     </body>
 </html>

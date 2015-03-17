@@ -52,20 +52,7 @@ class Pages_Component_Controller_View extends Phpfox_Component
 		{
 			return Phpfox_Error::display(Phpfox::getPhrase('pages.the_page_you_are_looking_for_cannot_be_found'));
 		}		
-		
-		if (Phpfox::isMobile())
-		{
-			$aPageMenus = Phpfox::getService('pages')->getMenu($aPage);
-			
-			$aFilterMenu = array();
-			foreach ($aPageMenus as $aPageMenu)
-			{
-				$aFilterMenu[$aPageMenu['phrase']] = $aPageMenu['url'];
-			}
-			
-			$this->template()->buildSectionMenu('pages', $aFilterMenu);
-		}
-		
+
 		if (Phpfox::getUserBy('profile_page_id') <= 0 && Phpfox::isModule('privacy'))
 		{
 			Phpfox::getService('privacy')->check('pages', $aPage['page_id'], $aPage['user_id'], $aPage['privacy'], (isset($aPage['is_friend']) ? $aPage['is_friend'] : 0));		

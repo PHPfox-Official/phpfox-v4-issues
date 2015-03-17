@@ -62,9 +62,9 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		    $aDo = explode('/',$this->request()->get('do'));
 		    if ($aDo[0] == 'mobile' || (isset($aDo[1]) && $aDo[1] == 'mobile'))
 		    {
-			Phpfox::getLib('module')->getComponent('forum.forum', array('bNoTemplate' => true), 'controller');
+				Phpfox::getLib('module')->getComponent('forum.forum', array('bNoTemplate' => true), 'controller');
 
-			return;
+				return;
 		    }		    
 		}
 		    
@@ -102,13 +102,28 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		
 		$this->setParam('bIsForum', true);
 
-		Phpfox::getService('forum')->buildMenu();
-		
+		// Phpfox::getService('forum')->buildMenu();
+
+		$aIds = [];
+		$aForums = Phpfox::getService('forum')->live()->getForums();
+		foreach ($aForums as $aForum) {
+			$aIds[] = $aForum['forum_id'];
+
+			$aChilds = Phpfox::getService('forum')->id($aForum['forum_id'])->getChildren();
+			foreach ($aChilds as $iId) {
+				$aIds[] = $iId;
+			}
+		}
+		Phpfox::getService('forum')->id(null);
+		list($iCnt, $aThreads) = Phpfox::getService('forum.thread')
+			->get('ft.forum_id IN(' . implode(',', $aIds) . ') AND ft.group_id = 0 AND ft.view_id >= 0 AND ft.is_announcement = 0', 'ft.order_id DESC', '', 0, 20);
+
 		$this->template()->setTitle(Phpfox::getPhrase('forum.forum'))
 			->assign(array(
-				'aForums' => Phpfox::getService('forum')->live()->getForums(),
-				'bHasCategory' => Phpfox::getService('forum')->hasCategory(),				
-				'aCallback' => null
+				// 'aForums' => Phpfox::getService('forum')->live()->getForums(),
+					'bHasCategory' => Phpfox::getService('forum')->hasCategory(),
+					'aThreads' => $aThreads,
+					'aCallback' => null
 			)
 		);	
 	}

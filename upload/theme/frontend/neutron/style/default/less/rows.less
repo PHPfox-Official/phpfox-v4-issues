@@ -1,4 +1,16 @@
 
+.block {
+	div.row1, div.row2 {
+		padding-top:0px;
+		padding-bottom:@blockContentPadding;
+		margin-bottom:0px;
+
+		h1, .h1 {
+			padding:0px;
+		}
+	}
+}
+
 div.row1, div.row2 {
 	background:@blockBg;
 	color:@blockColor;
@@ -65,6 +77,16 @@ div.row_title_info div.extra_info {
 	}
 }
 
+.page_section_menu_holder {
+	> .extra_info {
+		background:@blockBg;
+		padding:@blockContentPadding;
+		color:@blockColor;
+		margin-bottom:@blockMarginBottom;
+		font-size:@fontSizeBase - 1;
+	}
+}
+
 .parent_item_feed .js_feed_comment_border, .item_view .js_feed_comment_border {
 	border:0px;
 	margin:0px;
@@ -123,4 +145,33 @@ a.item_bar_action, a.item_bar_action:hover {
 	border:0px;
 	left:auto;
 	right:0px;
+}
+
+.user_rows {
+	display:inline-block;
+	margin:0px -4px 0px 0px;
+	width:95px;
+	height:95px;
+	overflow:hidden;
+	position:relative;
+
+	.user_profile_link_span > a, .user_profile_link_span > a:hover {
+		position:absolute;
+		height:30px;
+		line-height:30px;
+		background:rgba(0, 0, 0, 0.5);
+		color:#fff !important;
+		bottom:0px;
+		left:0px;
+		right:0px;
+		font-size:@fontSizeBase - 3;
+		text-indent:4px;
+		display:none;
+	}
+}
+
+.user_rows:hover {
+	.user_profile_link_span > a {
+		display:block;
+	}
 }

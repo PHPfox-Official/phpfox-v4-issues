@@ -4,3 +4,66 @@
 	color:@blockColor;
 	border:1px @blockBg solid;
 }
+
+.js_custom_search_friend_holder {
+	border:@formBorder;
+	background:@formBg;
+	padding:0px;
+
+	> ul {
+		margin:10px;
+
+		> li {
+			border:0px;
+			padding:2px 20px 2px 4px;
+			display:inline-block;
+			margin:0px 8px 8px 0px;
+			background:@blockBg;
+			color:@blockColor;
+
+			.friend_search_image, .friend_search_name {
+				.reset();
+				display:inline-block;
+				vertical-align:middle;
+				margin-right:5px;
+			}
+
+			.friend_search_image {
+				margin-top:5px;
+			}
+		}
+
+		> li:hover {
+			background:@brandPrimary;
+			color:@brandPrimaryColor;
+		}
+	}
+}
+
+#js_friend_loader > input {
+	.full_input();
+}
+
+.friend_search_holder, .friend_search_holder:hover {
+	.reset();
+	background:transparent;
+	display:inline-block;
+	width:31%;
+	margin:0px 6px 10px 0px;
+	vertical-align:top;
+}
+
+.friend_search_holder:hover {
+	background:darken(@blockBg, 5%);
+}
+
+.friend_search_active, .friend_search_active:hover {
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+}
+
+.friend_search_holder_active, .friend_search_holder_active:hover {
+	background:transparent;
+	color:inherit;
+	opacity:0.4;
+}

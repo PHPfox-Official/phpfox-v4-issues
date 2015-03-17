@@ -76,6 +76,9 @@
 	{plugin call='feed.template_block_entry_2'}				
 	{if Phpfox::isMobile() && ((defined('PHPFOX_FEED_CAN_DELETE')) || (Phpfox::getUserParam('feed.can_delete_own_feed') && $aFeed.user_id == Phpfox::getUserId()) || Phpfox::getUserParam('feed.can_delete_other_feeds'))}
 	<li><a href="#" onclick="if (confirm(getPhrase('core.are_you_sure'))){l}$.ajaxCall('feed.delete', 'id={$aFeed.feed_id}{if isset($aFeedCallback.module)}&amp;module={$aFeedCallback.module}&amp;item={$aFeedCallback.item_id}{/if}', 'GET');{r} return false;">{phrase var='feed.delete'}</a></li>
-	{/if}				
+	{/if}
+
+	{plugin call='core.template_block_comment_border_new'}
+
 </ul>
 <div class="clear"></div>		

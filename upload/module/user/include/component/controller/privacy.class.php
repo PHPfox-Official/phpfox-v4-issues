@@ -55,7 +55,7 @@ class User_Component_Controller_Privacy extends Phpfox_Component
 			
 			if (Phpfox::getUserParam('user.can_be_invisible'))
 			{
-				$aMenus['invisible'] = Phpfox::getPhrase('user.invisible_mode');
+				// $aMenus['invisible'] = Phpfox::getPhrase('user.invisible_mode');
 			}
 
 			$this->template()->buildPageMenu('js_privacy_block', 
@@ -73,7 +73,8 @@ class User_Component_Controller_Privacy extends Phpfox_Component
 			$this->template()->assign(array('bGoToBlocked' => true));
 		}
 		$this->template()->setTitle(Phpfox::getPhrase('user.privacy_settings'))
-			->setBreadcrumb(Phpfox::getPhrase('user.privacy_settings'))
+			->setBreadcrumb('Account', $this->url()->makeUrl('profile'))
+			->setBreadcrumb(Phpfox::getPhrase('user.privacy_settings'), $this->url()->makeUrl('user.privacy'), true)
 			->setFullSite()
 			->setHeader(array(
 					'privacy.css' => 'module_user'

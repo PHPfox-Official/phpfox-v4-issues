@@ -160,9 +160,8 @@ $Behavior.globalThemeInit = function()
         });
     }
 
-	$('#holder_notify ul li a').click(function()
+	$('#holder_notify > ul > li > a').click(function()
 	{
-		// Avoid the ajax browsing to close the drop-down
 		if($(this).attr('rel') == undefined)
 		{
 			return false;
@@ -186,6 +185,9 @@ $Behavior.globalThemeInit = function()
 			
 			$oParent.addClass('is_active');
 			$oChild.show();
+			if ($(this).attr('rel') == '_show') {
+				return;
+			}
 			/*
 			if ($oChild.find('.holder_notify_drop_data').find('.holder_notify_drop_loader').length > 0)
 			{

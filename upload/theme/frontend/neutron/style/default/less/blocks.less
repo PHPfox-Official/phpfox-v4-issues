@@ -1,6 +1,6 @@
 
-#left, #right {
-	.block {
+#left, #right, #content {
+	.block, .block_clear {
 		background:@blockBg;
 		color:@blockColor;
 		margin-bottom:20px;
@@ -19,4 +19,68 @@
 			font-size:@blockContentSize;
 		}
 	}
+
+	#js_block_border_pages_like.block {
+		> .content {
+			padding:0px;
+		}
+	}
+
+	.block_clear {
+		background:@bodyBg;
+		> .title {
+			background:@bodyBg;
+			padding-bottom:0px;
+		}
+	}
+}
+
+#content_load_data .user_block {
+	display:inline-block;
+	width:130px;
+	overflow:hidden;
+	text-align:center;
+	vertical-align:top;
+	background:@blockBg;
+	height:160px;
+	margin:0px 8px 10px 0px;
+	position:relative;
+
+
+	> a {
+		display:block;
+		position:absolute;
+		left:0px;
+		right:0px;
+		bottom:0px;
+		top:0px;
+
+		> img {
+			margin-top:4px;
+			max-width:120px;
+			max-height:120px;
+		}
+	}
+
+	> header {
+		position:absolute;
+		left:0px;
+		bottom:0px;
+		right:0px;
+		height:30px;
+		line-height:30px;
+		background:darken(@blockBg, 2%);
+
+		h1 {
+			font-size:@fontSizeBase - 1;
+			text-align:left;
+
+			a, a:hover {
+				display:block;
+				text-indent:5px;
+				text-decoration:none;
+			}
+		}
+	}
+
 }

@@ -60,10 +60,10 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 		</div>	
 		<div class="forum_thread_last_post">
-			<a href="{permalink module='forum.thread' id=$aThread.thread_id title=$aThread.title}post_{$aThread.post_id}/">{$aThread.time_update|date:'forum.forum_time_stamp'}</a>
 			<div class="extra_info_link">
-				{phrase var='forum.by'} {if $aThread.last_user_id}{$aThread|user:'last_':'':'user.maximum_length_for_full_name'}{else}{$aThread|user:'':'':'user.maximum_length_for_full_name'}{/if}	
+				{if $aThread.last_user_id}{$aThread|user:'last_':'':'user.maximum_length_for_full_name'}{else}{$aThread|user:'':'':'user.maximum_length_for_full_name'}{/if}
 			</div>
+			<a href="{permalink module='forum.thread' id=$aThread.thread_id title=$aThread.title}post_{$aThread.post_id}/">{$aThread.time_update|date:'forum.forum_time_stamp'}</a>
 		</div>
 		{/if}
 		{/if}

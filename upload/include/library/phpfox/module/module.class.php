@@ -7,7 +7,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 /**
  * Module Handler
- * This class is used to call and interact with all the modules. Modules are 
+ * This class is used to call and interact with all the modules. Modules are
  * used to power all the pages and blocks found on those pages.
  * 
  * @copyright		[PHPFOX_COPYRIGHT]
@@ -509,7 +509,6 @@ class Phpfox_Module
 		
 		//$sController = strtolower($this->_sModule . '.' . $this->_sController);
 		$sController = strtolower($this->_sModule . '.' . str_replace(array('\\', '/'), '.' , $this->_sController));
-		
 		if (isset($this->_aModuleBlocks[$sController][$iId]) || isset($this->_aModuleBlocks[str_replace('.index','',$sController)][$iId]) || isset($this->_aModuleBlocks[$this->_sModule][$iId]) || isset($this->_aModuleBlocks[''][$iId]))
 		{
 			$aCachedBlocks = array();			
@@ -724,9 +723,11 @@ class Phpfox_Module
 			Phpfox_Error::trigger('Unable to load service class: ' . $sFile, E_USER_ERROR);
 		}
 
+		$className = $sModule . '_service_' . $sService;
+
 		require($sFile);
 		
-		$this->_aServices[$sClass] = Phpfox::getObject($sModule . '_service_' . $sService);		
+		$this->_aServices[$sClass] = Phpfox::getObject($className);
 	
 		return $this->_aServices[$sClass];
 	}	

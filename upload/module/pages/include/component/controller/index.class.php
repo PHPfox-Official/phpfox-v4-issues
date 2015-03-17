@@ -74,7 +74,8 @@ class Pages_Component_Controller_Index extends Phpfox_Component
                     ->setTitle(Phpfox::getPhrase('pages.pages'))
                     ->setBreadcrumb(Phpfox::getPhrase('pages.pages'), $this->url()->makeUrl('pages'));
         }
-            
+
+		/*
 		$this->search()->set(array(
 				'type' => 'pages',
 				'field' => 'pages.page_id',				
@@ -93,7 +94,8 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 					'show' => array(10, 15, 20)
 				)
 			)
-		);				
+		);
+		*/
 		
 		$aBrowseParams = array(
 			'module_id' => 'pages',
@@ -152,7 +154,7 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 				break;
 		}		
 		
-		$this->template()->buildSectionMenu('pages', $aFilterMenu);
+		// $this->template()->buildSectionMenu('pages', $aFilterMenu);
 		$bIsValidCategory = false;
 		
 		if ($this->request()->get('req2') == 'category' && ($iCategoryId = $this->request()->getInt('req3')) && ($aType = Phpfox::getService('pages.type')->getById($iCategoryId)))
@@ -188,9 +190,10 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 		{
 			$this->search()->setCondition('AND pages.user_id = ' . (int) $aUser['user_id']);
 		}
-		
+
+		$aPages = [];
+		/*
 		$this->search()->browse()->params($aBrowseParams)->execute();
-		
 		$aPages = $this->search()->browse()->getRows();
 		
 		foreach ($aPages as $iKey => $aPage)
@@ -205,8 +208,12 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 			}
 		}
 		
-		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));		
-		
+		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
+		*/
+
+		$bShowCategories = true;
+		$aCategories = Phpfox::getService('pages.category')->getForBrowse(0, true);
+
 		$this->template()->setHeader('cache', array(
 					'comment.css' => 'style_css',
 					'pager.css' => 'style_css',
@@ -216,7 +223,9 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 			)
 			->assign(array(
 					'sView' => $sView,
-					'aPages' => $aPages
+					'aPages' => $aPages,
+					'aCategories' => $aCategories,
+					'bShowCategories' => true
 				)
 			);
 			

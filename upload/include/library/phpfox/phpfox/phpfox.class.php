@@ -1286,6 +1286,10 @@ class Phpfox
 			eval($sPlugin);
 		}
 
+		$oTpl->assign([
+			'aGlobalUser' => (Phpfox::isUser() ? Phpfox::getUserBy(null) : array())
+		]);
+
 		$oModule->getController();
 		
 		Phpfox::getService('admincp.seo')->setHeaders();
@@ -1332,7 +1336,7 @@ class Phpfox
 						'sStyleLogo' => $oTpl->getStyleLogo(),
 						'aStyleInUse' => $oTpl->getStyleInUse(),
 						'sGlobalUserFullName' => (Phpfox::isUser() ? Phpfox::getUserBy('full_name') : null),
-						'aGlobalUser' => (Phpfox::isUser() ? Phpfox::getUserBy(null) : array()),
+						// 'aGlobalUser' => (Phpfox::isUser() ? Phpfox::getUserBy(null) : array()),
 						'sFullControllerName' => str_replace(array('.', '/'), '_', Phpfox::getLib('module')->getFullControllerName()),
 						'iGlobalProfilePageId' => Phpfox::getUserBy('profile_page_id'),
 						'aGlobalProfilePageLogin' => $aPageLastLogin,

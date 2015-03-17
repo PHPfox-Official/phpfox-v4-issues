@@ -11,6 +11,7 @@
 	background:@blockBg;
 	color:@blockColor;
 	height:20px;
+	font-size:@fontSizeBase - 2;
 }
 
 .row_feed_loop {
@@ -49,9 +50,14 @@
 .activity_like_holder {
 	height:40px;
 	line-height:40px;
+	padding-left:45px;
 }
 
 .feed_like_link {
+	position:absolute;
+	left:0px;
+	top:0px;
+
 	> ul > li {
 		> a, > a:hover {
 			display:block;
@@ -67,8 +73,25 @@
 /**
  * Comments
  */
+.comment_mini_link_image {
+	display:none;
+}
+
+.comment_mini_link {
+	margin:0px;
+}
+
+a.comment_mini_link_block, a.comment_mini_link_block:hover {
+	text-align:center;
+	color:@blockColor;
+	text-transform:uppercase;
+	font-weight:300;
+	padding:5px;
+}
+
 .js_feed_comment_border {
 	background:darken(@blockBg, 3%);
+	font-size:@fontSizeBase - 1;
 }
 
 .js_comment_feed_form div.comment_mini_image {
@@ -175,4 +198,106 @@ div.comment_mini_end {
 
 .activity_feed_content_status {
 	padding-bottom:0px;
+}
+
+.feed_stream {
+	background:@blockBg;
+	min-height:200px;
+	margin-bottom:@blockMarginBottom;
+}
+
+#page_core_index-member {
+	#main_content {
+		margin-top:20px;
+	}
+}
+
+.feed_form_textarea {
+	background:@formBg;
+	color:@formColor;
+	padding:10px;
+
+	textarea {
+		font-size:@fontSizeBase - 2;
+		height:40px;
+		background:transparent;
+		width:100%;
+		padding:0px;
+		margin:0px;
+		border:0px;
+		text-indent:0px;
+	}
+}
+
+.feed_form_actions {
+	display:none;
+	position:relative;
+	margin-top:10px;
+
+	a, a:hover {
+		.button();
+	}
+
+	a:hover {
+		.button_hover();
+	}
+}
+
+.feed_form_user {
+	position:relative;
+	padding-bottom:5px;
+	margin-bottom:10px;
+	border-bottom:1px darken(@blockBg, 7%) solid;
+
+	.feed_form_user_info {
+		position:absolute;
+		left:60px;
+		top:0px;
+
+		> div {
+			padding-top:5px;
+
+			a, a:hover {
+				font-size:@blockContentSize - 1;
+				color:lighten(@blockColor, 5%);
+				display:inline-block;
+				margin-right:8px;
+			}
+
+			a:hover {
+				text-decoration:underline;
+			}
+
+			a.logout:before {
+				content:'/';
+				padding-right:10px;
+			}
+		}
+	}
+}
+
+.feed_form.active {
+	.feed_form_actions {
+		display:block;
+	}
+}
+
+.feed_form_drop {
+	margin:10px;
+	position:relative;
+}
+
+.feed_form_menu {
+	padding-bottom:10px;
+	margin-bottom:10px;
+	border-bottom:1px darken(@blockBg, 7%) solid;
+
+	a, a:hover {
+		display:block;
+		padding:4px 0px;
+	}
+}
+
+.parent_item_feed .js_feed_comment_border ul, .item_view .js_feed_comment_border ul {
+	margin:0px;
 }

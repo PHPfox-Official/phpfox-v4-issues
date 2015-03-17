@@ -29,10 +29,11 @@ defined('PHPFOX') or exit('NO DICE!');
 					</div>
 					{if !isset($bIsSearch)}
 					<div class="extra_info">
-						{phrase var='forum.posts'}: <span class="js_user_post_{$aPost.user_id}">{$aPost.total_post}</span><br />
-						{plugin call='forum.template_block_post_1'}
+						{$aPost.time_stamp|convert_time}
 					</div>
 					{/if}
+
+					{plugin call='forum.template_block_post_1'}
 				</div>
 			</div>
 
@@ -70,7 +71,9 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="forum_signature">
 				{$aPost.signature|parse}
 			</div>
-			{/if}			
+			{/if}
+
+			{plugin call='forum.template_block_post_after_content'}
 			
 			{if isset($phpfox.iteration.posts) && $phpfox.iteration.posts == 1}
 				{if Phpfox::isModule('tag') && isset($aThread.tag_list)}
@@ -82,7 +85,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="forum_time_stamp">
 				{if Phpfox::isModule('feed')}
 					{module name='feed.comment' aFeed=$aPost.aFeed}
-				{else}					
+				{else}
 					<div class="js_feed_comment_border">
 						<ul>
 							{if !isset($aPost.aFeed.feed_mini)}
@@ -140,7 +143,7 @@ defined('PHPFOX') or exit('NO DICE!');
 										
 						</ul>
 						
-							{plugin call='core.template_block_comment_border_new'}										
+							{plugin call='core.template_block_comment_border_new'}
 						
 					</div>
 				{/if}

@@ -6,13 +6,19 @@
 	}
 
 	#user_browse_advanced_link {
-		position:absolute;
-		left:0px;
+		position:fixed;
+		left:auto;
 		bottom:0px;
 		right:0px;
 		height:40px;
 		line-height:40px;
 		text-align:center;
+		z-index:100;
+		width:@columnLeftWidth;
+		background:@blockBg;
+		color:@linkColor;
+		border-top:1px darken(@blockBg, 5%) solid;
+		padding:0px;
 	}
 
 	.p_4 {
@@ -117,8 +123,12 @@
 			bottom:0px;
 			overflow:auto;
 			position:absolute;
-			padding-bottom:40px;
+			margin-bottom:50px;
 			font-size:@fontSizeBase - 2 !important;
+
+			.p_top_8 {
+				text-align:center;
+			}
 
 			input.button, input.button:hover {
 				.reset();

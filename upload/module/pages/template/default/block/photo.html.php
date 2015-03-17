@@ -11,6 +11,61 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+<div class="pages_header">
+
+	{if $aCoverPhoto !== false}
+	<div class="pages_header_cover">
+		{img server_id=$aCoverPhoto.server_id path='photo.url_photo' file=$aCoverPhoto.destination suffix='_1024' title=$aCoverPhoto.title}
+	</div>
+	{/if}
+
+	<div class="pages_header_info">
+		<div>
+			<div class="pages_header_image">
+				{img thickbox=true server_id=$aPage.image_server_id title=$aPage.title path='core.url_user' file=$aPage.image_path suffix='_120_square'}
+			</div>
+		</div>
+		<div>
+			<header class="pages_header_name">
+				<h1>{$aPage.title|clean}</h1>
+				<ul>
+					<li>{$aPage.category_name|convert}</li>
+					<li>
+						{$aPage.total_like} followers
+					</li>
+				</ul>
+			</header>
+
+			{template file='pages.block.joinpage'}
+		</div>
+	</div>
+
+	{if !Phpfox::isMobile() && (Phpfox::getUserParam('pages.can_moderate_pages') || $aPage.is_admin)}
+	<div class="item_bar">
+		<div class="item_bar_action_holder">
+			{if $aPage.view_id == '1' && Phpfox::getUserParam('pages.can_moderate_pages')}
+			<a href="#" class="item_bar_approve item_bar_approve_image" onclick="return false;" style="display:none;" id="js_item_bar_approve_image">
+				{img theme='ajax/add.gif'}
+			</a>
+			<a href="#" class="item_bar_approve" onclick="$(this).hide(); $('#js_item_bar_approve_image').show(); $.ajaxCall('pages.approve', 'page_id={$aPage.page_id}'); return false;">
+				{phrase var='pages.approve'}
+			</a>
+			{/if}
+			<a href="#" class="item_bar_action">
+				<span>
+					{phrase var='pages.actions'}
+				</span>
+			</a>
+			<ul>
+				{template file='pages.block.link'}
+			</ul>
+		</div>
+	</div>
+	{/if}
+
+</div>
+
+{*
 <div class="profile_image">
     <div class="profile_image_holder">
 		{if $aPage.is_app}
@@ -31,22 +86,4 @@ defined('PHPFOX') or exit('NO DICE!');
 
 	</div>
 </div>
-{if $bCanViewPage}
-<div class="sub_section_menu">
-	<ul>		
-		{foreach from=$aPageLinks item=aPageLink}
-			<li class="{if isset($aPageLink.is_selected)} active{/if}">
-				<a href="{$aPageLink.url}" class="ajax_link">{$aPageLink.phrase}{if isset($aPageLink.total)}<span>({$aPageLink.total|number_format})</span>{/if}</a>
-				{if isset($aPageLink.sub_menu) && is_array($aPageLink.sub_menu) && count($aPageLink.sub_menu)}
-				<ul>
-				{foreach from=$aPageLink.sub_menu item=aProfileLinkSub}
-					<li class="{if isset($aProfileLinkSub.is_selected)} active{/if}"><a href="{url link=$aPageLink.url}{$aProfileLinkSub.url}">{$aProfileLinkSub.phrase}{if isset($aProfileLinkSub.total) && $aProfileLinkSub.total > 0}<span class="pending">{$aProfileLinkSub.total|number_format}</span>{/if}</a></li>
-				{/foreach}
-				</ul>
-				{/if}				
-			</li>
-		{/foreach}
-	</ul>
-    <div class="clear"></div>
-</div>
-{/if}
+*}

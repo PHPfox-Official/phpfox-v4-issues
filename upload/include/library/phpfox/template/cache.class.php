@@ -1263,9 +1263,11 @@ class Phpfox_Template_Cache extends Phpfox_Template
 			case 'notification':
 				return '<?php Phpfox::getBlock(\'core.template-notification\'); ?>';
 				break;
+			/*
 			case 'menu_account':
 				return '<?php Phpfox::getBlock(\'core.template-menuaccount\'); ?>';
-				break;	
+				break;
+			*/
 			case 'menu':
 				return '<?php Phpfox::getBlock(\'core.template-menu\'); ?>';
 				break;	

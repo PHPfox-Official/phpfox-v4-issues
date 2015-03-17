@@ -117,10 +117,9 @@ class Forum_Service_Forum extends Phpfox_Service
 	
 	public function getForums()
 	{		
-		$aForums = $this->_getFromCache()->_buildForum(0);		
+		$aForums = $this->_getFromCache()->_buildForum(0);
 		
 		$this->_aLive = array();
-		
 		if ($this->_iForumId !== null && isset($this->_aBuild[$this->_iForumId]))
 		{			
 			return $this->_aBuild[$this->_iForumId]['sub_forum'];
@@ -609,7 +608,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			}
 								
 			$aForum['sub_forum'] = $this->_buildForum($aForum['forum_id']);
-			
+
 			if (isset($this->_aLive[$aForum['forum_id']]))
 			{				
 				foreach ($this->_aLive[$aForum['forum_id']] as $sKey => $mValue)

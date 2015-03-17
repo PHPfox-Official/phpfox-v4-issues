@@ -11,6 +11,28 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{if $bShowCategories}
+
+	{foreach from=$aCategories item=aCategory}
+	{if $aCategory.pages}
+	<div class="block_clear">
+		<div class="title"><a href="{$aCategory.link}">{$aCategory.name|clean}</a></div>
+		<div class="content">
+			{foreach from=$aCategory.pages item=aPage}
+			<article class="user_block">
+				<a href="{$aPage.link}">{img server_id=$aPage.profile_server_id title=$aPage.title path='core.url_user' file=$aPage.profile_user_image suffix='_120_square' max_width='120' max_height='120' is_page_image=true}</a>
+				<header>
+					<h1><a href="{$aPage.link}" class="link">{$aPage.title|clean}</a></h1>
+				</header>
+			</article>
+			{/foreach}
+		</div>
+	</div>
+	{/if}
+	{/foreach}
+
+{else}
+
 {if count($aPages)}
 {if $sView == 'my' && Phpfox::getUserBy('profile_page_id')}
 <div class="message">
@@ -61,4 +83,6 @@ defined('PHPFOX') or exit('NO DICE!');
 <div class="extra_info">
 	{phrase var='pages.no_pages_found'}
 </div>
+{/if}
+
 {/if}

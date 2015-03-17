@@ -725,13 +725,13 @@ class Pages_Service_Pages extends Phpfox_Service
 		return $aInvites;
 	}
 	
-	public function getMembers($iPage)
+	public function getMembers($iPage, $iLimit = null)
 	{
 		if (!Phpfox::isModule('like'))
 		{
 			return false;
 		}
-		return Phpfox::getService('like')->getForMembers('pages', $iPage);
+		return Phpfox::getService('like')->getForMembers('pages', $iPage, $iLimit);
 	}
 	
 	public function getPerms($iPage)

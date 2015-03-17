@@ -178,7 +178,7 @@ class Phpfox_Component
 	 * Extends the template class and returns its class object.
 	 *
 	 * @see Phpfox_Template
-	 * @return object
+	 * @return Phpfox_Template
 	 */
 	protected function template()
 	{
@@ -189,7 +189,7 @@ class Phpfox_Component
 	 * Extends the url class and returns its class object.
 	 *
 	 * @see Phpfox_Url
-	 * @return object
+	 * @return Phpfox_Url
 	 */
 	protected function url()
 	{
@@ -200,7 +200,7 @@ class Phpfox_Component
 	 * Extends the request class and returns its class object.
 	 *
 	 * @see Phpfox_Request
-	 * @return object
+	 * @return Phpfox_Request
 	 */
 	protected function request()
 	{

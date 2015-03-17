@@ -166,7 +166,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      *
      * @see self::execute()
      * @param string $sSelect Select part of an SQL query
-     * @return object Returns own object
+     * @return $this
      */
 	public function select($sSelect)
 	{
@@ -202,7 +202,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      * 
      * @see self::execute()
      * @param mixed $aConds Can be a string of the WHERE part of an SQL query or an array or all the parts of an SQL query.
-     * @return object Returns own object
+     * @return $this
      */	
 	public function where($aConds)
 	{
@@ -232,7 +232,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      * @see self::execute()
      * @param string $sTable Table to query
      * @param string $sAlias Optional usage of alias can be passed here
-     * @return object Returns own object
+     * @return $this
      */	
 	public function from($sTable, $sAlias = '')
 	{
@@ -259,7 +259,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      *
      * @see self::execute()
      * @param string $sOrder SQL ORDER BY command
-     * @return object Returns own object
+     * @return $this
      */		
 	public function order($sOrder)
 	{
@@ -276,7 +276,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      *
      * @see self::execute()
      * @param string $sGroup SQL GROUP BY command
-     * @return object Returns own object
+     * @return $this
      */		
 	public function group($sGroup)
 	{
@@ -290,7 +290,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      *
      * @see self::execute()
      * @param string $sHaving SQL HAVING command
-     * @return object Returns own object
+     * @return $this
      */		
 	public function having($sHaving)
 	{
@@ -313,7 +313,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 * @param string $sTable Table to join
 	 * @param string $sAlias Alias to use to identify the table and make it unique
 	 * @param mixed $mParam Can be a string or an array of how to link the tables. This is usually a string that contains the part found with an SQL ON(__STRING__)
-	 * @return object Returns own object
+	 * @return $this
 	 */
 	public function leftJoin($sTable, $sAlias, $mParam = null)
 	{
@@ -336,7 +336,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 * @param string $sTable Table to join
 	 * @param string $sAlias Alias to use to identify the table and make it unique
 	 * @param mixed $mParam Can be a string or an array of how to link the tables. This is usually a string that contains the part found with an SQL ON(__STRING__)
-	 * @return object Returns own object
+	 * @return $this
 	 */	
 	public function innerJoin($sTable, $sAlias, $mParam = null)
 	{
@@ -359,7 +359,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 * @param string $sTable Table to join
 	 * @param string $sAlias Alias to use to identify the table and make it unique
 	 * @param mixed $mParam Can be a string or an array of how to link the tables. This is usually a string that contains the part found with an SQL ON(__STRING__)
-	 * @return object Returns own object
+	 * @return $this
 	 */		
 	public function join($sTable, $sAlias, $mParam = null)
 	{
@@ -378,7 +378,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      * @param string $sLimit Is how many to limit per query
      * @param int $iCnt Is how many rows there are in this query
      * @param bool $bCorrectMax Should we limit searches to valid pages
-     * @return object Returns own object
+     * @return $this
      */		
 	public function limit($iPage, $sLimit = null, $iCnt = null, $bReturn = false, $bCorrectMax = true)
 	{
@@ -606,7 +606,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 *
 	 * @param array $aFields Array of rules of the fields that are allowed and the type it must be
 	 * @param array $aVals  $_POST fields from a form
-	 * @return object Returns own object
+	 * @return $this
 	 */
 	public function process($aFields, $aVals)
 	{

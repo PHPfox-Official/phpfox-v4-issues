@@ -11,7 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="page_section_menu">
+<div class="page_section_menu page_section_menu_header">
 	<ul>
 		<li class="active">
 			<a href="#" class="js_custom_change_group" id="group_basic">{phrase var='user.basic_information'}</a>
@@ -37,7 +37,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	{if isset($iUserId)}
 		<div><input type="hidden" name="id" value="{$iUserId}" /></div>
 	{/if}
-<div class="table js_custom_groups js_custom_group_basic">
+<div class="js_custom_groups js_custom_group_basic">
 	<div class="table">
 			<div class="table_left">
 				<label for="country_iso">{required}{phrase var='user.location'}:</label>

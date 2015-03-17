@@ -26,7 +26,6 @@
 
 <div class="js_feed_comment_border">
     {plugin call='feed.template_block_comment_border'}
-	{plugin call='core.template_block_comment_border_new'}
 
 
 <div id="js_feed_like_holder_{$aFeed.type_id}_{$aFeed.item_id}" class="comment_mini_content_holder">
@@ -134,7 +133,7 @@
 					<div class="{if isset($sFeedType) &&  $sFeedType == 'view'}comment_mini_content {/if}comment_mini_textarea_holder">
 						<div><input type="hidden" name="val[default_feed_value]" value="{phrase var='feed.write_a_comment'}" /></div>						
 						<div class="js_comment_feed_value">{phrase var='feed.write_a_comment'}</div>
-						<textarea cols="60" rows="4" name="val[text]" class="js_comment_feed_textarea" id="js_feed_comment_form_textarea_{$aFeed.feed_id}">{if isset($sFeedType) &&  $sFeedType == 'view' && Phpfox::getUserParam('comment.wysiwyg_on_comments') && Phpfox::getParam('core.wysiwyg') == 'tiny_mce'}{else}{phrase var='feed.write_a_comment'}{/if}</textarea>
+						<textarea cols="60" rows="4" name="val[text]" class="js_comment_feed_textarea" id="js_feed_comment_form_textarea_{$aFeed.feed_id}" placeholder="{phrase var='feed.write_a_comment'}"></textarea>
 						<div class="js_feed_comment_process_form">{phrase var='feed.adding_your_comment'}{img theme='ajax/add.gif'}</div>
 					</div>
 					{if !PHPFOX_IS_AJAX && !Phpfox::isMobile() && isset($sFeedType) &&  $sFeedType == 'view' && Phpfox::getUserParam('comment.wysiwyg_on_comments') && Phpfox::getParam('core.wysiwyg') == 'tiny_mce'}

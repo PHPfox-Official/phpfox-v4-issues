@@ -19,7 +19,8 @@ class Core_Component_Controller_Index_Member extends Phpfox_Component
 	 * Class process method wnich is used to execute this component.
 	 */
 	public function process()
-	{	
+	{
+		// $this->request()->cache('text/html', strtotime('-2 days'), 7);
 		
 		if ($sPlugin = Phpfox_Plugin::get('core.component_controller_index_member_start'))
 		{

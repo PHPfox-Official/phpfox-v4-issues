@@ -156,7 +156,7 @@ class Like_Service_Like extends Phpfox_Service
 		return $aLikes;
 	}	
 	
-	public function getForMembers($sType, $iItemId)
+	public function getForMembers($sType, $iItemId, $iLimit = null)
 	{
 		$iCnt = $this->database()->select('COUNT(*)')
 			->from(Phpfox::getT('like'), 'l')
@@ -169,7 +169,7 @@ class Like_Service_Like extends Phpfox_Service
 			->where('l.type_id = \'' . $this->database()->escape($sType) . '\' AND l.item_id = ' . (int) $iItemId)
 			->order('u.full_name ASC')
 			->group('u.user_id')
-			->limit(5)
+			->limit(($iLimit === null ? 5 : $iLimit))
 			->execute('getRows');			
 					
 		return array($iCnt, $aLikes);		

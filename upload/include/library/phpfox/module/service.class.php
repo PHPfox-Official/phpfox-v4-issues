@@ -28,7 +28,7 @@ class Phpfox_Service
 	 * Extends the database object.
 	 *
 	 * @see Phpfox_Database
-	 * @return object
+	 * @return Phpfox_Database_Driver_Mysql
 	 */
     protected function database()
     {
@@ -39,7 +39,7 @@ class Phpfox_Service
      * Extends the cache object
      *
      * @see Phpfox_Cache
-     * @return object
+     * @return Phpfox_Cache
      */
     protected function cache()
     {

@@ -175,16 +175,20 @@ class Feed_Component_Block_Display extends Phpfox_Component
 			$aFeedCallback['item_id'] = ((int)$this->request()->get('amp;callback_item_id')) > 0 ? $this->request()->get('amp;callback_item_id') : $this->request()->get('callback_item_id');
 		}
 
+		$bStreamMode = true;
+		if (defined('PHPFOX_IS_PAGES_VIEW')) {
+			$bStreamMode = false;
+		}
 		$bForceReloadOnPage = (PHPFOX_IS_AJAX ? false : Phpfox::getParam('feed.force_ajax_on_load'));
 		$aRows = array();
 		if (PHPFOX_IS_AJAX || !$bForceReloadOnPage || $bIsCustomFeedView)
 		{
-			$aRows = Phpfox::getService('feed')->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage);
+			$aRows = Phpfox::getService('feed')->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage, $bStreamMode);
 			
 			if (empty($aRows))
 			{
 				$iFeedPage++;
-				$aRows = Phpfox::getService('feed')->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage);
+				$aRows = Phpfox::getService('feed')->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage, $bStreamMode);
 			}
 		}
 		/*
@@ -193,6 +197,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 			$aRows = Phpfox::getService('feed')->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage);
 		}
 		*/
+		// d($aRows); exit;
 
 		if (($this->request()->getInt('status-id') 
 				|| $this->request()->getInt('comment-id') 
@@ -239,6 +244,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 			$bLoadCheckIn = true;
 		}
 
+		/*
 		$oFeed = Phpfox::getService('feed');
 		foreach ($aRows as $iKey => $aRow)
 		{
@@ -250,6 +256,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 				}
 			}
 		}
+		*/
 
 		$bIsHashTagPop = ($this->request()->get('hashtagpopup') ? true : false);
 		if ($bIsHashTagPop)
@@ -269,6 +276,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		}
 
 		$this->template()->assign(array(
+				'bStreamMode' => $bStreamMode,
 				'bForceReloadOnPage' => $bForceReloadOnPage,				
 				'bHideEnterComment' => true,
 				'aFeeds' => $aRows,

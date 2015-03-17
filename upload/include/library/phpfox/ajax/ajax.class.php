@@ -396,7 +396,7 @@ class Phpfox_Ajax
 		{
 			return '';
 		}
-		if ($this->_aRequest['call'] != 'im.getRooms' && $this->_aRequest['call'] != 'im.getMessages' && !isset(self::$_aParams['js_disable_ajax_restart']))
+		if (isset($this->_aRequest['call']) && $this->_aRequest['call'] != 'im.getRooms' && $this->_aRequest['call'] != 'im.getMessages' && !isset(self::$_aParams['js_disable_ajax_restart']))
 		{
 			if (isset($this->_aRequest['last_call']))
 			{

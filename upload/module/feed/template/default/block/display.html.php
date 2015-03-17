@@ -11,6 +11,12 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{if isset($bStreamMode) && $bStreamMode}
+	<div id="js_new_feed_comment"></div>
+	{foreach from=$aFeeds item=aFeed}
+	<div class="feed_stream" data-feed-url="{url link='feed.stream' id=$aFeed.feed_id}"></div>
+	{/foreach}
+{else}
 {if !$bIsHashTagPop && !PHPFOX_IS_AJAX && !empty($sIsHashTagSearch)}
 	<h1 id="sHashTagValue">#{$sIsHashTagSearchValue|clean}</h1>
 {/if}
@@ -29,20 +35,10 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="main_timeline {if isset($aUser.page_user_id)}content4 content_float{/if}" style="background:url('{img theme='layout/timeline.png' return_url=true}') repeat-y 50%;">
 	{/if}
 
-	{if Phpfox::isUser() && !PHPFOX_IS_AJAX && $sCustomViewType === null}
-		{if (Phpfox::getUserBy('profile_page_id') > 0 && defined('PHPFOX_IS_USER_PROFILE')) 
-			|| (isset($aFeedCallback.disable_share) && $aFeedCallback.disable_share) 
-			|| (defined('PHPFOX_IS_USER_PROFILE') && !Phpfox::getService('user.privacy')->hasAccess('' . $aUser.user_id . '', 'feed.share_on_wall'))
-			|| (defined('PHPFOX_IS_USER_PROFILE') && !Phpfox::getUserParam('profile.can_post_comment_on_profile') && $aUser.user_id != Phpfox::getUserId())
-		}
-
-		{else}
-			{if !Phpfox::getService('profile')->timeline()}
-				<div id="js_main_feed_holder">
-					{template file='feed.block.form'}
-				</div>
-			{/if}
-		{/if}
+	{if Phpfox::isUser() && !PHPFOX_IS_AJAX && $sCustomViewType === null && defined('PHPFOX_IS_PAGES_VIEW')}
+		<div id="js_main_feed_holder">
+			{template file='feed.block.form'}
+		</div>
 	{/if}
 
 	{if Phpfox::isUser() && !defined('PHPFOX_IS_USER_PROFILE') && !PHPFOX_IS_AJAX && !defined('PHPFOX_IS_PAGES_VIEW')}
@@ -221,4 +217,5 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 		{/if}
 	{/if}
+{/if}
 {/if}

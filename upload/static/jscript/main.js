@@ -519,6 +519,7 @@ $Behavior.globalInit = function()
 				html = '',
 				obj;
 
+			t.html('<i class="fa"></i>');
 			t.addClass('built');
 			if (t.parents('.table_row:first').length) {
 				parents = t.parents('.table_row:first').parent();

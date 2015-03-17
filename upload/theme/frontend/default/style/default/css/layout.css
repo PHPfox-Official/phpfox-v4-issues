@@ -830,53 +830,6 @@ input.button_register,
 	border-right:1px transparent solid;	
 }
 
-#holder_notify ul li a.friend_notification
-{
-	background:url('../image/layout/holder_notify_friend_request.png') no-repeat 50% 0px;
-}
-
-#holder_notify ul li a.message
-{
-	background:url('../image/layout/holder_notify_message.png') no-repeat 50% 0px;
-}
-
-#holder_notify ul li a.notification
-{
-	background:url('../image/layout/holder_notify_notification.png') no-repeat 50% 0px;
-}
-
-#holder_notify ul li a.status_update
-{
-	background:url('../image/layout/holder_notify_status_update.png') no-repeat 50% 50%;
-}
-
-#holder_notify ul li a.notify_drop_link:hover
-{
-	background-color:#4F4F4F;
-}
-
-#holder_notify ul li.is_active a.notify_drop_link,
-#holder_notify ul li.is_active a.notify_drop_link:hover
-{
-	border-left:1px #000 solid;
-	border-right:1px #000 solid;
-}
-
-#holder_notify ul li.is_active a.friend_notification
-{
-	background:#fff url('../image/layout/holder_notify_friend_request.png') no-repeat 50% -40px;
-}
-
-#holder_notify ul li.is_active a.message
-{
-	background:#fff url('../image/layout/holder_notify_message.png') no-repeat 50% -40px;
-}
-
-#holder_notify ul li.is_active a.notification
-{
-	background:#fff url('../image/layout/holder_notify_notification.png') no-repeat 50% -40px;
-}
-
 #holder_notify ul li div.holder_notify_drop
 {
 	display:none;

@@ -37,7 +37,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="clear"></div>
 	</div>
 	{if $sCurrentStyleLogo}
-	<div class="table">
+	<div class="table" style="display:none;">
 		<div class="table_left">
 			{phrase var='theme.automatically_resize'}:
 		</div>

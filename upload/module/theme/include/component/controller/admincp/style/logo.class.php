@@ -47,7 +47,10 @@ class Theme_Component_Controller_Admincp_Style_Logo extends Phpfox_Component
 			}
 		}
 	
-		list($sCurrentStyleLogo, $bIsNewLogo, $iWidth, $iHeight) = Phpfox::getService('theme.style')->getCurrentLogo($aStyle['style_id']);
+		// list($sCurrentStyleLogo, $bIsNewLogo, $iWidth, $iHeight) = Phpfox::getService('theme.style')->getCurrentLogo($aStyle['style_id']);
+		list($sCurrentStyleLogo, $bIsNewLogo, $iWidth, $iHeight) = $this->service()->theme_style()->getCurrentLogo($aStyle['style_id']);
+
+			// ->getCurrentLogo($aStyle['style_id']);
 
 		$this->template()->setTitle(Phpfox::getPhrase('theme.change_site_logo'))
 			->setBreadcrumb(Phpfox::getPhrase('theme.themes'), $this->url()->makeUrl('admincp.theme'))
@@ -59,8 +62,8 @@ class Theme_Component_Controller_Admincp_Style_Logo extends Phpfox_Component
 					'aStyle' => $aStyle,
 					'sCurrentStyleLogo' => $sCurrentStyleLogo,
 					'bIsNewLogo' => $bIsNewLogo,
-					'iWidth' => $iWidth,
-					'iHeight' => $iHeight
+					'iWidth' => 100,
+					'iHeight' => 100
 				)
 			);
 	}

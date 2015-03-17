@@ -13,7 +13,7 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 <ul>
 	<li>
-		<a rel="_show" class="friend_notification notify_drop_link" href="#">{$aGlobalUser.full_name|clean}</a>
+		<a rel="_show" class="user_notify_info notify_drop_link" href="#">{$aGlobalUser.full_name|clean}</a>
 		<div class="holder_notify_drop">
 			<div class="holder_notify_drop_content">
 				{* <div class="holder_notify_drop_title">Friend Requests</div> *}

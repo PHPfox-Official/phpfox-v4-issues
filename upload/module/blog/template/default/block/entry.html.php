@@ -43,7 +43,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				</h1>
 				<div class="row_header">
 					<ul>
-						<li>{$aItem.time_stamp}</li>
+						<li>{$aItem.time_stamp|convert_time}</li>
 						<li>{phrase var='blog.by_full_name' full_name=$aItem|user:'':'':50:'':'author'}</li>
 						{plugin call='blog.template_block_entry_date_end'}
 					</ul>

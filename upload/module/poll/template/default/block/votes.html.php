@@ -1,4 +1,4 @@
-<div style="height:300px;" class="label_flow">
+<div style="max-height:300px;" class="label_flow">
 	{foreach from=$aVotes name=votes item=aResult}
 	<div class="{if is_int($phpfox.iteration.votes/2)}row1{else}row2{/if}{if $phpfox.iteration.votes == 1} row_first{/if}">
 		<div class="go_left" style="width:52px; text-align:center;">

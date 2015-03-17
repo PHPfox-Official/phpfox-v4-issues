@@ -1,0 +1,79 @@
+
+.votes {
+	background:transparent;
+	width:auto;
+	border-radius:0px;
+	border:0px;
+	padding:0px;
+
+	.answers_container:last-of-type {
+		padding-bottom:10px;
+	}
+}
+
+.poll_form {
+	background:darken(@blockBg, 5%);
+	padding:@blockContentPadding;
+	padding-bottom:0px;
+}
+
+.answers_container.user_answered_this {
+	background:transparent;
+	border-radius:0px;
+	background:@brandPrimary;
+	padding:10px;
+	color:@brandPrimaryColor !important;
+
+	* {
+		color:@brandPrimaryColor !important;
+	}
+
+	.poll_answer_percentage {
+		background:@brandPrimaryColor;
+	}
+}
+
+.answers_container {
+	padding:10px 0px 20px 0px;
+	border-top:1px darken(@blockBg, 10%) solid;
+}
+
+.poll_answer_percentage {
+	background:@brandPrimary;
+}
+
+#page_poll_add {
+	.js_prev_block, .js_prev_block:hover {
+		background:transparent;
+	}
+
+	.placeholder {
+		position:relative;
+		margin-bottom:15px;
+
+		input[type="text"] {
+			text-indent:32px;
+		}
+
+		> div > span > img {
+			position:absolute;
+			left:2px;
+			top:10px;
+		}
+	}
+}
+
+.poll_add_more {
+	display:table;
+	table-layout:fixed;
+	width:100%;
+	background:lighten(@formBg, 6%);
+	border:@formBorder;
+
+	a, a:hover {
+		display:table-cell;
+		width:50%;
+		text-align:center;
+		padding:4px;
+	}
+}

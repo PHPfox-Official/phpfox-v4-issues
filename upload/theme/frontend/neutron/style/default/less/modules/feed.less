@@ -64,8 +64,28 @@
 			width:40px;
 			height:40px;
 			overflow:hidden;
-			background:red;
 			text-indent:-1000px;
+			background:darken(@blockBg, 8%);
+			color:darken(@blockBg, 26%);
+		}
+
+		> a:before {
+			.fa('\f164');
+			position:absolute;
+			left:10px;
+			top:10px;
+			font-size:20px;
+		}
+
+		> a:hover {
+			background:@brandPrimary;
+			color:@brandPrimaryColor;
+			transition:@transition;
+		}
+
+		> a:hover:before {
+			color:@brandPrimaryColor;
+			transition:@transition;
 		}
 	}
 }
@@ -178,9 +198,18 @@ div.comment_mini_end {
 	position:absolute;
 	right:0px;
 	top:0px;
-	background:blue;
+	background:darken(@blockBg, 8%);
+	color:darken(@blockBg, 26%);
 	width:40px;
 	height:40px;
+}
+
+.feed_options:before {
+	.fa('\f141');
+	position:absolute;
+	left:12px;
+	top:12px;
+	font-size:20px;
 }
 
 .comment_mini_action {

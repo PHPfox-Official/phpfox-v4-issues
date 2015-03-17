@@ -186,7 +186,7 @@ $Behavior.globalThemeInit = function()
 			$oParent.addClass('is_active');
 			$oChild.show();
 			if ($(this).attr('rel') == '_show') {
-				return;
+				return false;
 			}
 			/*
 			if ($oChild.find('.holder_notify_drop_data').find('.holder_notify_drop_loader').length > 0)

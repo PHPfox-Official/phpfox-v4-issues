@@ -121,7 +121,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>			
 		</div>
 		{if Phpfox::isModule('comment')}
-		<div class="table">
+		<div class="table" style="display:none;">
 			<div class="table_left">
 				{phrase var='quiz.comment_privacy'}:
 			</div>

@@ -1026,6 +1026,8 @@ class Phpfox
 	public static function getMasterFiles()
 	{
 		$aOut = array(
+			// 'css/font-awesome.min.css' => 'static_css',
+			'<link href="' . Phpfox::getParam('core.url_static') . 'css/font-awesome.min.css" rel="stylesheet">',
 			'layout.css' => 'style_css',
 			'common.css' => 'style_css',
 			'thickbox.css' => 'style_css',
@@ -1184,14 +1186,6 @@ class Phpfox
 	
 		if (!PHPFOX_IS_AJAX_PAGE)
 		{
-				if (Phpfox::isMobile())
-				{
-					$oTpl->setMobileHeader(array(
-							'<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />'						
-						)
-					);	
-				}
-			
 				$oTpl->setImage(array(
 						'ajax_small' => 'ajax/small.gif',
 						'ajax_large' => 'ajax/large.gif',
@@ -1203,6 +1197,7 @@ class Phpfox
 				);			
 				
 				$oTpl->setHeader(array(
+							'<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />',
 							'<meta http-equiv="Content-Type" content="text/html; charset=' . $aLocale['charset'] . '" />',
 							'<meta http-equiv="cache-control" content="no-cache" />',
 							'<meta http-equiv="expires" content="-1" />',

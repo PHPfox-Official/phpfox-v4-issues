@@ -103,21 +103,36 @@
 			> li {
 				display:block;
 				float:none;
+				font-size:@fontSizeBase - 1;
 
 				> a, > a:hover {
 					border:0px;
-					padding:10px 0px;
-					text-indent:25px;
+					padding:8px 0px;
+					text-indent:35px;
 					height:auto;
 					line-height:normal;
 					background:transparent;
 					color:@navColor;
+					position:relative;
+
+					i {
+						text-indent:0px;
+						position:absolute;
+						left:10px;
+						top:9px;
+						font-size:15px;
+						color:lighten(@navColor, 12%);
+					}
 				}
 
-				> a:hover {
+				> a:hover, > a.menu_is_selected {
 					color:darken(@navColor, 30%);
 					background:darken(@navBg, 6%);
 					transition:@transition;
+
+					i {
+						color:darken(@navColor, 5%);
+					}
 				}
 			}
 		}

@@ -50,21 +50,16 @@ defined('PHPFOX') or exit('NO DICE!');
 					{block location='6'}
 				</div>
 			</div>
-						
-			{if Phpfox::getParam('user.hide_main_menu') && !Phpfox::isUser()}
-			
-			{else}
-			<div id="header_menu_page_holder">	
+
+			<div id="header_menu_page_holder">
 				<div class="holder">
-					<div id="header_menu">	
-						<nav>			
+					<div id="header_menu">
+						<nav>
 							{menu}
 						</nav>
-						<div class="clear"></div>
-					</div>		
-				</div>			
-			</div>	
-			{/if}					
+					</div>
+				</div>
+			</div>
 		</div>
 		
 		<div id="main_core_body_holder">

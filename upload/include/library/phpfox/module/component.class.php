@@ -216,7 +216,7 @@ class Phpfox_Component
 	protected function search()
 	{
 		return Phpfox::getLib('search');	
-	}		
+	}
 	
 	/**
 	 * Creates a groupig for a param.
@@ -232,7 +232,14 @@ class Phpfox_Component
 		}
 		
 		return $this;
-	}	
+	}
+
+	/**
+	 * @return Phpfox_Module_Facade
+	 */
+	protected function service() {
+		return Phpfox::getLib('module.facade');
+	}
 }
 
 ?>

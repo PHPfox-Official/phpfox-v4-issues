@@ -28,7 +28,7 @@ select {
 	}
 
     .table_right {
-		input[type="text"] {
+		input[type="text"], textarea {
 			.full_input();
 		}
 
@@ -37,9 +37,23 @@ select {
 	    }
 
 	    .extra_info {
-		    font-size:@fontSizeBase - 1;
+		    font-size:@fontSizeBase - 2;
 		    color:lighten(@blockColor, 5%);
 	    }
+	}
+}
+
+ul.table_clear_button li {
+	float:none;
+	display:block;
+	margin:0px;
+}
+
+.table_clear {
+	input.button {
+		padding-left:0px;
+		padding-right:0px;
+		width:100%;
 	}
 }
 
@@ -51,7 +65,7 @@ input.button, a.button_off_link {
 	font-weight:300;
 	letter-spacing:1px;
 	text-transform:uppercase;
-	border:4px @brandPrimary solid;
+	border:3px @brandPrimary solid;
 	box-shadow:none;
 }
 

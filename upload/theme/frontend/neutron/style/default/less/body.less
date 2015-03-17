@@ -18,6 +18,15 @@ a:hover {
 	text-decoration:@linkHoverDecoration;
 }
 
+.fa {
+	color:lighten(@textColor, 30%);
+}
+
+.fa:hover {
+	color:@linkColor;
+	transition:@transition;
+}
+
 ul, ol {
 	padding:0px;
 	margin:0px;
@@ -37,11 +46,16 @@ li {
 	width:@navWidth;
 	height:@headerHeight;
 	line-height:@headerHeight;
-	text-indent:25px;
-	font-weight:300;
+	text-indent:35px;
+	font-weight:200;
 	color:@headerColor;
 	background:darken(@headerBg, 20%);
-	letter-spacing:1px;
+	letter-spacing:2px;
+}
+
+#logo:hover {
+	color:lighten(@headerColor, 50%);
+	transition:@transition;
 }
 
 #top {
@@ -178,4 +192,13 @@ a.activity_feed_content_link_title, a.activity_feed_content_link_title:hover, #c
 
 #copyright {
 	padding-top:20px;
+}
+
+h3 {
+	.reset();
+	background:@blockTitleBg;
+	color:@blockTitleColor;
+	padding:@blockContentPadding;
+	font-weight:300;
+	font-size:@fontSizeBase + 2 !important;
 }

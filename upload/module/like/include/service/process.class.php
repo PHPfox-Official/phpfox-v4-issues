@@ -49,11 +49,11 @@ class Like_Service_Process extends Phpfox_Service
 		*/
 		if (!empty($aFeed) && isset($aFeed['privacy']) && !empty($aFeed['privacy']) && !empty($aFeed['user_id']) && $aFeed['user_id'] != $iUserId)
 		{
-			if ($aFeed['privacy'] == 1 && Phpfox::getService('friend')->isFriend($iUserId, $aFeed['user_id']) != true)
+			if ($aFeed['privacy'] == 1 && Friend_Service_Friend::instance()->isFriend($iUserId, $aFeed['user_id']) != true)
 			{
 				return Phpfox_Error::display('Not allowed to like this item.');
 			}
-			else if ($aFeed['privacy'] == 2 && Phpfox::getService('friend')->isFriendOfFriend($iUserId) != true)
+			else if ($aFeed['privacy'] == 2 && Friend_Service_Friend::instance()->isFriendOfFriend($iUserId) != true)
 			{
 				return Phpfox_Error::display('Not allowed to like this item.');
 			}

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Block_Profile extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -27,7 +27,7 @@ class Event_Component_Block_Profile extends Phpfox_Component
 			return false;
 		}			
 		
-		$aEvents = Phpfox::getService('event')->getForProfileBlock($aUser['user_id']);
+		$aEvents = Event_Service_Event::instance()->getForProfileBlock($aUser['user_id']);
 
 		if (!count($aEvents) && !defined('PHPFOX_IN_DESIGN_MODE'))
 		{

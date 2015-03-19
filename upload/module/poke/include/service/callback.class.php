@@ -64,7 +64,7 @@ class Poke_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id'])),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -102,7 +102,7 @@ class Poke_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id'])),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);		
 	}	
 

@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class Music_Component_Controller_Browse_Artist extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		define('PHPFOX_MUSIC_INDEX_OVERIDE', true);
 		
-		return Phpfox::getLib('module')->setController('music.index');
+		return Phpfox_Module::instance()->setController('music.index');
 	}
 	
 	/**

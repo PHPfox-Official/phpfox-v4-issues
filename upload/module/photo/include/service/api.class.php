@@ -48,8 +48,8 @@ class Photo_Service_Api extends Phpfox_Service
 			return $this->_oApi->error('photo.add_photo', 'User did not allow to upload photos on their behalf.');
 		}	
 		
-		$oFile = Phpfox::getLib('file');
-		$oImage = Phpfox::getLib('image');
+		$oFile = Phpfox_File::instance();
+		$oImage = Phpfox_Image::instance();
 		
 		if (isset($_FILES['photo']))
 		{

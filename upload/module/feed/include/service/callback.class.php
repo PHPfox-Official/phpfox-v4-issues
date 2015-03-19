@@ -496,7 +496,7 @@ class Feed_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['parent_user_name'], array('comment-id' => $aRow['feed_comment_id'])),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -527,7 +527,7 @@ class Feed_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('plink-id' => $aRow['link_id'])),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);		
 	}
 	
@@ -581,7 +581,7 @@ class Feed_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array($sType => $aRow['feed_comment_id'])),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	
@@ -662,7 +662,7 @@ class Feed_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl('comment.view', $aRow['comment_id']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);				
 	}
 	
@@ -695,7 +695,7 @@ class Feed_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['parent_user_name'], array('comment-id' => $aRow['feed_comment_id'])),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}
 	

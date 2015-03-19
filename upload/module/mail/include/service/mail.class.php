@@ -60,7 +60,7 @@ class Mail_Service_Mail extends Phpfox_Service
 			{				
 				return false;
 			}
-			else if ($iPrivacy == 2 && !Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $iUser, false)) // friends only
+			else if ($iPrivacy == 2 && !Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $iUser, false)) // friends only
 			{				
 				return false;
 			}
@@ -80,7 +80,7 @@ class Mail_Service_Mail extends Phpfox_Service
 
 		// 5. User group setting (different from check 2 since that is user specific)		
 		if ((Phpfox::getUserParam('mail.restrict_message_to_friends') == true)
-			&& (Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $iUser, false) == false)
+			&& (Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $iUser, false) == false)
 			&& (Phpfox::getUserParam('mail.override_restrict_message_to_friends') == false))
 		{
 			return false;
@@ -740,7 +740,7 @@ class Mail_Service_Mail extends Phpfox_Service
 			$aFilterMenu[Phpfox::getPhrase('mail.legacy_inbox') . ' <span class="invited">' . $iLegacyCount . '</span>'] = 'mail.legacy_1';
 		}		
 		
-		Phpfox::getLib('template')->buildSectionMenu('mail', $aFilterMenu);	
+		Phpfox_Template::instance()->buildSectionMenu('mail', $aFilterMenu);
 	}
 	
 	public function getThreadedMail($iThreadId, $iPage = 0)
@@ -880,7 +880,7 @@ class Mail_Service_Mail extends Phpfox_Service
 		
 		$sFile = md5(Phpfox::getUserId() . uniqid()) . '.xml';
 		
-		Phpfox::getLib('file')->writeToCache($sFile, $oXmlBuilder->output());
+		Phpfox_File::instance()->writeToCache($sFile, $oXmlBuilder->output());
 		
 		return PHPFOX_DIR_CACHE . $sFile;
 	}

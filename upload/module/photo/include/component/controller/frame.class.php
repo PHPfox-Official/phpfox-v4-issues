@@ -17,7 +17,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Photo_Component_Controller_Frame extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -117,8 +117,8 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 			}
 		}		
 		
-		$oFile = Phpfox::getLib('file');
-		$oImage = Phpfox::getLib('image');
+		$oFile = Phpfox_File::instance();
+		$oImage = Phpfox_Image::instance();
 		$aVals = $this->request()->get('val');
 		if (defined('PHPFOX_HTML5_PHOTO_UPLOAD'))
 		{

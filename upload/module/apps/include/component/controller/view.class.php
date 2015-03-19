@@ -67,7 +67,7 @@ class Apps_Component_Controller_View extends Phpfox_Component
 				$this->setParam('aApp', $aApp);
 				/* loading another controller as a safety measure vs loading the app and 
 				 * a hovering block*/
-				// return Phpfox::getLib('module')->setController('apps.install');
+				// return Phpfox_Module::instance()->setController('apps.install');
 				$this->url()->send('apps.install.' . $aApp['app_id']);
 			}
 		}

@@ -1,7 +1,7 @@
 <?php
 if ($sFriendModuleId == 'event')
 {
-	$aInviteCache = Phpfox::getService('event')->isAlreadyInvited($this->getParam('friend_item_id', '0'), $aFriends);
+	$aInviteCache = Event_Service_Event::instance()->isAlreadyInvited($this->getParam('friend_item_id', '0'), $aFriends);
 	if (is_array($aInviteCache))
 	{
 		foreach ($aFriends as $iKey => $aFriend)

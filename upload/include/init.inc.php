@@ -62,10 +62,31 @@ if (php_sapi_name() == 'litespeed')
 // Set error reporting enviroment
 error_reporting((PHPFOX_DEBUG ? E_ALL | E_STRICT : 0));
 
+spl_autoload_register(function($class) {
+	$class = strtolower($class);
+
+	if (preg_match('/([a-zA-Z0-9]+)_service_([a-zA-Z0-9_]+)/', $class, $matches)) {
+		$parts = explode('_', $matches[2]);
+		if (count($parts) > 1) {
+			if ($parts[0] == $parts[1]) {
+				unset($parts[1]);
+			}
+		}
+		$className = $matches[1] . '.' . implode('.', $parts);
+
+		Phpfox::getService($className);
+	}
+	else if (substr($class, 0, 7) == 'phpfox_') {
+		$class = str_replace('_', '.', $class);
+		Phpfox::getLibClass($class);
+	}
+});
+
 require(PHPFOX_DIR_LIB_CORE . 'phpfox' . PHPFOX_DS . 'phpfox.class.php');
 require(PHPFOX_DIR_LIB_CORE . 'error' . PHPFOX_DS . 'error.class.php');
 require(PHPFOX_DIR_LIB_CORE . 'module' . PHPFOX_DS . 'service.class.php');
 require(PHPFOX_DIR_LIB_CORE . 'module' . PHPFOX_DS . 'component.class.php');
+
 
 // No need to load the debug class if the debug is disabled
 if (PHPFOX_DEBUG)
@@ -102,6 +123,7 @@ else
 
 Phpfox::getLib('setting')->set();
 
+/*
 if (!defined('PHPFOX_NO_PLUGINS'))
 {
 	require(PHPFOX_DIR_LIB_CORE . 'plugin' . PHPFOX_DS . 'plugin.class.php');
@@ -116,6 +138,7 @@ else
 		public static function get() {return false;}
 	}
 }
+*/
 
 if (!function_exists('json_encode')) 
 {

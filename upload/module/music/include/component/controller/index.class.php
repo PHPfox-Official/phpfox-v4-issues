@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Music_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -69,7 +69,7 @@ class Music_Component_Controller_Index extends Phpfox_Component
 		
 		if ($aParentModule === null && $this->request()->getInt('req2'))
 		{
-			return Phpfox::getLib('module')->setController('music.view');
+			return Phpfox_Module::instance()->setController('music.view');
 		}
 		
 		$bIsProfile = false;

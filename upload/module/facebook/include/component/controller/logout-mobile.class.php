@@ -16,11 +16,11 @@ defined('PHPFOX') or exit('NO DICE!');
 class Facebook_Component_Controller_Logout_Mobile extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
-		Phpfox::getLib('module')->setController('facebook.logout');
+		Phpfox_Module::instance()->setController('facebook.logout');
 	}
 	
 	/**

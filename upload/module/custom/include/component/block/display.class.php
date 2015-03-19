@@ -18,7 +18,7 @@ class Custom_Component_Block_Display extends Phpfox_Component
 	private $_sTemplate = null;
 	
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

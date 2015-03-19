@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Admincp_Component_Controller_Block_Add extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -83,7 +83,7 @@ class Admincp_Component_Controller_Block_Add extends Phpfox_Component
 			);
 		}
 		
-		$aStyles = Phpfox::getService('theme.style')->getStyles();
+		$aStyles = Theme_Service_Style_Style::instance()->getStyles();
 		if ($bIsEdit)
 		{		
 			foreach ($aStyles as $iKey => $aStyle)

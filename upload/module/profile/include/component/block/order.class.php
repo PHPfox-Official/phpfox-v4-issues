@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class Profile_Component_Block_Order extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		$aUser = $this->getParam('aUser');	
 
-		Phpfox::getLib('module')->getCachedBlocks($aUser['user_id'], $this->getParam('type'));
+		Phpfox_Module::instance()->getCachedBlocks($aUser['user_id'], $this->getParam('type'));
 	}
 	
 	/**

@@ -214,9 +214,9 @@ class Egift_Service_Process extends Phpfox_Service
 	public function addGift($aVals)
 	{
 		$iSize = 120;
-		$oFile = Phpfox::getLib('file');
+		$oFile = Phpfox_File::instance();
 		$mLoaded = null;
-		$oImage = Phpfox::getLib('image');
+		$oImage = Phpfox_Image::instance();
 		$bIsEdit = isset($aVals['egift_id']) && $aVals['egift_id'] > 0;
 		$aVals['category'] = (isset($aVals['category']) ? (int)$aVals['category'] : 0);
 		$aSQL = array('category_id' => (int) $aVals['category'],
@@ -301,7 +301,7 @@ class Egift_Service_Process extends Phpfox_Service
 			{
 				if ($aGift['egift_id'] == $iId)
 				{
-					$oFile = Phpfox::getLib('file');
+					$oFile = Phpfox_File::instance();
 					foreach (Phpfox::getService('egift')->_aSizes as $iSize)
 					{
 						if (file_exists(Phpfox::getParam('egift.dir_egift') . sprintf($aGift['file_path'], $iSize)))

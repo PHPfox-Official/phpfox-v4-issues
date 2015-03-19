@@ -287,7 +287,11 @@ class Phpfox
 				require($sSubClassFile);
 				return true;
 			}
-		}		
+		}
+
+		if (class_exists($sClass)) {
+			return true;
+		}
 	
         (($sPlugin = Phpfox_Plugin::get('library_phpfox_getlibclass_1')) ? eval($sPlugin) : false);if(isset($mPluginReturn)){return $mPluginReturn;}
 		Phpfox_Error::trigger('Unable to load class: ' . $sClass, E_USER_ERROR);
@@ -340,7 +344,7 @@ class Phpfox
 	 */
 	public static function isModule($sModule)
 	{
-		return Phpfox::getLib('module')->isModule($sModule);
+		return Phpfox_Module::instance()->isModule($sModule);
 	}
 	
 	/**
@@ -351,7 +355,7 @@ class Phpfox
 	 */
 	public static function getBlock($sClass, $aParams = array(), $bTemplateParams = false)
 	{		
-		return Phpfox::getLib('module')->getComponent($sClass, $aParams, 'block', $bTemplateParams);
+		return Phpfox_Module::instance()->getComponent($sClass, $aParams, 'block', $bTemplateParams);
 	}	
 	
 	/**
@@ -365,10 +369,10 @@ class Phpfox
 		{
 			$aParams = func_get_args();			
 			
-			return Phpfox::getLib('module')->callback($sCall, $aParams);
+			return Phpfox_Module::instance()->callback($sCall, $aParams);
 		}
 		
-		return Phpfox::getLib('module')->callback($sCall);
+		return Phpfox_Module::instance()->callback($sCall);
 	}
 	
 	/**
@@ -382,10 +386,10 @@ class Phpfox
 		{
 			$aParams = func_get_args();			
 			
-			return Phpfox::getLib('module')->massCallback($sMethod, $aParams);
+			return Phpfox_Module::instance()->massCallback($sMethod, $aParams);
 		}
 		
-		return Phpfox::getLib('module')->massCallback($sMethod);		
+		return Phpfox_Module::instance()->massCallback($sMethod);
 	}
 	
 	/**
@@ -396,7 +400,7 @@ class Phpfox
 	 */
 	public static function hasCallback($sModule, $sMethod)
 	{
-		return Phpfox::getLib('module')->hasCallback($sModule, $sMethod);
+		return Phpfox_Module::instance()->hasCallback($sModule, $sMethod);
 	}
 	
 	/**
@@ -408,7 +412,7 @@ class Phpfox
 	 */
 	public static function getComponent($sClass, $aParams = array(), $sType = 'block', $bTemplateParams = false)
 	{		
-		return Phpfox::getLib('module')->getComponent($sClass, $aParams, $sType, $bTemplateParams);
+		return Phpfox_Module::instance()->getComponent($sClass, $aParams, $sType, $bTemplateParams);
 	}
 	
 	/**
@@ -420,7 +424,7 @@ class Phpfox
 	 */
 	public static function getComponentSetting($iUserId, $sVarName, $mDefaultValue)
 	{
-		return Phpfox::getLib('module')->getComponentSetting($iUserId, $sVarName, $mDefaultValue);
+		return Phpfox_Module::instance()->getComponentSetting($iUserId, $sVarName, $mDefaultValue);
 	}
 	
 	/**
@@ -439,7 +443,7 @@ class Phpfox
 	 */
 	public static function getService($sClass, $aParams = array())
 	{
-		return Phpfox::getLib('module')->getService($sClass, $aParams);
+		return Phpfox_Module::instance()->getService($sClass, $aParams);
 	}
 	
 	/**
@@ -1052,11 +1056,12 @@ class Phpfox
 	 *
 	 */
 	public static function run()
-	{		
-		$oTpl = Phpfox::getLib('template');
+	{
+
+		$oTpl = Phpfox_Template::instance();
 		$aLocale = Phpfox::getLib('locale')->getLang();
 		$oReq = Phpfox::getLib('request');
-		$oModule = Phpfox::getLib('module');
+		$oModule = Phpfox_Module::instance();
 
 		$cache_id = Phpfox::getLib('cache')->set('auth_token_' . $_SERVER['REMOTE_ADDR']);
 		if (defined('PHPFOX_FORCE_TOKEN') && !Phpfox::getLib('cache')->get($cache_id, 60)) {
@@ -1216,38 +1221,6 @@ class Phpfox
 				{
 					$oTpl->setHeader('cache', Phpfox::getMasterFiles());
 				}
-				if (!defined('PHPFOX_IS_AD_PREVIEW') && !defined('PHPFOX_IN_DESIGN_MODE') && !defined('PHPFOX_INSTALLER') && Phpfox::getParam('core.site_wide_ajax_browsing'))
-				{
-					$oTpl->setHeader('cache', array('jquery/plugin/jquery.address.js' => 'static_script'));
-				}				
-				
-					
-				if (Phpfox::isModule('photo') && Phpfox::getParam('photo.pre_load_header_view'))
-				{
-					$oTpl->setHeader('cache', array(
-							'jquery/plugin/jquery.highlightFade.js' => 'static_script',
-							'jquery/plugin/jquery.scrollTo.js' => 'static_script',
-							'jquery/plugin/imgnotes/jquery.tag.js' => 'static_script',
-							
-							'jquery/plugin/imgnotes/jquery.imgareaselect.js' => 'static_script',
-							'jquery/plugin/imgnotes/jquery.imgnotes.js' => 'static_script',
-							'imgnotes.css' => 'style_css',
-							'imgareaselect-default.css' => 'style_css',
-							
-							'quick_edit.js' => 'static_script',
-							'comment.css' => 'style_css',
-							'pager.css' => 'style_css',
-							'view.js' => 'module_photo',
-							'photo.js' => 'module_photo',
-							'switch_legend.js' => 'static_script',
-							'switch_menu.js' => 'static_script',
-							'view.css' => 'module_photo',
-							'feed.js' => 'module_feed',
-							'edit.css' => 'module_photo',
-							'index.js' => 'module_photo'
-							)
-						);
-				}
 					
 				if (Phpfox::isModule('friend'))
 				{
@@ -1323,8 +1296,8 @@ class Phpfox
 						'aAppMenus' => $oTpl->getMenu('explore'),
 						'aSubMenus' => $oTpl->getMenu(),
 						'aFooterMenu' => $oTpl->getMenu('footer'),
-						'aBlocks1' => ($oTpl->bIsSample ? true : Phpfox::getLib('module')->getModuleBlocks(1)),
-						'aBlocks3' => ($oTpl->bIsSample ? true : Phpfox::getLib('module')->getModuleBlocks(3)),								
+						'aBlocks1' => ($oTpl->bIsSample ? true : Phpfox_Module::instance()->getModuleBlocks(1)),
+						'aBlocks3' => ($oTpl->bIsSample ? true : Phpfox_Module::instance()->getModuleBlocks(3)),
 						'aAdBlocks1' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Phpfox::getService('ad')->getForBlock(1, false, false) : null)),
 						'aAdBlocks3' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Phpfox::getService('ad')->getForBlock(3, false, false) : null)),								
 						'bIsUsersProfilePage' => (defined('PHPFOX_IS_USER_PROFILE') ? true : false),
@@ -1332,7 +1305,7 @@ class Phpfox
 						'aStyleInUse' => $oTpl->getStyleInUse(),
 						'sGlobalUserFullName' => (Phpfox::isUser() ? Phpfox::getUserBy('full_name') : null),
 						// 'aGlobalUser' => (Phpfox::isUser() ? Phpfox::getUserBy(null) : array()),
-						'sFullControllerName' => str_replace(array('.', '/'), '_', Phpfox::getLib('module')->getFullControllerName()),
+						'sFullControllerName' => str_replace(array('.', '/'), '_', Phpfox_Module::instance()->getFullControllerName()),
 						'iGlobalProfilePageId' => Phpfox::getUserBy('profile_page_id'),
 						'aGlobalProfilePageLogin' => $aPageLastLogin,
 						'aInstalledApps' => ((Phpfox::isUser() && Phpfox::isModule('apps')) ? Phpfox::getService('apps')->getInstalledApps() : array()),
@@ -1344,7 +1317,7 @@ class Phpfox
 				
 				if (isset($aPageLastLogin['style_id']) && $aPageLastLogin['style_id'] > 0)
 				{
-					Phpfox::getLib('template')->testStyle($aPageLastLogin['style_id']);
+					Phpfox_Template::instance()->testStyle($aPageLastLogin['style_id']);
 				}
 				
 				if (Phpfox::isModule('captcha'))
@@ -1461,56 +1434,85 @@ class Phpfox
 			$oTpl->getLayout($oTpl->sDisplayLayout);
 		}
 
-		if (Phpfox::getParam('language.cache_phrases'))
-		{
-			Phpfox::getLib('locale')->cache();
-		}		
+		if (PHPFOX_IS_AJAX_PAGE) {
+			header('Content-type: application/json');
 
-		// Use GZIP to output the data if we can		
-		if (Phpfox::getParam('core.use_gzip') && !PHPFOX_IS_AJAX_PAGE)
-		{						
-			$sContent = ob_get_contents();
+			Phpfox_Module::instance()->getControllerTemplate();
+			$content = ob_get_contents(); ob_clean();
 
-			ob_clean();
+			$oTpl->getLayout('breadcrumb');
+			$breadcrumb = ob_get_contents(); ob_clean();
 
-			if (function_exists('gzencode'))
-			{			
-				$sGzipContent = gzencode($sContent, Phpfox::getParam('core.gzip_level'), FORCE_GZIP);
-			}
-			else
+			$aHeaderFiles = Phpfox_Template::instance()->getHeader(true);
+			$aCss = [];
+			$aLoadFiles = [];
+			foreach ($aHeaderFiles as $sHeaderFile)
 			{
-				if (function_exists('gzcompress') && function_exists('crc32'))
-				{		
-					$iSize = strlen($sContent);
-					$iCrc = crc32($sContent);
-					$sGzipContent = "\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff";
-					$sGzipContent .= substr(gzcompress($sContent, Phpfox::getParam('core.gzip_level')), 2, -4);
-					$sGzipContent .= pack('V', $iCrc);
-					$sGzipContent .= pack('V', $iSize);		
-				}		
-			}
-
-			$sOutputContent = (isset($sGzipContent) ? $sGzipContent : $sContent);
-			if (Phpfox::getParam('core.check_body_for_text')
-					&& !defined('PHPFOX_INSTALLER')
-					&& Phpfox::getLib('request')->get('req1') != 'ad'
-				)
-			{
-				if (!preg_match(Phpfox::getParam('core.check_body_regex'), $sContent))
+				if (preg_match('/<style(.*)>(.*)<\/style>/i', $sHeaderFile))
 				{
-					header(Phpfox::getParam('core.check_body_header'));
-					echo Phpfox::getParam('core.check_body_offline_message');
-					exit;
+					$aCss[] = strip_tags($sHeaderFile);
+
+					continue;
+				}
+
+				if (preg_match('/href=(["\']?([^"\'>]+)["\']?)/', $sHeaderFile, $aMatches) > 0 && strpos($aMatches[1], '.css') !== false)
+				{
+					$sHeaderFile = str_replace(array('"', "'"), '', $aMatches[1]);
+					$sHeaderFile = substr($sHeaderFile, 0, strpos($sHeaderFile, '?') );
+				}
+				$sHeaderFile = strip_tags($sHeaderFile);
+
+				$sNew = preg_replace('/\s+/','',$sHeaderFile);
+				if (empty($sNew))
+				{
+					continue;
+				}
+
+				$aLoadFiles[] = $sHeaderFile;
+			}
+
+			$blocks = [];
+			foreach (range(1, 12) as $location) {
+				$aBlocks = Phpfox_Module::instance()->getModuleBlocks($location);
+				$blocks[$location] = [];
+				foreach ($aBlocks as $sBlock) {
+					Phpfox::getBlock($sBlock);
+
+					$blocks[$location][] = ob_get_contents(); ob_clean();
 				}
 			}
 
-			if (isset($sGzipContent))
-			{				
-				header("Content-Encoding: " . (in_array('x-gzip', Phpfox::getParam('core.gzip_encodings')) ? "x-gzip" : "gzip"));
+			$oTpl->getLayout('search');
+			$search = ob_get_contents(); ob_clean();
+
+			Phpfox::getBlock('core.template-menusub');
+			$menuSub = ob_get_contents(); ob_clean();
+
+			$h1 = '';
+			if (isset($aBreadCrumbTitle[1])) {
+				$h1 .= '<h1><a href="' . $aBreadCrumbTitle[1] . '">' . Phpfox_Parse_Output::instance()->clean($aBreadCrumbTitle[0]) . '</a></h1>';
 			}
 
-			echo $sOutputContent;
-		}	
+			$data = json_encode([
+				'content' => $content,
+				'title' => $oTpl->instance()->getTitle(),
+				'phrases' => Phpfox_Template::instance()->getPhrases(),
+				'files' => $aLoadFiles,
+				'css' => $aCss,
+				'breadcrumb' => $breadcrumb,
+				'blocks' => $blocks,
+				'search' => $search,
+				'menuSub' => $menuSub,
+				'id' => Phpfox_Module::instance()->getPageId(),
+				'h1' => $h1
+			]);
+
+			// header("Content-length: " . strlen($data));
+
+			echo $data;
+
+			// sleep(4);
+		}
 	}
 	
 	/**

@@ -16,7 +16,7 @@ define('PHPFOX_IS_PAGES_ADD', true);
 class Pages_Component_Controller_Add extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

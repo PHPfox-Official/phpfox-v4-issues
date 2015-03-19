@@ -299,7 +299,7 @@ class Phpfox_Cache_Storage_Memcache extends Phpfox_Cache_Abstract
 				{
 					if (is_dir(PHPFOX_DIR_CACHE . $aFile['name']))
 					{
-						Phpfox::getLib('file')->delete_directory(PHPFOX_DIR_CACHE . $aFile['name']);
+						Phpfox_File::instance()->delete_directory(PHPFOX_DIR_CACHE . $aFile['name']);
 					}
 					else 
 					{

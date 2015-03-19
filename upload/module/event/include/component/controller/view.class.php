@@ -18,7 +18,7 @@ define('PHPFOX_IS_EVENT_VIEW', true);
 class Event_Component_Controller_View extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -49,7 +49,7 @@ class Event_Component_Controller_View extends Phpfox_Component
 			Phpfox::getService('notification.process')->delete('event_invite', $this->request()->getInt('req2'), Phpfox::getUserId());
 		}		
 		
-		if (!($aEvent = Phpfox::getService('event')->getEvent($sEvent)))
+		if (!($aEvent = Event_Service_Event::instance()->getEvent($sEvent)))
 		{
 			return Phpfox_Error::display(Phpfox::getPhrase('event.the_event_you_are_looking_for_does_not_exist_or_has_been_removed'), 404);
 		}
@@ -70,14 +70,14 @@ class Event_Component_Controller_View extends Phpfox_Component
 			    // Everyone is case 0. Skipped.
 			    // Friends only
 			    case 1:
-			        if(!Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $aEvent['user_id']))
+			        if(!Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $aEvent['user_id']))
 			        {
 			            $bCanPostComment = false;
 			        }
 			        break;
 			    // Friend of friends
 			    case 2:
-			        if (!Phpfox::getService('friend')->isFriendOfFriend($aEvent['user_id']))
+			        if (!Friend_Service_Friend::instance()->isFriendOfFriend($aEvent['user_id']))
 			        {
 			            $bCanPostComment = false;    
 			        }

@@ -94,7 +94,7 @@ class Core_Service_Country_Country extends Phpfox_Service
 				
 		$sCacheName = 'country_export_cache_' . md5($aCountry['country_iso'] . PHPFOX_TIME) . '.xml';
 		
-		Phpfox::getLib('file')->writeToCache($sCacheName, $oXmlBuilder->output());
+		Phpfox_File::instance()->writeToCache($sCacheName, $oXmlBuilder->output());
 		
 		return array(
 			'name' => $aCountry['country_iso'],

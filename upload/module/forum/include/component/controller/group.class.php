@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Forum_Component_Controller_Group extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -40,7 +40,7 @@ class Forum_Component_Controller_Group extends Phpfox_Component
 				)
 			);			
 			
-			return Phpfox::getLib('module')->setController('forum.thread');
+			return Phpfox_Module::instance()->setController('forum.thread');
 		}
 		
 		$this->setParam('aCallback', array(
@@ -50,7 +50,7 @@ class Forum_Component_Controller_Group extends Phpfox_Component
 			)
 		);
 		
-		return Phpfox::getLib('module')->setController('forum.forum');
+		return Phpfox_Module::instance()->setController('forum.forum');
 	}
 	
 	/**

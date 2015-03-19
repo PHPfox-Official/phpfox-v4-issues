@@ -81,7 +81,7 @@
 			<is_active>1</is_active>
 			<is_site_wide>1</is_site_wide>
 			<php_group_code />
-			<php_view_code><![CDATA[$aRows = Phpfox::getService('event')->getForRssFeed();]]></php_view_code>
+			<php_view_code><![CDATA[$aRows = Event_Service_Event::instance()->getForRssFeed();]]></php_view_code>
 		</feed>
 	</phpfox_update_rss>
 </upgrade>

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Block_Mini extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -45,7 +45,7 @@ class Friend_Component_Block_Mini extends Phpfox_Component
 		}
 		else
 		{
-			list($iCnt, $aRows) = Phpfox::getService('friend')->get('friend.is_page = 0 AND friend.user_id = ' . Phpfox::getUserId(), 'ls.last_activity DESC', 0, $iTotal, true, false, true);
+			list($iCnt, $aRows) = Friend_Service_Friend::instance()->get('friend.is_page = 0 AND friend.user_id = ' . Phpfox::getUserId(), 'ls.last_activity DESC', 0, $iTotal, true, false, true);
 		}
 
 		$this->template()->assign(array(

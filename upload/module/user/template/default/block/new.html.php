@@ -12,12 +12,12 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {foreach from=$aUsers name=users item=aUser}
-{if Phpfox::getLib('module')->getBlockLocation('core.new') == 'content'}
+{if Phpfox_Module::instance()->getBlockLocation('core.new') == 'content'}
 <div class="t_center p_bottom_10" style="width:23%; float:left;">
 {else}
 <div class="t_center p_bottom_10" style="width:32%; float:left;">		
 {/if}
-	{if Phpfox::getLib('module')->getBlockLocation('core.new') == 'content'}
+	{if Phpfox_Module::instance()->getBlockLocation('core.new') == 'content'}
 	{img user=$aUser suffix='_50_square' max_width=75 max_height=75}
 	{else}
 	{img user=$aUser suffix='_50_square' max_width=50 max_height=50}
@@ -26,7 +26,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{$aUser|user}
 	</div>
 </div>
-{if Phpfox::getLib('module')->getBlockLocation('core.new') == 'content'}
+{if Phpfox_Module::instance()->getBlockLocation('core.new') == 'content'}
 {if $phpfox.iteration.users == 4}
 <div class="clear"></div>
 {/if}

@@ -68,9 +68,15 @@ $Core.photo_tag =
 			this.sHtml += '<input name="' + $Core.photo_tag.aParams['name'] + '[height]" type="hidden" value="" id="NoteHeight" />';
 			this.sHtml += '<input name="' + $Core.photo_tag.aParams['name'] + '[width]" type="hidden" value="" id="NoteWidth" />';
 			this.sHtml += '<input name="' + $Core.photo_tag.aParams['name'] + '[tag_user_id]" type="hidden" value="0" id="js_tag_user_id" />';
-			this.sHtml += '<input autocomplete="off" size="20" class="v_middle" type="text" name="' + $Core.photo_tag.aParams['name'] + '[note]" id="NoteNote" value="" onkeyup="$.ajaxCall(\'friend.searchDropDown\', \'search=\' + this.value + \'&amp;div_id=js_photo_tag_search_content&amp;input_id=js_tag_user_id&amp;text_id=NoteNote\', \'GET\');" />';
-			this.sHtml += '&nbsp;&nbsp;&nbsp;<input type="submit" value="' + oTranslations['photo.save'] + '" class="button" />&nbsp;&nbsp;&nbsp;<input type="button" value="' + oTranslations['photo.cancel'] + '" class="button button_off" onclick="$(\'#noteform\').hide(); $(\'' + $Core.photo_tag.aParams['id'] + '\').imgAreaSelect({ hide: true });" />';
-			this.sHtml += '<div style="display:none;"><div class="input_drop_layer" id="js_photo_tag_search_content"></div></div>';
+			this.sHtml += '<div class="table">' +
+				'<div class="table_right">' +
+				'<input placeholder="Search for your friends..." autocomplete="off" size="20" class="v_middle" type="text" name="' + $Core.photo_tag.aParams['name'] + '[note]" id="NoteNote" value="" onkeyup="$.ajaxCall(\'friend.searchDropDown\', \'search=\' + this.value + \'&amp;div_id=js_photo_tag_search_content&amp;input_id=js_tag_user_id&amp;text_id=NoteNote\', \'GET\');" />' +
+				'<div style="display:none;"><div class="input_drop_layer" id="js_photo_tag_search_content"></div></div>' +
+				'</div>' +
+				'</div>';
+
+			this.sHtml += '' +
+				'<a class="cancel_tagging" href="#" onclick="$(\'#noteform\').hide(); $(\'' + $Core.photo_tag.aParams['id'] + '\').imgAreaSelect({ hide: true }); return false;"><i class="fa fa-remove"></i></a>';
 			
 			if ($Core.photo_tag.aParams['user_id'] && $('#js_photo_tag_user_id_' + $Core.photo_tag.aParams['user_id']).length == 0)
 			{
@@ -79,7 +85,10 @@ $Core.photo_tag =
 			this.sHtml += '</form>';
 			this.sHtml += '</div>';
 			
-			$('body').prepend(this.sHtml);	
+			$('body').prepend(this.sHtml);
+			$('#js_photo_tag_search_content').click(function() {
+				$('#NoteAddForm').trigger('submit');
+			});
 		});		
 	}
 };

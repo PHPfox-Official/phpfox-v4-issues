@@ -17,7 +17,7 @@ class User_Component_Controller_Admincp_Group_Activitypoints extends Phpfox_Comp
 {
 
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 * This controller handles invalid user group by 2 means:
 	 *		1. getInt('id',0) => if no user group is given its explicitly redirected
 	 *		2. getActivityPoints may return a Phpfox_Error

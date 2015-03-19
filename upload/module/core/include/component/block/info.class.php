@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Core_Component_Block_Info extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -26,7 +26,7 @@ class Core_Component_Block_Info extends Phpfox_Component
 			Phpfox::getPhrase('core.membership') => (empty($aGroup['icon_ext']) ? '' : '<img src="' . Phpfox::getParam('core.url_icon') . $aGroup['icon_ext'] . '" class="v_middle" alt="' . Phpfox::getLib('locale')->convert($aGroup['title']) . '" title="' . Phpfox::getLib('locale')->convert($aGroup['title']) . '" /> ') . $aGroup['prefix'] . Phpfox::getLib('locale')->convert($aGroup['title']) . $aGroup['suffix'],
 			Phpfox::getPhrase('core.activity_points') => $aUser['activity_points'],
 			Phpfox::getPhrase('core.profile_views') => $aUser['total_view'],
-			Phpfox::getPhrase('core.space_used') => (Phpfox::getUserParam('user.total_upload_space') === 0 ? Phpfox::getPhrase('user.space_total_out_of_unlimited', array('space_total' => Phpfox::getLib('file')->filesize($aUser['space_total']))) : Phpfox::getPhrase('user.space_total_out_of_total', array('space_total' => Phpfox::getLib('file')->filesize($aUser['space_total']), 'total' => Phpfox::getUserParam('user.total_upload_space')))),
+			Phpfox::getPhrase('core.space_used') => (Phpfox::getUserParam('user.total_upload_space') === 0 ? Phpfox::getPhrase('user.space_total_out_of_unlimited', array('space_total' => Phpfox_File::instance()->filesize($aUser['space_total']))) : Phpfox::getPhrase('user.space_total_out_of_total', array('space_total' => Phpfox_File::instance()->filesize($aUser['space_total']), 'total' => Phpfox::getUserParam('user.total_upload_space')))),
 			Phpfox::getPhrase('core.member_since') => Phpfox::getLib('date')->convertTime($aUser['joined'], 'core.profile_time_stamps')
 		);
 		

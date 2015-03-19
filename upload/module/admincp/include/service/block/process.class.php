@@ -55,13 +55,13 @@ class Admincp_Service_Block_Process extends Phpfox_Service
 		{
 			$aParts = explode('|', $aVals['component']);
 			$aVals['component'] = $aParts[1];
-			// $aVals['module_id'] = Phpfox::getLib('module')->getModuleId($aParts[0]);
+			// $aVals['module_id'] = Phpfox_Module::instance()->getModuleId($aParts[0]);
 		}
 		else 
 		{
 			$aParts = explode('|', $aVals['m_connection']);
 			$aVals['component'] = null;
-			// $aVals['module_id'] = Phpfox::getLib('module')->getModuleId($aParts[0]);	
+			// $aVals['module_id'] = Phpfox_Module::instance()->getModuleId($aParts[0]);
 		}
 		
 		if (empty($aVals['module_id']))

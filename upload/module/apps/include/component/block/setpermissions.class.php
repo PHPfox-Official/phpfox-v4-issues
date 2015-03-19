@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Apps_Component_Block_Setpermissions extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 * This block is called from an ajax call to set the permissions on an app
 	 */
 	public function process()

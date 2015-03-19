@@ -18,7 +18,7 @@ define('PHPFOX_IS_PAGES_VIEW', true);
 class Pages_Component_Controller_View extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -255,7 +255,7 @@ class Pages_Component_Controller_View extends Phpfox_Component
 				
 				if (($iTestStyle = $this->request()->get('test_style_id')))
 				{
-					if (Phpfox::getLib('template')->testStyle($iTestStyle))
+					if (Phpfox_Template::instance()->testStyle($iTestStyle))
 					{
 						
 					}

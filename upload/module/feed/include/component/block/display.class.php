@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Feed_Component_Block_Display extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -59,7 +59,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 			
 			/* Get all blocks for location 2 and 3 */
 			
-			$oBlock = Phpfox::getLib('module');
+			$oBlock = Phpfox_Module::instance();
 			$aExtraBlocks = array();
 			$aBlocks = $oBlock->getModuleBlocks(1, true);
 			$aBlocks = array_merge($aBlocks, $oBlock->getModuleBlocks(3, true));
@@ -176,9 +176,17 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		}
 
 		$bStreamMode = true;
+		$bUseFeedForm = true;
+		if (Phpfox_Module::instance()->getFullControllerName() == 'core.index-member') {
+			$bUseFeedForm = false;
+		}
+		/*
 		if (defined('PHPFOX_IS_PAGES_VIEW')) {
 			$bStreamMode = false;
 		}
+		*/
+
+
 		$bForceReloadOnPage = (PHPFOX_IS_AJAX ? false : Phpfox::getParam('feed.force_ajax_on_load'));
 		$aRows = array();
 		if (PHPFOX_IS_AJAX || !$bForceReloadOnPage || $bIsCustomFeedView)
@@ -276,6 +284,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		}
 
 		$this->template()->assign(array(
+				'bUseFeedForm' => $bUseFeedForm,
 				'bStreamMode' => $bStreamMode,
 				'bForceReloadOnPage' => $bForceReloadOnPage,				
 				'bHideEnterComment' => true,
@@ -297,63 +306,8 @@ class Feed_Component_Block_Display extends Phpfox_Component
 				'sIsHashTagSearchValue' => $sIsHashTagSearchValue,
 				'bIsHashTagPop' => $bIsHashTagPop
 			)
-		);	
-		
-		if (Phpfox::getParam('video.convert_servers_enable') && !PHPFOX_IS_AJAX)
-		{
-			$aVideoServers = Phpfox::getParam('video.convert_servers');
-			$sCustomServerUrl = $aVideoServers[rand(0, (count($aVideoServers) - 1))];
-			$this->template()->assign('sVideoServerUrl', $sCustomServerUrl);
-			$this->template()->assign('sCustomVideoHash', Phpfox::getService('video')->addCustomHash());
-		}		
-		
-		if (Phpfox::getService('profile')->timeline())
-		{
-			$aFeedTimeline = Phpfox::getService('feed')->getTimeline();
-			
-			if (($this->request()->getInt('status-id') 
-				|| $this->request()->getInt('comment-id') 
-				|| $this->request()->getInt('link-id')
-				|| $this->request()->getInt('poke-id')
-				|| $this->request()->getInt('feed')
-			) && isset($aRows[0]))
-			{
-				$aFeedTimeline['left'][0]['feed_view_comment'] = true;
-			}
-			
-			$this->template()->assign(array(
-					'aFeedTimeline' => $aFeedTimeline,
-					'sLastDayInfo' => Phpfox::getService('feed')->getLastDay()
-				)
-			);
-			
-			if (!PHPFOX_IS_AJAX)
-			{
-				$aUser = $this->getParam('aUser');
-				if( $aUser['birthday'] == null)
-				{
-					$aTimeline = Phpfox::getService('feed')->getTimeLineYears($aUser['user_id'], $aUser['joined']);
-				}
-				else
-				{
-					$aTimeline = Phpfox::getService('feed')->getTimeLineYears($aUser['user_id'], $aUser['birthday_search']);
-				}
-				
-				$this->template()->assign(array(
-						'aTimelineDates' => $aTimeline
-					)
-				);
-			}
-		}
-		/*
-		if ($bIsProfile)
-		{			
-			if (!Phpfox::getService('user.privacy')->hasAccess($iUserId, 'feed.display_on_profile'))
-			{
-				return false;
-			}			
-		}
-		*/	
+		);
+
 		return 'block';
 	}
 

@@ -19,7 +19,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 	private $_sModule;
 	
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -44,12 +44,12 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 		if (Phpfox::getParam('admincp.admin_cp') != $this->request()->get('req1'))
 		{
-			return Phpfox::getLib('module')->setController('error.404');	
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 		
 		if (!Phpfox::getService('user.auth')->isActiveAdminSession())
 		{		
-			return Phpfox::getLib('module')->setController('admincp.login');
+			return Phpfox_Module::instance()->setController('admincp.login');
 		}	
 		
 		if ($this->request()->get('upgraded'))
@@ -393,7 +393,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		
 		if ($bPass)
 		{		
-			Phpfox::getLib('module')->setController($this->_sModule . '.' . $this->_sController);			
+			Phpfox_Module::instance()->setController($this->_sModule . '.' . $this->_sController);
 			
 			$sMenuController = str_replace(array('.index', '.phrase'), '', 'admincp.' . ($this->_sModule != 'admincp' ? $this->_sModule . '.' . str_replace('admincp.', '', $this->_sController) : $this->_sController));
 			$aCachedSubMenus = array();
@@ -502,7 +502,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		{
 			if ($this->_sModule != Phpfox::getParam('admincp.admin_cp'))
 			{
-				Phpfox::getLib('module')->setController('error.404');		
+				Phpfox_Module::instance()->setController('error.404');
 			}
 			else 
 			{
@@ -522,7 +522,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 					)
 				);						
 				
-				Phpfox::getLib('module')->setCacheBlockData(array(
+				Phpfox_Module::instance()->setCacheBlockData(array(
 						'table' => 'admincp_dashboard',
 						'field' => 'user_id',
 						'item_id' => Phpfox::getUserId(),
@@ -546,7 +546,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			$iTotalSpaceUsed = Phpfox::getLib('cdn')->getUsage();
 			if ($iTotalSpaceUsed > Phpfox::getParam('core.phpfox_grouply_space'))
 			{
-				return Phpfox::getLib('module')->setController('admincp.limit');
+				return Phpfox_Module::instance()->setController('admincp.limit');
 			}		
 		}
 	}

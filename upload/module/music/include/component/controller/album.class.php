@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class Music_Component_Controller_Album extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		if ($this->request()->getInt('req3') > 0)
 		{
-			return Phpfox::getLib('module')->setController('music.view-album');
+			return Phpfox_Module::instance()->setController('music.view-album');
 		}				
 		
 		Phpfox::getUserParam('music.can_access_music', true);
@@ -196,7 +196,7 @@ class Music_Component_Controller_Album extends Phpfox_Component
 					'sCreateJs' => $oValidator->createJS(),
 					'sGetJsForm' => $oValidator->getJsForm(false),
 					'aGenres' => Phpfox::getService('music.genre')->getList(),
-					'iUploadLimit' => Phpfox::getLib('file')->getLimit(Phpfox::getUserParam('music.music_max_file_size')),
+					'iUploadLimit' => Phpfox_File::instance()->getLimit(Phpfox::getUserParam('music.music_max_file_size')),
 					'sJavaScriptEditLink' => ($bIsEdit ? "if (confirm('" . Phpfox::getPhrase('music.are_you_sure', array('phpfox_squote' => true)) . "')) { $('#js_submit_upload_image').show(); $('#js_music_upload_image').show(); $('#js_music_current_image').remove(); $.ajaxCall('music.deleteImage', 'id={$aAlbum['album_id']}'); } return false;" : ''),
 					'sMethod' => $sMethod,
 					'sMethodUrl' => ($bIsEdit ? $this->url()->makeUrl('music.album.track', array('id' => $aAlbum['album_id'], 'method' => 'simple')) : ''),

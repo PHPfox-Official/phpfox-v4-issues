@@ -16,11 +16,11 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Block_Featured extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
-		list($iTotal, $aFeatured) = Phpfox::getService('event')->getFeatured();
+		list($iTotal, $aFeatured) = Event_Service_Event::instance()->getFeatured();
 		
 		if (!$iTotal)
 		{

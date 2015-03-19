@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Mail_Component_Controller_Trash extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		

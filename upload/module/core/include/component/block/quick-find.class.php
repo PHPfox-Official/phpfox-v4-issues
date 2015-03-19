@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Core_Component_Block_Quick_Find extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

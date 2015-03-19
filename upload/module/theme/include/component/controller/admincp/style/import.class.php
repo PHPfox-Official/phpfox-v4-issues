@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Controller_Admincp_Style_Import extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -29,7 +29,7 @@ class Theme_Component_Controller_Admincp_Style_Import extends Phpfox_Component
 		$bOverwrite = ($this->request()->getInt('overwrite') ? true : false);		
 		$sTheme = $this->request()->get('parent-theme');
 		
-		if (($sStyleToInstall = $this->request()->get('install')) && Phpfox::getService('theme.style.process')->installStyleFromFolder($sTheme, $sStyleToInstall))
+		if (($sStyleToInstall = $this->request()->get('install')) && Theme_Service_Style_Process::instance()->installStyleFromFolder($sTheme, $sStyleToInstall))
 		{
 			$this->url()->send('admincp.theme.style.import', null, Phpfox::getPhrase('theme.style_successfully_imported'));
 		}		
@@ -38,7 +38,7 @@ class Theme_Component_Controller_Admincp_Style_Import extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('theme.themes'), $this->url()->makeUrl('admincp.theme'))
 			->setBreadcrumb(Phpfox::getPhrase('theme.import_styles'), null, true)
 			->assign(array(
-					'aNewStyles' => Phpfox::getService('theme.style')->getNewStyles()
+					'aNewStyles' => Theme_Service_Style_Style::instance()->getNewStyles()
 				)
 			);
 	}

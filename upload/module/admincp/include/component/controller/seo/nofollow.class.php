@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Admincp_Component_Controller_Seo_Nofollow extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 * @todo Complete the update routine...
 	 */
 	public function process()

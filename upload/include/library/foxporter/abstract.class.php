@@ -238,8 +238,8 @@ abstract class Foxporter_Abstract implements Foxporter_Interface
 			);
 		}		
 		*/
-		$oFile = Phpfox::getLib('file');
-		$oImage = Phpfox::getLib('image');	
+		$oFile = Phpfox_File::instance();
+		$oImage = Phpfox_Image::instance();
 		
 		if (!empty($aVals['profile_image']) && file_exists($aVals['profile_image']))
 		{
@@ -345,8 +345,8 @@ abstract class Foxporter_Abstract implements Foxporter_Interface
 			)
 		);
 		
-		$oFile = Phpfox::getLib('file');
-		$oImage = Phpfox::getLib('image');	
+		$oFile = Phpfox_File::instance();
+		$oImage = Phpfox_Image::instance();
 		
 		if (!empty($aVals['photo_path']) && file_exists($aVals['photo_path']))
 		{

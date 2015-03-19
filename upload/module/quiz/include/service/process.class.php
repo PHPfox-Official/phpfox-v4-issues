@@ -200,8 +200,8 @@ class Quiz_Service_Process extends Phpfox_Service
 			// Update picture
 			if (Phpfox::getUserParam('quiz.can_upload_picture') && isset($_FILES['image']['name']) && ($_FILES['image']['name'] != ''))
 			{
-				$oFile = Phpfox::getLib('file');
-				$oImage = Phpfox::getLib('image');
+				$oFile = Phpfox_File::instance();
+				$oImage = Phpfox_Image::instance();
 				$aImage = $oFile->load('image', array(
 						'jpg',
 						'gif',
@@ -225,8 +225,8 @@ class Quiz_Service_Process extends Phpfox_Service
 						isset($aOriginalQuiz['image_path']) && !empty($aOriginalQuiz['image_path']))
 					{
 						// delete the old picture						
-							Phpfox::getLib('file')->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], ''));
-							Phpfox::getLib('file')->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], '_' . $iSize));
+							Phpfox_File::instance()->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], ''));
+							Phpfox_File::instance()->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], '_' . $iSize));
 							// get space used by current picture
 							$iOldPictureSpaceUsed = (filesize(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], '')) + filesize(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], '_' . $iSize)));
 							// decrease the count for the old picture
@@ -370,8 +370,8 @@ class Quiz_Service_Process extends Phpfox_Service
 			// delete the old picture
 			if (isset($iOldPictureSpaceUsed) && $iOldPictureSpaceUsed > 0)
 			{
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, ''));
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, '_' . $iSize));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, ''));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, '_' . $iSize));
 				// decrease the count for the old picture
 				Phpfox::getService('user.space')->update($iUser, 'quiz', $iOldPictureSpaceUsed, '-');
 			}
@@ -552,8 +552,8 @@ class Quiz_Service_Process extends Phpfox_Service
 		// Picture upload
 		if (Phpfox::getUserParam('quiz.can_upload_picture') && isset($_FILES['image']['name']) && ($_FILES['image']['name'] != ''))
 		{
-			$oFile = Phpfox::getLib('file');
-			$oImage = Phpfox::getLib('image');
+			$oFile = Phpfox_File::instance();
+			$oImage = Phpfox_Image::instance();
 			$aImage = $oFile->load('image', array(
 					'jpg',
 					'gif',

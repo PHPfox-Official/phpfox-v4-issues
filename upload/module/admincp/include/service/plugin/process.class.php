@@ -55,7 +55,7 @@ class Admincp_Service_Plugin_Process extends Phpfox_Service
 				continue;
 			}			
 			
-			$iModuleId = Phpfox::getLib('module')->getModuleId($aVal['module']);
+			$iModuleId = Phpfox_Module::instance()->getModuleId($aVal['module']);
 			$aSql[] = array(	
 				$aVal['hook_type'],
 				$iModuleId,

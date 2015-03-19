@@ -32,7 +32,7 @@ class Ad_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function changeImage()
 	{
-		Phpfox::getLib('file')->unlink(Phpfox::getParam('ad.dir_image') . sprintf($this->get('image'), ''));
+		Phpfox_File::instance()->unlink(Phpfox::getParam('ad.dir_image') . sprintf($this->get('image'), ''));
 		
 		$this->show('#js_image_holder_link');
 	}

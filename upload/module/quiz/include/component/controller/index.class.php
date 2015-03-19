@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Quiz_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -56,7 +56,7 @@ class Quiz_Component_Controller_Index extends Phpfox_Component
 		
 		if ($this->request()->getInt('req2') > 0)
 		{
-			return Phpfox::getLib('module')->setController('quiz.view');
+			return Phpfox_Module::instance()->setController('quiz.view');
 		}			
 
 		$sView = $this->request()->get('view');	

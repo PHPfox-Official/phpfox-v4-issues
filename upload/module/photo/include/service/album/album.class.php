@@ -232,7 +232,7 @@ class Photo_Service_Album_Album extends Phpfox_Service
 				
 				copy(Phpfox::getParam('core.dir_user') . sprintf($aUser['user_image'], ''), Phpfox::getParam('photo.dir_photo') . sprintf($sFileName, ''));
 				
-				$oImage = Phpfox::getLib('image');
+				$oImage = Phpfox_Image::instance();
 				foreach(Phpfox::getParam('photo.photo_pic_sizes') as $iSize)
 				{
 					// Create the thumbnail

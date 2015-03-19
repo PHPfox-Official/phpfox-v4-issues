@@ -16,12 +16,12 @@ defined('PHPFOX') or exit('NO DICE!');
 class Video_Component_Block_File extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
 		$this->template()->assign(array(
-				'iUploadLimit' => Phpfox::getLib('file')->getLimit(Phpfox::getUserParam('video.video_file_size_limit')),
+				'iUploadLimit' => Phpfox_File::instance()->getLimit(Phpfox::getUserParam('video.video_file_size_limit')),
 				'sFileExt' => Phpfox::getService('video')->getFileExt(true),
 				'sCategories' => Phpfox::getService('video.category')->get(),
 				'sEditorId' => $this->request()->get('editor_id')	

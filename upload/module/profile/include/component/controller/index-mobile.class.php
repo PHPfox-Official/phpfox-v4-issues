@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Profile_Component_Controller_Index_Mobile extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -24,7 +24,7 @@ class Profile_Component_Controller_Index_Mobile extends Phpfox_Component
 		
 		if (!isset($aUser['user_id']))
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 		
 		define('PHPFOX_IS_USER_PROFILE', true);
@@ -63,7 +63,7 @@ class Profile_Component_Controller_Index_Mobile extends Phpfox_Component
 		
 		if (!Phpfox::getService('user.privacy')->hasAccess($aUser['user_id'], 'profile.view_profile'))
 		{			
-			return Phpfox::getLib('module')->setController('profile.private');	
+			return Phpfox_Module::instance()->setController('profile.private');
 		}
 		
 		Phpfox::getUserParam('profile.can_view_users_profile', true);	
@@ -89,7 +89,7 @@ class Profile_Component_Controller_Index_Mobile extends Phpfox_Component
 		
 		if ($this->request()->get('req2') == 'info')
 		{
-			return Phpfox::getLib('module')->setController('profile.info-mobile');
+			return Phpfox_Module::instance()->setController('profile.info-mobile');
 		}
 		
 		if (($aVals = $this->request()->getArray('val')))

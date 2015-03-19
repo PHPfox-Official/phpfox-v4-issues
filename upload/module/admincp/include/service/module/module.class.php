@@ -106,7 +106,7 @@ class Admincp_Service_Module_Module extends Phpfox_Service
 	
 	public function getModules()
 	{
-		return Phpfox::getLib('module')->getModules();
+		return Phpfox_Module::instance()->getModules();
 	}
 	
 	public function get($bUninstalled = false)
@@ -272,7 +272,7 @@ class Admincp_Service_Module_Module extends Phpfox_Service
 	
 	public function exportForModules($sProductId = 'phpfox', $bCore = true, $aModuleCache = null, $sDirectoryId = null)
 	{
-		$oFile = Phpfox::getLib('file');
+		$oFile = Phpfox_File::instance();
 		$oDatabaseSupport = Phpfox::getLib('database.support');
 		$oXmlBuilder = Phpfox::getLib('xml.builder');
 		$aFiles = array();
@@ -311,7 +311,7 @@ class Admincp_Service_Module_Module extends Phpfox_Service
 			
 			if ($sProductId == 'phpfox')
 			{
-				$aWritableFiles = Phpfox::getLib('module')->init($aRow['module_id'], 'aInstallWritable');
+				$aWritableFiles = Phpfox_Module::instance()->init($aRow['module_id'], 'aInstallWritable');
 				$oXmlBuilder->addTag('writable', ((count($aWritableFiles) && is_array($aWritableFiles)) ? serialize($aWritableFiles) : ''));
 			}
 				
@@ -329,7 +329,7 @@ class Admincp_Service_Module_Module extends Phpfox_Service
 			
 			if ($bCore === true && is_dir($sDir))
 			{
-				$aTables = Phpfox::getLib('module')->init($aRow['module_id'], 'aTables');				
+				$aTables = Phpfox_Module::instance()->init($aRow['module_id'], 'aTables');
 				if (count($aTables) > 0)
 				{
 					$oXmlBuilder->addTag('tables', serialize($oDatabaseSupport->prepareSchema($aTables)));					
@@ -348,7 +348,7 @@ class Admincp_Service_Module_Module extends Phpfox_Service
 			
 			if ($bCore === false && $aModuleCache !== null && is_dir($sDir) && isset($aModuleCache[$aRow['module_id']]))
 			{		
-				$aSourceFiles = Phpfox::getLib('file')->getAllFiles($sDir);				
+				$aSourceFiles = Phpfox_File::instance()->getAllFiles($sDir);
 				if (count($aSourceFiles))
 				{
 					foreach ($aSourceFiles as $sFile)
@@ -357,7 +357,7 @@ class Admincp_Service_Module_Module extends Phpfox_Service
 						$aParts = explode(PHPFOX_DS, $sNewFile);
 						unset($aParts[(count($aParts) - 1)]);
 						$sActualPath = implode(PHPFOX_DS, $aParts) . PHPFOX_DS;
-						Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sActualPath, true);
+						Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sActualPath, true);
 						copy($sFile, PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sNewFile);					
 					}
 				}								
@@ -373,8 +373,8 @@ class Admincp_Service_Module_Module extends Phpfox_Service
 				}
 				else 
 				{
-					Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'module' . PHPFOX_DS . $aRow['module_id'] . PHPFOX_DS, true);
-					Phpfox::getLib('file')->write(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'module' . PHPFOX_DS . $aRow['module_id'] . PHPFOX_DS . 'phpfox.xml', $oXmlBuilder->output());	
+					Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'module' . PHPFOX_DS . $aRow['module_id'] . PHPFOX_DS, true);
+					Phpfox_File::instance()->write(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'module' . PHPFOX_DS . $aRow['module_id'] . PHPFOX_DS . 'phpfox.xml', $oXmlBuilder->output());
 				}
 			}
 			else 

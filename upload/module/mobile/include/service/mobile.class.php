@@ -35,12 +35,12 @@ class Mobile_Service_Mobile extends Phpfox_Service
 		}
 		 * 
 		 */
-		$aMenus = Phpfox::getLib('template')->getMenu('mobile');
+		$aMenus = Phpfox_Template::instance()->getMenu('mobile');
 		foreach ($aMenus as $iKey => $aMenu)
 		{
 			$aMenus[$iKey]['phrase'] = Phpfox::getPhrase($aMenu['module'] . '.' . $aMenu['var_name']);
 			$aMenus[$iKey]['link'] = Phpfox::getLib('url')->makeUrl($aMenu['url']);
-			$aMenus[$iKey]['icon'] = Phpfox::getLib('template')->getStyle('image', 'mobile/' . $aMenu['mobile_icon']);
+			$aMenus[$iKey]['icon'] = Phpfox_Template::instance()->getStyle('image', 'mobile/' . $aMenu['mobile_icon']);
 		}		
 		
 		return $aMenus;

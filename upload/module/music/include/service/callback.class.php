@@ -1227,7 +1227,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}		
 	
@@ -1256,7 +1256,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -1322,7 +1322,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('music.album', $aRow['album_id'], $aRow['name']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	
@@ -1351,7 +1351,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('music.album', $aRow['album_id'], $aRow['name']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}		
 	
@@ -1378,7 +1378,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog'),
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
 		);			
 	}
@@ -1528,7 +1528,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']) . 'comment_' .$aNotification['item_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	
@@ -1547,7 +1547,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('music.album', $aRow['album_id'], $aRow['name']) . 'comment_' .$aNotification['item_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	

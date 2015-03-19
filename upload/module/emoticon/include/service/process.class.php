@@ -106,8 +106,8 @@ class Emoticon_Service_Process extends Phpfox_Service
 		{
 			if ($sFileName === null)
 			{
-				$oFile = Phpfox::getLib('file');
-				$oImage = Phpfox::getLib('image');
+				$oFile = Phpfox_File::instance();
+				$oImage = Phpfox_Image::instance();
 				
 				$aImage = $oFile->load('file', array('png', 'jpg', 'gif'));
 				
@@ -239,7 +239,7 @@ class Emoticon_Service_Process extends Phpfox_Service
 				copy($sDir . PHPFOX_DS . $sFile, Phpfox::getParam('core.dir_emoticon') . $aVal['package_path'] . PHPFOX_DS . $sFile);
 			}
 
-			Phpfox::getLib('file')->delete_directory($sDir);
+			Phpfox_File::instance()->delete_directory($sDir);
 		}
 		return $aVal['package_path'];
 	}
@@ -276,7 +276,7 @@ class Emoticon_Service_Process extends Phpfox_Service
 				->execute('getSlaveField');
 
 			$sPath = Phpfox::getParam('core.dir_emoticon') . $sPath;
-			Phpfox::getLib('file')->delete_directory($sPath);
+			Phpfox_File::instance()->delete_directory($sPath);
 		}		
 		
 		$this->database()->delete($this->_sTable, 'package_path = \'' . Phpfox::getLib('parse.input')->clean($iId).'\'');		

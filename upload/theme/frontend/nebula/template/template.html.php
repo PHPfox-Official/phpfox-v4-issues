@@ -140,7 +140,7 @@ defined('PHPFOX') or exit('NO DICE!');
 											</div>		
 										</div>
 										
-										{if Phpfox::getLib('module')->getFullControllerName() == 'core.index-member'}										
+										{if Phpfox_Module::instance()->getFullControllerName() == 'core.index-member'}
 										{menu_sub}
 										{block location='1'}
 										
@@ -192,7 +192,7 @@ defined('PHPFOX') or exit('NO DICE!');
 												{if !$bUseFullSite}
 												
 												<div id="right" class="content_column">
-													{if !Phpfox::isUser() || Phpfox::getLib('module')->getFullControllerName() == 'core.index-member' || defined('PHPFOX_IS_USER_PROFILE') || defined('PHPFOX_IS_PAGES_VIEW')}
+													{if !Phpfox::isUser() || Phpfox_Module::instance()->getFullControllerName() == 'core.index-member' || defined('PHPFOX_IS_USER_PROFILE') || defined('PHPFOX_IS_PAGES_VIEW')}
 													
 													{else}
 													{menu_sub}

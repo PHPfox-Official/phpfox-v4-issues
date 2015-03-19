@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Forum_Component_Controller_Search extends Phpfox_Component
 {	
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -51,7 +51,7 @@ class Forum_Component_Controller_Search extends Phpfox_Component
 			$this->template()->setFullSite();
 			$this->setParam('bIsSearchQuery', true);
 			
-			return Phpfox::getLib('module')->setController('forum.forum');
+			return Phpfox_Module::instance()->setController('forum.forum');
 		}
 		
 		Phpfox::getService('forum')->getSearchFilter();

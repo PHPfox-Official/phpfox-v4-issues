@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Photo_Component_Controller_Download extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -43,7 +43,7 @@ class Photo_Component_Controller_Download extends Phpfox_Component
 		Phpfox::getService('photo.process')->updateCounter($aPhoto['photo_id'], 'total_download');
 		
 		// Download the photo
-		Phpfox::getLib('file')->forceDownload($sPath, $aPhoto['file_name'], $aPhoto['mime_type'], $aPhoto['file_size'], $aPhoto['server_id']);
+		Phpfox_File::instance()->forceDownload($sPath, $aPhoto['file_name'], $aPhoto['mime_type'], $aPhoto['file_size'], $aPhoto['server_id']);
 		
 		// We are done, lets get out of here
 		exit;

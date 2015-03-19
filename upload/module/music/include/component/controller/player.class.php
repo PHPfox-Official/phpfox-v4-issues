@@ -18,7 +18,7 @@ define('PHPFOX_IS_POPUP', true);
 class Music_Component_Controller_Player extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

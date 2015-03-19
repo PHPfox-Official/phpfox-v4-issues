@@ -34,7 +34,7 @@ class Ad_Service_Ad extends Phpfox_Service
 			Phpfox::getPhrase('ad.manage_sponsorships') => 'ad.manage-sponsor',
 		);		
 		
-		Phpfox::getLib('template')->buildSectionMenu('ad', $aFilterMenu);			
+		Phpfox_Template::instance()->buildSectionMenu('ad', $aFilterMenu);
 	}
 	
 	/**
@@ -332,7 +332,7 @@ class Ad_Service_Ad extends Phpfox_Service
 				// http://www.phpfox.com/tracker/view/15397/
 				if (!empty($aAd['disallow_controller']))
 				{
-					$sControllerName = Phpfox::getLib('module')->getFullControllerName();
+					$sControllerName = Phpfox_Module::instance()->getFullControllerName();
 					$aParts = explode(',', $aAd['disallow_controller']);
 					foreach ($aParts as $sPart)
 					{
@@ -453,7 +453,7 @@ class Ad_Service_Ad extends Phpfox_Service
 				}
 			}
 			
-			if (!empty($aAd['module_access']) && $aAd['module_access'] != Phpfox::getLib('module')->getModuleName())
+			if (!empty($aAd['module_access']) && $aAd['module_access'] != Phpfox_Module::instance()->getModuleName())
 			{
 				unset($aAds[$iKey]);
 			}			
@@ -714,7 +714,7 @@ class Ad_Service_Ad extends Phpfox_Service
 		$sSizes = '';
 		if ($aSizes === null)
 		{			
-			$aSizes = Phpfox::getLib('xml.parser')->parse(file_get_contents(str_replace(Phpfox::getParam('core.path'), PHPFOX_DIR, Phpfox::getLib('template')->getStyle('xml', 'ad.xml'))));
+			$aSizes = Phpfox::getLib('xml.parser')->parse(file_get_contents(str_replace(Phpfox::getParam('core.path'), PHPFOX_DIR, Phpfox_Template::instance()->getStyle('xml', 'ad.xml'))));
 		}
 		
 		if (is_array($aSizes['block' . (int) $iBlockId]))
@@ -761,7 +761,7 @@ class Ad_Service_Ad extends Phpfox_Service
 		$sSizes = '';
 		if ($aSizes === null)
 		{			
-			$aSizes = Phpfox::getLib('xml.parser')->parse(file_get_contents(str_replace(Phpfox::getParam('core.path'), PHPFOX_DIR, Phpfox::getLib('template')->getStyle('xml', 'ad.xml'))));
+			$aSizes = Phpfox::getLib('xml.parser')->parse(file_get_contents(str_replace(Phpfox::getParam('core.path'), PHPFOX_DIR, Phpfox_Template::instance()->getStyle('xml', 'ad.xml'))));
 		}		
 		
 		if (isset($aSizes['block' . $iBlock]))

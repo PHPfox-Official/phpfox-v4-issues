@@ -20,7 +20,7 @@ class Attachment_Component_Block_Current extends Phpfox_Component
 	 *
 	 */
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

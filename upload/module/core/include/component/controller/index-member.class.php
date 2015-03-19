@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Core_Component_Controller_Index_Member extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -35,7 +35,7 @@ class Core_Component_Controller_Index_Member extends Phpfox_Component
 				
 				if (($iTestStyle = $this->request()->get('test_style_id')))
 				{
-					if (Phpfox::getLib('template')->testStyle($iTestStyle))
+					if (Phpfox_Template::instance()->testStyle($iTestStyle))
 					{
 						
 					}
@@ -101,7 +101,7 @@ class Core_Component_Controller_Index_Member extends Phpfox_Component
 			$this->template()->setHeader('<script type="text/javascript">document.domain = "' . Phpfox::getParam('video.convert_js_parent') . '";</script>');
 		}
 		
-		Phpfox::getLib('module')->setCacheBlockData(array(
+		Phpfox_Module::instance()->setCacheBlockData(array(
 				'table' => 'user_dashboard',
 				'field' => 'user_id',
 				'item_id' => Phpfox::getUserId(),

@@ -25,7 +25,7 @@ class Core_Service_System extends Phpfox_Service
 	
 	public function get()
 	{
-		$oFile = Phpfox::getLib('file');
+		$oFile = Phpfox_File::instance();
 		$bSlaveEnabled = Phpfox::getParam(array('db', 'slave'));
 		$sDriver = Phpfox::getParam(array('db', 'driver'));
 		

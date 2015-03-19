@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Photo_Component_Controller_Tag extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -24,7 +24,7 @@ class Photo_Component_Controller_Tag extends Phpfox_Component
 		
 		if ($sTag = $this->request()->get('req3'))
 		{			
-			return Phpfox::getLib('module')->setController('photo.index');
+			return Phpfox_Module::instance()->setController('photo.index');
 		}		
 		
 		$this->template()->setTitle(Phpfox::getPhrase('photo.photo_tags'))

@@ -20,7 +20,7 @@ class Friend_Component_Controller_Mybirthday extends Phpfox_Component
 		Phpfox::isUser(true);
 		// get the request for just one message
 		$iId = (int)$this->request()->get('id');		
-		$aMessages = Phpfox::getService('friend')->getBirthdayMessages(Phpfox::getUserId(), $iId);		
+		$aMessages = Friend_Service_Friend::instance()->getBirthdayMessages(Phpfox::getUserId(), $iId);
 		
 		$this->template()->assign(array(
 			'aMessages' => $aMessages

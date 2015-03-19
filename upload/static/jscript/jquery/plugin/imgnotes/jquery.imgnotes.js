@@ -32,10 +32,10 @@
 		
 		$(image).hover(
 			function(){
-				$('.note').show();				
+				$('.note, .notep').show();
 			},
 			function(){
-				$('.note').hide();
+				$('.note, .notep').hide();
 			}
 		);
 		

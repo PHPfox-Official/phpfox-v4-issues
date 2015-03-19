@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Im_Component_Block_Footer extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		

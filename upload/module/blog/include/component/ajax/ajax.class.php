@@ -48,13 +48,13 @@ class Blog_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		foreach ($aRows as $aRow)
 		{
-			Phpfox::getLib('template')->assign(array(
+			Phpfox_Template::instance()->assign(array(
 			'aItem' => array(
 				'category_id' => $aRow['category_id'],
 				'name' => $aRow['name'],
 				'user_id' => Phpfox::getUserId()
 			)));
-			Phpfox::getLib('template')->getTemplate('blog.block.category-form');			
+			Phpfox_Template::instance()->getTemplate('blog.block.category-form');
 		}		
 
 		$this->call('$("#js_add_new_category").prepend("' . $this->getContent() . '").highlightFade(); $("#js_category_info").html("' . Phpfox::getPhrase('blog.added') . '").highlightFade().fadeOut(5000); $("#js_add_category").val(""); $Core.loadInit();');

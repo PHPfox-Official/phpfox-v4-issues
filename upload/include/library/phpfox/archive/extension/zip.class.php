@@ -90,7 +90,7 @@ class Phpfox_Archive_Extension_Zip
 		{			
 			if ($this->_oZip->open($sArchive, ZipArchive::CREATE))
 			{
-				$aFiles = Phpfox::getLib('file')->getAllFiles(PHPFOX_DIR_CACHE . $sFolder . PHPFOX_DS);							
+				$aFiles = Phpfox_File::instance()->getAllFiles(PHPFOX_DIR_CACHE . $sFolder . PHPFOX_DS);
 				
 				foreach ($aFiles as $sNewFile)
 				{

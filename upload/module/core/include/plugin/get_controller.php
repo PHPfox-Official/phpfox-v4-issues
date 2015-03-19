@@ -5,7 +5,7 @@ if (!empty($_POST) && isset($_POST['id']) && Phpfox::isModule('feed') && Phpfox:
 	$oReq = Phpfox::getLib('request');
 	$oDb = Phpfox::getLib('database');
 	
-		$sCustomCurrentUrl = Phpfox::getLib('module')->getFullControllerName();
+		$sCustomCurrentUrl = Phpfox_Module::instance()->getFullControllerName();
 		$aVals = $oReq->getArray('val');		
 		if (!empty($aVals))
 		{

@@ -31,7 +31,7 @@ class Friend_Service_Process extends Phpfox_Service
 	{
 		if (Phpfox::getParam('core.super_cache_system'))
 		{
-			$iIsFriend = Phpfox::getService('friend')->isFriend($iUserId, $iFriendId);
+			$iIsFriend = Friend_Service_Friend::instance()->isFriend($iUserId, $iFriendId);
 		}
 		else
 		{

@@ -18,7 +18,7 @@ class Im_Component_Block_Chat extends Phpfox_Component
 	private $_bIsLive = true;
 	
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

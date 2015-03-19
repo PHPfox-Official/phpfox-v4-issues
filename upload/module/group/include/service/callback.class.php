@@ -570,7 +570,7 @@ class Group_Service_Callback extends Phpfox_Service
 			return null;
 		}
 
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('group', array('view' => 'invite')) . '"' . (!Phpfox::getUserBy('group_invite') ? ' onclick="alert(\'' . Phpfox::getPhrase('group.no_group_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox::getLib('template')->getStyle('image', 'module/group.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('group.group_invites_total', array('total' => Phpfox::getUserBy('group_invite'))) . '</a></li>';
+		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('group', array('view' => 'invite')) . '"' . (!Phpfox::getUserBy('group_invite') ? ' onclick="alert(\'' . Phpfox::getPhrase('group.no_group_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'module/group.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('group.group_invites_total', array('total' => Phpfox::getUserBy('group_invite'))) . '</a></li>';
 	}	
 	
 	public function getGroupAccess()
@@ -923,7 +923,7 @@ class Group_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('group', $aRow['group_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	

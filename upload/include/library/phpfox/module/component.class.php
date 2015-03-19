@@ -182,7 +182,7 @@ class Phpfox_Component
 	 */
 	protected function template()
 	{
-		return Phpfox::getLib('template');	
+		return Phpfox_Template::instance();
 	}	
 	
 	/**
@@ -232,13 +232,6 @@ class Phpfox_Component
 		}
 		
 		return $this;
-	}
-
-	/**
-	 * @return Phpfox_Module_Facade
-	 */
-	protected function service() {
-		return Phpfox::getLib('module.facade');
 	}
 }
 

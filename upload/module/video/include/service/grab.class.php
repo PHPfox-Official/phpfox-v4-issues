@@ -425,13 +425,13 @@ class Video_Service_Grab extends Phpfox_Service
 			}
 			else
 			{
-				$sImageLocation = Phpfox::getLib('file')->getBuiltDir(Phpfox::getParam('video.dir_image')) . md5($iId) . '%s.jpg';
+				$sImageLocation = Phpfox_File::instance()->getBuiltDir(Phpfox::getParam('video.dir_image')) . md5($iId) . '%s.jpg';
 			}
 
 			//@copy($sImage, sprintf($sImageLocation, '_120'));
 			$oImage = Phpfox::getLib('request')->send($sImage, array(), 'GET');
 			$sTempImage = 'video_temporal_image_'.$iId;
-			Phpfox::getLib('file')->writeToCache($sTempImage, $oImage);
+			Phpfox_File::instance()->writeToCache($sTempImage, $oImage);
 			@copy(PHPFOX_DIR_CACHE . $sTempImage, sprintf($sImageLocation, '_120'));
 			unlink(PHPFOX_DIR_CACHE . $sTempImage);
 

@@ -16,12 +16,12 @@ defined('PHPFOX') or exit('NO DICE!');
 class User_Component_Block_Register_Top extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		$bPass = false;
-		if (!Phpfox::isUser() && (Phpfox::getLib('module')->getFullControllerName() != 'user.register' && Phpfox::getLib('module')->getFullControllerName() != 'core.index-visitor'))
+		if (!Phpfox::isUser() && (Phpfox_Module::instance()->getFullControllerName() != 'user.register' && Phpfox_Module::instance()->getFullControllerName() != 'core.index-visitor'))
 		{
 			$bPass = true;
 		}

@@ -18,7 +18,7 @@ define('PHPFOX_SKIP_POST_PROTECTION', true);
 class Marketplace_Component_Controller_Invoice_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

@@ -68,8 +68,8 @@ class Phpfox_Error
 		}
 		else 
 		{
-			Phpfox::getLib('module')->setController('error.display');
-			Phpfox::getLib('template')->assign(array(
+			Phpfox_Module::instance()->setController('error.display');
+			Phpfox_Template::instance()->assign(array(
 					'sErrorMessage' => $sMsg
 				)
 			);	

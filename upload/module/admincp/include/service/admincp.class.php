@@ -82,7 +82,7 @@ class Admincp_Service_Admincp extends Phpfox_Service
 			}
 
 			$aReturn = array(
-				'sTotalSpaceUsage' => $iTotalUsage . '% (' . Phpfox::getLib('file')->filesize($iTotalUsed) . ' out of ' . $aParts[0] . ' GB)',
+				'sTotalSpaceUsage' => $iTotalUsage . '% (' . Phpfox_File::instance()->filesize($iTotalUsed) . ' out of ' . $aParts[0] . ' GB)',
 				'sTotalMemberUsage' => (isset($iTotalMemberUsage) ? $iTotalMemberUsage . '% (' . $iTotalMemberCnt . ' out of ' . number_format($aParts[1]) . ')' : 'Unlimited'),
 				'sTotalVideoUsage' => $iTotalVideoUsage . '% (' . $iVideosUploaded . ' out of ' . Phpfox::getParam('core.phpfox_total_users_online_mark') . ')'
 			);
@@ -263,7 +263,7 @@ class Admincp_Service_Admincp extends Phpfox_Service
 		}
 		
 		// Is main config writable?
-		if (Phpfox::getLib('file')->isWritable(PHPFOX_DIR_SETTING . 'server.sett.php', true))
+		if (Phpfox_File::instance()->isWritable(PHPFOX_DIR_SETTING . 'server.sett.php', true))
 		{
 			$sFilePath = 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'server.sett.php';
 			
@@ -273,7 +273,7 @@ class Admincp_Service_Admincp extends Phpfox_Service
 		}
 		
 		// Is the main file folder writable?
-		if (Phpfox::getLib('file')->isWritable(PHPFOX_DIR_FILE, true))
+		if (Phpfox_File::instance()->isWritable(PHPFOX_DIR_FILE, true))
 		{
 			$sFilePath = str_replace(PHPFOX_DIR, '', PHPFOX_DIR_FILE);
 			

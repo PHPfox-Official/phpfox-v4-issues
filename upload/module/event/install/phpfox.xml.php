@@ -510,7 +510,7 @@ To see the comment thread, follow the link below:
 	<rss>
 		<feed module_id="event" group_id="2" title_var="event.rss_title_3" description_var="event.rss_description_3" feed_link="event" is_active="1" is_site_wide="1">
 			<php_group_code></php_group_code>
-			<php_view_code><![CDATA[$aRows = Phpfox::getService('event')->getForRssFeed();]]></php_view_code>
+			<php_view_code><![CDATA[$aRows = Event_Service_Event::instance()->getForRssFeed();]]></php_view_code>
 		</feed>
 	</rss>
 	<user_group_settings>

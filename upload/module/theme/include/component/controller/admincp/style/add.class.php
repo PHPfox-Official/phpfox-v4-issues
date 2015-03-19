@@ -16,14 +16,14 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Controller_Admincp_Style_Add extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		$bIsEdit = false;
 		if (($iId = $this->request()->getInt('id')))
 		{
-			if (($aStyle = Phpfox::getService('theme.style')->getForEdit($iId)))
+			if (($aStyle = Theme_Service_Style_Style::instance()->getForEdit($iId)))
 			{
 				$bIsEdit = true;				
 				$this->template()->assign(array(
@@ -39,14 +39,14 @@ class Theme_Component_Controller_Admincp_Style_Add extends Phpfox_Component
 		{
 			if ($bIsEdit)
 			{
-				if (Phpfox::getService('theme.style.process')->updateStyle($aStyle['style_id'], $aVals))
+				if (Theme_Service_Style_Process::instance()->updateStyle($aStyle['style_id'], $aVals))
 				{
 					$this->url()->send('admincp.theme.style.add', array('id' => $aStyle['style_id']), Phpfox::getPhrase('theme.style_successfully_updated'));
 				}				
 			}
 			else 
 			{
-				if (Phpfox::getService('theme.style.process')->addStyle($aVals))
+				if (Theme_Service_Style_Process::instance()->addStyle($aVals))
 				{
 					$this->url()->send('admincp.theme.style.add', null, Phpfox::getPhrase('theme.style_successfully_added'));
 				}
@@ -71,7 +71,7 @@ class Theme_Component_Controller_Admincp_Style_Add extends Phpfox_Component
 			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('theme.editing_style') . ': ' . $aStyle['name'] : Phpfox::getPhrase('theme.create_style')), null, true)
 			->assign(array(
 					'bIsEdit' => $bIsEdit,
-					'aStyles' => Phpfox::getService('theme.style')->get(),
+					'aStyles' => Theme_Service_Style_Style::instance()->get(),
 					'aThemes' => Phpfox::getService('theme')->get()
 				)
 			);			

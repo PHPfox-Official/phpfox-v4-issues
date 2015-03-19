@@ -84,10 +84,10 @@ defined('PHPFOX') or exit('NO DICE!');
 						<div id="mobile_content">
 							{error}				
 							{if Phpfox::isUser() 
-							|| (!Phpfox::isUser() && Phpfox::getLib('module')->getFullControllerName() == 'user.register') 
-							|| (!Phpfox::isUser() && Phpfox::getLib('module')->getFullControllerName() == 'user.login')
-							|| (!Phpfox::isUser() && Phpfox::getLib('module')->getFullControllerName() == 'user.password/request')
-							|| (!Phpfox::isUser() && Phpfox::getLib('module')->getFullControllerName() == 'janrain.login')
+							|| (!Phpfox::isUser() && Phpfox_Module::instance()->getFullControllerName() == 'user.register')
+							|| (!Phpfox::isUser() && Phpfox_Module::instance()->getFullControllerName() == 'user.login')
+							|| (!Phpfox::isUser() && Phpfox_Module::instance()->getFullControllerName() == 'user.password/request')
+							|| (!Phpfox::isUser() && Phpfox_Module::instance()->getFullControllerName() == 'janrain.login')
 							}			
 							{if defined('PHPFOX_IS_USER_PROFILE') || defined('PHPFOX_IS_PAGES_VIEW')}
 							{module name='profile.mobile'}

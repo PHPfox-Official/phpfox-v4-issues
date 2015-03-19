@@ -27,9 +27,9 @@ class Friend_Component_Block_Birthday extends Phpfox_Component
 			return false;
 		}
 
-		$aBirthdays = Phpfox::getService('friend')->getBirthdays(Phpfox::getuserId());
+		$aBirthdays = Friend_Service_Friend::instance()->getBirthdays(Phpfox::getuserId());
 
-		$bIsEventSection = (Phpfox::getLib('module')->getFullControllerName() == 'event.index' ? true : false);
+		$bIsEventSection = (Phpfox_Module::instance()->getFullControllerName() == 'event.index' ? true : false);
 		if (!Phpfox::isModule('event'))
 		{
 			$bIsEventSection = true;

@@ -215,7 +215,7 @@ class Admincp_Service_Module_Process extends Phpfox_Service
 	{		
 		foreach ($aVals as $iId => $aVal)
 		{
-			if (isset($aVal['is_active']) && ($bReturn = Phpfox::getLib('module')->initMethod($iId, 'requirementCheck')) === false)
+			if (isset($aVal['is_active']) && ($bReturn = Phpfox_Module::instance()->initMethod($iId, 'requirementCheck')) === false)
 			{
 				return false;
 			}
@@ -1465,7 +1465,7 @@ class Admincp_Service_Module_Process extends Phpfox_Service
 			$aParams[] = $aArgs[$i];
 		}
 
-		foreach (Phpfox::getLib('module')->getModules() as $sModule)
+		foreach (Phpfox_Module::instance()->getModules() as $sModule)
 		{
 			$sCallBack = PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . PHPFOX_DIR_MODULE_SERVICE . PHPFOX_DS . 'callback.class.php';
 			if (file_exists($sCallBack))

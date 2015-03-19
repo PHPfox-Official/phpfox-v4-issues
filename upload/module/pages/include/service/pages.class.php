@@ -508,7 +508,7 @@ class Pages_Service_Pages extends Phpfox_Service
 	public function getMenu($aPage)
 	{
 		$sHomeUrl = Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']);
-		$sCurrentModule = Phpfox::getLib('module')->getModuleName();
+		$sCurrentModule = Phpfox_Module::instance()->getModuleName();
 		
 		$aMenus = array();
 		if ($this->isAdmin($aPage))

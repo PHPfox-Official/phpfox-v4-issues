@@ -18,7 +18,7 @@ define('PHPFOX_SKIP_POST_PROTECTION', true);
 class Janrain_Component_Controller_Rpx extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Controller_Add extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -29,10 +29,11 @@ class Event_Component_Controller_Add extends Phpfox_Component
 		$aCallback = false;		
 		$sModule = $this->request()->get('module', false);
 		$iItem =  $this->request()->getInt('item', false);
+		$aEvent = false;
 		
 		if ($iEditId = $this->request()->get('id'))
 		{
-			if (($aEvent = Phpfox::getService('event')->getForEdit($iEditId)))
+			if (($aEvent = Event_Service_Event::instance()->getForEdit($iEditId)))
 			{
 				$bIsEdit = true;
 				$this->setParam('aEvent', $aEvent);
@@ -88,7 +89,7 @@ class Event_Component_Controller_Add extends Phpfox_Component
 			{				
 				if ($bIsEdit)
 				{
-					if (Phpfox::getService('event.process')->update($aEvent['event_id'], $aVals, $aEvent))
+					if (Event_Service_Process::instance()->update($aEvent['event_id'], $aVals, $aEvent))
 					{
 						switch ($sAction)
 						{
@@ -129,9 +130,9 @@ class Event_Component_Controller_Add extends Phpfox_Component
 					
 					if (Phpfox_Error::isPassed())
 					{	
-						if ($iId = Phpfox::getService('event.process')->add($aVals, ($aCallback !== false ? $sModule : 'event'), ($aCallback !== false ? $iItem : 0)))
+						if ($iId = Event_Service_Process::instance()->add($aVals, ($aCallback !== false ? $sModule : 'event'), ($aCallback !== false ? $iItem : 0)))
 						{
-							$aEvent = Phpfox::getService('event')->getForEdit($iId);
+							$aEvent = Event_Service_Event::instance()->getForEdit($iId);
 							$this->url()->permalink('event', $aEvent['event_id'], $aEvent['title'], true, Phpfox::getPhrase('event.event_successfully_added'));
 						}
 					}
@@ -200,8 +201,8 @@ class Event_Component_Controller_Add extends Phpfox_Component
 					'iItem' => ($aCallback !== false ? $iItem : ''),
 					'aCallback' => $aCallback,
 					'iMaxFileSize' => (Phpfox::getUserParam('event.max_upload_size_event') === 0 ? null : Phpfox::getLib('phpfox.file')->filesize((Phpfox::getUserParam('event.max_upload_size_event') / 1024) * 1048576)),
-					'bCanSendEmails' => ($bIsEdit ? Phpfox::getService('event')->canSendEmails($aEvent['event_id']) : false),
-					'iCanSendEmailsTime' => ($bIsEdit ? Phpfox::getService('event')->getTimeLeft($aEvent['event_id']) : false),
+					'bCanSendEmails' => ($bIsEdit ? Event_Service_Event::instance()->canSendEmails($aEvent['event_id']) : false),
+					'iCanSendEmailsTime' => ($bIsEdit ? Event_Service_Event::instance()->getTimeLeft($aEvent['event_id']) : false),
 					'sJsEventAddCommand' => (isset($aEvent['event_id']) ? "if (confirm('" . Phpfox::getPhrase('event.are_you_sure', array('phpfox_squote' => true)) . "')) { $('#js_submit_upload_image').show(); $('#js_event_upload_image').show(); $('#js_event_current_image').remove(); $.ajaxCall('event.deleteImage', 'id={$aEvent['event_id']}'); } return false;" : ''),
 					'sTimeSeparator' => Phpfox::getPhrase('event.time_separator')
 				)

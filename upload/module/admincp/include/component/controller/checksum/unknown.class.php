@@ -26,7 +26,7 @@ class Admincp_Component_Controller_Checksum_Unknown extends Phpfox_Component {
 		}
 
 		$unknown = array();
-		$files = Phpfox::getLib('file')->getAllFiles(PHPFOX_DIR);
+		$files = Phpfox_File::instance()->getAllFiles(PHPFOX_DIR);
 		foreach ($files as $file) {
 			$file = str_replace(PHPFOX_DIR, '', $file);
 

@@ -446,7 +446,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 			return null;
 		}
 
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('marketplace', array('view' => 'invitation')) . '"' . (!$iTotal ? ' onclick="alert(\'' . Phpfox::getPhrase('marketplace.no_listing_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox::getLib('template')->getStyle('image', 'module/marketplace.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('marketplace.marketplace_invites') . ' (<span id="js_request_marketplace_count_total">' . $iTotal . '</span>)</a></li>';
+		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('marketplace', array('view' => 'invitation')) . '"' . (!$iTotal ? ' onclick="alert(\'' . Phpfox::getPhrase('marketplace.no_listing_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'module/marketplace.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('marketplace.marketplace_invites') . ' (<span id="js_request_marketplace_count_total">' . $iTotal . '</span>)</a></li>';
 	}
 
 	public function reparserList()
@@ -727,7 +727,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	
@@ -756,7 +756,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -778,7 +778,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}
 
@@ -940,7 +940,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog'),
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
 		);			
 	}	
@@ -960,7 +960,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title'])  .'comment_' . $aNotification['item_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	

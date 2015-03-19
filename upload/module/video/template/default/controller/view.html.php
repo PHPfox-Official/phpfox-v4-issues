@@ -82,7 +82,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{if $aVideo.is_stream}
 					{$aVideo.embed_code}
 				{else}
-				<div id="js_video_player" style="{if Phpfox::getLib('template')->getThemeFolder() == 'nebula'}width:600px; height:366px;{else}width:640px; height:390px;{/if} margin:auto;{if $aVideo.in_process > 0} display:none;{/if}"></div>		
+				<div id="js_video_player" style="{if Phpfox_Template::instance()->getThemeFolder() == 'nebula'}width:600px; height:366px;{else}width:640px; height:390px;{/if} margin:auto;{if $aVideo.in_process > 0} display:none;{/if}"></div>
 				{/if}
 				{/if}
 			{/if}

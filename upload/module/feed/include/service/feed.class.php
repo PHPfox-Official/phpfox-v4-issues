@@ -1096,14 +1096,14 @@ class Feed_Service_Feed extends Phpfox_Service
 		
 		if (isset($aFeeds[0]['type_id']))
 		{
-			Phpfox::getLib('template')->assign(array(
+			Phpfox_Template::instance()->assign(array(
 				'aFeed' => $aFeeds[0],
 				'aFeedCallback' => array('module' => str_replace('_comment','',$aFeeds[0]['type_id']), 'item_id' => $aFeeds[0]['item_id'])
 				))->getTemplate((Phpfox::getService('profile')->timeline() ? 'feed.block.timeline' : 'feed.block.entry'));				
 		}
 		else
 		{
-			Phpfox::getLib('template')->assign(array('aFeed' => $aFeeds[0]))->getTemplate('feed.block.entry');				
+			Phpfox_Template::instance()->assign(array('aFeed' => $aFeeds[0]))->getTemplate('feed.block.entry');
 		}	
 		
 		$sId = 'js_tmp_comment_' . md5('feed_' . uniqid() . Phpfox::getUserId()) . '';
@@ -1360,14 +1360,14 @@ class Feed_Service_Feed extends Phpfox_Service
 		    {
 				case '1':
 					// http://www.phpfox.com/tracker/view/14418/ instead of "if(!Phpfox::getService('user')->getUserObject($iUserid)->is_friend)"
-					if (Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $aRow['user_id']))
+					if (Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $aRow['user_id']))
 					{
 					$bCanPostComment = false;
 					}
 					break;
 				case '2':
 					// http://www.phpfox.com/tracker/view/14418/ instead of "if (!Phpfox::getService('user')->getUserObject($iUserid)->is_friend && !Phpfox::getService('user')->getUserObject($iUserid)->is_friend_of_friend)"
-					if (Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $aRow['user_id']) && Phpfox::getService('friend')->isFriendOfFriend($aRow['user_id']))
+					if (Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $aRow['user_id']) && Friend_Service_Friend::instance()->isFriendOfFriend($aRow['user_id']))
 					{
 					$bCanPostComment = false;
 					}

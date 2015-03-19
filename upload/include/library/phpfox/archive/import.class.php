@@ -95,7 +95,7 @@ class Phpfox_Archive_Import
 		
 		Phpfox::getLib('archive', $sExt)->extract($aFile['tmp_name'], $sLocation);
 		
-		$aFiles = Phpfox::getLib('file')->getAllFiles($sLocation);
+		$aFiles = Phpfox_File::instance()->getAllFiles($sLocation);
 		foreach ($aFiles as $sFile)
 		{
 			$sNewFile = str_replace($sLocation, '', $sFile);
@@ -129,7 +129,7 @@ class Phpfox_Archive_Import
 			// Phpfox::getLib('ftp')->put($sFile, PHPFOX_DIR . $sNewFile);			
 		}
 				
-		// Phpfox::getLib('file')->delete_directory($sLocation);
+		// Phpfox_File::instance()->delete_directory($sLocation);
 				
 		return $sLocationId;		
 	}

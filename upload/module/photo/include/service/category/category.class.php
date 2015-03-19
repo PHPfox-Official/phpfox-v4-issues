@@ -450,7 +450,7 @@ class Photo_Service_Category_Category extends Phpfox_Service
 				}
 				else 
 				{
-					$sCategories .= '<li><img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/draggable.png') . '" alt="" /> <span class="js_photo_category" id="js_sortable_category_' . $aCategory['category_id'] . '">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</span>' . $this->_get($aCategory['category_id'], $bAnchor) . '</li>';				
+					$sCategories .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <span class="js_photo_category" id="js_sortable_category_' . $aCategory['category_id'] . '">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</span>' . $this->_get($aCategory['category_id'], $bAnchor) . '</li>';
 				}
 			}
 		}

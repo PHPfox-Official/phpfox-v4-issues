@@ -16,11 +16,11 @@ defined('PHPFOX') or exit('NO DICE!');
 class Search_Component_Controller_Tag extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
-		return Phpfox::getLib('module')->setController('search.index');	
+		return Phpfox_Module::instance()->setController('search.index');
 	}
 	
 	/**

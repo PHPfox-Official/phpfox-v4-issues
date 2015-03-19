@@ -153,13 +153,13 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 								Phpfox::getService('facebook.process')->addUser($iUserId, $aUserInfo['id']);					
 								
 								$sImage = 'https://graph.facebook.com/me/picture?type=large&access_token=' . Phpfox::getService('facebook')->getToken();
-								Phpfox::getLib('file')->writeToCache('fb_' . $iUserId . '_' . md5($sImage), file_get_contents($sImage));							
+								Phpfox_File::instance()->writeToCache('fb_' . $iUserId . '_' . md5($sImage), file_get_contents($sImage));
 								$sNewImage = 'fb_' . $iUserId . '_' . md5($sImage) . '%s.jpg';
 								copy(PHPFOX_DIR_CACHE . 'fb_' . $iUserId . '_' . md5($sImage), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''));
 								foreach(Phpfox::getParam('user.user_pic_sizes') as $iSize)
 								{
-									Phpfox::getLib('image')->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize), $iSize, $iSize);
-									Phpfox::getLib('image')->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize . '_square'), $iSize, $iSize, false);
+									Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize), $iSize, $iSize);
+									Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize . '_square'), $iSize, $iSize, false);
 								}	
 								unlink(PHPFOX_DIR_CACHE . 'fb_' . $iUserId . '_' . md5($sImage));
 									

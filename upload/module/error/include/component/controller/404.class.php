@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Error_Component_Controller_404 extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

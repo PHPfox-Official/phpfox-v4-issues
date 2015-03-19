@@ -23,6 +23,24 @@ class Phpfox_Service
 	 * @var string
 	 */
 	protected $_sTable;
+
+	/**
+	 * @return $this
+	 */
+	public static function instance() {
+		$name = get_called_class();
+		$name = strtolower($name);
+		$name = str_replace('service_', '', $name);
+		$parts = explode('_', $name);
+		if (count($parts) > 2) {
+			if ($parts[1] == $parts[2]) {
+				unset($parts[2]);
+			}
+		}
+		$className = implode('.', $parts);
+
+		return Phpfox::getService($className);
+	}
 	    
 	/**
 	 * Extends the database object.
@@ -39,7 +57,7 @@ class Phpfox_Service
      * Extends the cache object
      *
      * @see Phpfox_Cache
-     * @return Phpfox_Cache
+     * @return Phpfox_Cache_Storage_File
      */
     protected function cache()
     {

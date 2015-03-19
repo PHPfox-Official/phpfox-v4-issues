@@ -88,7 +88,7 @@ class Phpfox_Plugin
 				}
 			}
 			
-			$aModules = Phpfox::getLib('module')->getModules();
+			$aModules = Phpfox_Module::instance()->getModules();
 			foreach ($aModules as $sModule => $iModuleId)
 			{
 				if (is_dir(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . PHPFOX_DIR_MODULE_PLUGIN . PHPFOX_DS))

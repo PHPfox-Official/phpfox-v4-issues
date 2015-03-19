@@ -50,13 +50,13 @@ class Theme_Service_Style_Process extends Phpfox_Service
 		$sLogoFile = PHPFOX_DIR_FILE . 'static' . PHPFOX_DS . md5($aStyle['theme_folder'] . $aStyle['folder']) . '.' . $aStyle['file_ext'];
 		if (file_exists($sLogoFile))
 		{
-			Phpfox::getLib('file')->unlink($sLogoFile);
+			Phpfox_File::instance()->unlink($sLogoFile);
 		}		
 		
 		$sLogoFile = PHPFOX_DIR_FILE . 'static' . PHPFOX_DS . md5($aStyle['theme_folder'] . $aStyle['folder']) . '_thumb.' . $aStyle['file_ext'];
 		if (file_exists($sLogoFile))
 		{
-			Phpfox::getLib('file')->unlink($sLogoFile);
+			Phpfox_File::instance()->unlink($sLogoFile);
 		}				
 		
 		return true;
@@ -107,28 +107,12 @@ class Theme_Service_Style_Process extends Phpfox_Service
 		$sLogoFile = PHPFOX_DIR_FILE . 'static' . PHPFOX_DS . md5($aStyle['theme_folder'] . $aStyle['folder']) . '.' . $sExt;
 		if (file_exists($sLogoFile))
 		{
-			Phpfox::getLib('file')->unlink($sLogoFile);
+			Phpfox_File::instance()->unlink($sLogoFile);
 		}
 		
 		if (@move_uploaded_file($aImage['tmp_name'], $sLogoFile))
-		{		
-			$sImage = PHPFOX_DIR . 'theme' . PHPFOX_DS . 'frontend' . PHPFOX_DS . '' . $aStyle['theme_folder'] . '' . PHPFOX_DS . 'style' . PHPFOX_DS . '' . $aStyle['folder'] . '' . PHPFOX_DS . 'image' . PHPFOX_DS . 'layout' . PHPFOX_DS . '' . $aStyle['logo_image'];
-			if (file_exists($sImage))
-			{
-				list($iWidth, $iHeight) = getimagesize($sImage);
-			}
-			else 
-			{
-				$iWidth = 200;
-				$iHeight = 150;
-			}
-						
-			Phpfox::getLib('image')->createThumbnail($sLogoFile, PHPFOX_DIR_FILE . 'static' . PHPFOX_DS . md5($aStyle['theme_folder'] . $aStyle['folder']) . '_thumb.' . $sExt, $iWidth, $iHeight);
-			
-			if ($bResize === true)
-			{
-				Phpfox::getLib('image')->createThumbnail($sLogoFile, $sLogoFile, $iWidth, $iHeight);	
-			}
+		{
+			Phpfox_Image::instance()->createThumbnail($sLogoFile, $sLogoFile, 100, 100, false);
 		
 			return true;
 		}
@@ -153,7 +137,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
 		Phpfox::isUser(true);
 		Phpfox::getUserParam('admincp.has_admin_access', true);			
 		
-		$aStyle = Phpfox::getService('theme.style')->getStyle($aVals['style_id']);
+		$aStyle = Theme_Service_Style_Style::instance()->getStyle($aVals['style_id']);
 		
 		if (!isset($aStyle['style_id']))
 		{
@@ -443,7 +427,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
 								Phpfox::getLib('ftp')->mkdir($sModuleDirectory, true);
 							}
 							$sTempFile = 'theme_style_cache_css_' . md5($aCss['module'] . $aCss['name'] . $iId);
-							Phpfox::getLib('file')->writeToCache($sTempFile, $aCss['value']);		
+							Phpfox_File::instance()->writeToCache($sTempFile, $aCss['value']);
 							if (file_exists($sModuleDirectory . $aCss['name']))
 							{
 								Phpfox::getLib('ftp')->unlink($sModuleDirectory . $aCss['name']);
@@ -457,7 +441,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
 						else 
 						{
 							$sTempFile = 'theme_style_cache_css_' . md5($aCss['name'] . $iId);
-							Phpfox::getLib('file')->writeToCache($sTempFile, $aCss['value']);		
+							Phpfox_File::instance()->writeToCache($sTempFile, $aCss['value']);
 							if (file_exists($sDir . 'css' . PHPFOX_DS . $aCss['name']))
 							{
 								Phpfox::getLib('ftp')->unlink($sDir . 'css' . PHPFOX_DS . $aCss['name']);
@@ -489,7 +473,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
 						}					
 	
 						$sTempFile = 'theme_style_cache_image_' . md5($aImage['name'] . $iId);
-						Phpfox::getLib('file')->writeToCache($sTempFile, base64_decode($aImage['value']));
+						Phpfox_File::instance()->writeToCache($sTempFile, base64_decode($aImage['value']));
 						if (file_exists($sDir . 'image' . PHPFOX_DS . (empty($aImage['path']) ? '' : $aImage['path'] . PHPFOX_DS) . $aImage['name']))
 						{
 							Phpfox::getLib('ftp')->unlink($sDir . 'image' . PHPFOX_DS . (empty($aImage['path']) ? '' : $aImage['path'] . PHPFOX_DS) . $aImage['name']);
@@ -512,7 +496,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
 					foreach ($aStyle['scripts']['script'] as $aScript)
 					{				
 						$sTempFile = 'theme_style_cache_script_' . md5($aScript['name'] . $iId);
-						Phpfox::getLib('file')->writeToCache($sTempFile, $aScript['value']);		
+						Phpfox_File::instance()->writeToCache($sTempFile, $aScript['value']);
 						if (file_exists($sDir . 'jscript' . PHPFOX_DS . $aScript['name']))
 						{
 							Phpfox::getLib('ftp')->unlink($sDir . 'jscript' . PHPFOX_DS . $aScript['name']);
@@ -528,7 +512,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
 				if (isset($aStyle['display_logo']))
 				{
 					$sTempFile = 'theme_style_cache_logo_' . $iId;
-					Phpfox::getLib('file')->writeToCache($sTempFile, base64_decode($aStyle['display_logo']));		
+					Phpfox_File::instance()->writeToCache($sTempFile, base64_decode($aStyle['display_logo']));
 					if (file_exists($sDir . 'phpfox.gif'))
 					{
 						Phpfox::getLib('ftp')->unlink($sDir . 'phpfox.gif');
@@ -543,7 +527,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
                 if (isset($aStyle['php_header']['code']))
 				{
 					$sTempFile = 'theme_style_cache_php_header_' . $iId;
-					Phpfox::getLib('file')->writeToCache($sTempFile, $aStyle['php_header']['code']);
+					Phpfox_File::instance()->writeToCache($sTempFile, $aStyle['php_header']['code']);
 					if (file_exists($sDir . 'php'. PHPFOX_DS . 'header.php'))
 					{
 						Phpfox::getLib('ftp')->unlink($sDir . 'php'. PHPFOX_DS . 'header.php');
@@ -650,7 +634,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
 		Phpfox::isUser(true);
 		Phpfox::getUserParam('admincp.has_admin_access', true);		
 		
-		$aStyle = Phpfox::getService('theme.style')->getStyle($iId);
+		$aStyle = Theme_Service_Style_Style::instance()->getStyle($iId);
 		
 		if (!isset($aStyle['style_id']))
 		{
@@ -772,7 +756,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
 			$aTheme = Phpfox::getService('theme')->getTheme($aStyleParentParts[0], true);
 			if (isset($aTheme['theme_id']))
 			{
-				$aStyleParent = Phpfox::getService('theme.style')->getStyleParent($aTheme['theme_id'], $aStyleParentParts[1]);
+				$aStyleParent = Theme_Service_Style_Style::instance()->getStyleParent($aTheme['theme_id'], $aStyleParentParts[1]);
 				if (isset($aStyleParent['style_id']))
 				{
 					$aParams['parent_id'] = $aStyleParent['style_id'];

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Block_Search extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -108,7 +108,7 @@ class Friend_Component_Block_Search extends Phpfox_Component
 		}
 		else 
 		{		
-			list($iCnt, $aFriends) = Phpfox::getService('friend')->get($aConditions, 'u.full_name ASC', $iPage, $iPageSize, true, true, $bIsOnline, null, false, $iListId);			
+			list($iCnt, $aFriends) = Friend_Service_Friend::instance()->get($aConditions, 'u.full_name ASC', $iPage, $iPageSize, true, true, $bIsOnline, null, false, $iListId);
 		}
 		
 		(($sPlugin = Phpfox_Plugin::get('friend.component_block_search_get')) ? eval($sPlugin) : false);

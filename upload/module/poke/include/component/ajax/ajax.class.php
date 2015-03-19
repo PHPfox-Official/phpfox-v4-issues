@@ -30,7 +30,7 @@ class Poke_Component_Ajax_Ajax extends Phpfox_Ajax
 			return Phpfox_Error::display(Phpfox::getPhrase('poke.you_are_not_allowed_to_send_pokes'));
 		}
 		if (Phpfox::getUserParam('poke.can_only_poke_friends') && 
-				!Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $this->get('user_id')))
+				!Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $this->get('user_id')))
 		{
 			return Phpfox_Error::display(Phpfox::getPhrase('poke.you_can_only_poke_your_own_friends'));
 		}

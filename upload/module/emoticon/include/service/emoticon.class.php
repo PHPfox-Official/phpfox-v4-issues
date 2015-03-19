@@ -195,7 +195,7 @@ class Emoticon_Service_Emoticon extends Phpfox_Service
 		
 		$oXmlBuilder->closeGroup();
 			
-		Phpfox::getLib('file')->write(PHPFOX_DIR_CACHE . $sEmoticonName, $oXmlBuilder->output());	
+		Phpfox_File::instance()->write(PHPFOX_DIR_CACHE . $sEmoticonName, $oXmlBuilder->output());
 		
 		return $sEmoticonName;
 	}

@@ -390,13 +390,21 @@ class Phpfox_Template
 
 		self::$_sStaticThemeFolder = $this->_sThemeFolder;
 	}
+
+	/**
+	 * @return $this
+	 */
+	public static function instance()
+	{
+		return Phpfox::getLib('template');
+	}
 	
 	/**
 	 * Sets all the images we plan on using within JavaScript.
 	 *
 	 * PHP usage:
 	 * <code>
-	 * Phpfox::getLib('template')->setImage(array('layout_sample_image', 'layout/sample.png'));
+	 * Phpfox_Template::instance()->setImage(array('layout_sample_image', 'layout/sample.png'));
 	 * </code>
 	 * 
 	 * In JavaScript the above image can be accessed by:
@@ -1105,7 +1113,7 @@ class Phpfox_Template
 	 * Gets any data we plan to place within the HTML tags <head></head>.
 	 * This method also groups the data to give the template a nice clean look.
 	 *
-	 * @return string $sData Returns the HTML data to be placed within <head></head>
+	 * @return string|array $sData Returns the HTML data to be placed within <head></head>
 	 */
 	public function getHeader($bReturnArray = false)
 	{		
@@ -1224,7 +1232,7 @@ class Phpfox_Template
 		
 			(($sPlugin = Phpfox_Plugin::get('template_getheader')) ? eval($sPlugin) : false);
 			
-			$sJs .= "\t\t\tvar oCore = {'core.is_admincp': " . (Phpfox::isAdminPanel() ? 'true' : 'false') . ", 'core.section_module': '" . Phpfox::getLib('module')->getModuleName() . "', 'profile.is_user_profile': " . (defined('PHPFOX_IS_USER_PROFILE') && PHPFOX_IS_USER_PROFILE ? 'true' : 'false') . ", 'log.security_token': '" . Phpfox::getService('log.session')->getToken() . "', 'core.url_rewrite': '" . Phpfox::getParam('core.url_rewrite') . "', 'core.country_iso': '" . (Phpfox::isUser() ? Phpfox::getUserBy('country_iso') : '') . "', 'core.can_move_on_a_y_and_x_axis' : " . ((!defined('PHPFOX_INSTALLER') && Phpfox::getParam('core.can_move_on_a_y_and_x_axis')) ? 'true' : 'false') . ", 'core.default_currency': '" . (defined('PHPFOX_INSTALLER') ? 'USD' : Phpfox::getService('core.currency')->getDefault()) . "', 'core.enabled_edit_area': " . (Phpfox::getParam('core.enabled_edit_area') ? 'true' : 'false') . ", 'core.disable_hash_bang_support': " . (Phpfox::getParam('core.disable_hash_bang_support') ? 'true' : 'false') . ", 'core.site_wide_ajax_browsing': " . ((!defined('PHPFOX_IN_DESIGN_MODE') && Phpfox::getParam('core.site_wide_ajax_browsing') && !Phpfox::isAdminPanel() && Phpfox::isUser()) ? 'true' : 'false') . ", 'profile.user_id': " . (defined('PHPFOX_IS_USER_PROFILE') && PHPFOX_IS_USER_PROFILE ? Phpfox::getService('profile')->getProfileUserId() : 0) . "};\n";
+			$sJs .= "\t\t\tvar oCore = {'core.is_admincp': " . (Phpfox::isAdminPanel() ? 'true' : 'false') . ", 'core.section_module': '" . Phpfox_Module::instance()->getModuleName() . "', 'profile.is_user_profile': " . (defined('PHPFOX_IS_USER_PROFILE') && PHPFOX_IS_USER_PROFILE ? 'true' : 'false') . ", 'log.security_token': '" . Phpfox::getService('log.session')->getToken() . "', 'core.url_rewrite': '" . Phpfox::getParam('core.url_rewrite') . "', 'core.country_iso': '" . (Phpfox::isUser() ? Phpfox::getUserBy('country_iso') : '') . "', 'core.can_move_on_a_y_and_x_axis' : " . ((!defined('PHPFOX_INSTALLER') && Phpfox::getParam('core.can_move_on_a_y_and_x_axis')) ? 'true' : 'false') . ", 'core.default_currency': '" . (defined('PHPFOX_INSTALLER') ? 'USD' : Phpfox::getService('core.currency')->getDefault()) . "', 'core.enabled_edit_area': " . (Phpfox::getParam('core.enabled_edit_area') ? 'true' : 'false') . ", 'core.disable_hash_bang_support': " . (Phpfox::getParam('core.disable_hash_bang_support') ? 'true' : 'false') . ", 'core.site_wide_ajax_browsing': " . ((!defined('PHPFOX_IN_DESIGN_MODE') && Phpfox::getParam('core.site_wide_ajax_browsing') && !Phpfox::isAdminPanel() && Phpfox::isUser()) ? 'true' : 'false') . ", 'profile.user_id': " . (defined('PHPFOX_IS_USER_PROFILE') && PHPFOX_IS_USER_PROFILE ? Phpfox::getService('profile')->getProfileUserId() : 0) . "};\n";
 // You are filtering out the controllers which should not load 'content' ajaxly, finding a way for pages.view/1/info and like that
 			$sProgressCssFile = $this->getStyle('css', 'progress.css');
 			$sStylePath = str_replace(Phpfox::getParam('core.path'), '', str_replace('progress.css', '', $sProgressCssFile));
@@ -1245,7 +1253,7 @@ class Phpfox_Template
 				'sJsAjax' => $oUrl->getDomain() . PHPFOX_STATIC . 'ajax.php',
 				'sEgiftStyle' => $this->getStyle('css','display.css','egift'),
 				'sGlobalTokenName' => Phpfox::getTokenName(),
-				'sController' => Phpfox::getLib('module')->getFullControllerName(),
+				'sController' => Phpfox_Module::instance()->getFullControllerName(),
 				'bJsIsMobile' => (Phpfox::isMobile() ? true : false),
 				'sProgressCssFile' => $sProgressCssFile,
 				'sHostedVersionId' => (defined('PHPFOX_IS_HOSTED_VERSION') ? PHPFOX_IS_HOSTED_VERSION : '')
@@ -1391,7 +1399,7 @@ class Phpfox_Template
 				}				
 				$sJs .= "};\n";			
 					
-				$aModules = Phpfox::getLib('module')->getModules();
+				$aModules = Phpfox_Module::instance()->getModules();
 				$sJs .= "\t\t\tvar oModules = {";
 				$iCnt = 0;
 				foreach ($aModules as $sModule => $iModuleId)
@@ -1469,7 +1477,7 @@ class Phpfox_Template
 		$bIsHttpsPage = false;
 		if (!defined('PHPFOX_INSTALLER') && Phpfox::getParam('core.force_https_secure_pages'))
 		{
-			if (in_array(str_replace('mobile.', '', Phpfox::getLib('module')->getFullControllerName()), Phpfox::getService('core')->getSecurePages())
+			if (in_array(str_replace('mobile.', '', Phpfox_Module::instance()->getFullControllerName()), Phpfox::getService('core')->getSecurePages())
 				&& (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
 				)
 			{
@@ -2396,7 +2404,7 @@ class Phpfox_Template
 	 * 
 	 * PHP assign:
 	 * <code>
-	 * Phpfox::getLib('template')->assign('foo', 'bar');
+	 * Phpfox_Template::instance()->assign('foo', 'bar');
 	 * </code>
 	 * 
 	 * HTML usage:
@@ -2431,8 +2439,12 @@ class Phpfox_Template
 	 * @param string $sName Variable name.
 	 * @return string Variable value.
 	 */
-	public function getVar($sName)
+	public function getVar($sName = null)
 	{
+		if ($sName === null) {
+			return $this->_aVars;
+		}
+
 		return (isset($this->_aVars[$sName]) ? $this->_aVars[$sName] : '');
 	}
 	
@@ -2469,7 +2481,7 @@ class Phpfox_Template
 	 * @return mixed STRING if 2nd argument is TRUE. Otherwise NULL.
 	 */
 	public function getLayout($sName, $bReturn = false)
-	{		
+	{
 		$this->_getFromCache($this->getLayoutFile($sName));
 
 		if ($bReturn)
@@ -2515,7 +2527,7 @@ class Phpfox_Template
 		
 		if (!$this->_isCached($sCacheName))
 		{
-			$mContent = Phpfox::getLib('template')->getTemplateFile($sFile, true);
+			$mContent = Phpfox_Template::instance()->getTemplateFile($sFile, true);
 			if (is_array($mContent))
 			{
 				$mContent = $mContent[0];
@@ -2823,7 +2835,7 @@ class Phpfox_Template
 		$bIsModulePage = false;
 		if ($sConnection === null)
 		{
-			$sConnection = Phpfox::getLib('module')->getFullControllerName();
+			$sConnection = Phpfox_Module::instance()->getFullControllerName();
 			$bIsModulePage = true;
 
 			$sConnection = preg_replace('/(.*)\.profile/i', '\\1.index', $sConnection);
@@ -3217,7 +3229,7 @@ class Phpfox_Template
 			else 
 			{				
 				if ((empty($sView) && str_replace('/', '.', Phpfox::getLib('url')->getUrl()) == $sMenuLink) 
-					|| (!empty($sView) && str_replace('/', '.', Phpfox::getLib('url')->getUrl()) . '.view_' . $sView == $sMenuLink) || (Phpfox::getLib('module')->getFullControllerName() == $sMenuLink)
+					|| (!empty($sView) && str_replace('/', '.', Phpfox::getLib('url')->getUrl()) . '.view_' . $sView == $sMenuLink) || (Phpfox_Module::instance()->getFullControllerName() == $sMenuLink)
 					|| (!empty($sView) && Phpfox::getLib('url')->getUrl() . '.view_' . $sView . '.id_' . Phpfox::getLib('request')->getInt('id') == $sMenuLink)	
 					|| (!empty($sView) && preg_match('/\/view_' . $sView . '\//i', $sMenuLink))
 				)
@@ -3331,7 +3343,7 @@ class Phpfox_Template
 	 */ 
 	public function shouldLoadDelayed($sController)
 	{
-		$sController = Phpfox::getLib('phpfox.module')->getFullControllerName();
+		$sController = Phpfox_Module::instance()->getFullControllerName();
 
 		$bDelayed = false;
 		
@@ -3362,6 +3374,10 @@ class Phpfox_Template
 		}
 
 		return $bDelayed;
+	}
+
+	public function getCacheName($sName) {
+		return $this->_getCachedName($this->getTemplateFile($sName));
 	}
 	
 	

@@ -18,7 +18,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Controller_Request extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -31,7 +31,7 @@ class Friend_Component_Controller_Request extends Phpfox_Component
 			return Phpfox_Error::display(Phpfox::getPhrase('friend.not_a_valid_user_to_be_friends_with'));
 		}
 		
-		if (Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $aUser['user_id']))
+		if (Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $aUser['user_id']))
 		{
 			return Phpfox_Error::display(Phpfox::getPhrase('friend.you_are_already_friends_with_this_user'));
 		}

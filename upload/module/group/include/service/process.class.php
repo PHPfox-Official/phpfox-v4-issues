@@ -149,9 +149,9 @@ class Group_Service_Process extends Phpfox_Service
 		
 		if ($this->_bHasImage)
 		{			
-			$oImage = Phpfox::getLib('image');
+			$oImage = Phpfox_Image::instance();
 			
-			$sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('group.dir_image'), $iId);
+			$sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('group.dir_image'), $iId);
 			$iFileSizes = filesize(Phpfox::getParam('group.dir_image') . sprintf($sFileName, ''));			
 			
 			$aSql['image_path'] = $sFileName;
@@ -612,7 +612,7 @@ class Group_Service_Process extends Phpfox_Service
 				{
 					$iFileSizes += filesize($sImage);
 					
-					Phpfox::getLib('file')->unlink($sImage);
+					Phpfox_File::instance()->unlink($sImage);
 				}
 			}
 			
@@ -664,7 +664,7 @@ class Group_Service_Process extends Phpfox_Service
 				{
 					$iFileSizes += filesize($sImage);
 					
-					Phpfox::getLib('file')->unlink($sImage);
+					Phpfox_File::instance()->unlink($sImage);
 				}
 			}
 			
@@ -850,7 +850,7 @@ class Group_Service_Process extends Phpfox_Service
 		
 		if (isset($_FILES['image']['name']) && ($_FILES['image']['name'] != ''))
 		{
-			$aImage = Phpfox::getLib('file')->load('image', array(
+			$aImage = Phpfox_File::instance()->load('image', array(
 					'jpg',
 					'gif',
 					'png'

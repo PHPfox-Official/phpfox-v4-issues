@@ -239,7 +239,7 @@ $Behavior.blockClick = function()
 			}			
 
 			$('.js_block_click_lis_cache').remove();
-			$(this).parents('.menu:first').find('ul').append('<li class="js_block_click_lis_cache" style="margin-top:2px;">' + $.ajaxProcess('no_message') + '</li>');
+			// $(this).parents('.menu:first').find('ul').append('<li class="js_block_click_lis_cache" style="margin-top:2px;">' + $.ajaxProcess('no_message') + '</li>');
 			$.ajaxCall(aParams[0], aParams[1] + '&js_block_click_lis_cache=true', 'GET');			
 		}		
 		
@@ -509,9 +509,41 @@ $Core.loadStaticFiles = function($aFiles)
 	}
 };
 
-
 $Behavior.globalInit = function()
 {
+	if ($('.mosaicflow_load').length) {
+		var mLoad = setInterval(function() {
+			if (typeof(jQuery().mosaicflow) == 'function') {
+				p('done!');
+				// $('.mosaicflow_load').addClass('mosaicflow');
+
+				$('.mosaicflow_load').mosaicflow({
+					minItemWidth: 300,
+					itemHeightCalculation: 'attribute'
+				});
+				clearInterval(mLoad);
+			}
+		}, 500);
+	}
+
+	$('.image_load:not(.built)').each(function() {
+		var t = $(this),
+			src = t.data('src'),
+			i = new Image();
+
+		t.addClass('built');
+		if (!src) {
+			t.addClass('no_image');
+			return;
+		}
+
+		t.addClass('has_image');
+		i.onload = function() {
+			t.css('background-image', 'url(' + src + ')');
+		};
+		i.src = src;
+	});
+
 	if ($('.moderate_link').length) {
 		$('.moderate_link:not(.built)').each(function() {
 			var t = $(this),
@@ -1290,7 +1322,20 @@ if (substr(window.location.hash, 0, 2) == '#!')
 	window.location = sUrl + window.location.hash.replace('#!', '');	 
 }
 
-$Core.page = function($aParams)
+$Core.page = function(url) {
+	// p(url);
+	$.ajax({
+		url: url,
+		contentType: 'application/json',
+		complete: function(e) {
+			e = $.parseJSON(e.responseText);
+
+			$Core.show_page(e);
+		}
+	});
+};
+
+$Core.show_page = function($aParams)
 {
 	if (typeof CorePageAjaxBrowsingStart == 'function')
 	{
@@ -1321,7 +1366,21 @@ $Core.page = function($aParams)
 	{
 		$Core.loadStaticFiles($aParams['files']);
 	}
-	
+
+	for (var location in $aParams['blocks']) {
+		$('._block[data-location="' + location + '"]').html('');
+		for (var i in $aParams['blocks'][location]) {
+			$('._block[data-location="' + location + '"]').append($aParams['blocks'][location][i]);
+		}
+	}
+
+	$('._block_menu_sub').html($aParams['menuSub']);
+	$('._block_search').html($aParams['search']);
+	$('._block_breadcrumb').html($aParams['breadcrumb']);
+	$('._block_h1').html($aParams['h1']);
+
+	$('body').attr('id', 'page_' + $aParams['id']);
+
 	if (isset($aParams['customcss'])){
 		var sCustomCss = '';
 		$('#js_global_custom_css').remove();
@@ -1332,37 +1391,14 @@ $Core.page = function($aParams)
 			// $('body').append()
 		}
 	}
-
-    if (isset($aParams['nebula_current_menu'])){
-        $('#nb_features_holder .menu_is_selected').removeClass('menu_is_selected');
-        $('a[href="' + $aParams['nebula_current_menu'] + '"]').addClass('menu_is_selected');
-
-        $('#nb_features_link').removeClass('nb_is_clicked');
-        $('#nb_features_holder').slideUp('fast');
-    }
-    else
-    {
-		$('#nb_features_holder .menu_is_selected').removeClass('menu_is_selected');
-        $('a[href="' + oParams['sJsHome'] + '"]').addClass('menu_is_selected');
-
-        $('#nb_features_link').removeClass('nb_is_clicked');
-        $('#nb_features_holder').slideUp('fast');
-	}
 	
 	document.title = $aParams['title'];
 	
-	$('#main_content_holder').html('' + $aParams['content'] + '');
-	/*
-	if (isset($aParams['ads']))
-	{
-		for (sKey in $aParams['ads']){
-			$('#js_ad_space_content_' + sKey).html($aParams['ads'][sKey]);
-		}		
-	}
-	*/
+	$('#site_content').html('' + $aParams['content'] + '');
+
 	$('body').css('cursor', 'auto');
 	
-	$oEventHistory[($Core.hasPushState() ? $Core.getRequests(window.location, true) : window.location.hash.replace('#!', ''))] = $aParams['content'];		
+	// $oEventHistory[($Core.hasPushState() ? $Core.getRequests(window.location, true) : window.location.hash.replace('#!', ''))] = $aParams['content'];
 	
 	$Core.loadInit();
 	
@@ -1408,16 +1444,10 @@ var bAjaxLinkIsClicked = false;
 var bCanByPassClick = false;
 var sClickProfileName = '';
 $Behavior.linkClickAll = function()
-{	
-	if (typeof $.browser != 'undefined' && $.browser.msie && $.browser.version == '7.0')
-	{
-		return false;
+{
+	if (!$Core.hasPushState()) {
+		return;
 	}
-	
-	if (!oCore['core.site_wide_ajax_browsing'])
-	{
-		return false;
-	}	
 	
 	$('a').click(function()
 	{
@@ -1432,19 +1462,12 @@ $Behavior.linkClickAll = function()
 		{
 			return;
 		}
-		
-		if ($(this).hasClass('photo_holder_image') && !getParam('bPhotoTheaterMode')){
-			
+
+		if ($(this).hasClass('no_ajax_link') || $(this).hasClass('thickbox') || $(this).hasClass('sJsConfirm'))
+		{
+			return;
 		}
-		else{
-			if ($(this).hasClass('no_ajax_link') || $(this).hasClass('thickbox') || $(this).hasClass('sJsConfirm'))
-			{
-				return;
-			}			
-		}
-		
-		$('.js_box_image_holder_full').remove();
-		
+
 		var $aUrlParts = parse_url($sLink);
 		
 		if ($aUrlParts['host'] != getParam('sJsHostname'))
@@ -1479,16 +1502,13 @@ $Behavior.linkClickAll = function()
 		if (bCanByPassClick === true && aUrlParts[1] != sClickProfileName){
 			bCanByPassClick = false;
 			return;
-		}		
+		}
 		
 		if ($('#noteform').length > 0)
 		{
  			$('#noteform').hide(); 
 		}
-		if ($('#js_photo_view_image').length > 0)
-		{
- 			$('#js_photo_view_image').imgAreaSelect({ hide: true });		
-		}
+
 		if ($('#user_profile_photo').length > 0)
 		{
  			$('#user_profile_photo').imgAreaSelect({ hide: true });		
@@ -1499,13 +1519,15 @@ $Behavior.linkClickAll = function()
 		bAjaxLinkIsClicked = true;
 		
 		$('body').css('cursor', 'wait');
+		$('#header_menu a.menu_is_selected').removeClass('menu_is_selected');
+		if ($(this).parents('#header_menu:first').length) {
+			$(this).addClass('menu_is_selected');
+		}
 		
 		$('.js_user_tool_tip_holder').hide();
 		$('#js_global_tooltip').hide();
 		
 		$(this).addClass('is_built');
-		
-		$Core.addUrlPager(this);
 		
 		if (typeof BehaviorlinkClickAllAClick == 'function')
 		{
@@ -1515,14 +1537,10 @@ $Behavior.linkClickAll = function()
 				return false;
 			}
 		}
-		
-		var sPattern = '/core/redirect/';
-		var rPattern = new RegExp(sPattern, 'i');
-		if( rPattern.test($Core.getRequests(this, true)) )
-		{
-				return true;
-		}
-		$.ajaxCall('core.page', 'ajax_page_display=true' + $Core.getRequests(this) + '&do=' + $Core.getRequests(this, true), 'GET');
+
+		history.pushState(null, null, $sLink);
+
+		$Core.page($sLink);
 					
 		return false;
 	});
@@ -1550,11 +1568,13 @@ $Core.loadInit = function()
 
 $Core.init = function()
 {	
-	if (!$Core.hasPushState() && oCore['core.disable_hash_bang_support'])
+	if ($Core.hasPushState())
 	{
-		oCore['core.site_wide_ajax_browsing'] = false;		
-	}	
-	
+		window.addEventListener("popstate", function(e) {
+			$Core.page(document.location.href);
+		});
+	}
+
 	$bDocumentIsLoaded = true;
 		
 	$(document).ready(function()
@@ -1620,42 +1640,7 @@ $Core.init = function()
 		{
 			$Core.loadStaticFiles($mValue);
 		});
-	}		
-
-	if (oCore['core.site_wide_ajax_browsing'])
-    {	
-		if ($.browser.msie && $.browser.version == '7.0')
-		{
-			
-		}
-    	else
-    	{
-			if ($Core.hasPushState()){
-				$oEventHistory[$Core.getRequests(window.location, true)] = $('#main_content_holder').html();	
-				var $iTotalCount = 0;			
-				$(window).bind('popstate', function(event) {
-					$iTotalCount++;
-					if($.browser.safari && $iTotalCount == 1){
-						return
-					}
-					/*
-					if (getParam('sEditor') == 'tiny_mce' && isset(LoadedTinymceEditors)){
-						for (sEditor in LoadedTinymceEditors){
-							delete LoadedTinymceEditors[sEditor];
-						}
-					}					
-					*/
-					$Core.changeHistoryState({path: $Core.getRequests(window.location, true)});
-				});				
-			}			
-			else{
-				$.address.change(function(event)
-				{				
-					$Core.changeHistoryState(event);
-				});				
-			}
-    	}
-    }
+	}
 };
 
 $Core.hasPushState = function(){
@@ -1677,74 +1662,6 @@ $Core.addUrlPager = function(oObject, bShort)
 	}
 };
 
-$Core.changeHistoryState = function(event){
-				$('.js_box').each(function()
-				{
-					if (!$(this).hasClass('js_box_no_remove'))
-					{
-						var $sLink = $(this).find('.js_box_history:first').html();
-						if (isset($aBoxHistory[$sLink]))
-						{
-							delete $aBoxHistory[$sLink];
-						}					
-						$(this).remove();
-					}
-				});
-				
-				if ($Core.hasPushState()){
-					bAjaxLinkIsClicked = false;
-				}								
-		
-				if (isset($oEventHistory[event.path]) && !bAjaxLinkIsClicked)
-				{								
-					$('#main_content_holder').html($oEventHistory[event.path].replace('$Core.loadInit();', '').replace('$Core.updatePageHistory();', ''));	
-
-					$Core.loadInit();
-	
-					scroll(0,0);
-				}
-				else
-				{				
-					if (empty($oEventHistory))
-					{	
-						if (event.path == '/')
-						{
-							if (isset($oEventHistory[$Core.getRequests(window.location, true)]))
-							{							
-								$('#main_content_holder').html($oEventHistory[$Core.getRequests(window.location, true)].replace('$Core.loadInit();', '').replace('$Core.updatePageHistory();', ''));
-								
-								$Core.loadInit();
-								
-								scroll(0,0);
-							}
-							else
-							{
-								$oEventHistory[$Core.getRequests(window.location, true)] = $('#main_content_holder').html();						
-							}
-						}
-					}
-					else
-					{
-						if (event.path == '/')
-						{
-							if (isset($oEventHistory[$Core.getRequests(window.location, true)]))
-							{	
-								$('#main_content_holder').html($oEventHistory[$Core.getRequests(window.location, true)].replace('$Core.loadInit();', '').replace('$Core.updatePageHistory();', ''));
-								
-								$Core.loadInit();
-								
-								scroll(0,0);
-							}
-						}
-					}
-				}
-				
-				if (bAjaxLinkIsClicked)
-				{
-					bAjaxLinkIsClicked = false;
-				}	
-};
-
 $Core.reloadPage = function()
 {
 	/* which is why we have these fallbacks*/
@@ -1753,8 +1670,7 @@ $Core.reloadPage = function()
 };
 
 $Behavior.addModerationListener = function()
-{	
-	
+{
 	$(window).on('moderation_ended', function(){
 		/* Search for moderation rows */
 		if ($('.moderation_row:visible').length < 1)

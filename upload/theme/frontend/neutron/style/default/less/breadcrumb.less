@@ -21,6 +21,16 @@
 	width:auto;
 }
 
+.header_bar_search_holder:before {
+	.fa('\f002');
+	position:absolute;
+	left:10px;
+	top:17px;
+	z-index:100;
+	font-size:@fontSizeBase + 1;
+	color:lighten(@blockTitleColor, 20%);
+}
+
 .header_bar_search_input {
 	display:none;
 }
@@ -32,8 +42,9 @@
 	padding:0px;
 	width:100%;
 	height:50px;
-	font-size:@fontSizeBase;
+	font-size:@fontSizeBase - 1;
 	position:static;
+	text-indent:30px;
 }
 
 div.header_bar_menu {

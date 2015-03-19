@@ -15,7 +15,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Block_Request extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -36,7 +36,7 @@ class Friend_Component_Block_Request extends Phpfox_Component
 		{
 			$sError = 'user_asked_already';
 		}	
-		elseif (Phpfox::getService('friend')->isFriend($aUser['user_id'], Phpfox::getUserId()))
+		elseif (Friend_Service_Friend::instance()->isFriend($aUser['user_id'], Phpfox::getUserId()))
 		{
 			$sError = 'already_friends';
 		}		

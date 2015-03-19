@@ -287,7 +287,7 @@ class User_Service_Group_Setting_Process extends Phpfox_Service
 			{
 				if (!in_array($aVal['value'], $aCache))
 				{
-					$iModuleId = Phpfox::getLib('module')->getModuleId($aVal['module']);
+					$iModuleId = Phpfox_Module::instance()->getModuleId($aVal['module']);
 					$aSql[] = array(
 						$iModuleId,
 						$iProductId,
@@ -324,7 +324,7 @@ class User_Service_Group_Setting_Process extends Phpfox_Service
 			$aSql = array();		
 			foreach ($aVals['setting'] as $aVal)
 			{
-				$iModuleId = (int) Phpfox::getLib('module')->getModuleId($aVal['module']);
+				$iModuleId = (int) Phpfox_Module::instance()->getModuleId($aVal['module']);
 				$aSql[] = array(
 					$iModuleId,
 					$iProductId,

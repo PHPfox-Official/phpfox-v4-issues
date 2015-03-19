@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Forum_Component_Block_Copy extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

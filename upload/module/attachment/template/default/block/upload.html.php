@@ -15,6 +15,7 @@ defined('PHPFOX') or exit('NO DICE!');
 <div class="js_upload_attachment_parent_holder">
 	<script type="text/javascript">$Core.loadStaticFile('{jscript file='share.js' module='attachment'}');</script>
 	{if $sCustomAttachment == 'photo'}
+	{*
 	<div class="global_attachment_sub_menu">
 		<ul>
 			<li><a href="#" class="active" onclick="$(this).parents('.global_attachment_sub_menu:first').find('a').removeClass('active'); $(this).addClass('active'); $(this).parents('.js_upload_attachment_parent_holder:first').find('.js_upload_form_holder_global_temp').hide(); $(this).parents('.js_upload_attachment_parent_holder:first').find('.js_upload_form_holder_global').show(); return false;">{phrase var='attachment.upload_a_photo'}</a></li>
@@ -24,7 +25,8 @@ defined('PHPFOX') or exit('NO DICE!');
 			<li class="js_global_attachment_loader" style="display:none;">{img theme='ajax/add.gif' class='v_middle'}</li>
 		</ul>
 		<div class="clear"></div>
-	</div>	
+	</div>
+	*}
 	{/if}
 		
 	<div class="js_default_upload_form p_bottom_4" id="js_new_temp_form_0_{$sCategoryId}">

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Forum_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -62,7 +62,7 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		    $aDo = explode('/',$this->request()->get('do'));
 		    if ($aDo[0] == 'mobile' || (isset($aDo[1]) && $aDo[1] == 'mobile'))
 		    {
-				Phpfox::getLib('module')->getComponent('forum.forum', array('bNoTemplate' => true), 'controller');
+				Phpfox_Module::instance()->getComponent('forum.forum', array('bNoTemplate' => true), 'controller');
 
 				return;
 		    }		    
@@ -70,7 +70,7 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		    
 		if ($this->request()->get('req2') == 'topics' || $this->request()->get('req2') == 'posts')
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 				
 		$this->template()->setBreadcrumb(Phpfox::getPhrase('forum.forum'), $this->url()->makeUrl('forum'))
@@ -90,14 +90,14 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		
 		if ($aParentModule !== null)
 		{
-			Phpfox::getLib('module')->getComponent('forum.forum', array('bNoTemplate' => true), 'controller');
+			Phpfox_Module::instance()->getComponent('forum.forum', array('bNoTemplate' => true), 'controller');
 
 			return;
 		}
 		
 		if ($this->request()->getInt('req2') > 0)
 		{
-			return Phpfox::getLib('module')->setController('forum.forum');
+			return Phpfox_Module::instance()->setController('forum.forum');
 		}		
 		
 		$this->setParam('bIsForum', true);

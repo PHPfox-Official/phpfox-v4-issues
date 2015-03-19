@@ -286,7 +286,7 @@ class Ad_Service_Process extends Phpfox_Service
 		
 		if ($aVals['type_id'] == 1 && !empty($_FILES['image']['name']))
 		{			
-			$aImage = Phpfox::getLib('file')->load('image', array('jpg', 'gif', 'png'));
+			$aImage = Phpfox_File::instance()->load('image', array('jpg', 'gif', 'png'));
 			
 			if ($aImage === false)
 			{
@@ -297,10 +297,10 @@ class Ad_Service_Process extends Phpfox_Service
 
 			if (!empty($aAd['image_path']) && file_exists(Phpfox::getParam('ad.dir_image') . sprintf($aAd['image_path'], '')))
 			{
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('ad.dir_image') . sprintf($aAd['image_path'], ''));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('ad.dir_image') . sprintf($aAd['image_path'], ''));
 			}
 			
-			if ($sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('ad.dir_image'), $iId))
+			if ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('ad.dir_image'), $iId))
 			{
 				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'ad_id = ' . (int) $iId);		
 			}	
@@ -339,7 +339,7 @@ class Ad_Service_Process extends Phpfox_Service
 			$sImagePath = Phpfox::getParam('ad.dir_image') . sprintf($aAd['image_path'], '');
 			if (file_exists($sImagePath))
 			{
-				Phpfox::getLib('file')->unlink($sImagePath);
+				Phpfox_File::instance()->unlink($sImagePath);
 			}
 		}
 		
@@ -479,7 +479,7 @@ class Ad_Service_Process extends Phpfox_Service
 		
 		if ($aVals['type_id'] == 1)
 		{
-			$aImage = Phpfox::getLib('file')->load('image', array('jpg', 'gif', 'png'));
+			$aImage = Phpfox_File::instance()->load('image', array('jpg', 'gif', 'png'));
 			
 			if ($aImage === false)
 			{
@@ -493,7 +493,7 @@ class Ad_Service_Process extends Phpfox_Service
 		
 		if ($aVals['type_id'] == 1)
 		{
-			if ($sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('ad.dir_image'), $iId))
+			if ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('ad.dir_image'), $iId))
 			{
 				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'ad_id = ' . (int) $iId);		
 			}		
@@ -648,7 +648,7 @@ class Ad_Service_Process extends Phpfox_Service
 		
 		if ($aVals['type_id'] == '1')
 		{
-			$aImage = Phpfox::getLib('file')->load('image', array('jpg', 'gif', 'png'));
+			$aImage = Phpfox_File::instance()->load('image', array('jpg', 'gif', 'png'));
 			
 			if ($aImage === false)
 			{
@@ -722,7 +722,7 @@ class Ad_Service_Process extends Phpfox_Service
 		
 		if ($aVals['type_id'] == '1')
 		{
-			if ($sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('ad.dir_image'), $iId))
+			if ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('ad.dir_image'), $iId))
 			{
 				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'ad_id = ' . (int) $iId);		
 			}		

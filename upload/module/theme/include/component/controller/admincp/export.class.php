@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Controller_Admincp_Export extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -42,7 +42,7 @@ class Theme_Component_Controller_Admincp_Export extends Phpfox_Component
 				->setBreadCrumb(Phpfox::getPhrase('theme.export_theme'), $this->url()->makeUrl('current'))				
 				->setBreadcrumb($aTheme['name'], null, true)
 				->assign(array(
-				'aStyles' => Phpfox::getService('theme.style')->get(array('theme_id = ' . $aTheme['theme_id'])),
+				'aStyles' => Theme_Service_Style_Style::instance()->get(array('theme_id = ' . $aTheme['theme_id'])),
 				'aTheme' => $aTheme				
 			)
 		);		

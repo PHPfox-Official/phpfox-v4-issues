@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Video_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -62,7 +62,7 @@ class Video_Component_Controller_Index extends Phpfox_Component
 		
 		if ($aParentModule === null && $this->request()->getInt('req2'))
 		{
-			return Phpfox::getLib('module')->setController('video.view');
+			return Phpfox_Module::instance()->setController('video.view');
 		}
 		
 		if ($this->request()->get('req2') == 'category' && ($sLegacyTitle = $this->request()->get('req3')) && !is_numeric($sLegacyTitle) && !empty($sLegacyTitle))

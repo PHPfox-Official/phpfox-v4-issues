@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Photo_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{			
@@ -193,7 +193,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 		
 		if ($aParentModule === null && $this->request()->getInt('req2') > 0)
 		{
-			return Phpfox::getLib('module')->setController('photo.view');			
+			return Phpfox_Module::instance()->setController('photo.view');
 		}		
 		
 		if (($sLegacyTitle = $this->request()->get('req2')) && !empty($sLegacyTitle) && !is_numeric($sLegacyTitle))
@@ -522,6 +522,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 				)
 			)
 			->setHeader('cache', array(
+					/*
 					'progress.js' => 'static_script',
 					'browse.js' => 'module_photo',					
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',	
@@ -539,6 +540,8 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 					'browse.css' => 'module_photo',
 					'edit.css' => 'module_photo',
 					'index.js' => 'module_photo'
+					*/
+					'jquery/plugin/jquery.mosaicflow.min.js' => 'static_script'
 				)
 			)
 			->assign(array(
@@ -559,7 +562,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 		
 		if ($aParentModule === null)
 		{
-			Phpfox::getService('photo')->buildMenu();
+			// Phpfox::getService('photo')->buildMenu();
 		}		
 		
 		if (!empty($sCategory))
@@ -634,7 +637,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 		
 		if (Phpfox::getParam('core.force_404_check') && !Phpfox::getService('core.redirect')->check404($aCheckParams))
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}			
 				
 	}

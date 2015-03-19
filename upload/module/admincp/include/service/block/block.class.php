@@ -57,7 +57,7 @@ class Admincp_Service_Block_Block extends Phpfox_Service
 		
 		/*
 		$aStyleCache = array();
-		$aStyles = Phpfox::getService('theme.style')->get();
+		$aStyles = Theme_Service_Style_Style::instance()->get();
 		foreach ($aStyles as $aStyle)
 		{
 			$aStyleCache[$aStyle['style_id']] = $aStyle;

@@ -873,12 +873,12 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 					}
 					
 					// Create the 120 pixel thumbnail that will be in use.
-					Phpfox::getLib('image')->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_120'), 120, 120);
-					Phpfox::getLib('image')->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_12090'), 120, 90, false);
+					Phpfox_Image::instance()->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_120'), 120, 120);
+					Phpfox_Image::instance()->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_12090'), 120, 90, false);
 					// http://www.phpfox.com/tracker/view/14924/
-					Phpfox::getLib('image')->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_200'), 200, 200, false);
+					Phpfox_Image::instance()->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_200'), 200, 200, false);
 					// Remove the original image not resized
-					Phpfox::getLib('file')->unlink(sprintf($sImageLocation, ''));    		    		
+					Phpfox_File::instance()->unlink(sprintf($sImageLocation, ''));
 					
 					// If still no thumbnail, and the ffmpeg_movie class exists
 					if (class_exists('ffmpeg_movie') && !file_exists(sprintf($sImageLocation, '_120')))
@@ -1318,7 +1318,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	
@@ -1347,7 +1347,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -1369,7 +1369,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog'),
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
 		);			
 	}
@@ -1532,7 +1532,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title'])  . 'comment_'.$aNotification['item_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	

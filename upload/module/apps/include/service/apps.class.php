@@ -99,9 +99,9 @@ class Apps_Service_Apps extends Phpfox_Service
 			
 			$sNewHomeFolder = PHPFOX_DIR_CACHE . md5(uniqid() . Phpfox::getUserId());
 						
-			Phpfox::getLib('file')->write($sNewHomeFolder, $oXmlBuilder->output());
+			Phpfox_File::instance()->write($sNewHomeFolder, $oXmlBuilder->output());
 	
-			Phpfox::getLib('file')->forceDownload($sNewHomeFolder, 'phpfox-' . $aVals['title'] . '.apps');
+			Phpfox_File::instance()->forceDownload($sNewHomeFolder, 'phpfox-' . $aVals['title'] . '.apps');
 		}
 		
 		return false;

@@ -57,8 +57,14 @@ $Core.showUserToolTip = function(sUser)
 	$Core.userInfoLog('SHOWING: ' + sUser);
    
 	var $oOffset = $($oObj).offset();
-	
-	$('#js_user_tool_tip_cache_' + sUser + '').parent().parent().css('display', 'block')		
+
+	var obj = $('#js_user_tool_tip_cache_' + sUser + '').parent().parent();
+	var pos = $(window).width() - ($oOffset.left + obj.width());
+	if (parseInt(pos) < 10) {
+		$oOffset.left = ($oOffset.left - obj.width()) + $($oObj).width();
+	}
+	var obj = $('#js_user_tool_tip_cache_' + sUser + '').parent().parent();
+	obj.css('display', 'block')
 		.css('top', ($oOffset.top + 16) + 'px')
 		.css('left', $oOffset.left + 'px');
 };

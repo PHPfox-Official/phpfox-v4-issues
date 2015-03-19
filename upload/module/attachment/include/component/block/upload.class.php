@@ -16,12 +16,12 @@ defined('PHPFOX') or exit('NO DICE!');
 class Attachment_Component_Block_Upload extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		$iMaxFileSize = (Phpfox::getUserParam('attachment.item_max_upload_size') === 0 ? null : ((Phpfox::getUserParam('attachment.item_max_upload_size') / 1024) * 1048576));
-		$iMaxFileSize = Phpfox::getLib('file')->filesize($iMaxFileSize);
+		$iMaxFileSize = Phpfox_File::instance()->filesize($iMaxFileSize);
 		$this->template()->assign(array(
 				'bIsAllowed' => Phpfox::getService('attachment')->isAllowed(),
 				'iTotal' => Phpfox::getParam('attachment.attachment_upload_bars'),

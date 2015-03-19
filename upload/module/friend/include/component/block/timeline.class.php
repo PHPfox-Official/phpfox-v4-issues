@@ -37,7 +37,7 @@ class Friend_Component_Block_Timeline extends Phpfox_Component
 		}
 		$iTotal = 6;
 		
-		$aRows = Phpfox::getService('friend')->get('friend.is_page = 0 AND friend.user_id = ' . $aUser['user_id'], 'friend.is_top_friend DESC, friend.ordering ASC, RAND()', 0, $iTotal, false);
+		$aRows = Friend_Service_Friend::instance()->get('friend.is_page = 0 AND friend.user_id = ' . $aUser['user_id'], 'friend.is_top_friend DESC, friend.ordering ASC, RAND()', 0, $iTotal, false);
 		
 		$iCount = count($aRows);
 		

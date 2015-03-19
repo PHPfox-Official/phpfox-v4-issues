@@ -18,12 +18,25 @@ defined('PHPFOX') or exit('NO DICE!');
 {else}
 
 {foreach from=$aEvents key=sDate item=aGroups}
-<div class="block">
-	<div class="title">{$sDate}</div>	
-	<div class="border">
+<div class="block_clear">
+	<div class="title">{$sDate}</div>
 		<div class="content">
 			{foreach from=$aGroups name=events item=aEvent}
 			{item name='Event'}
+				<div class="row_banner image_load" data-src="{if $aEvent.image_path}{img server_id=$aEvent.server_id title=$aEvent.title path='event.url_image' file=$aEvent.image_path suffix='' itemprop='image' return_url=true}{/if}">
+					<header>
+						<div class="event_date">
+							<span class="month">{$aEvent.start_time_short_month}</span>
+							<span class="day">{$aEvent.start_time_short_day}</span>
+						</div>
+						<h1 itemprop="name"><a href="{$aEvent.url}" class="link" itemprop="url">{$aEvent.title|clean}</a></h1>
+						<ul>
+							<li>@ {$aEvent.start_time_phrase_stamp}</li>
+							<li>by {$aEvent|user}</li>
+						</ul>
+					</header>
+				</div>
+				{*
 				<div id="js_event_item_holder_{$aEvent.event_id}" class="js_event_parent {if $aEvent.is_sponsor && !defined('PHPFOX_IS_GROUP_VIEW')}row_sponsored {elseif $aEvent.is_featured && $sView != 'featured'}row_featured {/if}{if is_int($phpfox.iteration.events)}row1{else}row2{/if}{if $phpfox.iteration.events == 1} row_first{/if}">
 					{if !Phpfox::isMobile()}
 					<div class="row_title_image_header">
@@ -86,9 +99,9 @@ defined('PHPFOX') or exit('NO DICE!');
 					</div>
 					{/if}
 				</div>
+				*}
 			{/item}
 			{/foreach}
-		</div>
 	</div>
 </div>
 {/foreach}

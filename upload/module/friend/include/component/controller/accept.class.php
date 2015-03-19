@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Controller_Accept extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -32,7 +32,7 @@ class Friend_Component_Controller_Accept extends Phpfox_Component
 				
 		if (Phpfox::getParam('core.force_404_check') && !Phpfox::getService('core.redirect')->check404($aCheckParams))
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 		
 		
@@ -44,7 +44,7 @@ class Friend_Component_Controller_Accept extends Phpfox_Component
 		
 		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $iCnt));
 		
-		Phpfox::getService('friend')->buildMenu();
+		Friend_Service_Friend::instance()->buildMenu();
 		
 		$this->setParam('global_moderation', array(
 				'name' => 'friend',

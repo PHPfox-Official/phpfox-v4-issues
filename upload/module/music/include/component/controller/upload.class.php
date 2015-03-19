@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Music_Component_Controller_Upload extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -280,7 +280,7 @@ class Music_Component_Controller_Upload extends Phpfox_Component
 					'aUploadAlbums' => Phpfox::getService('music.album')->getForUpload($aCallback),
 					'sCreateJs' => $oValidator->createJS(),
 					'sGetJsForm' => $oValidator->getJsForm(false),
-					'iUploadLimit' => Phpfox::getLib('file')->getLimit(Phpfox::getUserParam('music.music_max_file_size')),
+					'iUploadLimit' => Phpfox_File::instance()->getLimit(Phpfox::getUserParam('music.music_max_file_size')),
 					'aGenres' => Phpfox::getService('music.genre')->getList(),
 					'sMethod' => $sMethod,
 					'sMethodUrl' => $sMethodUrl

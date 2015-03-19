@@ -102,8 +102,8 @@ class Pages_Service_Api extends Phpfox_Service
 			$_FILES['photo']['tmp_name'] = $sImagePath;
 			$_FILES['photo']['name'] = $this->_oApi->get('photo_name');		
 			
-			$oFile = Phpfox::getLib('file');
-			$oImage = Phpfox::getLib('image');		
+			$oFile = Phpfox_File::instance();
+			$oImage = Phpfox_Image::instance();
 			
 			$aImage = $oFile->load('photo', array(
 					'jpg',

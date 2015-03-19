@@ -176,6 +176,8 @@ class Phpfox_Module
 	private $_aCacheBlockId = array();
 	
 	public $sFinalModuleCallback = '';
+
+	private $_oBlocklet;
 	
 	/**
 	 * Class constructor that caches all the modules, components (blocks/controllers) and drag/drop information.
@@ -198,8 +200,15 @@ class Phpfox_Module
 				$this->_cacheModules();	
 			}
 		}		
-	}		
-	
+	}
+
+	/**
+	 * @return $this
+	 */
+	public static function instance() {
+		return Phpfox::getLib('module');
+	}
+
 	/**
 	 * Load all module blocks based on the theme being used.
 	 *
@@ -257,7 +266,7 @@ class Phpfox_Module
 			$this->_sModule = $aParts[0];
 			$this->_sController = substr_replace($sController, '', 0, strlen($this->_sModule . '_'));			
 			$this->getModuleBlocks(1, true);			
-			
+
 			(($sPlugin = Phpfox_Plugin::get('set_defined_controller')) ? eval($sPlugin) : false);
 			
 			// Reset the lang. pack cache since we are using a new controller
@@ -428,6 +437,15 @@ class Phpfox_Module
 	{		
 		// Get the component
 		$this->_oController = $this->getComponent($this->_sModule . '.' . $this->_sController, array('bNoTemplate' => true), 'controller');
+		/*
+		$blocklet = PHPFOX_DIR_CACHE . 'blocklet/' . $this->getFullControllerName() . '.blocklets.php';
+		$className = 'blocklet_' . md5($blocklet);
+
+		if (!class_exists($className, false) && file_exists($blocklet)) {
+			require($blocklet);
+			$this->_oBlocklet = (new ReflectionClass('blocklet_' . md5($blocklet)))->newInstance();
+		}
+		*/
 	}
 	
 	/**
@@ -457,7 +475,7 @@ class Phpfox_Module
 		(($sPlugin = Phpfox_Plugin::get('module_getcontrollertemplate')) ? eval($sPlugin) : false);
 		
 		// Get the template and display its content for the specific controller component
-		Phpfox::getLib('template')->getTemplate($sClass);
+		Phpfox_Template::instance()->getTemplate($sClass);
 
 		// Check if the component we have loaded has the clean() method
 		if (is_object($this->_oController) && method_exists($this->_oController, 'clean'))
@@ -491,13 +509,6 @@ class Phpfox_Module
 		static $aBlocks = array();	
 		static $bIsOrdered = false;
 		
-		if (Phpfox::getService('profile')->timeline() && $iId == '1' && !defined('PAGE_TIME_LINE'))
-		{
-			$aBlocks[$iId] = array();
-			
-			return $aBlocks[$iId];
-		}
-		
 		if (isset($aBlocks[$iId]) && $bForce === false)
 		{
 			return $aBlocks[$iId];
@@ -506,6 +517,12 @@ class Phpfox_Module
 		$aBlocks[$iId] = array();		
 
 		(($sPlugin = Phpfox_Plugin::get('get_module_blocks')) ? eval($sPlugin) : false);
+
+		/*
+		if (is_object($this->_oBlocklet) && method_exists($this->_oBlocklet, 'location_' . $iId)) {
+			call_user_func([$this->_oBlocklet, 'location_' . $iId]);
+		}
+		*/
 		
 		//$sController = strtolower($this->_sModule . '.' . $this->_sController);
 		$sController = strtolower($this->_sModule . '.' . str_replace(array('\\', '/'), '.' , $this->_sController));
@@ -567,7 +584,7 @@ class Phpfox_Module
 						continue;
 					}		
 					
-					if (in_array(Phpfox::getLib('module')->getModuleName(), $aDeny))
+					if (in_array(Phpfox_Module::instance()->getModuleName(), $aDeny))
 					{
 						continue;
 					}
@@ -784,7 +801,7 @@ class Phpfox_Module
 		
 		/*if (Phpfox::getService('theme')->isInDnDMode() || defined('PHPFOX_IN_DESIGN_MODE'))
 		{
-			Phpfox::getLib('template')->assign(array('sDeleteBlock' => str_replace('.','_',$sClass),
+			Phpfox_Template::instance()->assign(array('sDeleteBlock' => str_replace('.','_',$sClass),
 				'bBlockCanMove' => true));				
 		}*/
 		$sMethod = $sModule . '_component_' . str_replace(PHPFOX_DS, '_', $sComponent) . '_process';			
@@ -860,7 +877,7 @@ class Phpfox_Module
 		/* Should we pass the params to the template? */
 		if ($bTemplateParams)
 		{
-			Phpfox::getLib('template')->assign($aParams);
+			Phpfox_Template::instance()->assign($aParams);
 		}
 		
 		// Check if we don't want to display a template
@@ -875,7 +892,7 @@ class Phpfox_Module
 				
 				$bCanMove = (!isset($this->_aMoveBlocks[ $this->_sModule . '.' . $this->_sController][$sBlockPath] )) || (isset($this->_aMoveBlocks[ $this->_sModule . '.' . $this->_sController][$sBlockPath] ) && $this->_aMoveBlocks[ $this->_sModule . '.' . $this->_sController][$sBlockPath] == true);
 				
-				Phpfox::getLib('template')->assign(array(
+				Phpfox_Template::instance()->assign(array(
 						'sBlockShowName' => $sBlockShowName,
 						'sBlockBorderJsId' => $sBlockBorderJsId,
 						'bCanMove' => $bCanMove,
@@ -890,7 +907,7 @@ class Phpfox_Module
 			
 				(($sPlugin = Phpfox_Plugin::get('module_getcomponent_gettemplate')) ? eval($sPlugin) : false);
 				
-				Phpfox::getLib('template')->getTemplate($sComponentTemplate);
+				Phpfox_Template::instance()->getTemplate($sComponentTemplate);
 			}						
 			
 			// Check if the component we have loaded has the clean() method
@@ -1061,7 +1078,7 @@ class Phpfox_Module
 	{
 		$oPhpfoxXmlParser = Phpfox::getLib('xml.parser');
 		$aTables = array();
-		$aModules = Phpfox::getLib('file')->getFiles(PHPFOX_DIR_MODULE);		
+		$aModules = Phpfox_File::instance()->getFiles(PHPFOX_DIR_MODULE);
 		foreach ($aModules as $iKey => $sModule)
 		{
 			if (!file_exists(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DIR_MODULE_XML . PHPFOX_DS . 'phpfox' . PHPFOX_XML_SUFFIX))
@@ -1105,7 +1122,7 @@ class Phpfox_Module
 		
 		$aFolders = array();
 		$iCoreId = 0;
-		$aModules = Phpfox::getLib('file')->getFiles(PHPFOX_DIR_MODULE);		
+		$aModules = Phpfox_File::instance()->getFiles(PHPFOX_DIR_MODULE);
 		foreach ($aModules as $iKey => $sModule)
 		{
 			if (!file_exists(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DIR_MODULE_XML . PHPFOX_DS . 'phpfox' . PHPFOX_XML_SUFFIX))
@@ -1222,7 +1239,7 @@ class Phpfox_Module
 		$sCacheId = $oCache->set('module_masscall_' . $sMethod);
 		if (!($aModules = $oCache->get($sCacheId)))
 		{			
-			foreach (Phpfox::getLib('module')->getModules() as $sModule)
+			foreach (Phpfox_Module::instance()->getModules() as $sModule)
 			{
 				$sCallBack = PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . PHPFOX_DIR_MODULE_SERVICE . PHPFOX_DS . 'callback.class.php';
 				if (file_exists($sCallBack))
@@ -1493,7 +1510,7 @@ class Phpfox_Module
 	private function _cacheModuleBlocks()
 	{		
 		$oCache = Phpfox::getLib('cache');		
-		$aStyleInUse = Phpfox::getLib('template')->getStyleInUse();		
+		$aStyleInUse = Phpfox_Template::instance()->getStyleInUse();
 		if (!isset($aStyleInUse['style_id']))
 		{
 			$aStyleInUse['style_id'] = 0;

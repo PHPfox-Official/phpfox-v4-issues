@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Group_Component_Controller_View extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -65,7 +65,7 @@ class Group_Component_Controller_View extends Phpfox_Component
 			}
 		}
 		
-		Phpfox::getLib('module')->setCacheBlockData(array(
+		Phpfox_Module::instance()->setCacheBlockData(array(
 				'table' => 'group_design_order',
 				'field' => 'group_id',
 				'item_id' => $aGroup['group_id'],
@@ -119,11 +119,11 @@ class Group_Component_Controller_View extends Phpfox_Component
 				)
 			);	
 			
-		Phpfox::getLib('module')->addModuleBlock('group.header', 7);
+		Phpfox_Module::instance()->addModuleBlock('group.header', 7);
 		
 		if ($aGroup['view_id'] == '2' && (!$aGroup['invite_id'] || ($aGroup['invite_id'] && $aGroup['member_id'] == '0')) && !Phpfox::getUserParam('group.can_view_secret_group'))
 		{
-			return Phpfox::getLib('module')->setController('group.secret');
+			return Phpfox_Module::instance()->setController('group.secret');
 		}				
 			
 		if (($sModule = $this->request()->get('req3')) && Phpfox::isModule($this->url()->reverseRewrite($sModule)))
@@ -145,7 +145,7 @@ class Group_Component_Controller_View extends Phpfox_Component
 				)
 			);
 
-			return Phpfox::getLib('module')->setController($this->url()->reverseRewrite($sModule) . '.group');
+			return Phpfox_Module::instance()->setController($this->url()->reverseRewrite($sModule) . '.group');
 		}		
 				
 		define('PHPFOX_CAN_MOVE_BLOCKS', true);
@@ -158,7 +158,7 @@ class Group_Component_Controller_View extends Phpfox_Component
 
 				if (($iTestStyle = $this->request()->get('test_style_id')))
 				{
-					if (Phpfox::getLib('template')->testStyle($iTestStyle))
+					if (Phpfox_Template::instance()->testStyle($iTestStyle))
 					{
 						
 					}
@@ -214,7 +214,7 @@ class Group_Component_Controller_View extends Phpfox_Component
 				)
 			);			
 			
-			return Phpfox::getLib('module')->setController('user.browse');	
+			return Phpfox_Module::instance()->setController('user.browse');
 		}
 		else 
 		{

@@ -45,7 +45,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}
 			<div class="profile_header_inner{if Phpfox::getService('profile')->timeline()} profile_header_timeline{/if}">
 				<div id="section_menu">
-					{if defined('PHPFOX_IS_USER_PROFILE_INDEX') || defined('PHPFOX_PROFILE_PRIVACY') || Phpfox::getLib('module')->getFullControllerName() == 'profile.info'}
+					{if defined('PHPFOX_IS_USER_PROFILE_INDEX') || defined('PHPFOX_PROFILE_PRIVACY') || Phpfox_Module::instance()->getFullControllerName() == 'profile.info'}
 					<ul>						
 						{if Phpfox::getUserId() == $aUser.user_id}
 						    {if Phpfox::getUserParam('profile.can_change_cover_photo')}
@@ -96,7 +96,7 @@ defined('PHPFOX') or exit('NO DICE!');
 							{/if}
 						{/if}
 					</ul>					
-					{elseif Phpfox::getLib('module')->getFullControllerName() == 'friend.profile'}
+					{elseif Phpfox_Module::instance()->getFullControllerName() == 'friend.profile'}
 					    {if Phpfox::getUserId() == $aUser.user_id}
 					    <ul>
 						    <li><a href="{url link='friend'}">{phrase var='profile.edit_friends'}</a></li>

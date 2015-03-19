@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Controller_Admincp_Style_Logo extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		$this->_setMenuName('admincp.theme');
 		
-		$aStyle = Phpfox::getService('theme.style')->getStyle($this->request()->getInt('id'));
+		$aStyle = Theme_Service_Style_Style::instance()->getStyle($this->request()->getInt('id'));
 		
 		if (!isset($aStyle['theme_id']))
 		{
@@ -31,26 +31,23 @@ class Theme_Component_Controller_Admincp_Style_Logo extends Phpfox_Component
 		
 		if ($this->request()->get('revert'))
 		{
-			if (Phpfox::getService('theme.style.process')->revertLogo($aStyle['style_id']))
+			if (Theme_Service_Style_Process::instance()->revertLogo($aStyle['style_id']))
 			{
 				$this->url()->send('admincp.theme.style.logo', array('id' => $aStyle['style_id']), Phpfox::getPhrase('theme.logo_successfully_reverted'));
 			}
 		}
-		
+
 		if (!empty($_FILES['logo']))
 		{
-			$aImage = Phpfox::getLib('file')->load('logo', array('jpg', 'gif', 'png'));
+			$aImage = Phpfox_File::instance()->load('logo', array('jpg', 'gif', 'png'));
 			
-			if (isset($aImage['tmp_name']) && Phpfox::getService('theme.style.process')->changeLogo($aStyle['style_id'], $aImage, ($this->request()->get('resize') == '1' ? true : false)))
+			if (isset($aImage['tmp_name']) && Theme_Service_Style_Process::instance()->changeLogo($aStyle['style_id'], $aImage, ($this->request()->get('resize') == '1' ? true : false)))
 			{
 				$this->url()->send('admincp.theme.style.logo', array('id' => $aStyle['style_id']), Phpfox::getPhrase('theme.logo_successfully_uploaded'));
 			}
 		}
-	
-		// list($sCurrentStyleLogo, $bIsNewLogo, $iWidth, $iHeight) = Phpfox::getService('theme.style')->getCurrentLogo($aStyle['style_id']);
-		list($sCurrentStyleLogo, $bIsNewLogo, $iWidth, $iHeight) = $this->service()->theme_style()->getCurrentLogo($aStyle['style_id']);
 
-			// ->getCurrentLogo($aStyle['style_id']);
+		list($sCurrentStyleLogo, $bIsNewLogo, $iWidth, $iHeight) = Theme_Service_Style_Style::instance()->getCurrentLogo($aStyle['style_id']);
 
 		$this->template()->setTitle(Phpfox::getPhrase('theme.change_site_logo'))
 			->setBreadcrumb(Phpfox::getPhrase('theme.themes'), $this->url()->makeUrl('admincp.theme'))

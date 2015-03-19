@@ -11,7 +11,7 @@ $oTpl->setHeader('cache', array(
 );
 
 $oTpl->setHeader('head',array(
-		"<!--[if IE 7]>\n\t\t\t<script type=\"text/javascript\" src=\"" . $oTpl->getStyle('jscript', 'ie7.js') . "?v=" . Phpfox::getLib('template')->getStaticVersion() . "\"></script>\n\t\t<![endif]-->"
+		"<!--[if IE 7]>\n\t\t\t<script type=\"text/javascript\" src=\"" . $oTpl->getStyle('jscript', 'ie7.js') . "?v=" . Phpfox_Template::instance()->getStaticVersion() . "\"></script>\n\t\t<![endif]-->"
 	)
 );
 

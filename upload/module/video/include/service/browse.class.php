@@ -181,7 +181,7 @@ class Video_Service_Browse extends Phpfox_Service
 			$this->database()->select('vidly.vidly_url_id, ')->leftJoin(Phpfox::getT('vidly_url'), 'vidly', 'vidly.video_id = m.video_id');
 		}
 
-		if (Phpfox::isModule('friend') && Phpfox::getService('friend')->queryJoin($bNoQueryFriend))
+		if (Phpfox::isModule('friend') && Friend_Service_Friend::instance()->queryJoin($bNoQueryFriend))
 		{
 			$this->database()->join(Phpfox::getT('friend'), 'friends', 'friends.user_id = m.user_id AND friends.friend_user_id = ' . Phpfox::getUserId());	
 		}		

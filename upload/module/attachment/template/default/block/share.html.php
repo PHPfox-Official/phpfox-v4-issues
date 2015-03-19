@@ -19,18 +19,35 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>		
 		<ul class="global_attachment_list">	
 			<li class="global_attachment_title">{phrase var='attachment.insert'}:</li>
-			<li><a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'attachment.add', 500, '&amp;category_id={$aAttachmentShare.type}&amp;attachment_custom=photo');" class="js_global_position_photo js_hover_title">{img theme='feed/photo.png' class='v_middle'}<span class="js_hover_info">{phrase var='attachment.insert_a_photo'}</span></a></li>
+			<li>
+				<a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'attachment.add', 500, '&amp;category_id={$aAttachmentShare.type}&amp;attachment_custom=photo');" class="js_global_position_photo js_hover_title">
+					<i class="fa fa-photo"></i>
+					<span class="js_hover_info">{phrase var='attachment.insert_a_photo'}</span>
+				</a>
+			</li>
 			{if Phpfox::isModule('link')}
-			<li><a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'link.attach', 600, '&amp;category_id={$aAttachmentShare.type}');" class="js_hover_title">{img theme='feed/link.png' class='v_middle'}<span class="js_hover_info">{phrase var='attachment.attach_a_link'}</span></a></li>
-			{/if}
-			{if Phpfox::isModule('video') && Phpfox::getParam('video.allow_video_uploading')}
-			<li><a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'attachment.add', 500, '&amp;category_id={$aAttachmentShare.type}&amp;attachment_custom=video');" class="js_hover_title">{img theme='feed/video.png' class='v_middle'}<span class="js_hover_info">{phrase var='attachment.insert_a_video'}</span></a></li>
+			<li>
+				<a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'link.attach', 600, '&amp;category_id={$aAttachmentShare.type}');" class="js_hover_title">
+					<i class="fa fa-link"></i>
+					<span class="js_hover_info">{phrase var='attachment.attach_a_link'}</span>
+				</a>
+			</li>
 			{/if}
 			{if !isset($bNoAttachaFile)}
-			<li><a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'attachment.add', 500, '&amp;category_id={$aAttachmentShare.type}');" class="js_hover_title">{img theme='misc/application_add.png' class='v_middle'}<span class="js_hover_info">{phrase var='attachment.attach_a_file'}</span></a></li>
+			<li>
+				<a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'attachment.add', 500, '&amp;category_id={$aAttachmentShare.type}');" class="js_hover_title">
+					<i class="fa fa-paperclip"></i>
+					<span class="js_hover_info">{phrase var='attachment.attach_a_file'}</span>
+				</a>
+			</li>
 			{/if}
 			{if Phpfox::isModule('emoticon')}
-			<li><a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'emoticon.preview', 400, '&amp;editor_id=' + Editor.getId());" class="js_hover_title">{img theme='editor/emoticon.png' class='v_middle'}<span class="js_hover_info">{phrase var='attachment.insert_emoticon'}</span></a></li>
+			<li>
+				<a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'emoticon.preview', 400, '&amp;editor_id=' + Editor.getId());" class="js_hover_title">
+					<i class="fa fa-smile-o"></i>
+					<span class="js_hover_info">{phrase var='attachment.insert_emoticon'}</span>
+				</a>
+			</li>
 			{/if}
 		</ul>
 		<div class="clear"></div>	

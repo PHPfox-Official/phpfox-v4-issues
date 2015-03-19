@@ -102,6 +102,8 @@ class Event_Service_Browse extends Phpfox_Service
 			$aListing['start_time_phrase'] = Phpfox::getTime(Phpfox::getParam('event.event_browse_time_stamp'), $aListing['start_time']);
 			$aListing['start_time_phrase_stamp'] = Phpfox::getTime(Phpfox::getParam('event.event_basic_information_time_short'), $aListing['start_time']);
 			$aListing['start_time_micro'] = Phpfox::getTime('Y-m-d', $aEvent['start_time']);
+			$aListing['start_time_short_month'] = date('M', $aEvent['start_time']);
+			$aListing['start_time_short_day'] = date('j', $aEvent['start_time']);
 				
 			$aListing['aFeed'] = array(			
 				'feed_display' => 'mini',	
@@ -129,7 +131,7 @@ class Event_Service_Browse extends Phpfox_Service
 	
 	public function getQueryJoins($bIsCount = false, $bNoQueryFriend = false)
 	{
-		if (Phpfox::isModule('friend') && Phpfox::getService('friend')->queryJoin($bNoQueryFriend))
+		if (Phpfox::isModule('friend') && Friend_Service_Friend::instance()->queryJoin($bNoQueryFriend))
 		{
 			$this->database()->join(Phpfox::getT('friend'), 'friends', 'friends.user_id = m.user_id AND friends.friend_user_id = ' . Phpfox::getUserId());	
 		}				

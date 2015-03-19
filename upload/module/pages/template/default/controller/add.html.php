@@ -260,6 +260,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="block">
 				<div class="content">
 					{if isset($aForms.page_id)}
+					<div id="js_selected_friends" class="hide_it"></div>
 					{module name='friend.search' input='invite' hide=true friend_item_id=$aForms.page_id friend_module_id='pages'}
 					{/if}
 					<div class="p_top_8">

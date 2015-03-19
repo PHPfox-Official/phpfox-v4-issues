@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Pages_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -29,7 +29,7 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 		
 		if ($this->request()->getInt('req2') > 0)
 		{
-			Phpfox::getLib('module')->setCacheBlockData(array(
+			Phpfox_Module::instance()->setCacheBlockData(array(
 					'table' => 'pages_design_order',
 					'field' => 'page_id',
 					'item_id' => $this->request()->getInt('req2'),
@@ -37,7 +37,7 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 				)
 			);			
 			
-			return Phpfox::getLib('module')->setController('pages.view');			
+			return Phpfox_Module::instance()->setController('pages.view');
 		}	
 		
 		if (($iDeleteId = $this->request()->getInt('delete')) && Phpfox::getService('pages.process')->delete($iDeleteId))
@@ -267,7 +267,7 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 		
 		if (Phpfox::getParam('core.force_404_check') && !Phpfox::getService('core.redirect')->check404($aCheckParams))
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 	}
 	

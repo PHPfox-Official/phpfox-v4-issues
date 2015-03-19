@@ -6,10 +6,8 @@
 				{$aGlobalUser|user}
 				<div>
 					<a href="{url link='profile'}">View Profile</a>
-					{if $bShowMenu}
-					<a href="{url link='user.logout'}" class="no_ajax logout">Logout</a>
-					{/if}
 				</div>
+				<span class="feed_form_toggle"><i class="fa fa-toggle-down"></i></span>
 			</div>
 		</div>
 
@@ -18,6 +16,7 @@
 			<a href="{url link='user.account'}">Account Settings</a>
 			<a href="{url link='user.profile'}">Edit Profile</a>
 			<a href="{url link='user.privacy'}">Privacy</a>
+			<a href="{url link='user.logout'}" class="no_ajax logout">Logout</a>
 		</div>
 		{/if}
 

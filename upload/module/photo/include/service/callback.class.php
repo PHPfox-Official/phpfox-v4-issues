@@ -245,7 +245,7 @@ class Photo_Service_Callback extends Phpfox_Service
 				}
 				else
 				{
-					$sImages .= '<a href="' . $aRow['link'] . '"' . ($aImage['mature'] == 1 ? 'onclick="tb_show(\'' . Phpfox::getPhrase('photo.warning') . '\', $.ajaxBox(\'photo.warning\', \'height=300&amp;width=350&amp;link=' . $aRow['link'] . '\')); return false;"' : '') . '><img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" /></a>';
+					$sImages .= '<a href="' . $aRow['link'] . '"' . ($aImage['mature'] == 1 ? 'onclick="tb_show(\'' . Phpfox::getPhrase('photo.warning') . '\', $.ajaxBox(\'photo.warning\', \'height=300&amp;width=350&amp;link=' . $aRow['link'] . '\')); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" /></a>';
 				}
 			}
 					//$sImages .= '<a href="' . $aRow['link'] . '">' . $sImage . '</a>';
@@ -312,7 +312,7 @@ class Photo_Service_Callback extends Phpfox_Service
 				}
 				else 
 				{
-					$sImages .= '<a href="' . $aRow['link'] . '"' . ($aImage['mature'] == 1 ? 'onclick="tb_show(\'' . Phpfox::getPhrase('photo.warning') . '\', $.ajaxBox(\'photo.warning\', \'height=300&amp;width=350&amp;link=' . $aRow['link'] . '\')); return false;"' : '') . '><img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" /></a>';
+					$sImages .= '<a href="' . $aRow['link'] . '"' . ($aImage['mature'] == 1 ? 'onclick="tb_show(\'' . Phpfox::getPhrase('photo.warning') . '\', $.ajaxBox(\'photo.warning\', \'height=300&amp;width=350&amp;link=' . $aRow['link'] . '\')); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" /></a>';
 				}
 			}
 			else 
@@ -434,11 +434,11 @@ class Photo_Service_Callback extends Phpfox_Service
 				}
 				elseif ($aPart['mature'] == 1)
 				{
-					$sImage = '<a href="' . $aRow['link'] . '" onclick="tb_show(\'' . Phpfox::getPhrase('photo.warning') . '\', $.ajaxBox(\'photo.warning\', \'height=300&amp;width=350&amp;link=' . $aRow['link'] . '\')); return false;"><img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" /></a>';
+					$sImage = '<a href="' . $aRow['link'] . '" onclick="tb_show(\'' . Phpfox::getPhrase('photo.warning') . '\', $.ajaxBox(\'photo.warning\', \'height=300&amp;width=350&amp;link=' . $aRow['link'] . '\')); return false;"><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" /></a>';
 				}
 				else
 				{
-					$sImage = '<a href="' . $aRow['link'] . '"' . '><img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" /></a>';
+					$sImage = '<a href="' . $aRow['link'] . '"' . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" /></a>';
 				}
 			}
 			else
@@ -544,11 +544,11 @@ class Photo_Service_Callback extends Phpfox_Service
 				{
 					$aFeed['custom_css'] = 'no_ajax_link';
 					$aFeed['custom_js'] = 'onclick="tb_show(\'' . Phpfox::getPhrase('photo.warning') . '\', $.ajaxBox(\'photo.warning\', \'height=300&amp;width=350&amp;link=' . $aFeed['feed_link'] . '\')); return false;"';
-					$aFeed['feed_image'] = '<img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" />';
+					$aFeed['feed_image'] = '<img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" />';
 				}
 				else
 				{
-					$aFeed['feed_image'] = '<img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" />';
+					$aFeed['feed_image'] = '<img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/no_access.png') . '" alt="" width="100px" />';
 				}
 			}			
 		}
@@ -673,7 +673,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	
@@ -712,7 +712,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}		
 	
@@ -731,7 +731,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title'])  .'comment_' . $aNotification['item_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	public function getCommentNotificationAlbumTag($aNotification)
@@ -748,7 +748,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('photo.album', $aRow['album_id'], $aRow['name'])  .'comment_' . $aNotification['item_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	public function getItemName($iId, $sName)
@@ -809,7 +809,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl('photo', array($aRow['photo_id'],)),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);		
 	}
 	
@@ -1318,7 +1318,7 @@ class Photo_Service_Callback extends Phpfox_Service
 				->limit($iPage, $iPageLimit, $iCnt)
 				->execute('getSlaveRows');		
 		
-			$oImage = Phpfox::getLib('image');
+			$oImage = Phpfox_Image::instance();
 			foreach ($aRows as $aRow)
 			{				
 				if (preg_match("/\{file\/pic\/(.*)\/(.*)\.jpg\}/i", $aRow['destination'], $aMatches))
@@ -1571,7 +1571,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		$sThickbox = '';
 		if (Phpfox::getUserParam('photo.can_view_photos'))
 		{
-			$sThickbox = 'thickbox';
+			$sThickbox = '';
 		}		
 		
 		if ($aCallback === null)
@@ -1632,17 +1632,16 @@ class Photo_Service_Callback extends Phpfox_Service
 		$sFeedImageOnClick = '';
 		
 		if (($aRow['mature'] == 0 || (($aRow['mature'] == 1 || $aRow['mature'] == 2) && Phpfox::getUserId() && Phpfox::getUserParam('photo.photo_mature_age_limit') <= Phpfox::getUserBy('age'))) || $aRow['user_id'] == Phpfox::getUserId())
-		{			
-			$iImageMax = (Phpfox::getService('profile')->timeline() ? '300' : '450');
-			$iImageMaxSuffix = (Phpfox::getService('profile')->timeline() ? '500' : '500');
+		{
+			$iImageMaxSuffix = (Phpfox::getService('profile')->timeline() ? '1024' : '1024');
 			$sCustomCss = '' . $sThickbox . ' photo_holder_image';
 			$sImage = Phpfox::getLib('image.helper')->display(array(
 					'server_id' => $aRow['server_id'],
 					'path' => 'photo.url_photo',
 					'file' => Phpfox::getService('photo')->getPhotoUrl(array_merge($aRow, array('full_name' => $aItem['full_name']))),
 					'suffix' => '_' . $iImageMaxSuffix,					
-					'max_width' => (Phpfox::isMobile() ? 230 : $iImageMax),
-					'max_height' => (Phpfox::isMobile() ? 300 : $iImageMax),
+					// 'max_width' => (Phpfox::isMobile() ? 230 : $iImageMax),
+					// 'max_height' => (Phpfox::isMobile() ? 300 : $iImageMax),
 					'class' => 'photo_holder',
 					'defer' => true
 				)
@@ -1666,7 +1665,7 @@ class Photo_Service_Callback extends Phpfox_Service
 				->from(Phpfox::getT('photo_feed'), 'pfeed')
 				->join(Phpfox::getT('photo'), 'p', 'p.photo_id = pfeed.photo_id' . (!empty($aRow['module_id']) ?' AND p.module_id = \'' . $this->database()->escape($aRow['module_id']) . '\'' : ''))
 				->where('pfeed.feed_id = ' . (int) $aItem['feed_id'])
-				->limit(((Phpfox::getService('profile')->timeline() || Phpfox::isMobile()) ? 2 : 3))
+				->limit(2)
 				->order('p.time_stamp DESC')
 				->execute('getSlaveRows');
 			
@@ -1678,9 +1677,7 @@ class Photo_Service_Callback extends Phpfox_Service
 							'server_id' => $aPhoto['server_id'],
 							'path' => 'photo.url_photo',
 							'file' => Phpfox::getService('photo')->getPhotoUrl(array_merge($aPhoto, array('full_name' => $aItem['full_name']))),
-							'suffix' => '_100',
-							'max_width' => 100,
-							'max_height' => 100,
+							'suffix' => '_500',
 							'class' => 'photo_holder',
 							'userid' => isset($aItem['user_id']) ? $aItem['user_id'] : '',
 							'defer' => true // Further controlled in the library image.helper.
@@ -1823,7 +1820,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('photo.album', $aRow['album_id'], $aRow['name']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	
@@ -1923,7 +1920,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('photo.album', $aRow['album_id'], $aRow['name']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -2080,7 +2077,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);			
 	}
 	
@@ -2296,7 +2293,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog'),
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
 		);			
 	}	

@@ -86,8 +86,8 @@ class User_Service_Space extends Phpfox_Service
 		if ($this->_iTotalSpaceUsed > $this->_iTotalUploadSpace)
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('user.unable_to_upload_you_have_reached_your_limit_of_current_you_are_currently_using_total', array(
-						'current' => Phpfox::getLib('file')->filesize($this->_iTotalUploadSpace),
-						'total' => Phpfox::getLib('file')->filesize($this->_iTotalSpaceUsed)
+						'current' => Phpfox_File::instance()->filesize($this->_iTotalUploadSpace),
+						'total' => Phpfox_File::instance()->filesize($this->_iTotalSpaceUsed)
 					)
 				)
 			);
@@ -96,8 +96,8 @@ class User_Service_Space extends Phpfox_Service
 		if ($iUploaded !== null && ($this->_iTotalSpaceUsed + $iUploaded) > $this->_iTotalUploadSpace)
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('user.unable_to_upload_you_have_reached_your_limit_of_limit_with_this_upload_you_will_be_using_total', array(
-						'limit' => Phpfox::getLib('file')->filesize($this->_iTotalUploadSpace),
-						'total' => Phpfox::getLib('file')->filesize(($this->_iTotalSpaceUsed + $iUploaded))
+						'limit' => Phpfox_File::instance()->filesize($this->_iTotalUploadSpace),
+						'total' => Phpfox_File::instance()->filesize(($this->_iTotalSpaceUsed + $iUploaded))
 					)
 				)
 			);

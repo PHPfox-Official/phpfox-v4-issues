@@ -166,7 +166,7 @@ class Marketplace_Service_Browse extends Phpfox_Service
 			$this->database()->leftJoin(Phpfox::getT('marketplace_text'), 'mt', 'mt.listing_id = l.listing_id');
 		}
 		
-		if (Phpfox::isModule('friend') && Phpfox::getService('friend')->queryJoin($bNoQueryFriend))
+		if (Phpfox::isModule('friend') && Friend_Service_Friend::instance()->queryJoin($bNoQueryFriend))
 		{
 			$this->database()->join(Phpfox::getT('friend'), 'friends', 'friends.user_id = l.user_id AND friends.friend_user_id = ' . Phpfox::getUserId());	
 		}				

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class User_Component_Block_Login_Block extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -34,7 +34,7 @@ class User_Component_Block_Login_Block extends Phpfox_Component
 			return false;
 		}		
 		
-		if (in_array(Phpfox::getLib('module')->getModuleName(), $aDeny))
+		if (in_array(Phpfox_Module::instance()->getModuleName(), $aDeny))
 		{
 			return false;
 		}

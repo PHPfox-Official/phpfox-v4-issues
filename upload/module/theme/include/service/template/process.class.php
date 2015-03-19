@@ -163,7 +163,7 @@ class Theme_Service_Template_Process extends Phpfox_Service
 				}
 					
 				$sTempFile = 'theme_template_cache_' . md5($aTemplate['name'] . $aTheme['theme_id']);
-				Phpfox::getLib('file')->writeToCache($sTempFile, $aTemplate['value']);		
+				Phpfox_File::instance()->writeToCache($sTempFile, $aTemplate['value']);
 				if (file_exists($sDir . $aTemplate['name']))
 				{
 					Phpfox::getLib('ftp')->unlink($sDir . $aTemplate['name']);

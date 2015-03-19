@@ -13,7 +13,7 @@ defined('PHPFOX') or exit('NO DICE!');
  * @package 		Phpfox_Service
  * @version 		$Id: style.class.php 6882 2013-11-12 17:39:57Z Fern $
  */
-class Theme_Service_Style_Style extends Phpfox_Service 
+class Theme_Service_Style_Style extends Phpfox_Service
 {
 	private $_aStyleImages = array();
 	
@@ -28,6 +28,15 @@ class Theme_Service_Style_Style extends Phpfox_Service
 	{	
 		$this->_sTable = Phpfox::getT('theme_style');
 	}
+
+	/**
+	 * @return Theme_Service_Style_Style
+	 */
+	/*
+	public static function instance() {
+		return Theme_Service_Style_Style::instance();
+	}
+	*/
 	
 	public function getStyleContent($iStyleId)	
 	{
@@ -72,7 +81,7 @@ class Theme_Service_Style_Style extends Phpfox_Service
 			->execute('getRows');
 		
 		$aDefaultTheme = Phpfox::getService('theme')->getTheme('default', true);
-		$aDefaultStyle = Phpfox::getService('theme.style')->getStyleParent($aDefaultTheme['theme_id'], 'default');
+		$aDefaultStyle = Theme_Service_Style_Style::instance()->getStyleParent($aDefaultTheme['theme_id'], 'default');
 		
 		foreach ($aRows as $iKey => $aRow)
 		{
@@ -555,7 +564,7 @@ class Theme_Service_Style_Style extends Phpfox_Service
 		
 		$oXmlBuilder = Phpfox::getLib('xml.builder');
 			
-		$aStyle = Phpfox::getService('theme.style')->getStyle($iStyleId);
+		$aStyle = Theme_Service_Style_Style::instance()->getStyle($iStyleId);
 		if (isset($aStyle['style_id']))
 		{	
 			$sCacheHash = md5(serialize($aStyle) . PHPFOX_TIME);
@@ -565,23 +574,23 @@ class Theme_Service_Style_Style extends Phpfox_Service
 				$sDirectoryIdReturn = 'theme_' . $aStyle['style_id'] . '_' . uniqid();
 				if (is_dir(PHPFOX_DIR_CACHE . $sDirectoryIdReturn))
 				{
-					Phpfox::getLib('file')->delete_directory(PHPFOX_DIR_CACHE . $sDirectoryIdReturn . PHPFOX_DS);
+					Phpfox_File::instance()->delete_directory(PHPFOX_DIR_CACHE . $sDirectoryIdReturn . PHPFOX_DS);
 				}
 				
 				$sDirectoryId = $sDirectoryIdReturn . PHPFOX_DS . 'upload' . PHPFOX_DS;
 		
-				Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId, true);				
+				Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId, true);
 				
 				$sNewHomeFolder = PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'theme' . PHPFOX_DS . 'frontend' . PHPFOX_DS . $aStyle['theme_folder'] . PHPFOX_DS;
 			}						
 						
 			$sThemePath = $sNewHomeFolder . 'style' . PHPFOX_DS . $aStyle['folder'] . PHPFOX_DS;
 
-			Phpfox::getLib('file')->mkdir($sThemePath, true);
-			Phpfox::getLib('file')->mkdir($sThemePath . 'css' . PHPFOX_DS, true);
-			Phpfox::getLib('file')->mkdir($sThemePath . 'image' . PHPFOX_DS, true);
-			Phpfox::getLib('file')->mkdir($sThemePath . 'jscript' . PHPFOX_DS, true);
-			Phpfox::getLib('file')->mkdir($sThemePath . 'php' . PHPFOX_DS, true);
+			Phpfox_File::instance()->mkdir($sThemePath, true);
+			Phpfox_File::instance()->mkdir($sThemePath . 'css' . PHPFOX_DS, true);
+			Phpfox_File::instance()->mkdir($sThemePath . 'image' . PHPFOX_DS, true);
+			Phpfox_File::instance()->mkdir($sThemePath . 'jscript' . PHPFOX_DS, true);
+			Phpfox_File::instance()->mkdir($sThemePath . 'php' . PHPFOX_DS, true);
 			
 			$oXmlBuilder->addGroup('style', array(
 					'name' => $aStyle['name'],
@@ -600,35 +609,35 @@ class Theme_Service_Style_Style extends Phpfox_Service
 			
 			$oXmlBuilder->closeGroup();
 			
-			Phpfox::getLib('file')->write($sThemePath . 'phpfox.xml', $oXmlBuilder->output());			
+			Phpfox_File::instance()->write($sThemePath . 'phpfox.xml', $oXmlBuilder->output());
 			
-			$sLogoPath = Phpfox::getService('theme.style')->getStyleDisplayLogo($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id'], $bIncludeParent);
+			$sLogoPath = Theme_Service_Style_Style::instance()->getStyleDisplayLogo($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id'], $bIncludeParent);
 			if (file_exists($sLogoPath) && is_readable($sLogoPath))
 			{
-				Phpfox::getLib('file')->write($sThemePath . 'phpfox.gif', file_get_contents($sLogoPath));			
+				Phpfox_File::instance()->write($sThemePath . 'phpfox.gif', file_get_contents($sLogoPath));
 			}
 					
 			// Css
-			$aFiles = Phpfox::getService('theme.style')->getFiles($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id'], true, $bIncludeParent);			
+			$aFiles = Theme_Service_Style_Style::instance()->getFiles($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id'], true, $bIncludeParent);
 			foreach ($aFiles as $sModule => $aCssFiles)
 			{
 				foreach ($aCssFiles as $sFile)
 				{
-					$aCss = Phpfox::getService('theme.style')->getFile($aStyle['style_id'], $sFile, $sModule, $bIncludeParent);					
+					$aCss = Theme_Service_Style_Style::instance()->getFile($aStyle['style_id'], $sFile, $sModule, $bIncludeParent);
 					if (empty($sModule))
 					{
-						Phpfox::getLib('file')->write($sThemePath . 'css' . PHPFOX_DS . $sFile, $aCss['content']);
+						Phpfox_File::instance()->write($sThemePath . 'css' . PHPFOX_DS . $sFile, $aCss['content']);
 					}
 					else 
 					{
-						Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'module' . PHPFOX_DS . $sModule . PHPFOX_DS . 'static' . PHPFOX_DS . 'css' . PHPFOX_DS . $aStyle['theme_folder'] . PHPFOX_DS . $aStyle['folder'] . PHPFOX_DS, true);
-						Phpfox::getLib('file')->write(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'module' . PHPFOX_DS . $sModule . PHPFOX_DS . 'static' . PHPFOX_DS . 'css' . PHPFOX_DS . $aStyle['theme_folder'] . PHPFOX_DS . $aStyle['folder'] . PHPFOX_DS . $sFile, $aCss['content']);
+						Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'module' . PHPFOX_DS . $sModule . PHPFOX_DS . 'static' . PHPFOX_DS . 'css' . PHPFOX_DS . $aStyle['theme_folder'] . PHPFOX_DS . $aStyle['folder'] . PHPFOX_DS, true);
+						Phpfox_File::instance()->write(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'module' . PHPFOX_DS . $sModule . PHPFOX_DS . 'static' . PHPFOX_DS . 'css' . PHPFOX_DS . $aStyle['theme_folder'] . PHPFOX_DS . $aStyle['folder'] . PHPFOX_DS . $sFile, $aCss['content']);
 					}
 				}
 			}			
 								
 			// Images
-			$aImages = Phpfox::getService('theme.style')->getImages($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id'], $bIncludeParent);			
+			$aImages = Theme_Service_Style_Style::instance()->getImages($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id'], $bIncludeParent);
 			foreach ($aImages as $sImagePath => $mImages)
 			{						
 				if (is_numeric($sImagePath))
@@ -643,12 +652,12 @@ class Theme_Service_Style_Style extends Phpfox_Service
 					unset($aParts[(count($aParts) - 1)]);
 					$sDirPath = implode(PHPFOX_DS, $aParts);
 					
-					Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sDirPath . PHPFOX_DS, true);
-					Phpfox::getLib('file')->write(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sDirPath . PHPFOX_DS . $aNewImage['name'], file_get_contents($aNewImage['file']));							}
+					Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sDirPath . PHPFOX_DS, true);
+					Phpfox_File::instance()->write(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sDirPath . PHPFOX_DS . $aNewImage['name'], file_get_contents($aNewImage['file']));							}
 			}			
 					
 			// JavaScript
-			$aScripts = Phpfox::getService('theme.style')->getScript($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id'], $bIncludeParent);
+			$aScripts = Theme_Service_Style_Style::instance()->getScript($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id'], $bIncludeParent);
 			foreach ($aScripts as $aScript)
 			{						
 				$sNewFileName = str_replace(PHPFOX_DIR, '', $aScript['file']);
@@ -656,25 +665,25 @@ class Theme_Service_Style_Style extends Phpfox_Service
 				unset($aParts[(count($aParts) - 1)]);
 				$sDirPath = implode(PHPFOX_DS, $aParts);
 				
-				Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sDirPath . PHPFOX_DS, true);
-				Phpfox::getLib('file')->write(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sDirPath . PHPFOX_DS . $aScript['name'], file_get_contents($aScript['file']));					
+				Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sDirPath . PHPFOX_DS, true);
+				Phpfox_File::instance()->write(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . $sDirPath . PHPFOX_DS . $aScript['name'], file_get_contents($aScript['file']));
 			}			
 
             $sPhpHeaderFile = PHPFOX_DIR_THEME . 'frontend' . PHPFOX_DS . $aStyle['theme_folder'] . PHPFOX_DS . 'style' . PHPFOX_DS . $aStyle['folder'] . PHPFOX_DS . 'php' . PHPFOX_DS . 'header.php';
             if (file_exists($sPhpHeaderFile))
             {
-                Phpfox::getLib('file')->write($sThemePath . 'php' . PHPFOX_DS . 'header.php', file_get_contents($sPhpHeaderFile));
+                Phpfox_File::instance()->write($sThemePath . 'php' . PHPFOX_DS . 'header.php', file_get_contents($sPhpHeaderFile));
             }
             
             $sSamplePngFile = PHPFOX_DIR_THEME . 'frontend' . PHPFOX_DS . $aStyle['theme_folder'] . PHPFOX_DS . 'style' . PHPFOX_DS . $aStyle['folder'] . PHPFOX_DS . 'sample.png';
             if (file_exists($sSamplePngFile))
             {
-            	Phpfox::getLib('file')->write($sThemePath . 'sample.png', file_get_contents($sSamplePngFile));
+            	Phpfox_File::instance()->write($sThemePath . 'sample.png', file_get_contents($sSamplePngFile));
             }            
 					
 			if ($bMultiple === false)
 			{
-				Phpfox::getLib('file')->writeToCache('theme_styles_' . $sCacheHash . '.xml', $oXmlBuilder->output());					
+				Phpfox_File::instance()->writeToCache('theme_styles_' . $sCacheHash . '.xml', $oXmlBuilder->output());
 
 				return array(
 					'name' => $aStyle['theme_folder'] . '-' . $aStyle['folder'] . (empty($aStyle['version']) ? '' : '-' . $aStyle['version']),
@@ -857,7 +866,7 @@ class Theme_Service_Style_Style extends Phpfox_Service
 			}
 			closedir($hDir);
 			
-			foreach(Phpfox::getLib('module')->getModules() as $sModule)
+			foreach(Phpfox_Module::instance()->getModules() as $sModule)
 			{
 				$sDir = PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . "static" . PHPFOX_DS . "image" . PHPFOX_DS . $sThemeFolder . PHPFOX_DS . $sFolder . PHPFOX_DS;
 

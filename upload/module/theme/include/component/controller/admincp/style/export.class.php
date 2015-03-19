@@ -16,12 +16,12 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Controller_Admincp_Style_Export extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		$oArchiveExport = Phpfox::getLib('archive.export')->set(array('zip'));
-		if (($aData = Phpfox::getService('theme.style')->export($this->request()->getInt('id'))))
+		if (($aData = Theme_Service_Style_Style::instance()->export($this->request()->getInt('id'))))
 		{
 			$oArchiveExport->download('phpfox-style-' . $aData['name'] . '', 'zip', $aData['folder']);
 		}

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Ad_Component_Controller_Image extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -25,7 +25,7 @@ class Ad_Component_Controller_Image extends Phpfox_Component
 			exit;
 		}		
 		
-		$aImage = Phpfox::getLib('file')->load('image', array('jpg', 'gif', 'png'));
+		$aImage = Phpfox_File::instance()->load('image', array('jpg', 'gif', 'png'));
 			
 		if ($aImage === false)
 		{
@@ -35,11 +35,11 @@ class Ad_Component_Controller_Image extends Phpfox_Component
 		
 		$aParts = explode('x', $this->request()->get('ad_size'));		
 		
-		if ($sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('ad.dir_image'), Phpfox::getUserId() . uniqid()))
+		if ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('ad.dir_image'), Phpfox::getUserId() . uniqid()))
 		{
-			Phpfox::getLib('image')->createThumbnail(Phpfox::getParam('ad.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('ad.dir_image') . sprintf($sFileName, '_thumb'), (Phpfox::getParam('ad.multi_ad') ? 100 : ($aParts[0] / 3)), (Phpfox::getParam('ad.multi_ad') ? 72 : ($aParts[1] - 20)));
+			Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('ad.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('ad.dir_image') . sprintf($sFileName, '_thumb'), (Phpfox::getParam('ad.multi_ad') ? 100 : ($aParts[0] / 3)), (Phpfox::getParam('ad.multi_ad') ? 72 : ($aParts[1] - 20)));
 			
-			Phpfox::getLib('file')->unlink(Phpfox::getParam('ad.dir_image') . sprintf($sFileName, ''));
+			Phpfox_File::instance()->unlink(Phpfox::getParam('ad.dir_image') . sprintf($sFileName, ''));
 			rename(Phpfox::getParam('ad.dir_image') . sprintf($sFileName, '_thumb'), Phpfox::getParam('ad.dir_image') . sprintf($sFileName, ''));
 			
 			// http://www.phpfox.com/tracker/view/14922/ -> If CDN, the unlink function above deletes the image!!

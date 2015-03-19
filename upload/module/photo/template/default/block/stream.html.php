@@ -1,84 +1,30 @@
-<?php 
-/**
- * [PHPFOX_HEADER]
- *
- * @copyright		[PHPFOX_COPYRIGHT]
- * @author  		Raymond Benc
- * @package  		Module_Photo
- * @version 		$Id: stream.html.php 5616 2013-04-10 07:54:55Z Miguel_Espinoza $
- */
 
-defined('PHPFOX') or exit('NO DICE!'); 
+<div class="photos_view">
+	{img id='js_photo_view_image' server_id=$aForms.server_id path='photo.url_photo' file=$aForms.destination suffix='_1024' title=$aForms.title}
 
-?>
-{if count($aStreams.next) || count($aStreams.previous)}
-<div class="photo_stream_holder">
-    <div style="padding-top:15px;">
-	<div style="float:left; width:40%;">
-	{if count($aStreams.previous)}
-	    {foreach from=$aStreams.previous item=aPreviousPhoto}
-	    <div class="photo_stream_photo" style="float:right;">
-		{if $aPreviousPhoto.user_id == Phpfox::getUserId() ||
-			$aPreviousPhoto.mature == 0 ||
-			(Phpfox::getUserId() && Phpfox::getUserParam('photo.photo_mature_age_limit') <= Phpfox::getUserBy('age'))}
-		<a href="{$aPreviousPhoto.link}" title="{phrase var='photo.title_by_full_name' title=$aPreviousPhoto.title full_name=$aPreviousPhoto.full_name|clean}">
-			{img server_id=$aPreviousPhoto.server_id path='photo.url_photo' file=$aPreviousPhoto.destination suffix='_50' max_width=75 max_height=75 title=$aPreviousPhoto.title}
-		</a>
-
-		{elseif $aPreviousPhoto.mature == 1}
-		{* show warning *}
-		<a href="{$aPreviousPhoto.link}"
-		   onclick="tb_show('{phrase('photo.warning')}', $.ajaxBox('photo.warning', 'height=300&amp;width=350&amp;link={$aPreviousPhoto.link}'));
-		    return false;">
-		   {img theme='misc/no_access.png' width='75px'}
-		</a>
-		{elseif $aPreviousPhoto.mature == 2 && Phpfox::getUserParam('photo.photo_mature_age_limit') > Phpfox::getUserBy('age')}
-		<a href="{$aPreviousPhoto.link}">
-		    {img theme='misc/no_access.png' width='75px'}
-		</a>
-		{/if}
-	    </div>
-	    {/foreach}
-	{else}
-	    &nbsp;
-	{/if}	
+	<div class="photos_actions">
+		{phrase var='photo.in_this_photo'}: <span id="js_photo_in_this_photo"></span>
+		<ul>
+			{if (Phpfox::getUserParam('photo.can_edit_own_photo') && $aForms.user_id == Phpfox::getUserId()) || Phpfox::getUserParam('photo.can_edit_other_photo')}
+			<li>
+				<a href="#" class="js_hover_title" onclick="$('#photo_view_ajax_loader').show(); $('#menu').remove(); $('#noteform').hide(); $('#js_photo_view_image').imgAreaSelect({left_curly} hide: true {right_curly}); $('#js_photo_view_holder').hide(); $.ajaxCall('photo.rotate', 'photo_id={$aForms.photo_id}&amp;photo_cmd=left&amp;currenturl=' + $('#js_current_page_url').html()); return false;">
+					<span class="js_hover_info">{phrase var='photo.rotate_left'}</span>
+					<i class="fa fa-rotate-left"></i>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="js_hover_title" onclick="$('#photo_view_ajax_loader').show(); $('#menu').remove(); $('#noteform').hide(); $('#js_photo_view_image').imgAreaSelect({left_curly} hide: true {right_curly}); $('#js_photo_view_holder').hide(); $.ajaxCall('photo.rotate', 'photo_id={$aForms.photo_id}&amp;photo_cmd=right&amp;currenturl=' + $('#js_current_page_url').html()); return false;">
+					<span class="js_hover_info">{phrase var='photo.rotate_right'}</span>
+					<i class="fa fa-rotate-right"></i>
+				</a>
+			</li>
+			{/if}
+			<li class="photos_tag">
+				<a href="#" id="js_tag_photo" class="js_hover_title">
+					<span class="js_hover_info">{phrase var='photo.tag_this_photo'}</span>
+					<i class="fa fa-tag"></i>
+				</a>
+			</li>
+		</ul>
 	</div>
-	<div style="float:left; width:20%;">
-	    <div class="photo_stream_photo photo_stream_photo_active">
-			{img server_id=$aForms.server_id path='photo.url_photo' file=$aForms.destination suffix='_50' max_width=75 max_height=75 title=$aForms.title}
-	    </div>
-	</div>
-	<div style="float:left; width:40%;">
-	{if count($aStreams.next)}
-	{foreach from=$aStreams.next item=aNextPhoto}
-	    <div class="photo_stream_photo" style="float:left;">
-		{if $aNextPhoto.user_id == Phpfox::getUserId() ||
-			$aNextPhoto.mature == 0 ||
-			(Phpfox::getUserId() && Phpfox::getUserParam('photo.photo_mature_age_limit') <= Phpfox::getUserBy('age'))}
-		<a href="{$aNextPhoto.link}" title="{phrase var='photo.title_by_full_name' title=$aNextPhoto.title full_name=$aNextPhoto.full_name|clean}">
-			{img server_id=$aNextPhoto.server_id path='photo.url_photo' file=$aNextPhoto.destination suffix='_50' max_width=75 max_height=75 title=$aNextPhoto.title}
-		</a>
-
-		{elseif $aNextPhoto.mature == 1}
-		{* show warning *}
-		<a href="{$aNextPhoto.link}" 
-		   onclick="tb_show('{phrase('photo.warning')}', $.ajaxBox('photo.warning', 'height=300&amp;width=350&amp;link={$aNextPhoto.link}'));
-		    return false;">
-		   {img theme='misc/no_access.png' width='75px'}
-		</a>
-		{elseif $aNextPhoto.mature == 2 && Phpfox::getUserParam('photo.photo_mature_age_limit') > Phpfox::getUserBy('age')}
-		<a href="{$aNextPhoto.link}">
-		    {img theme='misc/no_access.png' width='75px'}
-		</a>
-		{/if}
-	    </div>
-	{/foreach}
-	{/if}	
-	</div>
-    </div>
-    <div class="clear"></div>
 </div>
-{else}
-<br />
-<br />
-{/if}

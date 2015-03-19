@@ -396,7 +396,7 @@ class Phpfox_Parse_Css
   	 */
 	public function process($sProperty, $sValue)
 	{		
-		(($sCmd = Phpfox::getLib('template')->getXml('design_css')) ? eval($sCmd) : null);
+		(($sCmd = Phpfox_Template::instance()->getXml('design_css')) ? eval($sCmd) : null);
 		
 		$aWidths = array();
 		foreach ($aAdvanced as $aCss)
@@ -714,7 +714,7 @@ class Phpfox_Parse_Css
 		$sJs = '<script type="text/javascript">';
 		$sJs .= 'var oValidateCss = {';
 		
-		(($sCmd = Phpfox::getLib('template')->getXml('design_css')) ? eval($sCmd) : null);
+		(($sCmd = Phpfox_Template::instance()->getXml('design_css')) ? eval($sCmd) : null);
 		
 		$aWidths = array();
 		if (isset($aAdvanced))

@@ -115,7 +115,7 @@ class Admincp_Service_Setting_Process extends Phpfox_Service
 				
 		if (isset($aVals['value']['admin_debug_mode']) && file_exists(PHPFOX_DIR . 'file' . PHPFOX_DS . 'log' . PHPFOX_DS . 'debug.php'))
 		{
-			Phpfox::getLib('file')->unlink(PHPFOX_DIR . 'file' . PHPFOX_DS . 'log' . PHPFOX_DS . 'debug.php');
+			Phpfox_File::instance()->unlink(PHPFOX_DIR . 'file' . PHPFOX_DS . 'log' . PHPFOX_DS . 'debug.php');
 		}
 		
 		if (isset($aVals['value']['ftp_enabled']) && $aVals['value']['ftp_enabled'])
@@ -182,7 +182,7 @@ class Admincp_Service_Setting_Process extends Phpfox_Service
 
 		if (!empty($_FILES['watermark']['name']))
 		{
-			$aImage = Phpfox::getLib('file')->load('watermark', array('jpg', 'gif', 'png'));
+			$aImage = Phpfox_File::instance()->load('watermark', array('jpg', 'gif', 'png'));
 			if ($aImage === false)
 			{
 				return false;
@@ -196,11 +196,11 @@ class Admincp_Service_Setting_Process extends Phpfox_Service
 					continue;
 				}
 				
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('core.dir_watermark') . $sFile);
+				Phpfox_File::instance()->unlink(Phpfox::getParam('core.dir_watermark') . $sFile);
 			}
 			closedir($hDir);
 			
-			if (!($sWatermarkName = Phpfox::getLib('file')->upload('watermark', Phpfox::getParam('core.dir_watermark'), 'watermark', true, 0644, false)))
+			if (!($sWatermarkName = Phpfox_File::instance()->upload('watermark', Phpfox::getParam('core.dir_watermark'), 'watermark', true, 0644, false)))
 			{
 				return false;	
 			}
@@ -404,7 +404,7 @@ class Admincp_Service_Setting_Process extends Phpfox_Service
 			{
 				if (!in_array($aSetting['var_name'], $aCache))
 				{		
-					$iModuleId = Phpfox::getLib('module')->getModuleId($aSetting['module']);				
+					$iModuleId = Phpfox_Module::instance()->getModuleId($aSetting['module']);
 					$aSql[] = array(
 						(empty($aSetting['group']) ? null : $aSetting['group']),
 						$iModuleId,
@@ -443,7 +443,7 @@ class Admincp_Service_Setting_Process extends Phpfox_Service
 			$aSql = array();		
 			foreach ($aVals['setting'] as $aValue)
 			{
-				$iModuleId = (int) Phpfox::getLib('module')->getModuleId($aValue['module']);
+				$iModuleId = (int) Phpfox_Module::instance()->getModuleId($aValue['module']);
 				$aSql[] = array(
 					(empty($aSetting['group']) ? null : $aSetting['group']),
 					$iModuleId,

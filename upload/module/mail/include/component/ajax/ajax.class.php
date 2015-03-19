@@ -53,7 +53,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 		foreach ($aMessages as $aMail)
 		{
 			$iCnt++;
-			Phpfox::getLib('template')->assign(array(
+			Phpfox_Template::instance()->assign(array(
 					'aMail' => $aMail,
 					'aCon' => $aCon,
 					'bIsLastMessage' => ($iCnt == count($aMessages) ? true : false)
@@ -76,7 +76,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 			
 			$aMessages = array_reverse($aMessages);
 			
-			Phpfox::getLib('template')->assign(array(
+			Phpfox_Template::instance()->assign(array(
 					'aMail' => $aMessages[0],
 					'aCon' => $aCon,
 					'bIsLastMessage' => true

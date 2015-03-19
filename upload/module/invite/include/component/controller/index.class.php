@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Invite_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -94,7 +94,7 @@ class Invite_Component_Controller_Index extends Phpfox_Component
 			else
 			{
 				Phpfox_Error::set('Your invitation has expired or it was not valid');
-				return Phpfox::getLib('module')->setController('core.index-visitor');
+				return Phpfox_Module::instance()->setController('core.index-visitor');
 			}
 		}
 		// check if someone is visiting from a link pasted in a site or other places

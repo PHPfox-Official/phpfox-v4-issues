@@ -147,7 +147,7 @@ class User_Service_Privacy_Privacy extends Phpfox_Service
 				
 				if (!isset($aIsFriend[$iUserId][Phpfox::getUserId()]))
 				{
-					$aIsFriend[$iUserId][Phpfox::getUserId()] = Phpfox::getService('friend')->isFriend($iUserId, Phpfox::getUserId());
+					$aIsFriend[$iUserId][Phpfox::getUserId()] = Friend_Service_Friend::instance()->isFriend($iUserId, Phpfox::getUserId());
 				}				
 				
 				return $aIsFriend[$iUserId][Phpfox::getUserId()];
@@ -196,7 +196,7 @@ class User_Service_Privacy_Privacy extends Phpfox_Service
 					{
 						if (!isset($aIsFriend[$iUserId][Phpfox::getUserId()]) && Phpfox::isModule('friend'))
 						{
-							$aIsFriend[$iUserId][Phpfox::getUserId()] = Phpfox::getService('friend')->isFriend($iUserId, Phpfox::getUserId());
+							$aIsFriend[$iUserId][Phpfox::getUserId()] = Friend_Service_Friend::instance()->isFriend($iUserId, Phpfox::getUserId());
 						}
 						
 						if (isset($aIsFriend[$iUserId]) && !$aIsFriend[$iUserId][Phpfox::getUserId()])

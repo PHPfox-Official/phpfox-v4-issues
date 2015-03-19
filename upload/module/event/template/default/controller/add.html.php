@@ -60,15 +60,10 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div style="position: relative;" class="js_event_select">
 					{select_date prefix='start_' id='_start' start_year='current_year' end_year='+1' field_separator=' / ' field_order='MDY' default_all=true add_time=true start_hour='+1' time_separator='event.time_separator'}				
 				</div>
-				{if !$bIsEdit}
-				<div class="extra_info">
-					<a href="#" onclick="$(this).parent().hide(); $('#js_event_add_end_time').show(); return false;">{phrase var='event.add_end_time'}</a>
-				</div>
-				{/if}
 			</div>
 		</div>	
 		
-		<div class="table" id="js_event_add_end_time"{if !$bIsEdit} style="display:none;"{/if}>
+		<div class="table" id="js_event_add_end_time" style="display:none;">
 			<div class="table_left">
 				{phrase var='event.end_time'}:
 			</div>
@@ -170,7 +165,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="table_right">
 					{if $bIsEdit && !empty($aForms.image_path)}
 					<div id="js_event_current_image">
-						{img server_id=$aForms.server_id path='event.url_image' file=$aForms.image_path suffix='_120' max_width='120' max_height='120'}
+						<div class="image_content_holder">{img server_id=$aForms.server_id path='event.url_image' file=$aForms.image_path suffix=''}</div>
 						<div class="extra_info">
 							{phrase var='event.click_here_to_delete_this_image_and_upload_a_new_one_in_its' java_script=$sJsEventAddCommand}
 						</div>
@@ -195,48 +190,33 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>	
 	</div>
 	
-	<div id="js_event_block_invite" class="js_event_block page_section_menu_holder" style="display:none;">	
-	
-			{if Phpfox::isModule('friend')}
-			<div style="width:75%; float:left; position:relative;">				
-				<h3 style="margin-top:0px; padding-top:0px;">{phrase var='event.invite_friends'}</h3>
-				<div style="height:370px;">			
-					{if isset($aForms.event_id)}
-					{module name='friend.search' input='invite' hide=true friend_item_id=$aForms.event_id friend_module_id='event'}
-					{/if}
-				</div>
+	<div id="js_event_block_invite" class="js_event_block page_section_menu_holder" style="display:none;">
+
+		<div class="block">
+			<div class="title">Invite Friends</div>
+			<div class="content">
+				{if isset($aForms.event_id)}
+				<div id="js_selected_friends" class="hide_it"></div>
+				{module name='friend.search' input='invite' hide=true friend_item_id=$aForms.event_id friend_module_id='event'}
 				{/if}
-				<h3>{phrase var='event.invite_people_via_email'}</h3>
-				<div class="p_4">
-					<textarea cols="40" rows="8" name="val[emails]" style="width:98%; height:60px;"></textarea>
-					<div class="extra_info">
-						{phrase var='event.separate_multiple_emails_with_a_comma'}
-					</div>
-				</div>
-				
-				<h3>{phrase var='event.add_a_personal_message'}</h3>
-				<div class="p_4">
-					<textarea cols="40" rows="8" name="val[personal_message]" style="width:98%; height:60px;"></textarea>					
-				</div>				
-				
-				<div class="p_top_8">
-					<input type="submit" id="btn_invitations_submit" value="{phrase var='event.send_invitations'}" class="button" />
-				</div>				
 			</div>
-			{if Phpfox::isModule('friend')}
-			<div style="margin-left:77%; position:relative;">
-				<div class="block">
-					<div class="title">{phrase var='event.new_guest_list'}</div>				
-					<div class="content">
-						<div class="label_flow" style="height:330px;">
-							<div id="js_selected_friends"></div>
-						</div>
-					</div>
+
+			<div class="title">{phrase var='event.invite_people_via_email'}</div>
+			<div class="content">
+				<textarea cols="40" rows="8" name="val[emails]" style="width:98%; height:60px;"></textarea>
+				<div class="extra_info">
+					{phrase var='event.separate_multiple_emails_with_a_comma'}
 				</div>
-			</div>		
-			
-			<div class="clear"></div>		
-			{/if}
+			</div>
+
+			<div class="title">{phrase var='event.add_a_personal_message'}</div>
+			<div class="content">
+				<textarea cols="40" rows="8" name="val[personal_message]" style="width:98%; height:60px;"></textarea>
+				<div class="p_top_8">
+					<input type="submit" value="{phrase var='event.send_invitations'}" class="button" />
+				</div>
+			</div>
+		</div>
 	</div>	
 	
 	{if $bIsEdit}
@@ -247,46 +227,48 @@ defined('PHPFOX') or exit('NO DICE!');
 	
 	{if $bIsEdit && Phpfox::getUserParam('event.can_mass_mail_own_members')}
 	<div id="js_event_block_email" class="js_event_block page_section_menu_holder" style="display:none;">
-		<div id="js_send_email"{if !$bCanSendEmails} style="display:none;"{/if}>
-			<div class="extra_info">
-				{phrase var='event.send_out_an_email_to_all_the_guests_that_are_joining_this_event'}
-				{if isset($aForms.mass_email) && $aForms.mass_email}
-				<br />
-				{phrase var='event.last_mass_email'}: {$aForms.mass_email|date:'mail.mail_time_stamp'}
-				{/if}
-			</div>
+		<div class="extra_info">
+			{phrase var='event.send_out_an_email_to_all_the_guests_that_are_joining_this_event'}
+			{if isset($aForms.mass_email) && $aForms.mass_email}
 			<br />
-			<div class="table">
-				<div class="table_left">
-					{phrase var='event.subject'}:
+			{phrase var='event.last_mass_email'}: {$aForms.mass_email|date:'mail.mail_time_stamp'}
+			{/if}
+		</div>
+
+		<div class="block">
+			<div id="js_send_email"{if !$bCanSendEmails} style="display:none;"{/if}>
+				<div class="table">
+					<div class="table_left">
+						{phrase var='event.subject'}:
+					</div>
+					<div class="table_right">
+						<input type="text" name="val[mass_email_subject]" value="" size="30" id="js_mass_email_subject" />
+					</div>
 				</div>
-				<div class="table_right">
-					<input type="text" name="val[mass_email_subject]" value="" size="30" id="js_mass_email_subject" />
+				<div class="table">
+					<div class="table_left">
+						{phrase var='event.text'}:
+					</div>
+					<div class="table_right">
+						<textarea cols="50" rows="8" name="val[mass_email_text]" id="js_mass_email_text"></textarea>
+					</div>
 				</div>
 			</div>
-			<div class="table">
-				<div class="table_left">
-					{phrase var='event.text'}:
+	</div>
+		<div class="table_clear">
+			<ul class="table_clear_button">
+				<li><input type="button" value="{phrase var='event.send'}" class="button" onclick="$('#js_event_mass_mail_li').show(); $.ajaxCall('event.massEmail', 'type=message&amp;id={$aForms.event_id}&amp;subject=' + $('#js_mass_email_subject').val() + '&amp;text=' + $('#js_mass_email_text').val()); return false;" /></li>
+				<li id="js_event_mass_mail_li" style="display:none;">{img theme='ajax/add.gif' class='v_middle'} <span id="js_event_mass_mail_send">Sending mass email...</span></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+			<div id="js_send_email_fail"{if $bCanSendEmails} style="display:none;"{/if}>
+				<div class="extra_info">
+					{phrase var='event.you_are_unable_to_send_out_any_mass_emails_at_the_moment'}
+					<br />
+					{phrase var='event.please_wait_till'}: <span id="js_time_left">{$iCanSendEmailsTime|date:'mail.mail_time_stamp'}</span>
 				</div>
-				<div class="table_right">
-					<textarea cols="50" rows="8" name="val[mass_email_text]" id="js_mass_email_text"></textarea>
-				</div>
-			</div>		
-			<div class="table_clear">
-				<ul class="table_clear_button">
-					<li><input type="button" value="{phrase var='event.send'}" class="button" onclick="$('#js_event_mass_mail_li').show(); $.ajaxCall('event.massEmail', 'type=message&amp;id={$aForms.event_id}&amp;subject=' + $('#js_mass_email_subject').val() + '&amp;text=' + $('#js_mass_email_text').val()); return false;" /></li>
-					<li id="js_event_mass_mail_li" style="display:none;">{img theme='ajax/add.gif' class='v_middle'} <span id="js_event_mass_mail_send">Sending mass email...</span></li>
-				</ul>
-				<div class="clear"></div>
 			</div>
-		</div>
-		<div id="js_send_email_fail"{if $bCanSendEmails} style="display:none;"{/if}>
-			<div class="extra_info">
-				{phrase var='event.you_are_unable_to_send_out_any_mass_emails_at_the_moment'}
-				<br />
-				{phrase var='event.please_wait_till'}: <span id="js_time_left">{$iCanSendEmailsTime|date:'mail.mail_time_stamp'}</span>
-			</div>			
-		</div>
 	</div>
 	{/if}
 	

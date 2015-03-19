@@ -17,7 +17,7 @@ class User_Component_Admincp_Ajax_Ajax extends Phpfox_Ajax
 {	
 	public function addSettingPhrase()
 	{
-		$sModule = '' . Phpfox::getLib('module')->getModuleId('admincp') . '|admincp';
+		$sModule = '' . Phpfox_Module::instance()->getModuleId('admincp') . '|admincp';
 		$sPhrase = Phpfox::getService('language.phrase.process')->add(array(
 			'var_name' => 'user_setting_' . $this->get('var'),
 			'product_id' => 1,

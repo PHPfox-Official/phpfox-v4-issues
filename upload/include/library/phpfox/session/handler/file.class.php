@@ -53,9 +53,9 @@ class Phpfox_Session_Handler_File
 		{
 			$sSessionSavePath = (PHPFOX_OPEN_BASE_DIR ? PHPFOX_DIR_FILE . 'session' . PHPFOX_DS : session_save_path());
 			
-			if (empty($sSessionSavePath) || (!empty($sSessionSavePath) && !Phpfox::getLib('file')->isWritable($sSessionSavePath)))
+			if (empty($sSessionSavePath) || (!empty($sSessionSavePath) && !Phpfox_File::instance()->isWritable($sSessionSavePath)))
 			{
-				$this->_sSavePath = rtrim(Phpfox::getLib('file')->getTempDir(), PHPFOX_DS) . PHPFOX_DS;
+				$this->_sSavePath = rtrim(Phpfox_File::instance()->getTempDir(), PHPFOX_DS) . PHPFOX_DS;
 			}
 			else 
 			{
@@ -63,7 +63,7 @@ class Phpfox_Session_Handler_File
 			}
 		}
 		
-		if (!Phpfox::getLib('file')->isWritable($this->_sSavePath))
+		if (!Phpfox_File::instance()->isWritable($this->_sSavePath))
 		{
 			return Phpfox_Error::trigger('Session path is not wriable: ' . $this->_sSavePath, E_USER_ERROR);
 		}

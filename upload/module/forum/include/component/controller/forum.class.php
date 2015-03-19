@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class Forum_Component_Controller_Forum extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
-		if (Phpfox::isMobile() && Phpfox::getLib('module')->getFullControllerName() == 'forum.forum' && !$this->request()->getInt('req2') && !in_array($this->request()->get('view'), array('subscribed','new','my-thread')))
+		if (Phpfox::isMobile() && Phpfox_Module::instance()->getFullControllerName() == 'forum.forum' && !$this->request()->getInt('req2') && !in_array($this->request()->get('view'), array('subscribed','new','my-thread')))
 		{
-			return Phpfox::getLib('module')->setController('forum.index');
+			return Phpfox_Module::instance()->setController('forum.index');
 		}
 		
 		

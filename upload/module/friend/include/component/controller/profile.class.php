@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Controller_Profile extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{	
@@ -86,7 +86,7 @@ class Friend_Component_Controller_Profile extends Phpfox_Component
 			$this->template()->setTitle($aList['name'])->setBreadcrumb($aList['name'], $this->url()->makeUrl('friend', array('view' => 'list', 'id' => $iListId)), true);
 		}		
 		
-		list($iCnt, $aFriends) = Phpfox::getService('friend')->get($oFilter->getConditions(), $oFilter->getSort(), $oFilter->getPage(), $iPageSize, true, true, ($this->request()->get('view') ? true : false), ($bMutual === true ? $aUser['user_id'] : null));
+		list($iCnt, $aFriends) = Friend_Service_Friend::instance()->get($oFilter->getConditions(), $oFilter->getSort(), $oFilter->getPage(), $iPageSize, true, true, ($this->request()->get('view') ? true : false), ($bMutual === true ? $aUser['user_id'] : null));
 
 		$iCnt = $oFilter->getSearchTotal($iCnt);
 		

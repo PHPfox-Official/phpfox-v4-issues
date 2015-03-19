@@ -97,7 +97,7 @@ class Phpfox_Archive_Export
 			
 		if (is_dir(PHPFOX_DIR_CACHE . $sFolder . PHPFOX_DS))
 		{			 
-			Phpfox::getLib('file')->delete_directory(PHPFOX_DIR_CACHE . $sFolder . PHPFOX_DS);
+			Phpfox_File::instance()->delete_directory(PHPFOX_DIR_CACHE . $sFolder . PHPFOX_DS);
 		}	
 		
 		(($sPlugin = Phpfox_Plugin::get('archive_export_download')) ? eval($sPlugin) : false);

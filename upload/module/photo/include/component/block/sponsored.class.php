@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Photo_Component_Block_Sponsored extends Phpfox_Component
 {
     /**
-     * Class process method wnich is used to execute this component.
+     * Controller
      */
     public function process()
     {
@@ -41,7 +41,7 @@ class Photo_Component_Block_Sponsored extends Phpfox_Component
 		
 		$aSponsorPhoto['details'] = array(
 			Phpfox::getPhrase('photo.submitted') => Phpfox::getTime(Phpfox::getParam('photo.photo_image_details_time_stamp'), $aSponsorPhoto['time_stamp']),
-			Phpfox::getPhrase('photo.file_size') => Phpfox::getLib('file')->filesize($aSponsorPhoto['file_size']),
+			Phpfox::getPhrase('photo.file_size') => Phpfox_File::instance()->filesize($aSponsorPhoto['file_size']),
 			Phpfox::getPhrase('photo.resolution') => $aSponsorPhoto['width'] . '×' . $aSponsorPhoto['height'],
 			Phpfox::getPhrase('photo.views') => $aSponsorPhoto['total_view']
 		);

@@ -123,13 +123,13 @@ class Photo_Service_Process extends Phpfox_Service
 		
 					if(file_exists(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], '')))
 					{
-						Phpfox::getLib('file')->rename(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], ''), Phpfox::getParam('photo.dir_photo') . sprintf($sNewName, ''));
+						Phpfox_File::instance()->rename(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], ''), Phpfox::getParam('photo.dir_photo') . sprintf($sNewName, ''));
 					}
 					
 				    // Create thumbnails with different sizes depending on the global param.
 				    foreach(Phpfox::getParam('photo.photo_pic_sizes') as $iSize)
 				    {
-						Phpfox::getLib('file')->rename(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], '_' . $iSize), Phpfox::getParam('photo.dir_photo') . sprintf($sNewName, '_' . $iSize));
+						Phpfox_File::instance()->rename(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], '_' . $iSize), Phpfox::getParam('photo.dir_photo') . sprintf($sNewName, '_' . $iSize));
 				    }
 				}				
 		    }
@@ -424,7 +424,7 @@ class Photo_Service_Process extends Phpfox_Service
 		    $iFileSizes += filesize(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], ''));
 	
 		    // Remove the image
-		    Phpfox::getLib('file')->unlink(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], ''));
+		    Phpfox_File::instance()->unlink(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], ''));
 		}
 	
 		// If CDN is in use, remove the original image, as done above
@@ -449,7 +449,7 @@ class Photo_Service_Process extends Phpfox_Service
 				$iFileSizes += filesize(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], '_' . $iSize));
 		
 				// Remove the image
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], '_' . $iSize));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('photo.dir_photo') . sprintf($aPhoto['destination'], '_' . $iSize));
 		    }
 
 		    // If CDN is in use, remove the thumbnails there too
@@ -666,7 +666,7 @@ class Photo_Service_Process extends Phpfox_Service
 						//p($sFile);
 					}
 
-				    Phpfox::getLib('image')->rotate($sFile, $sCmd);
+				    Phpfox_Image::instance()->rotate($sFile, $sCmd);
 				}
 
 				if (Phpfox::getParam('core.allow_cdn') && $aPhoto['server_id'] > 0)

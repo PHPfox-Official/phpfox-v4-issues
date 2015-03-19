@@ -46,7 +46,23 @@ defined('PHPFOX') or exit('NO DICE!');
 		    </form>
 		    
 		    {else}
-			{template file='photo.block.photo-entry'}			
+
+			<div class="clearfix mosaicflow_load">
+				{foreach from=$aPhotos item=aPhoto}
+				<article class="photos_row">
+					<header>
+						<h1><a href="{$aPhoto.link}">{$aPhoto.title|clean}</a></h1>
+						<ul class="photos_row_info">
+							<li>by {$aPhoto|user}</li>
+						</ul>
+					</header>
+					<a href="{$aPhoto.link}">
+						{img server_id=$aPhoto.server_id path='photo.url_photo' file=$aPhoto.destination suffix='_500' title=$aPhoto.title}
+					</a>
+				</article>
+				{/foreach}
+			</div>
+
 			{if Phpfox::getUserParam('photo.can_approve_photos') || Phpfox::getUserParam('photo.can_delete_other_photos')}
 			    {moderation}
 			{/if}

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Admincp_Component_Controller_Module_Add extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{	
@@ -81,7 +81,7 @@ class Admincp_Component_Controller_Module_Add extends Phpfox_Component
 				}
 				else 
 				{
-					if (Phpfox::getLib('module')->isModule($aVals['module_id']))
+					if (Phpfox_Module::instance()->isModule($aVals['module_id']))
 					{
 						Phpfox_Error::set(Phpfox::getPhrase('admincp.module_name_already_used'));	
 					}

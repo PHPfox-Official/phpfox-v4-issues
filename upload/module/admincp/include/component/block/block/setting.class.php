@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Admincp_Component_Block_Block_Setting extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -29,7 +29,7 @@ class Admincp_Component_Block_Block_Setting extends Phpfox_Component
 		
 		$this->template()->assign(array(
 				'aModules' => $aModules,
-				'aStyles' => Phpfox::getService('theme.style')->get(),
+				'aStyles' => Theme_Service_Style_Style::instance()->get(),
 				'sConnection' => $this->request()->get('m_connection'),
 				'iStyleId' => $this->request()->get('style_id', 0)
 			)

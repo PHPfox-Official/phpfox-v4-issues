@@ -31,7 +31,7 @@ class Friend_Component_Block_Congratulate extends Phpfox_Component
 		
 		if (!PHPFOX_IS_AJAX)
 		{
-			if (Phpfox::getService('friend')->isBirthdaySent(Phpfox::getUserId(), $aUser['user_id']))
+			if (Friend_Service_Friend::instance()->isBirthdaySent(Phpfox::getUserId(), $aUser['user_id']))
 			{
 				return false;
 			}

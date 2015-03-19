@@ -213,14 +213,15 @@ class Event_Service_Process extends Phpfox_Service
 		
 		if ($this->_bHasImage)
 		{			
-			$oImage = Phpfox::getLib('image');
+			$oImage = Phpfox_Image::instance();
 			
-			$sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('event.dir_image'), $iId);
+			$sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('event.dir_image'), $iId);
 			$iFileSizes = filesize(Phpfox::getParam('event.dir_image') . sprintf($sFileName, ''));			
 			
 			$aSql['image_path'] = $sFileName;
 			$aSql['server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
-			
+
+			/*
 			$iSize = 50;			
 			$oImage->createThumbnail(Phpfox::getParam('event.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('event.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);			
 			$iFileSizes += filesize(Phpfox::getParam('event.dir_image') . sprintf($sFileName, '_' . $iSize));			
@@ -232,7 +233,9 @@ class Event_Service_Process extends Phpfox_Service
 			$iSize = 200;			
 			$oImage->createThumbnail(Phpfox::getParam('event.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('event.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);			
 			$iFileSizes += filesize(Phpfox::getParam('event.dir_image') . sprintf($sFileName, '_' . $iSize));
-			
+			*/
+			$oImage->createThumbnail(Phpfox::getParam('event.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('event.dir_image') . sprintf($sFileName, ''), 600, 400);
+
 			// Update user space usage
 			Phpfox::getService('user.space')->update(Phpfox::getUserId(), 'event', $iFileSizes);
 		}	
@@ -457,7 +460,7 @@ class Event_Service_Process extends Phpfox_Service
 				{
 					$iFileSizes += filesize($sImage);
 					
-					Phpfox::getLib('file')->unlink($sImage);
+					Phpfox_File::instance()->unlink($sImage);
 				}
 				
 				if(Phpfox::getParam('core.allow_cdn') && $aEvent['server_id'] > 0)
@@ -592,7 +595,7 @@ class Event_Service_Process extends Phpfox_Service
 				{
 					$iFileSizes += filesize($sImage);
 					if ($sPlugin = Phpfox_Plugin::get('event.service_process_delete__pre_unlink')){return eval($sPlugin);}
-					Phpfox::getLib('file')->unlink($sImage);
+					Phpfox_File::instance()->unlink($sImage);
 				}
 				
 				if(Phpfox::getParam('core.allow_cdn') && $aEvent['server_id'] > 0)
@@ -758,7 +761,7 @@ class Event_Service_Process extends Phpfox_Service
 		Phpfox::isUser(true);
 		Phpfox::getUserParam('event.can_mass_mail_own_members', true);
 		
-		$aEvent = Phpfox::getService('event')->getEvent($iId, true);
+		$aEvent = Event_Service_Event::instance()->getEvent($iId, true);
 		
 		if (!isset($aEvent['event_id']))
 		{
@@ -771,7 +774,7 @@ class Event_Service_Process extends Phpfox_Service
 		}
 		if ($sPlugin = Phpfox_Plugin::get('event.service_process_massemail__start')){return eval($sPlugin);}
 		Phpfox::getService('ban')->checkAutomaticBan($sText);
-		list($iCnt, $aGuests) = Phpfox::getService('event')->getInvites($iId, 1, $iPage, 20);
+		list($iCnt, $aGuests) = Event_Service_Event::instance()->getInvites($iId, 1, $iPage, 20);
 		
 		$sLink = Phpfox::getLib('url')->permalink('event' , $aEvent['event_id'], $aEvent['title']);
 		
@@ -868,7 +871,7 @@ class Event_Service_Process extends Phpfox_Service
 		
 		if (isset($_FILES['image']['name']) && ($_FILES['image']['name'] != ''))
 		{
-			$aImage = Phpfox::getLib('file')->load('image', array(
+			$aImage = Phpfox_File::instance()->load('image', array(
 					'jpg',
 					'gif',
 					'png'

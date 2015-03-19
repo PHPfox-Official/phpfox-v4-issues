@@ -109,7 +109,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 		Phpfox::isUser(true);
 		Phpfox::getUserParam('friend.can_add_friends', true);
 		
-		if (Phpfox::getService('friend')->isFriend($this->get('user_id'), Phpfox::getUserId()))
+		if (Friend_Service_Friend::instance()->isFriend($this->get('user_id'), Phpfox::getUserId()))
 		{
 			Phpfox::getService('friend.request.process')->delete($this->get('request_id'), $this->get('user_id'));
 			$this->call(' $("#js_new_friend_request_' . $this->get('request_id') . '").remove();');
@@ -183,7 +183,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 			Phpfox_Error::set('You already requested to be friends');
 			//return false;
 		}
-		elseif (Phpfox::getService('friend')->isFriend($aUser['user_id'], Phpfox::getUserId()))
+		elseif (Friend_Service_Friend::instance()->isFriend($aUser['user_id'], Phpfox::getUserId()))
 		{	
 			Phpfox_Error::set('You are already friends with this user');
 			//return false;
@@ -277,7 +277,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function buildCache()
 	{
-		$this->call('$Cache.friends = ' . json_encode(Phpfox::getService('friend')->getFromCache($this->get('allow_custom'))) . ';');
+		$this->call('$Cache.friends = ' . json_encode(Friend_Service_Friend::instance()->getFromCache($this->get('allow_custom'))) . ';');
 	}
 	
 	public function getLiveSearch()
@@ -285,7 +285,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 		// This function is called from friend.static.search.js::getFriends in response to a keyup event when is_mail is passed as true in building the template
 		// parent_id we have to find the class "js_temp_friend_search_form" from its parents
 		// search_for 
-		$aUsers = Phpfox::getService('friend')->getFromCache(false,$this->get('search_for'));
+		$aUsers = Friend_Service_Friend::instance()->getFromCache(false,$this->get('search_for'));
 		
 		if (empty($aUsers))
 		{
@@ -336,7 +336,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 			)
 		);
 		
-		$sPath = Phpfox::getLib('template')->getStyle('image', 'misc/favorite.png');
+		$sPath = Phpfox_Template::instance()->getStyle('image', 'misc/favorite.png');
 		$sLink = '<a href="#" onclick="$.ajaxCall(\'friend.deleteTop\', \'id=' . $this->get('id') . '\'); return false;" title="' . Phpfox::getPhrase('friend.remove_from_your_top_friends_list') . '"><img src="' . $sPath . '" style="vertical-align:middle;" /></a>';
 				
 		$this->call("$('#js_block_border_friend_top').find('.content').html('" . $this->getContent() . "'); $('#js_add_top_fav_link_" . $this->get('id') . "').html('" . str_replace("'", "\'", $sLink) . "'); $Behavior.orderTopFriends();");		
@@ -351,7 +351,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 			'bIsAjax' => true
 		));
 		
-		$sPath = Phpfox::getLib('template')->getStyle('image', 'misc/favorite_add.png');
+		$sPath = Phpfox_Template::instance()->getStyle('image', 'misc/favorite_add.png');
 		$sLink = '<a href="#"" onclick="$.ajaxCall(\'friend.addTop\', \'id=' . $this->get('id') . '\'); return false;" title="' . Phpfox::getPhrase('friend.add_to_your_top_friends_list') . '"><img src="' . $sPath . '" style="vertical-align:middle;" /></a>';		
 				
 		$this->call("$('#js_block_border_friend_top').find('.content').html('" . $this->getContent() . "'); $('#js_add_top_fav_link_" . $this->get('id') . "').html('" . str_replace("'", "\'", $sLink) . "'); $Behavior.orderTopFriends();");			
@@ -442,7 +442,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 		}
 		else 
 		{
-			list($iCnt, $aFriends) = Phpfox::getService('friend')->get('friend.is_page = 0 AND friend.user_id = ' . Phpfox::getUserId() . ' AND (u.full_name LIKE \'%' . Phpfox::getLib('parse.input')->convert($oDb->escape($sFind)) . '%\' OR (u.email LIKE \'%' . $oDb->escape($sFind) . '@%\' OR u.email = \'' . $oDb->escape($sFind) . '\'))', 'friend.time_stamp DESC', 0, 10, true, true);
+			list($iCnt, $aFriends) = Friend_Service_Friend::instance()->get('friend.is_page = 0 AND friend.user_id = ' . Phpfox::getUserId() . ' AND (u.full_name LIKE \'%' . Phpfox::getLib('parse.input')->convert($oDb->escape($sFind)) . '%\' OR (u.email LIKE \'%' . $oDb->escape($sFind) . '@%\' OR u.email = \'' . $oDb->escape($sFind) . '\'))', 'friend.time_stamp DESC', 0, 10, true, true);
 		}
 		
 		if ($iCnt)
@@ -474,7 +474,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if ($bLoadTemplate === true)
 		{
-			Phpfox::getLib('template')->getTemplate('friend.block.suggestion');
+			Phpfox_Template::instance()->getTemplate('friend.block.suggestion');
 		}
 		
 		$this->slideUp('#js_friend_suggestion_loader')->html('#js_friend_suggestion', $this->getContent(false))->slideDown('#js_friend_suggestion');	

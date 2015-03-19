@@ -611,7 +611,7 @@ class Photo_Service_Photo extends Phpfox_Service
 				$aFriends = array();
 				if (Phpfox::isModule('friend'))
 				{
-					list($iCnt, $aFriends) = Phpfox::getService('friend')->get(array('AND friend.user_id = ' . (int) Phpfox::getUserId()), '', '', false);
+					list($iCnt, $aFriends) = Friend_Service_Friend::instance()->get(array('AND friend.user_id = ' . (int) Phpfox::getUserId()), '', '', false);
 				}
 				if ($iCnt > 0)
 				{
@@ -626,7 +626,7 @@ class Photo_Service_Photo extends Phpfox_Service
 					$sQuery .= ' OR (photo.privacy = 1 AND photo.user_id IN ' . $sFriendsIn .')';
 					
 					// 2 - Friends of Frends
-					$aFriendsOfFriends = Phpfox::getService('friend')->getFriendsOfFriends($sFriendsIn);
+					$aFriendsOfFriends = Friend_Service_Friend::instance()->getFriendsOfFriends($sFriendsIn);
 					if (!empty($aFriendsOfFriends))
 					{
 						$sIn = implode(',', $aFriendsOfFriends);
@@ -798,7 +798,7 @@ class Photo_Service_Photo extends Phpfox_Service
 			}
 		}		
 		
-		Phpfox::getLib('template')->buildSectionMenu('photo', $aFilterMenu);			
+		Phpfox_Template::instance()->buildSectionMenu('photo', $aFilterMenu);
 	}
 	
 	public function getInfoForAction($aItem)

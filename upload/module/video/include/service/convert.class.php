@@ -142,7 +142,7 @@ class Video_Service_Convert extends Phpfox_Service
 			}
 			else 
 			{
-				$sImageLocation = Phpfox::getLib('file')->getBuiltDir(Phpfox::getParam(($bIsAttachment ? 'core.dir_attachment' :'video.dir_image'))) . md5($aVideo['video_id']) . '%s.jpg';	
+				$sImageLocation = Phpfox_File::instance()->getBuiltDir(Phpfox::getParam(($bIsAttachment ? 'core.dir_attachment' :'video.dir_image'))) . md5($aVideo['video_id']) . '%s.jpg';
 			}
 
 			if (file_exists($sDestination) && $aVideo['file_ext'] != 'flv')
@@ -225,7 +225,7 @@ class Video_Service_Convert extends Phpfox_Service
 					{				
 						if (file_exists($sDestination))
 						{
-							Phpfox::getLib('file')->unlink($sDestination);
+							Phpfox_File::instance()->unlink($sDestination);
 						}
 						$sMencoderParams = str_replace($aFind, $aReplace, Phpfox::getParam('video.params_for_mencoder'));
 						$this->_exec($this->_sMencoder . ' ' . $sMencoderParams);
@@ -235,7 +235,7 @@ class Video_Service_Convert extends Phpfox_Service
 					{
 						if (file_exists($sDestination))
 						{
-							Phpfox::getLib('file')->unlink($sDestination);
+							Phpfox_File::instance()->unlink($sDestination);
 						}				
 						
 						$this->_exec($this->_sMencoder . ' ' . str_replace($aFind, $aReplace, Phpfox::getParam('video.params_for_mencoder_fallback')));
@@ -320,7 +320,7 @@ class Video_Service_Convert extends Phpfox_Service
 			{
 				if (!in_array($aVideo['file_ext'], array('mp4', 'webm', 'ogg')) && substr($sSource, 0, 4) != 'http')			
 				{
-					Phpfox::getLib('file')->unlink($sSource);
+					Phpfox_File::instance()->unlink($sSource);
 				
 					$this->_debug(Phpfox::getPhrase('video.removed_source_file'));
 				}
@@ -329,7 +329,7 @@ class Video_Service_Convert extends Phpfox_Service
 			{
 				if ($aVideo['file_ext'] != 'flv' && substr($sSource, 0, 4) != 'http')			
 				{
-					Phpfox::getLib('file')->unlink($sSource);
+					Phpfox_File::instance()->unlink($sSource);
 				
 					$this->_debug(Phpfox::getPhrase('video.removed_source_file'));
 				}
@@ -373,14 +373,14 @@ class Video_Service_Convert extends Phpfox_Service
 			// 'Completed Image: ' . sprintf($sImageLocation, '')
     		$this->_debug(Phpfox::getPhrase('video.completed_image_simagelocation',array('sImageLocation' => sprintf($sImageLocation, ''))));
 
-    		// Phpfox::getLib('image')->createThumbnail($sImageLocation, Phpfox::getLib('file')->getBuiltDir(Phpfox::getParam('video.dir_image')) . md5($aVideo['video_id']) . '.jpg', 400, 400);
+    		// Phpfox_Image::instance()->createThumbnail($sImageLocation, Phpfox_File::instance()->getBuiltDir(Phpfox::getParam('video.dir_image')) . md5($aVideo['video_id']) . '.jpg', 400, 400);
     		
-    		Phpfox::getLib('image')->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_120'), 120, 120);
-			Phpfox::getLib('image')->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_12090'), 120, 90, false);
+    		Phpfox_Image::instance()->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_120'), 120, 120);
+			Phpfox_Image::instance()->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_12090'), 120, 90, false);
 			// http://www.phpfox.com/tracker/view/14924/
-			Phpfox::getLib('image')->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_200'), 200, 200, false);
+			Phpfox_Image::instance()->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_200'), 200, 200, false);
     		
-    		Phpfox::getLib('file')->unlink(sprintf($sImageLocation, ''));    		    		
+    		Phpfox_File::instance()->unlink(sprintf($sImageLocation, ''));
 
 			// 'Completed: ' . $sDestination
 			$this->_debug(Phpfox::getPhrase('video.completed_sdestination', array('sDestination' => $sDestination)));
@@ -509,7 +509,7 @@ class Video_Service_Convert extends Phpfox_Service
 			if ($hFile = @fopen($sCacheName, 'a'))
 			{			
 				$sData = "#### " . microtime() . " ####\n";
-				$sData .= "[" . Phpfox::getLib('file')->filesize(memory_get_usage()) . "]" . "{$sMessage}\n";
+				$sData .= "[" . Phpfox_File::instance()->filesize(memory_get_usage()) . "]" . "{$sMessage}\n";
 				$sData .= "####\n";
 	
 				fwrite($hFile, $sData);

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Admincp_Component_Controller_Setting_Add extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 * @todo Complete the update routine...
 	 */
 	public function process()
@@ -97,7 +97,7 @@ class Admincp_Component_Controller_Setting_Add extends Phpfox_Component
 		$this->template()->assign(array(
 					'aProducts' => Phpfox::getService('admincp.product')->get(),
 					'aGroups' => $aGroups,
-					'aModules' => Phpfox::getLib('module')->getModules(),
+					'aModules' => Phpfox_Module::instance()->getModules(),
 					'sCreateJs' => $oValid->createJS(),
 					'sGetJsForm' => $oValid->getJsForm(),
 					'bEdit' => $bEdit			

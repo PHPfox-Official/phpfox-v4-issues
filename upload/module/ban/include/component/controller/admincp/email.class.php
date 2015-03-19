@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Ban_Component_Controller_Admincp_Email extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -28,7 +28,7 @@ class Ban_Component_Controller_Admincp_Email extends Phpfox_Component
 			)
 		);
 		
-		return Phpfox::getLib('module')->setController('ban.admincp.default');		
+		return Phpfox_Module::instance()->setController('ban.admincp.default');
 	}
 	
 	/**

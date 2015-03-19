@@ -41,11 +41,11 @@ class Comment_Service_Process extends Phpfox_Service
 			{
 				if(isset($aFeed['privacy_comment']) && !empty($aFeed['privacy']) && !empty($aFeed['user_id']) && $aFeed['user_id'] != $iUserId)
 				{
-					if ($aFeed['privacy_comment'] == 1 && Phpfox::getService('friend')->isFriend($iUserId, $aFeed['user_id']) != true)
+					if ($aFeed['privacy_comment'] == 1 && Friend_Service_Friend::instance()->isFriend($iUserId, $aFeed['user_id']) != true)
 					{
 						return Phpfox_Error::display(Phpfox::getPhrase('feed.unable_to_post_a_comment_on_this_item_due_to_privacy_settings'));
 					}
-					else if ($aFeed['privacy_comment'] == 2 && Phpfox::getService('friend')->isFriendOfFriend($iUserId) != true)
+					else if ($aFeed['privacy_comment'] == 2 && Friend_Service_Friend::instance()->isFriendOfFriend($iUserId) != true)
 					{
 						return Phpfox_Error::display(Phpfox::getPhrase('feed.unable_to_post_a_comment_on_this_item_due_to_privacy_settings'));
 					}
@@ -62,11 +62,11 @@ class Comment_Service_Process extends Phpfox_Service
 				// Fallback: if the item is private and it cannot be accessed by the one trying to comment, then, the user should not be able to.
 				if(isset($aFeed['privacy']) && !empty($aFeed['privacy']) && !empty($aFeed['user_id']) && $aFeed['user_id'] != $iUserId)
 				{
-					if ($aFeed['privacy'] == 1 && Phpfox::getService('friend')->isFriend($iUserId, $aFeed['user_id']) != true)
+					if ($aFeed['privacy'] == 1 && Friend_Service_Friend::instance()->isFriend($iUserId, $aFeed['user_id']) != true)
 					{
 						return Phpfox_Error::display(Phpfox::getPhrase('feed.unable_to_post_a_comment_on_this_item_due_to_privacy_settings'));
 					}
-					else if ($aFeed['privacy'] == 2 && Phpfox::getService('friend')->isFriendOfFriend($iUserId) != true)
+					else if ($aFeed['privacy'] == 2 && Friend_Service_Friend::instance()->isFriendOfFriend($iUserId) != true)
 					{
 						return Phpfox_Error::display(Phpfox::getPhrase('feed.unable_to_post_a_comment_on_this_item_due_to_privacy_settings'));
 					}

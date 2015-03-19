@@ -86,7 +86,7 @@ class FoxporterModule_Se4 extends Foxporter_Abstract
 			{
 				if (file_exists($this->_sCacheId))
 				{
-					Phpfox::getLib('file')->unlink($this->_sCacheId);
+					Phpfox_File::instance()->unlink($this->_sCacheId);
 				}
 				
 				$sPath = rtrim($aVals['se4_path'], PHPFOX_DS). PHPFOX_DS;
@@ -97,7 +97,7 @@ class FoxporterModule_Se4 extends Foxporter_Abstract
 					eval(' ?> ' . $sConfigData . ' <?php ');
 					$aConfig['se4_path'] = $sPath;
 					
-					Phpfox::getLib('file')->write($this->_sCacheId, serialize($aConfig));
+					Phpfox_File::instance()->write($this->_sCacheId, serialize($aConfig));
 					
 					if ($this->_connect())
 					{							

@@ -79,9 +79,11 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}			
 			
 			{if count($aAlbums)}
-			<div class="photo_edit_input">
-				{phrase var='photo.move_to'}:
-				<div class="p_top_4">
+			<div class="table">
+				<div class="table_left">
+					{phrase var='photo.move_to'}:
+				</div>
+				<div class="table_right">
 					<select name="val[{$aForms.photo_id}][move_to]" style="width:180px;">	
 						<option value="">{phrase var='photo.select'}:</option>
 					{foreach from=$aAlbums item=aAlbum}

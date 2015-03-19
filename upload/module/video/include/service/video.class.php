@@ -394,7 +394,7 @@ class Video_Service_Video extends Phpfox_Service
 			
 			$iEmbedWidth = 640;
 			$iEmbedHeight = 390;
-			if (Phpfox::getLib('template')->getThemeFolder() == 'nebula')
+			if (Phpfox_Template::instance()->getThemeFolder() == 'nebula')
 			{
 				$iEmbedWidth = 600;
 				$iEmbedHeight = 366;				

@@ -1,5 +1,5 @@
 <?php
-if ((Phpfox::getLib('module')->getFullControllerName() == 'forum.thread' || (PHPFOX_IS_AJAX && isset($_POST['core']) && $_POST['core']['call'] == 'forum.addReply')) && Phpfox::isUser())
+if ((Phpfox_Module::instance()->getFullControllerName() == 'forum.thread' || (PHPFOX_IS_AJAX && isset($_POST['core']) && $_POST['core']['call'] == 'forum.addReply')) && Phpfox::isUser())
 {
 	$aPost = $this->getVar('aPost');
 	$aThread = (array) $this->getVar('aThread');	

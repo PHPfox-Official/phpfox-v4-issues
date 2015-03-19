@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Controller_Group extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -49,7 +49,7 @@ class Event_Component_Controller_Group extends Phpfox_Component
 				)	
 			);
 			
-			return Phpfox::getLib('module')->setController('event.view');
+			return Phpfox_Module::instance()->setController('event.view');
 		}		
 		elseif ($this->request()->get('req4') == 'add')
 		{			
@@ -77,7 +77,7 @@ class Event_Component_Controller_Group extends Phpfox_Component
 			)
 		);
 		
-		return Phpfox::getLib('module')->setController('event.index');
+		return Phpfox_Module::instance()->setController('event.index');
 	}
 	
 	/**

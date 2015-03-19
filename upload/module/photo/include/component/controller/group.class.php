@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Photo_Component_Controller_Group extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -44,7 +44,7 @@ class Photo_Component_Controller_Group extends Phpfox_Component
 		
 		if ($this->request()->get('req4') == 'view')
 		{			
-			return Phpfox::getLib('module')->setController('photo.view');	
+			return Phpfox_Module::instance()->setController('photo.view');
 		}		
 		elseif ($this->request()->get('req4') == 'upload')
 		{
@@ -63,7 +63,7 @@ class Photo_Component_Controller_Group extends Phpfox_Component
 				)
 			);
 		
-		return Phpfox::getLib('module')->setController('photo.index');
+		return Phpfox_Module::instance()->setController('photo.index');
 	}
 	
 	/**

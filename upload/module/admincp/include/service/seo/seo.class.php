@@ -45,7 +45,7 @@ class Admincp_Service_Seo_Seo extends Phpfox_Service
 			$sUrl = trim(Phpfox::getLib('url')->getFullUrl(true), '/');
 			if (isset($aNoFollows[$sUrl]))
 			{
-				Phpfox::getLib('template')->setHeader('<meta name="robots" content="nofollow" />');
+				Phpfox_Template::instance()->setHeader('<meta name="robots" content="nofollow" />');
 			}
 		}
 		
@@ -79,11 +79,11 @@ class Admincp_Service_Seo_Seo extends Phpfox_Service
 				{
 					if ($aMeta['type_id'] == '2')
 					{
-						Phpfox::getLib('template')->setTitle(Phpfox::getLib('locale')->convert($aMeta['content']));
+						Phpfox_Template::instance()->setTitle(Phpfox::getLib('locale')->convert($aMeta['content']));
 						
 						continue;
 					}
-					Phpfox::getLib('template')->setMeta((!$aMeta['type_id'] ? 'keywords' : 'description'), $aMeta['content']);
+					Phpfox_Template::instance()->setMeta((!$aMeta['type_id'] ? 'keywords' : 'description'), $aMeta['content']);
 				}
 			}
 		}

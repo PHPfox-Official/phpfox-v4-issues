@@ -67,6 +67,13 @@ class Phpfox_Parse_Output
 	public function __construct()
 	{		
 	}
+
+	/**
+	 * @return $this;
+	 */
+	public static function instance() {
+		return Phpfox::getLib('parse.output');
+	}
 	
 	/**
 	 * Text we need to parse, usually text added via a <textarea>.

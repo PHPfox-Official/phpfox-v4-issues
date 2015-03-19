@@ -50,7 +50,7 @@ class Admincp_Service_Module_Block_Process extends Phpfox_Service
 				continue;
 			}			
 			
-			$iModuleId = Phpfox::getLib('module')->getModuleId($aVal['module']);
+			$iModuleId = Phpfox_Module::instance()->getModuleId($aVal['module']);
 			$aSql[] = array(	
 				$aVal['type_id'],
 				$aVal['m_connection'],

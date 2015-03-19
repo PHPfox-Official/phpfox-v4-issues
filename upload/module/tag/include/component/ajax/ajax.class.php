@@ -42,13 +42,13 @@ class Tag_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if (count($aRows))
 		{
-			Phpfox::getLib('template')->assign(array(
+			Phpfox_Template::instance()->assign(array(
 					'aRows' => $aRows,
 					'sJsId' => $this->get('id'),
 					'sSearch' => $aParams['tag_list']
 				)
 			);
-			Phpfox::getLib('template')->getLayout('inline-search');
+			Phpfox_Template::instance()->getLayout('inline-search');
 			
 			$this->call("oInlineSearch.display('" . $this->get('id') . "', '" . $this->getContent() . "');");
 		}

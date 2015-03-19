@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Group_Component_Block_Category extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

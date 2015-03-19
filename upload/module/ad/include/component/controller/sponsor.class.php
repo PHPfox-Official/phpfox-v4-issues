@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Ad_Component_Controller_Sponsor extends Phpfox_Component
 {
     /**
-     * Class process method wnich is used to execute this component.
+     * Controller
      * when getInt(view) it updates the click count for the item, redirects right after
      * when getInt(module) and getInt(id) it shows the Create Sponsor Ad
      * when getInt(add) the user is reviewing a campagin -> dont show the submit

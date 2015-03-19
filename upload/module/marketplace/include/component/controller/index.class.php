@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Marketplace_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -25,7 +25,7 @@ class Marketplace_Component_Controller_Index extends Phpfox_Component
 		
 		if ($this->request()->getInt('req2') > 0)
 		{
-			return Phpfox::getLib('module')->setController('marketplace.view');
+			return Phpfox_Module::instance()->setController('marketplace.view');
 		}
 		
 		if (($sLegacyTitle = $this->request()->get('req2')) && !empty($sLegacyTitle))

@@ -223,7 +223,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -616,7 +616,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		$aRow = Phpfox::getService('poll')->getPollByUrl($aRow['item_id']);				
 
 		$aRow['poll_is_in_feed'] = true;
-		$oTpl = Phpfox::getLib('template');
+		$oTpl = Phpfox_Template::instance();
 		$oTpl->assign(array('aPoll' => $aRow, 'iKey' => rand(2,900)));
 		$sOutput = $oTpl->getTemplate('poll.block.vote', true);
 		
@@ -714,7 +714,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}
 	
@@ -769,7 +769,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog'),
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
 		);			
 	}	
@@ -875,7 +875,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']) . 'comment_'. $aNotification['item_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	

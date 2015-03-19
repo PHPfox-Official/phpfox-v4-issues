@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Link_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

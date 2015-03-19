@@ -61,7 +61,7 @@ class Event_Service_Api extends Phpfox_Service
 				'end_year' => $this->_oApi->get('end_year')				
 		);
 	
-		$iId = Phpfox::getService('event.process')->add($aInsert);
+		$iId = Event_Service_Process::instance()->add($aInsert);
 		if (!$iId)
 		{
 			return $this->_oApi->error('event.unable_to_add_blog', implode('', Phpfox_Error::get()));

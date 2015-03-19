@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Page_Component_Controller_Admincp_Add extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -105,7 +105,7 @@ class Page_Component_Controller_Admincp_Add extends Phpfox_Component
 					'sCreateJs' => $oValid->createJS(),
 					'sGetJsForm' => $oValid->getJsForm(),			
 					'bIsEdit' => $bIsEdit,
-					'aModules' => Phpfox::getLib('module')->getModules(),
+					'aModules' => Phpfox_Module::instance()->getModules(),
 					'bFormIsPosted' => (count($aVals) ? true : false)
 				)
 			)				

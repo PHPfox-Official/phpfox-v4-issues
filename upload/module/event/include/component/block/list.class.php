@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Block_List extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -35,7 +35,7 @@ class Event_Component_Block_List extends Phpfox_Component
 				$aCallback = Phpfox::callback($sModule . '.getEventInvites', $iItem);				
 			}			
 			
-			$aEvent = Phpfox::getService('event')->callback($aCallback)->getEvent($this->request()->get('id'), true);
+			$aEvent = Event_Service_Event::instance()->callback($aCallback)->getEvent($this->request()->get('id'), true);
 			$this->template()->assign('aEvent', $aEvent);
 		}
 		else 
@@ -50,7 +50,7 @@ class Event_Component_Block_List extends Phpfox_Component
 			$iItem = $aCallback['item'];
 		}		
 		
-		list($iCnt, $aInvites) = Phpfox::getService('event')->getInvites($aEvent['event_id'], $iRsvp, $iPage, $iPageSize);		
+		list($iCnt, $aInvites) = Event_Service_Event::instance()->getInvites($aEvent['event_id'], $iRsvp, $iPage, $iPageSize);
 				
 		Phpfox::getLib('pager')->set(array('ajax' => 'event.listGuests', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'aParams' => 
 			array(
@@ -77,7 +77,7 @@ class Event_Component_Block_List extends Phpfox_Component
 			}			
 			
 			$this->template()->assign(array(
-					'sHeader' => Phpfox::getPhrase('event.event_guests'),
+					'sHeader' => '',
 					'aMenu' => array(
 						Phpfox::getPhrase('event.attending') => '#event.listGuests?rsvp=1&amp;id=' . $aEvent['event_id'] . $sExtra,
 						Phpfox::getPhrase('event.maybe') => '#event.listGuests?rsvp=2&amp;id=' . $aEvent['event_id'] . $sExtra,

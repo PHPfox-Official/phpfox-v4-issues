@@ -310,7 +310,7 @@ class Comment_Service_Comment extends Phpfox_Service
 		$bCanPostComment = true;
 		if ($iUserId != Phpfox::getUserId() && !Phpfox::getUserParam('privacy.can_comment_on_all_items'))
 		{
-			$bIsFriend = Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $iUserId);
+			$bIsFriend = Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $iUserId);
 			
 			switch ((int) $iPrivacy)
 			{
@@ -327,7 +327,7 @@ class Comment_Service_Comment extends Phpfox_Service
 					}
 					else 
 					{
-						if (!Phpfox::getService('friend')->isFriendOfFriend($iUserId))
+						if (!Friend_Service_Friend::instance()->isFriendOfFriend($iUserId))
 						{
 							$bCanPostComment = false;	
 						}

@@ -309,7 +309,7 @@ class Music_Service_Music extends Phpfox_Service
 			$aFilterMenu[Phpfox::getPhrase('music.my_albums')] = 'music.browse.album.view_my-album';
 		}		
 		
-		Phpfox::getLib('template')->buildSectionMenu('music', $aFilterMenu);					
+		Phpfox_Template::instance()->buildSectionMenu('music', $aFilterMenu);
 	}
 	
 	public function getInfoForAction($aItem)

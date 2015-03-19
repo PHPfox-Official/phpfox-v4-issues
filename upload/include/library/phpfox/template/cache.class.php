@@ -96,6 +96,8 @@ class Phpfox_Template_Cache extends Phpfox_Template
 	 */	
 	private $_sFuncRegexp = '[a-zA-Z_]+';
 
+	private $_aBlocklets = [];
+
 	private $_sCurrentFile = '';
 	
 	/**
@@ -184,7 +186,46 @@ class Phpfox_Template_Cache extends Phpfox_Template
 		$sContent = str_replace('<body>', '<body id="page_<?php echo Phpfox::getLib(\'module\')->getPageId(); ?>">', $sContent);
 
         if ($sPlugin = Phpfox_Plugin::get('library_template_cache_compile__1')){eval($sPlugin);if (isset($aPluginReturn)){return $aPluginReturn;}}
-        
+
+		/*
+		if (count($this->_aBlocklets)) {
+			if ($sLocation) {
+				if (!is_dir(PHPFOX_DIR_CACHE . 'blocklet/')) {
+					mkdir(PHPFOX_DIR_CACHE . 'blocklet/');
+				}
+				$sNewName = PHPFOX_DIR_CACHE . 'blocklet/' . Phpfox_Module::instance()->getFullControllerName() . '.blocklets.php';
+				// d(Phpfox_Module::instance()->getFullControllerName());
+				// d($this->_aBlocklets[1]);
+				$locations = [];
+				foreach ($this->_aBlocklets[1] as $key => $data) {
+					$locations[$key] = $data;
+				}
+
+				$sBlocks = "<?php class blocklet_" . md5($sNewName) . " { \n";
+				$sBlocks .= "private \$_object;\n";
+				$sBlocks .= "public function __construct() {
+					\$this->_object = Phpfox_Template::instance();
+
+				}
+
+				public function __get(\$name) {
+					return \$this->_object->getVar();
+				}
+
+				";
+				foreach ($this->_aBlocklets[2] as $key => $block) {
+
+					$sBlocks .= "public function location_{$locations[$key]}() { ?>\n";
+					$sBlocks .= $this->_parse($block);
+					$sBlocks .= "\n<?php }\n";
+				}
+				$sBlocks .= " }";
+
+				file_put_contents($sNewName, $sBlocks);
+			}
+		}
+		*/
+
 		if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
 		{
 			$oCache = Phpfox::getLib('cache');
@@ -318,6 +359,11 @@ class Phpfox_Template_Cache extends Phpfox_Template
 		preg_match_all("!{$sLdq}\s*php\s*{$sRdq}(.*?){$sLdq}\s*/php\s*{$sRdq}!s", $sData, $aMatches);
 		$this->_aPhpBlocks = $aMatches[1];
 		$sData = preg_replace("!{$sLdq}\s*php\s*{$sRdq}(.*?){$sLdq}\s*/php\s*{$sRdq}!s", stripslashes($sLdq . "php" . $sRdq), $sData);
+
+		// remove blocklets
+		preg_match_all("!{$sLdq}\s*blocklet location=([0-9]+){$sRdq}(.*?){$sLdq}\s*/blocklet\s*{$sRdq}!s", $sData, $aMatches);
+		$this->_aBlocklets = $aMatches;
+		$sData = preg_replace("!{$sLdq}\s*blocklet location=([0-9]+){$sRdq}(.*?){$sLdq}\s*/blocklet\s*{$sRdq}!s", stripslashes($sLdq . "blocklet" . $sRdq), $sData);
 
 		$aText = preg_split("!{$sLdq}.*?{$sRdq}!s", $sData);
 
@@ -467,6 +513,10 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				}
 				return '<?php $this->assign(\'' . $this->_removeQuote($aArgs['var']) . '\', ' . $aArgs['value'] . '); ?>';
 				break;
+			case 'blocklet':
+
+				return '';
+				break;
 			case 'literal':
 				list (,$sLiteral) = each($this->_aLiterals);
 				return "<?php echo '" . str_replace("'", "\'", $sLiteral) . "'; ?>\n";
@@ -566,7 +616,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 			case 'block':
 				$aArgs = $this->_parseArgs($sArguments);				
 				
-				$sContent = '';
+				$sContent = '<div class="_block" data-location="' . $this->_removeQuote($aArgs['location']) . '">';
 				$sContent .= '<?php if ($this->bIsSample): ?>';
 				$sContent .= '<?php if (defined(\'PHPFOX_NO_WINDOW_CLICK\')): ?>';
 				$sContent .= '<?php if (defined(\'PHPFOX_IS_AD_SAMPLE\')): Phpfox::getBlock(\'ad.sample\', array(\'block_id\' => ' . $this->_removeQuote($aArgs['location']) . ')); endif; ?>';
@@ -613,6 +663,8 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				$sContent .= '<?php endif; ?>';
 				
 				$sContent .= '<?php endif; ?>';
+				$sContent .= '</div>';
+
 				return $sContent;
 				break;
 			case 'branding':
@@ -698,15 +750,15 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				return $sContent;
 				break;
 			case 'breadcrumb':
-				$sContent = '<?php if (!$this->bIsSample): ?>';
+				$sContent = '<div class="_block_breadcrumb"><?php if (!$this->bIsSample): ?>';
 				$sContent .= '<?php $this->getLayout(\'breadcrumb\'); ?>';
-				$sContent .= '<?php endif; ?>';
+				$sContent .= '<?php endif; ?></div>';
 				return $sContent;
 				break;
 			case 'search':
-				$sContent = '<?php if (!$this->bIsSample): ?>';
+				$sContent = '<div class="_block_search"><?php if (!$this->bIsSample): ?>';
 				$sContent .= '<?php $this->getLayout(\'search\'); ?>';
-				$sContent .= '<?php endif; ?>';
+				$sContent .= '<?php endif; ?></div>';
 				return $sContent;
 				break;
 			case 'content':
@@ -715,9 +767,9 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				$sContent .= '<div class="message">Unable to find anything with your search criteria.</div>';
 				$sContent .= '<?php else: ?>';
 					// Dont do this for profiles/pages or core.index-member because those load the feed and there is a separate routine for this block
-					$sContent .= '<?php $sController = "'. Phpfox::getLib('phpfox.module')->getFullControllerName() .'"; ?>';
-					$sContent .= '<?php if ( Phpfox::getLib("template")->shouldLoadDelayed("'. Phpfox::getLib('phpfox.module')->getFullControllerName() .'") == true ): ?>'. "\n";
-					$sContent .= '<div id="delayed_block_image" style="text-align:center; padding-top:20px;"><img src="' . Phpfox::getLib('template')->getStyle('image', 'ajax/add.gif') . '" alt="" /></div>'."\n";
+					$sContent .= '<?php $sController = "'. Phpfox_Module::instance()->getFullControllerName() .'"; ?>';
+					$sContent .= '<?php if ( Phpfox::getLib("template")->shouldLoadDelayed("'. Phpfox_Module::instance()->getFullControllerName() .'") == true ): ?>'. "\n";
+					$sContent .= '<div id="delayed_block_image" style="text-align:center; padding-top:20px;"><img src="' . Phpfox_Template::instance()->getStyle('image', 'ajax/add.gif') . '" alt="" /></div>'."\n";
 					$sContent .= '<div id="delayed_block" style="display:none;"><?php echo Phpfox::getLib(\'phpfox.module\')->getFullControllerName(); ?></div>'."\n";
 					$sContent .= '<?php else: ?>'. "\n";
 						$sContent .= '<?php Phpfox::getLib(\'phpfox.module\')->getControllerTemplate(); ?>';
@@ -768,7 +820,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 						?>';
 				/*
 				$aArgs = $this->_parseArgs($sArguments);				
-				$mContent = Phpfox::getLib('template')->getTemplateFile($this->_removeQuote($aArgs['file']), true);
+				$mContent = Phpfox_Template::instance()->getTemplateFile($this->_removeQuote($aArgs['file']), true);
 				if (is_array($mContent))
 				{
 					$mContent = $mContent[0];
@@ -1272,7 +1324,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				return '<?php Phpfox::getBlock(\'core.template-menu\'); ?>';
 				break;	
 			case 'menu_sub':
-				return '<?php Phpfox::getBlock(\'core.template-menusub\'); ?>';
+				return '<div class="_block_menu_sub"><?php Phpfox::getBlock(\'core.template-menusub\'); ?></div>';
 				break;	
 			case 'menu_footer':
 				return '<?php Phpfox::getBlock(\'core.template-menufooter\'); ?>';

@@ -15,12 +15,19 @@ defined('PHPFOX') or exit('NO DICE!');
 <div class="js_preview_link_attachment_custom_add_parent">
 	<div class="js_preview_link_attachment_custom_add">
 		<div class="js_preview_link_attachment_custom_error"></div>
-		<div>
-			<input type="text" name="val[link][url]" value="http://" class="js_global_attach_value_custom global_link_input" onfocus="if (this.value == 'http://') {l} this.value = ''; {r}" onblur="if (this.value == '') {l} this.value = 'http://' {r}" style="width:{if $bIsAttachmentInline}250{else}400{/if}px;"  /><input type="button" value="{phrase var='link.attach'}" onclick="$Core.attachmentLink(this);" class="global_link_input_button button btn_attach_link" />
-			<span class="js_global_attach_link_ajax" class="v_middle" style="display:none; padding-left:4px;">{img theme='ajax/add.gif'}</span>
+		<div class="table">
+			<div class="table_right">
+				<input type="text" name="val[link][url]" value="http://" class="js_global_attach_value_custom global_link_input" onfocus="if (this.value == 'http://') {l} this.value = ''; {r}" onblur="if (this.value == '') {l} this.value = 'http://' {r}" />
+
+				<div class="extra_info">
+					{phrase var='link.paste_a_link_you_would_like_to_attach'}
+				</div>
+			</div>
 		</div>
-		<div class="extra_info">
-			{phrase var='link.paste_a_link_you_would_like_to_attach'}
+		<div class="table_clear">
+			<input type="button" value="{phrase var='link.attach'}" onclick="$Core.attachmentLink(this);" class="global_link_input_button button btn_attach_link" />
+
+			<span class="js_global_attach_link_ajax" class="v_middle" style="display:none; padding-left:4px;">{img theme='ajax/add.gif'}</span>
 		</div>
 	</div>
 	<div class="js_preview_link_attachment_custom_holder" style="display:none;">

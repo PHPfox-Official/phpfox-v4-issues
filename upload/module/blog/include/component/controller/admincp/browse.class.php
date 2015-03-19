@@ -16,12 +16,12 @@ defined('PHPFOX') or exit('NO DICE!');
 class Blog_Component_Controller_Admincp_Browse extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 
-		return Phpfox::getLib('module')->setController('blog.index');
+		return Phpfox_Module::instance()->setController('blog.index');
 	}
 	
 	/**

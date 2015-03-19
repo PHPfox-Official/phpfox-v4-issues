@@ -74,7 +74,7 @@ class Friend_Service_Callback extends Phpfox_Service
 			return null;
 		}
 
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('friend.accept') . '"' . (!$iTotal ? ' onclick="alert(\'' . Phpfox::getPhrase('friend.no_friends_requests') . '\'); return false;"' : '') . '><img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/user.png') . '" alt="" class="v_middle" /> ' . Phpfox::getPhrase('friend.friend_requests_total', array('total' => $iTotal)) . '</a></li>';
+		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('friend.accept') . '"' . (!$iTotal ? ' onclick="alert(\'' . Phpfox::getPhrase('friend.no_friends_requests') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/user.png') . '" alt="" class="v_middle" /> ' . Phpfox::getPhrase('friend.friend_requests_total', array('total' => $iTotal)) . '</a></li>';
 	}
 	
 	public function getActivityFeed($aFeed)
@@ -246,7 +246,7 @@ class Friend_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aNotification['user_name']),
 			'message' => Phpfox::getPhrase('friend.full_name_added_you_as_a_friend', array('full_name' => Phpfox::getLib('parse.output')->shorten($aNotification['full_name'],Phpfox::getParam('user.maximum_length_for_full_name')))),
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'misc/user.png')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'misc/user.png')
 		);							
 	}
 	

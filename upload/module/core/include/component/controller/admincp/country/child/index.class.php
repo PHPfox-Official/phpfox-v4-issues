@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Core_Component_Controller_Admincp_Country_Child_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

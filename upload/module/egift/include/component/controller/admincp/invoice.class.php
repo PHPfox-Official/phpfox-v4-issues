@@ -16,7 +16,7 @@ define('PHPFOX_SKIP_POST_PROTECTION', true);
 class Egift_Component_Controller_Admincp_Invoice extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

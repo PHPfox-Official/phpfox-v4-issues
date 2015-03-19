@@ -694,7 +694,7 @@ class Phpfox_Url
 			$iLastKey = 0;
 			foreach ($aUrls as $iKey => $sUrl)
 			{
-				if (Phpfox::getLib('module')->getFullControllerName() == $sUrl)
+				if (Phpfox_Module::instance()->getFullControllerName() == $sUrl)
 				{
 					$iLastKey = $iKey;					
 				}
@@ -1014,7 +1014,7 @@ class Phpfox_Url
 		
 		if (!defined('PHPFOX_INSTALLER'))
 		{
-			$oModule = Phpfox::getLib('module');
+			$oModule = Phpfox_Module::instance();
 			$sDefaultModule = Phpfox::getParam('core.module_core');
 		}
 

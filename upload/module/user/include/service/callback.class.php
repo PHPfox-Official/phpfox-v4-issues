@@ -847,12 +847,12 @@ class User_Service_Callback extends Phpfox_Service
 				{
 					if (!file_exists($sPath . sprintf($sImagePath, '_' . $iSize)))
 					{
-						Phpfox::getLib('image')->createThumbnail($sPath . sprintf($sImagePath, ''), $sPath . sprintf($sImagePath, '_' . $iSize), $iSize, $iSize);
+						Phpfox_Image::instance()->createThumbnail($sPath . sprintf($sImagePath, ''), $sPath . sprintf($sImagePath, '_' . $iSize), $iSize, $iSize);
 					}
 					
 					if (!file_exists($sPath . sprintf($sImagePath, '_' . $iSize . '_square')))
 					{
-						Phpfox::getLib('image')->createThumbnail($sPath . sprintf($sImagePath, ''), $sPath . sprintf($sImagePath, '_' . $iSize . '_square'), $iSize, $iSize, true);
+						Phpfox_Image::instance()->createThumbnail($sPath . sprintf($sImagePath, ''), $sPath . sprintf($sImagePath, '_' . $iSize . '_square'), $iSize, $iSize, true);
 					}					
 				}
 			}
@@ -1087,7 +1087,7 @@ class User_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id'])),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}		
 	

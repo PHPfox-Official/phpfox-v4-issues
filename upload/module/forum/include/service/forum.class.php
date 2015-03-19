@@ -499,7 +499,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			}
 		}
 		
-		Phpfox::getLib('template')->buildSectionMenu('forum', $aFilterMenu);			
+		Phpfox_Template::instance()->buildSectionMenu('forum', $aFilterMenu);
 	}
 	
 	private function _getParents($iId)
@@ -545,7 +545,7 @@ class Forum_Service_Forum extends Phpfox_Service
 
 			$iCnt++;		
 					
-			$sHtml .= '<li><img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/draggable.png') . '" alt="" /> <input type="hidden" name="order[' . $aForum['forum_id'] . ']" value="' . $iCnt . '" /> <a href="#?id=' . $aForum['forum_id'] . '" class="js_drop_down">' . Phpfox::getLib('locale')->convert($aForum['name']) . '</a>';
+			$sHtml .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <input type="hidden" name="order[' . $aForum['forum_id'] . ']" value="' . $iCnt . '" /> <a href="#?id=' . $aForum['forum_id'] . '" class="js_drop_down">' . Phpfox::getLib('locale')->convert($aForum['name']) . '</a>';
 			$sHtml .= $this->_buildAdminCp($aForum['forum_id']) . '</li>' . "\n";			
 		}
 		$sHtml .= '</ul>' . "\n";

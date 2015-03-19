@@ -334,7 +334,7 @@ class User_Service_Group_Process extends Phpfox_Service
 	{
 		if (!empty($_FILES['icon']['name']))
 		{
-			$aImage = Phpfox::getLib('file')->load('icon', array('jpg', 'gif', 'png'));
+			$aImage = Phpfox_File::instance()->load('icon', array('jpg', 'gif', 'png'));
 			if ($aImage === false)
 			{
 				return false;
@@ -349,7 +349,7 @@ class User_Service_Group_Process extends Phpfox_Service
 				}
 			}
 			
-			return Phpfox::getLib('file')->upload('icon', Phpfox::getParam('core.dir_icon'), $iId, false, 0644, false);
+			return Phpfox_File::instance()->upload('icon', Phpfox::getParam('core.dir_icon'), $iId, false, 0644, false);
 		}		
 		
 		return true;

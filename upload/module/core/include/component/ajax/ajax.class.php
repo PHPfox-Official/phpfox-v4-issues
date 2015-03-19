@@ -445,7 +445,7 @@ class Core_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		// These are blocks intentionally delayed
 		$aLocations = explode(',',$this->get('locations'));
-		$oModule = Phpfox::getLib('phpfox.module');
+		$oModule = Phpfox_Module::instance();
 		$aParams = $this->get('params');
 		define('PHPFOX_LOADING_DELAYED', true);
 		if ($this->get('locations') != null && count($aLocations) > 0)
@@ -490,7 +490,7 @@ class Core_Component_Ajax_Ajax extends Phpfox_Ajax
 			foreach ($aTemplates as $sIndex => $sKey)
 			{
 				$aTemplate = explode('=', $sKey);
-				$sTemplate = Phpfox::getLib('template')->getBuiltFile($aTemplate[1]);
+				$sTemplate = Phpfox_Template::instance()->getBuiltFile($aTemplate[1]);
 				$this->html('#' . $aTemplate[1], $sTemplate);
 			}
 			

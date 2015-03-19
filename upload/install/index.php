@@ -29,7 +29,7 @@ define('PHPFOX_INSTALLER', true);
 // Require phpFox Init
 require(PHPFOX_DIR . 'include' . PHPFOX_DS . 'init.inc.php');
 
-$oFile = Phpfox::getLib('file');
+$oFile = Phpfox_File::instance();
 if (!$oFile->isWritable(PHPFOX_DIR_CACHE))
 {
 	if ($oFile->isWritable($oFile->getTempDir()))

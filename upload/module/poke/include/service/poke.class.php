@@ -32,7 +32,7 @@ class Poke_Service_Poke extends Phpfox_Service
 	{
 		/* If user cannot send pokes or can only send pokes to friends but $iUser is not a friend */
 		if (!Phpfox::getUserParam('poke.can_poke') || 
-			(Phpfox::getUserParam('poke.can_only_poke_friends') && !Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $iUser))
+			(Phpfox::getUserParam('poke.can_only_poke_friends') && !Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $iUser))
 				)
 		{
 			return false;

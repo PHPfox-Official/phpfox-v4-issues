@@ -187,7 +187,7 @@ class Notification_Service_Notification extends Phpfox_Service
 				else
 				{
 					$aCallBack = Phpfox::callback($aRow['type_id'] . '.getNotification', $aRow);
-					$aRow['final_module'] = Phpfox::getLib('module')->sFinalModuleCallback;
+					$aRow['final_module'] = Phpfox_Module::instance()->sFinalModuleCallback;
 					if ($aRow['final_module'] == 'photo')
 					{
 						$aCallBack['link'] = $aCallBack['link'] . 'userid_' . Phpfox::getUserId() . '/';

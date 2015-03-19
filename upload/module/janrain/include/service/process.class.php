@@ -84,13 +84,13 @@ class Janrain_Service_Process extends Phpfox_Service
 		{
 			$sImage = $aUserInfo['photo'];
 			$sNewImage = md5($iUserId . PHPFOX_TIME . uniqid()) . '%s.jpg';
-			Phpfox::getLib('file')->writeToCache($sNewImage, file_get_contents($sImage));
+			Phpfox_File::instance()->writeToCache($sNewImage, file_get_contents($sImage));
 			copy(PHPFOX_DIR_CACHE . $sNewImage, Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''));
 			unlink(PHPFOX_DIR_CACHE . $sNewImage);
 			foreach(Phpfox::getParam('user.user_pic_sizes') as $iSize)
 			{
-				Phpfox::getLib('image')->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize), $iSize, $iSize);
-				Phpfox::getLib('image')->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize . '_square'), $iSize, $iSize, false);
+				Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize), $iSize, $iSize);
+				Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize . '_square'), $iSize, $iSize, false);
 			}		
 			Phpfox::getLib('database')->update(Phpfox::getT('user'), array('user_image' => $sNewImage, 'server_id' => 0), 'user_id = ' . (int) $iUserId);		
 		}		

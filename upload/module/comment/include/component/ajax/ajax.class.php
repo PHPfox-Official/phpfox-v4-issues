@@ -178,7 +178,7 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 				if (isset($aVals['is_via_feed']))
 				{
 					Phpfox::getLib('parse.output')->setImageParser(array('width' => 200, 'height' => 200));
-					Phpfox::getLib('template')->assign(array('aComment' => $aRow, 'bForceNoReply' => true))->getTemplate('comment.block.mini');
+					Phpfox_Template::instance()->assign(array('aComment' => $aRow, 'bForceNoReply' => true))->getTemplate('comment.block.mini');
 					Phpfox::getLib('parse.output')->setImageParser(array('clear' => true));					
 					
 					$sId = 'js_tmp_comment_' . md5('comment_' . uniqid() . Phpfox::getUserId()) . '';
@@ -222,7 +222,7 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 				else 
 				{
 					Phpfox::getLib('parse.output')->setImageParser(array('width' => 500, 'height' => 500));
-					Phpfox::getLib('template')->assign(array('aRow' => $aRow, 'bCanPostOnItem' => false))->getTemplate('comment.block.entry');				
+					Phpfox_Template::instance()->assign(array('aRow' => $aRow, 'bCanPostOnItem' => false))->getTemplate('comment.block.entry');
 					Phpfox::getLib('parse.output')->setImageParser(array('clear' => true));
 					
 					if (isset($aVals['parent_id']) && $aVals['parent_id'] > 0)

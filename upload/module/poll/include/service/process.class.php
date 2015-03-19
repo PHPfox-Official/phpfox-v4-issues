@@ -55,8 +55,8 @@ class Poll_Service_Process extends Phpfox_Service
 		{
 			$aVals['privacy'] = 0;
 		}
-		$oImage = Phpfox::getLib('image');
-		$oFile = Phpfox::getLib('file');
+		$oImage = Phpfox_Image::instance();
+		$oFile = Phpfox_File::instance();
 		$bHasImage = false;
 		$bIsCustom = ((!empty($aVals['module_id'])) ? true : false);
 		if ($bIsCustom)
@@ -105,8 +105,8 @@ class Poll_Service_Process extends Phpfox_Service
 				// update the space used
 				Phpfox::getService('user.space')->update((int)$iUser, 'quiz', $iOldPictureSpaceUsed, '-');
 				// and delete the old picture
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('poll.dir_image') . sprintf($aInsert['image_path'], ''));
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('poll.dir_image') . sprintf($aInsert['image_path'], '_' . $iSize));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('poll.dir_image') . sprintf($aInsert['image_path'], ''));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('poll.dir_image') . sprintf($aInsert['image_path'], '_' . $iSize));
 			}
 			
 			$aTotalVotes = $this->database()->select('pa.answer_id, pa.total_votes')
@@ -287,13 +287,13 @@ class Poll_Service_Process extends Phpfox_Service
 			if (file_exists(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '')))
 			{
 				$iFileSize += filesize(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, ''));
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, ''));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, ''));
 			}
 			
 			if (file_exists(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '_' . Phpfox::getParam('poll.poll_max_image_pic_size'))))
 			{
 				$iFileSize += filesize(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '_' . Phpfox::getParam('poll.poll_max_image_pic_size')));
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '_' . Phpfox::getParam('poll.poll_max_image_pic_size')));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '_' . Phpfox::getParam('poll.poll_max_image_pic_size')));
 			}
 			
 			// CDN!
@@ -414,8 +414,8 @@ class Poll_Service_Process extends Phpfox_Service
 			// delete the old picture
 			if (isset($iOldPictureSpaceUsed) && $iOldPictureSpaceUsed > 0)
 			{
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, ''));
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '_' . $iSize));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, ''));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '_' . $iSize));
 				// decrease the count for the old picture
 				Phpfox::getService('user.space')->update($iUser, 'poll', $iOldPictureSpaceUsed, '-');
 			}

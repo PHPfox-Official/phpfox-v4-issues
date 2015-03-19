@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class User_Component_Block_Login_Header extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

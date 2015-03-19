@@ -30,7 +30,7 @@ class Event_Component_Block_Sponsored extends Phpfox_Component
 			return false;
 	    }
 	    
-	    $aSponsorEvents = Phpfox::getService('event')->getRandomSponsored();
+	    $aSponsorEvents = Event_Service_Event::instance()->getRandomSponsored();
 	    
 	    if (empty($aSponsorEvents))
 	    {

@@ -1,5 +1,5 @@
 <?php
-if (Phpfox::getLib('module')->getFullControllerName() == 'event.index')
+if (Phpfox_Module::instance()->getFullControllerName() == 'event.index')
 {
 	Phpfox::getBlock('event.rsvp-entry');
 }

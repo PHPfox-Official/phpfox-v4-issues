@@ -11,7 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-								{if Phpfox::getLib('module')->getFullControllerName() != 'user.login'}
+								{if Phpfox_Module::instance()->getFullControllerName() != 'user.login'}
 								{plugin call='user.template.login_header_set_var'}
 								<div id="header_menu_login">
 									{if isset($bCustomLogin)}

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Block_Rsvp extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -36,7 +36,7 @@ class Event_Component_Block_Rsvp extends Phpfox_Component
 			}			
 		}
 		
-		$aEvent = (PHPFOX_IS_AJAX ? Phpfox::getService('event')->callback($aCallback)->getEvent($this->request()->get('id'), true) : $this->getParam('aEvent'));		
+		$aEvent = (PHPFOX_IS_AJAX ? Event_Service_Event::instance()->callback($aCallback)->getEvent($this->request()->get('id'), true) : $this->getParam('aEvent'));
 		
 		if (PHPFOX_IS_AJAX)
 		{	

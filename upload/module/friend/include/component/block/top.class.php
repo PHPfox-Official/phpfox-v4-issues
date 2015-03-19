@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Block_Top extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -27,7 +27,7 @@ class Friend_Component_Block_Top extends Phpfox_Component
 		
 		$aUser = $this->getParam('aUser');
 		$iTotal = (int) Phpfox::getComponentSetting((defined('PHPFOX_IS_USER_PROFILE') ? $aUser['user_id'] : Phpfox::getUserId()), 'friend.friend_display_limit_profile', Phpfox::getParam('friend.friend_display_limit'));		
-		$aTopFriends = Phpfox::getService('friend')->getTop((defined('PHPFOX_IS_USER_PROFILE') ? $aUser['user_id'] : Phpfox::getUserId()), $iTotal);
+		$aTopFriends = Friend_Service_Friend::instance()->getTop((defined('PHPFOX_IS_USER_PROFILE') ? $aUser['user_id'] : Phpfox::getUserId()), $iTotal);
 		$iCount = count($aTopFriends);
 		
 		if (defined('PHPFOX_IS_USER_PROFILE') && !$iCount)

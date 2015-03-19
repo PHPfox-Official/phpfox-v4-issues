@@ -19,7 +19,7 @@ class Video_Component_Controller_Ping extends Phpfox_Component
 	private $_bFail = false;
 	
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

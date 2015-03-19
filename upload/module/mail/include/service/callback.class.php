@@ -67,7 +67,7 @@ class Mail_Service_Callback extends Phpfox_Service
 
 	public function getNotificationLink($mId, $mTotal = null)
 	{
-		$sImage = '<img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/email.png') . '" alt="" class="v_middle" />';	
+		$sImage = '<img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/email.png') . '" alt="" class="v_middle" />';
 		if (is_array($mId) && $mTotal === null)
 		{	
 			return Phpfox::getPhrase('mail.li_a_href_link_email_image_new_messages_messages_number_a_li',array('link' => Phpfox::getLib('url')->makeUrl('mail'), 'email_image' => $sImage, 'messages_number' => (isset($mId['mail']) ? $mId['mail'] : '0')));

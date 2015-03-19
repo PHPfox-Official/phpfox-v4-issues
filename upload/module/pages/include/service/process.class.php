@@ -81,8 +81,8 @@ class Pages_Service_Process extends Phpfox_Service
 	public function addWidget($aVals, $iEditId = null)
 	{
 		$bHasImage = false;
-		$oImage = Phpfox::getLib('image');
-		$oFile = Phpfox::getLib('file');		
+		$oImage = Phpfox_Image::instance();
+		$oFile = Phpfox_File::instance();
 		$aPage = Phpfox::getService('pages')->getPage($aVals['page_id']);
 		
 		if (!isset($aPage['page_id']))
@@ -192,7 +192,7 @@ class Pages_Service_Process extends Phpfox_Service
 			
 			if ($bHasImage && file_exists(Phpfox::getParam('pages.dir_image') . sprintf($aWidget['image_path'], '_16')))
 			{
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('pages.dir_image') . sprintf($aWidget['image_path'], '_16'));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('pages.dir_image') . sprintf($aWidget['image_path'], '_16'));
 			}
 		}
 		
@@ -205,7 +205,7 @@ class Pages_Service_Process extends Phpfox_Service
 			
 			$oImage->createThumbnail(Phpfox::getParam('pages.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('pages.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);
 			
-			Phpfox::getLib('file')->unlink(Phpfox::getParam('pages.dir_image') . sprintf($sFileName, ''));			
+			Phpfox_File::instance()->unlink(Phpfox::getParam('pages.dir_image') . sprintf($sFileName, ''));
 			
 			$this->database()->update(Phpfox::getT('pages_widget'), array('image_server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'widget_id = ' . (int) $iId);
 		}		
@@ -446,9 +446,9 @@ class Pages_Service_Process extends Phpfox_Service
 				$this->deleteImage($aPage);
 			}
 			
-			$oImage = Phpfox::getLib('image');
+			$oImage = Phpfox_Image::instance();
 			
-			$sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('pages.dir_image'), $iId);
+			$sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('pages.dir_image'), $iId);
 			$iFileSizes = filesize(Phpfox::getParam('pages.dir_image') . sprintf($sFileName, ''));			
 			
 			$aUpdate['image_path'] = $sFileName;
@@ -601,7 +601,7 @@ class Pages_Service_Process extends Phpfox_Service
 				{
 					$iFileSizes += filesize($sImage);
 					
-					Phpfox::getLib('file')->unlink($sImage);
+					Phpfox_File::instance()->unlink($sImage);
 				}
 				// http://www.phpfox.com/tracker/view/15187/
 				if (Phpfox::getParam('core.allow_cdn'))
@@ -1063,7 +1063,7 @@ class Pages_Service_Process extends Phpfox_Service
 	{	
 		if (isset($_FILES['image']['name']) && ($_FILES['image']['name'] != ''))
 		{
-			$aImage = Phpfox::getLib('file')->load('image', array(
+			$aImage = Phpfox_File::instance()->load('image', array(
 					'jpg',
 					'gif',
 					'png'

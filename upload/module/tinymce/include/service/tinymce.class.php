@@ -38,7 +38,7 @@ class Tinymce_Service_Tinymce extends Phpfox_Service
 		$aLoadTinyMce = Phpfox::getParam('tinymce.tinymce_load_on_pages');
 		if (is_array($aLoadTinyMce))
 		{	
-			$sControllFullName = Phpfox::getLib('module')->getFullControllerName();
+			$sControllFullName = Phpfox_Module::instance()->getFullControllerName();
 			if (Phpfox::getLib('url')->getUrl() == 'admincp/newsletter/add')
 			{
 				$bLoadTinymce = true;
@@ -99,8 +99,8 @@ class Tinymce_Service_Tinymce extends Phpfox_Service
 */
 
 /*
-				<script type="text/javascript" src="' . Phpfox::getParam('core.path') . 'static/jscript/wysiwyg/tiny_mce/tiny_mce.js?v=' . Phpfox::getLib('template')->getStaticVersion() . '"></script>
-				<script type="text/javascript" src="' . Phpfox::getParam('core.path') . 'static/jscript/wysiwyg/tiny_mce/core.js?v=' . Phpfox::getLib('template')->getStaticVersion() . '"></script>		
+				<script type="text/javascript" src="' . Phpfox::getParam('core.path') . 'static/jscript/wysiwyg/tiny_mce/tiny_mce.js?v=' . Phpfox_Template::instance()->getStaticVersion() . '"></script>
+				<script type="text/javascript" src="' . Phpfox::getParam('core.path') . 'static/jscript/wysiwyg/tiny_mce/core.js?v=' . Phpfox_Template::instance()->getStaticVersion() . '"></script>
 */
 		
 			$sScript = '		

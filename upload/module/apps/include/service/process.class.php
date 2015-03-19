@@ -59,9 +59,9 @@ class Apps_Service_Process extends Phpfox_Service
 					{
 						$sImageNameOriginal = md5(Phpfox::getUserId() . $sAppKey) . '%s.' . $aImage['ext'];
 						$sImageName = md5(Phpfox::getUserId() . $sAppKey) . $aImage['size'] . '.' . $aImage['ext'];
-						$sBuildDir = Phpfox::getLib('file')->getBuiltDir(Phpfox::getParam('app.dir_image')) . $sImageName;
+						$sBuildDir = Phpfox_File::instance()->getBuiltDir(Phpfox::getParam('app.dir_image')) . $sImageName;
 						
-						Phpfox::getLib('file')->writeToCache($sImageName, base64_decode($aImage['value']));
+						Phpfox_File::instance()->writeToCache($sImageName, base64_decode($aImage['value']));
 						
 						copy(PHPFOX_DIR_CACHE . $sImageName, $sBuildDir);
 						unlink(PHPFOX_DIR_CACHE . $sImageName);
@@ -71,7 +71,7 @@ class Apps_Service_Process extends Phpfox_Service
 				$mReturn = $this->addApp($aApps, true);		
 				if (isset($sImageNameOriginal))
 				{
-					$this->database()->update(Phpfox::getT('app'), array('image_path' => str_replace(Phpfox::getParam('app.dir_image'), '', Phpfox::getLib('file')->getBuiltDir(Phpfox::getParam('app.dir_image'))) . $sImageNameOriginal), 'app_id = ' . (int) $mReturn['app_id']);
+					$this->database()->update(Phpfox::getT('app'), array('image_path' => str_replace(Phpfox::getParam('app.dir_image'), '', Phpfox_File::instance()->getBuiltDir(Phpfox::getParam('app.dir_image'))) . $sImageNameOriginal), 'app_id = ' . (int) $mReturn['app_id']);
 				}
 			}			
 		}
@@ -253,11 +253,11 @@ class Apps_Service_Process extends Phpfox_Service
 		{
 			if (file_exists(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '_square')))
 			{
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '_square'));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '_square'));
 			}
 			if (file_exists(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '_120')))
 			{
-				Phpfox::getLib('file')->unlink(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '_120'));
+				Phpfox_File::instance()->unlink(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '_120'));
 			}
 		}
 		
@@ -373,10 +373,10 @@ class Apps_Service_Process extends Phpfox_Service
 		if (!empty($_FILES['image']['name']))
 		{
 			// Upload this picture before deleting the old one
-			$oFile = Phpfox::getLib('file');
-			$oImage = Phpfox::getLib('image');
+			$oFile = Phpfox_File::instance();
+			$oImage = Phpfox_Image::instance();
 			
-			Phpfox::getLib('file')->load('image');
+			Phpfox_File::instance()->load('image');
 			$sFileName = $oFile->upload('image', Phpfox::getParam('app.dir_image'), $aApp['app_id']);
 			$this->database()->update(Phpfox::getT('app'), array('image_path' => $sFileName), 'app_id = ' . $aApp['app_id']);
 			
@@ -404,12 +404,12 @@ class Apps_Service_Process extends Phpfox_Service
 			{
 				if (file_exists(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '')))
 				{
-					Phpfox::getLib('file')->unlink(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], ''));
+					Phpfox_File::instance()->unlink(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], ''));
 				}
 
 				if (file_exists(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '_' . $iSize)))
 				{
-					Phpfox::getLib('file')->unlink(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '_' . $iSize));
+					Phpfox_File::instance()->unlink(Phpfox::getParam('app.dir_image') . sprintf($aApp['image_path'], '_' . $iSize));
 				}
 			}
 		}

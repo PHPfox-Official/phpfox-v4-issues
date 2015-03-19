@@ -174,7 +174,7 @@ class Phpfox_Pager
 
 		$iNextPage = ($this->_iPage + 1);
 		
-		Phpfox::getLib('template')->assign('iPagerNextPageCnt', $iNextPage);		
+		Phpfox_Template::instance()->assign('iPagerNextPageCnt', $iNextPage);
 	}
 	
 	/**
@@ -341,7 +341,7 @@ class Phpfox_Pager
         	$oUrl->setParam($this->_sUrlKey, $this->_iPage-1);
         	$aInfo['prevAjaxUrl'] = ($this->_iPage-1);
             $aInfo['prevUrl'] = $oUrl->getFullUrl();        
-			Phpfox::getLib('template')->setHeader('<link rel="prev" href="' . $aInfo['prevUrl'] . '" />');
+			Phpfox_Template::instance()->setHeader('<link rel="prev" href="' . $aInfo['prevUrl'] . '" />');
         }        
        
         for ($i = $nStart; $i <= $nEnd; $i++)
@@ -366,7 +366,7 @@ class Phpfox_Pager
        		$oUrl->setParam($this->_sUrlKey, ($this->_iPage + 1));       		
        		$aInfo['nextAjaxUrl'] = ($this->_iPage + 1);       		
        		$aInfo['nextUrl'] = $oUrl->getFullUrl();             
-			Phpfox::getLib('template')->setHeader('<link rel="next" href="' . $aInfo['nextUrl'] . '" />');
+			Phpfox_Template::instance()->setHeader('<link rel="next" href="' . $aInfo['nextUrl'] . '" />');
        		
             $oUrl->setParam($this->_sUrlKey, $this->_iPagesCount);
             $aInfo['lastUrl']= $oUrl->getFullUrl();       		
@@ -375,7 +375,7 @@ class Phpfox_Pager
 		
 		$aInfo['sParamsAjax'] = str_replace("'", "\\'", $aInfo['sParams']);
 		
-        Phpfox::getLib('template')->assign(array(
+        Phpfox_Template::instance()->assign(array(
         		'aPager' => $aInfo,
         		'sAjax' => $this->_sAjax
         	)

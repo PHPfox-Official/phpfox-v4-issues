@@ -198,8 +198,8 @@ class Marketplace_Service_Process extends Phpfox_Service
 		
 		if ($this->_bHasImage)
 		{			
-			$oImage = Phpfox::getLib('image');
-			$oFile = Phpfox::getLib('file');
+			$oImage = Phpfox_Image::instance();
+			$oFile = Phpfox_File::instance();
 			
 			$aSizes = array(50, 120, 200, 400);
 			
@@ -216,7 +216,7 @@ class Marketplace_Service_Process extends Phpfox_Service
 						)
 					)
 					{					
-						$sFileName = Phpfox::getLib('file')->upload('image[' . $iKey . ']', Phpfox::getParam('marketplace.dir_image'), $iId);
+						$sFileName = Phpfox_File::instance()->upload('image[' . $iKey . ']', Phpfox::getParam('marketplace.dir_image'), $iId);
 						
 						$iFileSizes += filesize(Phpfox::getParam('marketplace.dir_image') . sprintf($sFileName, ''));
 						
@@ -446,7 +446,7 @@ class Marketplace_Service_Process extends Phpfox_Service
 				{
 					$iFileSizes += filesize($sImage);
 					
-					Phpfox::getLib('file')->unlink($sImage);
+					Phpfox_File::instance()->unlink($sImage);
 				}
 				
 				if(Phpfox::getParam('core.allow_cdn') && $aImage['server_id'] > 0)
@@ -559,12 +559,12 @@ class Marketplace_Service_Process extends Phpfox_Service
 			{
 				$iFileSizes += filesize($sImage);
 				
-				Phpfox::getLib('file')->unlink($sImage);
+				Phpfox_File::instance()->unlink($sImage);
 				
 			}
 			if (file_exists($sImageSquare))
 			{
-				Phpfox::getLib('file')->unlink($sImageSquare);
+				Phpfox_File::instance()->unlink($sImageSquare);
 			}
 			
 			if(Phpfox::getParam('core.allow_cdn') && $aListing['server_id'] > 0)
@@ -833,7 +833,7 @@ class Marketplace_Service_Process extends Phpfox_Service
 			{
 				if ($sError == UPLOAD_ERR_OK) 
 				{			
-					$aImage = Phpfox::getLib('file')->load('image[' . $iKey . ']', array(
+					$aImage = Phpfox_File::instance()->load('image[' . $iKey . ']', array(
 							'jpg',
 							'gif',
 							'png'

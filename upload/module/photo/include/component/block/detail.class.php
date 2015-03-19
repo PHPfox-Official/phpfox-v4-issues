@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Photo_Component_Block_Detail extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -47,7 +47,7 @@ class Photo_Component_Block_Detail extends Phpfox_Component
 		$aInfo = array(
 			Phpfox::getPhrase('photo.added') => '<span itemprop="dateCreated">' . Phpfox::getTime(Phpfox::getParam('photo.photo_image_details_time_stamp'), $aPhoto['time_stamp']) . '</span>',
 			Phpfox::getPhrase('photo.category') => $sCategories,
-			Phpfox::getPhrase('photo.file_size') => Phpfox::getLib('file')->filesize($aPhoto['file_size']),
+			Phpfox::getPhrase('photo.file_size') => Phpfox_File::instance()->filesize($aPhoto['file_size']),
 			Phpfox::getPhrase('photo.resolution') => $aPhoto['width'] . '×' . $aPhoto['height'],
 			Phpfox::getPhrase('photo.comments') => $aPhoto['total_comment'],
 			Phpfox::getPhrase('photo.views') => '<span itemprop="interactionCount">' . $aPhoto['total_view'] . '</span>',

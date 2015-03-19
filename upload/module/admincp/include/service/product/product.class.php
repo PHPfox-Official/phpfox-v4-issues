@@ -63,7 +63,7 @@ class Admincp_Service_Product_Product extends Phpfox_Service
 	public function export($sProduct)
 	{
 		$aFiles = array();
-		$oFile = Phpfox::getLib('file');
+		$oFile = Phpfox_File::instance();
 		$oDatabaseSupport = Phpfox::getLib('database.support');
 		
 		define('PHPFOX_XML_SKIP_STAMP', true);
@@ -148,14 +148,14 @@ class Admincp_Service_Product_Product extends Phpfox_Service
 		$sDirectoryId = 'product_' . $aRow['product_id'] . '_' . uniqid();
 		if (is_dir(PHPFOX_DIR_CACHE . $sDirectoryId))
 		{
-			Phpfox::getLib('file')->delete_directory(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS);
+			Phpfox_File::instance()->delete_directory(PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS);
 		}
 		
 		$sUploadPath = PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'upload' . PHPFOX_DS;
 		
-		Phpfox::getLib('file')->mkdir($sUploadPath, true);
-		Phpfox::getLib('file')->mkdir($sUploadPath . 'include' . PHPFOX_DS . 'xml' . PHPFOX_DS, true);	
-		Phpfox::getLib('file')->write($sUploadPath . 'include' . PHPFOX_DS . 'xml' . PHPFOX_DS . $aRow['product_id'] . '.xml', $oXmlBuilder->output());	
+		Phpfox_File::instance()->mkdir($sUploadPath, true);
+		Phpfox_File::instance()->mkdir($sUploadPath . 'include' . PHPFOX_DS . 'xml' . PHPFOX_DS, true);
+		Phpfox_File::instance()->write($sUploadPath . 'include' . PHPFOX_DS . 'xml' . PHPFOX_DS . $aRow['product_id'] . '.xml', $oXmlBuilder->output());
 	
 		Phpfox::getService('admincp.module')->exportForModules($sProduct, false, (isset($aModuleCache) ? $aModuleCache : null), $sDirectoryId . PHPFOX_DS . 'upload' . PHPFOX_DS);	
 		

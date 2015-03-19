@@ -155,7 +155,7 @@ class User_Service_Process extends Phpfox_Service
 	// http://www.phpfox.com/tracker/view/15193/
 	public function removeProfilePic($iId)
 	{
-		$oFile = Phpfox::getLib('file');
+		$oFile = Phpfox_File::instance();
 		
 		$sUserImage = $this->database()->select('user_image')
 			->from(Phpfox::getT('user'))
@@ -381,7 +381,7 @@ class User_Service_Process extends Phpfox_Service
 			}
 			else
 			{
-				$aImage = Phpfox::getLib('file')->load('image', array('jpg', 'gif', 'png'), (Phpfox::getUserParam('user.max_upload_size_profile_photo') === 0 ? null : (Phpfox::getUserParam('user.max_upload_size_profile_photo') / 1024)));
+				$aImage = Phpfox_File::instance()->load('image', array('jpg', 'gif', 'png'), (Phpfox::getUserParam('user.max_upload_size_profile_photo') === 0 ? null : (Phpfox::getUserParam('user.max_upload_size_profile_photo') / 1024)));
 
 				if ($aImage !== false)
 				{
@@ -939,8 +939,8 @@ class User_Service_Process extends Phpfox_Service
 			Phpfox::getUserParam('user.can_change_other_user_picture', true);
 		}
 
-		$oFile = Phpfox::getLib('file');
-		$oImage = Phpfox::getLib('image');
+		$oFile = Phpfox_File::instance();
+		$oImage = Phpfox_Image::instance();
 		
 		if ($bForce)
 		{
@@ -1197,7 +1197,7 @@ class User_Service_Process extends Phpfox_Service
 			return array();
 		}
 		/* Filter out non friends */
-		$oFriend = Phpfox::getService('friend');
+		$oFriend = Friend_Service_Friend::instance();
 		$aOut = array();
 		foreach ($aMatches[1] as $iKey => $iUserId)
 		{
@@ -1325,7 +1325,7 @@ class User_Service_Process extends Phpfox_Service
 
 		if (isset($aVals['style_id']))
 		{
-			if (Phpfox::getService('theme.style.process')->setStyle($aVals['style_id']))
+			if (Theme_Service_Style_Process::instance()->setStyle($aVals['style_id']))
 			{
 
 			}
@@ -1546,14 +1546,14 @@ class User_Service_Process extends Phpfox_Service
 			}
 		}
 		
-		Phpfox::getLib('image')->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), ''), Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '') . '_temp', $aVals['image_width'], $aVals['image_height'], false);
+		Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), ''), Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '') . '_temp', $aVals['image_width'], $aVals['image_height'], false);
 		
 		if (empty($aVals['w']))
 		{			
 			return Phpfox_Error::set(Phpfox::getPhrase('photo.select_an_area_on_your_photo_to_crop'));
 		}
 		
-		Phpfox::getLib('image')->cropImage(
+		Phpfox_Image::instance()->cropImage(
 			Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '') . '_temp',
 			Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '_50_square'),			
 			$aVals['w'],
@@ -1563,7 +1563,7 @@ class User_Service_Process extends Phpfox_Service
 			75
 		);
 		
-		Phpfox::getLib('image')->cropImage(
+		Phpfox_Image::instance()->cropImage(
 			Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '') . '_temp',
 			Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '') . '_temp',			
 			$aVals['w'],
@@ -1585,7 +1585,7 @@ class User_Service_Process extends Phpfox_Service
 			
 			if (Phpfox::getParam('core.keep_non_square_images'))
 			{
-				Phpfox::getLib('image')->createThumbnail(
+				Phpfox_Image::instance()->createThumbnail(
 					Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '') . '_temp',
 					//Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '_'. $iSize.'_square'), 
 					Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '_' . $iSize), 
@@ -1593,7 +1593,7 @@ class User_Service_Process extends Phpfox_Service
 					$iSize
 				);
 			}
-			Phpfox::getLib('image')->createThumbnail(
+			Phpfox_Image::instance()->createThumbnail(
 				Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '') . '_temp',
 				//Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '_'. $iSize.'_square'), 
 				Phpfox::getParam('core.dir_user') . sprintf(Phpfox::getUserBy('user_image'), '_' . $iSize . '_square'), 
@@ -1926,7 +1926,7 @@ class User_Service_Process extends Phpfox_Service
 	public function addSpamQuestion($aVals, $bReturnId = false)
 	{
 		$oParse = Phpfox::getLib('parse.input');
-		$oFile = Phpfox::getLib('file');
+		$oFile = Phpfox_File::instance();
 		// Check that there is at least one answer
 		if (!isset($aVals['answer']) || count($aVals['answer']) < 1)
 		{
@@ -2003,7 +2003,7 @@ class User_Service_Process extends Phpfox_Service
 		$sFilePath = Phpfox::getParam('user.dir_user_spam') . sprintf($sImagePath, '');
 		if ($bPreserveImage != true && !empty($sImagePath) && file_exists($sFilePath))
 		{
-			Phpfox::getLib('file')->unlink( $sFilePath );
+			Phpfox_File::instance()->unlink( $sFilePath );
 		}
 		
 		// Delete the previous question from the database

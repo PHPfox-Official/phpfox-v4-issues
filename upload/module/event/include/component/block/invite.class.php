@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Block_Invite extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -25,7 +25,7 @@ class Event_Component_Block_Invite extends Phpfox_Component
 			return false;
 		}
 		
-		$aEventInvites = Phpfox::getService('event')->getInviteForUser();
+		$aEventInvites = Event_Service_Event::instance()->getInviteForUser();
 		
 		if (!count($aEventInvites))
 		{

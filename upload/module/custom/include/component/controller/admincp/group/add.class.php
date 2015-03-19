@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Custom_Component_Controller_Admincp_Group_Add extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

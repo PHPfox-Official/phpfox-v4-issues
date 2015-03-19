@@ -61,7 +61,7 @@ class Theme_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		$aVals = $this->get('val');
 		
-		if (Phpfox::getService('theme.style.process')->deleteCss($aVals['file_name'], $aVals['style_id'], $aVals['module_id']))
+		if (Theme_Service_Style_Process::instance()->deleteCss($aVals['file_name'], $aVals['style_id'], $aVals['module_id']))
 		{
 			$iId = '' . $aVals['style_id'] . '_' . str_replace('.', '_', $aVals['file_name']) . '_' . $aVals['module_id'] . '';
 			$this->call('editAreaLoader.closeFile(\'js_template_content\', \'' . $iId . '\');')
@@ -86,7 +86,7 @@ class Theme_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function getCssFile($bRevert = false)
 	{
-		if ($aData = Phpfox::getService('theme.style')->getFile($this->get('style_id'), $this->get('file_name'), $this->get('module_id')))
+		if ($aData = Theme_Service_Style_Style::instance()->getFile($this->get('style_id'), $this->get('file_name'), $this->get('module_id')))
 		{
 			if (is_array($aData['modified']))
 			{
@@ -132,7 +132,7 @@ class Theme_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function saveCssFile()
 	{
-		if (Phpfox::getService('theme.style.process')->update($this->get('val')))
+		if (Theme_Service_Style_Process::instance()->update($this->get('val')))
 		{
 			$this->show('#js_last_modified');	
 		}
@@ -141,7 +141,7 @@ class Theme_Component_Ajax_Ajax extends Phpfox_Ajax
 	public function revertCss()
 	{		
 		$this->set($this->get('val'));
-		if (Phpfox::getService('theme.style.process')->revert($this->get('val')))
+		if (Theme_Service_Style_Process::instance()->revert($this->get('val')))
 		{
 			$this->getCssFile(true);
 		}		
@@ -330,7 +330,7 @@ class Theme_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function updateStyleActivity()
 	{
-		if (Phpfox::getService('theme.style.process')->updateActivity($this->get('id'), $this->get('active')))
+		if (Theme_Service_Style_Process::instance()->updateActivity($this->get('id'), $this->get('active')))
 		{
 			
 		}		
@@ -346,7 +346,7 @@ class Theme_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function updateStyleDefaultState()
 	{
-		if (Phpfox::getService('theme.style.process')->setToDefault($this->get('id'), $this->get('active')))
+		if (Theme_Service_Style_Process::instance()->setToDefault($this->get('id'), $this->get('active')))
 		{
 			
 		}

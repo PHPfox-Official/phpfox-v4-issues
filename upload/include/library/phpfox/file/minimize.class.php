@@ -45,7 +45,7 @@ class Phpfox_File_Minimize
 		$sMatch = trim($aMatches[1]);
 		$sMatch = str_replace('../image/', '', $sMatch);
 		
-		return 'url(\'' . Phpfox::getLib('template')->getStyle('image', $sMatch) . '\')';
+		return 'url(\'' . Phpfox_Template::instance()->getStyle('image', $sMatch) . '\')';
 	}
 
 	/*

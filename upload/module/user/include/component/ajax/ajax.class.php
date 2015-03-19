@@ -119,7 +119,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 
 		if (count($aRows))
 		{
-			Phpfox::getLib('template')->assign(array(
+			Phpfox_Template::instance()->assign(array(
 					'aRows' => $aRows,
 					'sJsId' => $this->get('id'),
 					'sSearch' => $this->get('value'),
@@ -643,7 +643,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if ($this->get('in_process'))
 		{
-			$oImage = Phpfox::getLib('image');
+			$oImage = Phpfox_Image::instance();
 			$sFileName = $this->get('in_process');
 			$aImages = array();
 			if (($sPhotos = $this->get('photos')))
@@ -686,7 +686,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 			}
 			else 
 			{
-				$oFile = Phpfox::getLib('file');
+				$oFile = Phpfox_File::instance();
 				
 				$iServerId = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
 				

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Block_Browse extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -25,9 +25,9 @@ class Event_Component_Block_Browse extends Phpfox_Component
 		
 		$iPageSize = 20;
 
-		$aEvent = Phpfox::getService('event')->getEvent($this->request()->get('id'), true);
+		$aEvent = Event_Service_Event::instance()->getEvent($this->request()->get('id'), true);
 		
-		list($iCnt, $aInvites) = Phpfox::getService('event')->getInvites($aEvent['event_id'], $iRsvp, $iPage, $iPageSize);		
+		list($iCnt, $aInvites) = Event_Service_Event::instance()->getInvites($aEvent['event_id'], $iRsvp, $iPage, $iPageSize);
 		
 		Phpfox::getLib('pager')->set(array('ajax' => 'event.browseList', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'aParams' => 
 			array(

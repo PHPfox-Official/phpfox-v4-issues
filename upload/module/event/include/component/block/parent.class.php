@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Block_Parent extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		$aEventParent = $this->getParam('aEventParent');
 		
-		$aEvents = Phpfox::getService('event')->getForParentBlock($aEventParent['module'], $aEventParent['item']);
+		$aEvents = Event_Service_Event::instance()->getForParentBlock($aEventParent['module'], $aEventParent['item']);
 
 		if (!count($aEvents) && !defined('PHPFOX_IN_DESIGN_MODE'))
 		{

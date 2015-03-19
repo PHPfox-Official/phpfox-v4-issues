@@ -443,6 +443,14 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 		
 		return $this;	
 	}
+
+	public function get() {
+		return $this->execute('getRow');
+	}
+
+	public function all() {
+		return $this->execute('getSlaveRows');
+	}
 	
 	/**
 	 * Performs the final SQL query with all the information we have gathered from various

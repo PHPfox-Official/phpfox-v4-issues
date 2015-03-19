@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Bulletin_Component_Controller_View extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{			

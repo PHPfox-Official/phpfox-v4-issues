@@ -36,7 +36,7 @@ class Blog_Service_Browse extends Phpfox_Service
 	
 	public function getQueryJoins($bIsCount = false, $bNoQueryFriend = false)
 	{
-		if (Phpfox::isModule('friend') && Phpfox::getService('friend')->queryJoin($bNoQueryFriend))
+		if (Phpfox::isModule('friend') && Friend_Service_Friend::instance()->queryJoin($bNoQueryFriend))
 		{
 			$this->database()->join(Phpfox::getT('friend'), 'friends', 'friends.user_id = blog.user_id AND friends.friend_user_id = ' . Phpfox::getUserId());	
 		}

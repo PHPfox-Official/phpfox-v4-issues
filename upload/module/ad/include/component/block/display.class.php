@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Ad_Component_Block_Display extends Phpfox_Component
 {	
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -31,7 +31,7 @@ class Ad_Component_Block_Display extends Phpfox_Component
 			return false;
 		}	
 		
-		if (Phpfox::getLib('module')->getFullControllerName() == 'core.index-visitor' && Phpfox::getParam('ad.multi_ad'))
+		if (Phpfox_Module::instance()->getFullControllerName() == 'core.index-visitor' && Phpfox::getParam('ad.multi_ad'))
 		{
 			return false;
 		}
@@ -42,7 +42,7 @@ class Ad_Component_Block_Display extends Phpfox_Component
 				'forum'				
 			);			
 			
-			if (in_array(Phpfox::getLib('module')->getModuleName(), $aDeny))
+			if (in_array(Phpfox_Module::instance()->getModuleName(), $aDeny))
 			{
 				return false;
 			}		
@@ -106,7 +106,7 @@ class Ad_Component_Block_Display extends Phpfox_Component
 		{
 			if (!empty($aAd['disallow_controller']))
 			{
-				$sControllerName = Phpfox::getLib('module')->getFullControllerName();
+				$sControllerName = Phpfox_Module::instance()->getFullControllerName();
 				$aParts = explode(',', $aAd['disallow_controller']);
 				foreach ($aParts as $sPart)
 				{

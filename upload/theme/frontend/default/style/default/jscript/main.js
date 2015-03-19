@@ -253,12 +253,8 @@ $Behavior.globalThemeInit = function()
    $('#header_sub_menu_search_input').before('<div id="header_sub_menu_search_input_value" style="display:none;">' + $('#header_sub_menu_search_input').val() + '</div>');
 
 	$('#header_sub_menu_search_input').focus(function(){		
-		if (getParam('bJsIsMobile')){
-			$(this).parent().find('#header_sub_menu_search_input').addClass('focus');
-			$(this).val('');
-			return;
-		}
-		
+
+		$(this).parents('form:first').addClass('active');
 		$(this).parent().find('#header_sub_menu_search_input').addClass('focus');
 		if ($(this).val() == $('#header_sub_menu_search_input_value').html()){
 			$(this).val('');
@@ -277,6 +273,7 @@ $Behavior.globalThemeInit = function()
 	});	
 	
 	$('#header_sub_menu_search_input').blur(function(){
+		$(this).parents('form:first').removeClass('active');
 		$(this).parent().find('#header_sub_menu_search_input').removeClass('focus');
 	});		
 	if ((isset(oModules['friend']) ))

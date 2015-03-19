@@ -171,7 +171,7 @@ class Theme_Service_Process extends Phpfox_Service
 				
 				$sDir = PHPFOX_DIR_THEME . 'frontend' . PHPFOX_DS . $aVals['folder'] . PHPFOX_DS;				
 				$sTempFile = 'theme_cache_xml_' . $iId;				
-				Phpfox::getLib('file')->writeToCache($sTempFile, base64_decode($sXmlData));
+				Phpfox_File::instance()->writeToCache($sTempFile, base64_decode($sXmlData));
 				if (file_exists($sDir . 'xml' . PHPFOX_DS . 'phpfox.xml.php'))
 				{
 					Phpfox::getLib('ftp')->unlink($sDir . 'xml' . PHPFOX_DS . 'phpfox.xml.php');
@@ -233,7 +233,7 @@ class Theme_Service_Process extends Phpfox_Service
 					$sValue = null;
 				}				
 					
-				(($sCmd = Phpfox::getLib('template')->getXml('update_css')) ? eval($sCmd) : null);
+				(($sCmd = Phpfox_Template::instance()->getXml('update_css')) ? eval($sCmd) : null);
 				
 				$this->database()->insert(Phpfox::getT($aCallback['table']), array(
 						$aCallback['field'] => $aCallback['value'],
@@ -517,7 +517,7 @@ class Theme_Service_Process extends Phpfox_Service
 		{
 			foreach ($aProperties as $sProperty => $sValue)
 			{
-				(($sCmd = Phpfox::getLib('template')->getXml('reset_css')) ? eval($sCmd) : null);
+				(($sCmd = Phpfox_Template::instance()->getXml('reset_css')) ? eval($sCmd) : null);
 				
 				switch ($sProperty)
 				{
@@ -629,7 +629,7 @@ class Theme_Service_Process extends Phpfox_Service
 			->execute('getRows');
 		foreach ($aStyles as $aStyle)
 		{
-			Phpfox::getService('theme.style.process')->delete($aStyle['style_id']);			
+			Theme_Service_Style_Process::instance()->delete($aStyle['style_id']);
 		}		
 		
 		$this->database()->delete(Phpfox::getT('theme_template'), 'folder = \'' . $this->database()->escape($aTheme['folder']) . '\'');
@@ -773,14 +773,14 @@ class Theme_Service_Process extends Phpfox_Service
 			
 			if (!$iInstalled)
 			{
-				Phpfox::getService('theme.style.process')->installStyleFromFolder($aParams['folder'], $sFolder, $mForce);
+				Theme_Service_Style_Process::instance()->installStyleFromFolder($aParams['folder'], $sFolder, $mForce);
 			}
 		}
 		closedir($hDir);		
 		
 		if ($mForce && Phpfox::getParam('core.phpfox_is_hosted'))
 		{
-			$aFiles = Phpfox::getLib('file')->getAllFiles(PHPFOX_DIR_CACHE . $mForce . PHPFOX_DS);
+			$aFiles = Phpfox_File::instance()->getAllFiles(PHPFOX_DIR_CACHE . $mForce . PHPFOX_DS);
 
 			$aCssContent = array();
 			foreach ($aFiles as $sFile)
@@ -866,7 +866,7 @@ class Theme_Service_Process extends Phpfox_Service
 				}
 			}
 						
-			Phpfox::getLib('file')->delete_directory(PHPFOX_DIR_CACHE . $mForce . PHPFOX_DS);
+			Phpfox_File::instance()->delete_directory(PHPFOX_DIR_CACHE . $mForce . PHPFOX_DS);
 		}
 		
 		return $iId;

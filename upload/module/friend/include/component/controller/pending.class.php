@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Controller_Pending extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -37,7 +37,7 @@ class Friend_Component_Controller_Pending extends Phpfox_Component
 		
 		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
-		Phpfox::getService('friend')->buildMenu();
+		Friend_Service_Friend::instance()->buildMenu();
 		
 		$this->template()->setTitle('Friends')->setBreadcrumb(Phpfox::getPhrase('friend.my_friends'), $this->url()->makeUrl('friend'));
 		$this->template()->setTitle(Phpfox::getPhrase('friend.pending_friend_requests'))

@@ -324,7 +324,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('quiz', $aRow['quiz_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -579,7 +579,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('quiz', $aRow['quiz_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 
@@ -634,7 +634,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('quiz', $aRow['quiz_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog'),
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
 		);			
 	}	
@@ -796,7 +796,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('quiz', $aRow['quiz_id'], $aRow['title'])  . 'comment_'.$aNotification['item_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	

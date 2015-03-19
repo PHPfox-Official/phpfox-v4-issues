@@ -14,7 +14,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class User_Component_Controller_Remove extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -25,7 +25,7 @@ class User_Component_Controller_Remove extends Phpfox_Component
 		}
 		if (Phpfox::isModule('friend'))
 		{
-			list($iCnt, $aShowFriends) = Phpfox::getService('friend')->get('friend.is_page = 0 AND friend.user_id = ' . Phpfox::getUserId() . ' AND ' . Phpfox::getLib('database')->isNotNull('user_image'), 'RAND()', 0, 3);
+			list($iCnt, $aShowFriends) = Friend_Service_Friend::instance()->get('friend.is_page = 0 AND friend.user_id = ' . Phpfox::getUserId() . ' AND ' . Phpfox::getLib('database')->isNotNull('user_image'), 'RAND()', 0, 3);
 		
 			$this->template()->assign(array(
 				'aFriends' => $aShowFriends,

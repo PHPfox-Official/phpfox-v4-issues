@@ -14,6 +14,13 @@ select {
 	text-indent:0px;
 }
 
+.js_box {
+	.table {
+		padding:0px;
+		margin-bottom:10px;
+	}
+}
+
 .table {
 	background:@blockBg;
 	padding:10px;
@@ -28,7 +35,7 @@ select {
 	}
 
     .table_right {
-		input[type="text"], textarea {
+		input[type="text"], textarea, textarea:focus {
 			.full_input();
 		}
 
@@ -40,7 +47,34 @@ select {
 		    font-size:@fontSizeBase - 2;
 		    color:lighten(@blockColor, 5%);
 	    }
+
+	    .js_datepicker_holder {
+		    display:block;
+		    margin-bottom:10px;
+		    input[type="text"] {
+			    text-indent:30px;
+		    }
+	    }
+
+	    .js_datepicker_core_start {
+		    select {
+			    width:auto;
+		    }
+	    }
 	}
+}
+
+
+.js_datepicker_image {
+	.reset();
+	position:absolute;
+	left:8px;
+	top:9px;
+}
+
+.js_datepicker_image:before {
+	.fa('\f073');
+	font-size:@fontSizeBase;
 }
 
 ul.table_clear_button li {
@@ -54,6 +88,7 @@ ul.table_clear_button li {
 		padding-left:0px;
 		padding-right:0px;
 		width:100%;
+		height:auto;
 	}
 }
 

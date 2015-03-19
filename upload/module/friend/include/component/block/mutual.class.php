@@ -16,11 +16,11 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Block_Mutual extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
-		list($iTotal, $aRows) = Phpfox::getService('friend')->getMutualFriends($this->getParam('mutual_friend_id'));
+		list($iTotal, $aRows) = Friend_Service_Friend::instance()->getMutualFriends($this->getParam('mutual_friend_id'));
 		
 		$this->template()->assign(array(
 				'aMutualFriends' => $aRows

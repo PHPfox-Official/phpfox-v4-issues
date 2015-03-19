@@ -67,7 +67,7 @@ class Event_Service_Category_Process extends Phpfox_Service
 			
 		foreach ($aEvents as $aEvent)
 		{
-			Phpfox::getService('event.process')->delete($aEvent['event_id'], $aEvent);
+			Event_Service_Process::instance()->delete($aEvent['event_id'], $aEvent);
 		}
 		
 		$this->database()->delete($this->_sTable, 'category_id = ' . (int) $iId);

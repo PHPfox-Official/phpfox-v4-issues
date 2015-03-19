@@ -1,4 +1,13 @@
 
+#left .block .bottom ul li a, #left .block .bottom ul li a:hover, #right .block .bottom ul li a, #right .block .bottom ul li a:hover {
+	.reset();
+
+	text-align:center;
+	display:block;
+	background:darken(@blockBg, 2%);
+	padding:8px 0px;
+}
+
 #left, #right, #content {
 	.block, .block_clear {
 		background:@blockBg;
@@ -17,6 +26,13 @@
 		> .content {
 			padding:@blockContentPadding;
 			font-size:@blockContentSize;
+
+			.title {
+				.reset();
+				text-transform:uppercase;
+				font-weight:500;
+				font-size:@fontSizeBase - 3;
+			}
 		}
 	}
 
@@ -30,7 +46,12 @@
 		background:@bodyBg;
 		> .title {
 			background:@bodyBg;
-			padding-bottom:0px;
+			padding:0px;
+			padding-bottom:@blockContentPadding;
+		}
+
+		> .content {
+			padding:0px;
 		}
 	}
 }

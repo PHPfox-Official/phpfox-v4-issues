@@ -62,12 +62,12 @@ class Video_Service_Process extends Phpfox_Service
 			{
 				if ($aFormat['FormatName'] == 'link')
 				{
-					$sImageLocation = Phpfox::getLib('file')->getBuiltDir(Phpfox::getParam('video.dir_image')) . md5($iVideoId) . '%s.jpg';
+					$sImageLocation = Phpfox_File::instance()->getBuiltDir(Phpfox::getParam('video.dir_image')) . md5($iVideoId) . '%s.jpg';
 
 					define('PHPFOX_ONCLOUD_FORCE', true);
 
-					Phpfox::getLib('image')->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_120'), 120, 120);
-					Phpfox::getLib('image')->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_12090'), 120, 90, false);
+					Phpfox_Image::instance()->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_120'), 120, 120);
+					Phpfox_Image::instance()->createThumbnail(sprintf($sImageLocation, ''), sprintf($sImageLocation, '_12090'), 120, 90, false);
 
 					unlink(sprintf($sImageLocation, ''));
 					unlink(sprintf($sImageLocation, '_120'));
@@ -258,7 +258,7 @@ class Video_Service_Process extends Phpfox_Service
 		
 		if (Phpfox::getService('video.grab')->image($iId))
 		{
-			$sImageLocation = Phpfox::getLib('file')->getBuiltDir(Phpfox::getParam('video.dir_image')) . md5($iId) . '%s.jpg';
+			$sImageLocation = Phpfox_File::instance()->getBuiltDir(Phpfox::getParam('video.dir_image')) . md5($iId) . '%s.jpg';
 			
 			$aUpdate['image_path'] = str_replace(Phpfox::getParam('video.dir_image'), '', $sImageLocation);
 			$aUpdate['image_server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');			
@@ -397,7 +397,7 @@ class Video_Service_Process extends Phpfox_Service
 				return Phpfox_Error::set(Phpfox::getPhrase('video.select_a_video'));
 			}		
 			
-			$aUploadVideo = Phpfox::getLib('file')->load('video', Phpfox::getService('video')->getFileExt(), Phpfox::getUserParam('video.video_file_size_limit'));		
+			$aUploadVideo = Phpfox_File::instance()->load('video', Phpfox::getService('video')->getFileExt(), Phpfox::getUserParam('video.video_file_size_limit'));
 			if ($aUploadVideo === false)
 			{
 				return false;
@@ -439,7 +439,7 @@ class Video_Service_Process extends Phpfox_Service
 		
 		if ($aVideo === null)
 		{		
-			$sFileName = Phpfox::getLib('file')->upload('video', Phpfox::getParam('video.dir'), $iId, true, 0644, true, false);
+			$sFileName = Phpfox_File::instance()->upload('video', Phpfox::getParam('video.dir'), $iId, true, 0644, true, false);
 		}
 		
 		if (!empty($aVals['status_info']))
@@ -571,7 +571,7 @@ class Video_Service_Process extends Phpfox_Service
 			
 			if (isset($_FILES['image']['name']) && ($_FILES['image']['name'] != ''))
 			{
-				$aImage = Phpfox::getLib('file')->load('image', array(
+				$aImage = Phpfox_File::instance()->load('image', array(
 						'jpg',
 						'gif',
 						'png'
@@ -582,9 +582,9 @@ class Video_Service_Process extends Phpfox_Service
 				{
 					$iFileSizes = 0;
 					
-					$oImage = Phpfox::getLib('image');
+					$oImage = Phpfox_Image::instance();
 			
-					$sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('video.dir_image'), $aVideo['video_id']);
+					$sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('video.dir_image'), $aVideo['video_id']);
 							
 					$aSql['image_path'] = $sFileName;
 					$aSql['server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');					
@@ -592,7 +592,7 @@ class Video_Service_Process extends Phpfox_Service
 					$iSize = 120;			
 					$oImage->createThumbnail(Phpfox::getParam('video.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('video.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);			
 					$iFileSizes += filesize(Phpfox::getParam('video.dir_image') . sprintf($sFileName, '_' . $iSize));
-					Phpfox::getLib('file')->unlink(Phpfox::getParam('video.dir_image') . sprintf($sFileName, ''));
+					Phpfox_File::instance()->unlink(Phpfox::getParam('video.dir_image') . sprintf($sFileName, ''));
 					
 					// Update user space usage
 					Phpfox::getService('user.space')->update($aVideo['user_id'], 'video', $iFileSizes);					
@@ -699,7 +699,7 @@ class Video_Service_Process extends Phpfox_Service
 				{
 					$iFileSize += filesize($sVideo);
 					
-					Phpfox::getLib('file')->unlink($sVideo);				
+					Phpfox_File::instance()->unlink($sVideo);
 				}
 			}
 			
@@ -718,7 +718,7 @@ class Video_Service_Process extends Phpfox_Service
 						// get the filesize
 						$iFileSize += filesize($sImage);
 						// Do not check if filesize is greater than 0, or CDN file will not be deleted
-						Phpfox::getLib('file')->unlink($sImage);
+						Phpfox_File::instance()->unlink($sImage);
 					}
 					
 					// CDN!
@@ -812,17 +812,17 @@ class Video_Service_Process extends Phpfox_Service
 			{
 				if(file_exists(Phpfox::getParam('video.dir') . sprintf(str_replace('flv', 'mp4', $aVideo['destination']), '')))
 				{
-					Phpfox::getLib('file')->unlink(Phpfox::getParam('video.dir') . sprintf(str_replace('flv', 'mp4', $aVideo['destination']), ''));
+					Phpfox_File::instance()->unlink(Phpfox::getParam('video.dir') . sprintf(str_replace('flv', 'mp4', $aVideo['destination']), ''));
 				}
 
 				if(file_exists(Phpfox::getParam('video.dir') . sprintf(str_replace('flv', 'ogg', $aVideo['destination']), '')))
 				{
-					Phpfox::getLib('file')->unlink(Phpfox::getParam('video.dir') . sprintf(str_replace('flv', 'ogg', $aVideo['destination']), ''));
+					Phpfox_File::instance()->unlink(Phpfox::getParam('video.dir') . sprintf(str_replace('flv', 'ogg', $aVideo['destination']), ''));
 				}
 
 				if(file_exists(Phpfox::getParam('video.dir') . sprintf(str_replace('flv', 'webm', $aVideo['destination']), '')))
 				{
-					Phpfox::getLib('file')->unlink(Phpfox::getParam('video.dir') . sprintf(str_replace('flv', 'webm', $aVideo['destination']), ''));
+					Phpfox_File::instance()->unlink(Phpfox::getParam('video.dir') . sprintf(str_replace('flv', 'webm', $aVideo['destination']), ''));
 				}
 			}
 			
@@ -859,7 +859,7 @@ class Video_Service_Process extends Phpfox_Service
 					{					
 						$iFileSize += filesize($sImage);
 						
-						Phpfox::getLib('file')->unlink($sImage);				
+						Phpfox_File::instance()->unlink($sImage);
 					}
 					
 					// CDN!

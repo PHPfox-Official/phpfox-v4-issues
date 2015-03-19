@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Block_Design extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -43,7 +43,7 @@ class Theme_Component_Block_Design extends Phpfox_Component
 			}
 		}		
 		
-		$aStlyes = Phpfox::getService('theme.style')->getStyles();
+		$aStlyes = Theme_Service_Style_Style::instance()->getStyles();
 
 		$this->template()->assign(array(
 				'aStlyes' => $aStlyes,

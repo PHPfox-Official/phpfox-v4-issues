@@ -16,11 +16,11 @@ defined('PHPFOX') or exit('NO DICE!');
 class Group_Component_Controller_Category extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
-		return Phpfox::getLib('module')->setController('group.index');		
+		return Phpfox_Module::instance()->setController('group.index');
 	}
 	
 	/**

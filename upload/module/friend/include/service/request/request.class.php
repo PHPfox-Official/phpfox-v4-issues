@@ -76,7 +76,7 @@ class Friend_Service_Request_Request extends Phpfox_Service
 		{
 			$sIds .= $aRow['request_id'] . ',';
 			
-			list($iTotal, $aMutual) = Phpfox::getService('friend')->getMutualFriends($aRow['friend_user_id'], 5);
+			list($iTotal, $aMutual) = Friend_Service_Friend::instance()->getMutualFriends($aRow['friend_user_id'], 5);
 			
 			$aRows[$iKey]['mutual_friends'] = array('total' => $iTotal, 'friends' => $aMutual);
             if ($sPlugin = Phpfox_Plugin::get('friend.service_request_get__2')){eval($sPlugin);}

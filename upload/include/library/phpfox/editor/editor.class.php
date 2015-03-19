@@ -127,7 +127,7 @@ class Phpfox_Editor
 	{
 		if (!($aParams = Phpfox::getLib('request')->getArray('val')))
 		{
-			$aParams = Phpfox::getLib('template')->getVar('aForms');
+			$aParams = Phpfox_Template::instance()->getVar('aForms');
 		}
 		return (isset($aParams[$iId]) ? Phpfox::getLib('parse.output')->clean($aParams[$iId]) : ($sDefaultValue === null ? '' : $sDefaultValue));
 	}
@@ -157,7 +157,7 @@ class Phpfox_Editor
 		{
 			if (isset($aValue['image']))
 			{
-				$this->_aButtons[$iKey]['image'] = Phpfox::getLib('template')->getStyle('image', 'editor/' . $aValue['image']);
+				$this->_aButtons[$iKey]['image'] = Phpfox_Template::instance()->getStyle('image', 'editor/' . $aValue['image']);
 			}
 			if (isset($aValue['phrase']))
 			{

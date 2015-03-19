@@ -12,7 +12,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if isset($sHeader) && (!PHPFOX_IS_AJAX || isset($bPassOverAjaxCall))}
-<div class="block{if (defined('PHPFOX_IN_DESIGN_MODE') && PHPFOX_IN_DESIGN_MODE) || (Phpfox::getService('theme')->isInDnDMode())} js_sortable{/if}"{if isset($sBlockBorderJsId)} id="js_block_border_{$sBlockBorderJsId}"{/if}{if defined('PHPFOX_IN_DESIGN_MODE') && Phpfox::getLib('module')->blockIsHidden('js_block_border_' . $sBlockBorderJsId . '')} style="display:none;"{/if}>
+<div class="block{if (defined('PHPFOX_IN_DESIGN_MODE') && PHPFOX_IN_DESIGN_MODE) || (Phpfox::getService('theme')->isInDnDMode())} js_sortable{/if}"{if isset($sBlockBorderJsId)} id="js_block_border_{$sBlockBorderJsId}"{/if}{if defined('PHPFOX_IN_DESIGN_MODE') && Phpfox_Module::instance()->blockIsHidden('js_block_border_' . $sBlockBorderJsId . '')} style="display:none;"{/if}>
 	{if !empty($sHeader)}
 		<div class="title js_sortable_header">		
 		{if isset($sBlockTitleBar)}

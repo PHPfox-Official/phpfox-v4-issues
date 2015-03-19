@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Api_Component_Controller_Admincp_Gateway_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

@@ -107,7 +107,7 @@ class Subscribe_Service_Process extends Phpfox_Service
 		
 		if (!empty($_FILES['image']['name']))
 		{
-			$aImage = Phpfox::getLib('file')->load('image', array('jpg', 'gif', 'png'));
+			$aImage = Phpfox_File::instance()->load('image', array('jpg', 'gif', 'png'));
 			
 			if ($aImage === false)
 			{
@@ -133,11 +133,11 @@ class Subscribe_Service_Process extends Phpfox_Service
 			$iId = $this->database()->insert($this->_sTable, $aVals);
 		}
 		
-		if (!empty($_FILES['image']['name']) && ($sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('subscribe.dir_image'), $iId)))
+		if (!empty($_FILES['image']['name']) && ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('subscribe.dir_image'), $iId)))
 		{
 			$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'package_id = ' . (int) $iId);		
 			
-			Phpfox::getLib('image')->createThumbnail(Phpfox::getParam('subscribe.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('subscribe.dir_image') . sprintf($sFileName, '_120'), 120, 120);
+			Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('subscribe.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('subscribe.dir_image') . sprintf($sFileName, '_120'), 120, 120);
 			
 			unlink(Phpfox::getParam('subscribe.dir_image') . sprintf($sFileName, ''));
 		}	

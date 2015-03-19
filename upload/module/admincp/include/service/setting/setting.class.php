@@ -164,7 +164,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 		
 		// Load all the editors that are valid
 		$aWysiwygs = array();
-		$aEditors = Phpfox::getLib('file')->getFiles(Phpfox::getParam('core.dir_static') . 'jscript' . PHPFOX_DS . 'wysiwyg' . PHPFOX_DS);
+		$aEditors = Phpfox_File::instance()->getFiles(Phpfox::getParam('core.dir_static') . 'jscript' . PHPFOX_DS . 'wysiwyg' . PHPFOX_DS);
 		foreach ($aEditors as $sEditor)
 		{
 			if (!file_exists(Phpfox::getParam('core.dir_static') . 'jscript' . PHPFOX_DS . 'wysiwyg' . PHPFOX_DS . $sEditor . PHPFOX_DS . 'core.js'))

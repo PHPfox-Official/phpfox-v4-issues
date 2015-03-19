@@ -202,7 +202,7 @@ class Admincp_Service_Menu_Process extends Phpfox_Service
 				continue;
 			}			
 			
-			$iModuleId = Phpfox::getLib('module')->getModuleId($aVal['module']);
+			$iModuleId = Phpfox_Module::instance()->getModuleId($aVal['module']);
 			$aSql[] = array(	
 				$aVal['parent_id'],
 				$aVal['m_connection'],

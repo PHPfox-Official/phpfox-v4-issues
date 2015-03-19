@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Controller_Admincp_Template_Add extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -56,7 +56,7 @@ class Theme_Component_Controller_Admincp_Template_Add extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('theme.create_new_template'))		
 			->assign(array(
 					'aThemes' => Phpfox::getService('theme')->get(),
-					'aModules' => Phpfox::getLib('module')->getModules()
+					'aModules' => Phpfox_Module::instance()->getModules()
 				)
 			);	
 	}

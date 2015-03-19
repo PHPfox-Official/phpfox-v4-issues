@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -96,11 +96,11 @@ class Friend_Component_Controller_Index extends Phpfox_Component
 			$this->url()->send('friend', $aSend, Phpfox::getPhrase('friend.successfully_deleted'));
 		}
 		
-		list($iCnt, $aRows) = Phpfox::getService('friend')->get($this->search()->getConditions(), $this->search()->getSort(), $this->search()->getPage(), $iPageSize, true, true, $bIsOnline, null, true);		
+		list($iCnt, $aRows) = Friend_Service_Friend::instance()->get($this->search()->getConditions(), $this->search()->getSort(), $this->search()->getPage(), $iPageSize, true, true, $bIsOnline, null, true);
 		
 		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'friend.viewMoreFriends'));
 		
-		Phpfox::getService('friend')->buildMenu();
+		Friend_Service_Friend::instance()->buildMenu();
 		
 		$this->template()->setHeader('jquery/ui.js', 'static_script');
 		$this->template()->setHeader('cache', array(

@@ -178,12 +178,12 @@ class Phpfox_Search
 				$aParams['search_tool']['custom_filters'] = array();
 			}
 			
-			$sThisUrl = Phpfox::getLib('module')->getModuleName();
+			$sThisUrl = Phpfox_Module::instance()->getModuleName();
 			$aInputs = Phpfox::getService('input')->getInputsForSearch($sThisUrl);
 			
 			if (!empty($aInputs))
 			{
-				Phpfox::getLib('template')
+				Phpfox_Template::instance()
 					->setHeader(array(
 						'search.js' => 'static_script'
 					))
@@ -238,7 +238,7 @@ class Phpfox_Search
         	$this->getSearch($iSearchId, $this->_oReq->getInt('page'), $this->getDisplay());
         }		
 
-		Phpfox::getLib('template')->assign(array(
+		Phpfox_Template::instance()->assign(array(
 				'aFilters' => $this->_aHtml
 			)
 		);		
@@ -257,7 +257,7 @@ class Phpfox_Search
 		
 		if ($bIsCanonical)
 		{
-			Phpfox::getLib('template')->setHeader(array(
+			Phpfox_Template::instance()->setHeader(array(
 					'<link rel="canonical" href="' . Phpfox::getLib('url')->makeUrl(Phpfox::getLib('request')->get('req1')) . '" />'
 				)
 			);
@@ -420,7 +420,7 @@ class Phpfox_Search
 				}
 			}		
 			
-			Phpfox::getLib('template')->assign(array(
+			Phpfox_Template::instance()->assign(array(
 					'aSearchTool' => $this->_aSearchTool
 				)
 			);
@@ -430,7 +430,7 @@ class Phpfox_Search
 		{
 			Phpfox::getLib('session')->remove('search_fail');
 			
-			Phpfox::getLib('template')->assign(array(
+			Phpfox_Template::instance()->assign(array(
 					'bSearchFailed' => true
 				)
 			);
@@ -480,7 +480,7 @@ class Phpfox_Search
 	public function setFormUrl($sUrl)
 	{
 		$this->_aSearchTool['search']['action'] = $sUrl;
-		Phpfox::getLib('template')->assign(array(
+		Phpfox_Template::instance()->assign(array(
 				'aSearchTool' => $this->_aSearchTool
 			)
 		);
@@ -892,7 +892,7 @@ class Phpfox_Search
 				$aRow['search_query'] = rtrim($aRow['search_query'], ', ');
 			}
 			
-			Phpfox::getLib('template')->setBreadCrumb(Phpfox::getPhrase('core.search_results_for') . ': ' . $aRow['search_query'], $this->_oUrl->makeUrl('current'), true)->setTitle(Phpfox::getPhrase('core.search_results_for') . ': ' . $aRow['search_query']);
+			Phpfox_Template::instance()->setBreadCrumb(Phpfox::getPhrase('core.search_results_for') . ': ' . $aRow['search_query'], $this->_oUrl->makeUrl('current'), true)->setTitle(Phpfox::getPhrase('core.search_results_for') . ': ' . $aRow['search_query']);
 		}
 		
 		$aSearchIds = explode(',', $aRow['search_ids']);		

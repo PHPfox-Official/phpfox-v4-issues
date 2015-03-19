@@ -30,7 +30,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		Phpfox::isUser(true);
 		
-		if (Phpfox::getService('event.process')->deleteImage($this->get('id')))
+		if (Event_Service_Process::instance()->deleteImage($this->get('id')))
 		{
 			
 		}
@@ -40,7 +40,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		Phpfox::isUser(true);
 		
-		if (Phpfox::getService('event.process')->addRsvp($this->get('id'), $this->get('rsvp'), Phpfox::getUserId()))
+		if (Event_Service_Process::instance()->addRsvp($this->get('id'), $this->get('rsvp'), Phpfox::getUserId()))
 		{
 			if ($this->get('rsvp') == 3)
 			{
@@ -96,7 +96,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function deleteGuest()
 	{
-		if (Phpfox::getService('event.process')->deleteGuest($this->get('id')))
+		if (Event_Service_Process::instance()->deleteGuest($this->get('id')))
 		{
 			
 		}
@@ -104,7 +104,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function delete()
 	{
-		if (Phpfox::getService('event.process')->delete($this->get('id')))
+		if (Event_Service_Process::instance()->delete($this->get('id')))
 		{
 			$this->call('$(\'#js_event_item_holder_' . $this->get('id') . '\').html(\'<div class="message" style="margin:0px;">' . Phpfox::getPhrase('event.successfully_deleted_event') . '</div>\').fadeOut(5000);');			
 		}
@@ -117,7 +117,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function feature()
 	{
-		if (Phpfox::getService('event.process')->feature($this->get('event_id'), $this->get('type')))
+		if (Event_Service_Process::instance()->feature($this->get('event_id'), $this->get('type')))
 		{
 			
 		}
@@ -125,7 +125,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 
 	public function sponsor()
 	{
-	    if (Phpfox::getService('event.process')->sponsor($this->get('event_id'), $this->get('type')))
+	    if (Event_Service_Process::instance()->sponsor($this->get('event_id'), $this->get('type')))
 	    {
 		if ($this->get('type') == '1')
 		{
@@ -150,7 +150,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function approve()
 	{
-		if (Phpfox::getService('event.process')->approve($this->get('event_id')))
+		if (Event_Service_Process::instance()->approve($this->get('event_id')))
 		{
 			$this->alert(Phpfox::getPhrase('event.event_has_been_approved'), Phpfox::getPhrase('event.event_approved'), 300, 100, true);
 			$this->hide('#js_item_bar_approve_image');
@@ -169,7 +169,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 				Phpfox::getUserParam('event.can_approve_events', true);
 				foreach ((array) $this->get('item_moderate') as $iId)
 				{
-					Phpfox::getService('event.process')->approve($iId);
+					Event_Service_Process::instance()->approve($iId);
 					$this->remove('#js_event_item_holder_' . $iId);					
 				}				
 				$this->updateCount();
@@ -179,7 +179,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 				Phpfox::getUserParam('event.can_delete_other_event', true);
 				foreach ((array) $this->get('item_moderate') as $iId)
 				{
-					Phpfox::getService('event.process')->delete($iId);
+					Event_Service_Process::instance()->delete($iId);
 					$this->slideUp('#js_event_item_holder_' . $iId);
 				}				
 				$sMessage = Phpfox::getPhrase('event.event_s_successfully_deleted');
@@ -196,7 +196,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 		$sSubject = $this->get('subject');
 		$sText = $this->get('text');
 		
-		if ($iPage == 1 && !Phpfox::getService('event')->canSendEmails($this->get('id')))
+		if ($iPage == 1 && !Event_Service_Event::instance()->canSendEmails($this->get('id')))
 		{
 			$this->hide('#js_event_mass_mail_li');
 			$this->alert(Phpfox::getPhrase('event.you_are_unable_to_send_out_any_mass_emails_at_the_moment'));
@@ -212,7 +212,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 			return;
 		}
 		
-		$iCnt = Phpfox::getService('event.process')->massEmail($this->get('id'), $iPage, $this->get('subject'), $this->get('text'));
+		$iCnt = Event_Service_Process::instance()->massEmail($this->get('id'), $iPage, $this->get('subject'), $this->get('text'));
 		
 		if ($iCnt === false)
 		{
@@ -232,11 +232,11 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 		}
 		else 
 		{
-			if (!Phpfox::getService('event')->canSendEmails($this->get('id'), true))
+			if (!Event_Service_Event::instance()->canSendEmails($this->get('id'), true))
 			{
 				$this->hide('#js_send_email')
 					->show('#js_send_email_fail')
-					->html('#js_time_left', Phpfox::getTime(Phpfox::getParam('mail.mail_time_stamp'), Phpfox::getService('event')->getTimeLeft($this->get('id'))));
+					->html('#js_time_left', Phpfox::getTime(Phpfox::getParam('mail.mail_time_stamp'), Event_Service_Event::instance()->getTimeLeft($this->get('id'))));
 			}
 			
 			$this->hide('#js_event_mass_mail_li');
@@ -246,7 +246,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function removeInvite()
 	{
-		Phpfox::getService('event.process')->removeInvite($this->get('id'));
+		Event_Service_Process::instance()->removeInvite($this->get('id'));
 	}
 	
 	public function addFeedComment()
@@ -262,7 +262,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 			return;			
 		}		
 		
-		$aEvent = Phpfox::getService('event')->getForEdit($aVals['callback_item_id'], true);
+		$aEvent = Event_Service_Event::instance()->getForEdit($aVals['callback_item_id'], true);
 		
 		if (!isset($aEvent['event_id']))
 		{

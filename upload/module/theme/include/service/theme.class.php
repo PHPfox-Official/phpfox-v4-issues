@@ -247,12 +247,12 @@ class Theme_Service_Theme extends Phpfox_Service
 			
 		if (is_dir(PHPFOX_DIR_CACHE . $sDirectoryIdReturn))
 		{
-			Phpfox::getLib('file')->delete_directory(PHPFOX_DIR_CACHE . $sDirectoryIdReturn . PHPFOX_DS);
+			Phpfox_File::instance()->delete_directory(PHPFOX_DIR_CACHE . $sDirectoryIdReturn . PHPFOX_DS);
 		}
 		
 		$sDirectoryId = $sDirectoryIdReturn . PHPFOX_DS . 'upload' . PHPFOX_DS;
 		
-		Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId, true);
+		Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId, true);
 		
 		$bPass = false;
 		$sXmlDir = PHPFOX_DIR_THEME . 'frontend' . PHPFOX_DS . $aTheme['folder'] . PHPFOX_DS . 'xml' . PHPFOX_DS . 'phpfox.xml.php';
@@ -276,17 +276,17 @@ class Theme_Service_Theme extends Phpfox_Service
 		
 		$sNewHomeFolder = PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'theme' . PHPFOX_DS . 'frontend' . PHPFOX_DS . $aTheme['folder'] . PHPFOX_DS;
 		
-		Phpfox::getLib('file')->mkdir($sNewHomeFolder, true);
-		Phpfox::getLib('file')->mkdir($sNewHomeFolder . 'style' . PHPFOX_DS, true);
-		Phpfox::getLib('file')->mkdir($sNewHomeFolder . 'template' . PHPFOX_DS, true);
-		Phpfox::getLib('file')->mkdir($sNewHomeFolder . 'xml' . PHPFOX_DS, true);	
+		Phpfox_File::instance()->mkdir($sNewHomeFolder, true);
+		Phpfox_File::instance()->mkdir($sNewHomeFolder . 'style' . PHPFOX_DS, true);
+		Phpfox_File::instance()->mkdir($sNewHomeFolder . 'template' . PHPFOX_DS, true);
+		Phpfox_File::instance()->mkdir($sNewHomeFolder . 'xml' . PHPFOX_DS, true);
 		
 		if ($bPass)
 		{
 			copy($sXmlDir, PHPFOX_DIR_CACHE . $sDirectoryId . PHPFOX_DS . 'theme' . PHPFOX_DS . 'frontend' . PHPFOX_DS . $aTheme['folder'] . PHPFOX_DS . 'xml' . PHPFOX_DS . 'phpfox.xml.php');
 		}		
 		
-		Phpfox::getLib('file')->write($sNewHomeFolder . 'phpfox.xml', $oXmlBuilder->output());		
+		Phpfox_File::instance()->write($sNewHomeFolder . 'phpfox.xml', $oXmlBuilder->output());
 		
 		$aTemplates = Phpfox::getService('theme.template')->get($aTheme['folder'], true, $bIncludeParent);	
 		foreach ($aTemplates as $sKey => $aFiles)
@@ -304,26 +304,26 @@ class Theme_Service_Theme extends Phpfox_Service
 						{
 							$sContent = $sContent[0];
 						}
-						Phpfox::getLib('file')->write($sNewHomeFolder . 'template' . PHPFOX_DS . $sFile, $sContent);
+						Phpfox_File::instance()->write($sNewHomeFolder . 'template' . PHPFOX_DS . $sFile, $sContent);
 					}
 					else 
 					{
-						Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder'] . PHPFOX_DS . 'block', true);
-						Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder'] . PHPFOX_DS . 'controller', true);
+						Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder'] . PHPFOX_DS . 'block', true);
+						Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder'] . PHPFOX_DS . 'controller', true);
 						if (strpos($sFile, PHPFOX_DS))
 						{
 							$aParts = explode(PHPFOX_DS, $sFile);
 							
-							Phpfox::getLib('file')->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder'] . PHPFOX_DS . $sSubKey . PHPFOX_DS . $aParts[0], true);
+							Phpfox_File::instance()->mkdir(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder'] . PHPFOX_DS . $sSubKey . PHPFOX_DS . $aParts[0], true);
 						}
 						
 						if (is_array($sContent) && isset($sContent[0])) // Fix for http://www.phpfox.com/tracker/view/5104/
 						{
-							Phpfox::getLib('file')->write(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder']. PHPFOX_DS . $sSubKey . PHPFOX_DS . $sFile, $sContent[0]);
+							Phpfox_File::instance()->write(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder']. PHPFOX_DS . $sSubKey . PHPFOX_DS . $sFile, $sContent[0]);
 						}
 						else
 						{
-							Phpfox::getLib('file')->write(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder']. PHPFOX_DS . $sSubKey . PHPFOX_DS . $sFile, $sContent);
+							Phpfox_File::instance()->write(PHPFOX_DIR_CACHE . $sDirectoryId . 'module' . PHPFOX_DS . $sKey . PHPFOX_DS . 'template' . PHPFOX_DS . $aTheme['folder']. PHPFOX_DS . $sSubKey . PHPFOX_DS . $sFile, $sContent);
 						}
 					}			
 				}
@@ -333,7 +333,7 @@ class Theme_Service_Theme extends Phpfox_Service
 		{
 			foreach ($aVals['styles'] as $iStyleId)
 			{			
-				Phpfox::getService('theme.style')->export($iStyleId, $bIncludeParent, true, $sNewHomeFolder, $sDirectoryId);
+				Theme_Service_Style_Style::instance()->export($iStyleId, $bIncludeParent, true, $sNewHomeFolder, $sDirectoryId);
 			}					
 		}
 		

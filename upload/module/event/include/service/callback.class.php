@@ -196,7 +196,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}		
 	
@@ -236,7 +236,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	
@@ -276,7 +276,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 
@@ -287,7 +287,7 @@ class Event_Service_Callback extends Phpfox_Service
 	 */
 	public function enableSponsor($aParams)
 	{
-	    return Phpfox::getService('event.process')->sponsor((int)$aParams['item_id'], 1);	    
+	    return Event_Service_Process::instance()->sponsor((int)$aParams['item_id'], 1);
 	}
 	
 	public function updateCommentText($aVals, $sText)
@@ -420,7 +420,7 @@ class Event_Service_Callback extends Phpfox_Service
 			
 		foreach ($aEvents as $aEvent)
 		{
-			Phpfox::getService('event.process')->delete($aEvent['event_id'], $aEvent);
+			Event_Service_Process::instance()->delete($aEvent['event_id'], $aEvent);
 		}
 		
 		return true;
@@ -470,7 +470,7 @@ class Event_Service_Callback extends Phpfox_Service
 
 		foreach ($aEvents as $aEvent)
 		{
-			Phpfox::getService('event.process')->delete($aEvent['event_id']);
+			Event_Service_Process::instance()->delete($aEvent['event_id']);
 		}
 	}
 	
@@ -512,7 +512,7 @@ class Event_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('event.events'),
-			'value' => Phpfox::getService('event')->getPendingTotal(),
+			'value' => Event_Service_Event::instance()->getPendingTotal(),
 			'link' => Phpfox::getLib('url')->makeUrl('event', array('view' => 'pending'))
 		);
 	}	
@@ -541,7 +541,7 @@ class Event_Service_Callback extends Phpfox_Service
 			return null;
 		}
 
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('event', array('view' => 'invitation')) . '"' . (!Phpfox::getUserBy('event_invite') ? ' onclick="alert(\'' . Phpfox::getPhrase('event.no_event_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox::getLib('template')->getStyle('image', 'module/event.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('event.event_invites_total', array('total' => Phpfox::getUserBy('event_invite'))) . '</span></a></li>';
+		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('event', array('view' => 'invitation')) . '"' . (!Phpfox::getUserBy('event_invite') ? ' onclick="alert(\'' . Phpfox::getPhrase('event.no_event_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'module/event.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('event.event_invites_total', array('total' => Phpfox::getUserBy('event_invite'))) . '</span></a></li>';
 	}
 
 	public function reparserList()
@@ -898,7 +898,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	
@@ -1009,7 +1009,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog'),
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
 		);			
 	}	
@@ -1032,7 +1032,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}
 
@@ -1264,7 +1264,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']) .'comment_' . $aNotification['item_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	

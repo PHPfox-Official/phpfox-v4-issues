@@ -541,7 +541,7 @@ class Phpfox_Locale
 	public function setCache()
 	{
 		$this->_oCache = Phpfox::getLib('cache');
-		$this->_sCacheId = $this->_oCache->set(array('locale', 'language-' . $this->getLangId() . '-page-' . str_replace('/', '-', Phpfox::getLib('url')->getUrl()) . '-' . Phpfox::getLib('module')->getModuleName() . '-' . str_replace('_', '-', Phpfox::getLib('module')->getControllerName())));
+		$this->_sCacheId = $this->_oCache->set(array('locale', 'language-' . $this->getLangId() . '-page-' . str_replace('/', '-', Phpfox::getLib('url')->getUrl()) . '-' . Phpfox_Module::instance()->getModuleName() . '-' . str_replace('_', '-', Phpfox_Module::instance()->getControllerName())));
 		if (($this->_aPhrases = $this->_oCache->get($this->_sCacheId)))
 		{		
 			$this->_bIsCached = true;

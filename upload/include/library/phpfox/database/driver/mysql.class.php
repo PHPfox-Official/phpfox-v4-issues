@@ -175,7 +175,7 @@ class Phpfox_Database_Driver_Mysql extends Phpfox_Database_Dba
 
     	$hRes = @($this->_aCmd['mysql_query'] == 'mysqli_query' ? $this->_aCmd['mysql_query']($hLink, $sSql) : $this->_aCmd['mysql_query']($sSql, $hLink));
 		
-    	if (defined('PHPFOX_LOG_SQL') && Phpfox::getLib('file')->isWritable(PHPFOX_DIR_FILE . 'log' . PHPFOX_DS))
+    	if (defined('PHPFOX_LOG_SQL') && Phpfox_File::instance()->isWritable(PHPFOX_DIR_FILE . 'log' . PHPFOX_DS))
     	{    		
     		$hFile = fopen(PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'phpfox_query_' . date('d.m.y', PHPFOX_TIME) . '_' . md5(Phpfox::getVersion()) . '.php', 'a');
     		fwrite($hFile, '<?php defined(\'PHPFOX\') or exit(\'NO DICE!\');  ?>' . "##\n{$sSql}##\n");
@@ -514,7 +514,7 @@ class Phpfox_Database_Driver_Mysql extends Phpfox_Database_Dba
 			return Phpfox_Error::set(Phpfox::getPhrase('admincp.the_path_you_provided_is_not_a_valid_directory'));
 		}
 		
-		if (!Phpfox::getLib('file')->isWritable($sPath, true))
+		if (!Phpfox_File::instance()->isWritable($sPath, true))
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('admincp.the_path_you_provided_is_not_a_valid_directory'));
 		}

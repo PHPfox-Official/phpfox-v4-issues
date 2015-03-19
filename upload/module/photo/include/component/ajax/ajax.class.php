@@ -96,7 +96,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
     public function browse()
     {
 		if (!defined('PHPFOX_IS_AJAX_CONTROLLER')) define('PHPFOX_IS_AJAX_CONTROLLER', true);
-		Phpfox::getLib('module')->getComponent('photo.index', $this->getAll(), 'controller');
+		Phpfox_Module::instance()->getComponent('photo.index', $this->getAll(), 'controller');
 		$this->call('$(".pager_container, .moderation_holder").remove();');
 		$this->call('$(\'#js_ajax_browse_content\').append(\'' . $this->getContent() . '\'); ');
 		$this->call('$Core.loadInit();');
@@ -108,7 +108,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
      */
     public function browseUserAlbum()
     {
-		Phpfox::getLib('module')->getComponent('photo.profile', $this->getAll(), 'controller');
+		Phpfox_Module::instance()->getComponent('photo.profile', $this->getAll(), 'controller');
 	
 		$this->call('$(\'#js_user_photo_albums\').html(\'' . $this->getContent() . '\'); $.scrollTo(\'#js_user_photo_albums_outer\', 340);');
     }
@@ -119,7 +119,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
      */
     public function browseAlbum()
     {
-		Phpfox::getLib('module')->getComponent('photo.album', $this->getAll(), 'controller');
+		Phpfox_Module::instance()->getComponent('photo.album', $this->getAll(), 'controller');
 	
 		$this->call('$(\'#js_album_content\').html(\'' . $this->getContent() . '\'); $.scrollTo(\'#js_album_content\', 340);');
     }
@@ -130,7 +130,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
      */
     public function browseUserPhotos()
     {
-		Phpfox::getLib('module')->getComponent('photo.profile', $this->getAll(), 'controller');
+		Phpfox_Module::instance()->getComponent('photo.profile', $this->getAll(), 'controller');
 	
 		$this->call('$(\'#js_user_photos\').html(\'' . $this->getContent() . '\'); $.scrollTo(\'#js_user_photos_outer\', 340); $Behavior.hoverAction(); $Behavior.imageHoverHolder();');
     }
@@ -480,7 +480,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
     		$aImages = json_decode(urldecode($aPostPhotos), true);
 		}		
 
-		$oImage = Phpfox::getLib('image');
+		$oImage = Phpfox_Image::instance();
 		$iFileSizes = 0;
 		$iGroupId = 0;
 		$bProcess = false;
@@ -575,7 +575,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 						) && $this->get('is_page') != 1 && !defined('PHPFOX_IS_HOSTED_SCRIPT')
 						)
 				    {
-						Phpfox::getLib('file')->unlink(Phpfox::getParam('photo.dir_photo') . sprintf($sFileName, ''));
+						Phpfox_File::instance()->unlink(Phpfox::getParam('photo.dir_photo') . sprintf($sFileName, ''));
 					}
 				    else if (Phpfox::getParam('photo.enabled_watermark_on_photos'))
 				    {
@@ -778,9 +778,9 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
     public function view()
     {
     	Phpfox::getComponent('photo.view', array(), 'controller');
-		$aHeaderFiles = Phpfox::getLib('template')->getHeader(true);		
+		$aHeaderFiles = Phpfox_Template::instance()->getHeader(true);
 		
-		$aPhrases = Phpfox::getLib('template')->getPhrases();
+		$aPhrases = Phpfox_Template::instance()->getPhrases();
 
 		$sLoadFiles = '';		
 		$sEchoData = '';
@@ -937,8 +937,8 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 		$iFileSizes = 0;
 		
 		$oAttachment = Phpfox::getService('attachment.process');		
-		$oFile = Phpfox::getLib('file');
-		$oImage = Phpfox::getLib('image');		
+		$oFile = Phpfox_File::instance();
+		$oImage = Phpfox_Image::instance();
 		
 		$aPhoto = Phpfox::getService('photo')->getPhoto($this->get('photo-id'));
 		

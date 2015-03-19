@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Controller_Admincp_Style_Css_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		$this->_setMenuName('admincp.theme');
 		
-		$aStyle = Phpfox::getService('theme.style')->getStyle($this->request()->getInt('id'));
+		$aStyle = Theme_Service_Style_Style::instance()->getStyle($this->request()->getInt('id'));
 		
 		if (!isset($aStyle['theme_id']))
 		{
@@ -61,10 +61,10 @@ class Theme_Component_Controller_Admincp_Style_Css_Index extends Phpfox_Componen
 				)
 			)
 			->assign(array(
-					'aFiles' => Phpfox::getService('theme.style')->getFiles($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id']),
+					'aFiles' => Theme_Service_Style_Style::instance()->getFiles($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id']),
 					'aStyle' => $aStyle,
 					'aProducts' => Phpfox::getService('admincp.product')->get(),
-					'aCustomDataContent' => (defined('PHPFOX_IS_HOSTED_SCRIPT') ? Phpfox::getService('theme.style')->getStyleContent($aStyle['style_id']) : '')
+					'aCustomDataContent' => (defined('PHPFOX_IS_HOSTED_SCRIPT') ? Theme_Service_Style_Style::instance()->getStyleContent($aStyle['style_id']) : '')
 				)
 			);			
 	}

@@ -32,7 +32,7 @@ class Phpfox_Search_Inline
 	 */
 	public function get($aArgs = array())
 	{
-		$aVars = Phpfox::getLib('template')->getVar('aForms');		
+		$aVars = Phpfox_Template::instance()->getVar('aForms');
 		$sHtml = '';
 		$sHtml .= '<input type="text" name="val[' . $aArgs['id'] . '][]" id="js_inline_input_' . $aArgs['id'] . '" style="width:' . $aArgs['width'] . ';" size="' . $aArgs['size'] . '"';
 		$sHtml .= " autocomplete=\"off\"";
@@ -44,7 +44,7 @@ class Phpfox_Search_Inline
 		{
 			$sHtml .= " value=\"" . $aArgs['display'] . "\" onfocus=\"if (this.value == '" . $aArgs['display'] . "') { this.value=''; }\"";
 		}
-		$sHtml .= " onkeyup=\"if (this.value != '') { oInlineSearch.call('" . $aArgs['id'] . "', '" . $aArgs['call'] . "', '" . Phpfox::getLib('template')->getVar('sTagType') . "'); }\" ";
+		$sHtml .= " onkeyup=\"if (this.value != '') { oInlineSearch.call('" . $aArgs['id'] . "', '" . $aArgs['call'] . "', '" . Phpfox_Template::instance()->getVar('sTagType') . "'); }\" ";
 		$sHtml .= ' />';
 		if (isset($aArgs['type']) && $aArgs['type'] == 'comma')
 		{

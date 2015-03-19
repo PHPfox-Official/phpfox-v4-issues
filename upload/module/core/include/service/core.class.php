@@ -134,7 +134,7 @@ class Core_Service_Core extends Phpfox_Service
 				
 			}
 			
-			$aProfileMenus = Phpfox::getLib('template')->getMenu('profile');
+			$aProfileMenus = Phpfox_Template::instance()->getMenu('profile');
 			foreach ($aProfileMenus as $aProfileMenu)
 			{
 				if ($aProfileMenu['url'] == 'profile')

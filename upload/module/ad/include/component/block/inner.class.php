@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Ad_Component_Block_Inner extends Phpfox_Component
 {	
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
          * This block shows an ad inside another block
 	 */
 	public function process()

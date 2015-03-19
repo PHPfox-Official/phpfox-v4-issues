@@ -641,7 +641,7 @@ class Phpfox_Ajax
 	 */
 	protected function template()
 	{
-		return Phpfox::getLib('template');
+		return Phpfox_Template::instance();
 	}	
 	
 	/**

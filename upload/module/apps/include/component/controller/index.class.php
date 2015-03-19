@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Apps_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{				
@@ -46,7 +46,7 @@ class Apps_Component_Controller_Index extends Phpfox_Component
 		
 		if ($this->request()->getInt('req2') > 0)
 		{			
-			return Phpfox::getLib('module')->setController('apps.view');
+			return Phpfox_Module::instance()->setController('apps.view');
 		}
 		
 		$oApps = Phpfox::getService('apps');

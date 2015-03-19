@@ -44,7 +44,7 @@ class Input_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('feed' => $aRow['author'])),
 			'message' => $aRow['user_name'] .' tagged you in a comment in a relationship update',
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -175,7 +175,7 @@ class Input_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 
@@ -429,7 +429,7 @@ class Input_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink($aRow['user_name'], 'feed_'. $iFeed),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	
@@ -476,7 +476,7 @@ class Input_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink($aRow['user_name'], 'feed_' . $iFeed),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}
 	
@@ -719,7 +719,7 @@ class Input_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('feed-id' => $aRow['feed_id'])),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	

@@ -147,11 +147,11 @@ class Phpfox_Installer
 	
 	public function __construct()
 	{	
-		$this->_oTpl = Phpfox::getLib('template');
+		$this->_oTpl = Phpfox_Template::instance();
 		$this->_oReq = Phpfox::getLib('request');
 		$this->_oUrl = Phpfox::getLib('url');		
 		
-		$this->_sTempDir = Phpfox::getLib('file')->getTempDir();	
+		$this->_sTempDir = Phpfox_File::instance()->getTempDir();
 
 		if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
 		{
@@ -175,12 +175,12 @@ class Phpfox_Installer
 			}
 		}	
 						
-		if (!Phpfox::getLib('file')->isWritable($this->_sTempDir))
+		if (!Phpfox_File::instance()->isWritable($this->_sTempDir))
 		{
 			if (PHPFOX_SAFE_MODE)
 			{
 				$this->_sTempDir = PHPFOX_DIR_FILE . 'log' . PHPFOX_DS;	
-				if (!Phpfox::getLib('file')->isWritable($this->_sTempDir))
+				if (!Phpfox_File::instance()->isWritable($this->_sTempDir))
 				{
 					exit('Unable to write to temporary folder: ' . $this->_sTempDir);		
 				}
@@ -248,7 +248,7 @@ class Phpfox_Installer
 		// Cache language file
 		$bCache = false;
 		$sCacheFile = PHPFOX_DIR_CACHE . 'installer_language.php';
-		if (Phpfox::getLib('file')->isWritable(PHPFOX_DIR_CACHE) && file_exists($sCacheFile))		
+		if (Phpfox_File::instance()->isWritable(PHPFOX_DIR_CACHE) && file_exists($sCacheFile))
 		{
 			$bCache = true;	
 		}
@@ -261,13 +261,13 @@ class Phpfox_Installer
 				self::$_aPhrases[$aPhrase['var_name']] = $aPhrase['value'];
 			}
 			
-			if (Phpfox::getLib('file')->isWritable(PHPFOX_DIR_CACHE))
+			if (Phpfox_File::instance()->isWritable(PHPFOX_DIR_CACHE))
 			{
 				$sData = '<?php' . "\n";
 				$sData .= 'self::$_aPhrases = ';
 				$sData .= var_export(self::$_aPhrases, true);
 				$sData .= ";\n" . '?>';
-				Phpfox::getLib('file')->writeToCache('installer_language.php', $sData);
+				Phpfox_File::instance()->writeToCache('installer_language.php', $sData);
 			}
 		}
 		else 
@@ -668,9 +668,9 @@ class Phpfox_Installer
 			$bIsPassed = false;
 		}
 		
-		$oFile = Phpfox::getLib('file');
+		$oFile = Phpfox_File::instance();
 		$aFileChecks = array();		
-		$aModuleLists = Phpfox::getLib('module')->getModuleFiles();		
+		$aModuleLists = Phpfox_Module::instance()->getModuleFiles();
 		$aModules = array_merge($aModuleLists['core'], $aModuleLists['plugin']);
 		
 		$bNoLoadFail = false;
@@ -709,7 +709,7 @@ class Phpfox_Installer
 		{
 			foreach ($aModules as $aModule)
 			{
-				if (($aFiles = Phpfox::getLib('module')->init($aModule['name'], 'aInstallWritable')))
+				if (($aFiles = Phpfox_Module::instance()->init($aModule['name'], 'aInstallWritable')))
 				{
 					foreach ($aFiles as $sDir)
 					{
@@ -831,7 +831,7 @@ class Phpfox_Installer
 						
 						$aTables = $oDbSupport->getTables($aVals['driver'], $oDb);
 						
-						$aSql = Phpfox::getLib('module')->getModuleTables($aVals['prefix']);						
+						$aSql = Phpfox_Module::instance()->getModuleTables($aVals['prefix']);
 								
 						foreach ($aSql as $sSql)
 						{
@@ -861,7 +861,7 @@ class Phpfox_Installer
 								$sData .= '$aModules = ';
 								$sData .= var_export($aVals['module'], true);
 								$sData .= ";\n?>";
-								Phpfox::getLib('file')->write($sCacheModules, $sData);							
+								Phpfox_File::instance()->write($sCacheModules, $sData);
 								unset($aVals['module']);
 								
 								if ($this->_saveSettings($aVals))
@@ -879,7 +879,7 @@ class Phpfox_Installer
 			$aForms = array_merge($this->_video(), $aForms);			
 		}
 		
-		$aModules = Phpfox::getLib('module')->getModuleFiles();
+		$aModules = Phpfox_Module::instance()->getModuleFiles();
 		sort($aModules['core']);
 		sort($aModules['plugin']);
 		
@@ -1291,7 +1291,7 @@ class Phpfox_Installer
 	
 	private function _completed()
 	{		
-		if (Phpfox::getLib('file')->isWritable(PHPFOX_DIR_SETTINGS . 'server.sett.php'))
+		if (Phpfox_File::instance()->isWritable(PHPFOX_DIR_SETTINGS . 'server.sett.php'))
 		{
 			$sContent = file_get_contents(PHPFOX_DIR_SETTINGS . 'server.sett.php');
 			$sContent = preg_replace("/\\\$_CONF\['core.is_installed'\] = (.*?);/i", "\\\$_CONF['core.is_installed'] = true;", $sContent);

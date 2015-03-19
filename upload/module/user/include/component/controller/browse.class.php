@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class User_Component_Controller_Browse extends Phpfox_Component
 {
     /**
-     * Class process method wnich is used to execute this component.
+     * Controller
      */
     public function process()
     {    	
@@ -109,7 +109,7 @@ class User_Component_Controller_Browse extends Phpfox_Component
 		
 			if (Phpfox::getParam('core.force_404_check') && !PHPFOX_IS_AJAX && !Phpfox::getService('core.redirect')->check404($aCheckParams))
 			{
-				return Phpfox::getLib('module')->setController('error.404');
+				return Phpfox_Module::instance()->setController('error.404');
 			}
 		}
 

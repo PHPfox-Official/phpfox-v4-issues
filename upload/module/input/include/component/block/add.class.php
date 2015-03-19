@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Input_Component_Block_Add extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 * This block is used to enter information in an Input
 	 */
 	public function process()

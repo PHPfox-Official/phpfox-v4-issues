@@ -128,7 +128,7 @@ if (!defined('PHPFOX_DEVELOPER'))
 
 if (!defined('PHPFOX_IS_AJAX_PAGE'))
 {
-	define('PHPFOX_IS_AJAX_PAGE', false);
+	define('PHPFOX_IS_AJAX_PAGE', ((isset($_SERVER['CONTENT_TYPE']) && $_SERVER['CONTENT_TYPE'] == 'application/json') ? true : false));
 }
 
 // http://www.php.net/manual/en/errorfunc.constants.php PHP 5 >= 5.3.0

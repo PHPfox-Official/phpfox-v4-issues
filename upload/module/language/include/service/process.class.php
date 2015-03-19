@@ -48,7 +48,7 @@ class Language_Service_Process extends Phpfox_Service
 				
 				if ($bPassed)
 				{
-					$iModuleId = Phpfox::getLib('module')->getModuleId($aValue['module_id']);
+					$iModuleId = Phpfox_Module::instance()->getModuleId($aValue['module_id']);
 					$aSql[] = array(
 						$aLang['language_id'],
 						$iModuleId,
@@ -101,7 +101,7 @@ class Language_Service_Process extends Phpfox_Service
 			$iLanguageId = $aVals['settings']['language_code'];
 			foreach ($aVals['phrases']['phrase'] as $aValue)
 			{				
-				$iModuleId = Phpfox::getLib('module')->getModuleId($aValue['module']);
+				$iModuleId = Phpfox_Module::instance()->getModuleId($aValue['module']);
 				$aSql[] = array(
 					$iLanguageId,
 					$iModuleId,
@@ -351,7 +351,7 @@ class Language_Service_Process extends Phpfox_Service
 				unlink(Phpfox::getParam('core.dir_pic') . 'flag' . PHPFOX_DS . $sPack . '.' . $aData['settings']['flag_id']);
 			}				
 			
-			Phpfox::getLib('file')->write(Phpfox::getParam('core.dir_pic') . 'flag' . PHPFOX_DS . $sPack . '.' . $aData['settings']['flag_id'], base64_decode($aData['settings']['image']));
+			Phpfox_File::instance()->write(Phpfox::getParam('core.dir_pic') . 'flag' . PHPFOX_DS . $sPack . '.' . $aData['settings']['flag_id'], base64_decode($aData['settings']['image']));
 			
 			unset($aData['settings']['image']);
 		}
@@ -503,7 +503,7 @@ class Language_Service_Process extends Phpfox_Service
 	{
 		if (!empty($_FILES['icon']['name']))
 		{
-			if (!($this->_aFile = Phpfox::getLib('file')->load('icon', array('jpg', 'gif', 'png'))))
+			if (!($this->_aFile = Phpfox_File::instance()->load('icon', array('jpg', 'gif', 'png'))))
 			{
 				return false;
 			}
@@ -521,7 +521,7 @@ class Language_Service_Process extends Phpfox_Service
 				unlink(Phpfox::getParam('core.dir_pic') . 'flag' . PHPFOX_DS . $sLanguageId . '.' . $this->_aFile['ext']);
 			}
 			
-			if (Phpfox::getLib('file')->upload('icon', Phpfox::getParam('core.dir_pic') . 'flag' . PHPFOX_DS, $sLanguageId, false, 0644, false))
+			if (Phpfox_File::instance()->upload('icon', Phpfox::getParam('core.dir_pic') . 'flag' . PHPFOX_DS, $sLanguageId, false, 0644, false))
 			{
 				$this->database()->update(Phpfox::getT('language'), array('flag_id' => $this->_aFile['ext']), 'language_id = \'' . $this->database()->escape($sLanguageId) . '\'');	
 			}

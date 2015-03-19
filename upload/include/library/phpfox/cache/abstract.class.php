@@ -152,7 +152,7 @@ abstract class Phpfox_Cache_Abstract implements Phpfox_Cache_Interface
 			return true;
 		}
 		
-		$aFiles = Phpfox::getLib('file')->getFiles(PHPFOX_DIR_FILE . 'static' . PHPFOX_DS);
+		$aFiles = Phpfox_File::instance()->getFiles(PHPFOX_DIR_FILE . 'static' . PHPFOX_DS);
 		foreach ($aFiles as $sFile)
 		{
 			if (!preg_match("/(.*)\.(js|css)/i", $sFile))
@@ -163,7 +163,7 @@ abstract class Phpfox_Cache_Abstract implements Phpfox_Cache_Interface
 			@unlink(PHPFOX_DIR_FILE . 'static' . PHPFOX_DS . $sFile);
 		}
 		
-		$aFiles = Phpfox::getLib('file')->getFiles(PHPFOX_DIR_FILE . 'gzip' . PHPFOX_DS);
+		$aFiles = Phpfox_File::instance()->getFiles(PHPFOX_DIR_FILE . 'gzip' . PHPFOX_DS);
 		foreach ($aFiles as $sFile)
 		{
 			if (!preg_match("/(.*)\.php/i", $sFile))

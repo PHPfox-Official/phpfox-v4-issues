@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Ad_Component_Controller_Admincp_Placement_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

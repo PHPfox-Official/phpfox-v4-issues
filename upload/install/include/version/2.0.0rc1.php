@@ -394,7 +394,7 @@ switch($this->_oReq->get('action'))
 		break;
 	case 'import-emoticon':
 
-		$aFiles = Phpfox::getLib('file')->getAllFiles(PHPFOX_DIR_FILE . 'smile' . PHPFOX_DS);
+		$aFiles = Phpfox_File::instance()->getAllFiles(PHPFOX_DIR_FILE . 'smile' . PHPFOX_DS);
 
 		foreach ($aFiles as $sFile)
 		{
@@ -3437,7 +3437,7 @@ switch($this->_oReq->get('action'))
 		break;
 	case 'process':
 		$this->_process();
-		if (Phpfox::getLib('file')->isWritable(PHPFOX_DIR_SETTING . 'server.sett.php'))
+		if (Phpfox_File::instance()->isWritable(PHPFOX_DIR_SETTING . 'server.sett.php'))
 		{
 			$sContent = file_get_contents(PHPFOX_DIR_SETTING . 'server.sett.php');
 			$sContent = preg_replace("/\\\$_CONF\['core.db_table_installed'\] = (.*?);/i", "\\\$_CONF['core.db_table_installed'] = true;", $sContent);
@@ -3466,7 +3466,7 @@ switch($this->_oReq->get('action'))
 		{
 			Phpfox::getLib('cache')->remove();
 
-			$aModules = Phpfox::getLib('module')->getModuleFiles();
+			$aModules = Phpfox_Module::instance()->getModuleFiles();
 			$aCacheModules = array_merge($aModules['core'], $aModules['plugin']);
 			$aFinal = array();
 			foreach ($aCacheModules as $aCacheModule)
@@ -3483,7 +3483,7 @@ switch($this->_oReq->get('action'))
 			$sData .= '$aModules = ';
 			$sData .= var_export($aFinal, true);
 			$sData .= ";\n?>";
-			Phpfox::getLib('file')->write($sCacheModules, $sData);
+			Phpfox_File::instance()->write($sCacheModules, $sData);
 
 			require(PHPFOX_DIR . 'include' . PHPFOX_DS . 'settings' . PHPFOX_DS . 'server.sett.php');
 

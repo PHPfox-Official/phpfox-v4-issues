@@ -31,7 +31,7 @@ class Comment_Component_Block_View extends Phpfox_Component
 	 * @return bool Only when in threaded mode we return false to not display the template
 	 */
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		

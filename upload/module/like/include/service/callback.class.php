@@ -135,7 +135,7 @@ class Like_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => $aRow['link'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	

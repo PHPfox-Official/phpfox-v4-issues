@@ -129,7 +129,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']) . 'comment-id_' . $aRow['feed_comment_id'] . '/',
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}	
 	
@@ -255,7 +255,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => $sLink . 'wall/comment-id_' . $aRow['feed_comment_id'],
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	
@@ -555,7 +555,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	
@@ -795,7 +795,7 @@ class Pages_Service_Callback extends Phpfox_Service
 			// 'no_profile_image' => true,
 			'link' => Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']),
 			'message' => Phpfox::getPhrase('pages.your_membership_has_been_accepted_to_join_the_page_title', array('title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...'))),
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);		
 	}
 	
@@ -818,7 +818,7 @@ class Pages_Service_Callback extends Phpfox_Service
 			// 'no_profile_image' => true,
 			'link' => Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']),
 			'message' => Phpfox::getPhrase('pages.full_name_is_requesting_to_join_your_page_title', array('full_name' => $aRow['full_name'], 'title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...'))),
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);		
 	}	
 	
@@ -877,7 +877,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
 	}	
 	
@@ -1051,7 +1051,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']) . 'wall/comment-id_' . $aRow['feed_comment_id'] . '/',
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);			
 	}
 	
@@ -1105,7 +1105,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']) . 'wall/comment-id_' . $aRow['feed_comment_id'] . '/',
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);		
 	}
 	
@@ -1171,7 +1171,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog'),
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
 		);			
 	}	
@@ -1286,7 +1286,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		return array(
 			'link' => Phpfox::getLib('url')->permalink(array('pages', 'comment-id' => $aRow['feed_comment_id']), $aRow['page_id'], $aRow['title']),
 			'message' => $sPhrase,
-			'icon' => Phpfox::getLib('template')->getStyle('image', 'activity.png', 'blog')
+			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}		
 	
@@ -1459,7 +1459,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		
 		$oAjax = Phpfox::getLib('ajax');		
 		
-		Phpfox::getLib('template')->assign('aPage', $aPage);
+		Phpfox_Template::instance()->assign('aPage', $aPage);
 		Phpfox_Component::setPublicParam('aPage', $aPage);
 		
 		Phpfox::getBlock('pages.like');

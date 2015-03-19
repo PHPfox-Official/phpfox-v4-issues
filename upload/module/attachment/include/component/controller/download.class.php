@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Attachment_Component_Controller_Download extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{	
@@ -41,7 +41,7 @@ class Attachment_Component_Controller_Download extends Phpfox_Component
 		}
 		Phpfox::getService('attachment.process')->updateCounter($aRow['attachment_id']);
 		
-		Phpfox::getLib('file')->forceDownload($sPath, $aRow['file_name'], $aRow['mime_type'], $aRow['file_size'], $aRow['server_id']);
+		Phpfox_File::instance()->forceDownload($sPath, $aRow['file_name'], $aRow['mime_type'], $aRow['file_size'], $aRow['server_id']);
 		
 		exit;
 	}

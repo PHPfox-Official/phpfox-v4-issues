@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Ban_Component_Controller_Message extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{

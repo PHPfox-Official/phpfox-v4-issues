@@ -82,7 +82,7 @@ class Share_Service_Process extends Phpfox_Service
 				$aOld = Phpfox::getService('share')->getForEdit($iEditId);
 				if (file_exists(Phpfox::getParam('share.dir_image') . $aOld['icon']))
 				{
-					Phpfox::getLib('file')->unlink(Phpfox::getParam('share.dir_image') . $aOld['icon']);
+					Phpfox_File::instance()->unlink(Phpfox::getParam('share.dir_image') . $aOld['icon']);
 				}				
 				
 				if (!($aVals['icon'] = $this->_uploadImage($aVals['icon'])))
@@ -115,7 +115,7 @@ class Share_Service_Process extends Phpfox_Service
 		
 		if (file_exists(Phpfox::getParam('share.dir_image') . $aSite['icon']))
 		{
-			Phpfox::getLib('file')->unlink(Phpfox::getParam('share.dir_image') . $aSite['icon']);
+			Phpfox_File::instance()->unlink(Phpfox::getParam('share.dir_image') . $aSite['icon']);
 		}		
 		
 		$this->database()->delete($this->_sTable, 'site_id = ' . $aSite['site_id']);
@@ -237,13 +237,13 @@ class Share_Service_Process extends Phpfox_Service
 	{
 		if (!empty($_FILES['icon']['name']))
 		{
-			$aImage = Phpfox::getLib('file')->load('icon', array('jpg', 'gif', 'png'));
+			$aImage = Phpfox_File::instance()->load('icon', array('jpg', 'gif', 'png'));
 			if ($aImage === false)
 			{
 				return false;
 			}
 			
-			return Phpfox::getLib('file')->upload('icon', Phpfox::getParam('share.dir_image'), $sName, false, 0644, false);
+			return Phpfox_File::instance()->upload('icon', Phpfox::getParam('share.dir_image'), $sName, false, 0644, false);
 		}
 		
 		return Phpfox_Error::set(Phpfox::getPhrase('share.provide_a_icon_for_this_site'));

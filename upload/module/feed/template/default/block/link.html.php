@@ -1,7 +1,7 @@
 {if PHPFOX_IS_AJAX && Phpfox::getLib('request')->get('theater') == 'true'}
 
 
-{elseif isset($sFeedType) &&  $sFeedType == 'view'}
+{elseif isset($sFeedType) &&  $sFeedType == 'view___'}
 <div class="feed_share_custom">	
 	{if Phpfox::isModule('share') && Phpfox::getParam('share.share_twitter_link')}
 		<div class="feed_share_custom_block"><a href="http://twitter.com/share" class="twitter-share-button" data-url="{$aFeed.feed_link}" data-count="horizontal" data-via="{param var='feed.twitter_share_via'}">{phrase var='feed.tweet'}</a><script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script></div>

@@ -256,7 +256,7 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 				sHtml += '<a href="#" onclick="$(\'.js_box_image_holder\').remove(); return false;"><img src="' + url + '" width="' + imageWidth + '" height="' + imageHeight + '" alt="" id="js_thickbox_core_image" /></a>';	
 			}
 			
-			sHtml += '</div><div class="js_box_close"><a href="#" onclick="return js_box_remove(this);">' + oTranslations['core.close'] + '</a></div></div></div>';			
+			sHtml += '</div><div class="js_box_close"><a href="#" onclick="return js_box_remove(this);">' + oTranslations['core.close'] + '</a></div></div></div>';
 			
 			$('body').prepend(sHtml);
 			
@@ -300,40 +300,7 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 	var bIsAlreadyOpen = false;
 	if ($(thisObject).hasClass('photo_holder_image') && !empty($(thisObject).attr('rel')))
 	{
-		if (!getParam('bPhotoTheaterMode')){
-			return true;
-		}
-		
-		if (getParam('bJsIsMobile')){
-			return true;
-		}			
-		
-		if ($Core.exists('.js_box_image_holder_full')){
-			$('#photo_view_ajax_loader').show();
-		}
-		
-		sLastOpenUrl = (empty(window.location.hash) ? $Core.getRequests(window.location, true) : '/' + window.location.hash);
-		// $Core.addUrlPager(thisObject);		
-		var sUserId = url.match(/userid_([0-9]+)/);
-		var sAlbumId = url.match(/albumid_([0-9]+)/);		
-				
-		var queryString = '' + getParam('sGlobalTokenName') + '[call]=photo.view&width=940' + (typeof sPhotoCategory != 'undefined' ? '&category=' + sPhotoCategory : '') + '&req2=' + $(thisObject).attr('rel') + '&theater=true&no_remove_box=true' + (sUserId != null && isset(sUserId[1]) ? '&userid='+sUserId[1] :'') + (sAlbumId != null && isset(sAlbumId[1]) ? '&albumid='+sAlbumId[1] :'');
-		var params = tb_parseQuery(queryString);
-		
-		bIsPhotoImage = true;
-		if (isset($aBoxHistory[params['' + getParam('sGlobalTokenName') + '[call]']]))
-		{
-			bIsAlreadyOpen = true;	
-		}
-		
-		if ($('#noteform').length > 0)
-		{
- 			$('#noteform').hide(); 
-		}
-		if ($('#js_photo_view_image').length > 0)
-		{
- 			$('#js_photo_view_image').imgAreaSelect({ hide: true });		
-		}		
+		return;
 	}
 	else
 	{
@@ -429,14 +396,18 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 			}		
 
 			sHtml += '<div id="' + $sCurrentId + '" class="js_box' + (oParams['bJsIsMobile'] ? ' mobile_js_box' : ' ') + (isset(params['no_remove_box']) ? ' js_box_no_remove' : '') + '" style="width:' + ajaxContentW + 'px;">';
+			// sHtml += '<div class="js_box_cover"></div>';
 			if (!bIsPhotoImage)
 			{
-				sHtml += '<div class="js_box_title">' + caption + '</div>';
+				sHtml += '<div class="js_box_title">' + caption + '';
+				sHtml += '</div>';
 			}
-			sHtml += '<div class="js_box_content"><span class="js_box_loader">' + oTranslations['core.loading'] + '...</span></div>';
+
+			sHtml += '<div class="js_box_close"><a href="#" onclick="return js_box_remove(this);"><i class="fa fa-close"></i></a><span class="js_box_history">' + params[getParam('sGlobalTokenName') + '[call]'] + '</span></div>';
+			sHtml += '<div class="js_box_content"><span class="js_box_loader"><i class="fa fa-spin fa-spinner"></i></span></div>';
 			// if (!bIsPhotoImage)
 			{
-				sHtml += '<div class="js_box_close"><a href="#" onclick="return js_box_remove(this);">' + oTranslations['core.close'] + '</a><span class="js_box_history">' + params[getParam('sGlobalTokenName') + '[call]'] + '</span></div>';
+				// sHtml += '<div class="js_box_close"><a href="#" onclick="return js_box_remove(this);">' + oTranslations['core.close'] + '</a><span class="js_box_history">' + params[getParam('sGlobalTokenName') + '[call]'] + '</span></div>';
 			}
 			sHtml += '</div>';
 
@@ -549,7 +520,7 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 				url: getParam('sJsAjax'),
 				data: queryString,
 				success: function(sMsg)
-				{				   	
+				{
 					$oNew.find('.js_box_content').html('');
 					$oNew.find('.js_box_content').html(sMsg);
 					if (!empty($oNew.find('.js_box_title_store:first').html()))

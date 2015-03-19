@@ -18,34 +18,43 @@ defined('PHPFOX') or exit('NO DICE!');
 	{plugin call='user.template_block_tooltip_1'}
 	<div class="user_tooltip_info_user">{$aUser|user:'':'':30|split:20}</div>
 	{plugin call='user.template_block_tooltip_3'}
+
 	{if $bIsPage}
-		{$aUser.page.category_name|convert}
-		<br />
-		{if $aUser.page.page_type == '1'}
-			{if $aUser.page.total_like == 1}
-				{phrase var='user.1_member'}
-			{elseif $aUser.page.total_like > 1}
-				{phrase var='user.total_members' total=$aUser.page.total_like|number_format}{/if}	
-		{else}
-			{if $aUser.page.total_like == 1}
-				{phrase var='user.1_person_likes_this'}
-			{elseif $aUser.page.total_like > 1}
-				{phrase var='user.total_people_like_this' total=$aUser.page.total_like|number_format}
-			{/if}
-		{/if}
-	{else}
-		{$aUser.gender_name}<br />
-		{foreach from=$aUser.birthdate_display key=sAgeType item=sBirthDisplay}
-			{if $aUser.dob_setting == '2'}
-				{phrase var='user.age_years_old' age=$sBirthDisplay}
-			{else}
-				{if $aUser.dob_setting != '3'}
-					{$sBirthDisplay}
+		<ul>
+			<li>{$aUser.page.category_name|convert}</li>
+			<li>
+				{if $aUser.page.page_type == '1'}
+					{if $aUser.page.total_like == 1}
+						{phrase var='user.1_member'}
+					{elseif $aUser.page.total_like > 1}
+						{phrase var='user.total_members' total=$aUser.page.total_like|number_format}{/if}
+				{else}
+					{if $aUser.page.total_like == 1}
+						{phrase var='user.1_person_likes_this'}
+					{elseif $aUser.page.total_like > 1}
+						{phrase var='user.total_people_like_this' total=$aUser.page.total_like|number_format}
+					{/if}
 				{/if}
+			</li>
+		</ul>
+	{else}
+		<ul>
+			<li>{$aUser.gender_name}</li>
+			<li>
+			{foreach from=$aUser.birthdate_display key=sAgeType item=sBirthDisplay}
+				{if $aUser.dob_setting == '2'}
+					{phrase var='user.age_years_old' age=$sBirthDisplay}
+				{else}
+					{if $aUser.dob_setting != '3'}
+						{$sBirthDisplay}
+					{/if}
+				{/if}
+			{/foreach}
+			</li>
+			{if $aUser.location}
+			<li>{$aUser.location}</li>
 			{/if}
-		{/foreach}	
-		<br />
-		{$aUser.location}
+		</ul>
 		{if $iMutualTotal > 0}
 		<div class="user_tooltip_mutual">
 			<a href="#" onclick="$Core.box('friend.getMutualFriends', 300, 'user_id={$aUser.user_id}'); return false;">{phrase var='user.mutual_friends_total' total=$iMutualTotal}</a>
@@ -55,6 +64,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					<li>{img user=$aMutual suffix='_50_square' max_width=32 max_height=32 class='js_hover_title'}</li>
 				{/foreach}
 				</ul>
+				<div class="clear"></div>
 			</div>
 		</div>
 		{/if}
@@ -64,7 +74,6 @@ defined('PHPFOX') or exit('NO DICE!');
 	{plugin call='user.template_block_tooltip_2'}
 	
 </div>
-<div class="clear"></div>
 {if $aUser.user_id != Phpfox::getUserId() && !$bIsPage}
 <div class="user_tooltip_action">
 	<ul>

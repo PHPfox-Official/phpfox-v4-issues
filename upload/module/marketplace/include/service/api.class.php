@@ -72,8 +72,8 @@ class Marketplace_Service_Api extends Phpfox_Service
 		{
 			if ($this->_oApi->get('images') != '')
 			{
-				$oImage = Phpfox::getLib('image');
-				$oFile = Phpfox::getLib('file');
+				$oImage = Phpfox_Image::instance();
+				$oFile = Phpfox_File::instance();
 					
 				$aSizes = array(50, 120, 200, 400);
 					
@@ -101,7 +101,7 @@ class Marketplace_Service_Api extends Phpfox_Service
 						)
 						)
 						{
-							$sFileName = Phpfox::getLib('file')->upload('photo', Phpfox::getParam('marketplace.dir_image'), $iId);
+							$sFileName = Phpfox_File::instance()->upload('photo', Phpfox::getParam('marketplace.dir_image'), $iId);
 			
 							$iFileSizes += filesize(Phpfox::getParam('marketplace.dir_image') . sprintf($sFileName, ''));
 			

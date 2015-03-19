@@ -28,8 +28,9 @@
 		}
 
 		> li.is_active {
+
 			> a, > a:hover {
-				background:@blockBg !important;
+				background:@brandPrimary !important;
 			}
 		}
 	}
@@ -51,6 +52,11 @@
 	.notify('\f234');
 }
 
+#holder_notify ul li.is_active a:before {
+	color:@brandPrimaryColor;
+}
+
+/*
 #holder_notify ul li a.user_notify_info, #holder_notify ul li a.user_notify_info:hover {
 	text-indent:0px;
 	width:auto;
@@ -58,12 +64,14 @@
 	border-right:1px darken(@headerBg, 1%) solid;
 	padding:0px 10px;
 }
+*/
 
 #holder_notify ul li div.holder_notify_drop {
 	border:0px;
 	background:@blockBg;
 	color:@blockColor;
 	border-bottom:4px darken(@blockBg, 12%) solid;
+	box-shadow:@boxShadow;
 }
 
 #holder_notify ul li div.holder_notify_drop a.holder_notify_drop_link, #holder_notify ul li div.holder_notify_drop a.holder_notify_drop_link:hover, .js_temp_friend_search_form_holder ul li a.holder_notify_drop_link, .js_temp_friend_search_form_holder ul li a.holder_notify_drop_link:hover {

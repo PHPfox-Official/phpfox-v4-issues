@@ -59,7 +59,7 @@ class Comment_Service_Callback extends Phpfox_Service
 			return null;
 		}		
 		
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('request', '#comment') . '"' . (!$iTotalApproveCount ? ' onclick="alert(\'' . Phpfox::getPhrase('comment.nothing_new_to_approve') . '\'); return false;"' : '') . '><img src="' . Phpfox::getLib('template')->getStyle('image', 'misc/comment.png') . '" alt="" class="v_middle" /> ' . Phpfox::getPhrase('comment.comments_pending_approval_total', array('total' => $iTotalApproveCount)) . '</a></li>';
+		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('request', '#comment') . '"' . (!$iTotalApproveCount ? ' onclick="alert(\'' . Phpfox::getPhrase('comment.nothing_new_to_approve') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/comment.png') . '" alt="" class="v_middle" /> ' . Phpfox::getPhrase('comment.comments_pending_approval_total', array('total' => $iTotalApproveCount)) . '</a></li>';
 	}
 	
 	public function getRedirectRequest($iId)

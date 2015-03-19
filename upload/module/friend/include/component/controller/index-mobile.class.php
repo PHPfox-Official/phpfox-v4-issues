@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Friend_Component_Controller_Index_Mobile extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -47,7 +47,7 @@ class Friend_Component_Controller_Index_Mobile extends Phpfox_Component
 			Phpfox::getLib('session')->remove('mfsearch');
 		}
 		
-		list($iCnt, $aFriends) = Phpfox::getService('friend')->get($aCond, 'u.full_name ASC', $iPage, $iPageSize);	
+		list($iCnt, $aFriends) = Friend_Service_Friend::instance()->get($aCond, 'u.full_name ASC', $iPage, $iPageSize);
 		
 		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		

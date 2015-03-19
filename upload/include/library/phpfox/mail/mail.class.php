@@ -470,7 +470,7 @@ class Phpfox_Mail
 						$sEmailSig = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1',{$this->_sArray}, false, null, '".$aUser['language_id']."') . ''", Phpfox::getParam('core.mail_signature'));
 				
 						// Load plain text template
-						$sTextPlain = Phpfox::getLib('template')->assign(array(
+						$sTextPlain = Phpfox_Template::instance()->assign(array(
 									'sName' => $aUser['full_name'],
 									'bHtml' => false,
 									'sMessage' => $this->_aMessagePlain !== null ? $sMessagePlain : $sMessage,
@@ -481,7 +481,7 @@ class Phpfox_Mail
 							)->getLayout('email', true);
 
 						// Load HTML text template
-						$sTextHtml = Phpfox::getLib('template')->assign(array(
+						$sTextHtml = Phpfox_Template::instance()->assign(array(
 									'sName' => $aUser['full_name'],
 									'bHtml' => true,
 									'sMessage' => str_replace("\n", "<br />", $sMessage),
@@ -556,7 +556,7 @@ class Phpfox_Mail
 				$sSubject = html_entity_decode($sSubject, null, 'UTF-8');
 				
 				// Load plain text template
-				$sTextPlain = Phpfox::getLib('template')->assign(array(				
+				$sTextPlain = Phpfox_Template::instance()->assign(array(
 						'bHtml' => false,
 						'sMessage' => $this->_aMessagePlain !== null ? $sMessagePlain : $sMessage,
 						'sEmailSig' => $sEmailSig,
@@ -565,7 +565,7 @@ class Phpfox_Mail
 				)->getLayout('email', true);
 						
 				// Load HTML text template
-				$sTextHtml = Phpfox::getLib('template')->assign(array(
+				$sTextHtml = Phpfox_Template::instance()->assign(array(
 						'bHtml' => true,
 						'sMessage' => str_replace("\n", "<br />", $sMessage),
 						'sEmailSig' => str_replace("\n", "<br />", $sEmailSig),
@@ -598,7 +598,7 @@ class Phpfox_Mail
     
     private function _cache($sEmail, $sSubject, $sTexPlain, $sTextHtml, $sFromName, $sFromEmail)
     {    	
-    	Phpfox::getLib('file')->write(PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'email_' . md5(str_replace(' ', '_', $sSubject) . PHPFOX_TIME . uniqid()) . '.html', "<b>Email:</b> {$sEmail}<br />\n<b>Subject:</b> {$sSubject}\n<br /><b>Text Plan:</b>{$sTexPlain}\n<br /><b>Text HTML:</b> {$sTextHtml}\n<br /><b>From Name:</b> {$sFromName}\n<br /><b>From Email:</b> {$sFromEmail}");
+    	Phpfox_File::instance()->write(PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'email_' . md5(str_replace(' ', '_', $sSubject) . PHPFOX_TIME . uniqid()) . '.html', "<b>Email:</b> {$sEmail}<br />\n<b>Subject:</b> {$sSubject}\n<br /><b>Text Plan:</b>{$sTexPlain}\n<br /><b>Text HTML:</b> {$sTextHtml}\n<br /><b>From Name:</b> {$sFromName}\n<br /><b>From Email:</b> {$sFromEmail}");
     	
     	return true;
     }

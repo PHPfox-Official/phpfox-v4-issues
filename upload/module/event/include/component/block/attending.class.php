@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Block_Attending extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -24,13 +24,13 @@ class Event_Component_Block_Attending extends Phpfox_Component
 		
 		$aEvent = $this->getParam('aEvent');
 		
-		list($iCnt, $aInvites) = Phpfox::getService('event')->getInvites($aEvent['event_id'], 1, 1, $iPageSize);
-		list($iAwaitingCnt, $aAwaitingInvites) = Phpfox::getService('event')->getInvites($aEvent['event_id'], 0, 1, $iPageSize);
-		list($iMaybeCnt, $aMaybeInvites) = Phpfox::getService('event')->getInvites($aEvent['event_id'], 2, 1, $iPageSize);
-		list($iNotAttendingCnt, $aNotAttendingInvites) = Phpfox::getService('event')->getInvites($aEvent['event_id'], 3, 1, $iPageSize);
+		list($iCnt, $aInvites) = Event_Service_Event::instance()->getInvites($aEvent['event_id'], 1, 1, $iPageSize);
+		list($iAwaitingCnt, $aAwaitingInvites) = Event_Service_Event::instance()->getInvites($aEvent['event_id'], 0, 1, $iPageSize);
+		list($iMaybeCnt, $aMaybeInvites) = Event_Service_Event::instance()->getInvites($aEvent['event_id'], 2, 1, $iPageSize);
+		list($iNotAttendingCnt, $aNotAttendingInvites) = Event_Service_Event::instance()->getInvites($aEvent['event_id'], 3, 1, $iPageSize);
 				
 		$this->template()->assign(array(
-				'sHeader' => ($iCnt ? $iCnt . ' ' .Phpfox::getPhrase('event.attending') : Phpfox::getPhrase('event.attending')),
+				'iAttendingCnt' => $iCnt,
 				'aInvites' => $aInvites,
 				'aAwaitingInvites' => $aAwaitingInvites,
 				'iAwaitingCnt' => $iAwaitingCnt,
@@ -44,7 +44,7 @@ class Event_Component_Block_Attending extends Phpfox_Component
 			)
 		);		
 		
-		return 'block';
+		// return 'block';
 	}
 	
 	/**

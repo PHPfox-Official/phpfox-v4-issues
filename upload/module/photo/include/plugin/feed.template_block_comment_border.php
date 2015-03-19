@@ -1,6 +1,6 @@
 <?php
 $aCore = Phpfox::getLib('request')->get('core');
-if (((Phpfox::getLib('module')->getFullControllerName() == 'photo.view' && !PHPFOX_IS_AJAX) && Phpfox::isUser() && !Phpfox::isMobile())
+if (((Phpfox_Module::instance()->getFullControllerName() == 'photo.view' && !PHPFOX_IS_AJAX) && Phpfox::isUser() && !Phpfox::isMobile())
 	|| (PHPFOX_IS_AJAX && $aCore['call'] == 'feed.loadDelayedComments')
 	)
 {

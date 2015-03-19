@@ -15,7 +15,7 @@
 	margin:0px;
 	padding:0px;
 	text-indent:0px;
-	border:inherit;
+	border:0px !important;
 	border-color:transparent;
 }
 
@@ -44,13 +44,25 @@
 .global_attachment ul.global_attachment_list li a, .global_attachment ul.global_attachment_list li a:hover {
 	border:0px;
 	line-height:normal;
+	padding:5px;
+	background:transparent;
+
+	i:before {
+		color:darken(@formColor, 4%);
+	}
+}
+
+.global_attachment ul.global_attachment_list li a:hover {
+	i:before {
+		color:@brandPrimary;
+	}
 }
 
 .global_attachment ul.global_attachment_list li.global_attachment_title {
 	display:none;
 }
 
-.global_attachment_manage, .global_attachment_manage a.is_not_active, .global_attachment_manage a.is_not_active:hover {
+.global_attachment_manage a, .global_attachment_manage a:hover, .global_attachment_manage, .global_attachment_manage a.is_not_active, .global_attachment_manage a.is_not_active:hover {
 	.reset();
 	opacity:0.6;
 }

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Core_Component_Block_Dashboard extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -36,7 +36,7 @@ class Core_Component_Block_Dashboard extends Phpfox_Component
 				'aUserGroup' => $aGroup,
 				'sImage' => $sImage,				
 				'aDashboards' => Phpfox::getService('core')->getDashboardLinks(),
-				'sBlockLocation' => Phpfox::getLib('module')->getBlockLocation('core.dashboard'),
+				'sBlockLocation' => Phpfox_Module::instance()->getBlockLocation('core.dashboard'),
 				'sTotalUserViews' => Phpfox::getUserBy('total_view'),
 				'sLastLogin' => Phpfox::getLib('date')->convertTime(Phpfox::getUserBy('last_login'), 'core.profile_time_stamps')
 			)

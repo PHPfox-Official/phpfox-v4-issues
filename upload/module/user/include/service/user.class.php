@@ -248,8 +248,8 @@ class User_Service_User extends Phpfox_Service
 		$aUser[$mName]['is_friend_request'] = false;
 		if (Phpfox::isUser() && Phpfox::isModule('friend') && Phpfox::getUserId() != $aUser[$mName]['user_id'])
 		{
-			$aUser[$mName]['is_friend'] = (Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $aUser[$mName]['user_id']) ? true : false);				
-			$aUser[$mName]['is_friend_of_friend'] = (Phpfox::getService('friend')->isFriendOfFriend($aUser[$mName]['user_id']) ? true : false);
+			$aUser[$mName]['is_friend'] = (Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $aUser[$mName]['user_id']) ? true : false);
+			$aUser[$mName]['is_friend_of_friend'] = (Friend_Service_Friend::instance()->isFriendOfFriend($aUser[$mName]['user_id']) ? true : false);
 			if (!$aUser[$mName]['is_friend'])
 			{
 				$aUser[$mName]['is_friend_request'] = (Phpfox::getService('friend.request')->isRequested(Phpfox::getUserId(), $aUser[$mName]['user_id']) ? 2 : false);

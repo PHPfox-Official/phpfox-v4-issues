@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Forum_Component_Controller_Tag extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -26,13 +26,13 @@ class Forum_Component_Controller_Tag extends Phpfox_Component
 		{
 			if ($this->request()->get('req5'))
 			{			
-				return Phpfox::getLib('module')->setController('forum.forum');
+				return Phpfox_Module::instance()->setController('forum.forum');
 			}
 		}
 		
 		if ($sTag = $this->request()->get('req3'))
 		{			
-			return Phpfox::getLib('module')->setController('forum.forum');
+			return Phpfox_Module::instance()->setController('forum.forum');
 		}
 		
 		$this->template()->setTitle(Phpfox::getPhrase('forum.forum_tags'))

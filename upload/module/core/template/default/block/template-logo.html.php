@@ -11,8 +11,4 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-						{if !empty($sStyleLogo)}
-						<a href="{url link=''}" id="logo"><img src="{$sStyleLogo}" alt="logo" class="v_middle" /></a>
-						{else}
-						<a href="{url link=''}" id="logo">{param var='core.site_title'}</a>
-						{/if}
+<a href="{url link=''}" id="logo"><i style="background-image:url('{$sStyleLogo}');"></i>{param var='core.site_title'}</a>

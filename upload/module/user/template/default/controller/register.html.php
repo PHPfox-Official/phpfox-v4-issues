@@ -34,7 +34,7 @@ $Behavior.termsAndPrivacy = function()
 </script>
 {/literal}
 
-{if Phpfox::getLib('module')->getFullControllerName() == 'user.register' && Phpfox::isModule('invite')}
+{if Phpfox_Module::instance()->getFullControllerName() == 'user.register' && Phpfox::isModule('invite')}
 <div id="main_registration_form">
 
 	<h1>{phrase var='user.sign_up_for_ssitetitle' sSiteTitle=$sSiteTitle}</h1>
@@ -58,7 +58,7 @@ $Behavior.termsAndPrivacy = function()
 		</div>
 		{/if}
 {/if}
-{if Phpfox::getLib('module')->getFullControllerName() != 'user.register'}
+{if Phpfox_Module::instance()->getFullControllerName() != 'user.register'}
 <div class="user_register_holder">
 	<div class="holder">
 		<div class="user_register_intro">		
@@ -149,14 +149,14 @@ $Behavior.termsAndPrivacy = function()
 			</div>
 			{/if}
 		{/if}
-{if Phpfox::getLib('module')->getFullControllerName() != 'user.register'}
+{if Phpfox_Module::instance()->getFullControllerName() != 'user.register'}
 		</div>
 		<div class="clear"></div>
 	</div>
 	{module name='user.images'}
 </div>
 {/if}
-{if Phpfox::getLib('module')->getFullControllerName() == 'user.register'}
+{if Phpfox_Module::instance()->getFullControllerName() == 'user.register'}
 	</div>
 </div>
 {/if}

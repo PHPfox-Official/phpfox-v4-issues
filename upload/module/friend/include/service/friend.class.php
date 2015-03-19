@@ -550,7 +550,7 @@ class Friend_Service_Friend extends Phpfox_Service
 				return $aMutual;
 			}
 		}
-		
+
 		$sExtra1 = '';
 		$sExtra2 = '';
 		
@@ -580,11 +580,11 @@ class Friend_Service_Friend extends Phpfox_Service
 			->order('f.time_stamp DESC')
 			->group('f.friend_user_id')
 			->limit($iLimit)
-			->execute('getSlaveRows');	
+			->execute('getSlaveRows');
 
 		if (!$bNoCount)
 		{
-			//$iCnt = $this->database()->getField('SELECT FOUND_ROWS()');
+			// $iCnt = $this->database()->getField('SELECT FOUND_ROWS()');
 		}
 		
 		if (Phpfox::getParam('friend.cache_mutual_friends') > 0)
@@ -666,7 +666,7 @@ class Friend_Service_Friend extends Phpfox_Service
 			}			
 		}
 		
-		Phpfox::getLib('template')->buildSectionMenu('friend', $aFilterMenu);		
+		Phpfox_Template::instance()->buildSectionMenu('friend', $aFilterMenu);
 	}
 
 	/*

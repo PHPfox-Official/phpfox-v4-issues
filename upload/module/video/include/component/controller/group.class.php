@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Video_Component_Controller_Group extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -60,7 +60,7 @@ class Video_Component_Controller_Group extends Phpfox_Component
 				)	
 			);
 			
-			return Phpfox::getLib('module')->setController('video.view');			
+			return Phpfox_Module::instance()->setController('video.view');
 		}
 		
 		$this->setParam('aCallback', array(
@@ -83,7 +83,7 @@ class Video_Component_Controller_Group extends Phpfox_Component
 			)
 		);
 		
-		return Phpfox::getLib('module')->setController('video.index');
+		return Phpfox_Module::instance()->setController('video.index');
 	}
 	
 	/**

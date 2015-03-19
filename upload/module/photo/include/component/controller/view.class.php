@@ -16,10 +16,10 @@ defined('PHPFOX') or exit('NO DICE!');
 class Photo_Component_Controller_View extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
-	{	
+	{
 		(($sPlugin = Phpfox_Plugin::get('photo.component_controller_view__1')) ? eval($sPlugin) : false);
 		Phpfox::getUserParam('photo.can_view_photos', true);
 		define('PHPFOX_SHOW_TAGS', true); 
@@ -133,10 +133,10 @@ class Photo_Component_Controller_View extends Phpfox_Component
 			switch ($sAction)
 			{
 				case 'all':
-					return Phpfox::getLib('module')->setController('photo.size');
+					return Phpfox_Module::instance()->setController('photo.size');
 					break;
 				case 'download':
-					return Phpfox::getLib('module')->setController('photo.download');
+					return Phpfox_Module::instance()->setController('photo.download');
 					break;
 				default:
 					(($sPlugin = Phpfox_Plugin::get('photo.component_controller_view_process_controller')) ? eval($sPlugin) : false);
@@ -228,7 +228,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 
 		}
 		
-		if (!Phpfox::getParam('photo.pre_load_header_view'))
+		// if (!Phpfox::getParam('photo.pre_load_header_view'))
 		{
 			$this->template()->setHeader('cache', array(
 						'jquery/plugin/jquery.highlightFade.js' => 'static_script',	
@@ -303,7 +303,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 			{
 				if (isset($aCategory['category_id']) && $aCategory['category_id'] == $iCategory)
 				{
-					$this->template()->setBreadcrumb($aCategory[0], $aCategory[1]);
+					// $this->template()->setBreadcrumb($aCategory[0], $aCategory[1]);
 				}
 			}
 		}

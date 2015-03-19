@@ -29,7 +29,7 @@ class Music_Service_Album_Process extends Phpfox_Service
 	{
 		if (!empty($_FILES['image']['name']))
 		{
-			$aImage = Phpfox::getLib('file')->load('image', array(
+			$aImage = Phpfox_File::instance()->load('image', array(
 					'jpg',
 					'gif',
 					'png'
@@ -79,10 +79,10 @@ class Music_Service_Album_Process extends Phpfox_Service
 		
 		if (isset($aImage))
 		{
-			$oImage = Phpfox::getLib('image');
-			$oFile = Phpfox::getLib('file');			
+			$oImage = Phpfox_Image::instance();
+			$oFile = Phpfox_File::instance();
 			
-			$sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('music.dir_image'), $iId);
+			$sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('music.dir_image'), $iId);
 							
 			$iFileSizes = filesize(Phpfox::getParam('music.dir_image') . sprintf($sFileName, ''));						
 		
@@ -203,7 +203,7 @@ class Music_Service_Album_Process extends Phpfox_Service
 	
 			if (!empty($_FILES['image']['name']))
 			{
-				$aImage = Phpfox::getLib('file')->load('image', array(
+				$aImage = Phpfox_File::instance()->load('image', array(
 						'jpg',
 						'gif',
 						'png'
@@ -215,10 +215,10 @@ class Music_Service_Album_Process extends Phpfox_Service
 					return false;
 				}					
 				
-				$oImage = Phpfox::getLib('image');
-				$oFile = Phpfox::getLib('file');			
+				$oImage = Phpfox_Image::instance();
+				$oFile = Phpfox_File::instance();
 			
-				$sFileName = Phpfox::getLib('file')->upload('image', Phpfox::getParam('music.dir_image'), $iId);
+				$sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('music.dir_image'), $iId);
 							
 				$iFileSizes = filesize(Phpfox::getParam('music.dir_image') . sprintf($sFileName, ''));						
 		
@@ -289,7 +289,7 @@ class Music_Service_Album_Process extends Phpfox_Service
 				{
 					$iFileSizes += filesize($sImage);
 					
-					Phpfox::getLib('file')->unlink($sImage);					
+					Phpfox_File::instance()->unlink($sImage);
 				}
 				if(Phpfox::getParam('core.keep_non_square_images'))
 				{
@@ -297,7 +297,7 @@ class Music_Service_Album_Process extends Phpfox_Service
 					{
 						$iFileSizes += filesize($sImage);
 						
-						Phpfox::getLib('file')->unlink($sImage);					
+						Phpfox_File::instance()->unlink($sImage);
 					}
 				}
 				

@@ -17,7 +17,7 @@ class Im_Component_Block_List extends Phpfox_Component
 {
 	public $_aFriends = null;
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 * Lists all the online friends in the IM users list
 	 */
 	public function process()

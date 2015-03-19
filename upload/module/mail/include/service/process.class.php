@@ -187,7 +187,7 @@ class Mail_Service_Process extends Phpfox_Service
 				{
 					return false;
 				}
-				if (!Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $aVals['to']))
+				if (!Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $aVals['to']))
 				return Phpfox_Error::set(Phpfox::getPhrase('mail.you_can_only_message_your_friends'));
 			}		
 			

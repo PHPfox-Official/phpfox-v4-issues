@@ -25,7 +25,7 @@ class Phpfox_Image
 	 *
 	 * @var object
 	 */
-	private $_oObject = null;
+	private static $_oObject = null;
 
 	/**
 	 * Class constructor. We load the image library the admin decided to use on their site.
@@ -33,22 +33,33 @@ class Phpfox_Image
 	 */
 	public function __construct()
 	{
-		if (!$this->_oObject)
+		if (!self::$_oObject)
 		{			
 			$sDriver = 'phpfox.image.library.gd';
 
-			$this->_oObject = Phpfox::getLib($sDriver);
+			self::$_oObject = Phpfox::getLib($sDriver);
 		}
 	}	
 	
 	/**
 	 * Returns the object of the image library we are using
 	 *
-	 * @return unknown
+	 * @return Phpfox_Image_Library_Gd
 	 */
 	public function &getInstance()
 	{
-		return $this->_oObject;
+		return self::$_oObject;
+	}
+
+	/**
+	 * @return Phpfox_Image_Library_Gd
+	 */
+	public static function instance() {
+		if (!self::$_oObject) {
+			new self();
+		}
+
+		return self::$_oObject;
 	}
 }
 

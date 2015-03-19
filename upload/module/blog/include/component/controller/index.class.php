@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Blog_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{	
@@ -31,7 +31,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 			{
 				return Phpfox_Error::display(Phpfox::getPhrase('blog.cannot_display_due_to_privacy'));
 			}
-			return Phpfox::getLib('module')->setController('blog.view');
+			return Phpfox_Module::instance()->setController('blog.view');
 		}
 					
 		if (defined('PHPFOX_IS_USER_PROFILE') && ($sLegacyTitle = $this->request()->get('req3')) && !empty($sLegacyTitle))
@@ -48,7 +48,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 		
 		if ($this->request()->get('req2') == 'main')
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 	
 		(($sPlugin = Phpfox_Plugin::get('blog.component_controller_index_process_start')) ? eval($sPlugin) : false);
@@ -87,7 +87,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 				/**
 				 * Since we are going to be viewing a blog lets reset the controller and get out of this one.
 				 */
-				return Phpfox::getLib('module')->setController('blog.view');			
+				return Phpfox_Module::instance()->setController('blog.view');
 			}		
 		}
 		
@@ -393,7 +393,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 		
 		if (Phpfox::getParam('core.force_404_check') && !Phpfox::getService('core.redirect')->check404($aCheckParams))
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}			
 				
 		(($sPlugin = Phpfox_Plugin::get('blog.component_controller_index_process_end')) ? eval($sPlugin) : false);

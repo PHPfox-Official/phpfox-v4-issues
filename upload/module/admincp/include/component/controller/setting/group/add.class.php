@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Admincp_Component_Controller_Setting_Group_Add extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -49,7 +49,7 @@ class Admincp_Component_Controller_Setting_Group_Add extends Phpfox_Component
 				'aProducts' => Phpfox::getService('admincp.product')->get(),
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),
-				'aModules' => Phpfox::getLib('module')->getModules()
+				'aModules' => Phpfox_Module::instance()->getModules()
 			)
 		);
 			

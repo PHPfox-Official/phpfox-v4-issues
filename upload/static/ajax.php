@@ -44,14 +44,15 @@ if (!Phpfox::getService('ban')->check('ip', Phpfox::getIp()))
 	exit();
 }
 
+/*
 if (isset($_GET['ajax_page_display']))
 {	
 	$oCache = Phpfox::getLib('cache');
 	$oAjax = Phpfox::getLib('ajax');
 	
-	if (Phpfox::getLib('template')->getThemeFolder() == 'nebula')
+	if (Phpfox_Template::instance()->getThemeFolder() == 'nebula')
 	{
-		$oTpl = Phpfox::getLib('template');
+		$oTpl = Phpfox_Template::instance();
 		$sUserProfileImage = Phpfox::getLib('image.helper')->display(array_merge(array('user' => Phpfox::getService('user')->getUserFields(true)), array(
 				'path' => 'core.url_user',
 				'file' => Phpfox::getUserBy('user_image'),
@@ -72,11 +73,11 @@ if (isset($_GET['ajax_page_display']))
 
 	Phpfox::run();
 
-	$aHeaderFiles = Phpfox::getLib('template')->getHeader(true);	
+	$aHeaderFiles = Phpfox_Template::instance()->getHeader(true);
 	
-	if (Phpfox::getLib('template')->sDisplayLayout)
+	if (Phpfox_Template::instance()->sDisplayLayout)
 	{			
-		Phpfox::getLib('template')->getLayout(Phpfox::getLib('template')->sDisplayLayout);
+		Phpfox_Template::instance()->getLayout(Phpfox_Template::instance()->sDisplayLayout);
 	}	
 	
 	$sJs = '';
@@ -127,7 +128,7 @@ if (isset($_GET['ajax_page_display']))
 
 	$sContent = Phpfox::getLib('ajax')->getContent();
 	
-	$aPhrases = Phpfox::getLib('template')->getPhrases();	
+	$aPhrases = Phpfox_Template::instance()->getPhrases();
 	
 	
 	$sJs .= 'content: \'' . $sContent . '\', ';
@@ -142,41 +143,17 @@ if (isset($_GET['ajax_page_display']))
 		$sJs = rtrim($sJs, ',');
 		$sJs .= '}, ';
 	}
-	$sJs .= 'title: \'' . str_replace("'", "\'", html_entity_decode(Phpfox::getLib('template')->getTitle(), null, 'UTF-8')) . '\'';
+	$sJs .= 'title: \'' . str_replace("'", "\'", html_entity_decode(Phpfox_Template::instance()->getTitle(), null, 'UTF-8')) . '\'';
 	
 	if (!empty($sCustomCss))
 	{
 		$sJs .= ', customcss: [' . $sCustomCss . ']';
 	}
 
-	if (Phpfox::getLib('template')->getThemeFolder() == 'nebula' && isset($_GET['req1']))
+	if (Phpfox_Template::instance()->getThemeFolder() == 'nebula' && isset($_GET['req1']))
 	{
 		$sJs .= ", nebula_current_menu: '" . phpFox::getLib('url')->makeUrl($_GET['req1']) . "'";
 	}
-
-	/*
-	$aAds = array();
-	for ($i = 1; $i <= 11; $i++)
-	{
-		$aAds[] = Phpfox::getService('ad')->getForBlock($i);
-	}
-	
-	if (count($aAds))
-	{
-		$sJs .= ', ads: {';
-		foreach ($aAds as $aAd)
-		{
-			if (!isset($aAd['ad_id']))
-			{
-				continue;
-			}
-			$sJs .= '\'' . $aAd['location'] . '\': \'' . str_replace("'", "\'", $aAd['html_code']) . '\',';
-		}
-		$sJs = rtrim($sJs, ',');
-		$sJs .= '}';
-	}
-	 * 
-	 */
 	
 	if (isset($_GET['js_mobile_version']) && $_GET['js_mobile_version'])
 	{
@@ -197,10 +174,10 @@ if (isset($_GET['ajax_page_display']))
 		Phpfox::getLib('ajax')->call('$(\'#js_main_debug_holder\').html(\'' . Phpfox_Debug::getDetails() . '\');');
 	}
 	
-	if(Phpfox::getLib('module')->getFullControllerName() != 'profile.index')
+	if(Phpfox_Module::instance()->getFullControllerName() != 'profile.index')
 	{
 		$sJs = 'var oURL = $("link[href*=\'custom.css\']");';
-		$sJs .= 'var sPattern = new RegExp(\'(style\/default)|(style\/' . Phpfox::getLib('template')->getStyleFolder() . ')\', \'i\');';
+		$sJs .= 'var sPattern = new RegExp(\'(style\/default)|(style\/' . Phpfox_Template::instance()->getStyleFolder() . ')\', \'i\');';
 		$sJs .= 'var res = null;';
 		$sJs .= 'oURL.each(function( index, item )';
 		$sJs .= '{';
@@ -217,6 +194,7 @@ if (isset($_GET['ajax_page_display']))
 }
 else 
 {
+*/
 	$oAjax = Phpfox::getLib('ajax');
 	$oAjax->process();
 	echo $oAjax->getData();
@@ -229,7 +207,4 @@ else
 	{
 		// echo '$Core.updatePageHistory();';	
 	}
-}
-
-ob_end_flush();
-?>
+// }

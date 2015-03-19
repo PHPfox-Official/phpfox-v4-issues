@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Controller_Admincp_Style_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -33,7 +33,7 @@ class Theme_Component_Controller_Admincp_Style_Index extends Phpfox_Component
 		
 		if (($iDeleteId = $this->request()->getInt('delete')))
 		{
-			if (Phpfox::getService('theme.style.process')->delete($iDeleteId))
+			if (Theme_Service_Style_Process::instance()->delete($iDeleteId))
 			{
 				$this->url()->send('admincp.theme.style', array('id' => $aTheme['theme_id']), Phpfox::getPhrase('theme.style_successfully_deleted'));
 			}
@@ -44,7 +44,7 @@ class Theme_Component_Controller_Admincp_Style_Index extends Phpfox_Component
 			->setBreadcrumb($aTheme['name'], $this->url()->makeUrl('admincp.theme'))
 			->setBreadcrumb(Phpfox::getPhrase('theme.styles'), null, true)			
 			->assign(array(
-					'aStyles' => Phpfox::getService('theme.style')->get('theme_id = ' . $this->request()->getInt('id')),
+					'aStyles' => Theme_Service_Style_Style::instance()->get('theme_id = ' . $this->request()->getInt('id')),
 					'aTheme' => $aTheme					
 				)
 			);

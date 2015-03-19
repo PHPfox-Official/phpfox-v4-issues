@@ -73,7 +73,7 @@ class Phpfox_Cache_Storage_File extends Phpfox_Cache_Abstract
 				$sNewDirectory = PHPFOX_DIR_CACHE . $sName[0];
 				if (!is_dir($sNewDirectory))
 				{
-					Phpfox::getLib('file')->mkdir($sNewDirectory, true, 0777);				
+					Phpfox_File::instance()->mkdir($sNewDirectory, true, 0777);
 				}
 				$sName = rtrim($sName[0], '/') . PHPFOX_DS . $sName[1];
 			}
@@ -254,7 +254,7 @@ class Phpfox_Cache_Storage_File extends Phpfox_Cache_Abstract
 				{
 					if (is_dir(PHPFOX_DIR_CACHE . $aFile['name']))
 					{
-						Phpfox::getLib('file')->delete_directory(PHPFOX_DIR_CACHE . $aFile['name']);
+						Phpfox_File::instance()->delete_directory(PHPFOX_DIR_CACHE . $aFile['name']);
 					}
 					else 
 					{
@@ -274,9 +274,9 @@ class Phpfox_Cache_Storage_File extends Phpfox_Cache_Abstract
 				$sDir = PHPFOX_DIR_CACHE . (is_array($sName) ? rtrim($sName[0], '/') . PHPFOX_DS : '');
 				if (!PHPFOX_SAFE_MODE && !PHPFOX_OPEN_BASE_DIR && !is_dir($sDir))
 				{
-					Phpfox::getLib('file')->mkdir($sDir, true, 0777);
+					Phpfox_File::instance()->mkdir($sDir, true, 0777);
 				}
-				$aFiles = Phpfox::getLib('file')->getFiles($sDir);
+				$aFiles = Phpfox_File::instance()->getFiles($sDir);
 				$iCount = strlen((is_array($sName) ? $sName[1]: $sName));				
 				foreach ($aFiles as $sFile)
 				{
@@ -287,7 +287,7 @@ class Phpfox_Cache_Storage_File extends Phpfox_Cache_Abstract
 					
 					if (is_dir($sDir . $sFile))
 					{
-						Phpfox::getLib('file')->delete_directory($sDir . $sFile);
+						Phpfox_File::instance()->delete_directory($sDir . $sFile);
 					}
 					else 
 					{
@@ -369,7 +369,7 @@ class Phpfox_Cache_Storage_File extends Phpfox_Cache_Abstract
 		$iCnt = 0;
 		$aRows = array();
 		$iSize = 0;
-		$aFiles = Phpfox::getLib('file')->getAllFiles(PHPFOX_DIR_CACHE);
+		$aFiles = Phpfox_File::instance()->getAllFiles(PHPFOX_DIR_CACHE);
 		$iLastFile = 0;
 		foreach ($aFiles as $sFile)
 		{

@@ -12,17 +12,6 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 <ul>
-	<li>
-		<a rel="_show" class="user_notify_info notify_drop_link" href="#">{$aGlobalUser.full_name|clean}</a>
-		<div class="holder_notify_drop">
-			<div class="holder_notify_drop_content">
-				{* <div class="holder_notify_drop_title">Friend Requests</div> *}
-				<div class="holder_notify_drop_data feed_form_drop">
-					{module name='feed.form2' menu=true}
-				</div>
-			</div>
-		</div>
-	</li>
 	{if Phpfox::getUserBy('profile_page_id') <= 0}
 	{if Phpfox::isModule('friend')}
 	{module name='friend.notify'}

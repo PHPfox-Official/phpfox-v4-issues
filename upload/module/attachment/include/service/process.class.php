@@ -161,19 +161,19 @@ class Attachment_Service_Process extends Phpfox_Service
 				if (file_exists($sThumbnail))
 				{
 					$aFileSizes[$aRow['user_id']] += filesize($sThumbnail);
-					Phpfox::getLib('file')->unlink($sThumbnail);
+					Phpfox_File::instance()->unlink($sThumbnail);
 				}
 				
 				if (file_exists($sViewImage))
 				{
 					$aFileSizes[$aRow['user_id']] += filesize($sViewImage);
-					Phpfox::getLib('file')->unlink($sViewImage);
+					Phpfox_File::instance()->unlink($sViewImage);
 				}
 
 				if (file_exists($sActualImage))
 				{
 					$aFileSizes[$aRow['user_id']] += filesize($sActualImage);
-					Phpfox::getLib('file')->unlink($sActualImage);
+					Phpfox_File::instance()->unlink($sActualImage);
 				}
 			}
 			
@@ -228,19 +228,19 @@ class Attachment_Service_Process extends Phpfox_Service
 				if (file_exists($sThumbnail))
 				{
 					$iFileSizes += filesize($sThumbnail);
-					Phpfox::getLib('file')->unlink($sThumbnail);
+					Phpfox_File::instance()->unlink($sThumbnail);
 				}
 				
 				if (file_exists($sViewImage))
 				{
 					$iFileSizes += filesize($sViewImage);
-					Phpfox::getLib('file')->unlink($sViewImage);
+					Phpfox_File::instance()->unlink($sViewImage);
 				}
 
 				if (file_exists($sActualImage))
 				{
 					$iFileSizes += filesize($sActualImage);
-					Phpfox::getLib('file')->unlink($sActualImage);
+					Phpfox_File::instance()->unlink($sActualImage);
 				}
 			}
 			

@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class User_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{	
 		if (Phpfox::getParam('core.force_404_check'))
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 		
 		$this->url()->send('user.browse');

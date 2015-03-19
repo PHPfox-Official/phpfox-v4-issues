@@ -30,7 +30,7 @@ class Music_Service_Process extends Phpfox_Service
 			return Phpfox_Error::set(Phpfox::getPhrase('music.select_an_mp3'));
 		}
 		
-		$aSong = Phpfox::getLib('file')->load('mp3', 'mp3', Phpfox::getUserParam('music.music_max_file_size'));
+		$aSong = Phpfox_File::instance()->load('mp3', 'mp3', Phpfox::getUserParam('music.music_max_file_size'));
 
 		if (function_exists('finfo_open'))
 		{
@@ -141,7 +141,7 @@ class Music_Service_Process extends Phpfox_Service
 			return false;
 		}
 		
-		$sFileName = Phpfox::getLib('file')->upload('mp3', Phpfox::getParam('music.dir'), $iId);		
+		$sFileName = Phpfox_File::instance()->upload('mp3', Phpfox::getParam('music.dir'), $iId);
 		
 		$sDuration = null;
 		if (file_exists(PHPFOX_DIR_LIB . 'getid3' . PHPFOX_DS . 'getid3' . PHPFOX_DS . 'getid3.php'))
@@ -262,7 +262,7 @@ class Music_Service_Process extends Phpfox_Service
 			
 			(($sPlugin = Phpfox_Plugin::get('music.service_process_delete__1')) ? eval($sPlugin) : false);
 			
-			Phpfox::getLib('file')->unlink(Phpfox::getParam('music.dir') . sprintf($aSong['song_path'], ''));
+			Phpfox_File::instance()->unlink(Phpfox::getParam('music.dir') . sprintf($aSong['song_path'], ''));
 			
 			$this->database()->delete($this->_sTable, 'song_id = ' . $aSong['song_id']);
 			$this->database()->delete(Phpfox::getT('music_song_rating'), 'item_id = ' . $aSong['song_id']);

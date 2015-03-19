@@ -53,11 +53,31 @@
 
 	padding:0px;
 	outline:none;
-	text-indent:10px;
+	text-indent:28px;
 
 	width:20%;
 	background:lighten(@headerBg, 25%);
 	color:@headerColor;
+}
+
+#header_search_form:before {
+	.fa('\f002');
+	position:absolute;
+	left:29px;
+	top:13px;
+	z-index:100;
+	font-size:@headerFontSize;
+	color:darken(@headerColor, 10%);
+}
+
+#header_search_form {
+	.js_temp_friend_search_form {
+		top:@headerHeight;
+	}
+}
+
+#header_search_form.active:before {
+	display:none;
 }
 
 #header_search_button, #header_search_button:hover {
@@ -89,15 +109,18 @@
 	left:0px;
 	bottom:0px;
 	z-index:300;
+	overflow:auto;
 
 	> nav {
 		> ul {
+			/*
 			position:absolute;
 			top:0px;
 			left:0px;
 			right:0px;
 			bottom:0px;
 			overflow:auto;
+			*/
 			padding:0px;
 
 			> li {
@@ -121,17 +144,25 @@
 						left:10px;
 						top:9px;
 						font-size:15px;
-						color:lighten(@navColor, 12%);
+						color:lighten(@navColor, 28%);
 					}
 				}
 
 				> a:hover, > a.menu_is_selected {
 					color:darken(@navColor, 30%);
-					background:darken(@navBg, 6%);
+					/*background:darken(@navBg, 6%);*/
 					transition:@transition;
 
 					i {
 						color:darken(@navColor, 5%);
+					}
+				}
+
+				> a.menu_is_selected {
+					color:darken(@navColor, 60%);
+
+					i {
+						color:@brandPrimary;
 					}
 				}
 			}
@@ -208,7 +239,7 @@
 }
 
 #left {
-	> .sub_section_menu {
+	div > .sub_section_menu {
 		margin:0px;
 		padding:0px;
 		margin-bottom:@blockMarginBottom;
@@ -237,5 +268,39 @@
 
 	#section_menu ul li a:hover {
 		.button_hover();
+	}
+}
+
+div#content div.menu, div#left div.menu, div#right div.menu {
+	margin:0px;
+	display:table;
+	table-layout:fixed;
+	width:100%;
+	background:@blockBg;
+
+	ul {
+		display:table-row;
+
+		li, li.active {
+			.reset();
+			display:table-cell;
+			border-bottom:3px darken(@blockBg, 4%) solid;
+
+			a, a:hover {
+				.reset();
+				display:block;
+				height:40px;
+				line-height:40px;
+			}
+		}
+
+		li:hover {
+			border-color:darken(@blockBg, 18%);
+			transition:@transition;
+		}
+
+		li.active {
+			border-color:@brandPrimary;
+		}
 	}
 }

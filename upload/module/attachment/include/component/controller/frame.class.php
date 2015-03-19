@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Attachment_Component_Controller_Frame extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -34,8 +34,8 @@ class Attachment_Component_Controller_Frame extends Phpfox_Component
 			exit;
 		}
 
-		$oFile = Phpfox::getLib('file');
-		$oImage = Phpfox::getLib('image');
+		$oFile = Phpfox_File::instance();
+		$oImage = Phpfox_Image::instance();
 		
 		$oAttachment = Phpfox::getService('attachment.process');		
 		

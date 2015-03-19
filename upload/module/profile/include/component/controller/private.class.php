@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Profile_Component_Controller_Private extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -33,7 +33,7 @@ class Profile_Component_Controller_Private extends Phpfox_Component
 		$this->template()->setTitle($aUser['full_name'])
 			->assign(array(
 				'aUser' => $aUser,
-				'bIsFriend' => (Phpfox::getUserId() && Phpfox::isModule('friend') ? Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $aUser['user_id']) : false),
+				'bIsFriend' => (Phpfox::getUserId() && Phpfox::isModule('friend') ? Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $aUser['user_id']) : false),
 				'bIsBlocked' => (Phpfox::isUser() ? Phpfox::getService('user.block')->isBlocked(Phpfox::getUserId(), $aUser['user_id']) : false),
 				'bCanFrRequest' => $bCanFrRequest
 			)

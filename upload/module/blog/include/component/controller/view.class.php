@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class Blog_Component_Controller_View extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
 		if ($this->request()->getInt('id'))
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 
 		if (Phpfox::isUser() && Phpfox::isModule('notification'))

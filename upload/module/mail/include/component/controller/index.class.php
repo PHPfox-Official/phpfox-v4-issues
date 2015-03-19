@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Mail_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -35,7 +35,7 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 		{
 			$sFile = Phpfox::getService('mail')->getThreadsForExport($aItemModerate);
 			
-			Phpfox::getLib('file')->forceDownload($sFile, 'mail.xml');
+			Phpfox_File::instance()->forceDownload($sFile, 'mail.xml');
 		}
 		
 		$iPage = $this->request()->getInt('page');

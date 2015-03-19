@@ -74,14 +74,15 @@ class Phpfox_File
 	private $_aFileCheck = array(
 		// 'mp3' => 
 	);
-	
+
 	/**
-	 * Class constructor
-	 *
+	 * @return $this
 	 */
-	public function __construct()
-	{		
+	public static function instance()
+	{
+		return Phpfox::getLib('file');
 	}
+
 	
 	/**
 	 * Get meta information about a file using the getID3 library.
@@ -89,7 +90,7 @@ class Phpfox_File
 	 *
 	 * Example:
 	 * <code>
-	 * $aMeta = Phpfox::getLib('file')->getMeta('/var/www/sample.jpg');	 
+	 * $aMeta = Phpfox_File::instance()->getMeta('/var/www/sample.jpg');
 	 * </code>
 	 * @param string $sFileName Full path to the file we need to check
 	 * @return array Returns an ARRAY of meta information about the file
@@ -168,7 +169,7 @@ class Phpfox_File
 			return $bReturn;
 		}
 		
-		if (Phpfox::getLib('image')->isImageExtension($this->_aFile['ext']) && !Phpfox::getLib('image')->isImage($this->_aFile['tmp_name']))
+		if (Phpfox_Image::instance()->isImageExtension($this->_aFile['ext']) && !Phpfox_Image::instance()->isImage($this->_aFile['tmp_name']))
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('core.not_a_valid_image_we_only_accept_the_following_file_extensions_support', array('support' => implode(', ', $aSupported))));
 		}	
@@ -221,7 +222,7 @@ class Phpfox_File
         
         if (Phpfox::getParam(array('balancer', 'enabled')))
         {
-	        if (Phpfox::getLib('image')->isImageExtension($this->_aFile['ext']))
+	        if (Phpfox_Image::instance()->isImageExtension($this->_aFile['ext']))
 	        {
 				list($iWidth, $iHeight) = getimagesize($this->_aFile['tmp_name']);
 				$sFileName = $iWidth . '-' . $iHeight . '-' . Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID') . '_' . $sFileName;

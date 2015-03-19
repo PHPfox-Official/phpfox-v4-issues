@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Admincp_Component_Controller_Product_File extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -39,7 +39,7 @@ class Admincp_Component_Controller_Product_File extends Phpfox_Component
 				}
 				else 
 				{
-					Phpfox::getLib('module')->_cacheModules();
+					Phpfox_Module::instance()->_cacheModules();
 					Phpfox_Plugin::set();
 					if ($sPlugin = Phpfox_Plugin::get('admincp.component_controller_product_file_1')){eval($sPlugin);if (isset($mReturnFromPlugin)){return $mReturnFromPlugin;}}
 					if ($this->request()->get('overwrite'))

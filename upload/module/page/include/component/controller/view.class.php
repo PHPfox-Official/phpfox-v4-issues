@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Page_Component_Controller_View extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -33,12 +33,12 @@ class Page_Component_Controller_View extends Phpfox_Component
 		
 		if (!isset($aPage['page_id']))
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 
 		if (!Phpfox::isModule($aPage['module_id']) || $aPage['is_active'] == 0)
 		{			
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}
 	
 		if ($bIsCached && !$aPage['add_view'])
@@ -64,7 +64,7 @@ class Page_Component_Controller_View extends Phpfox_Component
 		
 		if (!$aPage['is_active'] && Phpfox::getUserParam('page.can_manage_custom_pages') && Phpfox::getUserParam('admincp.has_admin_access'))
 		{
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}		
 		
 		if ($aPage['add_view'] && Phpfox::getUserId() && !$aPage['has_viewed'])

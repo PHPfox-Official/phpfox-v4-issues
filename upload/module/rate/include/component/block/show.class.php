@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Rate_Component_Block_Show extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		

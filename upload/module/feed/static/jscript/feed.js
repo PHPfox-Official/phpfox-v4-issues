@@ -224,6 +224,11 @@ $Core.resetFeedForm = function(f) {
 
 $Behavior.activityFeedProcess = function(){
 
+	$('.feed_form_toggle').click(function() {
+		$(this).toggleClass('is_toggle_mode');
+		$('.feed_form_menu').toggle();
+	});
+
 	$('.feed_form_share:not(.active)').click(function() {
 		var t = $(this),
 			f = t.parents('form:first');
@@ -240,6 +245,10 @@ $Behavior.activityFeedProcess = function(){
 		});
 
 		return false;
+	});
+
+	$('.feed_form_textarea textarea').keydown(function() {
+		$Core.resizeTextarea($(this));
 	});
 
 	$('.feed_form_textarea textarea:not(.dont-unbind)').click(function() {

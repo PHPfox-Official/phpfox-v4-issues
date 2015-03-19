@@ -16,13 +16,13 @@ defined('PHPFOX') or exit('NO DICE!');
 class User_Component_Controller_Admincp_Browse extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
 		define('PHPFOX_IS_ADMIN_SEARCH', true);
 		
-		return Phpfox::getLib('module')->setController('user.browse');
+		return Phpfox_Module::instance()->setController('user.browse');
 	}
 	
 	/**

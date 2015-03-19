@@ -11,8 +11,13 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+<div class="item_info">
+	{$aEvent|user}
+</div>
+{if $aEvent.image_path}
+<div class="item_banner image_load" data-src="{img server_id=$aEvent.server_id title=$aEvent.title path='event.url_image' file=$aEvent.image_path suffix='' itemprop='image' return_url=true}"></div>
+{/if}
 <div class="info_holder">
-
 	<div class="info">
 		<div class="info_left">
 			<span itemprop="startDate" style="display:none;">{$aEvent.start_time_micro}</span>
@@ -42,18 +47,18 @@ defined('PHPFOX') or exit('NO DICE!');
 			<span itemprop="name">{$aEvent.location|clean|split:60}</span>
 			<div itemscope itemtype="http://schema.org/PostalAddress">
 				{if !empty($aEvent.address)}
-				<div class="p_2" itemprop="streetAddress">{$aEvent.address|clean}</div>
+				<div class="p_top_2" itemprop="streetAddress">{$aEvent.address|clean}</div>
 				{/if}			
 				{if !empty($aEvent.city)}
-				<div class="p_2" itemprop="addressLocality">{$aEvent.city|clean}</div>
+				<div class="p_top_2" itemprop="addressLocality">{$aEvent.city|clean}</div>
 				{/if}					
 				{if !empty($aEvent.postal_code)}
-				<div class="p_2" itemprop="postalCode">{$aEvent.postal_code|clean}</div>
+				<div class="p_top_2" itemprop="postalCode">{$aEvent.postal_code|clean}</div>
 				{/if}								
 				{if !empty($aEvent.country_child_id)}
-				<div class="p_2" itemprop="addressRegion">{$aEvent.country_child_id|location_child}</div>
+				<div class="p_top_2" itemprop="addressRegion">{$aEvent.country_child_id|location_child}</div>
 				{/if}			
-				<div class="p_2" itemprop="addressCountry">{$aEvent.country_iso|location}</div>
+				<div class="p_top_2" itemprop="addressCountry">{$aEvent.country_iso|location}</div>
 			</div>
 			{if isset($aEvent.map_location)}						
 			<div style="width:390px; height:170px; position:relative;">
@@ -66,16 +71,9 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}
 		</div>
 	</div>
-	
-	<div class="info">
-		<div class="info_left">
-			{phrase var='event.created_by'}
-		</div>
-		<div class="info_right">
-			{$aEvent|user}	
-		</div>
-	</div>
 
-	{$aEvent.description|parse|split:70}
+	<div class="item_content">
+		{$aEvent.description|parse|split:70}
+	</div>
 
 </div>

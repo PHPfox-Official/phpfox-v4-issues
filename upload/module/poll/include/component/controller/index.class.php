@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Poll_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -70,7 +70,7 @@ class Poll_Component_Controller_Index extends Phpfox_Component
 		
 		if ($this->request()->getInt('req2') > 0)
 		{
-			return Phpfox::getLib('module')->setController('poll.view');
+			return Phpfox_Module::instance()->setController('poll.view');
 		}			
 		
 		$this->search()->set(array(

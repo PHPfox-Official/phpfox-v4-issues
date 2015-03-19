@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Profile_Component_Controller_Index extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{	
@@ -128,10 +128,10 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 			
 			if (Phpfox::isModule('pages') && Phpfox::getService('pages')->isPage($this->request()->get('req1')))
 			{
-				return Phpfox::getLib('module')->setController('pages.view');
+				return Phpfox_Module::instance()->setController('pages.view');
 			}
 			
-			return Phpfox::getLib('module')->setController('error.404');
+			return Phpfox_Module::instance()->setController('error.404');
 		}	
 		if ( ( ($sSection == 'info' && $this->request()->get('req3') == 'design') || $sSection == 'designer') && $aRow['user_id'] == Phpfox::getUserId() && Phpfox::getUserParam('profile.can_custom_design_own_profile'))
 		{
@@ -186,7 +186,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 
 		if (Phpfox::getService('user.block')->isBlocked($aRow['user_id'], Phpfox::getUserId()) && !Phpfox::getUserParam('user.can_override_user_privacy'))
 		{
-			return Phpfox::getLib('module')->setController('profile.private');			
+			return Phpfox_Module::instance()->setController('profile.private');
 		}
 
 		Phpfox::getUserParam('profile.can_view_users_profile', true);
@@ -234,19 +234,19 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 			&& $aRow['user_id'] != Phpfox::getUserId()
 		)
 		{
-			return Phpfox::getLib('module')->setController('profile.private');
+			return Phpfox_Module::instance()->setController('profile.private');
 		}		
 		
 		if ($bIsSubSection === true)
 		{
 			$this->template()->setUrl(Phpfox::callback($sSection . '.getProfileLink'));
 
-			return Phpfox::getLib('module')->setController($sSection . '.profile');			
+			return Phpfox_Module::instance()->setController($sSection . '.profile');
 		}
 		
 		if (!Phpfox::getService('user.privacy')->hasAccess($aRow['user_id'], 'profile.view_profile'))
 		{
-			return Phpfox::getLib('module')->setController('profile.private');
+			return Phpfox_Module::instance()->setController('profile.private');
 		}				
 		
 		Phpfox::getService('profile')->setUserId($aRow['user_id']);
@@ -287,7 +287,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 			)
 		);		
 		
-		Phpfox::getLib('module')->setCacheBlockData(array(
+		Phpfox_Module::instance()->setCacheBlockData(array(
 				'table' => 'user_design_order',
 				'field' => 'user_id',
 				'item_id' => $aRow['user_id'],
@@ -330,7 +330,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 				&& !$this->request()->get('feed')
 				)
 			{
-				return Phpfox::getLib('module')->setController('profile.info');
+				return Phpfox_Module::instance()->setController('profile.info');
 			}
 		}		
 		
@@ -395,7 +395,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 			{				
 				if (($iTestStyle = $this->request()->get('test_style_id')))
 				{
-					if (Phpfox::getLib('template')->testStyle($iTestStyle))
+					if (Phpfox_Template::instance()->testStyle($iTestStyle))
 					{
 						
 					}
@@ -419,7 +419,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 				
 				$this->setParam('aDesigner', $aDesigner);
 				
-				(($sCmd = Phpfox::getLib('template')->getXml('design_css')) ? eval($sCmd) : null);
+				(($sCmd = Phpfox_Template::instance()->getXml('design_css')) ? eval($sCmd) : null);
 				
 				if (isset($aAdvanced))
 				{

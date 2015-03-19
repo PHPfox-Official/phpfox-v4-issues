@@ -120,7 +120,7 @@ class Privacy_Service_Privacy extends Phpfox_Service
 					}
 					else 
 					{
-						if (!Phpfox::getService('friend')->isFriendOfFriend($iUserId))
+						if (!Friend_Service_Friend::instance()->isFriendOfFriend($iUserId))
 						{
 							$bCanViewItem = false;	
 						}

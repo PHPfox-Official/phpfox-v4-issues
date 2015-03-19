@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class User_Component_Controller_Photo extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -40,7 +40,7 @@ class User_Component_Controller_Photo extends Phpfox_Component
 		(($sPlugin = Phpfox_Plugin::get('user.component_controller_photo_2')) ? eval($sPlugin) : false);
 		if ($aVals = $this->request()->getArray('val'))
 		{
-			$aImage = Phpfox::getLib('file')->load('image', array('jpg', 'gif', 'png'), (Phpfox::getUserParam('user.max_upload_size_profile_photo') === 0 ? null : (Phpfox::getUserParam('user.max_upload_size_profile_photo') / 1024)));
+			$aImage = Phpfox_File::instance()->load('image', array('jpg', 'gif', 'png'), (Phpfox::getUserParam('user.max_upload_size_profile_photo') === 0 ? null : (Phpfox::getUserParam('user.max_upload_size_profile_photo') / 1024)));
 			
 			if (!empty($aImage['name']))
 			{

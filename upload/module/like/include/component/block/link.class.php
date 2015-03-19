@@ -16,11 +16,11 @@ defined('PHPFOX') or exit('NO DICE!');
 class Like_Component_Block_Link extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
-		$sModule = $sItemTypeId = Phpfox::getLib('module')->getModuleName();
+		$sModule = $sItemTypeId = Phpfox_Module::instance()->getModuleName();
 		
 		if ($sModule == 'apps' && Phpfox::isModule('pages'))
 		{

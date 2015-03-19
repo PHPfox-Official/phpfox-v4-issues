@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Poll_Component_Block_Vote extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 * Lods the results of a single poll
 	 */
 	public function process()

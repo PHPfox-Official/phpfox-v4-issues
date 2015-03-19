@@ -132,10 +132,10 @@ class Language_Service_Language extends Phpfox_Service
 
 		if (is_dir($sFolder))
 		{
-		//	Phpfox::getLib('file')->delete_directory($sFullPath);	
+		//	Phpfox_File::instance()->delete_directory($sFullPath);
 		}
 			
-		Phpfox::getLib('file')->mkdir($sFullPath, true);		
+		Phpfox_File::instance()->mkdir($sFullPath, true);
 		
 		$oXmlBuilder->addGroup('language');				
 		$oXmlBuilder->addGroup('settings');
@@ -154,15 +154,15 @@ class Language_Service_Language extends Phpfox_Service
 		$oXmlBuilder->closeGroup();
 		$oXmlBuilder->closeGroup();
 			
-		Phpfox::getLib('file')->write($sFullPath . 'phpfox-language-import.xml', $oXmlBuilder->output());
+		Phpfox_File::instance()->write($sFullPath . 'phpfox-language-import.xml', $oXmlBuilder->output());
 		
-		$aModules = Phpfox::getLib('module')->getModules();
+		$aModules = Phpfox_Module::instance()->getModules();
 		
 		foreach($aModules as $sModule)
 		{
 			$this->export($aLanguage['language_id'], ($bDoCustom ? null : 'phpfox'), $sModule, true, false);
 			
-			Phpfox::getLib('file')->write($sFullPath . 'module-' . $sModule . '.xml', $oXmlBuilder->output());
+			Phpfox_File::instance()->write($sFullPath . 'module-' . $sModule . '.xml', $oXmlBuilder->output());
 		}
 			
 		/*return array(
@@ -303,7 +303,7 @@ class Language_Service_Language extends Phpfox_Service
 		$aPhrases = array();
 		if ($bForce || !($aPhrases = $this->cache()->get($sCacheId)))
 		{
-			$aAllFiles = Phpfox::getLib('file')->getAllFiles(PHPFOX_DIR_MODULE, true);
+			$aAllFiles = Phpfox_File::instance()->getAllFiles(PHPFOX_DIR_MODULE, true);
 			foreach ($aAllFiles as $sFileName)
 			{
 				$aSubjects = $aMessages = array();

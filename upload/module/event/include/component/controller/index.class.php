@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Event_Component_Controller_Index extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{		
@@ -26,7 +26,7 @@ class Event_Component_Controller_Index extends Phpfox_Component
 			
 		if ($aParentModule === null && $this->request()->getInt('req2') > 0)
 		{
-			return Phpfox::getLib('module')->setController('event.view');
+			return Phpfox_Module::instance()->setController('event.view');
 		}		
 		
 		if (($sLegacyTitle = $this->request()->get('req2')) && !empty($sLegacyTitle))
@@ -47,7 +47,7 @@ class Event_Component_Controller_Index extends Phpfox_Component
 		}		
 		
 		if (($iRedirectId = $this->request()->getInt('redirect')) 
-			&& ($aEvent = Phpfox::getService('event')->getEvent($iRedirectId, true)) 
+			&& ($aEvent = Event_Service_Event::instance()->getEvent($iRedirectId, true))
 			&& $aEvent['module_id'] != 'event'
 			&& Phpfox::hasCallback($aEvent['module_id'], 'getEventRedirect')
 		)
@@ -62,7 +62,7 @@ class Event_Component_Controller_Index extends Phpfox_Component
 		
 		if (($iDeleteId = $this->request()->getInt('delete')))
 		{
-			if (($mDeleteReturn = Phpfox::getService('event.process')->delete($iDeleteId)))
+			if (($mDeleteReturn = Event_Service_Process::instance()->delete($iDeleteId)))
 			{
 				if (is_bool($mDeleteReturn))
 				{
@@ -75,7 +75,7 @@ class Event_Component_Controller_Index extends Phpfox_Component
 			}
 		}
 		
-		if (($iRedirectId = $this->request()->getInt('redirect')) && ($aEvent = Phpfox::getService('event')->getEvent($iRedirectId, true)))
+		if (($iRedirectId = $this->request()->getInt('redirect')) && ($aEvent = Event_Service_Event::instance()->getEvent($iRedirectId, true)))
 		{
 			Phpfox::getService('notification.process')->delete('event_invite', $aEvent['event_id'], Phpfox::getUserId());
 			
@@ -237,7 +237,7 @@ class Event_Component_Controller_Index extends Phpfox_Component
 				$aFilterMenu[Phpfox::getPhrase('event.friends_events')] = 'friend';	
 			}			
 			
-			list($iTotalFeatured, $aFeatured) = Phpfox::getService('event')->getFeatured();
+			list($iTotalFeatured, $aFeatured) = Event_Service_Event::instance()->getFeatured();
 			if ($iTotalFeatured)
 			{
 				$aFilterMenu[Phpfox::getPhrase('event.featured_events') . '<span class="pending">' . $iTotalFeatured . '</span>'] = 'featured';
@@ -245,7 +245,7 @@ class Event_Component_Controller_Index extends Phpfox_Component
 			
 			if (Phpfox::getUserParam('event.can_approve_events'))
 			{
-				$iPendingTotal = Phpfox::getService('event')->getPendingTotal();
+				$iPendingTotal = Event_Service_Event::instance()->getPendingTotal();
 				
 				if ($iPendingTotal)
 				{

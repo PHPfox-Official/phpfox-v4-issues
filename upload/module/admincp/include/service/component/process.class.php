@@ -132,7 +132,7 @@ class Admincp_Service_Component_Process extends Phpfox_Service
 				continue;
 			}			
 			
-			$iModuleId = Phpfox::getLib('module')->getModuleId($aVal['module']);
+			$iModuleId = Phpfox_Module::instance()->getModuleId($aVal['module']);
 			$aSql[] = array(	
 				$aVal['component'],
 				(empty($aVal['m_connection']) ? null : $aVal['m_connection']),

@@ -121,11 +121,11 @@ class Phpfox_Image_Helper
 
 		if (isset($aParams['theme']))
 		{
-			$sSrc = Phpfox::getLib('template')->getStyle('image', $aParams['theme']);				
+			$sSrc = Phpfox_Template::instance()->getStyle('image', $aParams['theme']);
 			$sDirSrcTemp = str_replace(Phpfox::getParam('core.path'), PHPFOX_DIR, $sSrc);										
 			if (isset($aParams['default']) && !file_exists($sDirSrcTemp))
 			{				
-				$sSrc = Phpfox::getLib('template')->getStyle('image', $aParams['default']);	
+				$sSrc = Phpfox_Template::instance()->getStyle('image', $aParams['default']);
 			}							
 		}
 				
@@ -245,11 +245,11 @@ class Phpfox_Image_Helper
 						}					
 					}		
 					
-					$sSrc = Phpfox::getLib('template')->getStyle('image', 'noimage/' . $sGender . 'profile' . $sImageSuffix . '.png');	
+					$sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/' . $sGender . 'profile' . $sImageSuffix . '.png');
 				}
 				else 
 				{
-					$sSrc = Phpfox::getLib('template')->getStyle('image', 'noimage/item.png');
+					$sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/item.png');
 				}
 				
 				$bIsValid = false;			
@@ -567,12 +567,12 @@ class Phpfox_Image_Helper
 							}								
 						}	
 					
-						$sSrc = Phpfox::getLib('template')->getStyle('image', 'noimage/' . (empty($sGender) ? '' : $sGender) . 'profile' . $sSize . '.png');
+						$sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/' . (empty($sGender) ? '' : $sGender) . 'profile' . $sSize . '.png');
 						preg_match("/^(.*?)_(.*?)\.(.*?)$/i", $sSrc, $aMatches);						
 					}
 					else 
 					{	
-						$sSrc = Phpfox::getLib('template')->getStyle('image', 'noimage/item.png');
+						$sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/item.png');
 					}
 					
 					if (!empty($sSize))
@@ -718,7 +718,7 @@ class Phpfox_Image_Helper
 		if ($bDefer == true)
 		{
 			$aParams['class'] = ' image_deferred ' . (isset($aParams['class']) ? ' ' . $aParams['class'] : '');
-			$sImage .= ' data-src="' . $sSrc . (isset($aParams['time_stamp']) ? '?t=' . uniqid() : '') . '" src="' . Phpfox::getLib('template')->getStyle('image', 'misc/defer_holder.gif') . '" ';
+			$sImage .= ' data-src="' . $sSrc . (isset($aParams['time_stamp']) ? '?t=' . uniqid() : '') . '" src="' . Phpfox_Template::instance()->getStyle('image', 'misc/defer_holder.gif') . '" ';
 		}
 		else
 		{

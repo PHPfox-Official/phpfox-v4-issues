@@ -66,7 +66,11 @@
 			overflow:hidden;
 			text-indent:-1000px;
 			background:darken(@blockBg, 8%);
-			color:darken(@blockBg, 26%);
+			color:darken(@blockBg, 26%) !important;
+		}
+
+		> a.js_like_link_unlike {
+			color:@brandPrimary !important;
 		}
 
 		> a:before {
@@ -248,7 +252,7 @@ div.comment_mini_end {
 
 	textarea {
 		font-size:@fontSizeBase - 2;
-		height:40px;
+		height:20px;
 		background:transparent;
 		width:100%;
 		padding:0px;
@@ -272,19 +276,38 @@ div.comment_mini_end {
 	}
 }
 
+.feed_form {
+	padding:0px 10px 10px 10px;
+}
+
 .feed_form_user {
 	position:relative;
 	padding-bottom:5px;
 	margin-bottom:10px;
 	border-bottom:1px darken(@blockBg, 7%) solid;
+	height:60px;
+
+	img {
+		max-width:40px;
+		max-height:40px;
+		position:absolute;
+		left:10px;
+		top:5px;
+	}
 
 	.feed_form_user_info {
 		position:absolute;
 		left:60px;
 		top:0px;
+		right:0px;
+
+		> span > a {
+			font-size:@blockContentSize;
+		}
 
 		> div {
 			padding-top:5px;
+
 
 			a, a:hover {
 				font-size:@blockContentSize - 1;
@@ -316,14 +339,31 @@ div.comment_mini_end {
 	position:relative;
 }
 
+.feed_form_toggle {
+	position:absolute;
+	right:10px;
+	bottom:-2px;
+	cursor:pointer;
+	font-size:@fontSizeBase + 1;
+}
+
+.is_toggle_mode {
+	i:before {
+		content:'\f151';
+	}
+}
+
 .feed_form_menu {
+	display:none;
 	padding-bottom:10px;
 	margin-bottom:10px;
 	border-bottom:1px darken(@blockBg, 7%) solid;
+	font-size:@fontSizeBase - 1;
 
 	a, a:hover {
 		display:block;
 		padding:4px 0px;
+		text-indent:10px;
 	}
 }
 

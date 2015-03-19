@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Feed_Component_Block_Comment extends Phpfox_Component 
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -26,7 +26,7 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 		$sFeedType = (isset($aFeed['feed_display']) ? $aFeed['feed_display'] : null);
 
 		$bForceLoad = false;
-		if (PHPFOX_IS_AJAX && Phpfox::getLib('module')->getFullControllerName() == 'photo.view')
+		if (PHPFOX_IS_AJAX && Phpfox_Module::instance()->getFullControllerName() == 'photo.view')
 		{
 			// $bForceLoad = true;
 		}
@@ -87,7 +87,7 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 					}
 					else 
 					{
-						if (!Phpfox::getService('friend')->isFriendOfFriend($aFeed['user_id']))
+						if (!Friend_Service_Friend::instance()->isFriendOfFriend($aFeed['user_id']))
 						{
 							$bCanPostComment = false;	
 						}

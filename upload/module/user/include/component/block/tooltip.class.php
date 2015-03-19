@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class User_Component_Block_Tooltip extends Phpfox_Component
 {
 	/**
-	 * Class process method wnich is used to execute this component.
+	 * Controller
 	 */
 	public function process()
 	{
@@ -51,14 +51,14 @@ class User_Component_Block_Tooltip extends Phpfox_Component
 		{
 			if (Phpfox::isUser() && Phpfox::isModule('friend'))
 			{
-				$aUser['is_friend'] = Phpfox::getService('friend')->isFriend(Phpfox::getUserId(), $aUser['user_id']);						
+				$aUser['is_friend'] = Friend_Service_Friend::instance()->isFriend(Phpfox::getUserId(), $aUser['user_id']);
 				if (!$aUser['is_friend'])
 				{
 					$aUser['is_friend'] = (Phpfox::getService('friend.request')->isRequested(Phpfox::getUserId(), $aUser['user_id']) ? 2 : false);
 				}			
 			}
 			
-			list($iTotal, $aMutual) = Phpfox::getService('friend')->getMutualFriends($aUser['user_id'], 4);
+			list($iTotal, $aMutual) = Friend_Service_Friend::instance()->getMutualFriends($aUser['user_id'], 4);
 		}
 	
 		$bShowBDayInput = false;

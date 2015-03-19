@@ -10,7 +10,6 @@
 		<writable><![CDATA[a:1:{i:0;s:15:"file/pic/pages/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="pages" parent_var_name="" m_connection="main" var_name="menu_pages_pages_fad58de7366495db4650cfefac2fcd61" ordering="4" url_value="pages" version_id="3.0.0beta1" disallow_access="" module="pages" />
 		<menu module_id="pages" parent_var_name="" m_connection="pages.index" var_name="menu_pages_create_a_page_42a6b1a9f5d9d3cb02b85677b552fda0" ordering="103" url_value="pages.add" version_id="3.0.0beta1" disallow_access="" module="pages" />
 	</menus>
 	<settings>
@@ -18,23 +17,18 @@
 		<setting group="" module_id="pages" is_hidden="0" type="boolean" var_name="show_page_admins" phrase_var_name="setting_show_page_admins" ordering="1" version_id="3.4.0beta1">0</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="pages.view" module_id="pages" component="photo" location="1" is_active="1" ordering="1" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="pages.view" module_id="pages" component="photo" location="1" is_active="0" ordering="1" disallow_access="" can_move="1">
 			<title><![CDATA[Pages Photo &amp; Menu]]></title>
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="pages.view" module_id="pages" component="like" location="1" is_active="1" ordering="2" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="pages.view" module_id="pages" component="like" location="1" is_active="1" ordering="3" disallow_access="" can_move="1">
 			<title>Pages Likes/Members</title>
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="pages.view" module_id="pages" component="menu" location="1" is_active="1" ordering="3" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="pages.view" module_id="pages" component="menu" location="1" is_active="0" ordering="4" disallow_access="" can_move="1">
 			<title>Pages Mini Menu</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="pages.index" module_id="pages" component="category" location="1" is_active="1" ordering="3" disallow_access="" can_move="1">
-			<title></title>
 			<source_code />
 			<source_parsed />
 		</block>
@@ -43,7 +37,7 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="pages.view" module_id="pages" component="widget" location="3" is_active="1" ordering="5" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="pages.view" module_id="pages" component="widget" location="1" is_active="1" ordering="2" disallow_access="" can_move="1">
 			<title></title>
 			<source_code />
 			<source_parsed />
@@ -53,8 +47,13 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="pages.view" module_id="pages" component="admin" location="3" is_active="1" ordering="6" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="pages.view" module_id="pages" component="admin" location="3" is_active="0" ordering="6" disallow_access="" can_move="1">
 			<title>Page Admins</title>
+			<source_code />
+			<source_parsed />
+		</block>
+		<block type_id="0" m_connection="pages.view" module_id="pages" component="photo" location="12" is_active="1" ordering="11" disallow_access="" can_move="0">
+			<title></title>
 			<source_code />
 			<source_parsed />
 		</block>
@@ -108,7 +107,6 @@
 	</components>
 	<phrases>
 		<phrase module_id="pages" version_id="3.0.0beta1" var_name="module_pages" added="1309870711">Pages</phrase>
-		<phrase module_id="pages" version_id="3.0.0beta1" var_name="menu_pages_pages_fad58de7366495db4650cfefac2fcd61" added="1309937808">Pages</phrase>
 		<phrase module_id="pages" version_id="3.0.0beta1" var_name="user_setting_max_upload_size_pages" added="1310024854"><![CDATA[Max file size for event photos in kilobits (kb).
 (1000 kb = 1 mb)
 For unlimited add "0" without quotes.]]></phrase>

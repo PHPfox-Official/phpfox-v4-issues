@@ -19,11 +19,6 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="profile.index" module_id="track" component="recent-views" location="3" is_active="1" ordering="6" disallow_access="" can_move="1">
-			<title><![CDATA[{phrase var=&#039;track.recently_viewed_by&#039;}]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="blog.index" module_id="track" component="recent-views" location="3" is_active="1" ordering="6" disallow_access="" can_move="0">
 			<title>Recent Visitors</title>
 			<source_code />

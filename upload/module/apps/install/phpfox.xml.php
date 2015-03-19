@@ -10,7 +10,6 @@
 		<writable><![CDATA[a:1:{i:0;s:13:"file/pic/app/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="apps" parent_var_name="" m_connection="main" var_name="menu_apps_apps_fad58de7366495db4650cfefac2fcd61" ordering="104" url_value="apps" version_id="3.0.0beta1" disallow_access="" module="apps" />
 		<menu module_id="apps" parent_var_name="" m_connection="apps" var_name="menu_apps_add_an_app_9a6dd283c3de653fbca500f9721f634f" ordering="105" url_value="apps.add" version_id="3.0.0beta1" disallow_access="" module="apps" />
 		<menu module_id="apps" parent_var_name="" m_connection="footer" var_name="menu_apps_developers_251d164643533a527361dbe1a7b9235d" ordering="106" url_value="apps.developer" version_id="3.0.0beta1" disallow_access="" module="apps" />
 		<menu module_id="apps" parent_var_name="" m_connection="mobile" var_name="menu_core_apps_532c28d5412dd75bf975fb951c740a30" ordering="113" url_value="apps" version_id="3.1.0rc1" disallow_access="" module="apps" mobile_icon="small_apps.png" />
@@ -23,11 +22,6 @@
 	<blocks>
 		<block type_id="0" m_connection="apps.index" module_id="apps" component="categories" location="1" is_active="1" ordering="2" disallow_access="" can_move="1">
 			<title>Categories</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="core.index-member" module_id="apps" component="menu" location="1" is_active="1" ordering="1" disallow_access="" can_move="1">
-			<title><![CDATA[{phrase var=&#039;apps.apps&#039;}]]></title>
 			<source_code />
 			<source_parsed />
 		</block>
@@ -49,7 +43,6 @@
 	</components>
 	<phrases>
 		<phrase module_id="apps" version_id="3.0.0beta1" var_name="module_apps" added="1312898098">Apps</phrase>
-		<phrase module_id="apps" version_id="3.0.0beta1" var_name="menu_apps_apps_fad58de7366495db4650cfefac2fcd61" added="1313566699">Apps</phrase>
 		<phrase module_id="apps" version_id="3.0.0beta1" var_name="menu_apps_add_an_app_9a6dd283c3de653fbca500f9721f634f" added="1313657007">Create an App</phrase>
 		<phrase module_id="apps" version_id="3.0.0beta1" var_name="user_setting_can_add_app" added="1314102373">Can add an app to the site?</phrase>
 		<phrase module_id="apps" version_id="3.0.0beta1" var_name="user_setting_can_view_app" added="1314102489">Can view apps?</phrase>

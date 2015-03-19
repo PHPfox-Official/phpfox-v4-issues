@@ -24,17 +24,12 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="photo.index" module_id="tag" component="cloud" location="3" is_active="1" ordering="4" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="video.index" module_id="tag" component="cloud" location="3" is_active="1" ordering="5" disallow_access="" can_move="0">
 			<title></title>
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="core.index-member" module_id="tag" component="cloud" location="3" is_active="1" ordering="12" disallow_access="" can_move="0">
+		<block type_id="0" m_connection="core.index-member" module_id="tag" component="cloud" location="3" is_active="1" ordering="8" disallow_access="" can_move="0">
 			<title>Hashtags</title>
 			<source_code />
 			<source_parsed />

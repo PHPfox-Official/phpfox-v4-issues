@@ -10,7 +10,7 @@
 		<writable><![CDATA[a:1:{i:0;s:15:"file/pic/photo/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="photo" parent_var_name="" m_connection="main" var_name="menu_photo" ordering="22" url_value="photo" version_id="2.0.0alpha1" disallow_access="" module="photo" />
+		<menu module_id="photo" parent_var_name="" m_connection="main" var_name="menu_photo" ordering="22" url_value="photo" version_id="2.0.0alpha1" disallow_access="" module="photo" mobile_icon="photo" />
 		<menu module_id="photo" parent_var_name="" m_connection="profile" var_name="menu_photos" ordering="38" url_value="profile.photo" version_id="2.0.0alpha1" disallow_access="" module="photo" />
 		<menu module_id="photo" parent_var_name="" m_connection="photo.index" var_name="menu_photo_upload_a_new_image_714586c73197300f65ba08f7dee8cb4a" ordering="128" url_value="photo.add" version_id="3.3.0beta2" disallow_access="" module="photo" />
 		<menu module_id="photo" parent_var_name="" m_connection="mobile" var_name="menu_photo_photos_532c28d5412dd75bf975fb951c740a30" ordering="122" url_value="photo" version_id="3.1.0rc1" disallow_access="" module="photo" mobile_icon="small_photos.png" />
@@ -53,21 +53,6 @@
 		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="rating_randomize_photos" phrase_var_name="setting_rating_randomize_photos" ordering="1" version_id="2.0.0alpha1">0</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="photo.index" module_id="photo" component="category" location="1" is_active="1" ordering="2" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="photo.index" module_id="photo" component="featured" location="3" is_active="1" ordering="3" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="photo.view" module_id="photo" component="detail" location="0" is_active="1" ordering="2" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="photo.rate" module_id="photo" component="stat" location="3" is_active="1" ordering="1" disallow_access="" can_move="0">
 			<title></title>
 			<source_code />
@@ -88,18 +73,13 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="photo.index" module_id="photo" component="sponsored" location="3" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="photo.album" module_id="photo" component="album-tag" location="3" is_active="1" ordering="2" disallow_access="" can_move="0">
 			<title>In This Album</title>
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="photo.view" module_id="photo" component="detail" location="3" is_active="1" ordering="3" disallow_access="" can_move="0">
-			<title>Photo Details</title>
+		<block type_id="0" m_connection="photo.view" module_id="photo" component="stream" location="7" is_active="1" ordering="1" disallow_access="" can_move="0">
+			<title>Viewing Photo</title>
 			<source_code />
 			<source_parsed />
 		</block>

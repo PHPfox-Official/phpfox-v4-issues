@@ -13,7 +13,7 @@
 		<setting group="" module_id="poke" is_hidden="0" type="boolean" var_name="add_to_feed" phrase_var_name="setting_add_to_feed" ordering="1" version_id="3.0.0beta1">0</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="core.index-member" module_id="poke" component="display" location="3" is_active="1" ordering="7" disallow_access="a:1:{i:0;s:1:&quot;3&quot;;}" can_move="1">
+		<block type_id="0" m_connection="core.index-member" module_id="poke" component="display" location="3" is_active="1" ordering="6" disallow_access="a:1:{i:0;s:1:&quot;3&quot;;}" can_move="1">
 			<title><![CDATA[{phrase var=&#039;poke.pokes&#039;}]]></title>
 			<source_code />
 			<source_parsed />

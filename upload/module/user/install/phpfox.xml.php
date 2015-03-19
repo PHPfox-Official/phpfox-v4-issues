@@ -11,7 +11,7 @@
 	</data>
 	<menus>
 		<menu module_id="user" parent_var_name="" m_connection="user.setting" var_name="menu_privacy_settings" ordering="34" url_value="user.privacy" version_id="2.0.0alpha1" disallow_access="" module="user" />
-		<menu module_id="user" parent_var_name="" m_connection="main" var_name="menu_browse" ordering="3" url_value="user.browse" version_id="2.0.0alpha1" disallow_access="" module="user" />
+		<menu module_id="user" parent_var_name="" m_connection="main" var_name="menu_browse" ordering="3" url_value="user.browse" version_id="2.0.0alpha1" disallow_access="" module="user" mobile_icon="users" />
 		<menu module_id="user" parent_var_name="" m_connection="main_right" var_name="menu_settings" ordering="5" url_value="user.setting" version_id="2.0.0alpha1" disallow_access="a:1:{i:0;s:1:&quot;3&quot;;}" module="user" />
 		<menu module_id="user" parent_var_name="" m_connection="user.setting" var_name="menu_account_settings" ordering="20" url_value="user.setting" version_id="2.0.0alpha1" disallow_access="" module="user" />
 		<menu module_id="user" parent_var_name="" m_connection="profile.my" var_name="menu_edit_profile_picture" ordering="3" url_value="user.photo" version_id="2.0.0alpha1" disallow_access="" module="user" />
@@ -108,11 +108,6 @@
 		</block>
 		<block type_id="0" m_connection="user.browse" module_id="user" component="featured" location="1" is_active="1" ordering="2" disallow_access="" can_move="0">
 			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="" module_id="user" component="register-top" location="11" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title>User Register Top</title>
 			<source_code />
 			<source_parsed />
 		</block>

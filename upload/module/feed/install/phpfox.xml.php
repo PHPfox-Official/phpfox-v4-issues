@@ -61,23 +61,23 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="profile.index" module_id="feed" component="time" location="3" is_active="1" ordering="4" disallow_access="" can_move="0">
+		<block type_id="0" m_connection="pages.view" module_id="feed" component="time" location="3" is_active="0" ordering="5" disallow_access="" can_move="0">
 			<title>Feed Timeline</title>
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="pages.view" module_id="feed" component="time" location="3" is_active="0" ordering="4" disallow_access="" can_move="0">
-			<title>Feed Timeline</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="pages.view" module_id="feed" component="display" location="4" is_active="1" ordering="10" disallow_access="" can_move="0">
+		<block type_id="0" m_connection="pages.view" module_id="feed" component="display" location="2" is_active="1" ordering="10" disallow_access="" can_move="0">
 			<title>Feed display</title>
 			<source_code />
 			<source_parsed />
 		</block>
 		<block type_id="0" m_connection="pages.view" module_id="feed" component="time" location="2" is_active="0" ordering="9" disallow_access="" can_move="0">
 			<title>Display Timeline</title>
+			<source_code />
+			<source_parsed />
+		</block>
+		<block type_id="0" m_connection="core.index-member" module_id="feed" component="form2" location="1" is_active="0" ordering="1" disallow_access="" can_move="0">
+			<title>Feed Form</title>
 			<source_code />
 			<source_parsed />
 		</block>
@@ -125,6 +125,7 @@
 		<component module_id="feed" component="view" m_connection="feed.view" module="feed" is_controller="1" is_block="0" is_active="1" />
 		<component module_id="feed" component="user" m_connection="feed.user" module="feed" is_controller="1" is_block="0" is_active="1" />
 		<component module_id="feed" component="time" m_connection="" module="feed" is_controller="0" is_block="1" is_active="1" />
+		<component module_id="feed" component="form2" m_connection="" module="feed" is_controller="0" is_block="1" is_active="1" />
 	</components>
 	<phrases>
 		<phrase module_id="feed" version_id="2.0.0alpha1" var_name="module_feed" added="1219147598">Feed</phrase>

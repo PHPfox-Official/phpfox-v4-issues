@@ -20,7 +20,7 @@
 		<setting group="cache" module_id="shoutbox" is_hidden="0" type="boolean" var_name="load_content_ajax" phrase_var_name="setting_load_content_ajax" ordering="1" version_id="3.6.0rc1">0</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="core.index-member" module_id="shoutbox" component="display" location="3" is_active="1" ordering="8" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="core.index-member" module_id="shoutbox" component="display" location="3" is_active="1" ordering="7" disallow_access="" can_move="1">
 			<title><![CDATA[{phrase var=&#039;shoutbox.shoutbox&#039;}]]></title>
 			<source_code />
 			<source_parsed />
@@ -30,7 +30,7 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="pages.view" module_id="shoutbox" component="display" location="3" is_active="1" ordering="7" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="pages.view" module_id="shoutbox" component="display" location="3" is_active="0" ordering="7" disallow_access="" can_move="1">
 			<title>Shoutbox</title>
 			<source_code />
 			<source_parsed />

@@ -10,7 +10,6 @@
 		<writable><![CDATA[a:2:{i:0;s:11:"file/video/";i:1;s:15:"file/pic/video/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="video" parent_var_name="" m_connection="main" var_name="menu_video" ordering="26" url_value="video" version_id="2.0.0alpha1" disallow_access="" module="video" />
 		<menu module_id="video" parent_var_name="" m_connection="video.index" var_name="menu_upload_a_new_video" ordering="76" url_value="video.add" version_id="2.0.0beta2" disallow_access="" module="video" />
 		<menu module_id="video" parent_var_name="" m_connection="profile" var_name="menu_videos" ordering="78" url_value="profile.video" version_id="2.0.0beta2" disallow_access="" module="video" />
 		<menu module_id="video" parent_var_name="" m_connection="mobile" var_name="menu_video_videos_532c28d5412dd75bf975fb951c740a30" ordering="127" url_value="video" version_id="3.1.0rc1" disallow_access="" module="video" mobile_icon="small_videos.png" />
@@ -195,7 +194,6 @@
 	</feed_share>
 	<phrases>
 		<phrase module_id="video" version_id="2.0.0alpha1" var_name="module_video" added="1232964371">Videos</phrase>
-		<phrase module_id="video" version_id="2.0.0alpha1" var_name="menu_video" added="1232964384">Videos</phrase>
 		<phrase module_id="video" version_id="2.0.0beta2" var_name="user_setting_can_add_comment_on_video" added="1241971648">Can add comments on videos?</phrase>
 		<phrase module_id="video" version_id="2.0.0beta2" var_name="setting_video_time_stamp" added="1242026906"><![CDATA[<title>Video Time Stamp</title><info>Video Time Stamp</info>]]></phrase>
 		<phrase module_id="video" version_id="2.0.0beta2" var_name="user_setting_can_edit_own_video" added="1242112583">Can edit own video?</phrase>

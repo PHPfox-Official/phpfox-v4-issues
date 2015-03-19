@@ -10,7 +10,7 @@
 		<writable><![CDATA[a:1:{i:0;s:14:"file/pic/quiz/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="quiz" parent_var_name="" m_connection="main" var_name="menu_quiz" ordering="28" url_value="quiz" version_id="2.0.0alpha1" disallow_access="" module="quiz" />
+		<menu module_id="quiz" parent_var_name="" m_connection="main" var_name="menu_quiz" ordering="28" url_value="quiz" version_id="2.0.0alpha1" disallow_access="" module="quiz" mobile_icon="puzzle-piece" />
 		<menu module_id="quiz" parent_var_name="" m_connection="profile" var_name="menu_profile_quiz" ordering="48" url_value="profile.quiz" version_id="2.0.0alpha1" disallow_access="" module="quiz" />
 		<menu module_id="quiz" parent_var_name="" m_connection="quiz" var_name="menu_add_new_quiz" ordering="49" url_value="quiz.add" version_id="2.0.0alpha1" disallow_access="" module="quiz" />
 		<menu module_id="quiz" parent_var_name="" m_connection="mobile" var_name="menu_quiz_quizzes_532c28d5412dd75bf975fb951c740a30" ordering="125" url_value="quiz" version_id="3.1.0rc1" disallow_access="" module="quiz" mobile_icon="small_quizzes.png" />

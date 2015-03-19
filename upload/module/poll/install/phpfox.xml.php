@@ -10,7 +10,7 @@
 		<writable><![CDATA[a:1:{i:0;s:14:"file/pic/poll/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="poll" parent_var_name="" m_connection="main" var_name="menu_poll" ordering="24" url_value="poll" version_id="2.0.0alpha1" disallow_access="" module="poll" />
+		<menu module_id="poll" parent_var_name="" m_connection="main" var_name="menu_poll" ordering="24" url_value="poll" version_id="2.0.0alpha1" disallow_access="" module="poll" mobile_icon="bar-chart" />
 		<menu module_id="poll" parent_var_name="" m_connection="poll.index" var_name="menu_add_new_poll" ordering="39" url_value="poll.add" version_id="2.0.0alpha1" disallow_access="" module="poll" />
 		<menu module_id="poll" parent_var_name="" m_connection="profile" var_name="menu_polls" ordering="41" url_value="profile.poll" version_id="2.0.0alpha1" disallow_access="" module="poll" />
 		<menu module_id="poll" parent_var_name="" m_connection="mobile" var_name="menu_poll_polls_532c28d5412dd75bf975fb951c740a30" ordering="123" url_value="poll" version_id="3.1.0rc1" disallow_access="" module="poll" mobile_icon="small_polls.png" />

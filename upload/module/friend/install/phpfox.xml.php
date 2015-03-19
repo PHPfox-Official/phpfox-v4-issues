@@ -10,7 +10,6 @@
 		<writable />
 	</data>
 	<menus>
-		<menu module_id="friend" parent_var_name="" m_connection="main" var_name="menu_core_friends" ordering="3" url_value="friend" version_id="2.0.0alpha1" disallow_access="" module="friend" />
 		<menu module_id="friend" parent_var_name="" m_connection="profile" var_name="menu_friend_friends" ordering="16" url_value="profile.friend" version_id="2.0.0alpha1" disallow_access="" module="friend" />
 		<menu module_id="friend" parent_var_name="" m_connection="mobile" var_name="menu_friend_friends_532c28d5412dd75bf975fb951c740a30" ordering="118" url_value="friend" version_id="3.1.0rc1" disallow_access="" module="friend" mobile_icon="small_friends.png" />
 	</menus>
@@ -48,7 +47,7 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="core.index-member" module_id="friend" component="birthday" location="3" is_active="1" ordering="5" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="core.index-member" module_id="friend" component="birthday" location="3" is_active="1" ordering="4" disallow_access="" can_move="1">
 			<title><![CDATA[{phrase var=&#039;event.upcoming_events&#039;}]]></title>
 			<source_code />
 			<source_parsed />
@@ -58,7 +57,7 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="core.index-member" module_id="friend" component="suggestion" location="3" is_active="1" ordering="6" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="core.index-member" module_id="friend" component="suggestion" location="3" is_active="1" ordering="5" disallow_access="" can_move="1">
 			<title><![CDATA[{phrase var=&#039;friend.suggestions&#039;}]]></title>
 			<source_code />
 			<source_parsed />
@@ -155,7 +154,6 @@
 		<component module_id="friend" component="remove" m_connection="" module="friend" is_controller="0" is_block="1" is_active="1" />
 	</components>
 	<phrases>
-		<phrase module_id="friend" version_id="2.0.0alpha1" var_name="menu_core_friends" added="1220960932">Friends</phrase>
 		<phrase module_id="friend" version_id="2.0.0alpha1" var_name="menu_top_friends" added="1221135325">Top Friends</phrase>
 		<phrase module_id="friend" version_id="2.0.0alpha1" var_name="menu_online_friends" added="1221135362">Online Friends</phrase>
 		<phrase module_id="friend" version_id="2.0.0alpha1" var_name="create_new_list" added="1221136804">Create New List...</phrase>

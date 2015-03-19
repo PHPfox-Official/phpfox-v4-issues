@@ -10,7 +10,7 @@
 		<writable />
 	</data>
 	<blocks>
-		<block type_id="0" m_connection="core.index-member" module_id="announcement" component="index" location="7" is_active="1" ordering="11" disallow_access="" can_move="0">
+		<block type_id="0" m_connection="core.index-member" module_id="announcement" component="index" location="7" is_active="1" ordering="10" disallow_access="" can_move="0">
 			<title></title>
 			<source_code />
 			<source_parsed />

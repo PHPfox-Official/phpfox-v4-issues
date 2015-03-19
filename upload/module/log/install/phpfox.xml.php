@@ -18,11 +18,6 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="forum.index" module_id="log" component="active-users" location="1" is_active="1" ordering="6" disallow_access="" can_move="0">
-			<title>Users Online</title>
-			<source_code />
-			<source_parsed />
-		</block>
 	</blocks>
 	<hooks>
 		<hook module_id="log" hook_type="service" module="log" call_name="log.service_session___call" added="1231838390" version_id="2.0.0alpha1" />

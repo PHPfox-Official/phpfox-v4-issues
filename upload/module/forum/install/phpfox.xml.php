@@ -10,7 +10,7 @@
 		<writable />
 	</data>
 	<menus>
-		<menu module_id="forum" parent_var_name="" m_connection="main" var_name="menu_forum" ordering="23" url_value="forum" version_id="2.0.0alpha1" disallow_access="" module="forum" />
+		<menu module_id="forum" parent_var_name="" m_connection="main" var_name="menu_forum" ordering="23" url_value="forum" version_id="2.0.0alpha1" disallow_access="" module="forum" mobile_icon="comments" />
 		<menu module_id="forum" parent_var_name="" m_connection="mobile" var_name="menu_forum_forum_532c28d5412dd75bf975fb951c740a30" ordering="117" url_value="forum" version_id="3.1.0rc1" disallow_access="" module="forum" mobile_icon="small_forum.png" />
 	</menus>
 	<settings>
@@ -36,8 +36,8 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="forum.index" module_id="forum" component="stat" location="1" is_active="1" ordering="7" disallow_access="" can_move="0">
-			<title>Forum Stats</title>
+		<block type_id="0" m_connection="forum" module_id="forum" component="forums" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
+			<title>Forums</title>
 			<source_code />
 			<source_parsed />
 		</block>
@@ -111,6 +111,8 @@
 		<component module_id="forum" component="forum.index" m_connection="forum.index" module="forum" is_controller="1" is_block="0" is_active="1" />
 		<component module_id="forum" component="parent" m_connection="" module="forum" is_controller="0" is_block="1" is_active="1" />
 		<component module_id="forum" component="stat" m_connection="" module="forum" is_controller="0" is_block="1" is_active="1" />
+		<component module_id="forum" component="forums" m_connection="" module="forum" is_controller="0" is_block="1" is_active="1" />
+		<component module_id="forum" component="forum" m_connection="forum.forum" module="forum" is_controller="1" is_block="0" is_active="1" />
 	</components>
 	<phrases>
 		<phrase module_id="forum" version_id="2.0.0alpha1" var_name="module_forum" added="1232964154">Forum</phrase>

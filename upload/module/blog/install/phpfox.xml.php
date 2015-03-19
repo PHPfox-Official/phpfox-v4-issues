@@ -10,7 +10,7 @@
 		<writable />
 	</data>
 	<menus>
-		<menu module_id="blog" parent_var_name="" m_connection="main" var_name="menu_blogs" ordering="5" url_value="blog" version_id="2.0.0alpha1" disallow_access="" module="blog" />
+		<menu module_id="blog" parent_var_name="" m_connection="main" var_name="menu_blogs" ordering="5" url_value="blog" version_id="2.0.0alpha1" disallow_access="" module="blog" mobile_icon="pencil-square" />
 		<menu module_id="blog" parent_var_name="" m_connection="blog.index" var_name="menu_add_new_blog" ordering="3" url_value="blog.add" version_id="2.0.0alpha1" disallow_access="" module="blog" />
 		<menu module_id="blog" parent_var_name="" m_connection="profile" var_name="menu_blogs" ordering="2" url_value="profile.blog" version_id="2.0.0alpha1" disallow_access="" module="blog" />
 		<menu module_id="blog" parent_var_name="" m_connection="mobile" var_name="menu_blog_blogs_532c28d5412dd75bf975fb951c740a30" ordering="114" url_value="blog" version_id="3.1.0rc1" disallow_access="" module="blog" mobile_icon="small_blogs.png" />

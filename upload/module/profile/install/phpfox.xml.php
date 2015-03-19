@@ -33,7 +33,7 @@
 		<setting group="" module_id="profile" is_hidden="1" type="boolean" var_name="ajax_profile_tab" phrase_var_name="setting_ajax_profile_tab" ordering="1" version_id="2.1.0Beta1">1</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="pages.view" module_id="profile" component="logo" location="13" is_active="1" ordering="8" disallow_access="" can_move="0">
+		<block type_id="0" m_connection="pages.view" module_id="profile" component="logo" location="13" is_active="0" ordering="8" disallow_access="" can_move="0">
 			<title>Pages Cover Photo</title>
 			<source_code />
 			<source_parsed />
@@ -43,7 +43,7 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="profile.index" module_id="profile" component="pic" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
+		<block type_id="0" m_connection="profile.index" module_id="profile" component="pic" location="11" is_active="1" ordering="1" disallow_access="" can_move="0">
 			<title></title>
 			<source_code />
 			<source_parsed />

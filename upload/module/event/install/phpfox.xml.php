@@ -10,7 +10,7 @@
 		<writable><![CDATA[a:1:{i:0;s:15:"file/pic/event/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="event" parent_var_name="" m_connection="main" var_name="menu_event" ordering="29" url_value="event" version_id="2.0.0alpha1" disallow_access="" module="event" />
+		<menu module_id="event" parent_var_name="" m_connection="main" var_name="menu_event" ordering="29" url_value="event" version_id="2.0.0alpha1" disallow_access="" module="event" mobile_icon="calendar" />
 		<menu module_id="event" parent_var_name="" m_connection="event.index" var_name="menu_create_new_event" ordering="62" url_value="event.add" version_id="2.0.0alpha4" disallow_access="" module="event" />
 		<menu module_id="event" parent_var_name="" m_connection="mobile" var_name="menu_event_events_532c28d5412dd75bf975fb951c740a30" ordering="115" url_value="event" version_id="3.1.0rc1" disallow_access="" module="event" mobile_icon="small_events.png" />
 	</menus>
@@ -40,16 +40,6 @@
 		</block>
 		<block type_id="0" m_connection="group.view" module_id="event" component="parent" location="0" is_active="1" ordering="1" disallow_access="" can_move="1">
 			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="event.view" module_id="event" component="map" location="1" is_active="1" ordering="5" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="event.view" module_id="event" component="image" location="1" is_active="1" ordering="5" disallow_access="" can_move="0">
-			<title>Event Photo</title>
 			<source_code />
 			<source_parsed />
 		</block>
@@ -510,7 +500,7 @@ To see the comment thread, follow the link below:
 	<rss>
 		<feed module_id="event" group_id="2" title_var="event.rss_title_3" description_var="event.rss_description_3" feed_link="event" is_active="1" is_site_wide="1">
 			<php_group_code></php_group_code>
-			<php_view_code><![CDATA[$aRows = Event_Service_Event::instance()->getForRssFeed();]]></php_view_code>
+			<php_view_code><![CDATA[$aRows = Phpfox::getService('event')->getForRssFeed();]]></php_view_code>
 		</feed>
 	</rss>
 	<user_group_settings>

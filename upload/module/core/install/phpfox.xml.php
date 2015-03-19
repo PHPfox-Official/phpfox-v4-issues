@@ -7,10 +7,10 @@
 		<is_menu>0</is_menu>
 		<menu />
 		<phrase_var_name />
-		<writable><![CDATA[a:8:{i:0;s:11:"file/cache/";i:1;s:10:"file/gzip/";i:2;s:9:"file/log/";i:3;s:12:"file/static/";i:4;s:13:"file/session/";i:5;s:19:"file/pic/watermark/";i:6;s:14:"file/pic/icon/";i:7;s:31:"include/setting/server.sett.php";}]]></writable>
+		<writable><![CDATA[a:8:{i:0;s:11:"file/cache/";i:1;s:10:"file/gzip/";i:2;s:9:"file/log/";i:3;s:12:"file/static/";i:4;s:13:"file/session/";i:5;s:19:"file/pic/watermark/";i:6;s:14:"file/pic/icon/";i:7;s:14:"file/settings/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="core" parent_var_name="" m_connection="main" var_name="menu_home" ordering="2" url_value="" version_id="2.0.0alpha1" disallow_access="" module="core" />
+		<menu module_id="core" parent_var_name="" m_connection="main" var_name="menu_home" ordering="2" url_value="" version_id="2.0.0alpha1" disallow_access="" module="core" mobile_icon="dashboard" />
 		<menu module_id="core" parent_var_name="" m_connection="main_right" var_name="menu_admincp" ordering="1" url_value="admincp" version_id="2.0.0alpha1" disallow_access="" module="core" />
 		<menu module_id="core" parent_var_name="" m_connection="footer" var_name="menu_about" ordering="17" url_value="about" version_id="2.0.0alpha1" disallow_access="" module="core" />
 		<menu module_id="core" parent_var_name="" m_connection="footer" var_name="menu_privacy" ordering="18" url_value="policy" version_id="2.0.0alpha1" disallow_access="" module="core" />
@@ -228,16 +228,6 @@ Site Name</setting>
 		<setting group="" module_id="core" is_hidden="1" type="string" var_name="phpfox_max_users_online" phrase_var_name="setting_phpfox_max_users_online" ordering="1" version_id="2.0.7">0</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="core.index-member" module_id="core" component="welcome" location="7" is_active="1" ordering="10" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="core.index-member" module_id="core" component="stat" location="1" is_active="0" ordering="4" disallow_access="" can_move="1">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="admincp.index" module_id="core" component="note" location="2" is_active="1" ordering="2" disallow_access="" can_move="1">
 			<title></title>
 			<source_code />

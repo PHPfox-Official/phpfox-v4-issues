@@ -57,8 +57,10 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/foreach}
 				{$aFeed.feed_image}
 			{else}
+
 			{if !empty($aFeed.feed_image)}
 			<div class="activity_feed_content_image"{if isset($aFeed.feed_custom_width)} style="width:{$aFeed.feed_custom_width};"{/if}>
+
 				{if is_array($aFeed.feed_image)}
 					<ul class="activity_feed_multiple_image">
 						{foreach from=$aFeed.feed_image item=sFeedImage}
@@ -69,9 +71,16 @@ defined('PHPFOX') or exit('NO DICE!');
 				{else}
 					<a href="{if isset($aFeed.feed_link_actual)}{$aFeed.feed_link_actual}{else}{$aFeed.feed_link}{/if}"{if !isset($aFeed.no_target_blank)} target="_blank"{/if} class="{if isset($aFeed.custom_css)} {$aFeed.custom_css} {/if}{if !empty($aFeed.feed_image_onclick)}{if !isset($aFeed.feed_image_onclick_no_image)}play_link {/if} no_ajax_link{/if}"{if !empty($aFeed.feed_image_onclick)} onclick="{$aFeed.feed_image_onclick}"{/if}{if !empty($aFeed.custom_rel)} rel="{$aFeed.custom_rel}"{/if}{if isset($aFeed.custom_js)} {$aFeed.custom_js} {/if}{if Phpfox::getParam('core.no_follow_on_external_links')} rel="nofollow"{/if}>{if !empty($aFeed.feed_image_onclick)}{if !isset($aFeed.feed_image_onclick_no_image)}<span class="play_link_img">{phrase var='feed.play'}</span>{/if}{/if}{$aFeed.feed_image}</a>						
 				{/if}
+
 			</div>
 			{/if}
-			<div class="{if (!empty($aFeed.feed_content) || !empty($aFeed.feed_custom_html)) && empty($aFeed.feed_image)} activity_feed_content_no_image{/if}{if !empty($aFeed.feed_image)} activity_feed_content_float{/if}"{if isset($aFeed.feed_custom_width)} style="margin-left:{$aFeed.feed_custom_width};"{/if}>
+
+		{if isset($aFeed.feed_image_banner)}
+		<div class="feed_banner">
+			{$aFeed.feed_image_banner}
+		{/if}
+
+			<div class="feed_block_title_content {if (!empty($aFeed.feed_content) || !empty($aFeed.feed_custom_html)) && empty($aFeed.feed_image) && empty($aFeed.feed_image_banner)} activity_feed_content_no_image{/if}{if !empty($aFeed.feed_image)} activity_feed_content_float{/if}"{if isset($aFeed.feed_custom_width)} style="margin-left:{$aFeed.feed_custom_width};"{/if}>
 				{if !empty($aFeed.feed_title)}
 					{if isset($aFeed.feed_title_sub)}
 						<span class="user_profile_link_span" id="js_user_name_link_{$aFeed.feed_title_sub|clean}">
@@ -105,7 +114,12 @@ defined('PHPFOX') or exit('NO DICE!');
 					{module name='feed.mini' parent_feed_id=$aFeed.parent_feed_id parent_module_id=$aFeed.parent_module_id}
 				{/if}
 				
-			</div>	
+			</div>
+
+		{if isset($aFeed.feed_image_banner)}
+		</div>
+		{/if}
+
 			{if !empty($aFeed.feed_image)}
 			<div class="clear"></div>
 			{/if}		

@@ -96,7 +96,8 @@ class Profile_Component_Block_Pic extends Phpfox_Component
 		$aCoverPhoto = Phpfox::getService('photo')->getCoverPhoto($aUser['cover_photo']);
 		$this->template()->assign(array(
 				'bCanPoke' => $bCanSendPoke,
-				'aCoverPhoto' => $aCoverPhoto
+				'aCoverPhoto' => $aCoverPhoto,
+				'aUser' => $aUser
 			)
 		);
 	}

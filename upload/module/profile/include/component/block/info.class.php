@@ -109,7 +109,8 @@ class Profile_Component_Block_Info extends Phpfox_Component
 				'sRelationship' => $sRelationship
 			)
 		);
-		
+
+		/*
 		$this->setParam('aRatingCallback', array(
 				'type' => 'user',
 				'total_rating' => Phpfox::getPhrase('profile.total_rating_ratings', array('total_rating' => $aUser['total_rating'])),
@@ -117,7 +118,8 @@ class Profile_Component_Block_Info extends Phpfox_Component
 				'item_id' => $aUser['user_id'],
 				'stars' => range(1, 10)
 			)
-		);		
+		);
+		*/
 		
 		(($sPlugin = Phpfox_Plugin::get('profile.component_block_info')) ? eval($sPlugin) : false);
 		

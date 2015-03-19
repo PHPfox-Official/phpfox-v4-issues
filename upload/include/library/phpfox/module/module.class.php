@@ -514,7 +514,12 @@ class Phpfox_Module
 			return $aBlocks[$iId];
 		}		
 	
-		$aBlocks[$iId] = array();		
+		$aBlocks[$iId] = array();
+
+
+		if (defined('PHPFOX_IS_USER_PROFILE') && $iId == 11) {
+			$aBlocks[$iId][] = 'profile.pic';
+		}
 
 		(($sPlugin = Phpfox_Plugin::get('get_module_blocks')) ? eval($sPlugin) : false);
 

@@ -30,17 +30,17 @@ defined('PHPFOX') or exit('NO DICE!');
 <div style="display:none;" class="placeholder">
 	<div class="js_prev_block">
 		<span>
-			{img theme='misc/arrow_up_down.png' height="18px" style="cursor:move; vertical-align:middle;"} 
+			<i class="fa fa-arrows-v"></i>
 		</span>
 		<span class="class_answer">
 			<input type="text" name="val[answer][][answer]" value="" size="30" class="js_answers v_middle" />
 		</span>
 		<div class="poll_add_more">
 			<a href="#" onclick="return appendAnswer(this);">
-				{img theme='misc/add.png' class='v_middle'}
+				<i class="fa fa-plus"></i>
 			</a>
 			<a href="#" onclick="return removeAnswer(this);">
-				{img theme='misc/delete.png' class='v_middle'}
+				<i class="fa fa-minus"></i>
 			</a>
 		</div>
 	</div>
@@ -93,17 +93,17 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div class="placeholder sortable_item_{$phpfox.iteration.iAnswer}" id="sortable_item_{$phpfox.iteration.iAnswer}">
 						<div class="js_prev_block">
 							<span class="js_arrow_up_down">
-								{img theme='misc/arrow_up_down.png' height="18px" style="cursor:move; vertical-align:middle;"}
+								<i class="fa fa-arrows-v"></i>
 							</span>
 							<input type="text" name="val[answer][{$phpfox.iteration.iAnswer}][answer]" value="{$aAnswer.answer|clean}" size="30" class="js_answers v_middle" />
 							{if isset($aAnswer.answer_id)}
 								   <input type="hidden" name="val[answer][{$phpfox.iteration.iAnswer}][answer_id]" class="hdnAnswerId" value="{$aAnswer.answer_id}">
 							{/if}
 							<a href="#" onclick="return appendAnswer(this);">
-								{img theme='misc/add.png' class='v_middle'}
+								<i class="fa fa-plus"></i>
 							</a>
 							<a href="#" onclick="return removeAnswer(this);">
-								{img theme='misc/delete.png' class='v_middle'}
+								<i class="fa fa-minus"></i>
 							</a>
 						</div>
 						<div class="js_next_block"></div>
@@ -114,16 +114,16 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div class="placeholder sortable_item_{$i}" id="sortable_item_{$i}">
 						<div class="js_prev_block">
 							<span class="js_arrow_up_down">
-								{img theme='misc/arrow_up_down.png' class="sortingArrows" height="18px"}
+								<i class="fa fa-arrows-v"></i>
 							</span>
 							<input type="text" tabindex="{$i + 1}" name="val[answer][{$i}][answer]" value="" size="30" class="js_answers v_middle" />
 
 							<div class="poll_add_more">
 								<a href="#" onclick="if(iMaxAnswers == 0) {l} iMaxAnswers = {$iMaxAnswers}; {r} return appendAnswer(this);" >
-									{img theme='misc/add.png' class='v_middle'}
+									<i class="fa fa-plus"></i>
 								</a>
 								<a href="#" onclick="if(iMinAnswers == 0) {l} iMinAnswers = {$iMin}; {r} return removeAnswer(this);">
-									{img theme='misc/delete.png' class='v_middle'}
+									<i class="fa fa-minus"></i>
 								</a>
 							</div>
 						</div>

@@ -1548,12 +1548,12 @@ a.item_bar_action:hover
 	height:24px;
 }
 
+
 a.item_bar_flag,
 a.item_bar_flag:hover
 {
 	position:absolute;
 	line-height:22px;
-	background:url('../image/icon/flag.png') no-repeat;
 	padding-left:22px;	
 	text-decoration:none;	
 	color:#9F9F9F;
@@ -1562,9 +1562,9 @@ a.item_bar_flag:hover
 
 a.item_bar_flag:hover
 {
-	background:url('../image/icon/flag.png') no-repeat 0px -22px;
 	color:#395E9F;
 }
+
 
 /**
  Item Content

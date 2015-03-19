@@ -194,6 +194,28 @@ a.item_bar_action:before {
 	}
 }
 
+.user_rows_mini {
+	margin:-@blockContentPadding;
+
+	.user_rows {
+		width:98px;
+		height:120px;
+		margin:0px -4px -4px 0px;
+		border-color:@blockBg;
+
+		.user_profile_link_span > a, .user_profile_link_span > a:hover {
+			background:@blockBg;
+		}
+	}
+}
+
+.user_rows:hover {
+	.user_profile_link_span > a, .user_profile_link_span > a:hover {
+		color:@linkColor !important;
+		transition:@transition;
+	}
+}
+
 .user_rows {
 	display:inline-block;
 	margin:0px 4px 4px 0px;
@@ -203,6 +225,14 @@ a.item_bar_action:before {
 	position:relative;
 	background:@blockBg;
 	border:1px darken(@blockBg, 10%) solid;
+
+	.user_rows_image {
+		img {
+			width:100%;
+			height:100%;
+			background-size:contain;
+		}
+	}
 
 	.user_profile_link_span > a, .user_profile_link_span > a:hover {
 		position:absolute;

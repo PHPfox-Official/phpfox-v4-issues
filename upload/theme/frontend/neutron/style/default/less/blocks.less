@@ -21,6 +21,33 @@
 			font-size:@blockTitleSize;
 			font-weight:200;
 			letter-spacing:1px;
+
+			a, a:hover {
+				color:@blockTitleColor;
+				display:block;
+				position:relative;
+
+				> span {
+					display:block;
+					position:absolute;
+					font-size:@blockTitleSize - 4;
+					right:-1px;
+					top:-1px;
+					background:darken(@blockTitleBg, 5%);
+					padding:2px 6px;
+				}
+			}
+
+			a:hover {
+				color:@linkColor;
+				transition:@transition;
+
+				> span {
+					transition:@transition;
+					background:@brandPrimary;
+					color:@brandPrimaryColor;
+				}
+			}
 		}
 
 		> .content {

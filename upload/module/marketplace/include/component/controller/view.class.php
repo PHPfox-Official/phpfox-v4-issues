@@ -93,7 +93,16 @@ class Marketplace_Component_Controller_View extends Phpfox_Component
 				'report_module' => 'marketplace',
 				'report_phrase' => Phpfox::getPhrase('marketplace.report_this_listing_lowercase')
 			)
-		);			
+		);
+
+		$sExchangeRate = '';
+		if ($aListing['currency_id'] != Phpfox::getService('core.currency')->getDefault())
+		{
+			if (($sAmount = Phpfox::getService('core.currency')->getXrate($aListing['currency_id'], $aListing['price'])))
+			{
+				$sExchangeRate .= ' (' . Phpfox::getService('core.currency')->getCurrency($sAmount) . ')';
+			}
+		}
 		
 		$this->template()->setTitle($aListing['title'] . ($aListing['view_id'] == '2' ? ' (' . Phpfox::getPhrase('marketplace.sold') . ')' : ''))
 			->setBreadcrumb(Phpfox::getPhrase('marketplace.marketplace'), $this->url()->makeUrl('marketplace'))
@@ -121,7 +130,7 @@ class Marketplace_Component_Controller_View extends Phpfox_Component
 					'switch_menu.js' => 'static_script',
 					'view.js' => 'module_marketplace',
 					'view.css' => 'module_marketplace',
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'feed.js' => 'module_feed'
 				)
 			)			
@@ -132,7 +141,9 @@ class Marketplace_Component_Controller_View extends Phpfox_Component
 			)
 			->assign(array(
 					'aListing' => $aListing,
-					'sMicroPropType' => 'Product'
+					'sMicroPropType' => 'Product',
+					'aImages' => Phpfox::getService('marketplace')->getImages($aListing['listing_id']),
+					'sListingPrice' => ($aListing['price'] == '0.00' ? Phpfox::getPhrase('marketplace.free') : Phpfox::getService('core.currency')->getCurrency(number_format($aListing['price'], 2), $aListing['currency_id'])) . $sExchangeRate . ($aListing['view_id'] == '2' ? ' (' . Phpfox::getPhrase('marketplace.sold') . ')' : '')
 				)
 			);
 		if (Phpfox::isModule('rate'))

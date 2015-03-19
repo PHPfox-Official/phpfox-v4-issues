@@ -21,28 +21,11 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/if}
 		{if (isset($aEditBar) && Phpfox::isUser())}
 			<div class="js_edit_header_bar">
-				<a href="#" title="{phrase var='core.edit_this_block'}" onclick="$.ajaxCall('{$aEditBar.ajax_call}', 'block_id={$sBlockBorderJsId}{if isset($aEditBar.params)}{$aEditBar.params}{/if}'); return false;">{img theme='misc/application_edit.png' alt='' class='v_middle'}</a>				
+				<a href="#" title="{phrase var='core.edit_this_block'}" onclick="$.ajaxCall('{$aEditBar.ajax_call}', 'block_id={$sBlockBorderJsId}{if isset($aEditBar.params)}{$aEditBar.params}{/if}'); return false;">
+					<i class="fa fa-edit"></i>
+				</a>
 			</div>
 		{/if}
-		{if true || isset($sDeleteBlock)}
-			<div class="js_edit_header_bar js_edit_header_hover" style="display:none;">
-				{if Phpfox::getService('theme')->isInDnDMode() && ( (isset($bCanMove) && $bCanMove) || !isset($bCanMove) )}
-					<a href="#" onclick="if (confirm('{phrase var='core.are_you_sure' phpfox_squote=true}')){left_curly}
-					$(this).parents('.block:first').remove(); $.ajaxCall('core.removeBlockDnD', 'sController=' + oParams['sController'] 
-					+ '&amp;block_id={if isset($sDeleteBlock)}{$sDeleteBlock}{else} {$sBlockBorderJsId}{/if}');{right_curly} return false;"title="{phrase var='core.remove_this_block'}">
-						{img theme='misc/application_delete.png' alt='' class='v_middle'}
-					</a>
-				{else}				
-					{if ( (isset($bCanMove) && $bCanMove) || !isset($bCanMove) ) }
-						<a href="#" onclick="if (confirm('{phrase var='core.are_you_sure' phpfox_squote=true}')) {left_curly} $(this).parents('.block:first').remove();
-						$.ajaxCall('core.hideBlock', '{if isset($sCustomDesignId)}custom_item_id={$sCustomDesignId}&amp;{/if}sController=' + oParams['sController'] + '&amp;type_id={if isset($sDeleteBlock)}{$sDeleteBlock}{else} {$sBlockBorderJsId}{/if}&amp;block_id=' + $(this).parents('.block:first').attr('id')); {right_curly} return false;" title="{phrase var='core.remove_this_block'}">
-							{img theme='misc/application_delete.png' alt='' class='v_middle'}
-						</a>				
-					{/if}
-				{/if}
-			</div>
-			
-		{/if}		
 			{if empty($sHeader)}
 				{$sBlockShowName}
 			{else}

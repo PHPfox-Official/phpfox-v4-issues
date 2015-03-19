@@ -119,7 +119,7 @@ class Custom_Component_Block_Block extends Phpfox_Component
 			$sEditLink = '<div class="js_edit_header_bar">';
 			$sEditLink .= '<span id="js_custom_loader_' . $aData['field_id'] . '" style="display:none;"><img src="' . $this->template()->getStyle('image', 'ajax/small.gif') . '" alt="" class="v_middle" /></span>';			
 			$sEditLink .= '<a href="#" onclick="' . $sJsClick . '" id="js_custom_link_' . $aData['field_id'] . '">';
-			$sEditLink .= '<img src="' . $this->template()->getStyle('image', 'misc/page_white_edit.png') . '" alt="" class="v_middle" />';
+			$sEditLink .= '<i class="fa fa-edit"></i>';
 			$sEditLink .= '</a>';			
 			$sEditLink .= '</div>';
 		}

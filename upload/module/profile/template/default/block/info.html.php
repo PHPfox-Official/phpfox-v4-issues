@@ -14,16 +14,6 @@ defined('PHPFOX') or exit('NO DICE!');
 {if !PHPFOX_IS_AJAX}
 <div id="js_basic_info_data">
 {/if}
-{if !Phpfox::isMobile() && Phpfox::isModule('rate') && Phpfox::getParam('profile.can_rate_on_users_profile') && Phpfox::getService('user.privacy')->hasAccess('' . $aUser.user_id . '', 'rate.can_rate')}
-	<div class="info">
-		<div class="info_left">
-			{phrase var='profile.rating'}:
-		</div>	
-		<div class="info_right">
-			{module name='rate.display'}
-		</div>	
-	</div>
-{/if}	
 	{if Phpfox::getParam('user.enable_relationship_status') && $sRelationship != ''}
 	<div class="info">
 	    <div class="info_left">

@@ -55,10 +55,13 @@
 			text-indent:32px;
 		}
 
-		> div > span > img {
+		> div > span > i {
 			position:absolute;
-			left:2px;
+			left:8px;
 			top:10px;
+			color:@formColor;
+			font-size:14px;
+			cursor:move;
 		}
 	}
 }
@@ -69,11 +72,21 @@
 	width:100%;
 	background:lighten(@formBg, 6%);
 	border:@formBorder;
+	color:@formColor;
 
 	a, a:hover {
 		display:table-cell;
 		width:50%;
 		text-align:center;
 		padding:4px;
+	}
+
+	a:hover {
+		background:@brandPrimary;
+		transition:@transition;
+
+		i {
+			color:@brandPrimaryColor !important;
+		}
 	}
 }

@@ -60,7 +60,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{module name='input.display' action='add-listing' module='marketplace' item_id=$aListing.listing_id}
 	{/if}
 	
-	<div class="item_view_content" itemprop="description">
+	<div class="item_view_content item_content" itemprop="description">
 		{$aListing.description|parse|split:70}
 	</div>
 </div>

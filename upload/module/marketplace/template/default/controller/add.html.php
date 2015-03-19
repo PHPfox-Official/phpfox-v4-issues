@@ -56,13 +56,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="mini_description">{phrase var='marketplace.short_description'}:</label>
 			</div>
 			<div class="table_right">
-				<div class="go_left">
-					<textarea cols="40" rows="5" name="val[mini_description]" style="height:40px;">{value type='textarea' id='mini_description'}</textarea>
-				</div>
-				<div>
-					<span class="extra_info">({phrase var='marketplace.html_not_allowed'})</span>
-				</div>
-				<div class="clear"></div>
+				<textarea cols="40" rows="5" name="val[mini_description]" style="height:40px;">{value type='textarea' id='mini_description'}</textarea>
 			</div>
 		</div>			
 
@@ -77,7 +71,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		
 		<div class="table">
 			<div class="table_left">
-			{required}<label for="price">{phrase var='marketplace.price'}:</label>
+				{required}<label for="price">{phrase var='marketplace.price'}:</label>
 			</div>
 			<div class="table_right">
 				<select name="val[currency_id]">
@@ -85,7 +79,9 @@ defined('PHPFOX') or exit('NO DICE!');
 					<option value="{$sCurrency}"{if $bIsEdit} {value type='select' id='currency_id' default=$sCurrency}{else}{if $aCurrency.is_default} selected="selected"{/if}{/if}>{phrase var=$aCurrency.name}</option>
 				{/foreach}
 				</select>
-				<input type="text" name="val[price]" value="{value type='input' id='price'}" id="price" size="10" maxlength="100" onfocus="this.select();" />			
+				<div class="p_top_8">
+					<input type="text" name="val[price]" value="{value type='input' id='price'}" id="price" size="10" maxlength="100" onfocus="this.select();" />
+				</div>
 			</div>
 		</div>	
 		
@@ -189,7 +185,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{module name='privacy.form' privacy_name='privacy' privacy_info='marketplace.control_who_can_see_this_listing' default_privacy='marketplace.display_on_profile'}
 			</div>			
 		</div>
-		<div class="table">
+		<div class="table" style="display:none;">
 			<div class="table_left">
 				{phrase var='marketplace.comment_privacy'}:
 			</div>

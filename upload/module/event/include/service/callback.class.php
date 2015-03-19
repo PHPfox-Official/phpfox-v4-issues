@@ -972,13 +972,11 @@ class Event_Service_Callback extends Phpfox_Service
 					'server_id' => $aRow['server_id'],
 					'path' => 'event.url_image',
 					'file' => $aRow['image_path'],
-					'suffix' => '_120',
-					'max_width' => 120,
-					'max_height' => 120					
+					'suffix' => ''
 				)
 			);
 			
-			$aReturn['feed_image'] = $sImage;
+			$aReturn['feed_image_banner'] = $sImage;
 		}		
 		
 		if ($bIsChildItem)

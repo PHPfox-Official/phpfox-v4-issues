@@ -245,7 +245,19 @@ class Phpfox_Image_Helper
 						}					
 					}		
 					
-					$sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/' . $sGender . 'profile' . $sImageSuffix . '.png');
+					// $sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/' . $sGender . 'profile' . $sImageSuffix . '.png');
+
+					$name = $aParams['user'][$sSuffix . 'full_name'];
+					$parts = explode(' ', $name);
+					$first = $name[0];
+					$last = $name[1];
+					if (isset($parts[1])) {
+						$last = $parts[1][0];
+					}
+
+					$image = '<a href="' . $sLink . '" class="no_image_user _size_' . $sImageSuffix . ' _gender_' . $sGender . ' _first_' . $first . '"><span>' . $first . $last . '</span></a>';
+
+					return $image;
 				}
 				else 
 				{

@@ -41,14 +41,15 @@ class Friend_Component_Block_Profile_Small extends Phpfox_Component
 		$sFriendsLink = Phpfox::getService('user')->getLink($aUser['user_id'], $aUser['user_name'], 'friend');
 
 		$this->template()->assign(array(
-				'sHeader' => '<a href="' . $this->url()->makeUrl($aUser['user_name'], 'friend') . '">' . Phpfox::getPhrase('friend.friends') . ' (' . $aUser['total_friend'] . ')</a>',
+				'sHeader' => '<a href="' . $this->url()->makeUrl($aUser['user_name'], 'friend') . '">' . Phpfox::getPhrase('friend.friends') . '<span>' . $aUser['total_friend'] . '</span></a>',
 				'aFriends' => $aRows,
 				'sFriendsLink' => $sFriendsLink,
 				'sBlockJsId' => 'profile_friend',
-				'aFriendLists' => Phpfox::getService('friend.list')->getListForProfile($aUser['user_id'])			
+				// 'aFriendLists' => Phpfox::getService('friend.list')->getListForProfile($aUser['user_id'])
 			)
 		);
-		
+
+		/*
 		if (Phpfox::getUserParam('friend.can_remove_friends_from_profile') && $aUser['user_id'] == Phpfox::getUserId())
 		{
 			$this->template()->assign(array(
@@ -60,7 +61,8 @@ class Friend_Component_Block_Profile_Small extends Phpfox_Component
 			);
 			
 			$this->template()->assign('sDeleteBlock', 'profile');
-		}		
+		}
+		*/
 		
 		return 'block';
 	}

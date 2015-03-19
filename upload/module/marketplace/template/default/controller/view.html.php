@@ -41,6 +41,38 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 
 <div class="item_view">
+
+	<div class="item_info">
+		<span class="listing_view_price" itemprop="price">{$sListingPrice}</span>
+		{if $aListing.user_id != Phpfox::getUserId()}
+		<div class="listing_purchase">
+			<a href="#" class="marketplace_contact_seller" onclick="$Core.composeMessage({l}user_id: {$aListing.user_id}{r}); return false;">{phrase var='marketplace.contact_seller'}</a>
+
+			{if ($aListing.is_sell && $aListing.view_id != '2' && $aListing.price != '0.00')}
+			<div class="marketplace_price_holder_button">
+				<form method="post" action="{url link='marketplace.purchase'}">
+					<div><input type="hidden" name="id" value="{$aListing.listing_id}" /></div>
+					<input type="submit" value="{phrase var='marketplace.buy_it_now'}" class="button" />
+				</form>
+			</div>
+			{/if}
+		</div>
+		{/if}
+	</div>
+
+	{if $aImages}
+	<div class="listing_view_images">
+		<div class="_main">
+			{img server_id=$aListing.server_id title=$aListing.title path='marketplace.url_image' file=$aListing.image_path suffix='_400'}
+		</div>
+		<div class="_thumbs">
+			{foreach from=$aImages item=aImage}
+			{img server_id=$aImage.server_id path='marketplace.url_image' file=$aImage.image_path suffix='_120_square'}
+			{/foreach}
+			{/if}
+		</div>
+	</div>
+
 	{module name='marketplace.info'}
 
 	{plugin call='marketplace.template_default_controller_view_extra_info'}

@@ -20,6 +20,7 @@
 }
 
 .profiles_banner {
+	margin-top:-20px;
 	min-height:155px;
 	position:relative;
 
@@ -99,7 +100,6 @@
 }
 
 .profiles_action {
-	border-left:1px darken(@blockBg, 8%) solid;
 	position:absolute;
 	right:0px;
 	top:0px;
@@ -142,7 +142,8 @@
 				}
 			}
 
-			display:inline-block;
+			float:left;
+			display:block;
 			position:relative;
 
 			> a, > a:hover {
@@ -151,6 +152,7 @@
 				line-height:50px;
 				font-size:20px;
 				padding:0px 10px;
+				border-left:1px darken(@blockBg, 8%) solid;
 
 				i {
 					color:darken(@blockColor, 4%);
@@ -167,5 +169,20 @@
 				}
 			}
 		}
+	}
+}
+
+.pages_view_sub_menu {
+	border:0px;
+	font-size:@fontSizeBase - 1;
+	padding:0px;
+
+	a, a:hover {
+		color:darken(@blockBg, 30%);
+	}
+
+	a:hover {
+		color:@linkColor;
+		transition:@transition;
 	}
 }

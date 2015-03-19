@@ -106,7 +106,7 @@ class Marketplace_Service_Browse extends Phpfox_Service
 				->order($this->_sOrder)
 				->limit($this->_iPage, $this->_iPageSize, $this->_iCnt)
 				->execute('getSlaveRows');
-				
+
 			if (Phpfox::getLib('request')->get('view') == 'sold')
 			{
 				foreach ($this->_aListings as $iKey => $aListing)
@@ -120,7 +120,7 @@ class Marketplace_Service_Browse extends Phpfox_Service
 	}
 	
 	public function processRows(&$aRows)
-	{		
+	{
 		foreach ($aRows as $iKey => $aListing)
 		{				
 			$aRows[$iKey]['aFeed'] = array(			
@@ -152,6 +152,11 @@ class Marketplace_Service_Browse extends Phpfox_Service
 	public function query()
 	{
 		$this->database()->select('mt.description_parsed AS description, ')->join(Phpfox::getT('marketplace_text'), 'mt', 'mt.listing_id = l.listing_id');
+		$this->database()
+			->select('mc.name AS category_name, ')
+			->leftJoin(Phpfox::getT('marketplace_category_data'), 'mcd', 'mcd.listing_id = l.listing_id')
+			->leftJoin(Phpfox::getT('marketplace_category'), 'mc', 'mc.category_id = mcd.category_id');
+
 		if (Phpfox::isUser() && Phpfox::isModule('like'))
 		{
 			$this->database()->select('lik.like_id AS is_liked, ')

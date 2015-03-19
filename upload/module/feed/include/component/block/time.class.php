@@ -48,18 +48,18 @@ class Feed_Component_Block_Time extends Phpfox_Component
 		
 		if (defined('PHPFOX_IS_PAGES_VIEW'))
 		{			
-			$aUser['birthday_search'] = Phpfox::getService('feed')->getOldPost($aUser['page_id']);
+			$aUser['birthday_search'] = Feed_Service_Feed::instance()->getOldPost($aUser['page_id']);
 		}
 
-		//$aTimeline = Phpfox::getService('feed')->getTimeLineYears($aUser['user_id'], $aUser['birthday_search']);
+		//$aTimeline = Feed_Service_Feed::instance()->getTimeLineYears($aUser['user_id'], $aUser['birthday_search']);
 
 		if(isset($aUser['birthday']) && $aUser['birthday'] == null)
 		{
-			$aTimeline = Phpfox::getService('feed')->getTimeLineYears($aUser['user_id'], $aUser['joined']);
+			$aTimeline = Feed_Service_Feed::instance()->getTimeLineYears($aUser['user_id'], $aUser['joined']);
 		}
 		else
 		{
-			$aTimeline = Phpfox::getService('feed')->getTimeLineYears($aUser['user_id'], $aUser['birthday_search']);
+			$aTimeline = Feed_Service_Feed::instance()->getTimeLineYears($aUser['user_id'], $aUser['birthday_search']);
 		}
 		
 		$this->template()->assign(array(

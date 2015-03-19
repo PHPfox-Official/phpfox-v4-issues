@@ -168,7 +168,7 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 		
 		if (!isset($aFeed['feed_like_phrase']) && Phpfox::isModule('like'))
 		{
-			Phpfox::getService('feed')->getPhraseForLikes($aFeed);
+			Feed_Service_Feed::instance()->getPhraseForLikes($aFeed);
 		}
 		$this->template()->assign(array(
 				'aFeed' => $aFeed,

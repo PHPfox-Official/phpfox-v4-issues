@@ -63,7 +63,7 @@ class Feed_Component_Controller_View_Mobile extends Phpfox_Component
 			}
 		}
 		
-		list($iFeedCount, $aFeeds) = Phpfox::getService('feed')->get(null, $this->request()->getInt('id'), 1);
+		list($iFeedCount, $aFeeds) = Feed_Service_Feed::instance()->get(null, $this->request()->getInt('id'), 1);
 		
 		$iCommentCnt = 0;
 		$aComments = array();

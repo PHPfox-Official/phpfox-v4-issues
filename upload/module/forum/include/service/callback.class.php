@@ -139,7 +139,7 @@ class Forum_Service_Callback extends Phpfox_Service
 				'user_link' => $oUrl->makeUrl('feed.user', array('id' => $aRow['user_id'])),
 				'owner_full_name' => $this->preParse()->clean($aRow['owner_full_name']),
 				'title_link' => $aRow['link'],
-				'title' => Phpfox::getService('feed')->shortenTitle($aRow['content'])
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aRow['content'])
 			)
 		);		
 		
@@ -429,7 +429,7 @@ class Forum_Service_Callback extends Phpfox_Service
 				'user_link' => $oUrl->makeUrl('feed.user', array('id' => $aRow['user_id'])),
 				'full_name' => $this->preParse()->clean($aRow['owner_full_name']),
 				'thread_link' => $aRow['link'],
-				'title' => Phpfox::getService('feed')->shortenTitle($aParts['thread_title'])
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aParts['thread_title'])
 			)
 		);		
 		

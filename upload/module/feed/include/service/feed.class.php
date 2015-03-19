@@ -1083,7 +1083,7 @@ class Feed_Service_Feed extends Phpfox_Service
 	{
 		$oAjax = Phpfox::getLib('ajax');
 				
-		$aFeeds = Phpfox::getService('feed')->get(Phpfox::getUserId(), $iId);
+		$aFeeds = Feed_Service_Feed::instance()->get(Phpfox::getUserId(), $iId);
 		
 		if (!isset($aFeeds[0]))
 		{

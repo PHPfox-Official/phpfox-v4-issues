@@ -431,7 +431,7 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 			
 			if(Phpfox::isModule('like') && Phpfox::isModule('feed'))
 			{
-				$aThread['posts'][$iKey]['aFeed']['feed_like_phrase'] = Phpfox::getService('feed')->getPhraseForLikes($aThread['posts'][$iKey]['aFeed']);
+				$aThread['posts'][$iKey]['aFeed']['feed_like_phrase'] = Feed_Service_Feed::instance()->getPhraseForLikes($aThread['posts'][$iKey]['aFeed']);
 			}
 			
 			if ($aPost['total_attachment'])

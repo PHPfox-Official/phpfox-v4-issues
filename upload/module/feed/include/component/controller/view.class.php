@@ -27,7 +27,7 @@ class Feed_Component_Controller_View extends Phpfox_Component
 		}
 		
 		// Get the feed Link
-		$mLink = Phpfox::getService('feed')->getRedirect($iId);
+		$mLink = Feed_Service_Feed::instance()->getRedirect($iId);
 		
 		// Is this an actual feed or not?
 		if ($mLink === false)

@@ -207,7 +207,7 @@ class Photo_Service_Callback extends Phpfox_Service
 				'owner_full_name' => $aRow['owner_full_name'],
 				'owner_link' => Phpfox::getLib('url')->makeUrl('feed.user', array('id' => $aRow['owner_user_id'])),
 				'total' => count($aRow['photo_images']),
-				'album_name' => Phpfox::getService('feed')->shortenTitle($aRow['album_name']),
+				'album_name' => Feed_Service_Feed::instance()->shortenTitle($aRow['album_name']),
 				'photo_images' => $aRow['photo_images'],
 				'link' => $aRow['link'],
 				'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1)
@@ -447,7 +447,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			}
 		}		
 					
-		$aRow['text'] .= '<div class="p_4"><div class="go_left">' . $sImage . '</div><div style="margin-left:75px;">' . Phpfox::getService('feed')->quote($aRow['content']) . '</div><div class="clear"></div></div>';
+		$aRow['text'] .= '<div class="p_4"><div class="go_left">' . $sImage . '</div><div style="margin-left:75px;">' . Feed_Service_Feed::instance()->quote($aRow['content']) . '</div><div class="clear"></div></div>';
 		
 		return $aRow;
 	}

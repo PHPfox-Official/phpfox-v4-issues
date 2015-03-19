@@ -157,7 +157,7 @@ class Music_Service_Callback extends Phpfox_Service
 			}
 		}
 		
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aRow['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aRow['content']);
 		
 		return $aRow;
 	}	
@@ -404,7 +404,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 			}
 		}
 
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aRow['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aRow['content']);
 		
 		return $aRow;
 	}	
@@ -664,7 +664,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		$aRow['text'] = Phpfox::getPhrase('music.full_name_uploaded_a_new_song', array(
 				'full_name' => $this->preParse()->clean($aRow['owner_full_name']),
 				'profile_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
-				'title' => Phpfox::getService('feed')->shortenTitle($aRow['content']),
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aRow['content']),
 				'link' => $aRow['link']
 			)
 		);
@@ -682,8 +682,8 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		$aRow['text'] = Phpfox::getPhrase('music.full_name_uploaded_a_new_song_to_the_album', array(
 				'full_name' => $this->preParse()->clean($aRow['owner_full_name']),
 				'profile_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
-				'title' => Phpfox::getService('feed')->shortenTitle($aContent['title']),
-				'album_title' => Phpfox::getService('feed')->shortenTitle($aContent['album']['name']),
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aContent['title']),
+				'album_title' => Feed_Service_Feed::instance()->shortenTitle($aContent['album']['name']),
 				'album_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name'], array('music', $aContent['album']['name_url'])),
 				'link' => $aRow['link']
 			)

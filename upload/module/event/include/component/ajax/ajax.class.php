@@ -290,7 +290,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			Phpfox::getLib('database')->updateCounter('event', 'total_comment', 'event_id', $aEvent['event_id']);		
 			
-			Phpfox::getService('feed')->callback($aCallback)->processAjax($iId);
+			Feed_Service_Feed::instance()->callback($aCallback)->processAjax($iId);
 		}
 		else 
 		{

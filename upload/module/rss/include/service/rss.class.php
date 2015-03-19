@@ -111,7 +111,7 @@ class Rss_Service_Rss extends Phpfox_Service
 	
 	public function getUserFeed(&$aUser)
 	{
-		$aFeeds = Phpfox::getService('feed')->get($aUser['user_id']);
+		$aFeeds = Feed_Service_Feed::instance()->get($aUser['user_id']);
 
 		$oXmlBuilder = Phpfox::getLib('xml.builder');
 		$oXmlBuilder->setXml(array(

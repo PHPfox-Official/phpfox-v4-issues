@@ -252,7 +252,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 			}
 		}	
 			
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aRow['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aRow['content']);
 		
 		return $aRow;
 	}		

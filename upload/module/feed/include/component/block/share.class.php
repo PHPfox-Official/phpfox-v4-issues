@@ -30,7 +30,7 @@ class Feed_Component_Block_Share extends Phpfox_Component
 		/*
 		if ($this->request()->getInt('is_feed_view'))
 		{
-			if (($aFeed = Phpfox::getService('feed')->getForItem($this->request()->get('sharemodule'), $iFeedId)))
+			if (($aFeed = Feed_Service_Feed::instance()->getForItem($this->request()->get('sharemodule'), $iFeedId)))
 			{
 				$iFeedId = $aFeed['feed_id'];
 			}

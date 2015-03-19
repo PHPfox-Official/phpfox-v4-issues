@@ -82,7 +82,7 @@ class Feed_Service_Callback extends Phpfox_Service
 			);
 		}
 		
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aRow['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aRow['content']);
 		
 		return $aRow;
 	}

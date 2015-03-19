@@ -336,11 +336,11 @@ class Event_Service_Callback extends Phpfox_Service
 				'user_name' => $aRow['owner_full_name'],
 				'user_link' => $oUrl->makeUrl('feed.user', array('id' => $aRow['user_id'])),	
 				'title_link' => $aRow['link'],		
-				'title' => Phpfox::getService('feed')->shortenTitle($aParts['title'])
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aParts['title'])
 			)
 		);
 			
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aParts['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aParts['content']);
 		
 		return $aRow;
 	}	
@@ -385,7 +385,7 @@ class Event_Service_Callback extends Phpfox_Service
 				'user_link' => $oUrl->makeUrl('feed.user', array('id' => $aRow['user_id'])),
 				'owner_full_name' => $aRow['owner_full_name'],
 				'title_link' => $aRow['link'],
-				'title' => Phpfox::getService('feed')->shortenTitle($aRow['content'])
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aRow['content'])
 			)
 		);
 		

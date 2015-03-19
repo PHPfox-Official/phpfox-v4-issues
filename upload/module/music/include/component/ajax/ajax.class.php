@@ -384,7 +384,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
  		$aVideo = Phpfox::getService('music')->getForEdit($this->get('song_id'), true);	 		
 
-		Phpfox::getService('feed')->processAjax($this->get('id'));
+		Feed_Service_Feed::instance()->processAjax($this->get('id'));
 	}	
 }
 

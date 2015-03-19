@@ -161,7 +161,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 				else
 				{
 					// egift is free
-					Phpfox::getService('feed')->processAjax($iId);
+					Feed_Service_Feed::instance()->processAjax($iId);
 				}
 			}
 			
@@ -170,7 +170,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 		{			
 			if (isset($aVals['user_status']) && ($iId = Phpfox::getService('feed.process')->addComment($aVals)))
 			{
-				Phpfox::getService('feed')->processAjax($iId);		
+				Feed_Service_Feed::instance()->processAjax($iId);
 			}
 			else 
 			{
@@ -229,7 +229,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 			// http://www.phpfox.com/tracker/view/14864/
 			if(Phpfox::getParam('feed.refresh_activity_feed') > 0)
 			{
-				$aRows = Phpfox::getService('feed')->get(null, null, 0);
+				$aRows = Feed_Service_Feed::instance()->get(null, null, 0);
 				$aFeed = array_pop($aRows);
 				
 				$this->template()->assign(array(
@@ -255,7 +255,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function getCommentText()
 	{
-		$aRow = Phpfox::getService('feed')->getFeed($this->get('feed_id'));	
+		$aRow = Feed_Service_Feed::instance()->getFeed($this->get('feed_id'));
 
 		(($sPlugin = Phpfox_Plugin::get('feed.component_ajax_getcommenttext')) ? eval($sPlugin) : false);
 		
@@ -297,7 +297,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		if (Phpfox::getService('feed.process')->like($this->get('feed_id'), $this->get('type_id')))
 		{
-			list($aLikesCount, $aLikes) = Phpfox::getService('feed')->getLikeForFeed($this->get('feed_id'));
+			list($aLikesCount, $aLikes) = Feed_Service_Feed::instance()->getLikeForFeed($this->get('feed_id'));
 			
 			if (count($aLikes))
 			{
@@ -331,7 +331,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 	public function reloadActivityFeed()
 	{
         $aParts = explode(',', $this->get('reload-ids'));
-		$aRows = Phpfox::getService('feed')->get(null, null, 0);
+		$aRows = Feed_Service_Feed::instance()->get(null, null, 0);
 		
 		$iNewCnt = 0;
 		$sLoadIds = '';
@@ -367,7 +367,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
     
     public function appendMore()
     {	
-		$aRows = Phpfox::getService('feed')->get();
+		$aRows = Feed_Service_Feed::instance()->get();
 		
 		$sCustomIds = '';
 		foreach ($aRows as $aRow)

@@ -1856,6 +1856,18 @@ a.not_active:hover {
 .js_user_tool_tip_holder .js_user_tool_tip_body a:hover {
   color: #298ada;
 }
+#js_global_tooltip {
+  background: transparent;
+  padding: 0px;
+}
+#js_global_tooltip_display {
+  background: #0c0c0c;
+  color: #f1f1f1;
+  padding: 0px 8px;
+  border-radius: 0px;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.4);
+  font-size: 12px;
+}
 .pager_view_more_link a,
 .pager_view_more_link a:hover {
   display: block;

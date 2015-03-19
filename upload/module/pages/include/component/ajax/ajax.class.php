@@ -126,7 +126,7 @@ class Pages_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			Phpfox::getLib('database')->updateCounter('pages', 'total_comment', 'page_id', $aPage['page_id']);		
 			
-			Phpfox::getService('feed')->callback($aCallback)->processAjax($iId);
+			Feed_Service_Feed::instance()->callback($aCallback)->processAjax($iId);
 		}
 		else 
 		{

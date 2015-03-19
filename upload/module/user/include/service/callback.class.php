@@ -237,7 +237,7 @@ class User_Service_Callback extends Phpfox_Service
 		if ($sPlugin = Phpfox_Plugin::get('user.service_callback_getnewsfeedstatus_start')){eval($sPlugin);}
 		$oParseOutput = Phpfox::getLib('parse.output');
 
-		$aRow['text'] = '<a href="' . Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']) . '">' . $aRow['owner_full_name'] . '</a> ' . Phpfox::getService('feed')->shortenText($oParseOutput->clean($aRow['content'])) . '';
+		$aRow['text'] = '<a href="' . Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']) . '">' . $aRow['owner_full_name'] . '</a> ' . Feed_Service_Feed::instance()->shortenText($oParseOutput->clean($aRow['content'])) . '';
 		$aRow['icon'] = 'misc/user_feed.png';
 		$aRow['enable_like'] = true;
 

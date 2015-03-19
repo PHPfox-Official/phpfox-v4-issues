@@ -435,7 +435,7 @@ class Like_Service_Like extends Phpfox_Service
 		$aFeed = array('likes' => $aLikes);
 		$aFeed['type_id'] = $sType;
 		$aFeed['item_id'] = $iItem;
-		$sLikePhrase = Phpfox::getService('feed')->getPhraseForLikes($aFeed);
+		$sLikePhrase = Feed_Service_Feed::instance()->getPhraseForLikes($aFeed);
 		
 		$aDislikes = $this->getActionsFor($sType, $iItem);
 		

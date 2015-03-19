@@ -36,7 +36,7 @@ class Feed_Service_Api extends Phpfox_Service
 		define('PHPFOX_SKIP_LOOP_MAX_COUNT', true);
 		
 		$aFeeds = array();
-		$aFeedRows = Phpfox::getService('feed')->get($this->_oApi->get('user_id'), null, $this->_oApi->get('page'));
+		$aFeedRows = Feed_Service_Feed::instance()->get($this->_oApi->get('user_id'), null, $this->_oApi->get('page'));
 		foreach ($aFeedRows as $iKey => $aFeedRow)
 		{
 			foreach ($aFeedRow as $sKey => $mValue)

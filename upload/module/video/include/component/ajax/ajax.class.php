@@ -549,7 +549,7 @@ class Video_Component_Ajax_Ajax extends Phpfox_Ajax
 			$aCallback = Phpfox::callback($aVideo['module_id'] . '.convertVideo', $aVideo);	
 		}	 		
 
-		Phpfox::getService('feed')->callback($aCallback)->processAjax($this->get('id'));
+		Feed_Service_Feed::instance()->callback($aCallback)->processAjax($this->get('id'));
 	}
 	
 	public function supportedSites()

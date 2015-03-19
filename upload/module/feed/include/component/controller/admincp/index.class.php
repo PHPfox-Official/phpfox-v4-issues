@@ -92,7 +92,7 @@ class Feed_Component_Controller_Admincp_Index extends Phpfox_Component
 		
 		$oSearch->setCondition('AND feed.view_id = 1');
 
-		list($iCnt, $aFeeds) = Phpfox::getService('feed')->getForBrowse($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $oSearch->getDisplay());		
+		list($iCnt, $aFeeds) = Feed_Service_Feed::instance()->getForBrowse($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $oSearch->getDisplay());
 		
 		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $oSearch->getDisplay(), 'count' => $oSearch->getSearchTotal($iCnt)));		
 		

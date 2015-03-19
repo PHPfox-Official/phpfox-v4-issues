@@ -93,7 +93,7 @@ class Ad_Component_Controller_Sponsor extends Phpfox_Component
 			// http://www.phpfox.com/tracker/view/15061/
 			$this->template()->assign(array('sFormerModule' => $this->request()->get('section')));
 			// get "feed" item_id instead of original "module name" item_id
-			$aNewItemId = Phpfox::getService('feed')->getForItem($this->request()->get('section'), $this->request()->getInt('item'));
+			$aNewItemId = Feed_Service_Feed::instance()->getForItem($this->request()->get('section'), $this->request()->getInt('item'));
 			if(!empty($aNewItemId))
 			{
 				// correct "feed" item_id

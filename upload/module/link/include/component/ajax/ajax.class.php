@@ -67,7 +67,7 @@ class Link_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			(($sPlugin = Phpfox_Plugin::get('link.component_ajax_addviastatusupdate')) ? eval($sPlugin) : false);
 			
-			Phpfox::getService('feed')->callback($aCallback)->processAjax($iId);		
+			Feed_Service_Feed::instance()->callback($aCallback)->processAjax($iId);
 		}		
 	}
 	

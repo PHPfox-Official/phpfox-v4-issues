@@ -656,7 +656,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 				}
 				else
 				{
-					Phpfox::getService('feed')->callback($aCallback)->processAjax($iFeedId);
+					Feed_Service_Feed::instance()->callback($aCallback)->processAjax($iFeedId);
 
 					(($sPlugin = Phpfox_Plugin::get('photo.component_ajax_process_done')) ? eval($sPlugin) : false);
 

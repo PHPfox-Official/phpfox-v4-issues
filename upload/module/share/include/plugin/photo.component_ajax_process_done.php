@@ -1,5 +1,5 @@
 <?php
-$aFeed = Phpfox::getService('feed')->get(Phpfox::getUserId(), $iFeedId);
+$aFeed = Feed_Service_Feed::instance()->get(Phpfox::getUserId(), $iFeedId);
 
 if (isset($aFeed[0]) && isset($aFeed[0]['feed_id']))
 {

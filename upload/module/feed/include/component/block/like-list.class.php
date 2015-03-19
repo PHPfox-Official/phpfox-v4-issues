@@ -20,7 +20,7 @@ class Feed_Component_Block_Like_List extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aLikes = Phpfox::getService('feed')->getLikes($this->request()->get('feed_id'));
+		$aLikes = Feed_Service_Feed::instance()->getLikes($this->request()->get('feed_id'));
 		
 		if (!count($aLikes))
 		{

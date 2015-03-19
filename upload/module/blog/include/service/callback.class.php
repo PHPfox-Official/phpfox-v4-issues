@@ -337,7 +337,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		$aRow['text'] = Phpfox::getPhrase('blog.owner_full_name_added_a_new_blog_a_href_title_link_title_a',
 			array(
 				'owner_full_name' => $aRow['owner_full_name'], 
-				'title' => Phpfox::getService('feed')->shortenTitle($aRow['content']), 
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aRow['content']),
 				'user_link' => $oUrl->makeUrl('feed.user', array('id' => $aRow['user_id'])),
 				'title_link' => $aRow['link']				
 			)
@@ -388,7 +388,7 @@ class Blog_Service_Callback extends Phpfox_Service
 			);
 		}
 		
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aRow['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aRow['content']);
 		(($sPlugin = Phpfox_Plugin::get('blog.component_service_callback_getcommentnewsfeed__end')) ? eval($sPlugin) : false);
 		return $aRow;
 	}	

@@ -100,7 +100,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 			}
 		}
 			
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aRow['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aRow['content']);
 		
 		return $aRow;
 	}		
@@ -201,7 +201,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 		
 		$aRow['text'] = Phpfox::getPhrase('bulletin.owner_full_name_added_a_new_bulletin', array(
 				'owner_full_name' => $aRow['owner_full_name'], 
-				'title' => Phpfox::getService('feed')->shortenTitle($aRow['content']), 
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aRow['content']),
 				'user_link' => $oUrl->makeUrl('feed.user', array('id' => $aRow['user_id'])), 
 				'title_link' => $aRow['link']
 			)

@@ -302,7 +302,7 @@ class Feed_Service_Process extends Phpfox_Service
 			}
 		}
 				
-		$aFeed = Phpfox::getService('feed')->callback($aCallback)->getFeed($iId);
+		$aFeed = Feed_Service_Feed::instance()->callback($aCallback)->getFeed($iId);
 		if (!isset($aFeed['feed_id']))
 		{			
 			return false;

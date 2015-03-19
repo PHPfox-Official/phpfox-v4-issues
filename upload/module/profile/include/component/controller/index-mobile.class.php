@@ -151,7 +151,7 @@ class Profile_Component_Controller_Index_Mobile extends Phpfox_Component
 		{
 			$iFeedPage = $this->request()->get('page', 1);
 			
-			list($iFeedCount, $aFeeds) = Phpfox::getService('feed')->get($aUser['user_id'], null, $iFeedPage);				
+			list($iFeedCount, $aFeeds) = Feed_Service_Feed::instance()->get($aUser['user_id'], null, $iFeedPage);
 			
 			if (!Phpfox::getService('user.privacy')->hasAccess($aUser['user_id'], 'feed.display_on_profile'))
 			{

@@ -281,7 +281,7 @@ class Group_Component_Controller_View extends Phpfox_Component
 			Phpfox::getService('notification.process')->delete('group_notifyLike', $aGroup['group_id'], Phpfox::getUserId());
 		}				
 		
-		Phpfox::getService('feed')->setTable(Phpfox::getT('group_feed'));
+		Feed_Service_Feed::instance()->setTable(Phpfox::getT('group_feed'));
 		
 		$this->template()->assign(array(
 					'bFeedIsParentItem' => true,

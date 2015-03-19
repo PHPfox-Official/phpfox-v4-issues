@@ -56,7 +56,7 @@ class Quiz_Service_Callback extends Phpfox_Service
 				'user_link' => $oUrl->makeUrl('feed.user', array('id' => $aRow['owner_user_id'])),
 				'full_name' => $this->preParse()->clean($aRow['owner_full_name']),
 				'question_url' => $aRow['link'],
-				'question' => Phpfox::getService('feed')->shortenTitle($aRow['content'])
+				'question' => Feed_Service_Feed::instance()->shortenTitle($aRow['content'])
 			)
 		);	
 		
@@ -151,7 +151,7 @@ class Quiz_Service_Callback extends Phpfox_Service
 			}
 		}		
 
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aRow['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aRow['content']);
 
 		return $aRow;
 	}

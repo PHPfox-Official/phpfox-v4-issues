@@ -177,32 +177,29 @@ class Feed_Component_Block_Display extends Phpfox_Component
 
 		$bStreamMode = true;
 		$bUseFeedForm = true;
-		if (Phpfox_Module::instance()->getFullControllerName() == 'core.index-member') {
+		if (
+			(Phpfox_Module::instance()->getFullControllerName() == 'core.index-member')
+			|| (defined('PHPFOX_CURRENT_TIMELINE_PROFILE') && PHPFOX_CURRENT_TIMELINE_PROFILE == Phpfox::getUserId())
+		) {
 			$bUseFeedForm = false;
 		}
-		/*
-		if (defined('PHPFOX_IS_PAGES_VIEW')) {
-			$bStreamMode = false;
-		}
-		*/
-
 
 		$bForceReloadOnPage = (PHPFOX_IS_AJAX ? false : Phpfox::getParam('feed.force_ajax_on_load'));
 		$aRows = array();
 		if (PHPFOX_IS_AJAX || !$bForceReloadOnPage || $bIsCustomFeedView)
 		{
-			$aRows = Phpfox::getService('feed')->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage, $bStreamMode);
+			$aRows = Feed_Service_Feed::instance()->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage, $bStreamMode);
 			
 			if (empty($aRows))
 			{
 				$iFeedPage++;
-				$aRows = Phpfox::getService('feed')->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage, $bStreamMode);
+				$aRows = Feed_Service_Feed::instance()->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage, $bStreamMode);
 			}
 		}
 		/*
 		else
 		{
-			$aRows = Phpfox::getService('feed')->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage);
+			$aRows = Feed_Service_Feed::instance()->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage);
 		}
 		*/
 		// d($aRows); exit;
@@ -253,7 +250,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		}
 
 		/*
-		$oFeed = Phpfox::getService('feed');
+		$oFeed = Feed_Service_Feed::instance();
 		foreach ($aRows as $iKey => $aRow)
 		{
 			if (!isset($aRow['feed_like_phrase']))
@@ -294,7 +291,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 				'iTotalFeedPages' => 1,
 				'aFeedVals' => $this->request()->getArray('val'),
 				'sCustomViewType' => $sCustomViewType,
-				'aFeedStatusLinks' => Phpfox::getService('feed')->getShareLinks(),
+				'aFeedStatusLinks' => Feed_Service_Feed::instance()->getShareLinks(),
 				'aFeedCallback' => $aFeedCallback,
 				'bIsCustomFeedView' => $bIsCustomFeedView,
 				'sTimelineYear' => $this->request()->get('year'),

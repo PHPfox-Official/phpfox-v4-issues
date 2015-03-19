@@ -34,7 +34,7 @@ class Core_Component_Controller_Index_Member_Mobile extends Phpfox_Component
 		
 		if (Phpfox::isModule('feed'))
 		{		
-			$aFeeds = Phpfox::getService('feed')->get(null, null, $iFeedPage);		
+			$aFeeds = Feed_Service_Feed::instance()->get(null, null, $iFeedPage);
 			
 			$iTotalFeeds = (int) Phpfox::getComponentSetting(Phpfox::getUserId(), 'feed.feed_display_limit_dashboard', Phpfox::getParam('feed.feed_display_limit'));
 			

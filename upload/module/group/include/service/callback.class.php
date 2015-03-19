@@ -283,7 +283,7 @@ class Group_Service_Callback extends Phpfox_Service
 			}
 		}	
 
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aRow['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aRow['content']);
 		
 		return $aRow;
 	}
@@ -322,7 +322,7 @@ class Group_Service_Callback extends Phpfox_Service
 				'user_link' => $oUrl->makeUrl('feed.user', array('id' => $aRow['user_id'])),
 				'owner_full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
 				'title_link' => $aRow['link'],
-				'title' => Phpfox::getService('feed')->shortenTitle($aRow['content'])
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aRow['content'])
 			)
 		);		
 

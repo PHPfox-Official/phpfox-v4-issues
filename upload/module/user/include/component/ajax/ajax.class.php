@@ -207,7 +207,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			(($sPlugin = Phpfox_Plugin::get('user.component_ajax_updatestatus')) ? eval($sPlugin) : false);
 			
-			Phpfox::getService('feed')->processAjax($iId);		
+			Feed_Service_Feed::instance()->processAjax($iId);
 		}
 		else 
 		{

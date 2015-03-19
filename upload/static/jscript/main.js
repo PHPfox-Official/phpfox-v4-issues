@@ -285,8 +285,7 @@ $Behavior.globalToolTip = function()
 		}
 		else
 		{
-			$('#js_global_tooltip').css('display', 'block');	
-			$('#js_global_tooltip').css('left', (offset.left - 10) + 'px');
+			$('#js_global_tooltip').css('display', 'block');
 			
 			if ($(this).find('.js_hover_info').length > 0)
 			{
@@ -306,11 +305,18 @@ $Behavior.globalToolTip = function()
 			
 			$('#js_global_tooltip').html('<div id="js_global_tooltip_display">' + sContent + '</div>');
 			$('#js_global_tooltip').css('top', (offset.top - ($('#js_global_tooltip_display').height() + 10)) + 'px');
+
+			var pos = ($(window).width() - (offset.left + $('#js_global_tooltip').width()));
+			if (pos < 10) {
+				offset.left = (offset.left - $('#js_global_tooltip').width()) + 20;
+			}
+
+			$('#js_global_tooltip').css('left', (offset.left - 10) + 'px');
 		}		
 	});
 	
 	$('.js_hover_title').mouseout(function()
-	{		
+	{
 		$('#js_global_tooltip').hide()
 			.html('')
 			.css('top', '0px')

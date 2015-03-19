@@ -336,7 +336,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 			}
 		}
 			
-		$aRow['text'] .= Phpfox::getService('feed')->quote($aRow['content']);
+		$aRow['text'] .= Feed_Service_Feed::instance()->quote($aRow['content']);
 		
 		return $aRow;
 	}	
@@ -369,7 +369,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		
 		$aRow['text'] = Phpfox::getPhrase('video.a_href_user_link_owner_full_name_a_added_a_new_video_a_href_title_link_title_a', array(
 				'owner_full_name' => $this->preParse()->clean($aRow['owner_full_name']),
-				'title' => Phpfox::getService('feed')->shortenTitle($aRow['content']),
+				'title' => Feed_Service_Feed::instance()->shortenTitle($aRow['content']),
 				'user_link' => $oUrl->makeUrl('feed.user', array('id' => $aRow['user_id'])),
 				'title_link' => $aRow['link']
 			)

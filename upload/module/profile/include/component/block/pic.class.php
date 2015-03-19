@@ -76,21 +76,12 @@ class Profile_Component_Block_Pic extends Phpfox_Component
 			'title' => $aUser['full_name'],
 			'path' => 'core.url_user',
 			'file' => $aUser['user_image'],
-			'suffix' => '_120_square',
-			'max_width' => 175,
-			'max_height' => 300,
+			'suffix' => '_200_square',
 			'no_default' => (Phpfox::getUserId() == $aUser['user_id'] ? false : true),
 			'thickbox' => true,
 			'class' => 'profile_user_image',
 			'no_link' => true
-		);	
-		
-		if (Phpfox::getService('profile')->timeline())
-		{
-			$aUserInfo['suffix'] = '_120_square';
-			unset($aUserInfo['max_width']);
-			unset($aUserInfo['max_height']);
-		}
+		);
 
 		(($sPlugin = Phpfox_Plugin::get('profile.component_block_pic_process')) ? eval($sPlugin) : false);
 		
@@ -100,11 +91,14 @@ class Profile_Component_Block_Pic extends Phpfox_Component
 				'sProfileImage' => $sImage
 			)
 		);
-		
-		if (defined('PHPFOX_IN_DESIGN_MODE') && !Phpfox::getService('profile')->timeline())
-		{
-			return 'block';
-		}
+
+		$bCanSendPoke = Phpfox::isModule('poke') && Phpfox::getService('poke')->canSendPoke($aUser['user_id']);
+		$aCoverPhoto = Phpfox::getService('photo')->getCoverPhoto($aUser['cover_photo']);
+		$this->template()->assign(array(
+				'bCanPoke' => $bCanSendPoke,
+				'aCoverPhoto' => $aCoverPhoto
+			)
+		);
 	}
 	
 	/**

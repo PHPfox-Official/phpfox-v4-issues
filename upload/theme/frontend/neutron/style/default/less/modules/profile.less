@@ -1,1 +1,171 @@
 
+.profiles_banner_bg {
+
+	> .cover_bg {
+		position:absolute;
+		top:0px;
+		left:0px;
+		right:0px;
+		bottom:0px;
+		background:rgba(0, 0, 0, 0.2);
+	}
+
+	h1 a, h1 a:hover, .h1 a, .h1 a:hover {
+		color:#fff;
+	}
+
+	.profiles_extra_info {
+		color:darken(#fff, 25%);
+	}
+}
+
+.profiles_banner {
+	min-height:155px;
+	position:relative;
+
+	.cover > img {
+		background-size:cover;
+		height:100%;
+		width:100%;
+		max-height:500px;
+	}
+}
+
+.profile_image {
+	background:@blockBg;
+	border:2px darken(@blockBg, 10%) solid;
+	border-radius:@borderRadiusBase;
+	position:absolute;
+	left:20px;
+	bottom:-40px;
+	width:160px;
+	height:160px;
+	overflow:hidden;
+	z-index:4;
+
+	img {
+		width:100%;
+		height:100%;
+		background-size:contain;
+	}
+}
+
+.profiles_menu {
+	background:@blockBg;
+	height:50px;
+	position:relative;
+
+	> ul {
+		position:absolute;
+		left:200px;
+		top:-2px;
+		z-index:2;
+
+		> li {
+			border-bottom:3px transparent solid;
+			display:inline-block;
+			height:50px;
+			line-height:53px;
+			margin-right:-2px;
+
+			> a, > a:hover {
+				display:block;
+				color:@blockColor;
+				padding:0px 20px;
+			}
+		}
+
+		> li:hover {
+			border-color:darken(@blockBg, 20%);
+			transition:@transition;
+		}
+
+		> li.active {
+			border-color:@brandPrimary;
+		}
+	}
+}
+
+.profiles_info {
+	position:absolute;
+	bottom:30px;
+	left:200px;
+
+	h1 {
+		font-size:32px;
+		font-weight:200;
+		letter-spacing:1px;
+	}
+}
+
+.profiles_action {
+	border-left:1px darken(@blockBg, 8%) solid;
+	position:absolute;
+	right:0px;
+	top:0px;
+
+	> ul {
+		> li:hover {
+			background:darken(@blockBg, 6%);
+
+			> ul {
+				display:block;
+			}
+		}
+
+		> li {
+
+			> ul {
+				position:absolute;
+				right:0px;
+				width:300px;
+				background:darken(@blockBg, 6%);
+				border:1px darken(@blockBg, 12%) solid;
+				border-top:0px;
+				font-size:@fontSizeBase - 1;
+				z-index:100;
+				display:none;
+
+				> li {
+					a, a:hover {
+						display:block;
+						padding:6px 0px;
+						text-indent:10px;
+						color:@linkColor;
+						border-bottom:1px darken(@blockBg, 8%) solid;
+					}
+
+					a:hover {
+						background:darken(@blockBg, 12%);
+						color:darken(@blockColor, 10%);
+					}
+				}
+			}
+
+			display:inline-block;
+			position:relative;
+
+			> a, > a:hover {
+				display:block;
+				height:50px;
+				line-height:50px;
+				font-size:20px;
+				padding:0px 10px;
+
+				i {
+					color:darken(@blockColor, 4%);
+				}
+
+				span {
+					display:none;
+				}
+			}
+
+			> a:hover {
+				i {
+					color:@brandPrimary;
+				}
+			}
+		}
+	}
+}

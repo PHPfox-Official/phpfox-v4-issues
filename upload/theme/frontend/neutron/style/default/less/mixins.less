@@ -84,3 +84,26 @@
 	outline:none;
 	text-indent:10px;
 }
+
+.block_menu() {
+	li {
+		display:block;
+		margin:0px;
+
+		> a, > a:hover {
+			padding:14px 15px 14px 10px;
+			height:auto;
+			line-height:normal;
+			color:@linkFocus;
+			/*background:darken(@blockBg, 2%);*/
+			border:0px;
+			border-bottom:1px darken(@blockBg, 6%) solid;
+		}
+
+		> a:hover {
+			background:@brandPrimary;
+			color:@brandPrimaryColor;
+			transition:@transition;
+		}
+	}
+}

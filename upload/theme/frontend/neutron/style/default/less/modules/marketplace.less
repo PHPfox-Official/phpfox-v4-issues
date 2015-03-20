@@ -67,12 +67,38 @@
 
 .listing_view_images {
 	position:relative;
-	display:table;
-	table-layout:fixed;
-	width:100%;
-	padding:10px 0px;
 	background:#0c0c0c;
 
+	._main {
+		text-align:center;
+		padding:30px 0px;
+	}
+
+	._thumbs {
+		background:lighten(#0c0c0c, 10%);
+		text-align:center;
+		height:110px;
+
+		img {
+			width:90px;
+			height:90px;
+			background-size:contain;
+			cursor:pointer;
+			margin:10px 8px -2px 0px;
+			opacity:0.5;
+		}
+
+		img:hover {
+			opacity:1;
+			transition:@transition;
+		}
+
+		img.active {
+			opacity:1;
+		}
+	}
+
+	/*
 	._main, ._thumbs {
 		display:table-cell;
 		vertical-align:middle;
@@ -91,6 +117,7 @@
 			cursor:pointer;
 		}
 	}
+	*/
 }
 
 .listing_view_price {

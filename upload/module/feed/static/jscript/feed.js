@@ -224,40 +224,6 @@ $Core.resetFeedForm = function(f) {
 
 $Behavior.activityFeedProcess = function(){
 
-	$('.feed_form_toggle').click(function() {
-		$(this).toggleClass('is_toggle_mode');
-		$('.feed_form_menu').toggle();
-	});
-
-	$('.feed_form_share:not(.active)').click(function() {
-		var t = $(this),
-			f = t.parents('form:first');
-
-		t.addClass('feed_form_share');
-		$.ajax({
-			url: f.attr('action'),
-			type: 'POST',
-			data: f.serialize(),
-			complete: function(e) {
-				$Core.resetFeedForm(f);
-				eval(e.responseText);
-			}
-		});
-
-		return false;
-	});
-
-	$('.feed_form_textarea textarea').keydown(function() {
-		$Core.resizeTextarea($(this));
-	});
-
-	$('.feed_form_textarea textarea:not(.dont-unbind)').click(function() {
-		var t = $(this);
-
-		t.addClass('dont-unbind');
-		t.parents('form:first').addClass('active');
-	});
-
 	$('.feed_stream:not(.built)').each(function() {
 		var t = $(this),
 			s = document.createElement('script');

@@ -62,14 +62,14 @@ defined('PHPFOX') or exit('NO DICE!');
 
 	{if $aImages}
 	<div class="listing_view_images">
-		<div class="_main">
-			{img server_id=$aListing.server_id title=$aListing.title path='marketplace.url_image' file=$aListing.image_path suffix='_400'}
-		</div>
 		<div class="_thumbs">
 			{foreach from=$aImages item=aImage}
 			{img server_id=$aImage.server_id path='marketplace.url_image' file=$aImage.image_path suffix='_120_square'}
 			{/foreach}
 			{/if}
+		</div>
+		<div class="_main">
+			{img server_id=$aListing.server_id title=$aListing.title path='marketplace.url_image' file=$aListing.image_path suffix='_400'}
 		</div>
 	</div>
 

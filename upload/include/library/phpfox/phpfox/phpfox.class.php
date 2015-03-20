@@ -1040,6 +1040,7 @@ class Phpfox
 			// 'template.js' => 'static_script',
 			'jquery/jquery.js' => 'static_script',
 			'jquery/ui.js' => 'static_script',
+			'jquery/plugin/jquery.nanoscroller.min.js' => 'static_script',
 			'common.js' => 'static_script',
 			'main.js' => 'static_script',
 			'ajax.js' => 'static_script',
@@ -1493,6 +1494,9 @@ class Phpfox
 				$h1 .= '<h1><a href="' . $aBreadCrumbTitle[1] . '">' . Phpfox_Parse_Output::instance()->clean($aBreadCrumbTitle[0]) . '</a></h1>';
 			}
 
+			$oTpl->getLayout('error');
+			$error = ob_get_contents(); ob_clean();
+
 			$data = json_encode([
 				'content' => $content,
 				'title' => $oTpl->instance()->getTitle(),
@@ -1504,7 +1508,8 @@ class Phpfox
 				'search' => $search,
 				'menuSub' => $menuSub,
 				'id' => Phpfox_Module::instance()->getPageId(),
-				'h1' => $h1
+				'h1' => $h1,
+				'error' => $error
 			]);
 
 			// header("Content-length: " . strlen($data));

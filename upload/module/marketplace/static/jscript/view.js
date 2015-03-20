@@ -1,20 +1,24 @@
 
 $Behavior.marketplaceShowImage = function(){
-	$('.js_marketplace_click_image').click(function(){
-		
-		var oNewImage = new Image();
-		oNewImage.onload = function(){
-			$('#js_marketplace_click_image_viewer').show();
-			$('#js_marketplace_click_image_viewer_inner').html('<img src="' + this.src + '" alt="" />');			
-			$('#js_marketplace_click_image_viewer_close').show();
-		};
-		oNewImage.src = $(this).attr('href');
-		
-		return false;
+
+	$('.listing_view_images ._thumbs img').each(function() {
+		var t = $(this),
+			src = t.attr('src').replace('_120_square', '_400'),
+			img = new Image();
+
+		if (src == $('.listing_view_images ._main img').attr('src')) {
+			t.addClass('active');
+		}
+
+		img.src = src;
 	});
-	
-	$('#js_marketplace_click_image_viewer_close a').click(function(){
-		$('#js_marketplace_click_image_viewer').hide();
-		return false;
+
+	$('.listing_view_images ._thumbs img').click(function() {
+		var t = $(this),
+			src = t.attr('src').replace('_120_square', '_400');
+
+		$('.listing_view_images ._thumbs img.active').removeClass('active');
+		$('.listing_view_images ._main img').attr('src', src);
+		t.addClass('active');
 	});
 }

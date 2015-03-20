@@ -143,7 +143,7 @@ $Core.searchFriendsInput =
 			$.ajaxCall('friend.getLiveSearch', 'parent_id=' + $($oObj).attr('id') + '&search_for=' + $($oObj).val() + '&width=' + this._get('width') + '&total_search=' + $Core.searchFriendsInput._get('max_search'), 'GET');
 			return;
 		}
-		
+
 		var $iFound = 0;
 		var $sHtml = '';		
 		$($Cache.friends).each(function($sKey, $aUser)
@@ -168,18 +168,27 @@ $Core.searchFriendsInput =
 				}
 			}
 		});
+
+		var obj = $($oObj).parent().find('.js_temp_friend_search_form');
+		if (this._get('panel_mode')) {
+			obj = $('#panel');
+		}
 		
 		if ($iFound)
 		{		
 			if (this._get('global_search')){
 				$sHtml += '<li><a href="#" class="holder_notify_drop_link" onclick="$(this).parents(\'form:first\').submit(); return false;">' + oTranslations['friend.show_more_results_for_search_term'].replace('{search_term}',htmlspecialchars($oObj.value)) + '</a></li>';
 			}
-			
-			$($oObj).parent().find('.js_temp_friend_search_form').html('<div class="js_temp_friend_search_form_holder" style="width:' + this._get('width') + ';"><ul>' + $sHtml + '</ul></div>').show();
+
+			obj.html('<div class="js_temp_friend_search_form_holder" style="width:' + this._get('width') + ';"><ul>' + $sHtml + '</ul></div>').show();
 		}
 		else
 		{
-			$($oObj).parent().find('.js_temp_friend_search_form').html('').hide();	
+			if (this._get('panel_mode')) {
+				obj.html('');
+				return;
+			}
+			obj.html('').hide();
 		}
 	},
 	

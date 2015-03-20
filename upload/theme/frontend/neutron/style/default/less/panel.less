@@ -1,0 +1,19 @@
+
+#panel {
+	position:fixed;
+	top:@headerHeight;
+	left:(@navWidth - 300);
+	bottom:0px;
+	width:300px;
+	z-index:299;
+	background:@navBg;
+	color:@navColor;
+	overflow:auto;
+}
+
+.panel_is_active {
+	#panel {
+		left:@navWidth;
+		transition:@transition;
+	}
+}

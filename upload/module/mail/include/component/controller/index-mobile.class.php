@@ -43,7 +43,7 @@ class Mail_Component_Controller_Index_Mobile extends Phpfox_Component
 			}
 			
 			$bIsSearch = true;
-			$aCond[] = "AND (m.subject LIKE '%" . Phpfox::getLib('database')->escape($sSearch) . "%' OR m.preview LIKE '%" . Phpfox::getLib('database')->escape($sSearch) . "%')";	
+			$aCond[] = "AND (m.subject LIKE '%" . Phpfox_Database::instance()->escape($sSearch) . "%' OR m.preview LIKE '%" . Phpfox_Database::instance()->escape($sSearch) . "%')";
 			$this->url()->setParam('search-query', 'true');
 			
 			Phpfox::getLib('session')->set('mfsearch', $sSearch);
@@ -54,7 +54,7 @@ class Mail_Component_Controller_Index_Mobile extends Phpfox_Component
 			Phpfox::getLib('session')->remove('mfsearch');
 		}		
 		
-		list($iCnt, $aMessages, $aInputs) = Phpfox::getService('mail')->get($aCond, 'm.time_updated DESC', $iPage, $iPageSize, $bIsSentbox);
+		list($iCnt, $aMessages, $aInputs) = Mail_Service_Mail::instance()->get($aCond, 'm.time_updated DESC', $iPage, $iPageSize, $bIsSentbox);
 		
 		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 				

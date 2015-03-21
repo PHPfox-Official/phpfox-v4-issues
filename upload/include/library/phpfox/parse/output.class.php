@@ -355,7 +355,7 @@ class Phpfox_Parse_Output
 		
 		if (!isset($aCache[$iUser]))
 		{
-			$oDb = Phpfox::getLib('database');
+			$oDb = Phpfox_Database::instance();
 	
 			$aUser = $oDb->select('up.user_value, u.full_name, user_name')
 				->from(Phpfox::getT('user'), 'u')

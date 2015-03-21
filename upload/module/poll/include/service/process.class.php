@@ -573,7 +573,7 @@ class Poll_Service_Process extends Phpfox_Service
 	{
 		Phpfox::getService('ban')->checkAutomaticBan($sTxt);
 		$this->database()->update(Phpfox::getT('poll_answer'), array(
-				'answer' => Phpfox::getLib('database')->escape($sTxt)
+				'answer' => Phpfox_Database::instance()->escape($sTxt)
 			), 'answer_id = ' . (int)$iId
 		);
 	}	

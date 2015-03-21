@@ -518,6 +518,15 @@ a.page_section_menu_link:hover {
   color: #808080;
   /*position:absolute;*/
 }
+#header_menu > nav.notifications > ul > li > a.active,
+#header_menu > nav.notifications > ul > li > a.active:hover {
+  background: #298ada;
+  color: #ffffff;
+}
+#header_menu > nav.notifications > ul > li > a.active i,
+#header_menu > nav.notifications > ul > li > a.active:hover i {
+  color: #ffffff;
+}
 #header_menu > nav > ul {
   /*
 			position:absolute;
@@ -2128,6 +2137,7 @@ a.not_active:hover {
   padding: 10px;
   font-size: 18px;
   font-weight: 300;
+  cursor: default;
 }
 .js_box_content {
   background: #ffffff;
@@ -2196,6 +2206,7 @@ a.not_active:hover {
   display: inline-block;
   background: #f0f0f0;
   color: #999999;
+  position: relative;
 }
 .no_image_user > span,
 .no_image_user:hover > span {
@@ -2210,7 +2221,18 @@ a.not_active:hover {
   letter-spacing: 2px;
   font-weight: 300;
 }
-._size__120 {
+._size__50,
+._size__50:hover {
+  width: 50px;
+  height: 50px;
+}
+._size__50 > span,
+._size__50:hover > span {
+  top: 10px;
+  left: 2px;
+}
+._size__120,
+._size__120:hover {
   width: 120px;
   height: 120px;
 }
@@ -2229,20 +2251,64 @@ a.not_active:hover {
   background: #95a5a6;
   color: #ffffff;
 }
+._first_b,
+._first_b:hover {
+  background: #d35400;
+  color: #ffffff;
+}
 #panel {
   position: fixed;
   top: 40px;
-  left: -100px;
+  left: -200px;
   bottom: 0px;
   width: 300px;
   z-index: 299;
-  background: #ffffff;
+  background: #f5f5f5;
   color: #808080;
   overflow: auto;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  border-left: 1px #e6e6e6 solid;
 }
 .panel_is_active #panel {
   left: 200px;
   transition: all 0.5s ease;
+}
+.panel_rows {
+  background: #ffffff;
+  border-bottom: 1px #ebebeb solid;
+  color: #999999;
+  position: relative;
+  font-size: 12px;
+}
+.panel_rows li > a,
+.panel_rows li > a:hover {
+  display: block;
+  color: #999999;
+}
+.panel_rows li .panel_focus {
+  color: #222222;
+  font-weight: 500;
+  font-size: 14px;
+}
+.panel_rows li .panel_rows_image {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.panel_rows li .panel_rows_content {
+  margin-left: 70px;
+  min-height: 70px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.panel_rows li .panel_rows_preview {
+  padding: 6px 0px;
+}
+.panel_rows li .drop_data_user {
+  color: #222222;
+}
+.panel_rows:hover {
+  background: #f5f5f5;
 }
 /** initial setup **/
 .nano {
@@ -4306,6 +4372,123 @@ a.marketplace_contact_seller:hover {
   border-color: #000;
   background: #0c0c0c;
   color: #fff;
+}
+.mail_thread {
+  width: 600px;
+  top: 60px;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -300px;
+  display: block;
+  z-index: 500;
+  position: fixed;
+}
+.mail_thread .js_box_close {
+  z-index: 300;
+}
+.mail_thread .js_box_title {
+  padding: 0px;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 200;
+  text-indent: 10px;
+}
+.mail_thread .js_box_title h1 {
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  padding: 0px;
+  margin: 0px;
+}
+.mail_thread .js_box_content,
+.mail_thread .mail_messages {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+.mail_thread .mail_messages {
+  background: #e5e5e5;
+  top: 40px;
+  bottom: 65px;
+  overflow: auto;
+}
+.mail_thread .mail_thread_form_holder {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 100;
+  height: 60px;
+  margin: 0px;
+  padding: 0px;
+}
+.mail_thread .mail_thread_form_holder textarea,
+.mail_thread .mail_thread_form_holder textarea:focus {
+  height: 50px;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  border: 0px;
+  text-indent: 0px;
+  font-size: 13px;
+  background: #ffffff;
+  color: #999999;
+}
+.mail_thread_holder.is_user {
+  margin-right: 0px;
+  margin-left: auto;
+}
+.mail_thread_holder.is_user .mail_user_image {
+  left: auto;
+  right: 10px;
+}
+.mail_thread_holder.is_user .mail_content {
+  margin-left: auto;
+  margin-right: 70px;
+}
+.mail_thread_holder {
+  width: 80%;
+  position: relative;
+  font-size: 13px;
+}
+.mail_thread_holder .mail_user_image {
+  position: absolute;
+  left: 10px;
+  top: 0px;
+}
+.mail_thread_holder .mail_content {
+  margin-left: 70px;
+  min-height: 50px;
+  position: relative;
+  background: #ffffff;
+  color: #999999;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.mail_thread_holder .mail_time_stamp {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 10px;
+}
+.mail_thread_form_holder_inner {
+  padding: 5px;
+  background: #ffffff;
+}
+.mail_view_more,
+.mail_view_more:hover {
+  display: block;
+  text-align: center;
+  padding: 6px 0px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 @media (max-device-width: 1430px), (max-width: 1430px) {
   .holder {

@@ -23,7 +23,7 @@ class Phpfox_Process
 	 */
 	public function export()
 	{
-		$aRows = Phpfox::getLib('database')->select('version_id, ordering')
+		$aRows = Phpfox_Database::instance()->select('version_id, ordering')
 			->from(Phpfox::getT('version'))
 			->execute('getRows');
 		
@@ -54,7 +54,7 @@ class Phpfox_Process
 		$aCache = array();
 		if ($bMissingOnly)
 		{			
-			$aRows = Phpfox::getLib('database')->select('version_id')
+			$aRows = Phpfox_Database::instance()->select('version_id')
 				->from(Phpfox::getT('version'))
 				->execute('getRows', array(
 					'free_result' => true
@@ -81,7 +81,7 @@ class Phpfox_Process
 			
 		if ($aSql)
 		{	
-			Phpfox::getLib('database')->multiInsert(Phpfox::getT('version'), array(
+			Phpfox_Database::instance()->multiInsert(Phpfox::getT('version'), array(
 				'version_id',
 				'ordering'
 			), $aSql);				

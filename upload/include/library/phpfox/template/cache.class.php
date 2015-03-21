@@ -133,7 +133,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 			$sNewName = str_replace('_ajax.php', '.php', $sName);
 			if (preg_match("/(.*?)template_(.*?)_(.*?)_template_(.*?)\.php$/i", str_replace('template/', 'template_', $sNewName), $aMatches) && isset($aMatches) && $aMatches[2] == 'frontend')
 			{			
-				$oDb = Phpfox::getLib('database');				
+				$oDb = Phpfox_Database::instance();
 				$aTemplate = $oDb->select('html_data')
 					->from(Phpfox::getT('theme_template'))
 					->where("folder = '" . parent::$_sStaticThemeFolder . "' AND type_id = 'layout' AND name = '" . $oDb->escape($aMatches[4]) . "'")
@@ -141,7 +141,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 			}
 			elseif ($bSkipDbCheck === false && preg_match("/(.*?)template_(.*?)_template_(.*?)_(.*?)_(.*?)\.php$/i", str_replace('template/', 'template_', $sNewName), $aMatches) && isset($aMatches[5]) && !preg_match("/admincp_(.*?)/", $aMatches[4]))
 			{
-				$oDb = Phpfox::getLib('database');
+				$oDb = Phpfox_Database::instance();
 
 				$aTemplate = $oDb->select('html_data')
 					->from(Phpfox::getT('theme_template'))

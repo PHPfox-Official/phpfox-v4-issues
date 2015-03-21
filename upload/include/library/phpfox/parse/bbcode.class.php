@@ -250,7 +250,7 @@ class Phpfox_Parse_Bbcode
 		
 		if (count($this->_aUsers))
 		{
-			$oDb = Phpfox::getLib('database');			
+			$oDb = Phpfox_Database::instance();
 			$sUsers = '';
 			foreach ($this->_aUsers as $sMember => $sType)
 			{

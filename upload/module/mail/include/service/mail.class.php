@@ -484,7 +484,7 @@ class Mail_Service_Mail extends Phpfox_Service
 		if (Phpfox::getParam('mail.threaded_mail_conversation'))
 		{			
 			$aFields = Phpfox::getService('user')->getUserFields();
-			
+
 			$aRows = $this->database()->select('th.*, tt.text AS preview, tt.time_stamp, tt.user_id AS last_user_id')
 				->from(Phpfox::getT('mail_thread_user'), 'th')	
 				->join(Phpfox::getT('mail_thread'), 't', 't.thread_id = th.thread_id')
@@ -494,7 +494,7 @@ class Mail_Service_Mail extends Phpfox_Service
 				->limit(5)
 				->order('t.time_stamp DESC')
 				->execute('getSlaveRows');
-		
+
 			foreach ($aRows as $iKey => $aRow)
 			{
 				$aRows[$iKey]['viewer_is_new'] = ($aRow['is_read'] ? false : true);
@@ -714,7 +714,7 @@ class Mail_Service_Mail extends Phpfox_Service
 		// Add a hook with return here
 		if (Phpfox::getParam('mail.show_core_mail_folders_item_count') && Phpfox::getUserParam('mail.show_core_mail_folders_item_count'))
 		{
-			$aCountFolders = Phpfox::getService('mail')->getDefaultFoldersCount(Phpfox::getUserId());
+			$aCountFolders = Mail_Service_Mail::instance()->getDefaultFoldersCount(Phpfox::getUserId());
 		}
 
 		$aFilterMenu = array(
@@ -735,7 +735,7 @@ class Mail_Service_Mail extends Phpfox_Service
 		
 		if (Phpfox::getParam('mail.threaded_mail_conversation'))
 		{
-			$iLegacyCount = Phpfox::getService('mail')->getLegacyCount();
+			$iLegacyCount = Mail_Service_Mail::instance()->getLegacyCount();
 			$aFilterMenu[] = true;
 			$aFilterMenu[Phpfox::getPhrase('mail.legacy_inbox') . ' <span class="invited">' . $iLegacyCount . '</span>'] = 'mail.legacy_1';
 		}		

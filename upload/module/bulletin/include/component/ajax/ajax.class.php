@@ -39,7 +39,7 @@ class Bulletin_Component_Ajax_Ajax extends Phpfox_Ajax
 			'subject' => Phpfox::getPhrase('bulletin.reply_to_bulletin') . ': ' . $sBulletinTitle,
 			'message' => $sMessage			
 		);
-		Phpfox::getService('mail.process')->add($aVals);
+		Mail_Service_Process::instance()->add($aVals);
 		$this->call("$('#js_bulletin_process').html('" . Phpfox::getPhrase('bulletin.message_sent', array('phpfox_squote' => true)) . "');$('#reply_zone').fadeOut();");
 	}
 	

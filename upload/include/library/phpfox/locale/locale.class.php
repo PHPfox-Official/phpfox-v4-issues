@@ -107,7 +107,7 @@ class Phpfox_Locale
 	public function __construct()
 	{
 		$oCache = Phpfox::getLib('cache');
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		
 		$sLangAllId = $oCache->set(array('locale', 'language'));
 		
@@ -170,7 +170,7 @@ class Phpfox_Locale
 		$sRuleId = $oCache->set(array('locale', 'language_rule_' . $this->getLangId()));
 		if (!($this->_aRules = $oCache->get($sRuleId)))
 		{
-			$aRules = Phpfox::getLib('database')->select('var_name, rule, rule_value, ordering')
+			$aRules = Phpfox_Database::instance()->select('var_name, rule, rule_value, ordering')
 				->from(Phpfox::getT('language_rule'))
 				->where('language_id = \'' . $this->getLangId() . '\'')
 				->order('ordering ASC')
@@ -507,9 +507,9 @@ class Phpfox_Locale
 		$aPhrase = $this->_aPhraseHistory[md5($sPhraseValue)];		
 	
 		$aParts = explode('.', $aPhrase['var_name']);
-		$aRow = Phpfox::getLib('database')->select('text')
+		$aRow = Phpfox_Database::instance()->select('text')
 			->from(Phpfox::getT('language_phrase'))
-			->where('language_id = \'' . Phpfox::getLib('database')->escape($sLanguageId) . '\' AND var_name = \'' . $aParts[1] . '\'')
+			->where('language_id = \'' . Phpfox_Database::instance()->escape($sLanguageId) . '\' AND var_name = \'' . $aParts[1] . '\'')
 			->execute('getSlaveRow');
 		
 		if (!empty($aRow['text']))
@@ -669,11 +669,11 @@ class Phpfox_Locale
 		{			
 			if (!($this->_aPhrases[$sModule] = $oCache->get($sId)))
 			{			
-				$aRows = Phpfox::getLib('database')->select('p.var_name, p.text')
+				$aRows = Phpfox_Database::instance()->select('p.var_name, p.text')
 					->from(Phpfox::getT('language_phrase'), 'p')
 					->join(Phpfox::getT('product'), 'product', 'product.product_id = p.product_id AND product.is_active = 1')
 					->join(Phpfox::getT('module'), 'm', "m.module_id = '" . $sModule . "' AND p.module_id = m.module_id AND m.is_active = 1")
-					->where("p.language_id = '" . Phpfox::getLib('database')->escape($this->getLangId()) . "'")
+					->where("p.language_id = '" . Phpfox_Database::instance()->escape($this->getLangId()) . "'")
 					->execute('getRows');
 	
 				foreach ($aRows as $aRow)
@@ -694,11 +694,11 @@ class Phpfox_Locale
 	 */
 	private function _getPhrases($sId)
 	{
-		$aRows = Phpfox::getLib('database')->select('p.var_name, p.text, m.module_id')
+		$aRows = Phpfox_Database::instance()->select('p.var_name, p.text, m.module_id')
 			->from(Phpfox::getT('language_phrase'), 'p')
 			->leftJoin(Phpfox::getT('module'), 'm', 'p.module_id = m.module_id AND m.is_active = 1')
 			->join(Phpfox::getT('product'), 'product', 'p.product_id = product.product_id AND product.is_active = 1')
-			->where("p.language_id = '" . Phpfox::getLib('database')->escape($sId) . "'")
+			->where("p.language_id = '" . Phpfox_Database::instance()->escape($sId) . "'")
 			->execute('getRows');		
 				
 		$_aPhrasess = array();

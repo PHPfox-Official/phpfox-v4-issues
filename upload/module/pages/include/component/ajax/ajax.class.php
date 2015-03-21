@@ -124,7 +124,7 @@ class Pages_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if (isset($aVals['user_status']) && ($iId = Phpfox::getService('feed.process')->callback($aCallback)->addComment($aVals)))
 		{
-			Phpfox::getLib('database')->updateCounter('pages', 'total_comment', 'page_id', $aPage['page_id']);		
+			Phpfox_Database::instance()->updateCounter('pages', 'total_comment', 'page_id', $aPage['page_id']);
 			
 			Feed_Service_Feed::instance()->callback($aCallback)->processAjax($iId);
 		}
@@ -217,7 +217,7 @@ class Pages_Component_Ajax_Ajax extends Phpfox_Ajax
 			{
 				if (Phpfox::getParam('core.auth_user_via_session'))
 				{
-					Phpfox::getLib('database')->delete(Phpfox::getT('session'), 'user_id = ' . (int) Phpfox::getUserId());
+					Phpfox_Database::instance()->delete(Phpfox::getT('session'), 'user_id = ' . (int) Phpfox::getUserId());
 				}
 				list ($bPass, $aReturn) = Phpfox::getService('user.auth')->login($aUser['email'], $aUser['password'], true, 'email', true);
 				if ($bPass)			

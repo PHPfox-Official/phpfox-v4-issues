@@ -37,7 +37,13 @@ $Behavior.addDraggableToBoxes = function()
 		}
     	
     	return false;
-    });    
+    });
+
+	$('.popup').click(function() {
+		tb_show('', $(this).attr('href'), $(this));
+
+		return false;
+	});
 };
 
 function js_box_remove($oObj)
@@ -512,7 +518,29 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 		if ( (params['' + getParam('sGlobalTokenName') + '[call]'] == 'share.popup') || sType == 'POST'){
 			sAjaxType = 'POST';
 		}
-		
+
+		if (thisObject instanceof jQuery && thisObject.hasClass('popup')) {
+			if (thisObject.data('custom-class')) {
+				$oNew.addClass(thisObject.data('custom-class'));
+				$oNew.attr('style', '');
+			}
+
+			$.ajax({
+				url: thisObject.attr('href'),
+				contentType: 'application/json',
+				success: function(e) {
+					$oNew.find('.js_box_title:first').html(e.h1);
+					$oNew.find('.js_box_content').html('');
+					$oNew.find('.js_box_content').html(e.content);
+					$oNew.find('.js_box_title:first').show();
+					$oNew.find('.js_box_close:first').show();
+					$Core.loadInit();
+				}
+			});
+
+			return;
+		}
+
 		$.ajax(
 			{
 				type: sAjaxType,
@@ -532,59 +560,6 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 					
 					if (bIsFullMode){
 						$oNew.find('.js_box_content').height(ajaxContentH);
-					}
-
-					if (bIsPhotoImage)
-					{
-						
-						var thisHeight = $(window).height();
-						var thisBodyHeight = $('body').height();
-						var newHeight = (thisHeight > thisBodyHeight ? thisHeight : thisBodyHeight);
-						
-						// var newHeight = $('body').height();
-
-						$('.js_box_image_holder_full').css({'top': '0px', 'height': (newHeight + 50) + 'px'});
-
-						var bCanCloseImageBox = true;		
-
-						$Behavior.onCloseThickbox = function()
-						{							
-							$('.js_box').click(function()
-							{
-								bCanCloseImageBox = false;
-							});
-
-							$('.js_box a').click(function()
-							{
-								bCanCloseImageBox = false;
-							});
-
-							$('.js_box_image_holder_full').click(function()
-							{			
-								if (!bCanCloseImageBox)
-								{
-									bCanCloseImageBox = true;
-								}
-								else
-								{
-									$('#main_core_body_holder').show();
-									if ($('#noteform').length > 0)
-									{
-										$('#noteform').hide(); 
-									}
-									if ($('#js_photo_view_image').length > 0)
-									{
-										$('#js_photo_view_image').imgAreaSelect({ hide: true });		
-									}
-									bIsPhotoImage = false;
-									$(this).remove();
-									delete $aBoxHistory[params[getParam('sGlobalTokenName') + '[call]']];
-									// $Core.addUrlPager({'href': sLastOpenUrl.replace('/#!', '')}, true);
-								}
-							});		    		
-						}
-
-						$Behavior.onCloseThickbox();
 					}
 				}
 			});			

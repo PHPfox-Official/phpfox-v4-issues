@@ -676,7 +676,7 @@ class Feed_Service_Feed extends Phpfox_Service
 		
 		$sTag = Phpfox::getLib('parse.input')->clean($sTag, 255);		
 		
-		$this->database()->join(Phpfox::getT('tag'), 'hashtag', 'hashtag.item_id = feed.item_id AND hashtag.category_id = feed.type_id AND (tag_text = \'' . Phpfox::getLib('database')->escape($sTag) . '\' OR tag_url = \''. Phpfox::getLib('database')->escape($sTag) .'\')');
+		$this->database()->join(Phpfox::getT('tag'), 'hashtag', 'hashtag.item_id = feed.item_id AND hashtag.category_id = feed.type_id AND (tag_text = \'' . Phpfox_Database::instance()->escape($sTag) . '\' OR tag_url = \''. Phpfox_Database::instance()->escape($sTag) .'\')');
 	}
 	
 	/** This function replaces the routine in the like.block.display template

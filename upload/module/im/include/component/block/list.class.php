@@ -29,7 +29,7 @@ class Im_Component_Block_List extends Phpfox_Component
 		$aCond[] = 'AND f.user_id = ' . Phpfox::getUserId();
 		if (($sFind = $this->request()->get('find')))
 		{
-			$aCond[] = 'AND u.full_name LIKE \'%' . Phpfox::getLib('database')->escape($sFind) . '%\'';
+			$aCond[] = 'AND u.full_name LIKE \'%' . Phpfox_Database::instance()->escape($sFind) . '%\'';
 		}
 		$aCond[] = 'AND u.im_hide != 1';
 		list($iCnt, $aFriends) = Phpfox::getService('im')->getOnlineFriends(Phpfox::getUserId(), $aCond, $iPage, $iPageSize);

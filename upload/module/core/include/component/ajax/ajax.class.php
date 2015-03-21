@@ -337,7 +337,7 @@ class Core_Component_Ajax_Ajax extends Phpfox_Ajax
 		}
 		if (!empty($aValues))
 		{
-			Phpfox::getLib('database')->multiInsert(Phpfox::getT('upload_track'),
+			Phpfox_Database::instance()->multiInsert(Phpfox::getT('upload_track'),
 				array('user_id','user_hash','file_hash'),
 				$aValues
 				);
@@ -376,7 +376,7 @@ class Core_Component_Ajax_Ajax extends Phpfox_Ajax
 	 */
 	public function removeBlockDnD()
 	{
-		if (!Phpfox::getService('theme')->isInDnDMode())
+		if (!Theme_Service_Theme::instance()->isInDnDMode())
 		{
 			return $this->alert(Phpfox::getPhrase('friend.you_must_enable_dnd_mode'));
 		}

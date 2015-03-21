@@ -480,7 +480,7 @@ class Poll_Service_Poll extends Phpfox_Service
 		return $this->database()->select('p.poll_id, p.time_stamp, p.question, p.question_url, ' . Phpfox::getUserField())
 			->from($this->_sTable, 'p')
 			->join(Phpfox::getT('user'), 'u', 'u.user_id = p.user_id')
-			->where('' . Phpfox::getLib('database')->isNull('p.module_id') . ' AND p.view_id = 0 AND p.privacy = 1')
+			->where('' . Phpfox_Database::instance()->isNull('p.module_id') . ' AND p.view_id = 0 AND p.privacy = 1')
 			->limit($iLimit)
 			->order('p.time_stamp DESC')
 			->execute('getSlaveRows');

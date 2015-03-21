@@ -61,7 +61,7 @@ class Phpfox_Plugin
 		
 		if ((Phpfox::getParam('core.cache_plugins') && (!(self::$_aPlugins = $oCache->get($iCacheId)))) || !Phpfox::getParam('core.cache_plugins'))
 		{
-			$oDb = Phpfox::getLib('database');
+			$oDb = Phpfox_Database::instance();
 			
 			$aRows = $oDb->select('p.call_name, p.php_code')
 				->from(Phpfox::getT('plugin'), 'p')

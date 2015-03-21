@@ -21,10 +21,10 @@ class Theme_Component_Controller_Admincp_Add extends Phpfox_Component
 	public function process()
 	{
 		$bIsEdit = false;
-		$aThemes = Phpfox::getService('theme')->get();		
+		$aThemes = Theme_Service_Theme::instance()->get();
 		if (($iId = $this->request()->getInt('id')))
 		{
-			if (($aTheme = Phpfox::getService('theme')->getForEdit($iId)))
+			if (($aTheme = Theme_Service_Theme::instance()->getForEdit($iId)))
 			{
 				$bIsEdit = true;
 				foreach ($aThemes as $iKey => $aCacheTheme)

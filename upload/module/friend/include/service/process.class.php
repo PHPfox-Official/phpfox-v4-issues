@@ -214,7 +214,7 @@ class Friend_Service_Process extends Phpfox_Service
 				'to' => $iUser,
 				'subject' => Phpfox::getPhrase('friend.happy_birthday')
 			);
-		$iBirthdayId = Phpfox::getService('mail')->add($aMail);
+		$iBirthdayId = Mail_Service_Mail::instance()->add($aMail);
 		/* if its free then send the notification and mail*/
 		if ($fCost != 0 && $iEgift > 0)		
 		{

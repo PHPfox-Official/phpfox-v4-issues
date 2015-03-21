@@ -386,14 +386,14 @@ class Phpfox_Mail
 		{
 			if ($this->_sNotification !== null)
 			{
-				Phpfox::getLib('database')->select('un.user_notification, ')->leftJoin(Phpfox::getT('user_notification'), 'un', "un.user_id = u.user_id AND un.user_notification = '" . Phpfox::getLib('database')->escape($this->_sNotification) . "'");
+				Phpfox_Database::instance()->select('un.user_notification, ')->leftJoin(Phpfox::getT('user_notification'), 'un', "un.user_id = u.user_id AND un.user_notification = '" . Phpfox_Database::instance()->escape($this->_sNotification) . "'");
 			}		
 			
 			(($sPlugin = Phpfox_Plugin::get('mail_send_query')) ? eval($sPlugin) : false);
 			
 			if ($this->_aUsers === null)
 		    {
-				$aUsers = Phpfox::getLib('database')->select('u.user_id, u.email, u.language_id, u.full_name, u.user_group_id')
+				$aUsers = Phpfox_Database::instance()->select('u.user_id, u.email, u.language_id, u.full_name, u.user_group_id')
 					->from(Phpfox::getT('user'), 'u')
 					->where('u.user_id IN(' . $sIds . ')')
 					->execute('getSlaveRows');

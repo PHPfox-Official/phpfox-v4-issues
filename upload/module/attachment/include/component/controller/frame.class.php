@@ -141,7 +141,7 @@ class Attachment_Component_Controller_Frame extends Phpfox_Component
 		
 		if ($this->request()->get('custom_attachment') == 'photo' || $this->request()->get('custom_attachment') == 'video')
 		{
-			$aAttachment = Phpfox::getLib('database')->select('*')
+			$aAttachment = Phpfox_Database::instance()->select('*')
 				->from(Phpfox::getT('attachment'))
 				->where('attachment_id = ' . (int) $iId)
 				->execute('getSlaveRow');

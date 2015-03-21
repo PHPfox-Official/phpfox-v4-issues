@@ -25,11 +25,11 @@ class Admincp_Component_Controller_Setting_Search extends Phpfox_Component
 			if (preg_match('/(.*)\.(.*)/i', $sVar, $aMatches) && isset($aMatches[2]))
 			{
 				$sVar = $aMatches[2];
-				$aResults = Phpfox::getService('admincp.setting')->search("setting.module_id = '" . Phpfox::getLib('database')->escape($aMatches[1]) . "' AND setting.var_name = '" . Phpfox::getLib('database')->escape($sVar) . "'");
+				$aResults = Phpfox::getService('admincp.setting')->search("setting.module_id = '" . Phpfox_Database::instance()->escape($aMatches[1]) . "' AND setting.var_name = '" . Phpfox_Database::instance()->escape($sVar) . "'");
 			}
 			else 
 			{
-				$aResults = Phpfox::getService('admincp.setting')->search("setting.var_name = '" . Phpfox::getLib('database')->escape($sVar) . "'");
+				$aResults = Phpfox::getService('admincp.setting')->search("setting.var_name = '" . Phpfox_Database::instance()->escape($sVar) . "'");
 			}
 
 			if (isset($aResults[0]['var_name']))

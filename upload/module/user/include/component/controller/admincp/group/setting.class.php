@@ -84,7 +84,7 @@ class User_Component_Controller_Admincp_Group_Setting extends Phpfox_Component
 
 		if (isset($aForms['name']))
 		{
-			Phpfox::getLib('database')->select('language_phrase.text, ')
+			Phpfox_Database::instance()->select('language_phrase.text, ')
 				->leftJoin(Phpfox::getT('language_phrase'), 'language_phrase', "language_phrase.language_id = l.language_id AND language_phrase.var_name = 'user_setting_{$aForms['name']}'");
 		}
 		$aLanguages = Phpfox::getService('language')->get();

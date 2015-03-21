@@ -286,7 +286,7 @@ class Phpfox_Template
 				
 				if (!($aCachedThemes = $oCache->get($sCacheId)))
 				{				
-					$aThemes = Phpfox::getLib('database')->select('ts.style_id')
+					$aThemes = Phpfox_Database::instance()->select('ts.style_id')
 						->from(Phpfox::getT('theme_style'), 'ts')
 						->join(Phpfox::getT('theme'), 't', 't.theme_id = ts.theme_id AND t.is_active = 1')
 						->where('ts.is_active = 1')
@@ -331,7 +331,7 @@ class Phpfox_Template
 				{					
 					if ((Phpfox::isUser() && Phpfox::getUserBy('style_id') > 0) || (!Phpfox::isUser() && $oSession->get('style_id')))
 					{
-						$aTheme = Phpfox::getLib('database')->select('s.style_id, s.parent_id AS style_parent_id, s.folder AS style_folder_name, t.folder AS theme_folder_name, t.parent_id AS theme_parent_id, t.total_column, s.l_width, s.c_width, s.r_width')
+						$aTheme = Phpfox_Database::instance()->select('s.style_id, s.parent_id AS style_parent_id, s.folder AS style_folder_name, t.folder AS theme_folder_name, t.parent_id AS theme_parent_id, t.total_column, s.l_width, s.c_width, s.r_width')
 							->from(Phpfox::getT('theme_style'), 's')
 							->join(Phpfox::getT('theme'), 't', 't.theme_id = s.theme_id AND t.is_active')
 							->where((Phpfox::isUser() ? 's.style_id = ' . (int) Phpfox::getUserBy('style_id') : 's.style_id = ' . (int) $oSession->get('style_id')) . ' AND s.is_active = 1')
@@ -340,7 +340,7 @@ class Phpfox_Template
 					
 					if (empty($aTheme['style_id']))
 					{
-						$aTheme = Phpfox::getLib('database')->select('s.style_id, s.parent_id AS style_parent_id, s.folder AS style_folder_name, t.folder AS theme_folder_name, t.parent_id AS theme_parent_id, t.total_column, s.l_width, s.c_width, s.r_width')
+						$aTheme = Phpfox_Database::instance()->select('s.style_id, s.parent_id AS style_parent_id, s.folder AS style_folder_name, t.folder AS theme_folder_name, t.parent_id AS theme_parent_id, t.total_column, s.l_width, s.c_width, s.r_width')
 							->from(Phpfox::getT('theme_style'), 's')
 							->join(Phpfox::getT('theme'), 't', 't.theme_id = s.theme_id')
 							->where('s.is_default = 1')
@@ -349,7 +349,7 @@ class Phpfox_Template
 					
 					if (isset($aTheme['style_parent_id']) && $aTheme['style_parent_id'] > 0)
 					{
-						$aStyleExtend = Phpfox::getLib('database')->select('folder AS parent_style_folder')
+						$aStyleExtend = Phpfox_Database::instance()->select('folder AS parent_style_folder')
 							->from(Phpfox::getT('theme_style'))
 							->where('style_id = ' . $aTheme['style_parent_id'])
 							->execute('getRow');
@@ -362,7 +362,7 @@ class Phpfox_Template
 					
 					if (empty($aTheme))
 					{
-						$aTheme = Phpfox::getLib('database')->select('s.style_id, s.parent_id AS style_parent_id, s.folder AS style_folder_name, t.folder AS theme_folder_name, t.parent_id AS theme_parent_id, t.total_column, s.l_width, s.c_width, s.r_width')
+						$aTheme = Phpfox_Database::instance()->select('s.style_id, s.parent_id AS style_parent_id, s.folder AS style_folder_name, t.folder AS theme_folder_name, t.parent_id AS theme_parent_id, t.total_column, s.l_width, s.c_width, s.r_width')
 							->from(Phpfox::getT('theme_style'), 's')
 							->join(Phpfox::getT('theme'), 't', 't.folder = \'default\'')
 							->where('s.folder = \'default\'')
@@ -497,7 +497,7 @@ class Phpfox_Template
 		{
 			$sWhere = 's.style_id = ' . (int) $iId;
 		}
-		$aTheme = Phpfox::getLib('database')->select('s.style_id, s.parent_id AS style_parent_id, s.folder AS style_folder_name, t.folder AS theme_folder_name, t.parent_id AS theme_parent_id')		
+		$aTheme = Phpfox_Database::instance()->select('s.style_id, s.parent_id AS style_parent_id, s.folder AS style_folder_name, t.folder AS theme_folder_name, t.parent_id AS theme_parent_id')
 			->from(Phpfox::getT('theme_style'), 's')
 			->join(Phpfox::getT('theme'), 't', 't.theme_id = s.theme_id')
 			->where($sWhere)
@@ -513,7 +513,7 @@ class Phpfox_Template
 		
 		if ($aTheme['style_parent_id'] > 0)
 		{
-			$aStyleExtend = Phpfox::getLib('database')->select('folder AS parent_style_folder')
+			$aStyleExtend = Phpfox_Database::instance()->select('folder AS parent_style_folder')
 				->from(Phpfox::getT('theme_style'))
 				->where('style_id = ' . $aTheme['style_parent_id'])
 				->execute('getRow');
@@ -526,7 +526,7 @@ class Phpfox_Template
 					
 		if ($aTheme['theme_parent_id'] > 0)
 		{
-			$aThemeExtend = Phpfox::getLib('database')->select('folder AS parent_theme_folder')
+			$aThemeExtend = Phpfox_Database::instance()->select('folder AS parent_theme_folder')
 				->from(Phpfox::getT('theme'))
 				->where('theme_id = ' . $aTheme['theme_parent_id'])
 				->execute('getRow');
@@ -594,7 +594,7 @@ class Phpfox_Template
 		$sCacheId = $oCache->set(array('theme', 'theme_logo_' . $this->_sThemeFolder . '_' . $this->_sStyleFolder));
 		if (!($aTheme = $oCache->get($sCacheId)))
 		{		
-			$aTheme = Phpfox::getLib('database')->select('logo_id, logo, file_ext')
+			$aTheme = Phpfox_Database::instance()->select('logo_id, logo, file_ext')
 				->from(Phpfox::getT('theme_style_logo'))
 				->where('style_id = ' . $this->_aTheme['style_id'])
 				->execute('getRow');
@@ -1179,7 +1179,7 @@ class Phpfox_Template
 			);		
 		}
 		$aUrl = $oUrl->getParams();
-		if (Phpfox::getUserParam('core.can_design_dnd') && Phpfox::getService('theme')->isInDnDMode() && (!isset($aUrl['req2']) || $aUrl['req2'] != 'designer'))
+		if (Phpfox::getUserParam('core.can_design_dnd') && Theme_Service_Theme::instance()->isInDnDMode() && (!isset($aUrl['req2']) || $aUrl['req2'] != 'designer'))
 		{
 			if (!defined('PHPFOX_DESIGN_DND')) 
 			{
@@ -1210,7 +1210,7 @@ class Phpfox_Template
 			{
 				if (!Phpfox::isAdminPanel())
 				{
-					$oDb = Phpfox::getLib('database');
+					$oDb = Phpfox_Database::instance();
 					$oFileCache = Phpfox::getLib('cache');
 					$sFileThemeCssId = $oFileCache->set(array('theme', 'theme_css' . $iVersion));
 					$aCacheStyles = array();
@@ -1655,7 +1655,7 @@ class Phpfox_Template
 
 										if (!($aCss = (defined('PHPFOX_IS_HOSTED_SCRIPT') ? ($oCache->get($sCssCustomCacheId)) : ($oCache->isCached($sCssCustomCacheId)))))										
 										{		
-											$oDb = Phpfox::getLib('database');
+											$oDb = Phpfox_Database::instance();
 
 											$aCss = $oDb->select('tc.css_id, tc.css_data, tc.css_data_original')
 												->from(Phpfox::getT('theme_css'), 'tc')
@@ -1844,7 +1844,7 @@ class Phpfox_Template
 													if (!($oCache->isCached($sCssCustomCacheId)))										
 													{						
 																	
-														$oDb = Phpfox::getLib('database');
+														$oDb = Phpfox_Database::instance();
 														$aCss = $oDb->select('tc.css_id, tc.css_data')
 															->from(Phpfox::getT('theme_css'), 'tc')
 															->where('module_id = \'' . $oDb->escape($aParts[1]) . '\' AND style_id = ' . (int) $this->_aTheme['style_id'] . ' AND file_name = \'' . $oDb->escape($mKey) . '\'')		
@@ -2415,7 +2415,7 @@ class Phpfox_Template
 	 *
 	 * @param mixed $mVars STRING variable name or ARRAY of variables to assign with both keys and values.
 	 * @param string $sValue Variable value, only if the 1st argument is a STRING.
-	 * @return object Returns self.
+	 * @return $this
 	 */
 	public function assign($mVars, $sValue = '')
 	{
@@ -2582,7 +2582,7 @@ class Phpfox_Template
 		
 		if (!defined('PHPFOX_INSTALLER') && !defined('PHPFOX_LIVE_TEMPLATES') && $bCheckDb === true)
 		{			
-			$oDb = Phpfox::getLib('database');
+			$oDb = Phpfox_Database::instance();
 			$aTemplate = $oDb->select('html_data')
 				->from(Phpfox::getT('theme_template'))
 				->where("folder = '" . $this->_sThemeFolder . "' AND type_id = '" . $oDb->escape($aParts[1]) . "' AND module_id = '" . $oDb->escape($sModule) . "' AND name = '" . $oDb->escape($aParts[2]) . (isset($aParts[3]) ? '/' . $aParts[3] : ''). PHPFOX_TPL_SUFFIX . "'")
@@ -2660,7 +2660,7 @@ class Phpfox_Template
 		{
 			if (!defined('PHPFOX_INSTALLER') && !defined('PHPFOX_LIVE_TEMPLATES') && $this->_bIsAdminCp === false)
 			{						
-				$oDb = Phpfox::getLib('database');					
+				$oDb = Phpfox_Database::instance();
 				$aTemplate = $oDb->select('html_data')
 					->from(Phpfox::getT('theme_template'))
 					->where("folder = '" . $this->_sThemeFolder . "' AND type_id = 'layout' AND name = '" . $oDb->escape($sLayout) . ".html.php'")
@@ -2714,7 +2714,7 @@ class Phpfox_Template
 			{
 				if (!defined('PHPFOX_INSTALLER') && !defined('PHPFOX_LIVE_TEMPLATES') && $this->_bIsAdminCp === false)
 				{						
-					$oDb = Phpfox::getLib('database');					
+					$oDb = Phpfox_Database::instance();
 					
 					$aTemplate = $oDb->select('html_data')
 						->from(Phpfox::getT('theme_template'))
@@ -2729,7 +2729,7 @@ class Phpfox_Template
 				{
 					if (preg_match("/(.*?)template_(.*?)_template_(.*?)_(.*?)_(.*?)\.php$/i", $this->_getCachedName($sFile), $aMatches) && isset($aMatches[5]) && !preg_match("/admincp_(.*?)/", $aMatches[4]))
 					{				
-						$oDb = Phpfox::getLib('database');
+						$oDb = Phpfox_Database::instance();
 						$aSubTemplate = $oDb->select('html_data')
 							->from(Phpfox::getT('theme_template'))
 							->where("folder = '" . $this->_sThemeFolder . "' AND type_id = '" . $oDb->escape($aMatches[4]) . "' AND module_id = '" . $oDb->escape($aMatches[2]) . "' AND name = '" . $oDb->escape(str_replace('_', '/', $aMatches[5])) . "'")
@@ -2737,7 +2737,7 @@ class Phpfox_Template
 					}				
 					elseif (preg_match("/(.*?)template_(.*?)_(.*?)_template_(.*?)\.php$/i", str_replace('template/', 'template_', $sName), $aMatches) && isset($aMatches) && $aMatches[2] == 'frontend')
 					{			
-						$oDb = Phpfox::getLib('database');				
+						$oDb = Phpfox_Database::instance();
 						$aSubTemplate = $oDb->select('html_data')
 							->from(Phpfox::getT('theme_template'))
 							->where("folder = '" . $this->_sThemeFolder . "' AND type_id = 'layout' AND name = '" . $oDb->escape($aMatches[4]) . "'")
@@ -2745,7 +2745,7 @@ class Phpfox_Template
 					}
 					elseif (preg_match("/(.*?)template_(.*?)_template_(.*?)_(.*?)_(.*?)\.php$/i", str_replace('template/', 'template_', $sName), $aMatches) && isset($aMatches[5]) && !preg_match("/admincp_(.*?)/", $aMatches[4]))
 					{
-						$oDb = Phpfox::getLib('database');
+						$oDb = Phpfox_Database::instance();
 
 						$aSubTemplate = $oDb->select('html_data')
 							->from(Phpfox::getT('theme_template'))
@@ -2826,7 +2826,7 @@ class Phpfox_Template
 	public function getMenu($sConnection = null)
 	{
 		$oCache = Phpfox::getLib('cache');
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		$oReq = Phpfox::getLib('request');
 		
 		(($sPlugin = Phpfox_Plugin::get('template_template_getmenu_1')) ? eval($sPlugin) : false);
@@ -2908,7 +2908,7 @@ class Phpfox_Template
 				$aMenus[$aMenu['menu_id']] = $aMenu;
 			}
 
-			$aParents = Phpfox::getLib('database')->select('m.menu_id, m.parent_id, m.m_connection, m.var_name, m.disallow_access, mo.module_id AS module, m.url_value AS url, mo.is_active AS module_is_active')
+			$aParents = Phpfox_Database::instance()->select('m.menu_id, m.parent_id, m.m_connection, m.var_name, m.disallow_access, mo.module_id AS module, m.url_value AS url, mo.is_active AS module_is_active')
 				->from(Phpfox::getT('menu'), 'm')
 				->join(Phpfox::getT('module'), 'mo', 'mo.module_id = m.module_id AND mo.is_active = 1')
 				->join(Phpfox::getT('product'), 'p', 'm.product_id = p.product_id AND p.is_active = 1')
@@ -2952,7 +2952,7 @@ class Phpfox_Template
 			$sUserMenuCache = Phpfox::getLib('cache')->set(array('user', 'nbselectname_' . Phpfox::getUserId()));
 			if (!($aUserMenusCache = Phpfox::getLib('cache')->get($sUserMenuCache)))
 			{
-				$aUserMenus = Phpfox::getLib('database')->select('*')->from(Phpfox::getT('theme_umenu'))->where('user_id = ' . (int) Phpfox::getUserId())->execute('getSlaveRows');
+				$aUserMenus = Phpfox_Database::instance()->select('*')->from(Phpfox::getT('theme_umenu'))->where('user_id = ' . (int) Phpfox::getUserId())->execute('getSlaveRows');
 				foreach ((array) $aUserMenus as $aUserMenu)
 				{
 					$aUserMenusCache[$aUserMenu['menu_id']] = true;
@@ -3390,11 +3390,11 @@ class Phpfox_Template
 	 */
 	private function _getMenu($sConnection = null, $iParent = 0)
 	{
-		return Phpfox::getLib('database')->select('m.menu_id, m.parent_id, m.m_connection, m.var_name, m.disallow_access, mo.module_id AS module, m.url_value AS url, mo.is_active AS module_is_active, m.mobile_icon')
+		return Phpfox_Database::instance()->select('m.menu_id, m.parent_id, m.m_connection, m.var_name, m.disallow_access, mo.module_id AS module, m.url_value AS url, mo.is_active AS module_is_active, m.mobile_icon')
 			->from(Phpfox::getT('menu'), 'm')
 			->join(Phpfox::getT('module'), 'mo', 'mo.module_id = m.module_id AND mo.is_active = 1')
 			->join(Phpfox::getT('product'), 'p', 'm.product_id = p.product_id AND p.is_active = 1')
-			->where("m.parent_id = " . (int) $iParent . " AND m.m_connection = '" . Phpfox::getLib('database')->escape($sConnection) . "' AND m.is_active = 1")
+			->where("m.parent_id = " . (int) $iParent . " AND m.m_connection = '" . Phpfox_Database::instance()->escape($sConnection) . "' AND m.is_active = 1")
 			->group('m.menu_id')
 			->order('m.ordering ASC')
 			->execute('getRows');		

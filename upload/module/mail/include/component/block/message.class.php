@@ -22,7 +22,7 @@ class Mail_Component_Block_Message extends Phpfox_Component
     {
 		$iId = $this->request()->get('id');
 
-		$aMessage = Phpfox::getService('mail')->getMail($iId);
+		$aMessage = Mail_Service_Mail::instance()->getMail($iId);
 
 		if (!Phpfox::getParam('mail.threaded_mail_conversation'))
 		{

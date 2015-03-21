@@ -30,7 +30,7 @@ class Mail_Component_Controller_View_Mobile extends Phpfox_Component
 			)
 		);				
 	
-		$aMail = Phpfox::getService('mail')->getMail($this->request()->getInt('id'));	
+		$aMail = Mail_Service_Mail::instance()->getMail($this->request()->getInt('id'));
 		
 		if (!isset($aMail['mail_id']))
 		{
@@ -54,7 +54,7 @@ class Mail_Component_Controller_View_Mobile extends Phpfox_Component
 			{
 				$aVals['to'] = $aMail['owner_user_id'];
 				
-				if (($iNewId = Phpfox::getService('mail.process')->add($aVals)))
+				if (($iNewId = Mail_Service_Process::instance()->add($aVals)))
 				{
 					$this->url()->send('mail.view', array('id' => $iNewId));
 				}
@@ -63,7 +63,7 @@ class Mail_Component_Controller_View_Mobile extends Phpfox_Component
 		
 		if ($aMail['viewer_user_id'] == Phpfox::getUserId())
 		{
-			Phpfox::getService('mail.process')->toggleView($aMail['mail_id'], false);
+			Mail_Service_Process::instance()->toggleView($aMail['mail_id'], false);
 		}
 		
 		$this->template()->assign(array(

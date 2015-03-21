@@ -41,10 +41,10 @@ class Core_Service_System extends Phpfox_Service
 	    	Phpfox::getPhrase('admincp.operating_system') => PHP_OS,
 	    	Phpfox::getPhrase('admincp.server_time_stamp') => date('F j, Y, g:i a', PHPFOX_TIME) . ' (GMT)',	    		
 	    	Phpfox::getPhrase('admincp.gzip') => (Phpfox::getParam('core.use_gzip') ? Phpfox::getPhrase('admincp.enabled') : Phpfox::getPhrase('admincp.disabled')),
-	    	Phpfox::getPhrase('admincp.sql_driver_version') =>  ($sDriver == 'DATABASE_DRIVER' ? Phpfox::getPhrase('admincp.n_a') : Phpfox::getLib('database')->getServerInfo()),
+	    	Phpfox::getPhrase('admincp.sql_driver_version') =>  ($sDriver == 'DATABASE_DRIVER' ? Phpfox::getPhrase('admincp.n_a') : Phpfox_Database::instance()->getServerInfo()),
 	    	Phpfox::getPhrase('admincp.sql_slave_enabled') => ($bSlaveEnabled ? Phpfox::getPhrase('admincp.yes') : Phpfox::getPhrase('admincp.no')),
 	    	Phpfox::getPhrase('admincp.sql_total_slaves') => ($bSlaveEnabled ? count(Phpfox::getParam(array('db', 'slave_servers'))) : Phpfox::getPhrase('admincp.n_a')),
-	    	Phpfox::getPhrase('admincp.sql_slave_server') => ($bSlaveEnabled ? Phpfox::getLib('database')->sSlaveServer : Phpfox::getPhrase('admincp.n_a')),    		
+	    	Phpfox::getPhrase('admincp.sql_slave_server') => ($bSlaveEnabled ? Phpfox_Database::instance()->sSlaveServer : Phpfox::getPhrase('admincp.n_a')),
 	    	Phpfox::getPhrase('admincp.memory_limit') => $oFile->filesize($this->_getUsableMemory()) . ' (' . @ini_get('memory_limit') . ')',
 	    	Phpfox::getPhrase('admincp.load_balancing_enabled') => (Phpfox::getParam(array('balancer', 'enabled')) ? Phpfox::getPhrase('admincp.yes') : Phpfox::getPhrase('admincp.no'))			
 	    );

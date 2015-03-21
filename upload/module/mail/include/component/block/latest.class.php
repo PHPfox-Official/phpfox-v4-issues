@@ -20,7 +20,7 @@ class Mail_Component_Block_Latest extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aMessages = Phpfox::getService('mail')->getLatest();
+		$aMessages = Mail_Service_Mail::instance()->getLatest();
 		foreach ($aMessages as $iKey => $aMessage)
 		{
 			$aMessages[$iKey]['preview'] = strip_tags(str_replace(array('&lt;','&gt;'), array('<','> '), $aMessage['preview']));

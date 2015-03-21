@@ -74,7 +74,7 @@ class Share_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		Phpfox::isUser(true);
 		
-		if (Phpfox::getService('mail.process')->add($this->get('val')))
+		if (Mail_Service_Process::instance()->add($this->get('val')))
 		{
 			$this->setMessage(Phpfox::getPhrase('share.message_successfully_sent'));
 		}

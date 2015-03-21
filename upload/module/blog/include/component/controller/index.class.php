@@ -226,7 +226,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 			if (($aTag = Phpfox::getService('tag')->getTagInfo('blog', $this->request()->get((defined('PHPFOX_IS_PAGES_VIEW') ? 'req5' : ($bIsProfile === true ? 'req4' : 'req3'))))))
 			{
 				$this->template()->setBreadCrumb(Phpfox::getPhrase('tag.topic') . ': ' . $aTag['tag_text'] . '', $this->url()->makeUrl('current'), true);				
-				$this->search()->setCondition('AND tag.tag_text = \'' . Phpfox::getLib('database')->escape($aTag['tag_text']) . '\'');
+				$this->search()->setCondition('AND tag.tag_text = \'' . Phpfox_Database::instance()->escape($aTag['tag_text']) . '\'');
 				$bIsValidTag = true;
 			}
 		}		

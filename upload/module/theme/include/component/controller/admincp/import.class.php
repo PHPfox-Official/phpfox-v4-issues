@@ -36,7 +36,7 @@ class Theme_Component_Controller_Admincp_Import extends Phpfox_Component
 						$sFolderName = $aParts[0];
 					}					
 				
-					if ($this->request()->get('overwrite') && Phpfox::getService('theme')->isTheme($sFolderName))
+					if ($this->request()->get('overwrite') && Theme_Service_Theme::instance()->isTheme($sFolderName))
 					{
 						$this->url()->send('admincp.theme.import', null, 'Theme successfully overwritten.');
 					}
@@ -69,7 +69,7 @@ class Theme_Component_Controller_Admincp_Import extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('theme.themes'), $this->url()->makeUrl('admincp.theme'))
 			->setBreadcrumb(Phpfox::getPhrase('theme.import_themes'), null, true)
 			->assign(array(
-					'aNewThemes' => Phpfox::getService('theme')->getNewThemes()
+					'aNewThemes' => Theme_Service_Theme::instance()->getNewThemes()
 				)
 			);
 	}

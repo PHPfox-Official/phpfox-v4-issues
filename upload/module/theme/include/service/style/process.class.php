@@ -315,7 +315,7 @@ class Theme_Service_Style_Process extends Phpfox_Service
 		
 		if (isset($aVals['theme_id']))
 		{
-			$aTheme = Phpfox::getService('theme')->getTheme($aVals['theme_id']);
+			$aTheme = Theme_Service_Theme::instance()->getTheme($aVals['theme_id']);
 		}
 		
 		$aVals = $this->validator()->process($aForm, $aVals);
@@ -746,14 +746,14 @@ class Theme_Service_Style_Process extends Phpfox_Service
 			)
 		);		
 		
-		$aTheme = Phpfox::getService('theme')->getTheme($sTheme, true);			
+		$aTheme = Theme_Service_Theme::instance()->getTheme($sTheme, true);
 		$aParams['theme_id'] = (isset($aTheme['theme_id']) ? $aTheme['theme_id'] : 0);
 		$aParams['parent_id'] = 0;
 		if (!empty($aParams['parent_style']))
 		{
 			$aStyleParentParts = explode('::', $aParams['parent_style']);
 			
-			$aTheme = Phpfox::getService('theme')->getTheme($aStyleParentParts[0], true);
+			$aTheme = Theme_Service_Theme::instance()->getTheme($aStyleParentParts[0], true);
 			if (isset($aTheme['theme_id']))
 			{
 				$aStyleParent = Theme_Service_Style_Style::instance()->getStyleParent($aTheme['theme_id'], $aStyleParentParts[1]);

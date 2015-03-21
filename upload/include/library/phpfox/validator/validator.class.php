@@ -512,7 +512,7 @@ class Phpfox_Validator
 			if (!empty($aActions))
 			{
 				// get required fields (we can cache this)
-				$aRequired = Phpfox::getLib('database')->select('i.field_id, i.phrase_var, ifc.table_name, ifc.column_name, ifc.operand, ifc.full_value')
+				$aRequired = Phpfox_Database::instance()->select('i.field_id, i.phrase_var, ifc.table_name, ifc.column_name, ifc.operand, ifc.full_value')
 					->from(Phpfox::getT('input_field'), 'i')
 					->leftjoin(Phpfox::getT('input_field_condition'), 'ifc', 'ifc.field_id = i.field_id')
 					->where('module_id = "'.$sModule .'" AND action IN ("'. implode('","',$aActions).'") AND is_required = 1')

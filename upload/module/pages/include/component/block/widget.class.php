@@ -32,7 +32,7 @@ class Pages_Component_Block_Widget extends Phpfox_Component
 			)
 		);
 		
-		if (defined("PHPFOX_IN_DESIGN_MODE") || Phpfox::getService('theme')->isInDndMode())
+		if (defined("PHPFOX_IN_DESIGN_MODE") || Theme_Service_Theme::instance()->isInDndMode())
 		{
 			return 'block';
 		}		

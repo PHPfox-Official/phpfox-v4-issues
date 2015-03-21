@@ -39,7 +39,7 @@ class Admincp_Component_Controller_Sql_Title extends Phpfox_Component
 					}
 				}
 			}
-			$oDb = Phpfox::getLib('database');
+			$oDb = Phpfox_Database::instance();
 			foreach ($aParseTables as $aParseTable)
 			{				
 				if (isset($aParseTable['has_index']))
@@ -55,7 +55,7 @@ class Admincp_Component_Controller_Sql_Title extends Phpfox_Component
 					}
 				}
 				
-				Phpfox::getLib('database')->query('ALTER TABLE ' . Phpfox::getT($aParseTable['table']) . ' CHANGE ' . $aParseTable['field'] . ' ' . $aParseTable['field'] . ' text');				
+				Phpfox_Database::instance()->query('ALTER TABLE ' . Phpfox::getT($aParseTable['table']) . ' CHANGE ' . $aParseTable['field'] . ' ' . $aParseTable['field'] . ' text');
 			}
 			
 			$this->url()->send('admincp.sql.title', null, Phpfox::getPhrase('admincp.database_tables_updated'));

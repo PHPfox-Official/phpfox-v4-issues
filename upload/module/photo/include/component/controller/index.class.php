@@ -407,7 +407,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 				{					
 					if (defined('PHPFOX_IS_PAGES_VIEW'))
 					{
-						$this->search()->setCondition('AND photo.view_id = 0 AND photo.module_id = \'' . Phpfox::getLib('database')->escape($aParentModule['module_id']) . '\' AND photo.group_id = ' . (int) $aParentModule['item_id'] . ' AND photo.privacy IN(%PRIVACY%)');
+						$this->search()->setCondition('AND photo.view_id = 0 AND photo.module_id = \'' . Phpfox_Database::instance()->escape($aParentModule['module_id']) . '\' AND photo.group_id = ' . (int) $aParentModule['item_id'] . ' AND photo.privacy IN(%PRIVACY%)');
 					}
 					else
 					{					
@@ -450,7 +450,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 			{
 				$this->template()->setBreadCrumb(Phpfox::getPhrase('tag.topic') . ': ' . $aTag['tag_text'] . '', $this->url()->makeUrl('current'), true);				
 				
-				$this->search()->setCondition('AND tag.tag_text = \'' . Phpfox::getLib('database')->escape($aTag['tag_text']) . '\'');	
+				$this->search()->setCondition('AND tag.tag_text = \'' . Phpfox_Database::instance()->escape($aTag['tag_text']) . '\'');
 			}
 		}		
 		

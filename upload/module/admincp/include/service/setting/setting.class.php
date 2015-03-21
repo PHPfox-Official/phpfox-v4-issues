@@ -522,7 +522,16 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 		$oXmlBuilder->closeGroup();
 				
 		return true;
-	}	
+	}
+
+	public function moduleHasSettings($module) {
+		$total = $this->database()->select('COUNT(*)')
+			->from(Phpfox::getT('setting'))
+			->where(['module_id' => $module])
+			->execute('getField');
+
+		return ($total ? true : false);
+	}
 	
 	public function search($aCond = array())
 	{

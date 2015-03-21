@@ -24,7 +24,7 @@ class Theme_Component_Controller_Admincp_Style_Index extends Phpfox_Component
 		
 		$iId = $this->request()->getInt('id');
 		
-		$aTheme = Phpfox::getService('theme')->getTheme($iId);			
+		$aTheme = Theme_Service_Theme::instance()->getTheme($iId);
 		
 		if (!isset($aTheme['theme_id']))
 		{

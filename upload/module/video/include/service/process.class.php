@@ -123,7 +123,7 @@ class Video_Service_Process extends Phpfox_Service
 					$sUpdate = '1|' . PHPFOX_TIME;
 				}
 
-				Phpfox::getLib('database')->update(Phpfox::getT('setting'), array('value_actual' => $sUpdate), 'var_name = \'phpfox_total_users_online_history\'');
+				Phpfox_Database::instance()->update(Phpfox::getT('setting'), array('value_actual' => $sUpdate), 'var_name = \'phpfox_total_users_online_history\'');
 
 				$this->cache()->remove('setting');
 			}

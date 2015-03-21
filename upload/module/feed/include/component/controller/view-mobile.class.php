@@ -32,7 +32,7 @@ class Feed_Component_Controller_View_Mobile extends Phpfox_Component
 					'params' => array(
 						'field' => 'time_stamp', // The time stamp field
 						'table' => Phpfox::getT('comment'), // Database table we plan to check
-						'condition' => 'type_id = \'' . Phpfox::getLib('database')->escape($aVals['type']) . '\' AND user_id = ' . Phpfox::getUserId(), // Database WHERE query
+						'condition' => 'type_id = \'' . Phpfox_Database::instance()->escape($aVals['type']) . '\' AND user_id = ' . Phpfox::getUserId(), // Database WHERE query
 						'time_stamp' => $iFlood * 60 // Seconds);	
 					)
 				);

@@ -188,7 +188,7 @@ class User_Service_Callback extends Phpfox_Service
 			return;
 		}
 		
-		$sKeywordSearch = '(u.full_name LIKE \'%' . Phpfox::getLib('database')->escape($sQuery) . '%\' OR (u.email LIKE \'%' . Phpfox::getLib('database')->escape($sQuery) . '@%\' OR u.email = \'' . Phpfox::getLib('database')->escape($sQuery) . '\'))';
+		$sKeywordSearch = '(u.full_name LIKE \'%' . Phpfox_Database::instance()->escape($sQuery) . '%\' OR (u.email LIKE \'%' . Phpfox_Database::instance()->escape($sQuery) . '@%\' OR u.email = \'' . Phpfox_Database::instance()->escape($sQuery) . '\'))';
 
 		$iCnt = $this->database()->select('COUNT(*)')
 		->from($this->_sTable, 'u')

@@ -40,7 +40,7 @@ class Mail_Service_Api extends Phpfox_Service
 				'message' => $this->_oApi->get('message')
 				);
 
-		if (($aIds = Phpfox::getService('mail.process')->add($aVals)) !== false)
+		if (($aIds = Mail_Service_Process::instance()->add($aVals)) !== false)
 		{
 			$aReturn = array(
 					'id' => (Phpfox::getParam('mail.threaded_mail_conversation') ? $aIds : $aIds[0]),
@@ -59,7 +59,7 @@ class Mail_Service_Api extends Phpfox_Service
 		@method GET
 		*/
 				
-		return (int) Phpfox::getService('mail')->getUnseenTotal();
+		return (int) Mail_Service_Mail::instance()->getUnseenTotal();
 	}	
 	
 	public function message()
@@ -73,7 +73,7 @@ class Mail_Service_Api extends Phpfox_Service
 		*/		
 		if (Phpfox::getParam('mail.threaded_mail_conversation'))
 		{
-			list($aThread, $aMessages) = Phpfox::getService('mail')->getThreadedMail($this->_oApi->get('id'));
+			list($aThread, $aMessages) = Mail_Service_Mail::instance()->getThreadedMail($this->_oApi->get('id'));
 		
 			$aReturn = array('id' => $aThread['thread_id'], 'permalink' => Phpfox::getLib('url')->makeUrl('mail.thread', array('id' => $aThread['thread_id'])), 'users' => array(), 'conversation' => array());
 			foreach ($aThread['users'] as $aUser)
@@ -100,7 +100,7 @@ class Mail_Service_Api extends Phpfox_Service
 		}
 		else
 		{
-			$aMessage = Phpfox::getService('mail')->getMail($this->_oApi->get('id'));
+			$aMessage = Mail_Service_Mail::instance()->getMail($this->_oApi->get('id'));
 			$aReturn = array(
 					'id' => $aMessage['mail_id'],
 					'permalink' => Phpfox::getLib('url')->makeUrl('mail.view.' . $aMessage['mail_id']),
@@ -146,7 +146,7 @@ class Mail_Service_Api extends Phpfox_Service
 		}
 
 		$aMessages = array();
-		list($iTotal, $aMessageRows, $aTotals) = Phpfox::getService('mail')->get($aCond);
+		list($iTotal, $aMessageRows, $aTotals) = Mail_Service_Mail::instance()->get($aCond);
 		foreach ($aMessageRows as $iKey => $aMessageRow)
 		{
 			$aMessages[$iKey] = array(

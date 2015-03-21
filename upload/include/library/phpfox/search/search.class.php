@@ -416,7 +416,7 @@ class Phpfox_Search
 				$this->_aSearchTool['search']['actual_value'] = $this->get($this->_aSearchTool['search']['name']);				
 				if (!empty($this->_aSearchTool['search']['actual_value']) && ($this->_aSearchTool['search']['actual_value'] != $this->_aSearchTool['search']['default_value']))
 				{
-					$this->setCondition('AND (' . Phpfox::getLib('database')->searchKeywords($this->_aSearchTool['search']['field'], $this->_aSearchTool['search']['actual_value']) . ')');
+					$this->setCondition('AND (' . Phpfox_Database::instance()->searchKeywords($this->_aSearchTool['search']['field'], $this->_aSearchTool['search']['actual_value']) . ')');
 				}
 			}		
 			
@@ -747,7 +747,7 @@ class Phpfox_Search
 			return array();
 		}		
 		
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		$aConds = array();		
 		foreach ($this->_aConds as $mKey => $mValue)
 		{
@@ -781,7 +781,7 @@ class Phpfox_Search
 			$mFields = array($mFields);
 		}		
 		
-		$this->_aConds[] = Phpfox::getLib('database')->search($sType, $mFields, Phpfox::getLib('parse.input')->clean($sSearch));
+		$this->_aConds[] = Phpfox_Database::instance()->search($sType, $mFields, Phpfox::getLib('parse.input')->clean($sSearch));
 	}
 	
 	public function getPhrase($sName, $sValue)
@@ -839,7 +839,7 @@ class Phpfox_Search
 			}		
 		}
 		
-		$iSearchIds = Phpfox::getLib('database')->insert(Phpfox::getT('search'), $aInsert);
+		$iSearchIds = Phpfox_Database::instance()->insert(Phpfox::getT('search'), $aInsert);
 		
 		$this->_oUrl->setParam('search-id', $iSearchIds);
 		if ($aExtraParams !== null && is_array($aExtraParams))
@@ -863,7 +863,7 @@ class Phpfox_Search
 	 */
 	public function getSearch($iId, $iPage, $iPageSize)
 	{
-		$aRow = Phpfox::getLib('database')->select('search_query, search_ids')
+		$aRow = Phpfox_Database::instance()->select('search_query, search_ids')
 			->from(Phpfox::getT('search'))
 			->where("search_id = " . (int) $iId . " AND user_id = " . Phpfox::getUserId())
 			->execute('getSlaveRow');			

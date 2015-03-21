@@ -122,7 +122,7 @@ class Phpfox_Url
 			$iReverseCacheId = $oCache->set('rewrite_reverse');
 			if ((!($this->aRewrite = $oCache->get($iCacheId))) || (!($this->aReverseRewrite = $oCache->get($iReverseCacheId))))
 			{
-				$aRows = Phpfox::getLib('database')->select('r.url, r.replacement')
+				$aRows = Phpfox_Database::instance()->select('r.url, r.replacement')
 					->from(Phpfox::getT('rewrite'), 'r')
 					->execute('getRows');
 				foreach ($aRows as $aRow) 

@@ -22,7 +22,7 @@ class Theme_Component_Controller_Admincp_Template_Index extends Phpfox_Component
 	{
 		$iId = $this->request()->getInt('id');
 		
-		$aTheme = Phpfox::getService('theme')->getTheme($iId);		
+		$aTheme = Theme_Service_Theme::instance()->getTheme($iId);
 		
 		if (Phpfox::getParam('core.enabled_edit_area'))
 		{

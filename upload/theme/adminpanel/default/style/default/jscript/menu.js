@@ -12,7 +12,6 @@ $Behavior.adminMenuClick = function()
 			}			
 		});
 		
-		
 	});
 	
 	$('.main_menu_link').click(function(){
@@ -32,7 +31,7 @@ $Behavior.adminMenuClick = function()
 					$(this).parent().find('.main_sub_menu:first').show();
 				}
 				else {
-					$(this).parent().find('.main_sub_menu:first').slideDown('fast');
+					$(this).parent().find('.main_sub_menu:first').show();
 				}				
 				$(this).addClass('active');
 				
@@ -44,7 +43,8 @@ $Behavior.adminMenuClick = function()
 			return false;
 		}
 	});
-	
+
+	/*
 	$('.main_menu_link').hover(function(){
 		if (bIsAdminMenuClickSet === true){
 			if (!$(this).hasClass('active')){
@@ -55,4 +55,5 @@ $Behavior.adminMenuClick = function()
 			}
 		}
 	});
+	*/
 }

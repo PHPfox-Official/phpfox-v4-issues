@@ -122,7 +122,7 @@ class Video_Component_Controller_Frame extends Phpfox_Component
 
 				Phpfox::getLib('cdn')->put(Phpfox::getParam('video.dir') . sprintf($aVideo['destination'], ''));
 
-				Phpfox::getLib('database')->insert(Phpfox::getT('vidly_url'), array(
+				Phpfox_Database::instance()->insert(Phpfox::getT('vidly_url'), array(
 						'video_id' => $aVideo['video_id'],
 						//'video_url' => rtrim(Phpfox::getParam('core.rackspace_url'), '/') . '/file/video/' . sprintf($aVideo['destination'], ''),
 						'video_url' => rtrim(Phpfox::getLib('cdn')->getUrl(Phpfox::getParam('video.url') . sprintf($aVideo['destination'], ''), $aVideo['server_id'])),

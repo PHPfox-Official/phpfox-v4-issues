@@ -52,7 +52,11 @@ class Phpfox_Error
 	 * @static 
 	 * @var bool
 	 */
-	static private $_bSkipError = false;	
+	static private $_bSkipError = false;
+
+	public static function toss($message) {
+		throw new Exception($message);
+	}
 	
 	/**
 	 * Displays the error message and directly creates a variable for the template engine

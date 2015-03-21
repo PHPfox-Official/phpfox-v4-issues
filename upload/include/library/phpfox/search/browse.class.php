@@ -218,7 +218,7 @@ class Phpfox_Search_Browse
 	 */
 	public function database()
 	{
-		return Phpfox::getLib('database');
+		return Phpfox_Database::instance();
 	}
 	
 	/**

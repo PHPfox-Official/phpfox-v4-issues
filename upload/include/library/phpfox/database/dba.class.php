@@ -57,32 +57,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 */
 	public function __construct()
 	{
-		if (PHPFOX_DEBUG && !defined('PHPFOX_INSTALLER') && !PHPFOX_OPEN_BASE_DIR)
-		{
-			if (file_exists(PHPFOX_DIR_DEV . 'include/sql-list'))
-			{
-				$oCache = Phpfox::getLib('cache');
-				$sCacheId = $oCache->set('sql_reserved_list');
-				if (!($this->_aWords = $oCache->get($sCacheId)))
-				{
-					$aFile = file(PHPFOX_DIR_DEV . 'include/sql-list');
-					foreach ($aFile as $sLine)
-					{
-						$sLine = trim($sLine);
-						$aParts = explode('=>', $sLine);
-						$sWord = trim($aParts[0]);
-						
-						if (empty($sWord) || (is_array($this->_aWords) && in_array($sWord, $this->_aWords)))
-						{
-							continue;
-						}
-					
-						$this->_aWords[] = $sWord;
-					}
-					$oCache->save($sCacheId, $this->_aWords);
-				}
-			}
-		}		
+
 	}
 	
     /** 
@@ -209,8 +184,14 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 		$this->_aQuery['where'] = '';
 		if (is_array($aConds) && count($aConds))
 		{
-			foreach ($aConds as $sValue)
+			// d($aConds);
+			foreach ($aConds as $sKey => $sValue)
 			{
+				if (is_string($sKey)) {
+					$this->_aQuery['where'] .= $sKey . ' = \'' . Phpfox_Database::instance()->escape($sValue) . '\'';
+
+					continue;
+				}
 				$this->_aQuery['where'] .= $sValue . ' ';
 			}
 			$this->_aQuery['where'] = "WHERE " . trim(preg_replace("/^(AND|OR)(.*?)/i", "", trim($this->_aQuery['where'])));
@@ -303,7 +284,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 * Creates a LEFT JOIN for an SQL query.
 	 * Example of left joining tables:
 	 * <code>
-	 * Phpfox::getLib('database')->select('*')
+	 * Phpfox_Database::instance()->select('*')
 	 * 		->from('user', 'u')
 	 * 		->leftJoin('user_info', 'ui', 'ui.user_id = u.user_id')
 	 * 		->execute('getRows');
@@ -326,7 +307,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 * Creates a INNER JOIN for an SQL query.
 	 * Example of left joining tables:
 	 * <code>
-	 * Phpfox::getLib('database')->select('*')
+	 * Phpfox_Database::instance()->select('*')
 	 * 		->from('user', 'u')
 	 * 		->innerJoin('user_info', 'ui', 'ui.user_id = u.user_id')
 	 * 		->execute('getRows');
@@ -349,7 +330,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 * Creates a JOIN for an SQL query.
 	 * Example of left joining tables:
 	 * <code>
-	 * Phpfox::getLib('database')->select('*')
+	 * Phpfox_Database::instance()->select('*')
 	 * 		->from('user', 'u')
 	 * 		->join('user_info', 'ui', 'ui.user_id = u.user_id')
 	 * 		->execute('getRows');
@@ -820,7 +801,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 * 
 	 * Example:
 	 * <code>
-	 * Phpfox::getLib('database')->updateCounter('user_count', 'total_friend', 'user_id', 1);
+	 * Phpfox_Database::instance()->updateCounter('user_count', 'total_friend', 'user_id', 1);
 	 * </code>
 	 *
 	 * @param string $sTable Table to update
@@ -913,7 +894,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 					$sQuery .= ' OR ';
 				}
 				
-				$sQuery .= $sField . ' LIKE \'%' . Phpfox::getLib('database')->escape($sWord) . '%\' ';
+				$sQuery .= $sField . ' LIKE \'%' . Phpfox_Database::instance()->escape($sWord) . '%\' ';
 				
 				$aLikeWords = $this->getLikeWords($sWord);
 				
@@ -921,7 +902,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 				{
 					if (strpos($sQuery, $sLikeWord) === false)
 					{
-						$sQuery .= ' OR ' . $sField . ' LIKE \'%' . Phpfox::getLib('database')->escape($sLikeWord) . '%\'' ;
+						$sQuery .= ' OR ' . $sField . ' LIKE \'%' . Phpfox_Database::instance()->escape($sLikeWord) . '%\'' ;
 					}
 				}
 				
@@ -931,7 +912,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 		
 		if (!$iIteration)
 		{
-			return $sField . ' LIKE \'%' . Phpfox::getLib('database')->escape($sStr) . '%\' ';
+			return $sField . ' LIKE \'%' . Phpfox_Database::instance()->escape($sStr) . '%\' ';
 		}
 		
 		$sQuery .= ') ';

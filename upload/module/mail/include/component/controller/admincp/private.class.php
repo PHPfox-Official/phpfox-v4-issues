@@ -20,7 +20,7 @@ class Mail_Component_Controller_Admincp_Private extends Phpfox_Component
 		Phpfox::getUserParam('mail.can_read_private_messages', true);
 		if (($iDeleteId = $this->request()->getInt('delete')))
 		{
-			if (Phpfox::getService('mail.process')->adminDelete($iDeleteId))
+			if (Mail_Service_Process::instance()->adminDelete($iDeleteId))
 			{
 				$this->url()->send('admincp.mail.private', null, Phpfox::getPhrase('mail.message_successfully_deleted'));
 			}
@@ -158,7 +158,7 @@ class Mail_Component_Controller_Admincp_Private extends Phpfox_Component
 		
 		define('PHPFOX_IS_PRIVATE_MAIL', true);
 		
-		list($aMessages, $iCnt) = Phpfox::getService('mail')->getPrivate($oFilter->getConditions(), 10, $oFilter->getSort(), $iPage);
+		list($aMessages, $iCnt) = Mail_Service_Mail::instance()->getPrivate($oFilter->getConditions(), 10, $oFilter->getSort(), $iPage);
 		
 		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => 10, 'count' => $oFilter->getSearchTotal($iCnt)));
 		

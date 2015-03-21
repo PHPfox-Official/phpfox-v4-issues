@@ -22,7 +22,7 @@ class User_Component_Block_Browse extends Phpfox_Component
 	{		
 		$iPage = $this->getParam('page', 0);
 		$iPageSize = 9;
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		
 		$aConditions = array();
 		if (($sFind = $this->getParam('find')))

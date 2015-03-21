@@ -515,8 +515,29 @@ $Core.loadStaticFiles = function($aFiles)
 	}
 };
 
-$Core.openPanel = function() {
+$Core.openPanel = function(obj) {
 	$('body').addClass('panel_is_active');
+
+	if (obj instanceof jQuery) {
+		if (obj.hasClass('active')) {
+			obj.removeClass('active');
+			$('body').removeClass('panel_is_active');
+
+			return;
+		}
+
+		$('.notifications a.active').removeClass('active');
+		obj.addClass('active');
+		$('#panel').html('');
+		$.ajax({
+			url: obj.data('open'),
+			contentType: 'application/json',
+			success: function(e) {
+				$('#panel').html(e.content);
+				$Core.loadInit();
+			}
+		})
+	}
 };
 
 $Behavior.globalInit = function()
@@ -562,9 +583,15 @@ $Behavior.globalInit = function()
 
 		$Core.openPanel();
 		t.hide().addClass('active');
-		$('#header_search_form').show();
-		$('#header_search_form input').focus();
+		// $('#header_search_form').show();
+		// $('#header_search_form input').focus();
 
+
+		return false;
+	});
+
+	$('._panel').click(function() {
+		$Core.openPanel($(this));
 
 		return false;
 	});
@@ -1522,7 +1549,7 @@ $Behavior.linkClickAll = function()
 			return;
 		}
 
-		if ($(this).hasClass('no_ajax_link') || $(this).hasClass('thickbox') || $(this).hasClass('sJsConfirm'))
+		if ($(this).hasClass('no_ajax_link') || $(this).hasClass('thickbox') || $(this).hasClass('popup') || $(this).hasClass('sJsConfirm'))
 		{
 			return;
 		}

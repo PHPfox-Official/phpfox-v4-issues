@@ -175,3 +175,43 @@ $.fn.getForm = function()
 	
 	return sXml;
 };
+
+$Core.processPostForm = function(e, obj) {
+	if (typeof(e.append) == 'object') {
+		$(e.append.to).append(e.append.with);
+		$Core.loadInit();
+	}
+
+	if (obj instanceof jQuery) {
+		if (obj.data('callback')) {
+			eval('' + obj.data('callback') + '(e, obj);');
+		}
+	}
+};
+
+$Behavior.onAjaxSubmit = function() {
+	$('.ajax_post').submit(function() {
+		var t = $(this),
+			data = t.serialize();
+
+		$.ajax({
+			url: t.attr('action'),
+			type: 'POST',
+			data: data,
+			success: function(e) {
+				$Core.processPostForm(e, t);
+			}
+		});
+
+		return false;
+	});
+
+	$('.on_enter_submit').keydown(function(e) {
+		if (e.which == 13) {
+			e.preventDefault();
+			$(this).parents('form:first').trigger('submit');
+			$(this).val('');
+			return false;
+		}
+	});
+};

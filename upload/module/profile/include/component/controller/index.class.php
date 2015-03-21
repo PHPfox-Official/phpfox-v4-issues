@@ -215,7 +215,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 		
 		if (!empty($aRow['css_hash']))
 		{
-			define('PHPFOX_TEMPLATE_CSS_FILE', Phpfox::getService('theme')->getCss(array(
+			define('PHPFOX_TEMPLATE_CSS_FILE', Theme_Service_Theme::instance()->getCss(array(
 							'table' => 'user_css',
 							'field' => 'user_id',
 							'value' => $aRow['user_id'],
@@ -409,7 +409,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 					'block' => 'profile.index',				
 					'item_id' => $aRow['user_id'],
 					'type_id' => 'profile',
-					'css_code' => Phpfox::getService('theme')->getCssCode(array(
+					'css_code' => Theme_Service_Theme::instance()->getCssCode(array(
 							'table_code' => 'user_css_code',
 							'field' => 'user_id',
 							'value' => $aRow['user_id']
@@ -423,7 +423,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 				
 				if (isset($aAdvanced))
 				{
-				    Phpfox::getService('theme')->getDesignValues($aAdvanced, array(
+				    Theme_Service_Theme::instance()->getDesignValues($aAdvanced, array(
 						'table' => 'user_css',
 						'field' => 'user_id',
 						'value' => $aRow['user_id']						

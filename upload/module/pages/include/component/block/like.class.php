@@ -29,7 +29,7 @@ class Pages_Component_Block_Like extends Phpfox_Component
 			)
 		);
 		
-		if (!PHPFOX_IS_AJAX || defined("PHPFOX_IN_DESIGN_MODE") || Phpfox::getService('theme')->isInDndMode())
+		if (!PHPFOX_IS_AJAX || defined("PHPFOX_IN_DESIGN_MODE") || Theme_Service_Theme::instance()->isInDndMode())
 		{
 			return 'block';
 		}

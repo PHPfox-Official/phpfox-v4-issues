@@ -38,6 +38,8 @@ class Log_Service_Session extends Phpfox_Service
 	
 	public function verifyToken()
 	{
+		return;
+
 	    $aCheck = array('/video/frame/', '/subscribe/complete/', '/ad/complete/', '/music/upload/');
 	    
 	    if ($sPlugin = Phpfox_Plugin::get('log.service_session___verifyToken_start'))
@@ -86,13 +88,6 @@ class Log_Service_Session extends Phpfox_Service
 			{			
 				$this->_log(Phpfox::getPhrase('error.csrf_detected'));
 			}
-			
-			/*
-			if (((60 * 3) + substr($sToken, -10)) < PHPFOX_TIME)
-			{
-				define('PHPFOX_CSRF_TIME_LIMIT', true);
-			}		
-			*/
 		}		
 	}
 		

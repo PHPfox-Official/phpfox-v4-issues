@@ -26,7 +26,7 @@ class Admincp_Component_Controller_Sql_Index extends Phpfox_Component
 			{
 				foreach ($aTables as $sTable)
 				{
-					Phpfox::getLib('database')->optimizeTable($sTable);
+					Phpfox_Database::instance()->optimizeTable($sTable);
 				}
 				
 				$this->url()->send('admincp.sql', null, Phpfox::getPhrase('admincp.table_s_successfully_optimized'));
@@ -35,14 +35,14 @@ class Admincp_Component_Controller_Sql_Index extends Phpfox_Component
 			{
 				foreach ($aTables as $sTable)
 				{
-					Phpfox::getLib('database')->repairTable($sTable);
+					Phpfox_Database::instance()->repairTable($sTable);
 				}
 				
 				$this->url()->send('admincp.sql', null, Phpfox::getPhrase('admincp.table_s_successfully_repaired'));
 			}			
 		}
 		
-		$aItems = Phpfox::getLib('database')->getTableStatus();
+		$aItems = Phpfox_Database::instance()->getTableStatus();
         $iSize = 0;
         $iOverhead = 0;
         foreach ($aItems as $iKey => $aItem)

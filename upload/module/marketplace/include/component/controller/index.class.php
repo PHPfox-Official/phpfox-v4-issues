@@ -220,7 +220,7 @@ class Marketplace_Component_Controller_Index extends Phpfox_Component
 					
 					if (($sLocation = $this->request()->get('location')))
 					{
-						$this->search()->setCondition('AND l.country_iso = \'' . Phpfox::getLib('database')->escape($sLocation) . '\'');
+						$this->search()->setCondition('AND l.country_iso = \'' . Phpfox_Database::instance()->escape($sLocation) . '\'');
 					}
 					
 					$this->search()->setCondition('AND l.view_id = 0 AND l.privacy IN(%PRIVACY%)');

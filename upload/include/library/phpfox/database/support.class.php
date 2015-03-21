@@ -257,7 +257,7 @@ class Phpfox_Database_Support
 		
 		if ($oDb === null)
 		{
-			$oDb = Phpfox::getLib('database');
+			$oDb = Phpfox_Database::instance();
 		}
 		
 		if (!in_array($sTable, $this->getTables($sDriver, $oDb)))
@@ -295,7 +295,7 @@ class Phpfox_Database_Support
 		
 		if ($oDb === null)
 		{
-			$oDb = Phpfox::getLib('database');
+			$oDb = Phpfox_Database::instance();
 		}
 		
 		if (!in_array($sTable, $this->getTables($sDriver, $oDb)))
@@ -332,7 +332,7 @@ class Phpfox_Database_Support
 		
 		if ($oDb === null)
 		{
-			$oDb = Phpfox::getLib('database');
+			$oDb = Phpfox_Database::instance();
 		}
 		
 		if ($aTables)
@@ -429,7 +429,7 @@ class Phpfox_Database_Support
 	{
 		if ($oDb === null)
 		{
-			$oDb = Phpfox::getLib('database');
+			$oDb = Phpfox_Database::instance();
 		}		
 		
 		if ($aTables && is_array($aTables))

@@ -11,6 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{if Phpfox::isUser()}
 <nav class="notifications">
 	<ul>
 		<li>
@@ -23,19 +24,22 @@ defined('PHPFOX') or exit('NO DICE!');
 			</form>
 		</li>
 		<li>
-			<a href="#">
+			<a href="#" class="_panel" data-open="{url link='notification.panel'}">
 				<i class="fa fa-bell"></i>
 				Notifications
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="#" class="_panel" data-open="{url link='mail.panel'}">
 				<i class="fa fa-envelope"></i>
 				Messages
 			</a>
 		</li>
 	</ul>
 </nav>
+{else}
+
+{/if}
 {*
 <ul>
 	{if Phpfox::getUserBy('profile_page_id') <= 0}

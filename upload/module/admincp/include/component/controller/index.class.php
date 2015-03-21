@@ -157,7 +157,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 		// Create AdminCP menu
 		$aMenus = array(
-			'admincp.dashboard' => 'admincp',
+			// 'admincp.dashboard' => 'admincp',
+			/*
 			'admincp.cms' => array(
 				'admincp.menus' => array(
 					'admincp.manage_menus' => 'admincp.menu',
@@ -172,6 +173,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 					'admincp.add_new_page' => 'admincp.page.add'
 				)
 			),
+			*/
+
 			'admincp.users' => array(
 				'admincp.browse_members' => 'admincp.user.browse',				
 				'admincp.user_group_manager' => array(
@@ -190,6 +193,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				),
 				'admincp.inactive_members' => 'admincp.user.inactivereminder'
 			),
+
+			/*
 			'admincp.extensions' => array(
 				'admincp.module' => array(
 					'admincp.manage_modules' => 'admincp.module',
@@ -233,6 +238,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 					'apps.export_apps' => 'admincp.apps.export'					
 				)
 			),
+			*/
+			/*
 			'admincp.settings' => array(
 				'admincp.system_settings_menu' => array(
 					'admincp.manage_settings' => 'admincp.setting',
@@ -243,138 +250,204 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				),
 				'admincp.payment_gateways_menu' => 'admincp.api.gateway'
 			),
-			'admincp.tools' => array(
-				'admincp.general' => array(
-					'core.site_statistics' => 'admincp.core.stat',
-					'core.admincp_menu_system_overview' => 'admincp.core.system',
-					'admincp.ip_address' => 'admincp.core.ip',
-					'admincp.admincp_privacy' => 'admincp.privacy'
-				),				
-				'admincp.menu_site_stats' => array(
-					'admincp.menu_manage_stats' => 'admincp.stat',
-					'admincp.menu_create_new_stat' => 'admincp.stat.add'
-				),
-				'admincp.maintenance' => array(
-					'admincp.menu_cache_manager' => 'admincp.maintain.cache',
-					'admincp.admincp_menu_reparser' => 'admincp.maintain.reparser',
-					'admincp.remove_duplicates' => 'admincp.maintain.duplicate',
-					'admincp.counters' => 'admincp.maintain.counter',
-					'admincp.check_modified_files' => 'admincp.checksum.modified',
-					'admincp.check_unknown_files' => 'admincp.checksum.unknown'
-				),
-				'ban.ban_filters' => array(
-					'ban.ban_filter_username' => 'admincp.ban.username',
-					'ban.ban_filter_email' => 'admincp.ban.email',
-					'ban.ban_filter_display_name' => 'admincp.ban.display',
-					'ban.ban_filter_ip' => 'admincp.ban.ip',
-					'ban.ban_filter_word' => 'admincp.ban.word'
-				),
-				'admincp.mail_messages' => array(
-					'admincp.view_messages' => 'admincp.mail.private'
-				),
-				'core.admincp_menu_country' => array(
-					'core.admincp_menu_country_manager' => 'admincp.core.country',
-					'core.admincp_menu_country_add' => 'admincp.core.country.add',
-					'core.admincp_menu_country_child_add' => 'admincp.core.country.child.add',
-					'core.admincp_menu_country_import' => 'admincp.core.country.import'
-				),
-				'core.admincp_menu_online' => array(
-					'core.admincp_menu_online_members' => 'admincp.user.browse.view_online',
-					'core.admincp_menu_online_guests' => 'admincp.core.online-guest'
-				),
-				'admincp.sql' => array(
-					'admincp.sql_maintenance' => 'admincp.sql',
-					'admincp.sql_backup' => 'admincp.sql.backup',
-					'admincp.alter_title_fields' => 'admincp.sql.title'
-				),
-				'core.currency' => array(
-					'core.currency_manager' => 'admincp.core.currency',
-					'core.add_currency' => 'admincp.core.currency.add'
-				),
-				'admincp.seo' => array(
-					'admincp.custom_elements' => 'admincp.seo.meta',
-					'admincp.nofollow_urls' => 'admincp.seo.nofollow',
-					'admincp.rewrite_url' => 'admincp.seo.rewrite'
-				)
-			)
+			*/
+
 		);
-		
-		if (!Phpfox::isModule('mail'))
-		{
-			unset($aMenus['admincp.tools']['admincp.mail_messages']);
+
+		$aMenus = [
+			'Dashboard' => 'admincp',
+			'Apps' => '#apps',
+			// '__APPS__',
+
+			'Members',
+			'Search' => 'admincp.user.browse',
+			'User Groups' => 'admincp.user.group',
+			'Promotions' => 'admincp.user.promotion',
+			'Custom Fields' => 'admincp.custom',
+
+			'Site',
+			'Pages' => 'admincp.page',
+			'Menus' => 'admincp.menu',
+			'Blocks' => 'admincp.block',
+			'Settings' => [
+				'core.admincp_menu_country' => 'admincp.core.country',
+				'core.currency_manager' => 'admincp.core.currency',
+				'attachment.admincp_menu_attachment_types' => 'admincp.attachment',
+				'admincp.payment_gateways_menu' => 'admincp.api.gateway',
+				'admincp.menu_tools_emoticon_package' => 'admincp.emoticon.package',
+
+				'User',
+				'custom.admin_menu_manage_relationships' => 'admincp.custom.relationships',
+				'admincp.user_cancellation_options_manage' => 'admincp.user.cancellations.manage',
+
+				'SEO',
+				'admincp.custom_elements' => 'admincp.seo.meta',
+				'admincp.nofollow_urls' => 'admincp.seo.nofollow',
+				'admincp.rewrite_url' => 'admincp.seo.rewrite'
+			],
+			'Themes' => '#themes',
+
+			'Tools',
+			'Status' => array(
+				'core.site_statistics' => 'admincp.core.stat',
+				'core.admincp_menu_system_overview' => 'admincp.core.system',
+				'admincp.inactive_members' => 'admincp.user.inactivereminder'
+				// 'admincp.ip_address' => 'admincp.core.ip',
+				// 'admincp.admincp_privacy' => 'admincp.privacy'
+			),
+			/*
+			'admincp.menu_site_stats' => array(
+				'admincp.menu_manage_stats' => 'admincp.stat',
+				'admincp.menu_create_new_stat' => 'admincp.stat.add'
+			),
+			*/
+			'Maintenance' => array(
+				'admincp.menu_cache_manager' => 'admincp.maintain.cache',
+				'admincp.admincp_menu_reparser' => 'admincp.maintain.reparser',
+				'admincp.remove_duplicates' => 'admincp.maintain.duplicate',
+				'admincp.counters' => 'admincp.maintain.counter',
+				'admincp.check_modified_files' => 'admincp.checksum.modified',
+				'admincp.check_unknown_files' => 'admincp.checksum.unknown',
+				'admincp.find_missing_settings' => 'admincp.setting.missing'
+			),
+			'Ban Filters' => array(
+				'ban.ban_filter_username' => 'admincp.ban.username',
+				'ban.ban_filter_email' => 'admincp.ban.email',
+				'ban.ban_filter_display_name' => 'admincp.ban.display',
+				'ban.ban_filter_ip' => 'admincp.ban.ip',
+				'ban.ban_filter_word' => 'admincp.ban.word'
+			),
+			/*
+			'admincp.mail_messages' => array(
+				'admincp.view_messages' => 'admincp.mail.private'
+			),
+			*/
+			/*
+			'core.admincp_menu_country' => array(
+				'core.admincp_menu_country_manager' => 'admincp.core.country',
+				'core.admincp_menu_country_add' => 'admincp.core.country.add',
+				'core.admincp_menu_country_child_add' => 'admincp.core.country.child.add',
+				'core.admincp_menu_country_import' => 'admincp.core.country.import'
+			),
+			*/
+			/*
+			'core.admincp_menu_online' => array(
+				'core.admincp_menu_online_members' => 'admincp.user.browse.view_online',
+				'core.admincp_menu_online_guests' => 'admincp.core.online-guest'
+			),
+			*/
+			'SQL' => array(
+				'admincp.sql_maintenance' => 'admincp.sql',
+				'admincp.sql_backup' => 'admincp.sql.backup',
+				'admincp.alter_title_fields' => 'admincp.sql.title'
+			),
+			/*
+			'core.currency' => array(
+				'core.currency_manager' => 'admincp.core.currency',
+				'core.add_currency' => 'admincp.core.currency.add'
+			),
+			'admincp.seo' => array(
+				'admincp.custom_elements' => 'admincp.seo.meta',
+				'admincp.nofollow_urls' => 'admincp.seo.nofollow',
+				'admincp.rewrite_url' => 'admincp.seo.rewrite'
+			)
+			*/
+		];
+
+		$aThemes = [];
+		foreach (Theme_Service_Theme::instance()->get() as $aTheme) {
+			$aThemes[$aTheme['name']] = $this->url()->makeUrl('admincp.theme.manage', ['id' => $aTheme['theme_id']]);
 		}
-		if (Phpfox::isModule('mail') != true || !Phpfox::getUserParam('mail.can_read_private_messages'))
-		{
-			unset($aMenus['admincp.tools']['admincp.mail_messages']['admincp.view_messages']);
-			if (empty($aMenus['admincp.tools']['admincp.mail_messages']))
-			{
-				unset($aMenus['admincp.tools']['admincp.mail_messages']);
+		// d($aThemes); exit;
+
+		list($aGroups, $aModules, $aProductGroups) = Phpfox::getService('admincp.setting.group')->get();
+		// d($aGroups); exit;
+
+		$aApps = [];
+		$aSkip = ['user', 'track', 'tinymce', 'theme', 'tag', 'subscribe', 'share', 'search', 'rss', 'request', 'report', 'rate', 'profile', 'privacy', 'page', 'notification', 'mobile', 'log', 'link', 'like', 'language', 'input', 'admincp', 'api', 'apps', 'attachment', 'ban', 'comment', 'contact', 'core', 'custom', 'emoticon', 'error', 'favorite', 'help', 'im'];
+		foreach (Phpfox_Module::instance()->getModules() as $sModule) {
+			if (in_array($sModule, $aSkip)) {
+				continue;
 			}
-		}
-		
-		if (!Phpfox::getUserParam('admincp.can_add_new_block'))
-		{
-			unset($aMenus['admincp.cms']['admincp.blocks']['admincp.add_new_block']);
-		}				
-		
-		if (Phpfox::isModule('custom'))
-		{
-			$aMenus['admincp.users']['custom.admincp_custom_fields'] = array(
-				'custom.admin_menu_add_custom_field' => 'admincp.custom.add',
-				'custom.admin_menu_manage_custom_fields' => 'admincp.custom',
-				'custom.admin_menu_add_custom_group' => 'admincp.custom.group.add',
-				'custom.admin_menu_manage_relationships' => 'admincp.custom.relationships'
-			);
+
+			// $aApps[$sModule] = $this->url()->makeUrl('admincp.app', ['id' => $sModule]);
+			$aApps[$sModule] = $this->url()->makeUrl('admincp.' . $sModule);
 		}
 
-		if (Phpfox::isModule('emoticon'))
-		{
-			$aMenus['admincp.extensions']['emoticon.emoticons'] = array(
-				'admincp.menu_tools_emoticon_package' => 'admincp.emoticon.package',
-				'admincp.menu_tools_emoticon_package_add' => 'admincp.emoticon.package.add',
-				'admincp.menu_tools_emoticon_add' => 'admincp.emoticon.add',
-				'emoticon.import_export_emoticon' => 'admincp.emoticon.file'
-			);				
+		foreach ($aMenus as $sKey => $mValue) {
+			if ($mValue == '#apps') {
+				$aMenus[$sKey] = $aApps;
+
+				continue;
+			}
+			else if ($mValue == '#themes') {
+				$aMenus[$sKey] = $aThemes;
+
+				continue;
+			}
+
+			$aMenus[$sKey] = $mValue;
 		}
-		
-		if (Phpfox::isModule('attachment.admincp_attachment_menu'))
-		{
-			$aMenus['admincp.extensions']['attachment.admincp_attachment_menu'] = array(
-				'attachment.admincp_menu_attachment_types' => 'admincp.attachment',
-				'attachment.admincp_menu_attachment_add' => 'admincp.attachment.add'
-			);
+
+		$aSettings = [];
+		foreach ($aGroups as $sGroupName => $sGroupValues) {
+			$aSettings[$sGroupName] = '#';
+			// $aMenus['Settings'][$sGroupName] = '#';
 		}
-		
-		if (!Phpfox::getParam('core.branding') && !Phpfox::getParam('core.phpfox_is_hosted'))
-		{
-			$aMenus['admincp.settings']['core.phpfox_branding_removal'] = 'admincp.core.branding';	
-		}
-		
-		if (Phpfox::getParam('core.phpfox_is_hosted'))
-		{
-			unset($aMenus['admincp.extensions']['admincp.module']);
-			unset($aMenus['admincp.extensions']['admincp.products']['admincp.create_new_product']);
-			unset($aMenus['admincp.extensions']['admincp.products']['admincp.import_export']);
-			unset($aMenus['admincp.extensions']['admincp.plugin']);
-			// unset($aMenus['admincp.extensions']['admincp.language']['language.import_language_pack']);
-			unset($aMenus['admincp.extensions']['admincp.theme']['theme.create_a_new_template']);
-			unset($aMenus['admincp.extensions']['admincp.theme']['theme.admincp_create_css_file']);
-			// unset($aMenus['admincp.extensions']['admincp.theme']['theme.admincp_menu_import_themes']);
-			unset($aMenus['admincp.extensions']['admincp.theme']['theme.admincp_menu_import_styles']);
-			unset($aMenus['admincp.extensions']['emoticon.emoticons']['emoticon.import_export_emoticon']);
-			unset($aMenus['admincp.settings']['admincp.system_settings_menu']['admincp.add_new_setting']);
-			unset($aMenus['admincp.settings']['admincp.system_settings_menu']['admincp.add_new_setting_group']);
-			unset($aMenus['admincp.settings']['admincp.payment_gateways_menu']);
-		}		
-		
-		$aMenus = Phpfox::getService('admincp')->checkAdmincpPrivacy($aMenus);
+		$aMenus['Settings'] = array_merge($aSettings, $aMenus['Settings']);
+
+		// d($aMenus); exit;
 		
 		(($sPlugin = Phpfox_Plugin::get('admincp.component_controller_index_process_menu')) ? eval($sPlugin) : false);
 				
 		$aUser = Phpfox::getUserBy();
 		// $aUser['full_name'] = substr($aUser['full_name'], 0, Phpfox::getParam('user.maximum_length_for_full_name'));
+
+		$sSectionTitle = '';
+		$app = $this->request()->get('req2');
+		$is_settings = false;
+		if ($this->url()->getUrl() == 'admincp/setting/edit') {
+			$app = $this->request()->get('module-id');
+			$is_settings = true;
+		}
+
+		if ($app && Phpfox::isModule($app)) {
+			$app = Phpfox_Module::instance()->get($app);
+
+			$sSectionTitle = $app['module_id'];
+			$menu = unserialize($app['menu']);
+			$menus = [];
+			$current = $this->url()->getUrl();
+
+			if (Admincp_Service_Setting_Setting::instance()->moduleHasSettings($app['module_id'])) {
+				$menus['Settings'] = [
+					'is_active' => $is_settings,
+					'url' => $this->url()->makeUrl('admincp.setting.edit', ['module-id' => $app['module_id']])
+				];
+			}
+
+			if (is_array($menu) && count($menu)) {
+				foreach ($menu as $key => $value) {
+					$is_active = false;
+					$url = 'admincp.' . implode('.', $value['url']);
+					if ($current == str_replace('.', '/', $url)) {
+						$is_active = true;
+					}
+
+					$menus[Phpfox::getPhrase($key)] = [
+						'url' => $url,
+						'is_active' => $is_active
+					];
+				}
+			}
+
+			$this->template()->assign([
+				'aSectionAppMenus' => $menus
+			]);
+		}
 		
 		$this->template()->assign(array(
+				'sSectionTitle' => $sSectionTitle,
 						'aModulesMenu' => $aModules,
 						'aAdminMenus' => $aMenus,						
 						'aUserDetails' => $aUser,
@@ -382,11 +455,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 						'sSiteTitle' => Phpfox::getParam('core.site_title')
 					)
 				)->setHeader(array(
-					'menu.css' => 'style_css',		
-					"<!--[if IE]\n\t\t\t<link rel=\"stylesheet\" href=\"" . $this->template()->getStyle('css') . "ie.css\">\n\t\t\t<script type=\"text/javascript\">\n\t\t\t\t window.mlrunShim = true;\n\t\t\t</script>\n\t\t<![endif]-->",
+					'menu.css' => 'style_css',
 					'menu.js' => 'style_script',
-					"<!--[if lt IE 7]>\n\t\t\t<link rel=\"stylesheet\" href=\"" . $this->template()->getStyle('css') . "ie6.css\">\n\t\t<![endif]-->",
-					"<!--[if IE 6]>\n\t\t\t<script type=\"text/javascript\" src=\"" . Phpfox::getParam('core.url_static_script') . "admin_ie6.js\"></script>\n\t\t<![endif]-->",
 					'admin.js' => 'static_script'
 				)
 			)->setTitle(Phpfox::getPhrase('admincp.admin_cp'));		
@@ -394,7 +464,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		if ($bPass)
 		{		
 			Phpfox_Module::instance()->setController($this->_sModule . '.' . $this->_sController);
-			
+
 			$sMenuController = str_replace(array('.index', '.phrase'), '', 'admincp.' . ($this->_sModule != 'admincp' ? $this->_sModule . '.' . str_replace('admincp.', '', $this->_sController) : $this->_sController));
 			$aCachedSubMenus = array();
 			$sActiveSideBar = '';
@@ -408,7 +478,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			{
 				$sMenuController = $this->_getMenuName();
 			}			
-			
+
+			/*
 			foreach ($aMenus as $sKey => $aSubMenus)
 			{
 				if (is_array($aSubMenus))
@@ -487,14 +558,15 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 						$aCachedSubMenus[$aModule['module_id']][$sPhrase] = 'admincp.' . str_replace('/', '.', $aLink['url']);
 					}				
 				}			
-			}			
+			}
+			*/
 			
 			$this->template()->assign(array(
 					'aCachedSubMenus' => $aCachedSubMenus,
 					'sActiveSideBar' => $sActiveSideBar,
-					'bIsModuleConnection' => $bIsModuleConnection,
+					'bIsModuleConnection' => false,
 					'sMenuController' => $sMenuController,
-					'aActiveMenus' => (($bIsModuleConnection && isset($aCachedSubMenus[$sActiveSideBar])) ? $aCachedSubMenus[$sActiveSideBar] : array())
+					'aActiveMenus' => ((false && isset($aCachedSubMenus[$sActiveSideBar])) ? $aCachedSubMenus[$sActiveSideBar] : array())
 				)
 			);				
 		}
@@ -539,15 +611,6 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 					)
 				);
 			}
-		}	
-		
-		if (defined('PHPFOX_IS_HOSTED_SCRIPT') && !defined('PHPFOX_GROUPLY_TEST'))
-		{
-			$iTotalSpaceUsed = Phpfox::getLib('cdn')->getUsage();
-			if ($iTotalSpaceUsed > Phpfox::getParam('core.phpfox_grouply_space'))
-			{
-				return Phpfox_Module::instance()->setController('admincp.limit');
-			}		
 		}
 	}
 	

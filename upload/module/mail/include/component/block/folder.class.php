@@ -57,7 +57,7 @@ class Mail_Component_Block_Folder extends Phpfox_Component
 		if (Phpfox::getParam('mail.show_core_mail_folders_item_count') && Phpfox::getUserParam('mail.show_core_mail_folders_item_count'))
 		{
 
-			$aCountFolders = Phpfox::getService('mail')->getDefaultFoldersCount(Phpfox::getUserId());
+			$aCountFolders = Mail_Service_Mail::instance()->getDefaultFoldersCount(Phpfox::getUserId());
 			$this->template()->assign(array(
 				'iCountInbox'   => $aCountFolders['iCountInbox'],
 				'iCountSentbox' => $aCountFolders['iCountSentbox'],

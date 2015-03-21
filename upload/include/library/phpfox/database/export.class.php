@@ -847,7 +847,7 @@ class Phpfox_Database_Export
 				
 				foreach ($aFields as $sField => $aExtras)
 				{					
-					if ($bInstall == true && Phpfox::getLib('database')->isField($sTable, $sField))
+					if ($bInstall == true && Phpfox_Database::instance()->isField($sTable, $sField))
 					{
 						continue;
 					}
@@ -960,7 +960,7 @@ class Phpfox_Database_Export
 				
 				foreach ($aFields as $sField => $aExtras)
 				{
-					if ($bInstall == true && Phpfox::getLib('database')->isIndex($sTable, $sField))
+					if ($bInstall == true && Phpfox_Database::instance()->isIndex($sTable, $sField))
 					{
 						continue;
 					}

@@ -216,7 +216,7 @@ class Phpfox_Debug
     		}
     		
     		$iSqlCount++;
-    		$sExtra = Phpfox::getLib('database')->sqlReport($aLine['sql']);
+    		$sExtra = Phpfox_Database::instance()->sqlReport($aLine['sql']);
 
     	    if ($bIsCmd)
     	    {
@@ -275,13 +275,13 @@ class Phpfox_Debug
 	    		'GZIP' => (Phpfox::getParam('core.use_gzip') ? 'enabled' : 'disabled'),
 	    		'2' => '',
 	    		// SQL
-	    		'Driver Version' =>  ($sDriver == 'DATABASE_DRIVER' ? 'N/A' : Phpfox::getLib('database')->getServerInfo()),
+	    		'Driver Version' =>  ($sDriver == 'DATABASE_DRIVER' ? 'N/A' : Phpfox_Database::instance()->getServerInfo()),
 	    		'SQL Time' =>  $iTotalSqlTime,
 	    		'SQL Queries' => $iSqlCount,    		
 	    		'SQL Memory Usage' => $oFile->filesize($iSqlMemory),
 	    		'SQL Slave Enabled' => ($bSlaveEnabled ? 'Yes' : 'No'),
 	    		'SQL Total Slaves' => ($bSlaveEnabled ? count(Phpfox::getParam(array('db', 'slave_servers'))) : 'N/A'),
-	    		'SQL Slave Server' => ($bSlaveEnabled ? Phpfox::getLib('database')->sSlaveServer : 'N/A'),    		
+	    		'SQL Slave Server' => ($bSlaveEnabled ? Phpfox_Database::instance()->sSlaveServer : 'N/A'),
 	    		'3' => '',
 	    		// Vars
 	    		'Total Memory Usage' => $oFile->filesize(PHPFOX_MEM_END),

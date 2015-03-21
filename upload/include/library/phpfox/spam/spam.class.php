@@ -35,7 +35,7 @@ class Phpfox_Spam
 	 */
 	public function __construct()
 	{
-		$this->_oDb = Phpfox::getLib('database');
+		$this->_oDb = Phpfox_Database::instance();
 	}
 	
 	/**
@@ -205,7 +205,7 @@ class Phpfox_Spam
 	
 			if (($this->_aParams['is_spam'] = $oAkismet->isCommentSpam()) === true)
 			{
-				Phpfox::getLib('database')->updateCounter('user', 'total_spam', 'user_id', Phpfox::getUserId());				
+				Phpfox_Database::instance()->updateCounter('user', 'total_spam', 'user_id', Phpfox::getUserId());
 			}
 				
 			return $this->_aParams['is_spam'];

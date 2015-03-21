@@ -22,7 +22,7 @@ class Bulletin_Component_Controller_View extends Phpfox_Component
 	{			
 		if (($sLegacyTitle = $this->request()->getInt('id')) && !empty($sLegacyTitle))
 		{			
-			$aImport = Phpfox::getLib('database')->select('*')
+			$aImport = Phpfox_Database::instance()->select('*')
 				->from(Phpfox::getT('bulletin'))
 				->where('bulletin_id = ' . (int) $sLegacyTitle)
 				->execute('getSlaveRow');

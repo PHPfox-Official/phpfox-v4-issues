@@ -246,7 +246,7 @@ class Core_Service_Redirect_Redirect extends Phpfox_Service
 	 public function getRewrites()
 	 {
 				
-		$aRows = Phpfox::getLib('database')->select('r.url, r.replacement, r.rewrite_id')
+		$aRows = Phpfox_Database::instance()->select('r.url, r.replacement, r.rewrite_id')
 			->from(Phpfox::getT('rewrite'), 'r')
 			->order('rewrite_id DESC')
 			->execute('getRows');

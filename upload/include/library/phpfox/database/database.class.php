@@ -14,12 +14,12 @@ Phpfox::getLibClass('phpfox.database.dba');
  * 
  * Example use of an SQL query:
  * <code>
- * Phpfox::getLib('database')->query('SELECT * FROM user');
+ * Phpfox_Database::instance()->query('SELECT * FROM user');
  * </code>
  * 
  * Example use to get multiple rows from a table:
  * <code>
- * $aRows = Phpfox::getLib('database')->select('*')
+ * $aRows = Phpfox_Database::instance()->select('*')
  * 		->from('user')
  * 		->where('user_name = \'foo\'')
  * 		->execute('getRows');
@@ -27,7 +27,7 @@ Phpfox::getLibClass('phpfox.database.dba');
  * 
  * Example to insert data into the database:
  * <code>
- * Phpfox::getLib('database')->insert('user', array(
+ * Phpfox_Database::instance()->insert('user', array(
  * 			'email' => 'foo@bar.com',
  * 			'full_name' => 'Full Name'
  * 		)
@@ -36,12 +36,12 @@ Phpfox::getLibClass('phpfox.database.dba');
  * 
  * Example to update a record:
  * <code>
- * Phpfox::getLib('database')->update('user', array('email' => 'foo@bar.com'), 'user_id = 1');
+ * Phpfox_Database::instance()->update('user', array('email' => 'foo@bar.com'), 'user_id = 1');
  * </code>
  * 
  * Example to delete a record:
  * <code>
- * Phpfox::getLib('database')->delete('user', 'user_id = 1');
+ * Phpfox_Database::instance()->delete('user', 'user_id = 1');
  * </code>
  * 
  * @copyright		[PHPFOX_COPYRIGHT]
@@ -54,9 +54,9 @@ class Phpfox_Database
 	/**
 	 * Holds the drivers object
 	 *
-	 * @var object
+	 * @var Phpfox_Database_Driver_Mysql
 	 */
-	private $_oObject = null;
+	private static $_oObject = null;
 
 	/**
 	 * Loads and initiates the SQL driver that we need to use.
@@ -64,32 +64,12 @@ class Phpfox_Database
 	 */
 	public function __construct()
 	{
-		if (!$this->_oObject)
-		{			
-			switch(Phpfox::getParam(array('db', 'driver')))
-			{
-				case 'mysqli':
-					$sDriver = 'phpfox.database.driver.mysqli';
-					break;
-				case 'postgres':
-					$sDriver = 'phpfox.database.driver.postgres';
-				break;	
-				case 'mssql':
-					$sDriver = 'phpfox.database.driver.mssql';
-					break;
-				case 'oracle':
-					$sDriver = 'phpfox.database.driver.oracle';
-					break;		
-				case 'sqlite':
-					$sDriver = 'phpfox.database.driver.sqlite';
-					break;
-				default:
-					$sDriver = 'phpfox.database.driver.mysql';
-					break;
-			}		
+		if (!self::$_oObject)
+		{
+			$sDriver = 'phpfox.database.driver.mysqli';
 
-			$this->_oObject = Phpfox::getLib($sDriver);
-			$this->_oObject->connect(Phpfox::getParam(array('db', 'host')), Phpfox::getParam(array('db', 'user')), Phpfox::getParam(array('db', 'pass')), Phpfox::getParam(array('db', 'name')));
+			self::$_oObject = Phpfox::getLib($sDriver);
+			self::$_oObject->connect(Phpfox::getParam(array('db', 'host')), Phpfox::getParam(array('db', 'user')), Phpfox::getParam(array('db', 'pass')), Phpfox::getParam(array('db', 'name')));
 		}
 	}	
 	
@@ -100,8 +80,17 @@ class Phpfox_Database
 	 */	
 	public function &getInstance()
 	{
-		return $this->_oObject;
+		return self::$_oObject;
+	}
+
+	/**
+	 * @return Phpfox_Database_Driver_Mysql
+	 */
+	public static function instance() {
+		if (!self::$_oObject) {
+			new self();
+		}
+
+		return self::$_oObject;
 	}
 }
-
-?>

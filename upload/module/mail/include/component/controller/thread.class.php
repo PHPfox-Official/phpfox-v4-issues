@@ -25,10 +25,31 @@ class Mail_Component_Controller_Thread extends Phpfox_Component
 		{
 			$this->url()->send('mail');
 		}
+
+		$aVals = $this->request()->get('val');
+		if ($aVals && ($iNewId = Mail_Service_Process::instance()->add($aVals)))
+		{
+			list($aCon, $aMessages) = Mail_Service_Mail::instance()->getThreadedMail($iNewId);
+			$aMessages = array_reverse($aMessages);
+
+			Phpfox_Template::instance()->assign(array(
+					'aMail' => $aMessages[0],
+					'aCon' => $aCon,
+					'bIsLastMessage' => true
+				)
+			)->getTemplate('mail.block.entry');
+
+			return [
+				'append' => [
+					'to' => '#mail_threaded_new_message',
+					'with' => ob_get_clean()
+				]
+			];
+		}
 		
 		$iThreadId = $this->request()->getInt('id');
 		
-		list($aThread, $aMessages) = Phpfox::getService('mail')->getThreadedMail($iThreadId);
+		list($aThread, $aMessages) = Mail_Service_Mail::instance()->getThreadedMail($iThreadId);
 		
 		if ($aThread === false)
 		{
@@ -50,9 +71,9 @@ class Mail_Component_Controller_Thread extends Phpfox_Component
 			$this->request()->set('view', 'trash');
 		}
 		
-		Phpfox::getService('mail')->buildMenu();
+		Mail_Service_Mail::instance()->buildMenu();
 		
-		Phpfox::getService('mail.process')->threadIsRead($aThread['thread_id']);
+		Mail_Service_Process::instance()->threadIsRead($aThread['thread_id']);
 
 		$iUserCnt = 0;
 		$sUsers = '';	

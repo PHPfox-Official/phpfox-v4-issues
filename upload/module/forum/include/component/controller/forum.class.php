@@ -277,11 +277,11 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			{
 				if ($bIsModuleTagSearch)
 				{
-					$oSearch->setCondition("AND ft.group_id = " . (int) $aCallback['group_id'] . " AND tag.tag_url = '" . Phpfox::getLib('database')->escape($this->request()->get('req5')) . "'");					
+					$oSearch->setCondition("AND ft.group_id = " . (int) $aCallback['group_id'] . " AND tag.tag_url = '" . Phpfox_Database::instance()->escape($this->request()->get('req5')) . "'");
 				}
 				else 
 				{
-					$oSearch->setCondition("AND ft.group_id = 0 AND tag.tag_url = '" . Phpfox::getLib('database')->escape($this->request()->get('req3')) . "'");
+					$oSearch->setCondition("AND ft.group_id = 0 AND tag.tag_url = '" . Phpfox_Database::instance()->escape($this->request()->get('req3')) . "'");
 				}
 			}
 

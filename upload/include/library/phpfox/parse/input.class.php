@@ -376,7 +376,7 @@ class Phpfox_Parse_Input
 	
 	private function _replaceUsernames($aMatches)
 	{
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		$aRow = $oDb->select(Phpfox::getUserField())->from(Phpfox::getT('user'), 'u')->where('u.user_name = \'' . $oDb->escape($aMatches[1]) . '\'')->execute('getSlaveRow');
 		if (isset($aRow['user_id']))
 		{			
@@ -605,7 +605,7 @@ class Phpfox_Parse_Input
 		    $sNewTitle = substr($sNewTitle, 0, Phpfox::getParam('core.crop_seo_url'));
 		}
 
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		$aOlds = $oDb->select($sField . ' AS title_url')
 			->from($sTable)
 			->where(($mCondition === null ? $sField . ' LIKE \'%' . $oDb->escape($sNewTitle) . '%\'' : $mCondition))

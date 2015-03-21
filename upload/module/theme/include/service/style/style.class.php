@@ -80,7 +80,7 @@ class Theme_Service_Style_Style extends Phpfox_Service
 			->where($aCond)
 			->execute('getRows');
 		
-		$aDefaultTheme = Phpfox::getService('theme')->getTheme('default', true);
+		$aDefaultTheme = Theme_Service_Theme::instance()->getTheme('default', true);
 		$aDefaultStyle = Theme_Service_Style_Style::instance()->getStyleParent($aDefaultTheme['theme_id'], 'default');
 		
 		foreach ($aRows as $iKey => $aRow)

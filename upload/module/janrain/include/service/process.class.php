@@ -92,7 +92,7 @@ class Janrain_Service_Process extends Phpfox_Service
 				Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize), $iSize, $iSize);
 				Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sNewImage, ''), Phpfox::getParam('core.dir_user') . sprintf($sNewImage, '_' . $iSize . '_square'), $iSize, $iSize, false);
 			}		
-			Phpfox::getLib('database')->update(Phpfox::getT('user'), array('user_image' => $sNewImage, 'server_id' => 0), 'user_id = ' . (int) $iUserId);		
+			Phpfox_Database::instance()->update(Phpfox::getT('user'), array('user_image' => $sNewImage, 'server_id' => 0), 'user_id = ' . (int) $iUserId);
 		}		
 		
 		// Taken from user.process->add

@@ -489,7 +489,7 @@ class Theme_Service_Process extends Phpfox_Service
 	public function removeBlockDnD($sController, $sId)
 	{
 		/* Little security check */
-		if (!Phpfox::getService('theme')->isInDnDMode())
+		if (!Theme_Service_Theme::instance()->isInDnDMode())
 		{
 			return Phpfox_Error::set('You need to enable DnD mode first.');
 		}
@@ -719,7 +719,7 @@ class Theme_Service_Process extends Phpfox_Service
 		$aParams['parent_id'] = 0;	
 		if (!empty($aParams['parent']))
 		{
-			$aParent = Phpfox::getService('theme')->getTheme($aParams['parent'], true);
+			$aParent = Theme_Service_Theme::instance()->getTheme($aParams['parent'], true);
 			if (isset($aParent['theme_id']))
 			{
 				$aParams['parent_id'] = $aParent['theme_id'];

@@ -55,7 +55,7 @@ class Theme_Component_Controller_Admincp_Template_Add extends Phpfox_Component
 		$this->template()->setTitle(Phpfox::getPhrase('theme.create_a_new_template'))
 			->setBreadcrumb(Phpfox::getPhrase('theme.create_new_template'))		
 			->assign(array(
-					'aThemes' => Phpfox::getService('theme')->get(),
+					'aThemes' => Theme_Service_Theme::instance()->get(),
 					'aModules' => Phpfox_Module::instance()->getModules()
 				)
 			);	

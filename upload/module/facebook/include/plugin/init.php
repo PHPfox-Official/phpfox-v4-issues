@@ -48,11 +48,11 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 							{						
 								if (isset($aUserCache['user_id']) && empty($aUserCache['fb_user_id']))
 								{
-									Phpfox::getLib('database')->insert(Phpfox::getT('fbconnect'), array('user_id' => $aUserCache['user_id'], 'fb_user_id' => (int) $oObject->id));
+									Phpfox_Database::instance()->insert(Phpfox::getT('fbconnect'), array('user_id' => $aUserCache['user_id'], 'fb_user_id' => (int) $oObject->id));
 								}
 								else
 								{
-									Phpfox::getLib('database')->update(Phpfox::getT('fbconnect'), array('is_unlinked' => 0), 'user_id = ' . (int) $aUserCache['user_id']);
+									Phpfox_Database::instance()->update(Phpfox::getT('fbconnect'), array('is_unlinked' => 0), 'user_id = ' . (int) $aUserCache['user_id']);
 								}
 								
 								list($bIsLoggedIn, $aPostUserInfo) = Phpfox::getService('user.auth')->login($aUserCache['user_name'], null, false, 'user_name', true);
@@ -65,7 +65,7 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 						
 						if (isset($aUser['user_id']))
 						{
-							Phpfox::getLib('database')->update(Phpfox::getT('fbconnect'), array('is_unlinked' => 0), 'user_id = ' . (int) $aUser['user_id']);
+							Phpfox_Database::instance()->update(Phpfox::getT('fbconnect'), array('is_unlinked' => 0), 'user_id = ' . (int) $aUser['user_id']);
 							
 							list($bIsLoggedIn, $aPostUserInfo) = Phpfox::getService('user.auth')->login($aUser['user_name'], null, false, 'user_name', true);
 							if ($bIsLoggedIn)
@@ -169,7 +169,7 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 									$iServerId = Phpfox::getLib('cdn')->getServerId();
 								}
 
-								Phpfox::getLib('database')->update(Phpfox::getT('user'), array('user_image' => $sNewImage, 'server_id' => $iServerId), 'user_id = ' . (int) $iUserId);
+								Phpfox_Database::instance()->update(Phpfox::getT('user'), array('user_image' => $sNewImage, 'server_id' => $iServerId), 'user_id = ' . (int) $iUserId);
 								
 								if (Phpfox::getService('user.auth')->login($aVals['user_name'], null, false, 'user_name', true))
 								{

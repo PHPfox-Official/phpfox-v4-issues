@@ -441,7 +441,7 @@ class Newsletter_Service_Process extends Phpfox_Service
 		$aSend['subject'] = $aVals['subject'];
 		$aSend['message'] = $aVals['text_html'];
 		$aSend['bIsNewsletter'] = true;
-		Phpfox::getService('mail.process')->add($aSend);
+		Mail_Service_Process::instance()->add($aSend);
 		
 		return ;
 		/*$aInsert = array(

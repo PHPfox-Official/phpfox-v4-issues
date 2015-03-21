@@ -1307,7 +1307,7 @@ class Phpfox_Installer
 			$oApi = Phpfox::getLib('phpfox.api');
 			if ($oApi->send('brandingRemoval'))
 			{
-				Phpfox::getLib('database')->update(Phpfox::getT('setting'), array('value_actual' => '1'), "var_name = 'branding'");
+				Phpfox_Database::instance()->update(Phpfox::getT('setting'), array('value_actual' => '1'), "var_name = 'branding'");
 			}		
 		}
 		
@@ -1390,7 +1390,7 @@ class Phpfox_Installer
 
 			if ($_CONF['core.is_installed'] === true)
 			{
-				$aRow = Phpfox::getLib('database')->select('value_actual')->from(Phpfox::getT('setting'))->where('var_name = \'phpfox_version\'')->execute('getRow');
+				$aRow = Phpfox_Database::instance()->select('value_actual')->from(Phpfox::getT('setting'))->where('var_name = \'phpfox_version\'')->execute('getRow');
 				if (isset($aRow['value_actual']))
 				{
 					$sVersion = $aRow['value_actual'];
@@ -1410,7 +1410,7 @@ class Phpfox_Installer
 		}
 		else
 		{
-			$aRow = Phpfox::getLib('database')->select('value_actual')->from(Phpfox::getT('setting'))->where('var_name = \'phpfox_version\'')->execute('getRow');
+			$aRow = Phpfox_Database::instance()->select('value_actual')->from(Phpfox::getT('setting'))->where('var_name = \'phpfox_version\'')->execute('getRow');
 			if (isset($aRow['value_actual']))
 			{
 				$sVersion = $aRow['value_actual'];
@@ -1471,7 +1471,7 @@ class Phpfox_Installer
 	
 	private function _db()
 	{
-		return Phpfox::getLib('database');
+		return Phpfox_Database::instance();
 	}
 	
 	private function _step($aParams)

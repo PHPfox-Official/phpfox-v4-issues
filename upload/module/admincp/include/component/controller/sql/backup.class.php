@@ -20,12 +20,12 @@ class Admincp_Component_Controller_Sql_Backup extends Phpfox_Component
 	 */
 	public function process()
 	{
-        $bCanBackup = Phpfox::getLib('database')->canBackup();    
+        $bCanBackup = Phpfox_Database::instance()->canBackup();
         $sDefaultPath = PHPFOX_DIR_FILE . 'log' . PHPFOX_DS;   
         
         if (($sPath = $this->request()->get('path')) && $bCanBackup)
         {
-        	if (($sBackupPath = Phpfox::getLib('database')->backup($sPath)))
+        	if (($sBackupPath = Phpfox_Database::instance()->backup($sPath)))
         	{
         		$this->url()->send('admincp.sql.backup', null, Phpfox::getPhrase('admincp.sql_backup_successfully_created_and_can_be_downloaded_here_path', array('path' => $sBackupPath)));	
         	}

@@ -469,7 +469,7 @@ class Phpfox
 		{
 			//$bChecked = true;
 
-			$aPage = Phpfox::getLib('database')->getRow('
+			$aPage = Phpfox_Database::instance()->getRow('
 				SELECT p.page_id, p.user_id AS owner_user_id, u.user_id
 				FROM ' . Phpfox::getT('pages') . ' AS p
 				JOIN ' . Phpfox::getT('user') . ' AS u ON(u.profile_page_id = p.page_id)
@@ -493,7 +493,7 @@ class Phpfox
 				
 				if (!$bPass)
 				{
-					$aAdmin = Phpfox::getLib('database')->getRow('
+					$aAdmin = Phpfox_Database::instance()->getRow('
 						SELECT page_id
 						FROM ' . Phpfox::getT('pages_admin') . '
 						WHERE page_id = ' . (int) $aPage['page_id'] . ' AND user_id = ' . (int) $iActualUserId . '

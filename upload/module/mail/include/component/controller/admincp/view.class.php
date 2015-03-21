@@ -20,7 +20,7 @@ class Mail_Component_Controller_Admincp_View extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aMessage = Phpfox::getService('mail')->getMail($this->request()->getInt('id'));
+		$aMessage = Mail_Service_Mail::instance()->getMail($this->request()->getInt('id'));
 		
 		if ((!Phpfox::getParam('mail.threaded_mail_conversation') && !isset($aMessage['mail_id'])) || (Phpfox::getParam('mail.threaded_mail_conversation') && !count($aMessage)))
 		{

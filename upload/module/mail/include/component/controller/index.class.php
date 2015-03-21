@@ -33,7 +33,7 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 		
 		if (($aItemModerate = $this->request()->get('item_moderate')))
 		{
-			$sFile = Phpfox::getService('mail')->getThreadsForExport($aItemModerate);
+			$sFile = Mail_Service_Mail::instance()->getThreadsForExport($aItemModerate);
 			
 			Phpfox_File::instance()->forceDownload($sFile, 'mail.xml');
 		}
@@ -48,21 +48,21 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 		
 		if ($this->request()->get('action') == 'archive')
 		{
-			Phpfox::getService('mail.process')->archiveThread($this->request()->getInt('id'), 1);
+			Mail_Service_Process::instance()->archiveThread($this->request()->getInt('id'), 1);
 			
 			$this->url()->send('mail.trash', null, Phpfox::getPhrase('mail.message_successfully_archived'));
 		}
 		
 		if ($this->request()->get('action') == 'forcedelete')
 		{
-			Phpfox::getService('mail.process')->archiveThread($this->request()->getInt('id'), 2);
+			Mail_Service_Process::instance()->archiveThread($this->request()->getInt('id'), 2);
 				
 			$this->url()->send('mail.trash', null, Phpfox::getPhrase('mail.conversation_successfully_deleted'));
 		}		
 		
 		if ($this->request()->get('action') == 'unarchive')
 		{
-			Phpfox::getService('mail.process')->archiveThread($this->request()->getInt('id'), 0);
+			Mail_Service_Process::instance()->archiveThread($this->request()->getInt('id'), 0);
 			
 			$this->url()->send('mail', null, Phpfox::getPhrase('mail.message_successfully_unarchived'));
 		}				
@@ -79,11 +79,11 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 				$bTrash = $this->getParam('bIsTrash');
 				if (!isset($bTrash) || !is_bool($bTrash))
 				{
-					$bIsTrash = Phpfox::getService('mail')->isDeleted($iMailId);
+					$bIsTrash = Mail_Service_Mail::instance()->isDeleted($iMailId);
 				}
 				if ($bIsTrash)
 				{
-					if (Phpfox::getService('mail.process')->deleteTrash($iMailId))
+					if (Mail_Service_Process::instance()->deleteTrash($iMailId))
 					{
 						$this->url()->send('mail.trash', null, Phpfox::getPhrase('mail.mail_deleted_successfully'));
 					}
@@ -98,10 +98,10 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 					$bIsSent = $this->getParam('bIsSentbox');
 					if (!isset($bIsSent) || !is_bool($bIsSent))
 					{
-						$bIsSentbox = Phpfox::getService('mail')->isSent($iMailId);
+						$bIsSentbox = Mail_Service_Mail::instance()->isSent($iMailId);
 					}
 					
-					if (Phpfox::getService('mail.process')->delete($iMailId, $bIsSentbox))
+					if (Mail_Service_Process::instance()->delete($iMailId, $bIsSentbox))
 					{						
 						$this->url()->send($bIsSentbox == true ? 'mail.sentbox' : 'mail', null, Phpfox::getPhrase('mail.mail_deleted_successfully'));
 					}
@@ -118,7 +118,7 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 		{
 			if (isset($aVals['id']))
 			{ //make sure there is at least one selected
-				$oMailProcess = Phpfox::getService('mail.process');
+				$oMailProcess = Mail_Service_Process::instance();
 				switch ($aVals['action'])
 				{
 					case 'unread':
@@ -134,7 +134,7 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 							
 							if (isset($aVals['select']) && $aVals['select'] == 'every')
 							{
-								$aMail = Phpfox::getService('mail')->getAllMailFromFolder(Phpfox::getUserId(),(int)$aVals['folder'], $bIsSentbox, $bIsTrash);
+								$aMail = Mail_Service_Mail::instance()->getAllMailFromFolder(Phpfox::getUserId(),(int)$aVals['folder'], $bIsSentbox, $bIsTrash);
 								$aVals['id'] = $aMail;
 							}
 							
@@ -265,7 +265,7 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 				}
 			}
 			
-			list($iCnt, $aRows, $aInputs) = Phpfox::getService('mail')->get($this->search()->getConditions(), $this->search()->getSort(), $this->search()->getPage(), $iPageSize, $bIsSentbox, $bIsTrash);
+			list($iCnt, $aRows, $aInputs) = Mail_Service_Mail::instance()->get($this->search()->getConditions(), $this->search()->getSort(), $this->search()->getPage(), $iPageSize, $bIsSentbox, $bIsTrash);
 
 			Phpfox::getLib('pager')->set(array(
 					'page' => $iPage,
@@ -274,7 +274,7 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 				)
 			);
 			
-		Phpfox::getService('mail')->buildMenu();
+		Mail_Service_Mail::instance()->buildMenu();
 			
 		$aActions = array();
 		$aActions[] = array(
@@ -341,7 +341,7 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 		$iMailSpaceUsed = 0;
 		if ((!Phpfox::getUserParam('mail.override_mail_box_limit') && Phpfox::getParam('mail.enable_mail_box_warning')))
 		{
-			$iMailSpaceUsed = Phpfox::getService('mail')->getSpaceUsed(Phpfox::getUserId());
+			$iMailSpaceUsed = Mail_Service_Mail::instance()->getSpaceUsed(Phpfox::getUserId());
 			if ($iMailSpaceUsed > 100)
 			{
 				$iMailSpaceUsed = 100;

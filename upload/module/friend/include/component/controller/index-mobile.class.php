@@ -36,7 +36,7 @@ class Friend_Component_Controller_Index_Mobile extends Phpfox_Component
 			}
 			
 			$bIsSearch = true;
-			$aCond[] = "AND (u.full_name LIKE '%" . Phpfox::getLib('database')->escape($sSearch) . "%' OR u.email LIKE '%" . Phpfox::getLib('database')->escape($sSearch) . "%' OR u.user_name LIKE '%" . Phpfox::getLib('database')->escape($sSearch) . "%')";	
+			$aCond[] = "AND (u.full_name LIKE '%" . Phpfox_Database::instance()->escape($sSearch) . "%' OR u.email LIKE '%" . Phpfox_Database::instance()->escape($sSearch) . "%' OR u.user_name LIKE '%" . Phpfox_Database::instance()->escape($sSearch) . "%')";
 			$this->url()->setParam('search-query', 'true');
 			
 			Phpfox::getLib('session')->set('mfsearch', $sSearch);

@@ -36,7 +36,7 @@ class Attachment_Component_Block_Add extends Phpfox_Component
 		
 		if ($iItemId = $this->getParam('iItemId'))
 		{
-			list($iCnt, $aRows1) = Phpfox::getService('attachment')->get(array("AND attachment.item_id = " . (int) $iItemId . " AND attachment.category_id = '" . Phpfox::getLib('database')->escape($sCategoryId) . "'" . ($iUserId !== false ?" AND attachment.user_id = " . $iUserId . "" : "") . ""));
+			list($iCnt, $aRows1) = Phpfox::getService('attachment')->get(array("AND attachment.item_id = " . (int) $iItemId . " AND attachment.category_id = '" . Phpfox_Database::instance()->escape($sCategoryId) . "'" . ($iUserId !== false ?" AND attachment.user_id = " . $iUserId . "" : "") . ""));
 		}		
 			
 		if (!empty($sCached))
@@ -57,7 +57,7 @@ class Attachment_Component_Block_Add extends Phpfox_Component
 			
 			if (!empty($sCachedQuery))
 			{
-				list($iCnt, $aRows2) = Phpfox::getService('attachment')->get(array("AND attachment.attachment_id IN(" . $sCachedQuery . ") AND attachment.category_id = '" . Phpfox::getLib('database')->escape($sCategoryId) . "'" . ($iUserId !== false ?" AND attachment.user_id = " . $iUserId . "" : "") . ""));
+				list($iCnt, $aRows2) = Phpfox::getService('attachment')->get(array("AND attachment.attachment_id IN(" . $sCachedQuery . ") AND attachment.category_id = '" . Phpfox_Database::instance()->escape($sCategoryId) . "'" . ($iUserId !== false ?" AND attachment.user_id = " . $iUserId . "" : "") . ""));
 			}
 		}
 

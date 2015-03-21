@@ -3,6 +3,7 @@
 	display:inline-block;
 	background:darken(@blockBg, 6%);
 	color:@blockColor;
+	position:relative;
 
 	> span {
 		display:block;
@@ -18,7 +19,17 @@
 	}
 }
 
-._size__120 {
+._size__50, ._size__50:hover {
+	width:50px;
+	height:50px;
+
+	> span {
+		top:10px;
+		left:2px;
+	}
+}
+
+._size__120, ._size__120:hover {
 	width:120px;
 	height:120px;
 }
@@ -33,3 +44,4 @@
 .noimage(a, #1abc9c);
 .noimage(s, #3498db);
 .noimage(t, #95a5a6);
+.noimage(b, #d35400);

@@ -308,7 +308,7 @@ class Admincp_Service_Module_Process extends Phpfox_Service
 	
 				if (count($aTables))
 				{
-					Phpfox::getLib('database')->dropTables($aTables);
+					Phpfox_Database::instance()->dropTables($aTables);
 				}
 			}
 		}

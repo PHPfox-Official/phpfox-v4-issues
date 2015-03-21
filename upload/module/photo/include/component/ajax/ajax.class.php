@@ -626,7 +626,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 							continue;
 						}
 
-						Phpfox::getLib('database')->insert(Phpfox::getT('photo_feed'), array(
+						Phpfox_Database::instance()->insert(Phpfox::getT('photo_feed'), array(
 								'feed_id' => $iFeedId,
 								'photo_id' => $aImage['photo_id']
 							)
@@ -870,7 +870,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		foreach ($aVals as $iPhotoId => $aVal)
 		{
-			$aPhoto = Phpfox::getLib('database')->select('photo_id, album_id, title, user_id')
+			$aPhoto = Phpfox_Database::instance()->select('photo_id, album_id, title, user_id')
 				->from(Phpfox::getT('photo'))
 				->where('photo_id = ' . (int) $iPhotoId)
 				->execute('getSlaveRow');
@@ -1004,7 +1004,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 
 		$this->call('var $oParent = $(\'#' . $this->get('obj-id') . '\'); $oParent.find(\'.js_attachment:first\').val($oParent.find(\'.js_attachment:first\').val() + \'' . $sIds . '\'); $oParent.find(\'.js_attachment_list:first\').show(); $oParent.find(\'.js_attachment_list_holder:first\').prepend(\'' . str_replace("'", "\'", str_replace(array("\n", "\t", "\r"), '', $sContent)) . '\'); $Core.loadInit();');
 		*/
-		$aAttachment = Phpfox::getLib('database')->select('*')
+		$aAttachment = Phpfox_Database::instance()->select('*')
 			->from(Phpfox::getT('attachment'))
 			->where('attachment_id = ' . (int) $iId)
 			->execute('getSlaveRow');

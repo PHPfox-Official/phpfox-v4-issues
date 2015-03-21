@@ -45,7 +45,7 @@ class Video_Component_Controller_Ping extends Phpfox_Component
 						}
 						$sDest = '{' . $iCnt . '}' . $this->request()->get('name');
 
-						$aVideo = Phpfox::getLib('database')->select('*')->from(Phpfox::getT('video'))->where('custom_v_id = ' . (int) $this->request()->get('id'))->execute('getSlaveRow');
+						$aVideo = Phpfox_Database::instance()->select('*')->from(Phpfox::getT('video'))->where('custom_v_id = ' . (int) $this->request()->get('id'))->execute('getSlaveRow');
 						if (isset($aVideo['video_id']))
 						{
 							$aCallback = null;
@@ -59,7 +59,7 @@ class Video_Component_Controller_Ping extends Phpfox_Component
 								->allowGuest()
 								->add('video', $aVideo['video_id'], $aVideo['privacy'], $aVideo['privacy_comment'], $aVideo['item_id'], $aVideo['user_id']) : null);
 
-							Phpfox::getLib('database')->update(Phpfox::getT('video'), array('in_process' => '0', 'destination' => $sDest, 'image_path' => $sDest . '.jpg'), 'custom_v_id = ' . (int) $this->request()->get('id'));
+							Phpfox_Database::instance()->update(Phpfox::getT('video'), array('in_process' => '0', 'destination' => $sDest, 'image_path' => $sDest . '.jpg'), 'custom_v_id = ' . (int) $this->request()->get('id'));
 
 							$bUpdatePoints = ($aVideo['module_id'] == 'video' ? (Phpfox::getUserParam('video.approve_video_before_display') ? false : true) : true);
 							if ($bUpdatePoints === true)

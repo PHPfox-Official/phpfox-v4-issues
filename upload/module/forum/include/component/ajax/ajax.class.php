@@ -724,7 +724,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 		if (Phpfox::getService('user.auth')->hasAccess('poll', 'poll_id', $this->get('poll_id'), 'poll.poll_can_delete_own_polls', 'poll.poll_can_delete_others_polls'))
 		{
 			Phpfox::getService('poll.process')->moderatePoll($this->get('poll_id'), 2);
-			Phpfox::getLib('database')->update(Phpfox::getT('forum_thread'), array('poll_id' => '0'), 'thread_id = ' . (int) $this->get('thread_id'));
+			Phpfox_Database::instance()->update(Phpfox::getT('forum_thread'), array('poll_id' => '0'), 'thread_id = ' . (int) $this->get('thread_id'));
 			$this->show('#js_attach_poll')->html('#js_attach_poll_question', '');
 		}
 	}

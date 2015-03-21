@@ -194,7 +194,7 @@ class Phpfox_Module
 		// No modules found because its a fresh install
 		if (Phpfox::getParam('core.is_installed') && !count($this->_aModules))
 		{
-			$oDb = Phpfox::getLib('database');
+			$oDb = Phpfox_Database::instance();
 			if (is_object($oDb))
 			{
 				$this->_cacheModules();	
@@ -207,6 +207,17 @@ class Phpfox_Module
 	 */
 	public static function instance() {
 		return Phpfox::getLib('module');
+	}
+
+	public function get($sModule) {
+		if (!isset($this->_aModules[$sModule])) {
+			Phpfox_Error::toss('Not a valid module.');
+		}
+
+		return Phpfox_Database::instance()->select('*')
+			->from(Phpfox::getT('module'))
+			->where(['module_id' => $sModule])
+			->get();
 	}
 
 	/**
@@ -636,7 +647,7 @@ class Phpfox_Module
 			$aBlocks[$iId] = array_merge($aBlocks[$iId], array($this->_aCallbackBlock[$iId]));
 		}		
 		
-		if (!count($aBlocks[$iId]) && (Phpfox::getService('theme')->isInDnDMode() || defined('PHPFOX_IN_DESIGN_MODE')))
+		if (!count($aBlocks[$iId]) && (Theme_Service_Theme::instance()->isInDnDMode() || defined('PHPFOX_IN_DESIGN_MODE')))
 		{
 			$aBlocks[$iId] = true;
 		}
@@ -804,7 +815,7 @@ class Phpfox_Module
 			}
 		}		
 		
-		/*if (Phpfox::getService('theme')->isInDnDMode() || defined('PHPFOX_IN_DESIGN_MODE'))
+		/*if (Theme_Service_Theme::instance()->isInDnDMode() || defined('PHPFOX_IN_DESIGN_MODE'))
 		{
 			Phpfox_Template::instance()->assign(array('sDeleteBlock' => str_replace('.','_',$sClass),
 				'bBlockCanMove' => true));				
@@ -862,6 +873,12 @@ class Phpfox_Module
 		{	
 			(($sPlugin = Phpfox_Plugin::get('component_pre_process')) ? eval($sPlugin) : false);
 			$mReturn = $this->_aComponent[$sHash]->process();
+
+			if ($sType == 'controller' && (is_array($mReturn) || is_object($mReturn))) {
+				header('Content-type: application/json');
+				echo json_encode($mReturn);
+				exit;
+			}
 		
 			(($sPlugin = Phpfox_Plugin::get('component_post_process')) ? eval($sPlugin) : false);
 		}
@@ -933,7 +950,7 @@ class Phpfox_Module
 	 */
 	public function setCacheBlockData($aCacheBlockData)
 	{
-		if (Phpfox::getService('theme')->isInDnDMode())
+		if (Theme_Service_Theme::instance()->isInDnDMode())
 		{
 			return;
 		}
@@ -969,7 +986,7 @@ class Phpfox_Module
 		}
 		if (!isset($aCustomOrder))
 		{
-			$aCustomOrder = Phpfox::getLib('database')
+			$aCustomOrder = Phpfox_Database::instance()
 				->select('*')
 				->from(Phpfox::getT($aCacheBlockData['table']))
 				->where($aCacheBlockData['field'] .' = ' . $aCacheBlockData['item_id'])
@@ -1066,8 +1083,9 @@ class Phpfox_Module
 		if (defined('PHPFOX_INSTALLER') && empty($this->_aModules) && file_exists(PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'installer_modules.php'))
 		{
 			require(PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'installer_modules.php');
-			
-			$this->_aModules = $aModules;			
+			if (isset($aModules)) {
+				$this->_aModules = $aModules;
+			}
 		}	
 		
 		return $this->_aModules;
@@ -1205,8 +1223,9 @@ class Phpfox_Module
 			
 			// Cache the object and get the callback service
 			$aModules[$sModule] = $this->getService($sModule . '.callback');
-		}	
-			
+		}
+
+		$mReturn = null;
 		// Do we have any args. to pass?
 		if (count($aParams) && isset($aParams[1]))
 		{			
@@ -1364,7 +1383,8 @@ class Phpfox_Module
 		{
 			return false;
 		}
-		
+
+		$mData = null;
 		eval('$mData = Module_' . $sModule . '::$' . $sProperty .';');
 
 		return $mData;
@@ -1439,7 +1459,7 @@ class Phpfox_Module
 			$aSettings = array();
 			if (!($aSettings = Phpfox::getLib('cache')->get($sCacheId)))
 			{
-				$aRows = Phpfox::getLib('database')->select('var_name, user_value')
+				$aRows = Phpfox_Database::instance()->select('var_name, user_value')
 					->from(Phpfox::getT('component_setting'))
 					->where('user_id = ' . (int) $iUserId)
 					->execute('getSlaveRows');
@@ -1476,7 +1496,7 @@ class Phpfox_Module
 		if (!($this->_aModules = $oCache->get($iCachedId)))
 		{
 			$aModules = array();
-			$aRows = Phpfox::getLib('database')->select('m.module_id')
+			$aRows = Phpfox_Database::instance()->select('m.module_id')
 				->from(Phpfox::getT('module'), 'm')
 				->join(Phpfox::getT('product'), 'p', 'm.product_id = p.product_id AND p.is_active = 1')
 				->where('m.is_active = 1')
@@ -1495,7 +1515,7 @@ class Phpfox_Module
 					case 'forum':
 						if (Phpfox::isPackage(array('premium')))
 						{							
-							Phpfox::getLib('database')->update(Phpfox::getT('module'), array('is_active' => '0'), 'module_id = \'' . $aRow['module_id'] . '\'');
+							Phpfox_Database::instance()->update(Phpfox::getT('module'), array('is_active' => '0'), 'module_id = \'' . $aRow['module_id'] . '\'');
 							continue;
 						}						
 						break;
@@ -1531,7 +1551,7 @@ class Phpfox_Module
 			|| (!($this->_aBlockWithSource = $oCache->get($sSourceCodeBlockId)))
 		)
 		{			
-			$aRows = Phpfox::getLib('database')->select('b.block_id, b.type_id, b.ordering, b.m_connection, b.component, b.location, b.disallow_access, b.can_move, m.module_id, bs.source_parsed')
+			$aRows = Phpfox_Database::instance()->select('b.block_id, b.type_id, b.ordering, b.m_connection, b.component, b.location, b.disallow_access, b.can_move, m.module_id, bs.source_parsed')
 				->from(Phpfox::getT('block'), 'b')
 				->leftJoin(Phpfox::getT('block_source'), 'bs', 'bs.block_id = b.block_id')
 				->join(Phpfox::getT('module'), 'm', 'b.module_id = m.module_id AND m.is_active = 1')
@@ -1605,7 +1625,7 @@ class Phpfox_Module
 			$this->_aCachedItemDataBlock = array();	
 			$this->_aItemDataCache = array();				
 			
-			$aDesigns = Phpfox::getLib('database')->select('cache_id, block_id, ordering, is_hidden')
+			$aDesigns = Phpfox_Database::instance()->select('cache_id, block_id, ordering, is_hidden')
 				->from(Phpfox::getT($this->_aCacheBlockData['table']))
 				->where($this->_aCacheBlockData['field'] . ' = ' . (int) $this->_aCacheBlockData['item_id'])
 				->order('ordering ASC')

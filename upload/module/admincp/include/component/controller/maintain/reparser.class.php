@@ -52,7 +52,7 @@ class Admincp_Component_Controller_Maintain_Reparser extends Phpfox_Component
 				$aModule['table'] = $aModule['table'][0];
 			}
 			
-			$aModules[$iKey]['total_record'] = Phpfox::getLib('database')->select('COUNT(*)')
+			$aModules[$iKey]['total_record'] = Phpfox_Database::instance()->select('COUNT(*)')
 				->from(Phpfox::getT($aModule['table']))
 				->execute('getSlaveField');
 				

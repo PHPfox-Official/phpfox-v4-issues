@@ -81,7 +81,7 @@ class Comment_Component_Block_View extends Phpfox_Component
 			{				
 				$aSql = array(
 					(Phpfox::getParam('comment.comment_is_threaded') ? 'AND cmt.parent_id = 0' : ''),
-					"AND cmt.type_id = '" . Phpfox::getLib('database')->escape($sType) . "'",
+					"AND cmt.type_id = '" . Phpfox_Database::instance()->escape($sType) . "'",
 					'AND cmt.item_id = ' . (int) $iItemId							
 				);				
 			}
@@ -89,7 +89,7 @@ class Comment_Component_Block_View extends Phpfox_Component
 			{
 				$aSql = array(
 					(Phpfox::getParam('comment.comment_is_threaded') ? 'AND cmt.parent_id = 0' : ''),
-					"AND cmt.type_id = '" . Phpfox::getLib('database')->escape($sType) . "'",
+					"AND cmt.type_id = '" . Phpfox_Database::instance()->escape($sType) . "'",
 					'AND cmt.item_id = ' . (int) $iItemId,
 					'AND cmt.view_id = ' . (int) $iViewId				
 				);

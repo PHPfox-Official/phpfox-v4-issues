@@ -23,7 +23,7 @@ class Theme_Component_Ajax_Ajax extends Phpfox_Ajax
 	 */
 	public function addBlockDnD()
 	{
-		if (Phpfox::getService('theme')->isInDnDMode() == false)
+		if (Theme_Service_Theme::instance()->isInDnDMode() == false)
 		{
 			return $this->alert(Phpfox::getPhrase('theme.please_enable_designdnd_first'));
 		}

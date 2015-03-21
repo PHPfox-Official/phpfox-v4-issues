@@ -43,7 +43,7 @@ class Video_Component_Ajax_Ajax extends Phpfox_Ajax
 			{
 				$aVideo = Phpfox::getService('video')->getForEdit($iId, true);
 				
-				Phpfox::getLib('database')->update(Phpfox::getT('video'), array('custom_v_id' => $aServer['id']), 'video_id = ' . (int) $aVideo['video_id']);
+				Phpfox_Database::instance()->update(Phpfox::getT('video'), array('custom_v_id' => $aServer['id']), 'video_id = ' . (int) $aVideo['video_id']);
 				
 				$this->call('window.location.href = \'' . Phpfox::permalink('video', $aVideo['video_id'], $aVideo['title']) . '\';');
 			}

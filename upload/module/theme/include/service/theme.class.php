@@ -393,18 +393,6 @@ class Theme_Service_Theme extends Phpfox_Service
 	 */
 	public function isInDnDMode()
 	{   		
-		$aUrl = Phpfox::getLib('url')->getParams();
-		
-		$bIsCustomize = !isset($aUrl['req3']) || ($aUrl['req3'] != 'customize' && isset($aUrl['req2']) && $aUrl['req2'] == 'index-member');
-		$bIsMusic = !isset($aUrl['req3']) || $aUrl['req1'] == 'music';
-
-		if (Phpfox::getUserParam('core.can_design_dnd') 
-				&& Phpfox::getCookie('doDnD') == 1
-				// && ($bIsCustomize || $bIsMusic)
-				&& (!isset($aUrl['req2']) || $aUrl['req2'] != 'designer'))
-		{
-			return true;
-		}
 		return false;
 	}
 	

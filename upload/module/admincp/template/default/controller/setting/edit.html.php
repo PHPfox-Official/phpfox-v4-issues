@@ -12,6 +12,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if count($aSettings)}
+{*
 <div class="p_4 t_right">
 {phrase var='admincp.quick_jump'}:
 <select name="jump" class="goJump">
@@ -35,6 +36,8 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/if}	
 </select>
 </div>
+*}
+
 {literal}
 <script type="text/javascript">
 <!--

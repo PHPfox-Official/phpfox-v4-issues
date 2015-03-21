@@ -53,7 +53,7 @@
 			<is_active>1</is_active>
 			<is_site_wide>1</is_site_wide>
 			<php_group_code />
-			<php_view_code><![CDATA[$oDb = Phpfox::getLib('database');
+			<php_view_code><![CDATA[$oDb = Phpfox_Database::instance();
 
 $aConditions = array();
 $aConditions[] = "v.in_process = 0 AND v.view_id = 0 AND v.module_id = 'video' AND v.item_id = 0";

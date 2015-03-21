@@ -31,7 +31,7 @@ class Theme_Component_Controller_Admincp_Index extends Phpfox_Component
 		$this->template()->setTitle(Phpfox::getPhrase('theme.themes'))
 			->setBreadcrumb(Phpfox::getPhrase('theme.themes'), $this->url()->makeUrl('admincp.theme'))
 			->assign(array(
-					'aThemes' => Phpfox::getService('theme')->get()					
+					'aThemes' => Theme_Service_Theme::instance()->get()
 				)
 			);
 	}

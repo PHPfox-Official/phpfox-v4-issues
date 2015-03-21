@@ -38,7 +38,7 @@ class Mail_Component_Controller_Compose extends Phpfox_Component
 			if (isset($aUser['user_id']))
 			{
 				
-				if ($bClaiming == false && $bIsSending != true && Phpfox::getService('mail')->canMessageUser($aUser['user_id']) == false)
+				if ($bClaiming == false && $bIsSending != true && Mail_Service_Mail::instance()->canMessageUser($aUser['user_id']) == false)
 				{
 					return Phpfox_Error::display(Phpfox::getPhrase('mail.unable_to_send_a_private_message_to_this_user_at_the_moment'));
 				}
@@ -133,11 +133,11 @@ class Mail_Component_Controller_Compose extends Phpfox_Component
 					{
 						$aVals['claim_page'] = true;
 					}
-					if (($aIds = Phpfox::getService('mail.process')->add($aVals)))
+					if (($aIds = Mail_Service_Process::instance()->add($aVals)))
 					{
 						if (isset($aVals['page_id']) && !empty($aVals['page_id']))
 						{
-							Phpfox::getLib('database')->insert(Phpfox::getT('pages_claim'),array('status_id' => '1', 'page_id' => ((int)$aVals['page_id']), 'user_id' => Phpfox::getUserId(), 'time_stamp' => PHPFOX_TIME ));
+							Phpfox_Database::instance()->insert(Phpfox::getT('pages_claim'),array('status_id' => '1', 'page_id' => ((int)$aVals['page_id']), 'user_id' => Phpfox::getUserId(), 'time_stamp' => PHPFOX_TIME ));
 						}
 						
 						if (PHPFOX_IS_AJAX)
@@ -194,7 +194,7 @@ class Mail_Component_Controller_Compose extends Phpfox_Component
 			}
 		}
 		
-		Phpfox::getService('mail')->buildMenu();
+		Mail_Service_Mail::instance()->buildMenu();
 		if (Phpfox::isModule('friend'))
 		{
 			$this->template()->setPhrase(array('friend.loading'));

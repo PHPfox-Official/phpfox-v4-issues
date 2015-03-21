@@ -255,7 +255,12 @@ class Phpfox_Image_Helper
 						$last = $parts[1][0];
 					}
 
-					$image = '<a href="' . $sLink . '" class="no_image_user _size_' . $sImageSuffix . ' _gender_' . $sGender . ' _first_' . $first . '"><span>' . $first . $last . '</span></a>';
+					$ele = 'a';
+					if (isset($aParams['no_link'])) {
+						$ele = 'span';
+					}
+
+					$image = '<' . $ele . ' href="' . $sLink . '" class="no_image_user _size_' . $sImageSuffix . ' _gender_' . $sGender . ' _first_' . $first . '"><span>' . $first . $last . '</span></' . $ele . '>';
 
 					return $image;
 				}

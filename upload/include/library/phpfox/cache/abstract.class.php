@@ -203,7 +203,7 @@ abstract class Phpfox_Cache_Abstract implements Phpfox_Cache_Interface
 		}	
 		
 		$this->removeInfo($sFile);
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		$oDb->insert(Phpfox::getT('cache'), array(
 				'file_name' => $sFile,
 				'cache_data' => $sContent,
@@ -230,7 +230,7 @@ abstract class Phpfox_Cache_Abstract implements Phpfox_Cache_Interface
 			return;
 		}
 		
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		$oDb->delete(Phpfox::getT('cache'), 'file_name = \'' . $oDb->escape($sFile) . '\'');				
 	}
 	
@@ -245,7 +245,7 @@ abstract class Phpfox_Cache_Abstract implements Phpfox_Cache_Interface
 	 */
 	public function getData($iId)
 	{
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		$aCache = $oDb->select('cache_id, cache_data')
 			->from(Phpfox::getT('cache'))
 			->where('cache_id = ' . (int) $iId)

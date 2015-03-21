@@ -84,7 +84,7 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 				'params' => array(
 					'field' => 'time_stamp', // The time stamp field
 					'table' => Phpfox::getT('comment'), // Database table we plan to check
-					'condition' => 'type_id = \'' . Phpfox::getLib('database')->escape($aVals['type']) . '\' AND user_id = ' . Phpfox::getUserId(), // Database WHERE query
+					'condition' => 'type_id = \'' . Phpfox_Database::instance()->escape($aVals['type']) . '\' AND user_id = ' . Phpfox::getUserId(), // Database WHERE query
 					'time_stamp' => $iFlood * 60 // Seconds);	
 				)
 			);

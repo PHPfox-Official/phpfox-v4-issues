@@ -26,7 +26,7 @@ class Mail_Service_Callback extends Phpfox_Service
 			'phrase' => Phpfox::getPhrase('mail.mail'),
 			'link' => Phpfox::getLib('url')->makeUrl('mail'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_mail.png')),
-			'total' => Phpfox::getService('mail')->getUnseenTotal()
+			'total' => Mail_Service_Mail::instance()->getUnseenTotal()
 		);
 	}		
 	
@@ -125,12 +125,12 @@ class Mail_Service_Callback extends Phpfox_Service
 				$this->database()->delete($this->_sTable, 'mail_id = ' . $aMail['mail_id']);
 				$this->database()->delete(Phpfox::getT('mail_text'), 'mail_id = ' . $aMail['mail_id']);
 				// soft delete
-				//Phpfox::getService('mail.process')->delete($aMail['mail_id'], true);
+				//Mail_Service_Process::instance()->delete($aMail['mail_id'], true);
 			}
 			else
 			{
 				$bSent = $aMail['owner_user_id'] == $iUser;
-				Phpfox::getService('mail.process')->delete($aMail['mail_id'], $bSent);
+				Mail_Service_Process::instance()->delete($aMail['mail_id'], $bSent);
 			}
 		}
 		$this->database()->delete(Phpfox::getT('mail_folder'), 'user_id = ' . (int)$iUser);
@@ -217,7 +217,7 @@ class Mail_Service_Callback extends Phpfox_Service
 			return false;
 		}
 		
-		$iTotal = Phpfox::getService('mail')->getUnseenTotal();
+		$iTotal = Mail_Service_Mail::instance()->getUnseenTotal();
 		if ($iTotal > 0)
 		{
 			Phpfox::getLib('ajax')->call('$(\'#js_total_new_messages\').html(\'' . (int) $iTotal . '\').css({display: \'block\'}).show();');
@@ -252,7 +252,7 @@ class Mail_Service_Callback extends Phpfox_Service
 			return ($iUserCheck > 0 ? true : false);
 		}
 		
-		$aMail = Phpfox::getService('mail')->getMail($iMailId);
+		$aMail = Mail_Service_Mail::instance()->getMail($iMailId);
 		
 		return ($aMail['owner_user_id'] == Phpfox::getUserId() || $aMail['viewer_user_id'] == Phpfox::getUserId());
 	}

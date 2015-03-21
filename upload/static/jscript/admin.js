@@ -9,7 +9,7 @@ $Behavior.tableHover = function()
 	if ($Core.exists('.table_hover_action')){
 		$('#table_hover_action_holder').remove();
 		$('body').append('<div id="table_hover_action_holder" style="display:none;"></div>');	
-		$('#table_hover_action_holder').css("left", (($(window).width() - $('#table_hover_action_holder').outerWidth()) / 2) + $(window).scrollLeft() + "px");
+		// $('#table_hover_action_holder').css("left", (($(window).width() - $('#table_hover_action_holder').outerWidth()) / 2) + $(window).scrollLeft() + "px");
 		$('#table_hover_action_holder').html($('.table_hover_action').html());			
 		
 		if (!isScrolledIntoView('.table_hover_action')){			

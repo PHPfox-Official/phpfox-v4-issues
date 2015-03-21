@@ -207,7 +207,7 @@ class Comment_Service_Comment extends Phpfox_Service
 		$oUrl = Phpfox::getLib('url');
 		
 		$aSql = array(
-			"AND cmt.type_id = '" . Phpfox::getLib('database')->escape($sType) . "'",
+			"AND cmt.type_id = '" . Phpfox_Database::instance()->escape($sType) . "'",
 			'AND cmt.item_id = ' . $iItem,
 			'AND cmt.view_id = 0'
 		);

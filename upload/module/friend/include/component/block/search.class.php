@@ -23,7 +23,7 @@ class Friend_Component_Block_Search extends Phpfox_Component
 		$iPage = $this->getParam('page', 0);
 		$iPageSize = 36;		
 		$bIsOnline = false;		
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		$aParams = array();
 		$aConditions = array();
 		$iListId = 0;
@@ -51,14 +51,14 @@ class Friend_Component_Block_Search extends Phpfox_Component
 				$sSubCondition = '';
 				for ($i = 0; $i <= 9; $i++)
 				{
-					$sSubCondition .= "OR u.full_name LIKE '" . Phpfox::getLib('database')->escape($i) . "%' ";
+					$sSubCondition .= "OR u.full_name LIKE '" . Phpfox_Database::instance()->escape($i) . "%' ";
 				}
 				$sSubCondition = ltrim($sSubCondition, 'OR ');
 				$aConditions[] = 'AND (' . $sSubCondition . ')';
 			}
 			else 
 			{
-				$aConditions[] = "AND u.full_name LIKE '" . Phpfox::getLib('database')->escape($sLetter) . "%'";	
+				$aConditions[] = "AND u.full_name LIKE '" . Phpfox_Database::instance()->escape($sLetter) . "%'";
 			}
 			
 			$aParams['letter'] = $sLetter;
@@ -96,7 +96,7 @@ class Friend_Component_Block_Search extends Phpfox_Component
 				->get();
 			if (Phpfox::getParam('mail.disallow_select_of_recipients'))
 			{
-				$oMail = Phpfox::getService('mail');
+				$oMail = Mail_Service_Mail::instance();
 				foreach ($aFriends as $iKey => $aFriend)
 				{
 					if (!$oMail->canMessageUser($aFriend['user_id']))

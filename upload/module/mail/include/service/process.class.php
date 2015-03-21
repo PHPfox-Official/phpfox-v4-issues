@@ -446,7 +446,7 @@ class Mail_Service_Process extends Phpfox_Service
 	
 	public function delete($iId, $bSent = false)
 	{
-		$aMail = Phpfox::getService('mail')->getMail($iId);
+		$aMail = Mail_Service_Mail::instance()->getMail($iId);
 		
 		if ($aMail['viewer_user_id'] == $aMail['owner_user_id'])
 		{

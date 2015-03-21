@@ -714,7 +714,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 
 				$sFileName = $this->get('file');
 				
-				Phpfox::getLib('database')->update(Phpfox::getT('user'), array('user_image' => $sFileName, 'server_id' => $iServerId), 'user_id = ' . Phpfox::getUserId());
+				Phpfox_Database::instance()->update(Phpfox::getT('user'), array('user_image' => $sFileName, 'server_id' => $iServerId), 'user_id = ' . Phpfox::getUserId());
 
 				(Phpfox::isModule('feed') ? Phpfox::getService('feed.process')->delete('user_photo', Phpfox::getUserId()) : null);
 				(Phpfox::isModule('feed') ? Phpfox::getService('feed.process')->add('user_photo', Phpfox::getUserId(), serialize(array('destination' => $sFileName, 'server_id' => $iServerId))) : null);				

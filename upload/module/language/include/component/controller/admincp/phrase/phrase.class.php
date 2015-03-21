@@ -176,7 +176,7 @@ class Language_Component_Controller_Admincp_Phrase_Phrase extends Phpfox_Compone
 		if ($iLangId = $this->request()->get('lang-id'))
 		{
 			$bIsForceLanguagePackage = true;
-			$oSearch->setCondition('AND lp.language_id = \'' . Phpfox::getLib('database')->escape($iLangId) . '\'');
+			$oSearch->setCondition('AND lp.language_id = \'' . Phpfox_Database::instance()->escape($iLangId) . '\'');
 			$this->template()->setHeader('<script type="text/javascript">$Behavior.language_admincp_phrase = function(){ $(\'#js_language_id\').val(\'' . $iLangId. '\'); };</script>');
 		}
 		

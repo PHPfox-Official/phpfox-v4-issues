@@ -2,13 +2,15 @@
 #panel {
 	position:fixed;
 	top:@headerHeight;
-	left:(@navWidth - 300);
+	left:(@navWidth - 400);
 	bottom:0px;
 	width:300px;
 	z-index:299;
-	background:@navBg;
+	background:darken(@navBg, 4%);
 	color:@navColor;
 	overflow:auto;
+	box-shadow:@blockBoxShadowLight;
+	border-left:1px darken(@navBg, 10%) solid;
 }
 
 .panel_is_active {
@@ -16,4 +18,50 @@
 		left:@navWidth;
 		transition:@transition;
 	}
+}
+
+.panel_rows {
+	background:@blockBg;
+	border-bottom:1px darken(@blockBg, 8%) solid;
+	color:@blockColor;
+	position:relative;
+	font-size:@fontSizeBase - 2;
+
+	li {
+		> a, > a:hover {
+			display:block;
+			color:@blockColor;
+		}
+
+		.panel_focus {
+			color:@linkFocus;
+			font-weight:500;
+			font-size:@fontSizeBase;
+		}
+
+		.panel_rows_image {
+			position:absolute;
+			left:10px;
+			top:10px;
+		}
+
+		.panel_rows_content {
+			margin-left:70px;
+			min-height:70px;
+			padding-top:10px;
+			padding-bottom:10px;
+		}
+
+		.panel_rows_preview {
+			padding:6px 0px;
+		}
+
+		.drop_data_user {
+			color:@linkFocus;
+		}
+	}
+}
+
+.panel_rows:hover {
+	background:darken(@blockBg, 4%);
 }

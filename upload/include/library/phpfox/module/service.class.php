@@ -50,7 +50,7 @@ class Phpfox_Service
 	 */
     protected function database()
     {
-    	return Phpfox::getLib('database');
+    	return Phpfox_Database::instance();
     }
     
     /**

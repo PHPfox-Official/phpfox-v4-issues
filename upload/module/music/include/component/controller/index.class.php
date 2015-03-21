@@ -163,7 +163,7 @@ class Music_Component_Controller_Index extends Phpfox_Component
 		
 		if ($aParentModule !== null)
 		{
-			$this->search()->setCondition("AND m.module_id = '" . Phpfox::getLib('database')->escape($aParentModule['module_id']) . "' AND m.item_id = " . (int) $aParentModule['item_id']);
+			$this->search()->setCondition("AND m.module_id = '" . Phpfox_Database::instance()->escape($aParentModule['module_id']) . "' AND m.item_id = " . (int) $aParentModule['item_id']);
 		}
 		else
 		{

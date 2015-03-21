@@ -84,7 +84,7 @@ class Ad_Component_Controller_Admincp_Invoice extends Phpfox_Component
 				$oSearch->setCondition('ai.status = \'completed\'');
 				break;
 			case '2':
-				$oSearch->setCondition('(ai.status = \'pending\' OR ' . Phpfox::getLib('database')->isNull('ai.status') . ')');
+				$oSearch->setCondition('(ai.status = \'pending\' OR ' . Phpfox_Database::instance()->isNull('ai.status') . ')');
 				break;
 			case '3':
 				$oSearch->setCondition('ai.status = \'cancel\'');

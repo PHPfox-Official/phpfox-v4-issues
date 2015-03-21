@@ -67,7 +67,7 @@ class Admincp_Service_Block_Block extends Phpfox_Service
 		$aStyleBlockCache = array();
 		if ((int) $iStyleId > 0)
 		{
-			$aStyleBlockOrder = Phpfox::getLib('database')->select('*')
+			$aStyleBlockOrder = Phpfox_Database::instance()->select('*')
 				->from(Phpfox::getT('block_order'))
 				->where('style_id = ' . (int) $iStyleId)
 				->execute('getRows');

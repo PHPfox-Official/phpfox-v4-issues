@@ -29,7 +29,7 @@ class Mail_Service_Folder_Process extends Phpfox_Service
 		{
 			if ($mFolder == 'trash')
 			{
-				Phpfox::getService('mail.process')->delete($iId);
+				Mail_Service_Process::instance()->delete($iId);
 				
 				continue;			
 			}

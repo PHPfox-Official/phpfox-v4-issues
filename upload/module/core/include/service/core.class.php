@@ -594,7 +594,7 @@ class Core_Service_Core extends Phpfox_Service
 	{			
         if (Phpfox::isUser())
 		{
-            Phpfox::getLib('database')->delete(Phpfox::getT('upload_track'), 'user_id = ' . Phpfox::getUserId());
+            Phpfox_Database::instance()->delete(Phpfox::getT('upload_track'), 'user_id = ' . Phpfox::getUserId());
         }
 		$sHash = md5(uniqid() . Phpfox::getUserBy('email') . uniqid() . Phpfox::getUserBy('password_salt'));
 	
@@ -605,7 +605,7 @@ class Core_Service_Core extends Phpfox_Service
 		$this->cache()->remove($sCacheId);
 		$this->cache()->save($sCacheId, $_SERVER['HTTP_USER_AGENT']);
 
-		Phpfox::getLib('database')->insert(Phpfox::getT('upload_track'), array(
+		Phpfox_Database::instance()->insert(Phpfox::getT('upload_track'), array(
 			'user_id' => Phpfox::getUserId(),
 			'hash' => $sHash,
 			'user_hash' => Phpfox::getLib('parse.input')->clean(Phpfox::getCookie($aCookieNames[1])),

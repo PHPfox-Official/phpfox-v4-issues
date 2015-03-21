@@ -96,12 +96,12 @@ class Phpfox_Cdn_Module_S3 extends Phpfox_Cdn_Abstract
 				return Phpfox_Error::set('Unable to create Amazon bucket: ' . $sBucketName);	
 			}
 			
-			Phpfox::getLib('database')->update(Phpfox::getT('setting'), array(
+			Phpfox_Database::instance()->update(Phpfox::getT('setting'), array(
 					'value_actual' => '1'
 				), 'var_name = \'amazon_bucket_created\''
 			);
 			
-			Phpfox::getLib('database')->update(Phpfox::getT('setting'), array(
+			Phpfox_Database::instance()->update(Phpfox::getT('setting'), array(
 					'value_actual' => '' . $this->_sBucket . ''
 				), 'var_name = \'amazon_bucket\''
 			);			

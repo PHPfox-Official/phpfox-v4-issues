@@ -62,5 +62,3 @@ class Phpfox_Image
 		return self::$_oObject;
 	}
 }
-
-?>

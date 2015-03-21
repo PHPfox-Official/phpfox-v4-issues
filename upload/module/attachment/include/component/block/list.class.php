@@ -34,7 +34,7 @@ class Attachment_Component_Block_List extends Phpfox_Component
 		{
 			if (!is_array($aRows))
 			{
-				list($iCnt, $aRows) = Phpfox::getService('attachment')->get("attachment.item_id = {$iId} AND attachment.view_id = 0 AND attachment.category_id = '" . Phpfox::getLib('database')->escape($sType) . "' " . ($bIsAttachmentNoHeader ? '' : 'AND attachment.is_inline = 0'), 'attachment.attachment_id DESC', '', '', false);
+				list($iCnt, $aRows) = Phpfox::getService('attachment')->get("attachment.item_id = {$iId} AND attachment.view_id = 0 AND attachment.category_id = '" . Phpfox_Database::instance()->escape($sType) . "' " . ($bIsAttachmentNoHeader ? '' : 'AND attachment.is_inline = 0'), 'attachment.attachment_id DESC', '', '', false);
 			}
 		}
 

@@ -237,7 +237,7 @@ class Phpfox_Setting
 		
 		if (!defined('PHPFOX_INSTALLER') && file_exists(PHPFOX_DIR . 'install' . PHPFOX_DS . 'include' . PHPFOX_DS . 'installer.class.php'))
 		{			
-			$aRow = Phpfox::getLib('database')->select('value_actual')->from(Phpfox::getT('setting'))->where('var_name = \'phpfox_version\'')->execute('getRow');
+			$aRow = Phpfox_Database::instance()->select('value_actual')->from(Phpfox::getT('setting'))->where('var_name = \'phpfox_version\'')->execute('getRow');
 			if (isset($aRow['value_actual']))
 			{
 				if (md5(Phpfox::VERSION) != md5($aRow['value_actual']))
@@ -258,7 +258,7 @@ class Phpfox_Setting
 		
 		if (!($aRows = $oCache->get($iId)))
 		{			
-			$aRows = Phpfox::getLib('database')->select('s.type_id, s.var_name, s.value_actual, m.module_id AS module_name')
+			$aRows = Phpfox_Database::instance()->select('s.type_id, s.var_name, s.value_actual, m.module_id AS module_name')
 				->from(Phpfox::getT('setting'), 's')
 				->join(Phpfox::getT('module'), 'm', 'm.module_id = s.module_id AND m.is_active = 1')
 				->execute('getRows');			

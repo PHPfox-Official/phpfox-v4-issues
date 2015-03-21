@@ -46,7 +46,7 @@ class Phpfox_Cron
 		
 		if (!($this->_aCrons = $this->_oCache->get($sCacheId)))
 		{			
-			$aRows = Phpfox::getLib('database')->select('cron.*')
+			$aRows = Phpfox_Database::instance()->select('cron.*')
 				->from(Phpfox::getT('cron'), 'cron')
 				->join(Phpfox::getT('product'), 'product', 'product.product_id = cron.product_id AND product.is_active = 1')
 				->join(Phpfox::getT('module'), 'm', 'm.module_id = cron.module_id AND m.is_active = 1')
@@ -148,13 +148,13 @@ class Phpfox_Cron
 	private function _update($iId, $iTime)
 	{
 		// Update the time stamp for the current run and next run
-		Phpfox::getLib('database')->update(Phpfox::getT('cron'), array(
+		Phpfox_Database::instance()->update(Phpfox::getT('cron'), array(
 			'next_run' => $iTime,
 			'last_run' => PHPFOX_TIME
 		), 'cron_id = ' . (int) $iId);
 		
 		// Store into the log
-		Phpfox::getLib('database')->insert(Phpfox::getT('cron_log'), array(
+		Phpfox_Database::instance()->insert(Phpfox::getT('cron_log'), array(
 			'cron_id' => $iId,
 			'time_stamp' => PHPFOX_TIME
 		));		

@@ -434,7 +434,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 	public function searchDropDown()
 	{
 		Phpfox::isUser(true);
-		$oDb = Phpfox::getLib('database');
+		$oDb = Phpfox_Database::instance();
 		$sFind = $this->get('search');
 		if (empty($sFind))
 		{

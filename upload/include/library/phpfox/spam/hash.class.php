@@ -33,7 +33,7 @@ class Phpfox_Spam_Hash
 	public function __construct($aParams = array())
 	{
 		$this->_aParams = $aParams;
-		$this->_oDb = Phpfox::getLib('database');
+		$this->_oDb = Phpfox_Database::instance();
 	}
 	
 	/**
@@ -61,7 +61,7 @@ class Phpfox_Spam_Hash
 			
 		if ((int) $sCount > 0)
 		{
-			Phpfox::getLib('database')->updateCounter('user', 'total_spam', 'user_id', Phpfox::getUserId());
+			Phpfox_Database::instance()->updateCounter('user', 'total_spam', 'user_id', Phpfox::getUserId());
 			
 			Phpfox_Error::set(Phpfox::getPhrase('core.the_content_of_this_item_is_identical_to_something_you_have_added_before_please_try_again'));
 			

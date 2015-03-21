@@ -21,7 +21,7 @@ class Mail_Component_Block_Notify extends Phpfox_Component
 	public function process()
 	{
 		$this->template()->assign(array(
-				'iTotalUnseenMessages' => 0// Phpfox::getService('mail')->getUnseenTotal()
+				'iTotalUnseenMessages' => 0// Mail_Service_Mail::instance()->getUnseenTotal()
 			)
 		);	
 	}

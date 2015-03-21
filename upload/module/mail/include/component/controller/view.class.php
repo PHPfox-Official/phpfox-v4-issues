@@ -31,7 +31,7 @@ class Mail_Component_Controller_View extends Phpfox_Component
 		}		
 			
 		$oParseOutput = Phpfox::getLib('parse.output');
-		$oMail = Phpfox::getService('mail');	
+		$oMail = Mail_Service_Mail::instance();
 		
 		if (!is_numeric($iId))
 		{
@@ -86,7 +86,7 @@ class Mail_Component_Controller_View extends Phpfox_Component
 		
 		if ($aMail['viewer_user_id'] == Phpfox::getUserId())
 		{
-			Phpfox::getService('mail.process')->toggleView($aMail['mail_id'], false);
+			Mail_Service_Process::instance()->toggleView($aMail['mail_id'], false);
 		}
 		
 		$aValidation = array(
@@ -107,7 +107,7 @@ class Mail_Component_Controller_View extends Phpfox_Component
 			{
 				$aVals['to'] = $aMail['owner_user_id'];
 				
-				if (($iNewId = Phpfox::getService('mail.process')->add($aVals)))
+				if (($iNewId = Mail_Service_Process::instance()->add($aVals)))
 				{
 					$this->url()->send('mail.view', array('id' => $iNewId));
 				}
@@ -189,7 +189,7 @@ class Mail_Component_Controller_View extends Phpfox_Component
 
 		$this->template()->setBreadcrumb(Phpfox::getPhrase('mail.mail'), $this->url()->makeUrl('mail'));					
 
-		Phpfox::getService('mail')->buildMenu();
+		Mail_Service_Mail::instance()->buildMenu();
 		
 		$this->template()
 			->setBreadcrumb($oParseOutput->split($sTitle, 50), $this->url()->makeUrl('mail.view', array('id' => $aMail['mail_id'])), true)	

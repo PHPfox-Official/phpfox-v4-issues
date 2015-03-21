@@ -33,7 +33,7 @@ class Admincp_Component_Controller_Setting_Edit extends Phpfox_Component
 		
 		if (($sGroupId = $this->request()->get('group-id')))
 		{
-			$aCond[] = " AND setting.group_id = '" . Phpfox::getLib('database')->escape($sGroupId) . "' AND setting.is_hidden = 0 ";
+			$aCond[] = " AND setting.group_id = '" . Phpfox_Database::instance()->escape($sGroupId) . "' AND setting.is_hidden = 0 ";
 			$aUrl = array('setting', 'edit', 'group-id' => $sGroupId);
 			foreach ($aGroups as $aGroup)
 			{
@@ -47,7 +47,7 @@ class Admincp_Component_Controller_Setting_Edit extends Phpfox_Component
 		
 		if (($iModuleId = $this->request()->get('module-id')))
 		{
-			$aCond[] = " AND setting.module_id = '" . Phpfox::getLib('database')->escape($iModuleId) . "' AND setting.is_hidden = 0 ";
+			$aCond[] = " AND setting.module_id = '" . Phpfox_Database::instance()->escape($iModuleId) . "' AND setting.is_hidden = 0 ";
 			$aUrl = array('setting', 'edit', 'module-id' => $iModuleId);
 			foreach ($aModules as $aModule)
 			{
@@ -61,7 +61,7 @@ class Admincp_Component_Controller_Setting_Edit extends Phpfox_Component
 
 		if (($sProductId = $this->request()->get('product-id')))
 		{
-			$aCond[] = " AND setting.product_id = '" . Phpfox::getLib('database')->escape($sProductId) . "' AND setting.is_hidden = 0 ";
+			$aCond[] = " AND setting.product_id = '" . Phpfox_Database::instance()->escape($sProductId) . "' AND setting.is_hidden = 0 ";
 			$aUrl = array('setting', 'edit', 'product-id' => $sProductId);
 			foreach ($aProductGroups as $aProduct)
 			{

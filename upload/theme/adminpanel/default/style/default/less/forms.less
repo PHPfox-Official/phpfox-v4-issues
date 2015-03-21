@@ -1,0 +1,131 @@
+
+input[type="text"], input[type="email"], input[type="password"], textarea, input:focus, textarea:focus, select, select:focus {
+	background:@formBg;
+	color:@formColor;
+	border:@formBorder;
+	padding:10px 0px;
+	text-indent:10px;
+	outline:0px;
+	font-family:@fontFamilyBase;
+	font-size:@fontSizeBase;
+	box-shadow:none;
+}
+
+select {
+	text-indent:0px;
+}
+
+.js_box {
+	.table {
+		padding:0px;
+		margin-bottom:10px;
+	}
+}
+
+.table {
+	background:@blockBg;
+	padding:10px;
+	margin-bottom:20px;
+
+	.table_left {
+		.reset();
+
+		font-size:@fontSizeBase + 1;
+		color:@blockColor;
+		font-weight:300;
+		letter-spacing:1px;
+		padding-bottom:10px;
+	}
+
+    .table_right {
+	    .reset();
+
+		input[type="text"], input[type="password"], textarea, textarea:focus {
+			.full_input();
+		}
+
+	    select {
+		    width:100%;
+	    }
+
+	    .extra_info {
+		    font-size:@fontSizeBase - 2;
+		    color:lighten(@blockColor, 5%);
+	    }
+	}
+}
+
+ul.table_clear_button li {
+	float:none;
+	display:block;
+	margin:0px;
+}
+
+.table_clear {
+	input.button {
+		padding-left:0px;
+		padding-right:0px;
+		width:100%;
+		height:auto;
+	}
+
+	margin-bottom:40px;
+
+	input.button:not(:first-of-type) {
+		background:transparent;
+		color:@textColor;
+	}
+}
+
+input.button, a.button_off_link {
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+	padding:14px 0px;
+	font-size:@fontSizeBase + 1;
+	font-weight:300;
+	letter-spacing:1px;
+	text-transform:uppercase;
+	border:0px;
+	box-shadow:none;
+}
+
+input.button:hover {
+	background:lighten(@brandPrimary, 10%);
+	color:@brandPrimaryColor;
+	transition:@transition;
+}
+
+input.button_off {
+	border:4px transparent solid;
+	background:transparent;
+	color:lighten(@textColor, 10%);
+}
+
+.table_header {
+	.reset();
+	padding:@blockTitlePadding;
+	background:@blockTitleBg;
+	color:@blockTitleColor;
+	font-size:@blockTitleSize;
+}
+
+table {
+	th {
+		background:@bodyBg;
+		color:darken(@textColor, 5%);
+		font-weight:300;
+		text-transform:uppercase;
+		letter-spacing:1px;
+		border-top:4px darken(@bodyBg, 4%) solid;
+	}
+
+	td, th {
+		padding:20px;
+	}
+}
+
+input.admincp_search_input {
+	background:red;
+	padding:0px;
+	border:0px;
+}

@@ -20,7 +20,7 @@ class Theme_Component_Controller_Admincp_Export extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aTheme = Phpfox::getService('theme')->getTheme($this->request()->getInt('theme'));
+		$aTheme = Theme_Service_Theme::instance()->getTheme($this->request()->getInt('theme'));
 		
 		if (!isset($aTheme['theme_id']))
 		{
@@ -31,7 +31,7 @@ class Theme_Component_Controller_Admincp_Export extends Phpfox_Component
 		
 		if ($aVals = $this->request()->get('val'))
 		{
-			if (($aData = Phpfox::getService('theme')->export($aVals)))
+			if (($aData = Theme_Service_Theme::instance()->export($aVals)))
 			{
 				$oArchiveExport->download('phpfox-theme-' . $aData['name'] . '', 'zip', $aData['folder']);
 			}

@@ -414,22 +414,22 @@ class User_Component_Controller_Browse extends Phpfox_Component
 
 		if (($sLocation = $this->request()->get('location')))
 		{
-		    $oFilter->setCondition('AND u.country_iso = \'' . Phpfox::getLib('database')->escape($sLocation) . '\'');
+		    $oFilter->setCondition('AND u.country_iso = \'' . Phpfox_Database::instance()->escape($sLocation) . '\'');
 		}
 
 		if (($sGender = $this->request()->getInt('gender')))
 		{
-		    $oFilter->setCondition('AND u.gender = \'' . Phpfox::getLib('database')->escape($sGender) . '\'');
+		    $oFilter->setCondition('AND u.gender = \'' . Phpfox_Database::instance()->escape($sGender) . '\'');
 		}
 
 		if (($sLocationChild = $this->request()->getInt('state')))
 		{
-		    $oFilter->setCondition('AND ufield.country_child_id = \'' . Phpfox::getLib('database')->escape($sLocationChild) . '\'');
+		    $oFilter->setCondition('AND ufield.country_child_id = \'' . Phpfox_Database::instance()->escape($sLocationChild) . '\'');
 		}
 
 		if (($sLocationCity = $this->request()->get('city-name')))
 		{
-		    $oFilter->setCondition('AND ufield.city_location = \'' . Phpfox::getLib('database')->escape(Phpfox::getLib('parse.input')->convert($sLocationCity)) . '\'');
+		    $oFilter->setCondition('AND ufield.city_location = \'' . Phpfox_Database::instance()->escape(Phpfox::getLib('parse.input')->convert($sLocationCity)) . '\'');
 		}
 
 		if (!defined('PHPFOX_IS_ADMIN_SEARCH'))

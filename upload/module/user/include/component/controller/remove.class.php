@@ -25,7 +25,7 @@ class User_Component_Controller_Remove extends Phpfox_Component
 		}
 		if (Phpfox::isModule('friend'))
 		{
-			list($iCnt, $aShowFriends) = Friend_Service_Friend::instance()->get('friend.is_page = 0 AND friend.user_id = ' . Phpfox::getUserId() . ' AND ' . Phpfox::getLib('database')->isNotNull('user_image'), 'RAND()', 0, 3);
+			list($iCnt, $aShowFriends) = Friend_Service_Friend::instance()->get('friend.is_page = 0 AND friend.user_id = ' . Phpfox::getUserId() . ' AND ' . Phpfox_Database::instance()->isNotNull('user_image'), 'RAND()', 0, 3);
 		
 			$this->template()->assign(array(
 				'aFriends' => $aShowFriends,

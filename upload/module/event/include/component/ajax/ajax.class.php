@@ -288,7 +288,7 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if (isset($aVals['user_status']) && ($iId = Phpfox::getService('feed.process')->callback($aCallback)->addComment($aVals)))
 		{
-			Phpfox::getLib('database')->updateCounter('event', 'total_comment', 'event_id', $aEvent['event_id']);		
+			Phpfox_Database::instance()->updateCounter('event', 'total_comment', 'event_id', $aEvent['event_id']);
 			
 			Feed_Service_Feed::instance()->callback($aCallback)->processAjax($iId);
 		}

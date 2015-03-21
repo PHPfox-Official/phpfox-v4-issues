@@ -55,7 +55,7 @@ class Theme_Component_Controller_Admincp_Style_Add extends Phpfox_Component
 		
 		if (($iThemeId = $this->request()->getInt('theme')))
 		{
-			if ($aTheme = Phpfox::getService('theme')->getTheme($iThemeId))
+			if ($aTheme = Theme_Service_Theme::instance()->getTheme($iThemeId))
 			{
 				$this->template()->setBreadcrumb($aTheme['name'], $this->url()->makeUrl('admincp.theme'))
 					->assign(array(
@@ -72,7 +72,7 @@ class Theme_Component_Controller_Admincp_Style_Add extends Phpfox_Component
 			->assign(array(
 					'bIsEdit' => $bIsEdit,
 					'aStyles' => Theme_Service_Style_Style::instance()->get(),
-					'aThemes' => Phpfox::getService('theme')->get()
+					'aThemes' => Theme_Service_Theme::instance()->get()
 				)
 			);			
 	}

@@ -27,7 +27,7 @@ class Mail_Component_Controller_Compose_Mobile extends Phpfox_Component
 			if (isset($aUser['user_id']))
 			{
 				//if (!Phpfox::getService('user.privacy')->hasAccess($aUser['user_id'], 'mail.send_message'))
-				if (!Phpfox::getService('mail')->canMessageUser($aUser['user_id']))
+				if (!Mail_Service_Mail::instance()->canMessageUser($aUser['user_id']))
 				{
 					return Phpfox_Error::display(Phpfox::getPhrase('mail.unable_to_send_a_private_message_to_this_user_at_the_moment'));
 				}
@@ -92,7 +92,7 @@ class Mail_Component_Controller_Compose_Mobile extends Phpfox_Component
 				
 				if (Phpfox_Error::isPassed())
 				{
-					$aIds = Phpfox::getService('mail.process')->add($aVals);
+					$aIds = Mail_Service_Process::instance()->add($aVals);
 					
 					$this->url()->send('mail.view' , array('id' => $aIds[0]));
 				}

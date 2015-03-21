@@ -18,7 +18,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/foreach}					
 		{if Phpfox::getUserParam('core.can_design_dnd')}
 		<li>
-			{if !Phpfox::getService('theme')->isInDnDMode()}
+			{if !Theme_Service_Theme::instance()->isInDnDMode()}
 				<a href="#" onclick="$.ajaxCall('core.designdnd', 'enable=1&amp;inline=1'); return false;">
 					{phrase var='core.enable_dnd_mode'}
 				</a>

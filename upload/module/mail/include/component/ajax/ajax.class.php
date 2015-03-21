@@ -29,7 +29,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 	{		
 		foreach ((array) $this->get('item_moderate') as $iId)
 		{
-			Phpfox::getService('mail.process')->archiveThread($iId, ($this->get('action') == 'un-archive' ? '0' : '1'));
+			Mail_Service_Process::instance()->archiveThread($iId, ($this->get('action') == 'un-archive' ? '0' : '1'));
 			
 			$this->call('$("#js_message_'. $iId.'").slideUp("slow", function(){$(this).remove();});');
 		}		
@@ -40,7 +40,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function viewMoreThreadMail()
 	{
-		list($aCon, $aMessages) = Phpfox::getService('mail')->getThreadedMail($this->get('thread_id'), $this->get('page'));
+		list($aCon, $aMessages) = Mail_Service_Mail::instance()->getThreadedMail($this->get('thread_id'), $this->get('page'));
 		if ($aCon === false || ($aCon !== false && !count($aMessages)))
 		{
 			$this->hide('#feed_view_more_loader');
@@ -70,9 +70,9 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 	{				
 		$aVals = $this->get('val');
 		
-		if (($iNewId = Phpfox::getService('mail.process')->add($aVals)))
+		if (($iNewId = Mail_Service_Process::instance()->add($aVals)))
 		{
-			list($aCon, $aMessages) = Phpfox::getService('mail')->getThreadedMail($iNewId);
+			list($aCon, $aMessages) = Mail_Service_Mail::instance()->getThreadedMail($iNewId);
 			
 			$aMessages = array_reverse($aMessages);
 			
@@ -98,12 +98,12 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if (Phpfox::getParam('mail.threaded_mail_conversation'))
 		{
-			Phpfox::getService('mail.process')->archiveThread($this->get('id'));
+			Mail_Service_Process::instance()->archiveThread($this->get('id'));
 			$this->slideUp('#js_message_' . $this->get('id'));
 		}
 		else
 		{
-			if (($sType == 'trash' ? Phpfox::getService('mail.process')->deleteTrash($this->get('id')) : Phpfox::getService('mail.process')->delete($this->get('id'), ($sType == 'sentbox' ? true : false))))
+			if (($sType == 'trash' ? Mail_Service_Process::instance()->deleteTrash($this->get('id')) : Mail_Service_Process::instance()->delete($this->get('id'), ($sType == 'sentbox' ? true : false))))
 			{
 				$this->slideUp('#js_message_' . $this->get('id'));
 			}
@@ -269,7 +269,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			return false;
 		}
-		Phpfox::getService('mail.process')->adminDelete($iId);
+		Mail_Service_Process::instance()->adminDelete($iId);
 		$this->call('$("#js_mail_'.$iId.'").remove();');
 
 	}
@@ -290,11 +290,11 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		if (Phpfox::getParam('mail.threaded_mail_conversation'))
 		{
-			Phpfox::getService('mail.process')->toggleThreadIsRead($this->get('id'));
+			Mail_Service_Process::instance()->toggleThreadIsRead($this->get('id'));
 		}
 		else
 		{
-			if (Phpfox::getService('mail.process')->toggleRead($this->get('id')))
+			if (Mail_Service_Process::instance()->toggleRead($this->get('id')))
 			{
 
 			}
@@ -310,11 +310,11 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 				{
 					if ($this->get('trash'))
 					{
-						Phpfox::getService('mail.process')->deleteTrash($iId);
+						Mail_Service_Process::instance()->deleteTrash($iId);
 					}
 					else
 					{
-						Phpfox::getService('mail.process')->delete($iId, ($this->get('sent') ? true : false));
+						Mail_Service_Process::instance()->delete($iId, ($this->get('sent') ? true : false));
 					}					
 					//$this->slideUp('#js_message_' . $iId);
 					$this->call('$("#js_message_'. $iId.'").slideUp("slow", function(){$(this).remove();});');
@@ -336,7 +336,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function markAllRead()
 	{
-		Phpfox::getService('mail.process')->markAllRead();
+		Mail_Service_Process::instance()->markAllRead();
 		$this->call('window.location.href=window.location.href');
 	}
 }

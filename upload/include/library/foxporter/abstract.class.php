@@ -21,7 +21,7 @@ abstract class Foxporter_Abstract implements Foxporter_Interface
 	
 	public function database()
 	{
-		return Phpfox::getLib('database');	
+		return Phpfox_Database::instance();
 	}
 	
 	public function parseInput()

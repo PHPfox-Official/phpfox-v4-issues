@@ -46,7 +46,7 @@ class Ad_Component_Controller_Sponsor extends Phpfox_Component
 				// do not log clicks if its an Admin or the creator of the sponsor ad
 				if (!Phpfox::isAdmin())
 				{
-				    Phpfox::getLib('database')->update(Phpfox::getT('ad_sponsor'), array('total_click' => $aUrl['total_click']+1), 'sponsor_id = ' . $aUrl['sponsor_id'] . ' AND user_id != ' . Phpfox::getUserId());
+				    Phpfox_Database::instance()->update(Phpfox::getT('ad_sponsor'), array('total_click' => $aUrl['total_click']+1), 'sponsor_id = ' . $aUrl['sponsor_id'] . ' AND user_id != ' . Phpfox::getUserId());
 				}
 				$this->url()->send($sLink);
 		    }

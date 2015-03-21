@@ -95,7 +95,7 @@ class Admincp_Component_Controller_Setting_Add extends Phpfox_Component
 			}
 		}
 		$this->template()->assign(array(
-					'aProducts' => Phpfox::getService('admincp.product')->get(),
+					'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 					'aGroups' => $aGroups,
 					'aModules' => Phpfox_Module::instance()->getModules(),
 					'sCreateJs' => $oValid->createJS(),

@@ -448,15 +448,6 @@ class Phpfox_Module
 	{		
 		// Get the component
 		$this->_oController = $this->getComponent($this->_sModule . '.' . $this->_sController, array('bNoTemplate' => true), 'controller');
-		/*
-		$blocklet = PHPFOX_DIR_CACHE . 'blocklet/' . $this->getFullControllerName() . '.blocklets.php';
-		$className = 'blocklet_' . md5($blocklet);
-
-		if (!class_exists($className, false) && file_exists($blocklet)) {
-			require($blocklet);
-			$this->_oBlocklet = (new ReflectionClass('blocklet_' . md5($blocklet)))->newInstance();
-		}
-		*/
 	}
 	
 	/**
@@ -686,6 +677,7 @@ class Phpfox_Module
 	public function getService($sClass, $aParams = array())
 	{	
 		(($sPlugin = Phpfox_Plugin::get('get_service_1')) ? eval($sPlugin) : false);
+
 		if (isset($this->_aServices[$sClass]))
 		{
 			return $this->_aServices[$sClass];	
@@ -757,6 +749,11 @@ class Phpfox_Module
 		}
 
 		$className = $sModule . '_service_' . $sService;
+		if (class_exists($className, false)) {
+			$this->_aServices[$sClass] = Phpfox::getObject($className);
+
+			return $this->_aServices[$sClass];
+		}
 
 		require($sFile);
 		

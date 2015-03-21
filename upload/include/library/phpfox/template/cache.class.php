@@ -614,9 +614,13 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				return '<?php echo $this->_sFooter; ?>';
 				break;
 			case 'block':
-				$aArgs = $this->_parseArgs($sArguments);				
-				
-				$sContent = '<div class="_block" data-location="' . $this->_removeQuote($aArgs['location']) . '">';
+				$aArgs = $this->_parseArgs($sArguments);
+
+				$sContent = '';
+				$sContent .= '<?php if (!Phpfox::isAdminPanel()): ?>';
+				$sContent .= '<div class="_block" data-location="' . $this->_removeQuote($aArgs['location']) . '">';
+				$sContent .= '<?php endif; ?>';
+
 				$sContent .= '<?php if ($this->bIsSample): ?>';
 				$sContent .= '<?php if (defined(\'PHPFOX_NO_WINDOW_CLICK\')): ?>';
 				$sContent .= '<?php if (defined(\'PHPFOX_IS_AD_SAMPLE\')): Phpfox::getBlock(\'ad.sample\', array(\'block_id\' => ' . $this->_removeQuote($aArgs['location']) . ')); endif; ?>';
@@ -663,7 +667,10 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				$sContent .= '<?php endif; ?>';
 				
 				$sContent .= '<?php endif; ?>';
+
+				$sContent .= '<?php if (!Phpfox::isAdminPanel()): ?>';
 				$sContent .= '</div>';
+				$sContent .= '<?php endif; ?>';
 
 				return $sContent;
 				break;

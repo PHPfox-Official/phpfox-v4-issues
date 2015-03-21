@@ -94,7 +94,7 @@ class User_Component_Controller_Admincp_Group_Setting extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('user.add_user_group_setting'), null, true)
 			->setTitle(Phpfox::getPhrase('user.add_user_group_setting'))
 			->assign(array(
-				'aProducts' => Phpfox::getService('admincp.product')->get(),
+				'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 				'aModules' => Phpfox::getService('admincp.module')->getModules(),
 				'aLanguages' => $aLanguages,
 				'sCreateJs' => $oValid->createJS(),

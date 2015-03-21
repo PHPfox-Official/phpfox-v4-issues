@@ -46,7 +46,7 @@ class Admincp_Component_Controller_Setting_Group_Add extends Phpfox_Component
 		$this->template()->setBreadCrumb(Phpfox::getPhrase('admincp.add_setting_group'))
 			->setTitle(Phpfox::getPhrase('admincp.add_setting_group'))
 			->assign(array(
-				'aProducts' => Phpfox::getService('admincp.product')->get(),
+				'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),
 				'aModules' => Phpfox_Module::instance()->getModules()

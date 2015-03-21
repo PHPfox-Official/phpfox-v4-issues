@@ -11,8 +11,8 @@ input[type="text"], input[type="email"], input[type="password"], textarea, input
 	box-shadow:none;
 }
 
-select {
-	text-indent:0px;
+select, select:focus {
+	text-indent:4px;
 }
 
 .js_box {
@@ -62,10 +62,12 @@ ul.table_clear_button li {
 }
 
 .table_clear {
+	padding:0px;
+	text-align:right;
+	position:relative;
+
 	input.button {
-		padding-left:0px;
-		padding-right:0px;
-		width:100%;
+		padding:10px 16px;
 		height:auto;
 	}
 
@@ -128,4 +130,91 @@ input.admincp_search_input {
 	background:red;
 	padding:0px;
 	border:0px;
+}
+
+.extra_info {
+	font-size:@fontSizeBase - 2;
+}
+
+ul.action {
+	margin:10px 0px;
+}
+
+#site_content {
+	> .extra_info {
+		text-align:center;
+		font-size:@fontSizeBase;
+
+		> ul.action {
+			margin:20px 0px;
+
+			li {
+				display:inline-block;
+
+				a, a:hover {
+					.reset();
+					.button();
+					display:block;
+					width:auto;
+				}
+
+				a:hover {
+					.button_hover();
+				}
+			}
+		}
+	}
+}
+
+.table_clear_more_options {
+	position:absolute;
+	left:0px;
+	top:0px;
+
+	a, a:hover {
+		display:block;
+		font-weight:normal;
+		text-transform:uppercase;
+		padding:6px 0px;
+		color:lighten(@textColor, 10%);
+	}
+
+	a:hover {
+		color:@brandPrimary;
+	}
+}
+
+.pager_outer {
+	height:40px;
+	line-height:40px;
+}
+
+.pager li {
+	height:40px;
+	line-height:40px;
+	display:block;
+}
+
+.pager li.first a {
+	border:0px;
+}
+
+.pager li a, .pager li a:hover {
+	display:block;
+	background:@blockBg;
+	color:@blockColor;
+	min-width:40px;
+	text-align:center;
+	height:40px;
+	line-height:40px;
+	border:0px;
+}
+
+.pager li a:hover {
+	background:darken(@blockBg, 6%);
+}
+
+.pager li a.active, .pager li a.active:hover {
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
 }

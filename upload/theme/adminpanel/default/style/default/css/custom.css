@@ -13,7 +13,7 @@ a:hover {
   text-decoration: none;
 }
 a:hover {
-  color: #16a085;
+  color: #f4645f;
   text-decoration: none;
   transition: all 0.5s ease;
 }
@@ -70,6 +70,7 @@ input.admincp_search_input,
 #main,
 .main_menu li a.main_menu_link,
 .main_menu li a.main_menu_link:hover {
+  text-align: left;
   background: transparent;
   border-radius: 0px;
   box-shadow: none;
@@ -104,7 +105,7 @@ ul#breadcrumb_menu li.active a:hover {
 }
 ul#breadcrumb_menu li.active a,
 ul#breadcrumb_menu li.active a:hover {
-  background: #16a085;
+  background: #f4645f;
   color: #ffffff;
 }
 .main_menu li.separator {
@@ -186,7 +187,7 @@ ul#breadcrumb_menu li.active a:hover {
 }
 .main_menu li.main_menu_link_li a.active,
 .main_menu li.main_menu_link_li a.active:hover {
-  background: #16a085;
+  background: #f4645f;
   color: #ffffff;
 }
 .main_menu li .main_sub_menu {
@@ -207,6 +208,27 @@ ul#breadcrumb_menu li.active a:hover {
 }
 .main_menu li .main_sub_menu .main_sub_menu_holder:first-of-type {
   margin-top: 10px;
+}
+.main_menu li .main_sub_menu > ul > li.focus > a,
+.main_menu li .main_sub_menu > ul > li.focus > a:hover {
+  background: #298ADA;
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+}
+.main_menu li .main_sub_menu > ul > li.focus > a > span,
+.main_menu li .main_sub_menu > ul > li.focus > a:hover > span {
+  font-size: 8px;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: absolute;
+  right: 5px;
+  top: 7px;
+  background: #fff;
+  display: block;
+  color: #222;
+  padding: 2px;
+  text-indent: 0px;
 }
 .main_menu li .main_sub_menu > ul > li {
   display: block;
@@ -280,7 +302,7 @@ ul#breadcrumb_menu li.active a:hover {
   opacity: 0.6;
 }
 #table_hover_action_holder input.button:hover {
-  background: #16a085;
+  background: #f4645f;
   color: #ffffff;
 }
 .header_logo,
@@ -343,7 +365,7 @@ div#breadcrumb_holder {
   left: 200px;
   top: 40px;
   right: 0px;
-  background: #16a085;
+  background: #f4645f;
   height: 50px;
   z-index: 100;
   font-size: 13px;
@@ -379,7 +401,51 @@ div#breadcrumb_holder {
 .apps_content {
   padding-top: 60px;
 }
+div.sortable ul li {
+  margin-bottom: 10px;
+}
+div.sortable ul li,
+div.sortable ul li:hover {
+  background: #f5f5f5;
+  color: #999999;
+  border-radius: 0px;
+  border: 0px;
+}
+div.sortable ul li a,
+div.sortable ul li:hover a,
+div.sortable ul li a:hover,
+div.sortable ul li:hover a:hover {
+  color: #999999;
+}
+div.sortable ul li ul {
+  margin-top: 10px;
+  background: #ebebeb;
+}
+div.sortable ul li ul li {
+  background: #ebebeb;
+}
+.mosaicflow__column {
+  float: left;
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+* html .clearfix {
+  height: 1%;
+}
+.clearfix {
+  display: block;
+}
 div#admincp_site_link {
+  text-align: left;
   background: transparent;
   border-radius: 0px;
   box-shadow: none;
@@ -398,6 +464,7 @@ div#admincp_site_link {
   text-indent: 0px;
 }
 #admincp_login {
+  text-align: left;
   background: transparent;
   border-radius: 0px;
   box-shadow: none;
@@ -441,8 +508,9 @@ select:focus {
   font-size: 14px;
   box-shadow: none;
 }
-select {
-  text-indent: 0px;
+select,
+select:focus {
+  text-indent: 4px;
 }
 .js_box .table {
   padding: 0px;
@@ -454,6 +522,7 @@ select {
   margin-bottom: 20px;
 }
 .table .table_left {
+  text-align: left;
   background: transparent;
   border-radius: 0px;
   box-shadow: none;
@@ -477,6 +546,7 @@ select {
   padding-bottom: 10px;
 }
 .table .table_right {
+  text-align: left;
   background: transparent;
   border-radius: 0px;
   box-shadow: none;
@@ -519,12 +589,13 @@ ul.table_clear_button li {
   margin: 0px;
 }
 .table_clear {
+  padding: 0px;
+  text-align: right;
+  position: relative;
   margin-bottom: 40px;
 }
 .table_clear input.button {
-  padding-left: 0px;
-  padding-right: 0px;
-  width: 100%;
+  padding: 10px 16px;
   height: auto;
 }
 .table_clear input.button:not(:first-of-type) {
@@ -533,7 +604,7 @@ ul.table_clear_button li {
 }
 input.button,
 a.button_off_link {
-  background: #16a085;
+  background: #f4645f;
   color: #ffffff;
   padding: 14px 0px;
   font-size: 15px;
@@ -544,7 +615,7 @@ a.button_off_link {
   box-shadow: none;
 }
 input.button:hover {
-  background: #1ccdaa;
+  background: #f7928f;
   color: #ffffff;
   transition: all 0.5s ease;
 }
@@ -554,6 +625,7 @@ input.button_off {
   color: #9a9a9a;
 }
 .table_header {
+  text-align: left;
   background: transparent;
   border-radius: 0px;
   box-shadow: none;
@@ -591,4 +663,213 @@ input.admincp_search_input {
   background: red;
   padding: 0px;
   border: 0px;
+}
+.extra_info {
+  font-size: 12px;
+}
+ul.action {
+  margin: 10px 0px;
+}
+#site_content > .extra_info {
+  text-align: center;
+  font-size: 14px;
+}
+#site_content > .extra_info > ul.action {
+  margin: 20px 0px;
+}
+#site_content > .extra_info > ul.action li {
+  display: inline-block;
+}
+#site_content > .extra_info > ul.action li a,
+#site_content > .extra_info > ul.action li a:hover {
+  text-align: left;
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  float: none;
+  text-indent: 0px;
+  text-align: center;
+  border: 3px #f4645f solid;
+  height: 30px;
+  line-height: 30px;
+  padding: 0px 10px;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 13px !important;
+  letter-spacing: 1px;
+  color: #f4645f;
+  display: block;
+  width: auto;
+}
+#site_content > .extra_info > ul.action li a:hover {
+  border-color: #f1362f;
+  background: #f4645f;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+.table_clear_more_options {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.table_clear_more_options a,
+.table_clear_more_options a:hover {
+  display: block;
+  font-weight: normal;
+  text-transform: uppercase;
+  padding: 6px 0px;
+  color: #9a9a9a;
+}
+.table_clear_more_options a:hover {
+  color: #f4645f;
+}
+.pager_outer {
+  height: 40px;
+  line-height: 40px;
+}
+.pager li {
+  height: 40px;
+  line-height: 40px;
+  display: block;
+}
+.pager li.first a {
+  border: 0px;
+}
+.pager li a,
+.pager li a:hover {
+  display: block;
+  background: #ffffff;
+  color: #999999;
+  min-width: 40px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  border: 0px;
+}
+.pager li a:hover {
+  background: #f0f0f0;
+}
+.pager li a.active,
+.pager li a.active:hover {
+  background: #f4645f;
+  color: #ffffff;
+}
+#js_block_border_core_site-stat .p_4,
+#js_block_border_core_site-stat div.info_right,
+div.info_right,
+div.info_header,
+div.info,
+#js_block_border_core_site-stat div.info_left,
+div.info_left {
+  text-align: left;
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+}
+div.info,
+#js_block_border_core_site-stat div.info {
+  position: relative;
+  border-bottom: 1px #ebebeb solid;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+div.info div.info_left,
+#js_block_border_core_site-stat div.info div.info_left,
+div.info div.info_right,
+#js_block_border_core_site-stat div.info div.info_right {
+  padding: 5px 0px;
+}
+div.info div.info_left,
+#js_block_border_core_site-stat div.info div.info_left {
+  text-transform: uppercase;
+  font-weight: 300;
+  display: table-cell;
+}
+div.info div.info_right,
+#js_block_border_core_site-stat div.info div.info_right {
+  display: table-cell;
+  text-align: right;
+}
+div.info_header {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 11px;
+  display: inline-block;
+  background: #f4645f;
+  color: #ffffff;
+  padding: 0px 2px;
+}
+div#main div.block {
+  background: #ffffff;
+  border-radius: 0px;
+}
+div#main div.block div.title {
+  border-radius: 0px;
+  background: #fafafa;
+  color: #808080;
+  padding: 10px;
+  font-weight: 300;
+  font-size: 18px;
+}
+div#main div.block div.content {
+  padding: 10px;
+  font-size: 13px;
+  color: #999999;
+}
+.dashboard {
+  visibility: hidden;
+}
+.dashboard div.block {
+  display: block;
+  vertical-align: top;
+  margin: 0px 20px 20px 0px;
+}
+.error_message {
+  text-align: left;
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+  padding: 10px 0px;
+  text-indent: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  background: #d9534f;
+  color: #ffffff;
 }

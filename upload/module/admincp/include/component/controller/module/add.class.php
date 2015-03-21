@@ -118,7 +118,7 @@ class Admincp_Component_Controller_Module_Add extends Phpfox_Component
 		$this->template()->setBreadCrumb(($bIsEdit ? 'Editing Module: ' . $aRow['module_id'] : Phpfox::getPhrase('admincp.create_module')))
 			->setTitle(($bIsEdit ? 'Editing Module: ' . $aRow['module_id'] : Phpfox::getPhrase('admincp.create_module')))		
 			->assign(array(
-				'aProducts' => Phpfox::getService('admincp.product')->get(),
+				'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),
 				'aLanguages' => ($bIsEdit ? Phpfox::getService('language')->getWithPhrase($aRow['phrase_var_name']) : Phpfox::getService('language')->get()),

@@ -44,7 +44,7 @@ class Admincp_Component_Controller_Plugin_Hook_Add extends Phpfox_Component
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.add_hook'))
 			->setBreadCrumb(Phpfox::getPhrase('admincp.add_hook'))
 			->assign(array(
-				'aProducts' => Phpfox::getService('admincp.product')->get(),
+				'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 				'aModules' => Phpfox::getService('admincp.module')->getModules(),
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),

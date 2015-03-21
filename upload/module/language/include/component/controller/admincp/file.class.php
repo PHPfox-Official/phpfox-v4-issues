@@ -84,7 +84,7 @@ class Language_Component_Controller_Admincp_File extends Phpfox_Component
 
 		// Assign needed vars to the template
 		$this->template()->assign(array(
-			'aProducts' => Phpfox::getService('admincp.product')->get(),
+			'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 			'aLanguages' => Phpfox::getService('language')->get(),
 			'aArchives' => $oArchiveExport->getSupported(),
 			'sSupported' => $oArchiveImport->getSupported(),

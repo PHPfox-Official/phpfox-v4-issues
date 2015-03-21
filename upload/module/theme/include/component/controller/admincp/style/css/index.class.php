@@ -63,7 +63,7 @@ class Theme_Component_Controller_Admincp_Style_Css_Index extends Phpfox_Componen
 			->assign(array(
 					'aFiles' => Theme_Service_Style_Style::instance()->getFiles($aStyle['theme_folder'], $aStyle['folder'], $aStyle['style_id']),
 					'aStyle' => $aStyle,
-					'aProducts' => Phpfox::getService('admincp.product')->get(),
+					'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 					'aCustomDataContent' => (defined('PHPFOX_IS_HOSTED_SCRIPT') ? Theme_Service_Style_Style::instance()->getStyleContent($aStyle['style_id']) : '')
 				)
 			);			

@@ -96,7 +96,7 @@ class Admincp_Component_Controller_Block_Add extends Phpfox_Component
 		}
 		
 		$this->template()->assign(array(
-					'aProducts' => Phpfox::getService('admincp.product')->get(),
+					'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 					'aControllers' => Phpfox::getService('admincp.component')->get(true),
 					'aComponents' => Phpfox::getService('admincp.component')->get(),
 					'aUserGroups' => Phpfox::getService('user.group')->get(),

@@ -151,9 +151,17 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		{			
 			$bPass = true;		
 		}
-				
+
+		$bForceIndex = false;
+		if (!$bPass && Phpfox::isModule($this->request()->segment('req2'))) {
+			$this->_sModule = 'admincp';
+			$this->_sController = 'app.index';
+			$bForceIndex = true;
+			$bPass = true;
+		}
+
 		// Get the menu we will used to display all the "Modules"
-		$aModules = Phpfox::getService('admincp.module')->getAdminMenu();
+		// $aModules = Phpfox::getService('admincp.module')->getAdminMenu();
 
 		// Create AdminCP menu
 		$aMenus = array(
@@ -256,7 +264,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 		$aMenus = [
 			'Dashboard' => 'admincp',
-			'Apps' => '#apps',
+			'Modules' => '#modules',
 			// '__APPS__',
 
 			'Members',
@@ -364,6 +372,19 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		// d($aGroups); exit;
 
 		$aApps = [];
+		/*
+		$aProducts = Admincp_Service_Product_Product::instance()->getNewProductsForInstall();
+		if (count($aProducts)) {
+			foreach ($aProducts as $aProduct) {
+				$aApps[$aProduct['title']] = [
+					'highlight' => true,
+					'message' => 'Install',
+					'url' => $this->url()->makeUrl('admincp.product.install', ['id' => $aProduct['product_id']])
+				];
+			}
+		}
+		*/
+
 		$aSkip = ['user', 'track', 'tinymce', 'theme', 'tag', 'subscribe', 'share', 'search', 'rss', 'request', 'report', 'rate', 'profile', 'privacy', 'page', 'notification', 'mobile', 'log', 'link', 'like', 'language', 'input', 'admincp', 'api', 'apps', 'attachment', 'ban', 'comment', 'contact', 'core', 'custom', 'emoticon', 'error', 'favorite', 'help', 'im'];
 		foreach (Phpfox_Module::instance()->getModules() as $sModule) {
 			if (in_array($sModule, $aSkip)) {
@@ -375,7 +396,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		}
 
 		foreach ($aMenus as $sKey => $mValue) {
-			if ($mValue == '#apps') {
+			if ($mValue == '#modules') {
 				$aMenus[$sKey] = $aApps;
 
 				continue;
@@ -405,6 +426,12 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 		$sSectionTitle = '';
 		$app = $this->request()->get('req2');
+		$bForceIndex = true;
+		if ($app == 'app') {
+			$app = $this->request()->get('req3');
+			$bForceIndex = false;
+		}
+
 		$is_settings = false;
 		if ($this->url()->getUrl() == 'admincp/setting/edit') {
 			$app = $this->request()->get('module-id');
@@ -418,7 +445,15 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			$menu = unserialize($app['menu']);
 			$menus = [];
 			$current = $this->url()->getUrl();
+			$infoActive = false;
 
+			if ($this->url()->getUrl() == ($bForceIndex ? 'admincp/' . $app['module_id'] : 'admincp/app/' . $app['module_id'])) {
+				$infoActive = true;
+			}
+			$menus['Info'] = [
+				'is_active' => $infoActive,
+				'url' => $this->url()->makeUrl('admincp.app.' . $app['module_id'])
+			];
 			if (Admincp_Service_Setting_Setting::instance()->moduleHasSettings($app['module_id'])) {
 				$menus['Settings'] = [
 					'is_active' => $is_settings,
@@ -432,6 +467,9 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 					$url = 'admincp.' . implode('.', $value['url']);
 					if ($current == str_replace('.', '/', $url)) {
 						$is_active = true;
+						if ($infoActive) {
+							$menus['Info']['is_active'] = false;
+						}
 					}
 
 					$menus[Phpfox::getPhrase($key)] = [
@@ -457,12 +495,13 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				)->setHeader(array(
 					'menu.css' => 'style_css',
 					'menu.js' => 'style_script',
-					'admin.js' => 'static_script'
+					'admin.js' => 'static_script',
+					'jquery/plugin/jquery.mosaicflow.min.js' => 'static_script'
 				)
 			)->setTitle(Phpfox::getPhrase('admincp.admin_cp'));		
 		
 		if ($bPass)
-		{		
+		{
 			Phpfox_Module::instance()->setController($this->_sModule . '.' . $this->_sController);
 
 			$sMenuController = str_replace(array('.index', '.phrase'), '', 'admincp.' . ($this->_sModule != 'admincp' ? $this->_sModule . '.' . str_replace('admincp.', '', $this->_sController) : $this->_sController));

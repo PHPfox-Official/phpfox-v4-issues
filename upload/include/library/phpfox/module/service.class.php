@@ -31,6 +31,7 @@ class Phpfox_Service
 		$name = get_called_class();
 		$name = strtolower($name);
 		$name = str_replace('service_', '', $name);
+		// $name = str_replace('.', '_', $name);
 		$parts = explode('_', $name);
 		if (count($parts) > 2) {
 			if ($parts[1] == $parts[2]) {

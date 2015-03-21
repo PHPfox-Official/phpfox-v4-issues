@@ -87,6 +87,10 @@ class Phpfox_Request
 		return $this;
 	}
 
+	public function segment($cnt) {
+		return $this->get('req' . $cnt);
+	}
+
     /** 
      * Retrieve parameter value from request.
      * 

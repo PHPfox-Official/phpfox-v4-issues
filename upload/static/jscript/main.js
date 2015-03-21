@@ -599,7 +599,6 @@ $Behavior.globalInit = function()
 	if ($('.mosaicflow_load').length) {
 		var mLoad = setInterval(function() {
 			if (typeof(jQuery().mosaicflow) == 'function') {
-				p('done!');
 				// $('.mosaicflow_load').addClass('mosaicflow');
 
 				$('.mosaicflow_load').mosaicflow({

@@ -48,7 +48,7 @@ class Admincp_Component_Controller_Product_Index extends Phpfox_Component
 			}
 		}
 
-		$aProducts = Phpfox::getService('admincp.product')->get(false);
+		$aProducts = Admincp_Service_Product_Product::instance()->get(false);
 		foreach ($aProducts as $iKey => $aProduct)
 		{
 			if ($aProduct['product_id'] == 'phpfox' || $aProduct['product_id'] == 'phpfox_installer')

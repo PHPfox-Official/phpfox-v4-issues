@@ -100,7 +100,7 @@ class Page_Component_Controller_Admincp_Add extends Phpfox_Component
 		$this->template()->setTitle(Phpfox::getPhrase('page.add_new_page'))
 			->setBreadCrumb(Phpfox::getPhrase('page.add_new_page'))
 			->assign(array(
-					'aProducts' => Phpfox::getService('admincp.product')->get(),
+					'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 					'aUserGroups' => Phpfox::getService('user.group')->get(),
 					'sCreateJs' => $oValid->createJS(),
 					'sGetJsForm' => $oValid->getJsForm(),			

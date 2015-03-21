@@ -69,7 +69,7 @@ class Admincp_Component_Controller_Component_Add extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('admincp.manage_components'), $this->url()->makeUrl('admincp.component'))
 			->setBreadCrumb(($bIsEdit ? Phpfox::getPhrase('admincp.editing_component') : Phpfox::getPhrase('admincp.add_component')), null, true)
 			->assign(array(
-				'aProducts' => Phpfox::getService('admincp.product')->get(),
+				'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 				'aModules' => Phpfox::getService('admincp.module')->getModules(),
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),

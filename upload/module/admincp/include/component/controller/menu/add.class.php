@@ -89,7 +89,7 @@ class Admincp_Component_Controller_Menu_Add extends Phpfox_Component
 		}
 		
 		$this->template()->assign(array(
-				'aProducts' => Phpfox::getService('admincp.product')->get(),
+				'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 				'aModules' => Phpfox::getService('admincp.module')->getModules(),
 				'aParents' => Phpfox::getService('admincp.menu')->get(array('menu.parent_id = 0 AND menu.m_connection IN(\'main\', \'main_right\')'), false),
 				'aControllers' => Phpfox::getService('admincp.component')->get(true),

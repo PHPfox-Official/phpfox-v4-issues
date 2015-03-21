@@ -537,8 +537,7 @@ class Phpfox
 	 */
 	public static function isMobile($bRedirect = true)
 	{
-		if ($sPlugin = Phpfox_Plugin::get('library_phpfox_ismobile')){eval($sPlugin);if (isset($bReturnFromPlugin)) return $bReturnFromPlugin;}
-		return Phpfox::getLib('request')->isMobile($bRedirect);
+		return false;
 	}
 	
 	/**

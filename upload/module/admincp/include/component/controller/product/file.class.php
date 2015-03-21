@@ -59,7 +59,7 @@ class Admincp_Component_Controller_Product_File extends Phpfox_Component
 		// Run the export routine
 		if ($sExportId = $this->request()->get('export'))
 		{
-			if ($mData = Phpfox::getService('admincp.product')->export($sExportId))
+			if ($mData = Admincp_Service_Product_Product::instance()->export($sExportId))
 			{				
 				$oArchiveExport->download('phpfox-product-' . $mData['name'], 'zip', $mData['folder']);
 			}
@@ -101,7 +101,7 @@ class Admincp_Component_Controller_Product_File extends Phpfox_Component
             }
 		}
 
-		$aProducts = Phpfox::getService('admincp.product')->get();
+		$aProducts = Admincp_Service_Product_Product::instance()->get();
 		foreach ($aProducts as $iKey => $aProduct)
 		{
 			if ($aProduct['product_id'] == 'phpfox' || $aProduct['product_id'] == 'phpfox_installer')
@@ -118,7 +118,7 @@ class Admincp_Component_Controller_Product_File extends Phpfox_Component
 				'aArchives' => $oArchiveExport->getSupported(),
 				'sSupported' => $oArchiveImport->getSupported(),
 				'sFtpEditLink' => $this->url()->makeUrl('admincp.setting.edit', array('group-id' => 'ftp')),
-				'aNewProducts' => Phpfox::getService('admincp.product')->getNewProductsForInstall()
+				'aNewProducts' => Admincp_Service_Product_Product::instance()->getNewProductsForInstall()
 			)
 		);
 

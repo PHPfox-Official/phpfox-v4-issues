@@ -263,7 +263,7 @@ class User_Service_Group_Setting_Process extends Phpfox_Service
 	
 	public function import($aVals, $bMissingOnly = false)
 	{
-		$iProductId = Phpfox::getService('admincp.product')->getId($aVals['product']);
+		$iProductId = Admincp_Service_Product_Product::instance()->getId($aVals['product']);
 		if (!$iProductId)
 		{
 			$iProductId = 1;

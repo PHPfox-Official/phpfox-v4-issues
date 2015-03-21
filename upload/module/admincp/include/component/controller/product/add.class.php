@@ -28,14 +28,14 @@ class Admincp_Component_Controller_Product_Add extends Phpfox_Component
 		$bIsEdit = false;
 		if (($iEditId = $this->request()->get('id')))
 		{			
-			$aProduct = Phpfox::getService('admincp.product')->getForEdit($iEditId);			
+			$aProduct = Admincp_Service_Product_Product::instance()->getForEdit($iEditId);
 			if (isset($aProduct['product_id']))
 			{
 				$bIsEdit = true;				
 				$this->template()->assign(array(
 						'aForms' => $aProduct,
-						'aDependencies' => Phpfox::getService('admincp.product')->getDependencies($aProduct['product_id']),
-						'aInstalls' => Phpfox::getService('admincp.product')->getInstalls($aProduct['product_id'])
+						'aDependencies' => Admincp_Service_Product_Product::instance()->getDependencies($aProduct['product_id']),
+						'aInstalls' => Admincp_Service_Product_Product::instance()->getInstalls($aProduct['product_id'])
 					)
 				);
 			}

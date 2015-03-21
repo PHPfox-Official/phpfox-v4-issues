@@ -60,7 +60,7 @@ class Theme_Component_Controller_Admincp_Template_Index extends Phpfox_Component
 			->assign(array(
 					'aTemplates' => Phpfox::getService('theme.template')->get($aTheme['folder']),
 					'aTheme' => $aTheme,
-					'aProducts' => Phpfox::getService('admincp.product')->get()
+					'aProducts' => Admincp_Service_Product_Product::instance()->get()
 				)
 			);
 	}

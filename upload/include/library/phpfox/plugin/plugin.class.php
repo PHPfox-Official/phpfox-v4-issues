@@ -132,7 +132,7 @@ class Phpfox_Plugin
 				
 				if (is_dir(PHPFOX_DIR_PLUGIN . $sProduct))
 				{
-					if (!Phpfox::getService('admincp.product')->isProduct($sProduct))
+					if (!Admincp_Service_Product_Product::instance()->isProduct($sProduct))
 					{
 						continue;
 					}

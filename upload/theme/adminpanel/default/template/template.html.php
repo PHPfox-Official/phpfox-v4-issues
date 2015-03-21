@@ -44,7 +44,13 @@
 						<div class="main_sub_menu">
 							<ul>
 							{foreach from=$sLink key=sPhrase2 item=sLink2}
-								{if is_numeric($sPhrase2)}
+								{if is_array($sLink2)}
+								<li class="{if $sLink2.highlight} focus{/if}">
+									<a href="{$sLink2.url}" class="popup">
+										{$sPhrase2}{if isset($sLink2.message)}<span>{$sLink2.message}</span>{/if}
+									</a>
+								</li>
+								{elseif is_numeric($sPhrase2)}
 								<li class="separator">{$sLink2}</li>
 								{else}
 								<li><a href="{url link=$sLink2}">{$sPhrase2}</a></li>
@@ -57,7 +63,7 @@
 								<ul>
 									{foreach from=$sLink2 key=sPhrase3 item=sLink3}
 									{if is_numeric($sPhrase3)}
-									<div class="main_sub_menu_holder_header">asd</div>
+									<div class="main_sub_menu_holder_header"></div>
 									{else}
 									<li><a href="{url link=""$sLink3""}">{phrase var=$sPhrase3}</a></li>
 									{/if}

@@ -102,7 +102,7 @@ class Language_Component_Controller_Admincp_Phrase_Add extends Phpfox_Component
 		
 		// Assign needed vars to the template
 		$this->template()->assign(array(
-			'aProducts' => Phpfox::getService('admincp.product')->get(),
+			'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 			'aModules' => $aModules,
 			'aLanguages' => $aLanguages,
 			'sCreateJs' => $oValid->createJS(),

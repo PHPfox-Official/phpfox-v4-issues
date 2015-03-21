@@ -367,7 +367,7 @@ class Admincp_Service_Setting_Process extends Phpfox_Service
 			return Phpfox_Error::set(Phpfox::getPhrase('admincp.unable_import_settings'));
 		}
 		
-		$iProductId = Phpfox::getService('admincp.product')->getId($aVals['product']);
+		$iProductId = Admincp_Service_Product_Product::instance()->getId($aVals['product']);
 		if (!$iProductId)
 		{
 			$iProductId = 1;

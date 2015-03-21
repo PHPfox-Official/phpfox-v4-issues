@@ -55,7 +55,7 @@ class Admincp_Service_Plugin_Plugin extends Phpfox_Service
 		 		continue;
 		 	}
 		 	
-		 	if (!Phpfox::getService('admincp.product')->isProduct($sDir))
+		 	if (!Admincp_Service_Product_Product::instance()->isProduct($sDir))
 		 	{
 		 		continue;
 		 	}
@@ -122,7 +122,7 @@ class Admincp_Service_Plugin_Plugin extends Phpfox_Service
 		 		continue;
 		 	}
 		 	
-		 	if (!Phpfox::getService('admincp.product')->isProduct($sDir))
+		 	if (!Admincp_Service_Product_Product::instance()->isProduct($sDir))
 		 	{
 		 		continue;
 		 	}

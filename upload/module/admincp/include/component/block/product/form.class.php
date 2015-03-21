@@ -21,7 +21,7 @@ class Admincp_Component_Block_Product_Form extends Phpfox_Component
 	public function process()
 	{
 		$this->template()->assign(array(
-				'aProducts' => Phpfox::getService('admincp.product')->get(),
+				'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 				'bUseClass' => $this->getParam('class'),
 				'bProductIsRequired' => $this->getParam('product_form_required', true)
 			)

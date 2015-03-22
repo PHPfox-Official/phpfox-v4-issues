@@ -1,3 +1,3 @@
 <?php
 
-require('./upload/start.php');
+require('./phpfox/start.php');

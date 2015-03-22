@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html {{ html }}>
+	<head>
+		<title>{{ block('title') }}</title>
+		{{ header }}
+		{{ block('header') }}
+	</head>
+	<body>
+
+		<div id="header">
+			{{ logo }}
+			{breadcrumb}
+		</div>
+
+		<div id="panel"></div>
+		<div id="main_header" class="nano">
+			<div id="header_menu" class="nano-content">
+				{{ notification }}
+				{{ nav }}
+			</div>
+		</div>
+
+		<div id="top">
+			{{ block('top') }}
+		</div>
+
+		<div id="content">
+			{{ errors }}
+			{{ block('content') }}
+		</div>
+
+		<div id="panels">
+			<div id="left">
+				{{ block('left') }}
+			</div>
+
+			<div id="right">
+				{{ block('right') }}
+			</div>
+		</div>
+
+		<footer>
+			{{ footer }}
+			{{ copyright }}
+		</footer>
+
+		{{ js }}
+
+	</body>
+</html>

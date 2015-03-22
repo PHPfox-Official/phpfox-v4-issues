@@ -566,7 +566,7 @@ class Phpfox_Database_Driver_Mysql extends Phpfox_Database_Dba
      * 
      * @param string $sSql    select query
      * @param string $bAssoc  type of returned rows array
-     * @return array selected rows (each row is array of specified type) or emprt array on error
+     * @return array selected rows (each row is array of specified type) or empty array on error
      */
     protected function _getRows($sSql, $bAssoc = true, &$hLink)
     {

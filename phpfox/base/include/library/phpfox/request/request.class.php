@@ -117,6 +117,14 @@ class Phpfox_Request
     	
     	return (isset($this->_aArgs[$sName]) ? ((empty($this->_aArgs[$sName]) && isset($this->_aName[$sName])) ? true : $this->_aArgs[$sName]) : $mDef);
     }
+
+	public function isPost() {
+		return (($this->get('is_ajax_post') && $this->method() == 'POST') ? true : false);
+	}
+
+	public function method() {
+		return (isset($_SERVER['REQUEST_METHOD']) ? strtoupper($_SERVER['REQUEST_METHOD']) : null);
+	}
     
     /**
      * Set a request manually.

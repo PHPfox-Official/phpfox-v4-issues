@@ -2093,7 +2093,21 @@ class Phpfox_Template
 				$sData .= "\t\t\toTranslations['{$sVar}'] = '" . str_replace("'", "\'", $sPhrase) . "';\n";
 			}
 			$sData .= "\t\t</script>\n";
-		}		
+		}
+
+		$Apps = new Core\App();
+		foreach ($Apps->all() as $App) {
+			$assets = $App->path . 'assets/';
+			if (file_exists($assets . 'autoload.js')) {
+				$url = str_replace(PHPFOX_DIR_PARENT, Phpfox::getParam('core.path'), $assets) . 'autoload.js';
+				$this->_sFooter .= '<script src="' . $url . '"></script>';
+			}
+
+			if (file_exists($assets . 'autoload.css')) {
+				$url = str_replace(PHPFOX_DIR_PARENT, Phpfox::getParam('core.path'), $assets) . 'autoload.css';
+				$sData .= '<link href="' . $url . '" rel="stylesheet">';
+			}
+		}
 		
 		if ($bReturnArray)
 		{
@@ -2249,11 +2263,6 @@ class Phpfox_Template
 		// Clear from memory
 		$this->_aHeaders = array();		
 		$this->_aMeta = array();
-
-		if (isset($bLoadCustomThemeOverwrite))
-		{
-			$sData .= "\t\t" . '<link rel="stylesheet" type="text/css" href="' . Phpfox::getParam('core.rackspace_url') . 'file/static/' . $aCss['css_data_original'] . '" />' . "\n";
-		}
 		
 		return $sData;
 	}

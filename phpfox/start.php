@@ -26,11 +26,17 @@ require(__DIR__ . '/base/include/init.inc.php');
 spl_autoload_register(function($class) {
 	$class = strtolower($class);
 	$class = str_replace("\\", '/', $class);
-	if (substr($class, 0, 5) == 'core/' || substr($class, 0, 5) == 'apps/') {
+	if (substr($class, 0, 5) == 'core/' || substr($class, 0, 5) == 'apps/' || substr($class, 0, 4) == 'api/') {
 		$path = PHPFOX_DIR_PARENT . $class . '.php';
 
 		require($path);
 	}
 });
+
+function Error() {
+	$Reflect = (new ReflectionClass('Core\Exception'))->newInstanceWithoutConstructor();
+
+	return call_user_func_array([$Reflect, 'toss'], func_get_args());
+}
 
 Phpfox::run();

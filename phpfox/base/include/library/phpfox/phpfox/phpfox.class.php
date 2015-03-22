@@ -1029,14 +1029,12 @@ class Phpfox
 	public static function getMasterFiles()
 	{
 		$aOut = array(
-			// 'css/font-awesome.min.css' => 'static_css',
 			'<link href="' . Phpfox::getParam('core.url_static') . 'css/font-awesome.min.css" rel="stylesheet">',
 			'layout.css' => 'style_css',
 			'common.css' => 'style_css',
 			'thickbox.css' => 'style_css',
 			'jquery.css' => 'style_css',
 			'pager.css' => 'style_css',
-			// 'template.js' => 'static_script',
 			'jquery/jquery.js' => 'static_script',
 			'jquery/ui.js' => 'static_script',
 			'jquery/plugin/jquery.nanoscroller.min.js' => 'static_script',
@@ -1062,7 +1060,7 @@ class Phpfox
 		$oReq = Phpfox_Request::instance();
 		$oModule = Phpfox_Module::instance();
 
-		$aStaticFolders = ['file', 'static', 'theme', 'module'];
+		$aStaticFolders = ['file', 'static', 'theme', 'module', 'apps'];
 		if (in_array($oReq->segment(1), $aStaticFolders)) {
 			$sUri = Phpfox_Url::instance()->getUri();
 			if ($sUri == '/static/ajax.php') {
@@ -1072,10 +1070,15 @@ class Phpfox
 				exit;
 			}
 
+			$sDir = PHPFOX_DIR;
+			if ($oReq->segment(1) == 'apps') {
+				$sDir = PHPFOX_DIR_PARENT;
+			}
+
 			$sType = Phpfox_File::instance()->mime($sUri);
 
 			header('Content-type: ' . $sType);
-			echo @file_get_contents(PHPFOX_DIR . $sUri);
+			echo @file_get_contents($sDir . $sUri);
 			exit;
 		}
 		

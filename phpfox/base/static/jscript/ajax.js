@@ -182,6 +182,10 @@ $Core.processPostForm = function(e, obj) {
 		$Core.loadInit();
 	}
 
+	if (typeof(e.error) == 'string') {
+		obj.prepend(e.error);
+	}
+
 	if (obj instanceof jQuery) {
 		if (obj.data('callback')) {
 			eval('' + obj.data('callback') + '(e, obj);');
@@ -194,10 +198,11 @@ $Behavior.onAjaxSubmit = function() {
 		var t = $(this),
 			data = t.serialize();
 
+		t.find('.error_message').remove();
 		$.ajax({
 			url: t.attr('action'),
 			type: 'POST',
-			data: data,
+			data: data + '&is_ajax_post=1',
 			success: function(e) {
 				$Core.processPostForm(e, t);
 			}

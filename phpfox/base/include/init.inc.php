@@ -188,5 +188,3 @@ if (!defined('PHPFOX_CLI') || PHPFOX_CLI != true)
 (($sPlugin = Phpfox_Plugin::get('init')) ? eval($sPlugin) : false);
 
 (PHPFOX_DEBUG ? Phpfox_Debug::end('init') : false);
-
-?>

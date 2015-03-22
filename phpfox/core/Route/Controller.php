@@ -70,17 +70,40 @@ class Controller {
 		if (isset($routes[$uri])) {
 			$r = $routes[$uri];
 
-			if (isset($routes[$uri]['run'])) {
-				$Controller = new \Core\Controller($routes[$uri]['path'] . 'views');
+			try {
+				if (isset($r['auth'])) {
+					\Phpfox::isUser(true);
+				}
 
-				$content = call_user_func($routes[$uri]['run'], $Controller);
+				if (isset($routes[$uri]['run'])) {
+					$Controller = new \Core\Controller($routes[$uri]['path'] . 'views');
+
+					$content = call_user_func($routes[$uri]['run'], $Controller);
+				}
+				else if (isset($r['call'])) {
+					$parts = explode('@', $r['call']);
+
+					$Reflection = new \ReflectionClass($parts[0]);
+					$Controller = $Reflection->newInstance($routes[$uri]['path'] . 'views');
+					$content = call_user_func_array([$Controller, $parts[1]], (isset($r['args']) ? $r['args'] : []));
+				}
+			} catch (\Exception $e) {
+				if ($this->_request->isPost()) {
+					$content = ['error' => \Core\Exception::getErrors(true)];
+				}
+				//echo $e->getMessage();
+				// exit;
 			}
-			else if (isset($r['call'])) {
-				$parts = explode('@', $r['call']);
 
-				$Reflection = new \ReflectionClass($parts[0]);
-				$Controller = $Reflection->newInstance($routes[$uri]['path'] . 'views');
-				$content = call_user_func_array([$Controller, $parts[1]], (isset($r['args']) ? $r['args'] : []));
+			if (is_array($content)) {
+				header('Content-type: application/json');
+				echo json_encode($content);
+				exit;
+			}
+
+			if (empty($content) || $this->_request->isPost()) {
+
+				exit;
 			}
 		}
 

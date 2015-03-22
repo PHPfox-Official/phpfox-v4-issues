@@ -217,14 +217,10 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      */	
 	public function from($sTable, $sAlias = '')
 	{
-		/*
-		if ($sTable == 'phpfox_custom_relation_data')
-		{
-			ob_clean();
-			echo $a;
-			exit;
+		if (substr($sTable, 0, 1) == ':') {
+			$sTable = Phpfox::getT(str_replace(':', '', $sTable));
 		}
-		*/
+
 		if (PHPFOX_DEBUG && in_array(strtoupper($sAlias), $this->_aWords))
 		{
 			Phpfox_Error::trigger('The alias "' . $sAlias . '" is a reserved SQL word. Use another alias to resolve this problem.', E_USER_ERROR);

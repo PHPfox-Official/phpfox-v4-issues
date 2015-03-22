@@ -16,14 +16,18 @@ class Route {
 
 	private static $_active;
 
-	public function __construct($paths) {
-		self::$routes[$paths] = [
-			'path' => \Core\Route\Controller::$active
-		];
-		self::$_active = $paths;
-		if (strpos($paths, ':')) {
-			$parts = explode('/', $paths);
-			// d($parts); exit;
+	public function __construct($route) {
+		if (is_array($route)) {
+			foreach ($route as $key => $value) {
+				$value['path'] = \Core\Route\Controller::$active;
+				self::$routes[$key] = $value;
+			}
+		}
+		else {
+			self::$routes[$route] = [
+				'path' => \Core\Route\Controller::$active
+			];
+			self::$_active = $route;
 		}
 	}
 

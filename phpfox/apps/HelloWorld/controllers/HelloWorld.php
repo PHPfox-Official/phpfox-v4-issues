@@ -9,4 +9,15 @@ class HelloWorld extends \Core\Controller {
 			'foo' => 'bar'
 		]);
 	}
+
+	public function arrayRoute() {
+		if ($this->request->isPost()) {
+			throw Error('Failed...');
+		}
+
+		$Model = new \Apps\HelloWorld\Model\HelloWorld();
+		$Model->test();
+
+		return $this->render('array.html');
+	}
 }

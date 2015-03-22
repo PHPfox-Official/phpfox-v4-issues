@@ -17,5 +17,12 @@ $Route->run(function(Core\Controller $Controller) {
 		':type' => '([0-9]+)'
 	]);
 
+(new Core\Route([
+	'/hello-world/array' => [
+		'call' => 'Apps\HelloWorld\Controllers\HelloWorld@arrayRoute',
+		'auth' => true
+	]
+]));
+
 // d($Route);
 // exit('okay...');

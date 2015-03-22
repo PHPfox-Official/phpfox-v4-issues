@@ -46,7 +46,7 @@ class Bulletin_Service_Bulletin extends Phpfox_Service
 		if ($aRow['user_id'] == Phpfox::getUserId())
 		{
 			$aRow['posted_on'] = Phpfox::getPhrase('bulletin.you_wrote_on_item_time_stamp', array(
-					'link' => Phpfox::getLib('url')->makeUrl('profile'),
+					'link' => Phpfox_Url::instance()->makeUrl('profile'),
 					'item_time_stamp' => Phpfox::getTime(Phpfox::getParam('bulletin.bulletin_view_timestamp'), $aRow['time_stamp'])
 				)
 			);

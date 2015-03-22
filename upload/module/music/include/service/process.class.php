@@ -170,7 +170,7 @@ class Music_Service_Process extends Phpfox_Service
 		// Return back error reporting
 		Phpfox_Error::skip(false);		
 		
-		$this->database()->update($this->_sTable, array('song_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID'), 'duration' => $sDuration), 'song_id = ' . (int) $iId);		
+		$this->database()->update($this->_sTable, array('song_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID'), 'duration' => $sDuration), 'song_id = ' . (int) $iId);
 		
 		// Update user space usage
 		if (!Phpfox::getUserParam('music.music_song_approval'))
@@ -514,7 +514,7 @@ class Music_Service_Process extends Phpfox_Service
 		(($sPlugin = Phpfox_Plugin::get('music.service_process_approve__1')) ? eval($sPlugin) : false);
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('music', $aSong['song_id'], $aSong['title']);
+		$sLink = Phpfox_Url::instance()->permalink('music', $aSong['song_id'], $aSong['title']);
 		Phpfox::getLib('mail')->to($aSong['user_id'])
 			->subject(array('music.your_song_title_has_been_approved_on_site_title', array('title' => $aSong['title'], 'site_title' => Phpfox::getParam('core.site_title'))))
 			->message(array('music.your_song_title_has_been_approved_on_site_title_to_view_this_song', array('title' => $aSong['title'], 'site_title' => Phpfox::getParam('core.site_title'), 'link' => $sLink)))

@@ -44,7 +44,7 @@ class Mail_Service_Api extends Phpfox_Service
 		{
 			$aReturn = array(
 					'id' => (Phpfox::getParam('mail.threaded_mail_conversation') ? $aIds : $aIds[0]),
-					'permalink' => (Phpfox::getParam('mail.threaded_mail_conversation') ? Phpfox::getLib('url')->makeUrl('mail.thread', array('id' => $aIds)) : Phpfox::getLib('url')->makeUrl('mail.view.' . $aIds[0])),
+					'permalink' => (Phpfox::getParam('mail.threaded_mail_conversation') ? Phpfox_Url::instance()->makeUrl('mail.thread', array('id' => $aIds)) : Phpfox_Url::instance()->makeUrl('mail.view.' . $aIds[0])),
 					);
 			
 			return $aReturn;	
@@ -75,7 +75,7 @@ class Mail_Service_Api extends Phpfox_Service
 		{
 			list($aThread, $aMessages) = Mail_Service_Mail::instance()->getThreadedMail($this->_oApi->get('id'));
 		
-			$aReturn = array('id' => $aThread['thread_id'], 'permalink' => Phpfox::getLib('url')->makeUrl('mail.thread', array('id' => $aThread['thread_id'])), 'users' => array(), 'conversation' => array());
+			$aReturn = array('id' => $aThread['thread_id'], 'permalink' => Phpfox_Url::instance()->makeUrl('mail.thread', array('id' => $aThread['thread_id'])), 'users' => array(), 'conversation' => array());
 			foreach ($aThread['users'] as $aUser)
 			{
 				$aReturn['users'][] = array(
@@ -92,7 +92,7 @@ class Mail_Service_Api extends Phpfox_Service
 						'user_id' => $aMessage['user_id'],
 						'message' => Phpfox::getLib('parse.output')->parse($aMessage['text']),
 						'from' => $aMessage['full_name'],
-						'from_url' => Phpfox::getLib('url')->makeUrl($aMessage['user_name'])
+						'from_url' => Phpfox_Url::instance()->makeUrl($aMessage['user_name'])
 				);
 			}
 		
@@ -103,7 +103,7 @@ class Mail_Service_Api extends Phpfox_Service
 			$aMessage = Mail_Service_Mail::instance()->getMail($this->_oApi->get('id'));
 			$aReturn = array(
 					'id' => $aMessage['mail_id'],
-					'permalink' => Phpfox::getLib('url')->makeUrl('mail.view.' . $aMessage['mail_id']),
+					'permalink' => Phpfox_Url::instance()->makeUrl('mail.view.' . $aMessage['mail_id']),
 					'subject' => $aMessage['subject'],
 					'conversation' => $aMessage['text'],
 					'users' => array(
@@ -154,8 +154,8 @@ class Mail_Service_Api extends Phpfox_Service
 					'subject' => (Phpfox::getParam('mail.threaded_mail_conversation') ? '' : $aMessageRow['subject']),
 					'preview' => $aMessageRow['preview'],
 					'from' => $aMessageRow['full_name'],
-					'from_url' => Phpfox::getLib('url')->makeUrl($aMessageRow['user_name']),
-					'permalink' => (Phpfox::getParam('mail.threaded_mail_conversation') ? Phpfox::getLib('url')->makeUrl('mail.thread', array('id' => $aMessageRow['thread_id'])) : Phpfox::getLib('url')->makeUrl('mail.view.' . $aMessageRow['mail_id'])),
+					'from_url' => Phpfox_Url::instance()->makeUrl($aMessageRow['user_name']),
+					'permalink' => (Phpfox::getParam('mail.threaded_mail_conversation') ? Phpfox_Url::instance()->makeUrl('mail.thread', array('id' => $aMessageRow['thread_id'])) : Phpfox_Url::instance()->makeUrl('mail.view.' . $aMessageRow['mail_id'])),
 					'new' => ($aMessageRow['viewer_is_new'] ? true : false)
 					);
 			

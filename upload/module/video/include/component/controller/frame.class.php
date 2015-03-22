@@ -155,7 +155,7 @@ class Video_Component_Controller_Frame extends Phpfox_Component
 				{
 					// echo 'uploadCompleted('.$iId.', "'.$this->request()->get('fObjectId').'");';
 					// echo '$(\'#js_video_process\').show();';
-					Phpfox::getLib('ajax')->alert(Phpfox::getLib('image.helper')->display(array('theme' => 'ajax/add.gif', 'class' => 'v_middle')) . ' ' . Phpfox::getPhrase('video.your_video_has_successfully_been_uploaded_please_standby_while_we_convert_your_video'), Phpfox::getPhrase('video.converting_video'), 600);
+					Phpfox_Ajax::instance()->alert(Phpfox::getLib('image.helper')->display(array('theme' => 'ajax/add.gif', 'class' => 'v_middle')) . ' ' . Phpfox::getPhrase('video.your_video_has_successfully_been_uploaded_please_standby_while_we_convert_your_video'), Phpfox::getPhrase('video.converting_video'), 600);
 					echo '$.ajaxCall(\'video.convert\', \'attachment_id=' . $iId . '&twitter_connection=' . (isset($aVals['connection']['twitter']) ? $aVals['connection']['twitter'] : '0') . '&facebook_connection=' . ((isset($aVals['connection']) && isset($aVals['connection']['facebook'])) ? $aVals['connection']['facebook'] : '0') . '&full=true&custom_pages_post_as_page=' . $this->request()->get('custom_pages_post_as_page') . '\', \'GET\');';
 				}
 				else
@@ -163,7 +163,7 @@ class Video_Component_Controller_Frame extends Phpfox_Component
 					echo '<script type="text/javascript">'; 
 					if (!$bIsInline)
 					{
-						$sAlert = Phpfox::getLib('ajax')->alert(Phpfox::getLib('image.helper')->display(array('theme' => 'ajax/add.gif', 'class' => 'v_middle')) . ' ' . Phpfox::getPhrase('video.your_video_has_successfully_been_uploaded_please_standby_while_we_convert_your_video'), Phpfox::getPhrase('video.converting_video'), 600, 150, false, true);
+						$sAlert = Phpfox_Ajax::instance()->alert(Phpfox::getLib('image.helper')->display(array('theme' => 'ajax/add.gif', 'class' => 'v_middle')) . ' ' . Phpfox::getPhrase('video.your_video_has_successfully_been_uploaded_please_standby_while_we_convert_your_video'), Phpfox::getPhrase('video.converting_video'), 600, 150, false, true);
 
 						echo str_replace('tb_show', 'window.parent.tb_show', str_replace('$.ajaxBox', 'window.parent.$.ajaxBox', $sAlert));					
 					}

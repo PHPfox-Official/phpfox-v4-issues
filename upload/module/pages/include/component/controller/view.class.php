@@ -60,7 +60,7 @@ class Pages_Component_Controller_View extends Phpfox_Component
 		
 		$bCanViewPage = true;
 		// http://www.phpfox.com/tracker/view/15190/
-		$sCurrentModule = Phpfox::getLib('url')->reverseRewrite($this->request()->get(($this->request()->get('req1') == 'pages' ? 'req3' : 'req2')));
+		$sCurrentModule = Phpfox_Url::instance()->reverseRewrite($this->request()->get(($this->request()->get('req1') == 'pages' ? 'req3' : 'req2')));
 		
 		Phpfox::getService('pages')->buildWidgets($aPage['page_id']);				
 		

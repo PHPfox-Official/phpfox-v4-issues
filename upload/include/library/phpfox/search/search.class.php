@@ -157,8 +157,8 @@ class Phpfox_Search
 	 */
 	public function __construct()
 	{		
-		$this->_oReq = Phpfox::getLib('request');
-		$this->_oUrl = Phpfox::getLib('url');
+		$this->_oReq = Phpfox_Request::instance();
+		$this->_oUrl = Phpfox_Url::instance();
 		
 	}
 	
@@ -258,7 +258,7 @@ class Phpfox_Search
 		if ($bIsCanonical)
 		{
 			Phpfox_Template::instance()->setHeader(array(
-					'<link rel="canonical" href="' . Phpfox::getLib('url')->makeUrl(Phpfox::getLib('request')->get('req1')) . '" />'
+					'<link rel="canonical" href="' . Phpfox_Url::instance()->makeUrl(Phpfox_Request::instance()->get('req1')) . '" />'
 				)
 			);
 		}
@@ -380,14 +380,14 @@ class Phpfox_Search
 						{
 							foreach ($aData['data'] as $iDataKey => $aLink)
 							{
-								$sLink = Phpfox::getLib('url')->makeUrl('current');
+								$sLink = Phpfox_Url::instance()->makeUrl('current');
 								$sLink = preg_replace('/page_(.*?)\//i', '', $sLink);
-								$sLink = str_replace('' . $aData['param'] . '_' . Phpfox::getLib('request')->get($aData['param']) . '/', '', $sLink);
+								$sLink = str_replace('' . $aData['param'] . '_' . Phpfox_Request::instance()->get($aData['param']) . '/', '', $sLink);
 								$sLink = $sLink . $aData['param'] . '_' . $aLink['link'] . '/';
 								
 								$this->_aSearchTool[$sSearchKey][$sFilterName]['data'][$iDataKey]['link'] = $sLink;
 								
-								if (Phpfox::getLib('request')->get($aData['param']) == $aLink['link'])
+								if (Phpfox_Request::instance()->get($aData['param']) == $aLink['link'])
 								{
 									$this->_bIsSorted = true;
 
@@ -396,7 +396,7 @@ class Phpfox_Search
 								}
 								else 
 								{									
-									if (!Phpfox::getLib('request')->get($aData['param']) && isset($this->_aParams['search_tool']['default_when']) && $this->_aParams['search_tool']['default_when'] == $aLink['link'])
+									if (!Phpfox_Request::instance()->get($aData['param']) && isset($this->_aParams['search_tool']['default_when']) && $this->_aParams['search_tool']['default_when'] == $aLink['link'])
 									{
 										$this->_bIsSorted = true;
 										$this->_bIsCustomSearchDate = $aLink['link'];
@@ -411,7 +411,7 @@ class Phpfox_Search
 				}
 			}
 			
-			if (Phpfox::getLib('request')->get('search-id') && isset($this->_aSearchTool['search']) && $this->isSearch())
+			if (Phpfox_Request::instance()->get('search-id') && isset($this->_aSearchTool['search']) && $this->isSearch())
 			{
 				$this->_aSearchTool['search']['actual_value'] = $this->get($this->_aSearchTool['search']['name']);				
 				if (!empty($this->_aSearchTool['search']['actual_value']) && ($this->_aSearchTool['search']['actual_value'] != $this->_aSearchTool['search']['default_value']))
@@ -1092,7 +1092,7 @@ class Phpfox_Search
 		}
 		
 		if (Phpfox::isModule('input') && 
-			($aVals = Phpfox::getLib('request')->getArray('val')) && 
+			($aVals = Phpfox_Request::instance()->getArray('val')) &&
 			isset($aVals['searchByInputs']) && $aVals['searchByInputs'])
 		{
 			$this->_aSearch['input'] = array();
@@ -1310,7 +1310,7 @@ class Phpfox_Search
 					$sInputValue = $this->_getVar($iKey);
 					if (isset($aValue['base64']) && !empty($sInputValue))
 					{
-						$sInputValue = Phpfox::getLib('url')->decode($sInputValue);
+						$sInputValue = Phpfox_Url::instance()->decode($sInputValue);
 					}
 					
 					$this->_aHtml[$iKey] = '<input type="text" name="search[' . $iKey . ']" value="' . $oFilterOutput->clean($sInputValue) . '"';

@@ -75,7 +75,7 @@ class Photo_Service_Category_Category extends Phpfox_Service
 				->group('p.photo_id')
 				->execute('getSlaveRows');	
 				
-			$oUrl = Phpfox::getLib('url');
+			$oUrl = Phpfox_Url::instance();
 			foreach ($aPhotos as $iKey => $aPhoto)
 			{
 				$aPhotos[$iKey]['link'] = ($aCallback === null ? ($aPhoto['album_id'] ? $oUrl->makeUrl($aPhoto['user_name'], array('photo', $aPhoto['album_url'], $aPhoto['title_url'])) : $oUrl->makeUrl($aPhoto['user_name'], array('photo', 'view', $aPhoto['title_url']))) : $oUrl->makeUrl($aCallback['url_home'], array('view', $aPhoto['title_url'])));
@@ -158,7 +158,7 @@ class Photo_Service_Category_Category extends Phpfox_Service
 	{
 		return $this->getCategoriesById($iId, $aCategories);
 		/*
-		$oUrl = Phpfox::getLib('url');		
+		$oUrl = Phpfox_Url::instance();
 
 		if (!count($aCategories))
 		{
@@ -186,17 +186,17 @@ class Photo_Service_Category_Category extends Phpfox_Service
 					}	
 					$aCache[] = $aCategory['name_url'];
 					
-					$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategory['name']), Phpfox::getLib('url')->makeUrl('photo', $aCache));
+					$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategory['name']), Phpfox_Url::instance()->makeUrl('photo', $aCache));
 				}				
 				else 
 				{
-					$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategory['name']), Phpfox::getLib('url')->makeUrl('photo', $aCategory['name_url']));
+					$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategory['name']), Phpfox_Url::instance()->makeUrl('photo', $aCategory['name_url']));
 				}				
 			}
 		}		
 		else 
 		{			
-			$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategories[0]['name']), Phpfox::getLib('url')->makeUrl('photo', $aCategories[0]['name_url']));
+			$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategories[0]['name']), Phpfox_Url::instance()->makeUrl('photo', $aCategories[0]['name_url']));
 		}
 		
 		return $aBreadcrumb;*/
@@ -204,7 +204,7 @@ class Photo_Service_Category_Category extends Phpfox_Service
 	
 	public function getCategoriesById($iId, &$aCategories = null)
 	{
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		
 		if ($aCategories === null)
 		{
@@ -226,18 +226,18 @@ class Photo_Service_Category_Category extends Phpfox_Service
 		{			
 			foreach ($aCategories as $aCategory)
 			{				
-				$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategory['name']), Phpfox::permalink('photo.category', $aCategory['category_id'], $aCategory['name']), 'category_id' => $aCategory['category_id']);
+				$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategory['name']), Phpfox::permalink('photo.category', $aCategory['category_id'], $aCategory['name']), 'category_id' => $aCategory['category_id']);
 			}
 		}		
 		else 
 		{			
-			$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategories[0]['name']), Phpfox::permalink('photo.category', $aCategories[0]['category_id'], $aCategories[0]['name']), 'category_id' => $aCategories[0]['category_id']);
+			$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategories[0]['name']), Phpfox::permalink('photo.category', $aCategories[0]['category_id'], $aCategories[0]['name']), 'category_id' => $aCategories[0]['category_id']);
 		}
 		
 		return $aBreadcrumb;		
 		
 		/*
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$aCategories = $this->database()->select('pc.parent_id, pc.category_id, pc.name, pc.name_url')
 			->from(Phpfox::getT('photo_category_data'), 'pcd')
 			->join($this->_sTable, 'pc', 'pc.category_id = pcd.category_id')
@@ -246,7 +246,7 @@ class Photo_Service_Category_Category extends Phpfox_Service
 
 		$sGroup = '';
 		if (defined('PHPFOX_GROUP_VIEW') && PHPFOX_GROUP_VIEW){
-				$sGroup = 'group.'.Phpfox::getLib('request')->get('req2').'.';
+				$sGroup = 'group.'.Phpfox_Request::instance()->get('req2').'.';
 		}
 		
 		if (!count($aCategories))
@@ -275,18 +275,18 @@ class Photo_Service_Category_Category extends Phpfox_Service
 						$aCache[] = $aPart[0];
 					}	
 					$aCache[] = $aCategory['name_url'];
-					$sCategory .= '<a href="' . $oUrl->makeUrl($sGroup .'photo', $aCache) . '">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</a> <br />' . "\n";
+					$sCategory .= '<a href="' . $oUrl->makeUrl($sGroup .'photo', $aCache) . '">' . Phpfox_Locale::instance()->convert($aCategory['name']) . '</a> <br />' . "\n";
 				}				
 				else 
 				{
-					$sCategory .= '<a href="' . $oUrl->makeUrl($sGroup . 'photo', $aCategory['name_url']) . '">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</a> <br />' . "\n";
+					$sCategory .= '<a href="' . $oUrl->makeUrl($sGroup . 'photo', $aCategory['name_url']) . '">' . Phpfox_Locale::instance()->convert($aCategory['name']) . '</a> <br />' . "\n";
 				}
 				$this->_aCategories[$iId] .= $aCategory['category_id'] . ',';
 			}
 		}		
 		else 
 		{	
-			$sCategory = '<a href="' . $oUrl->makeUrl($sGroup .'photo', $aCategories[0]['name_url']) . '">' . Phpfox::getLib('locale')->convert($aCategories[0]['name']) . '</a>';
+			$sCategory = '<a href="' . $oUrl->makeUrl($sGroup .'photo', $aCategories[0]['name_url']) . '">' . Phpfox_Locale::instance()->convert($aCategories[0]['name']) . '</a>';
 			$this->_aCategories[$iId] = $aCategories[0]['category_id'];
 		}
 		
@@ -439,18 +439,18 @@ class Photo_Service_Category_Category extends Phpfox_Service
 			
 			if ($bDropDown)
 			{
-				$sCategories .= '<option class="js_photo_category_' . $aCategory['category_id'] . '" value="' . $aCategory['category_id'] . '">' . ($this->_iCnt > 0 ? str_repeat('&nbsp;', ($this->_iCnt * 2)) . ' ' : '') . Phpfox::getLib('locale')->convert($aCategory['name']) . '</option>';
+				$sCategories .= '<option class="js_photo_category_' . $aCategory['category_id'] . '" value="' . $aCategory['category_id'] . '">' . ($this->_iCnt > 0 ? str_repeat('&nbsp;', ($this->_iCnt * 2)) . ' ' : '') . Phpfox_Locale::instance()->convert($aCategory['name']) . '</option>';
 				$sCategories .= $this->_get($aCategory['category_id'], false, true);
 			}
 			else 
 			{
 				if ($bAnchor === true)
 				{
-					$sCategories .= '<li><a href="' . Phpfox::getLib('url')->makeUrl('photo', $mUrl) . '" class="js_photo_category" id="js_photo_category_' . $aCategory['category_id'] . '">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</a>' . $this->_get($aCategory['category_id'], $bAnchor) . '</li>';
+					$sCategories .= '<li><a href="' . Phpfox_Url::instance()->makeUrl('photo', $mUrl) . '" class="js_photo_category" id="js_photo_category_' . $aCategory['category_id'] . '">' . Phpfox_Locale::instance()->convert($aCategory['name']) . '</a>' . $this->_get($aCategory['category_id'], $bAnchor) . '</li>';
 				}
 				else 
 				{
-					$sCategories .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <span class="js_photo_category" id="js_sortable_category_' . $aCategory['category_id'] . '">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</span>' . $this->_get($aCategory['category_id'], $bAnchor) . '</li>';
+					$sCategories .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <span class="js_photo_category" id="js_sortable_category_' . $aCategory['category_id'] . '">' . Phpfox_Locale::instance()->convert($aCategory['name']) . '</span>' . $this->_get($aCategory['category_id'], $bAnchor) . '</li>';
 				}
 			}
 		}

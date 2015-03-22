@@ -394,7 +394,7 @@ class Language_Service_Phrase_Process extends Phpfox_Service
 		}
 		else
 		{
-			$sLanguage = Phpfox::getLib('locale')->getLang();
+			$sLanguage = Phpfox_Locale::instance()->getLang();
 			$sLanguage = $sLanguage['language_id'];
 		}
 		

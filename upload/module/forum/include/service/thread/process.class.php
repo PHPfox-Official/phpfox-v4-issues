@@ -493,12 +493,12 @@ class Forum_Service_Thread_Process extends Phpfox_Service
 	 */
 	public function merge($iThread, $iNewForumId, $sUrl)
 	{		
-		if (!preg_match("/^" . str_replace('/', '\/', Phpfox::getLib('url')->getDomain()) . "(.*?)$/i", $sUrl, $aMatches))
+		if (!preg_match("/^" . str_replace('/', '\/', Phpfox_Url::instance()->getDomain()) . "(.*?)$/i", $sUrl, $aMatches))
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('forum.not_a_valid_forum_url_missing_forum_path'));
 		}
 		
-		$aParams = Phpfox::getLib('url')->parseUrl($sUrl);
+		$aParams = Phpfox_Url::instance()->parseUrl($sUrl);
 
 		if (!isset($aParams['req3']))
 		{
@@ -593,7 +593,7 @@ class Forum_Service_Thread_Process extends Phpfox_Service
 			->id($iNewForumId)
 			->getForum();		
 			
-		return Phpfox::getLib('url')->makeUrl('forum', array($aForum['name_url'] . '-' . $aForum['forum_id'], $aOldThread['title_url']));		
+		return Phpfox_Url::instance()->makeUrl('forum', array($aForum['name_url'] . '-' . $aForum['forum_id'], $aOldThread['title_url']));
 	}
 	
 	public function markRead($iForumId, $iGroupId = 0)

@@ -60,7 +60,7 @@ class Group_Service_Callback extends Phpfox_Service
 	    {
 			return false;
 	    }
-	    return Phpfox::getLib('url')->makeUrl('group.' . $aGroup['title_url']);
+	    return Phpfox_Url::instance()->makeUrl('group.' . $aGroup['title_url']);
 	}
 	
 	public function addComment($aVals, $iUserId = null, $sUserName = null)
@@ -81,7 +81,7 @@ class Group_Service_Callback extends Phpfox_Service
 			(Phpfox::isModule('feed') ? Phpfox::getService('feed.process')->add('comment_group', $aVals['item_id'], $aVals['text_parsed'], $iUserId, $aGroup['user_id'], $aVals['comment_id']) : null);
 		}
 		
-			$sLink = Phpfox::getLib('url')->makeUrl('group', $aGroup['title_url']);
+			$sLink = Phpfox_Url::instance()->makeUrl('group', $aGroup['title_url']);
 			Phpfox::getLib('mail')
 				->to($aGroup['user_id'])
 				->subject(array('group.full_name_left_you_a_comment_on_site_title', array('full_name' => $sUserName, 'site_title' => Phpfox::getParam('core.site_title'))))
@@ -100,7 +100,7 @@ class Group_Service_Callback extends Phpfox_Service
 	
 	public function getItemName($iId, $sName)
 	{
-		return '<a href="' . Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('group.on_name_s_group', array('name' => $sName)) . '</a>';
+		return '<a href="' . Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('group.on_name_s_group', array('name' => $sName)) . '</a>';
 	}	
 
 	public function addEvent($iId)
@@ -109,7 +109,7 @@ class Group_Service_Callback extends Phpfox_Service
 		{
 			if (!Phpfox::getService('group')->hasAccess($aGroup['group_id'], 'can_create_event', true))
 			{
-				Phpfox::getLib('url')->send('group', array($aGroup['title_url'], 'event'), Phpfox::getPhrase('group.you_are_not_allowed_to_add_an_event_to_this_group'));
+				Phpfox_Url::instance()->send('group', array($aGroup['title_url'], 'event'), Phpfox::getPhrase('group.you_are_not_allowed_to_add_an_event_to_this_group'));
 			}
 			
 			if ($aGroup['view_id'] != '0' && !defined('PHPFOX_SKIP_FEED_ENTRY'))
@@ -148,7 +148,7 @@ class Group_Service_Callback extends Phpfox_Service
 				}
 				else 
 				{
-					Phpfox::getLib('url')->send('group', array($aGroup['title_url'], 'forum'), Phpfox::getPhrase('group.you_are_not_allowed_to_post_within_the_forums_of_this_group'));
+					Phpfox_Url::instance()->send('group', array($aGroup['title_url'], 'forum'), Phpfox::getPhrase('group.you_are_not_allowed_to_post_within_the_forums_of_this_group'));
 				}
 			}			
 			
@@ -180,7 +180,7 @@ class Group_Service_Callback extends Phpfox_Service
 		{
 			if (!Phpfox::getService('group')->hasAccess($aGroup['group_id'], 'can_upload_photo'))
 			{
-				Phpfox::getLib('url')->send('group', array($aGroup['title_url'], 'photo'), Phpfox::getPhrase('group.you_are_not_allowed_to_upload_photos_to_this_group'));
+				Phpfox_Url::instance()->send('group', array($aGroup['title_url'], 'photo'), Phpfox::getPhrase('group.you_are_not_allowed_to_upload_photos_to_this_group'));
 			}		
 			
 			if ($aGroup['view_id'] != '0' && !defined('PHPFOX_SKIP_FEED_ENTRY'))
@@ -214,7 +214,7 @@ class Group_Service_Callback extends Phpfox_Service
 		{
 			if (!Phpfox::getService('group')->hasAccess($aGroup[$iId]['group_id'], 'can_upload_video', true))
 			{
-				Phpfox::getLib('url')->send('group', array($aGroup[$iId]['title_url'], 'video'), Phpfox::getPhrase('group.you_are_not_allowed_to_upload_videos_to_this_group'));
+				Phpfox_Url::instance()->send('group', array($aGroup[$iId]['title_url'], 'video'), Phpfox::getPhrase('group.you_are_not_allowed_to_upload_videos_to_this_group'));
 			}	
 
 			if ($aGroup[$iId]['view_id'] != '0' && !defined('PHPFOX_SKIP_FEED_ENTRY'))
@@ -247,7 +247,7 @@ class Group_Service_Callback extends Phpfox_Service
 	
 	public function getCommentNewsFeed($aRow)
 	{		
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 
 		if ($aRow['owner_user_id'] == $aRow['item_user_id'])
@@ -302,9 +302,9 @@ class Group_Service_Callback extends Phpfox_Service
 
 		if ($iChild > 0)
 		{
-			return Phpfox::getLib('url')->makeUrl('group', array($aListing['title_url'], 'comment' => $iChild, '#comment-view'));
+			return Phpfox_Url::instance()->makeUrl('group', array($aListing['title_url'], 'comment' => $iChild, '#comment-view'));
 		}		
-		return Phpfox::getLib('url')->makeUrl('group', array($aListing['title_url']));
+		return Phpfox_Url::instance()->makeUrl('group', array($aListing['title_url']));
 	}	
 	
 	public function deleteComment($iId)
@@ -315,7 +315,7 @@ class Group_Service_Callback extends Phpfox_Service
 	public function getNewsFeed($aRow)
 	{
 		if ($sPlugin = Phpfox_Plugin::get('group.service_callback_getnewsfeed_start')){eval($sPlugin);}
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		
 		$aRow['text'] = Phpfox::getPhrase('group.a_href_user_link_owner_full_name_a_added_a_new_group_a_href_title_link_title_a', array(
@@ -344,7 +344,7 @@ class Group_Service_Callback extends Phpfox_Service
 			return false;
 		}
 		
-		return Phpfox::getLib('url')->makeUrl('group', array_merge(array($aGroup['title_url']), $aUrl));
+		return Phpfox_Url::instance()->makeUrl('group', array_merge(array($aGroup['title_url']), $aUrl));
 	}
 	
 	public function getReportRedirect($iId)
@@ -375,7 +375,7 @@ class Group_Service_Callback extends Phpfox_Service
 			return false;
 		}
 		
-		return Phpfox::getLib('url')->makeUrl('group', array($aEvent['group_title_url'], 'event', 'view', $aEvent['title_url']));
+		return Phpfox_Url::instance()->makeUrl('group', array($aEvent['group_title_url'], 'event', 'view', $aEvent['title_url']));
 	}
 	
 	public function getVideoRedirect($iVideo)
@@ -391,7 +391,7 @@ class Group_Service_Callback extends Phpfox_Service
 			return false;
 		}
 		
-		return Phpfox::getLib('url')->makeUrl('group', array($aVideo['group_title_url'], 'video', $aVideo['title_url']));		
+		return Phpfox_Url::instance()->makeUrl('group', array($aVideo['group_title_url'], 'video', $aVideo['title_url']));
 	}
 
 	public function getShoutboxData()
@@ -558,8 +558,8 @@ class Group_Service_Callback extends Phpfox_Service
 	public function getNotificationFeedInvite($aRow)
 	{		
 		return array(
-			'message' => Phpfox::getPhrase('group.a_href_link_full_name_a_invited_you_to_a_group', array('link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'])),
-			'link' => Phpfox::getLib('url')->makeUrl('group.redirect', array('id' => $aRow['item_id']))
+			'message' => Phpfox::getPhrase('group.a_href_link_full_name_a_invited_you_to_a_group', array('link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'])),
+			'link' => Phpfox_Url::instance()->makeUrl('group.redirect', array('id' => $aRow['item_id']))
 		);
 	}
 	
@@ -570,7 +570,7 @@ class Group_Service_Callback extends Phpfox_Service
 			return null;
 		}
 
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('group', array('view' => 'invite')) . '"' . (!Phpfox::getUserBy('group_invite') ? ' onclick="alert(\'' . Phpfox::getPhrase('group.no_group_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'module/group.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('group.group_invites_total', array('total' => Phpfox::getUserBy('group_invite'))) . '</a></li>';
+		return '<li><a href="' . Phpfox_Url::instance()->makeUrl('group', array('view' => 'invite')) . '"' . (!Phpfox::getUserBy('group_invite') ? ' onclick="alert(\'' . Phpfox::getPhrase('group.no_group_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'module/group.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('group.group_invites_total', array('total' => Phpfox::getUserBy('group_invite'))) . '</a></li>';
 	}	
 	
 	public function getGroupAccess()
@@ -713,7 +713,7 @@ class Group_Service_Callback extends Phpfox_Service
 	    
 	    $aGroup['title'] = Phpfox::getPhrase('group.sponsor_title', array('sGroupTitle' => $aGroup['title']));
 	    $aGroup['paypal_msg'] = Phpfox::getPhrase('group.sponsor_paypal_message', array('sGroupTitle' => $aGroup['title']));
-	    $aGroup['link'] = Phpfox::getLib('url')->makeUrl('group.'.$aGroup['title_url']);
+	    $aGroup['link'] = Phpfox_Url::instance()->makeUrl('group.'.$aGroup['title_url']);
 	    $aGroup['image_dir'] = 'group.url_image';
 	    $aGroup['image'] = sprintf($aGroup['image'],'_200');
 	    
@@ -790,7 +790,7 @@ class Group_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('group.a_href_user_link_full_name_a_likes_their_own_a_href_link_group_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
 					'link' => $aRow['link']
 				)
@@ -800,9 +800,9 @@ class Group_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('group.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_a_href_link_group_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -818,11 +818,11 @@ class Group_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('group.a_href_user_link_full_name_a_likes_your_a_href_link_group_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('group', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('group', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('group', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('group', array('redirect' => $aRow['item_id']))
 		);				
 	}	
 	
@@ -830,8 +830,8 @@ class Group_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('group.a_href_user_link_full_name_a_likes_your_a_href_link_group_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('group', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('group', array('redirect' => $iItemId))
 				)
 			);
 	}			
@@ -841,7 +841,7 @@ class Group_Service_Callback extends Phpfox_Service
 		$aPending[] = array(
 			'phrase' => Phpfox::getPhrase('group.groups'),
 			'value' => $this->database()->select('COUNT(*)')->from(Phpfox::getT('group'))->where('is_public = 1')->execute('getSlaveField'),
-			'link' => Phpfox::getLib('url')->makeUrl('group', array('view' => 'approval'))
+			'link' => Phpfox_Url::instance()->makeUrl('group', array('view' => 'approval'))
 		);		
 		
 		return $aPending;
@@ -921,7 +921,7 @@ class Group_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('group', $aRow['group_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('group', $aRow['group_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	

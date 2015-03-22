@@ -86,7 +86,7 @@ class Music_Service_Callback extends Phpfox_Service
 		{
 		    return false;
 		}
-		return Phpfox::getLib('url')->makeUrl($aUser['user_name'] . '.music.' . (isset($aUser['name_url']) ? $aUser['name_url'] : '') . '.'.$aUser['title_url'] );
+		return Phpfox_Url::instance()->makeUrl($aUser['user_name'] . '.music.' . (isset($aUser['name_url']) ? $aUser['name_url'] : '') . '.'.$aUser['title_url'] );
 	    }
 	    if ($aParams['section'] == 'album')
 	    {
@@ -100,7 +100,7 @@ class Music_Service_Callback extends Phpfox_Service
 		{
 		    return false;
 		}
-		return Phpfox::getLib('url')->makeUrl($aUser['user_name'] . '.music.' . (isset($aUser['name_url']) ? $aUser['name_url'] : ''));
+		return Phpfox_Url::instance()->makeUrl($aUser['user_name'] . '.music.' . (isset($aUser['name_url']) ? $aUser['name_url'] : ''));
 	    }
 	}
 	
@@ -121,7 +121,7 @@ class Music_Service_Callback extends Phpfox_Service
 	
 	public function getCommentNewsFeedSong($aRow)
 	{		
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 
 		if ($aRow['owner_user_id'] == $aRow['item_user_id'])
@@ -198,7 +198,7 @@ class Music_Service_Callback extends Phpfox_Service
 		
 		$sLink = Phpfox::permalink('music', $aItem['song_id'], $aItem['title']);
 		$sTitle = Phpfox::getLib('parse.output')->shorten($aItem['title'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') :50));
-		$sUser = '<a href="' . Phpfox::getLib('url')->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
+		$sUser = '<a href="' . Phpfox_Url::instance()->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
 		$sGender = Phpfox::getService('user')->gender($aItem['gender'], 1);
 		
 		if ($aRow['user_id'] == $aItem['user_id'])
@@ -268,7 +268,7 @@ class Music_Service_Callback extends Phpfox_Service
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']);
+		$sLink = Phpfox_Url::instance()->permalink('music', $aRow['song_id'], $aRow['title']);
 		
 		Phpfox::getService('comment.process')->notify(array(
 				'user_id' => $aRow['user_id'],
@@ -329,7 +329,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_names_song',array('fu
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('music.album', $aRow['album_id'], $aRow['name']);
+		$sLink = Phpfox_Url::instance()->permalink('music.album', $aRow['album_id'], $aRow['name']);
 		
 		Phpfox::getService('comment.process')->notify(array(
 				'user_id' => $aRow['user_id'],
@@ -358,17 +358,17 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 	
 	public function getItemNameSong($iId, $sName)
 	{
-		return Phpfox::getPhrase('music.a_href_link_on_user_name_s_song_a',array('link' => Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)), 'user_name' => $sName));		
+		return Phpfox::getPhrase('music.a_href_link_on_user_name_s_song_a',array('link' => Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)), 'user_name' => $sName));
 	}	
 	
 	public function getItemNameAlbum($iId, $sName)
 	{
-		return Phpfox::getPhrase('music.a_href_link_on_user_name_s_album_a',array('link' => Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)), 'user_name' => $sName));		
+		return Phpfox::getPhrase('music.a_href_link_on_user_name_s_album_a',array('link' => Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)), 'user_name' => $sName));
 	}	
 	
 	public function getCommentNewsFeedAlbum($aRow)
 	{		
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 
 		if ($aRow['owner_user_id'] == $aRow['item_user_id'])
@@ -545,7 +545,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 	{
 		return array(
 			'message' => Phpfox::getPhrase('music.your_song_title_has_been_approved', array('title' => Phpfox::getLib('parse.output')->shorten($aRow['item_title'], 20, '...'))),
-			'link' => Phpfox::getLib('url')->makeUrl('music.browse.song', array('redirect' => $aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('music.browse.song', array('redirect' => $aRow['item_id']))
 		);		
 	}
 	
@@ -554,17 +554,17 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'message' => Phpfox::getPhrase('music.a_href_user_link_full_name_a_likes_your_a_href_link_music_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('music', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('music', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('music', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('music', array('redirect' => $aRow['item_id']))
 		);			
 	}
 
 	public function getItemView()
 	{
-		if (Phpfox::getLib('request')->get('req3') != '')
+		if (Phpfox_Request::instance()->get('req3') != '')
 		{
 			return true;
 		}
@@ -575,7 +575,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'phrase' => Phpfox::getPhrase('music.music'),
 			'value' => Phpfox::getService('music')->getPendingTotal(),
-			'link' => Phpfox::getLib('url')->makeUrl('music', array('view' => 'pending'))
+			'link' => Phpfox_Url::instance()->makeUrl('music', array('view' => 'pending'))
 		);
 	}	
 	
@@ -663,7 +663,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		if ($sPlugin = Phpfox_Plugin::get('music.service_callback_getnewsfeedsong_start')){eval($sPlugin);}
 		$aRow['text'] = Phpfox::getPhrase('music.full_name_uploaded_a_new_song', array(
 				'full_name' => $this->preParse()->clean($aRow['owner_full_name']),
-				'profile_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+				'profile_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 				'title' => Feed_Service_Feed::instance()->shortenTitle($aRow['content']),
 				'link' => $aRow['link']
 			)
@@ -681,10 +681,10 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 
 		$aRow['text'] = Phpfox::getPhrase('music.full_name_uploaded_a_new_song_to_the_album', array(
 				'full_name' => $this->preParse()->clean($aRow['owner_full_name']),
-				'profile_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+				'profile_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 				'title' => Feed_Service_Feed::instance()->shortenTitle($aContent['title']),
 				'album_title' => Feed_Service_Feed::instance()->shortenTitle($aContent['album']['name']),
-				'album_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name'], array('music', $aContent['album']['name_url'])),
+				'album_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name'], array('music', $aContent['album']['name_url'])),
 				'link' => $aRow['link']
 			)
 		);
@@ -729,7 +729,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 
 		foreach ($aSongs as $iKey => $aSong)
 		{
-			$aSongs[$iKey]['link'] = Phpfox::getLib('url')->makeUrl($aSong['user_name'], array(
+			$aSongs[$iKey]['link'] = Phpfox_Url::instance()->makeUrl($aSong['user_name'], array(
 					'music',
 					(!empty($aSong['album_url']) ? $aSong['album_url'] : 'view'),
 					$aSong['title_url']
@@ -763,7 +763,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 					'max_height' => 75
 				)
 			);				
-			$aAlbums[$iKey]['link'] = Phpfox::getLib('url')->makeUrl($aAlbum['user_name'], array(
+			$aAlbums[$iKey]['link'] = Phpfox_Url::instance()->makeUrl($aAlbum['user_name'], array(
 					'music',
 					$aAlbum['name_url']					
 				)
@@ -819,7 +819,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 	    
 	    $aAlbum['title'] = Phpfox::getPhrase('music.album_sponsor_title', array('sAlbumTitle' => $aAlbum['name']));
 	    $aAlbum['paypal_msg'] = Phpfox::getPhrase('music.album_sponsor_paypal_message', array('sAlbumTitle' => $aAlbum['name']));
-	    //$aAlbum['link'] = Phpfox::getLib('url')->makeUrl('profile.music.'.$aAlbum['name_url']);
+	    //$aAlbum['link'] = Phpfox_Url::instance()->makeUrl('profile.music.'.$aAlbum['name_url']);
 		$aAlbum['link'] = Phpfox::permalink('music', $aAlbum['item_id'], $aAlbum['title']);
 	    $aAlbum['image_dir'] = 'music.url_image';
 	    $aAlbum['image'] = sprintf($aAlbum['image'],'_200');
@@ -842,7 +842,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 	    
 	    $aSong['title'] = Phpfox::getPhrase('music.song_sponsor_title', array('sSongTitle' => $aSong['title']));
 	    $aSong['paypal_msg'] = Phpfox::getPhrase('music.song_sponsor_paypal_message', array('sSongTitle' => $aSong['title']));
-	    //$aSong['link'] = (isset($aSong['name_url']) && !empty($aSong['name_url'])) ? Phpfox::getLib('url')->makeUrl('profile.music.'.$aSong['name_url'] . '.' . $aSong['title_url']) : Phpfox::getLib('url')->makeUrl('profile.music.view.'.$aSong['title_url']);
+	    //$aSong['link'] = (isset($aSong['name_url']) && !empty($aSong['name_url'])) ? Phpfox_Url::instance()->makeUrl('profile.music.'.$aSong['name_url'] . '.' . $aSong['title_url']) : Phpfox_Url::instance()->makeUrl('profile.music.view.'.$aSong['title_url']);
 		$aSong['link'] = Phpfox::permalink('music', $aSong['item_id'], $aSong['title']);
 	    
 	    return $aSong;
@@ -917,7 +917,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		{
 			$aRow['text'] = Phpfox::getPhrase('music.a_href_user_link_full_name_a_liked_their_own_a_href_link_song_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'link' => $aRow['link']
 				)
 			);
@@ -926,9 +926,9 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		{
 			$aRow['text'] = Phpfox::getPhrase('music.a_href_user_link_full_name_a_liked_a_href_view_user_link_view_full_name_a_s_a_href_link_song_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -945,7 +945,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		{
 			$aRow['text'] = Phpfox::getPhrase('music.a_href_user_link_full_name_a_liked_their_own_a_href_link_song_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'link' => $aRow['link']
 				)
 			);
@@ -954,9 +954,9 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		{
 			$aRow['text'] = Phpfox::getPhrase('music.a_href_user_link_full_name_a_liked_a_href_view_user_link_view_full_name_a_s_a_href_link_song_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -972,11 +972,11 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			'message' => Phpfox::getPhrase('music.a_href_user_link_full_name_a_liked_your_a_href_link_song_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('music.browse.song', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('music.browse.song', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('music.browse.song', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('music.browse.song', array('redirect' => $aRow['item_id']))
 		);			
 	}
 
@@ -986,15 +986,15 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		{
 			return Phpfox::getPhrase('music.a_href_user_link_full_name_a_liked_your_a_href_link_song_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl($aFeed['user_name'], array('feed' => $aFeed['feed_id'])) . '#feed'
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl($aFeed['user_name'], array('feed' => $aFeed['feed_id'])) . '#feed'
 				)
 			);
 		}
 		return Phpfox::getPhrase('music.a_href_user_link_full_name_a_liked_your_a_href_link_song_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('music.browse.song', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('music.browse.song', array('redirect' => $iItemId))
 				)
 			);		
 	}	
@@ -1105,7 +1105,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		$aReturn = array(
 			'feed_title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], $iTitleLength, '...'),
 			'feed_status' => $aRow['description'],
-			'feed_info' => ($bShowAlbumTitle ? Phpfox::getPhrase('feed.shared_a_song_from_gender_album_a_href_album_link_album_name_a', array('gender' => Phpfox::getService('user')->gender($aRow['gender'], 1), 'album_link' => Phpfox::getLib('url')->permalink('music.album', $aRow['album_id'], $aRow['album_name']), 'album_name' => Phpfox::getLib('parse.output')->shorten($aRow['album_name'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ), '...'))) : Phpfox::getPhrase('feed.shared_a_song')),
+			'feed_info' => ($bShowAlbumTitle ? Phpfox::getPhrase('feed.shared_a_song_from_gender_album_a_href_album_link_album_name_a', array('gender' => Phpfox::getService('user')->gender($aRow['gender'], 1), 'album_link' => Phpfox_Url::instance()->permalink('music.album', $aRow['album_id'], $aRow['album_name']), 'album_name' => Phpfox::getLib('parse.output')->shorten($aRow['album_name'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ), '...'))) : Phpfox::getPhrase('feed.shared_a_song')),
 			'feed_link' => Phpfox::permalink('music', $aRow['song_id'], $aRow['title']),
 			'feed_content' => ($aRow['total_play'] > 1 ? $aRow['total_play'] . ' ' . Phpfox::getPhrase('music.plays_lowercase') : Phpfox::getPhrase('music.1_play')),
 			'total_comment' => $aRow['total_comment'],
@@ -1225,7 +1225,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('music', $aRow['song_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -1254,7 +1254,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('music', $aRow['song_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -1320,7 +1320,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('music.album', $aRow['album_id'], $aRow['name']),
+			'link' => Phpfox_Url::instance()->permalink('music.album', $aRow['album_id'], $aRow['name']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -1349,7 +1349,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('music.album', $aRow['album_id'], $aRow['name']),
+			'link' => Phpfox_Url::instance()->permalink('music.album', $aRow['album_id'], $aRow['name']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -1376,7 +1376,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		$sPhrase = Phpfox::getPhrase('music.your_song_title_has_been_approved',array('title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ), '...')));		
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('music', $aRow['song_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
@@ -1432,7 +1432,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->permalink('music', $aRow['item_id'], $aRow['item_title']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->permalink('music', $aRow['item_id'], $aRow['item_title']);
 		$aInfo['item_name'] = Phpfox::getPhrase('search.song');
 		
 		return $aInfo;
@@ -1498,7 +1498,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		return array(
 			array(
 				'phrase' => Phpfox::getPhrase('music.upload_a_song'),
-				'url' => Phpfox::getLib('url')->makeUrl('music.upload', array('module' => 'pages', 'item' => $aPage['page_id']))
+				'url' => Phpfox_Url::instance()->makeUrl('music.upload', array('module' => 'pages', 'item' => $aPage['page_id']))
 			)
 		);
 	}	
@@ -1526,7 +1526,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		$sPhrase = Phpfox::getPhrase('music.user_name_tagged_you_in_a_comment_in_a_song', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']) . 'comment_' .$aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('music', $aRow['song_id'], $aRow['title']) . 'comment_' .$aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -1545,7 +1545,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 		$sPhrase = Phpfox::getPhrase('music.user_name_tagged_you_in_a_comment_in_a_music_album', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('music.album', $aRow['album_id'], $aRow['name']) . 'comment_' .$aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('music.album', $aRow['album_id'], $aRow['name']) . 'comment_' .$aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);

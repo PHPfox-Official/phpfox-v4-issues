@@ -71,8 +71,8 @@ class FoxporterModule_Se4 extends Foxporter_Abstract
 	
 	public function __construct()
 	{
-		$this->_oReq = Phpfox::getLib('request');
-		$this->_oUrl = Phpfox::getLib('url');
+		$this->_oReq = Phpfox_Request::instance();
+		$this->_oUrl = Phpfox_Url::instance();
 		$this->_sCacheId = PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . $this->_sCacheId;
 		
 		$this->_iPage = $this->_oReq->getInt('page');
@@ -232,7 +232,7 @@ class FoxporterModule_Se4 extends Foxporter_Abstract
 				Phpfox::getLib('mail')->to($aRow['email'])
 					->messageHeader(false)
 					->subject('Commmunity Updated')
-					->message("We have updated our community at: <a href=\"" . Phpfox::getLib('url')->makeUrl('') . "\">" . Phpfox::getLib('url')->makeUrl('') . "</a>\n\nNote we have provided your new login details below...\n#######\n\n\n\n\nEmail: " . $aRow['email'] . "\nPassword: " . $mReturn['password'] . "\n")
+					->message("We have updated our community at: <a href=\"" . Phpfox_Url::instance()->makeUrl('') . "\">" . Phpfox_Url::instance()->makeUrl('') . "</a>\n\nNote we have provided your new login details below...\n#######\n\n\n\n\nEmail: " . $aRow['email'] . "\nPassword: " . $mReturn['password'] . "\n")
 					->send();							
 			}
 		}

@@ -315,10 +315,6 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	padding-bottom:10px;
 }
 
-.table_header {
-	display:none;
-}
-
 .table3 {
 	background:@blockBg;
 	color:@blockColor;
@@ -402,10 +398,11 @@ div.sortable ul li {
 }
 
 div.sortable ul li, div.sortable ul li:hover {
-	background:darken(@blockBg, 4%);
-	color:@blockColor;
-	border-radius:0px;
+	background:transparent;
+	color:@textColor;
 	border:0px;
+	border-bottom:1px darken(@blockBg, 20%) solid;
+	border-radius:0px;
 
 	a, a:hover {
 		color:@blockColor;
@@ -416,12 +413,19 @@ div.sortable ul li a, div.sortable ul li a:hover {
 
 }
 
-div.sortable ul li ul {
-	margin-top:10px;
-	background:darken(@blockBg, 8%);
+div.sortable ul li span {
+	color:inherit;
+}
 
-	li {
-		background:darken(@blockBg, 8%);
+div.sortable ul li ul {
+	margin:10px 0px 0px 0px;
+	background:@blockBg;
+	border:0px;
+	font-size:@fontSizeBase - 2;
+
+	li, li:hover {
+		background:@blockBg;
+		border:0px;
 	}
 }
 
@@ -437,3 +441,28 @@ div.sortable ul li ul {
 .clearfix { display: inline-block; }
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
+
+.link_menu {
+	.reset();
+	position:absolute;
+	width:300px;
+	background:@blockBg;
+	color:@blockColor;
+	box-shadow:@blockBoxShadowLight;
+}
+
+.link_menu li a:hover, .sub_menu_bar .dropmain li a:hover, .link_menu li, .sub_menu_bar .dropmain li, .link_menu li a, .sub_menu_bar .dropmain li a, .link_menu .div_menu {
+	.reset();
+}
+
+.link_menu li a:hover, .sub_menu_bar .dropmain li a:hover, .link_menu li a, .sub_menu_bar .dropmain li a, .link_menu .div_menu {
+	color:@blockColor;
+	font-weight:normal;
+	padding:6px 0px;
+	text-indent:6px;
+}
+
+.link_menu li a:hover, .sub_menu_bar .dropmain li a:hover {
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+}

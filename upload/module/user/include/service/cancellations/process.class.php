@@ -145,7 +145,7 @@ class User_Service_Cancellations_Process extends Phpfox_Service
 		Phpfox::massCallback('onDeleteUser', Phpfox::getUserId());
 		// log out adter having deleted all the info
 		Phpfox::getService('user.auth')->logout();
-		Phpfox::getLib('url')->send('', null, Phpfox::getPhrase('user.your_account_has_been_deleted'));
+		Phpfox_Url::instance()->send('', null, Phpfox::getPhrase('user.your_account_has_been_deleted'));
 		return true;
 	}
 

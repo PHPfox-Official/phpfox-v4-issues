@@ -241,7 +241,7 @@ class User_Service_Process extends Phpfox_Service
 		}
 		$oParseInput = Phpfox::getLib('parse.input');
 		$sSalt = $this->_getSalt();
-		$aCustom = Phpfox::getLib('request')->getArray('custom');
+		$aCustom = Phpfox_Request::instance()->getArray('custom');
 		
 		(($sPlugin = Phpfox_Plugin::get('user.service_process_add_1')) ? eval($sPlugin) : false);		
 		
@@ -260,7 +260,7 @@ class User_Service_Process extends Phpfox_Service
 		{			
 			$oParse = Phpfox::getLib('parse.input');
 			// The visitor's current language is...
-			$sLangId = Phpfox::getLib('locale')->getLangId();
+			$sLangId = Phpfox_Locale::instance()->getLangId();
 
 			foreach ($aVals['spam'] as $iQuestionId => $sAnswer)
 			{
@@ -601,7 +601,7 @@ class User_Service_Process extends Phpfox_Service
 			$sHash = Phpfox::getService('user.verify')->getVerifyHash($aVals);
 			$this->database()->insert(Phpfox::getT('user_verify'), array('user_id' => $iId, 'hash_code' => $sHash, 'time_stamp' => Phpfox::getTime(), 'email' => $aVals['email']));
 			// send email
-			$sLink = Phpfox::getLib('url')->makeUrl('user.verify', array('link' => $sHash));
+			$sLink = Phpfox_Url::instance()->makeUrl('user.verify', array('link' => $sHash));
 			Phpfox::getLib('mail')
 				->to($iId)
 				->subject(array('user.please_verify_your_email_for_site_title', array('site_title' => Phpfox::getParam('core.site_title'))))
@@ -636,7 +636,7 @@ class User_Service_Process extends Phpfox_Service
 						
 						Phpfox::getService('user.field.process')->update($iId, 'subscribe_id', $iPurchaseId);
 					
-						return array(Phpfox::getLib('url')->makeUrl('subscribe.register', array('id' => $iPurchaseId)));
+						return array(Phpfox_Url::instance()->makeUrl('subscribe.register', array('id' => $iPurchaseId)));
 					}
 					else 
 					{						
@@ -992,7 +992,7 @@ class User_Service_Process extends Phpfox_Service
 			
 			if (Phpfox::getParam('core.allow_cdn'))
 			{
-				$mReturn = Phpfox::getLib('request')->send($sPath, array(), 'GET');
+				$mReturn = Phpfox_Request::instance()->send($sPath, array(), 'GET');
 				$hFile = @fopen($sTo, 'w');
 				@fwrite($hFile, $mReturn);
 				@fclose($hFile);
@@ -1018,7 +1018,7 @@ class User_Service_Process extends Phpfox_Service
 		{			
 			if ($bForce)
 			{
-				$iServerId = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+				$iServerId = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 	
 				foreach(Phpfox::getParam('user.user_pic_sizes') as $iSize)
 				{
@@ -1776,7 +1776,7 @@ class User_Service_Process extends Phpfox_Service
 				->subject(array('user.account_approved'))
 				->message(array('user.your_account_has_been_approved_on_site_title', array(
 							'site_title' => Phpfox::getParam('core.site_title'),
-							'link' => Phpfox::getLib('url')->makeUrl('')
+							'link' => Phpfox_Url::instance()->makeUrl('')
 						)
 					)
 				)

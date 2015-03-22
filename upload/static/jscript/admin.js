@@ -6,6 +6,22 @@ var aAdminCPSearchValues = new Array();
 
 $Behavior.tableHover = function()
 {
+	$('table tr td:last-of-type .goJump').each(function() {
+		var t = $(this), html = '';
+
+		html = '<ul class="table_actions">';
+		t.find('option').each(function() {
+			var o = $(this);
+			if (o.val().length > 2) {
+				html += '<li><a href="' + o.val() + '">' + o.html() + '</a></li>';
+			}
+		});
+		html += '</ul>';
+
+		t.hide();
+		t.parent().html(html);
+	});
+
 	if ($Core.exists('.table_hover_action')){
 		$('#table_hover_action_holder').remove();
 		$('body').append('<div id="table_hover_action_holder" style="display:none;"></div>');	

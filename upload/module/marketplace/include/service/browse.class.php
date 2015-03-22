@@ -58,19 +58,19 @@ class Marketplace_Service_Browse extends Phpfox_Service
 			$this->database()->join(Phpfox::getT('marketplace_invite'), 'mi', 'mi.listing_id = m.listing_id AND mi.visited_id = 0 AND mi.invited_user_id = ' . Phpfox::getUserId());
 		}
 		
-		if (Phpfox::getLib('request')->get('view') == 'purchased')
+		if (Phpfox_Request::instance()->get('view') == 'purchased')
 		{
 			$this->database()->join(Phpfox::getT('marketplace_invoice'), 'minvoice', 'minvoice.listing_id = m.listing_id AND minvoice.user_id = ' . Phpfox::getUserId() . ' AND minvoice.status = \'completed\'');
 		}
 		
-		if (Phpfox::getLib('request')->get('view') == 'sold')
+		if (Phpfox_Request::instance()->get('view') == 'sold')
 		{
 			$this->database()->join(Phpfox::getT('marketplace_invoice'), 'minvoice', 'minvoice.listing_id = m.listing_id AND minvoice.status = \'completed\'');			
 		}
 		
 		(($sPlugin = Phpfox_Plugin::get('marketplace.service_browse_execute_query')) ? eval($sPlugin) : false);
 		
-		$this->_iCnt = $this->database()->select((($this->_sCategory !== null || (Phpfox::getLib('request')->get('view') == 'sold' || Phpfox::getLib('request')->get('view') == 'purchased')) ? 'COUNT(DISTINCT m.listing_id)' : 'COUNT(*)'))
+		$this->_iCnt = $this->database()->select((($this->_sCategory !== null || (Phpfox_Request::instance()->get('view') == 'sold' || Phpfox_Request::instance()->get('view') == 'purchased')) ? 'COUNT(DISTINCT m.listing_id)' : 'COUNT(*)'))
 			->from($this->_sTable, 'm')
 			->where($this->_aConditions)
 			->execute('getSlaveField');
@@ -87,12 +87,12 @@ class Marketplace_Service_Browse extends Phpfox_Service
 				$this->database()->join(Phpfox::getT('marketplace_invite'), 'mi', 'mi.listing_id = m.listing_id AND mi.visited_id = 0 AND mi.invited_user_id = ' . Phpfox::getUserId());
 			}			
 			
-			if (Phpfox::getLib('request')->get('view') == 'purchased')
+			if (Phpfox_Request::instance()->get('view') == 'purchased')
 			{
 				$this->database()->join(Phpfox::getT('marketplace_invoice'), 'minvoice', 'minvoice.listing_id = m.listing_id AND minvoice.user_id = ' . Phpfox::getUserId() . ' AND minvoice.status = \'completed\'');	
 			}			
 			
-			if (Phpfox::getLib('request')->get('view') == 'sold')
+			if (Phpfox_Request::instance()->get('view') == 'sold')
 			{
 				$this->database()->join(Phpfox::getT('marketplace_invoice'), 'minvoice', 'minvoice.listing_id = m.listing_id AND minvoice.status = \'completed\'')->group('m.listing_id');			
 			}			
@@ -107,7 +107,7 @@ class Marketplace_Service_Browse extends Phpfox_Service
 				->limit($this->_iPage, $this->_iPageSize, $this->_iCnt)
 				->execute('getSlaveRows');
 
-			if (Phpfox::getLib('request')->get('view') == 'sold')
+			if (Phpfox_Request::instance()->get('view') == 'sold')
 			{
 				foreach ($this->_aListings as $iKey => $aListing)
 				{
@@ -136,7 +136,7 @@ class Marketplace_Service_Browse extends Phpfox_Service
 				'total_comment' => $aListing['total_comment'],
 				'feed_total_like' => $aListing['total_like'],
 				'total_like' => $aListing['total_like'],
-				'feed_link' => Phpfox::getLib('url')->permalink('marketplace', $aListing['listing_id'], $aListing['title']),
+				'feed_link' => Phpfox_Url::instance()->permalink('marketplace', $aListing['listing_id'], $aListing['title']),
 				'feed_title' => $aListing['title'],
 				'type_id' => 'marketplace'
 			);				
@@ -145,7 +145,7 @@ class Marketplace_Service_Browse extends Phpfox_Service
 			{
 				$aRows[$iKey]['is_expired'] = true;
 			}
-			$aRows[$iKey]['url'] = Phpfox::getLib('url')->permalink('marketplace', $aListing['listing_id'], $aListing['title']);			
+			$aRows[$iKey]['url'] = Phpfox_Url::instance()->permalink('marketplace', $aListing['listing_id'], $aListing['title']);
 		}
 	}	
 	

@@ -64,7 +64,7 @@ class Subscribe_Service_Purchase_Process extends Phpfox_Service
 	
 	public function update($iPurchaseId, $iPackageId, $sStatus, $iUserId, $iUserGroupId, $iFailUserGroupId)
 	{		
-		$sLink = Phpfox::getLib('url')->makeUrl('subscribe.view', array('id' => $iPurchaseId));		
+		$sLink = Phpfox_Url::instance()->makeUrl('subscribe.view', array('id' => $iPurchaseId));
 		switch ($sStatus)
 		{
 			case 'completed':

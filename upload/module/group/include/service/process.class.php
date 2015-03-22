@@ -119,7 +119,7 @@ class Group_Service_Process extends Phpfox_Service
 		
 		(Phpfox::isModule('feed') ? Phpfox::getService('feed.process')->add('group', $aGroup['group_id']) : null);
 		
-		$sCurrentUrl = Phpfox::getLib('url')->makeUrl('group', $aGroup['title_url']);
+		$sCurrentUrl = Phpfox_Url::instance()->makeUrl('group', $aGroup['title_url']);
 		Phpfox::getLib('mail')->to($aGroup['user_id'])
 			->subject(array('group.group_approved_on_site_title', array('site_title' => Phpfox::getParam('core.site_title'))))
 			->message(array('group.your_group_group_title_on_site_title', array('group_title' => $aGroup['title'], 'site_title' => Phpfox::getParam('core.site_title'), 'link' => $sCurrentUrl)))
@@ -155,7 +155,7 @@ class Group_Service_Process extends Phpfox_Service
 			$iFileSizes = filesize(Phpfox::getParam('group.dir_image') . sprintf($sFileName, ''));			
 			
 			$aSql['image_path'] = $sFileName;
-			$aSql['server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+			$aSql['server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 			
 			$iSize = 50;			
 			$oImage->createThumbnail(Phpfox::getParam('group.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('group.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);			
@@ -220,7 +220,7 @@ class Group_Service_Process extends Phpfox_Service
 						continue;
 					}					
 					
-					$sLink = Phpfox::getLib('url')->makeUrl('group', $aGroup['title_url']);
+					$sLink = Phpfox_Url::instance()->makeUrl('group', $aGroup['title_url']);
 					$sMessage = Phpfox::getPhrase('group.full_name_invited_you_to_title', array(
 							'full_name' => Phpfox::getUserBy('full_name'),
 							'title' => $oParseInput->clean($aVals['title'], 255),
@@ -286,7 +286,7 @@ class Group_Service_Process extends Phpfox_Service
 					continue;
 				}											
 				
-				$sLink = Phpfox::getLib('url')->makeUrl('group', $aGroup['title_url']);
+				$sLink = Phpfox_Url::instance()->makeUrl('group', $aGroup['title_url']);
 				$sMessage = Phpfox::getPhrase('group.full_name_invited_you_to_title', array(
 						'full_name' => Phpfox::getUserBy('full_name'),
 						'title' => $oParseInput->clean($aVals['title'], 255),
@@ -394,7 +394,7 @@ class Group_Service_Process extends Phpfox_Service
 				)
 			);	
 			
-		$sLink = Phpfox::getLib('url')->makeUrl('group', $aGroup['title_url']);
+		$sLink = Phpfox_Url::instance()->makeUrl('group', $aGroup['title_url']);
 		Phpfox::getLib('mail')->to($iUserId)						
 			->subject(array('group.full_name_invited_you_to_the_group_title', array('full_name' => Phpfox::getUserBy('full_name'), 'title' => $aGroup['title'])))
 			->message(array('group.full_name_invited_you_to_title_to_check_out_this_group', array('full_name' => Phpfox::getUserBy('full_name'), 'title' => $aGroup['title'], 'link' => $sLink)))
@@ -440,7 +440,7 @@ class Group_Service_Process extends Phpfox_Service
 			
 			if ($aGroup['view_id'] == '1')
 			{
-				$sLink = Phpfox::getLib('url')->makeUrl('group', $aGroup['title_url']);			
+				$sLink = Phpfox_Url::instance()->makeUrl('group', $aGroup['title_url']);
 				Phpfox::getLib('mail')->to($iUserId)						
 					->subject(array('group.group_membership_approved_title', array('title' => $aGroup['title'])))
 					->message(array('group.your_membership_for_the_group_title_has_been_approved', array('title' => $aGroup['title'], 'link' => $sLink)))
@@ -471,7 +471,7 @@ class Group_Service_Process extends Phpfox_Service
 			
 			if (($aGroup['view_id'] == '1' && $bIsAdmin === false))
 			{
-				$sLink = Phpfox::getLib('url')->makeUrl('group.add.manage', array('id' => $aGroup['group_id']));				
+				$sLink = Phpfox_Url::instance()->makeUrl('group.add.manage', array('id' => $aGroup['group_id']));
 				foreach (Phpfox::getService('group')->getAdmins($aGroup['group_id']) as $aAdmin)
 				{
 					Phpfox::getLib('mail')->to($aAdmin['user_id'])						
@@ -484,7 +484,7 @@ class Group_Service_Process extends Phpfox_Service
 			
 			if ($aGroup['view_id'] == '0')
 			{
-				$sLink = Phpfox::getLib('url')->makeUrl('group', $aGroup['title_url']);				
+				$sLink = Phpfox_Url::instance()->makeUrl('group', $aGroup['title_url']);
 				foreach (Phpfox::getService('group')->getAdmins($aGroup['group_id']) as $aAdmin)
 				{
 					Phpfox::getLib('mail')->to($aAdmin['user_id'])						

@@ -296,7 +296,7 @@ class Mail_Service_Process extends Phpfox_Service
 			$this->database()->update(Phpfox::getT('mail_thread'), array('last_id' => (int) $iTextId), 'thread_id = ' . (int) $iId);
 			
 			// Send the user an email
-			$sLink = Phpfox::getLib('url')->makeUrl('mail.thread', array('id' => $iId));
+			$sLink = Phpfox_Url::instance()->makeUrl('mail.thread', array('id' => $iId));
 			
 			foreach ($aThreadUsers as $aThreadUser)
 			{
@@ -382,7 +382,7 @@ class Mail_Service_Process extends Phpfox_Service
 			);
 			
 			// Send the user an email
-			$sLink = Phpfox::getLib('url')->makeUrl('mail.view', array('id' => $iId));
+			$sLink = Phpfox_Url::instance()->makeUrl('mail.view', array('id' => $iId));
 			Phpfox::getLib('mail')->to($aVals['user_id'])
 				->subject(array('mail.full_name_sent_you_a_message_on_site_title', array('full_name' => Phpfox::getUserBy('full_name'), 'site_title' => Phpfox::getParam('core.site_title')), false, null,$aVals['language_id']))
 				->message(array('mail.full_name_sent_you_a_message_subject_subject', array(

@@ -21,7 +21,7 @@ class Core_Component_Controller_Redirect extends Phpfox_Component
 	public function process()
 	{		
 		$this->template()->assign(array(
-				'sRedirectLink' => Phpfox::getLib('url')->decode($this->request()->get('url'))
+				'sRedirectLink' => Phpfox_Url::instance()->decode($this->request()->get('url'))
 			)
 		);	
 	}

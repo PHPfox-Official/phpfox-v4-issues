@@ -288,7 +288,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 		if (!empty($sTitle))
 		{			
 			Phpfox::addMessage(Phpfox::getPhrase('music.your_song_was_named_successfully'));			
-			$this->call('location.href = "'.Phpfox::getLib('url')->makeUrl('profile.music.view.' . $sTitle).'";');
+			$this->call('location.href = "'.Phpfox_Url::instance()->makeUrl('profile.music.view.' . $sTitle).'";');
 		}
 	}
 	

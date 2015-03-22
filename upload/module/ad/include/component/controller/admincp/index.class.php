@@ -149,7 +149,7 @@ class Ad_Component_Controller_Admincp_Index extends Phpfox_Component
 			->assign(array(
 					'aAds' => $aAds,
 					'iPendingCount' => (int) Phpfox::getService('ad')->getPendingCount(),
-					'sPendingLink' => Phpfox::getLib('url')->makeUrl('admincp.ad', array('view' => 'pending')),
+					'sPendingLink' => Phpfox_Url::instance()->makeUrl('admincp.ad', array('view' => 'pending')),
 					'bIsSearch' => ($this->request()->get('search-id') ? true : false),
 					'sView' => $sView
 				)

@@ -30,7 +30,7 @@ class Im_Component_Block_Footer extends Phpfox_Component
 			return false;
 		}
 		
-		$oRequest = Phpfox::getLib('request');
+		$oRequest = Phpfox_Request::instance();
 		
 		if ($this->template()->bIsSample 
 				|| ($oRequest->get('req2') == 'designer')

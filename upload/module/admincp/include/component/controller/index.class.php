@@ -438,7 +438,9 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			$is_settings = true;
 		}
 
-		if ($app && Phpfox::isModule($app)) {
+		$aSkipModules = ['user', 'core', 'custom', 'admincp', 'page'];
+
+		if ($app && Phpfox::isModule($app) && !in_array($app, $aSkipModules)) {
 			$app = Phpfox_Module::instance()->get($app);
 
 			$sSectionTitle = $app['module_id'];
@@ -450,6 +452,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			if ($this->url()->getUrl() == ($bForceIndex ? 'admincp/' . $app['module_id'] : 'admincp/app/' . $app['module_id'])) {
 				$infoActive = true;
 			}
+
 			$menus['Info'] = [
 				'is_active' => $infoActive,
 				'url' => $this->url()->makeUrl('admincp.app.' . $app['module_id'])

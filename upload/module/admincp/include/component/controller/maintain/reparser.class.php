@@ -87,7 +87,7 @@ class Admincp_Component_Controller_Maintain_Reparser extends Phpfox_Component
 						)
 					)
 					->setHeader(array(
-						'<meta http-equiv="refresh" content="2;url=' . Phpfox::getLib('url')->makeUrl('admincp.maintain.reparser', array('module' => $sModule, 'page' => $iPage)) . '" />'
+						'<meta http-equiv="refresh" content="2;url=' . Phpfox_Url::instance()->makeUrl('admincp.maintain.reparser', array('module' => $sModule, 'page' => $iPage)) . '" />'
 					)
 				);
 			}	

@@ -40,7 +40,7 @@ class Janrain_Service_Janrain extends Phpfox_Service
 
 		$sDomain = Phpfox::getParam('janrain.janrain_application_domain');
 		
-		return rtrim($sDomain, '/') . '/openid/v2/signin?token_url=' . urlencode(Phpfox::getLib('url')->makeUrl('janrain.rpx'));
+		return rtrim($sDomain, '/') . '/openid/v2/signin?token_url=' . urlencode(Phpfox_Url::instance()->makeUrl('janrain.rpx'));
 	}
 	
 	public function getUser($aUserInfo)

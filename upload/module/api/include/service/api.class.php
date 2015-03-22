@@ -271,7 +271,7 @@ class Api_Service_Api extends Phpfox_Service
 	
 	public function get($sRequest)
 	{
-		return Phpfox::getLib('request')->get($sRequest);
+		return Phpfox_Request::instance()->get($sRequest);
 	}	
 	
 	public function isPassed()

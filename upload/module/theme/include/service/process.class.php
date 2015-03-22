@@ -907,9 +907,9 @@ class Theme_Service_Process extends Phpfox_Service
 		}
 		elseif ($sType == 'pages')
 		{
-			if (Phpfox::getService('pages')->isAdmin(Phpfox::getLib('request')->get('req2')))
+			if (Phpfox::getService('pages')->isAdmin(Phpfox_Request::instance()->get('req2')))
 			{	
-				$this->database()->delete(Phpfox::getT('pages_design_order'), 'page_id = ' . (int) Phpfox::getLib('request')->get('req2'));
+				$this->database()->delete(Phpfox::getT('pages_design_order'), 'page_id = ' . (int) Phpfox_Request::instance()->get('req2'));
 				$sCacheId = $this->cache()->set(array('pages_design', Phpfox::getUserId()));
 				$this->cache()->remove($sCacheId);
 			}		

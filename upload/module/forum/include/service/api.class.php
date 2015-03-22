@@ -72,12 +72,12 @@ class Forum_Service_Api extends Phpfox_Service
 			if (empty($aThread['last_full_name']))
 			{
 				$aReturn[$iKey]['last_post'] = $aThread['full_name'];
-				$aReturn[$iKey]['last_post_profile'] = Phpfox::getLib('url')->makeUrl($aThread['user_name']);
+				$aReturn[$iKey]['last_post_profile'] = Phpfox_Url::instance()->makeUrl($aThread['user_name']);
 			}
 			else
 			{
 				$aReturn[$iKey]['last_post'] = $aThread['last_full_name'];
-				$aReturn[$iKey]['last_post_profile'] = Phpfox::getLib('url')->makeUrl($aThread['last_user_name']);
+				$aReturn[$iKey]['last_post_profile'] = Phpfox_Url::instance()->makeUrl($aThread['last_user_name']);
 			}		
 		}
 		
@@ -119,7 +119,7 @@ class Forum_Service_Api extends Phpfox_Service
 						'lkes' => $aPost['total_like'],
 						'post' => Phpfox::getLib('parse.output')->parse($aPost['text']),
 						'posted_by' => $aPost['full_name'],
-						'posted_by_url' => Phpfox::getLib('url')->makeUrl($aPost['user_name'])
+						'posted_by_url' => Phpfox_Url::instance()->makeUrl($aPost['user_name'])
 						);
 			}
 		}

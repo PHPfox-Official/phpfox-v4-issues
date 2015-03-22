@@ -20,7 +20,7 @@ class Error_Component_Controller_404 extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aRequests = Phpfox::getLib('request')->getRequests();
+		$aRequests = Phpfox_Request::instance()->getRequests();
         
         if ($sPlugin = Phpfox_Plugin::get('error.component_controller_notfound_1')){eval($sPlugin); if (isset($mReturnPlugin)){ return $mReturnPlugin;}}
         

@@ -108,7 +108,7 @@ class Admincp_Component_Controller_Block_Add extends Phpfox_Component
 			)
 			->setTitle(Phpfox::getPhrase('admincp.block_manager'))	
 			->setBreadcrumb(Phpfox::getPhrase('admincp.block_manager'), $this->url()->makeUrl('admincp.block'))
-			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('admincp.editing') . ': ' . (empty($aRow['m_connection']) ? Phpfox::getPhrase('admincp.site_wide') : $aRow['m_connection']) . (empty($aRow['component']) ? '' : '::' . rtrim(str_replace('|', '::', $aRow['component']), '::')) . (empty($aRow['title']) ? '' : ' (' . Phpfox::getLib('locale')->convert($aRow['title']) . ')') : Phpfox::getPhrase('admincp.add_new_block')), $this->url()->makeUrl('admincp.block.add'), true)
+			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('admincp.editing') . ': ' . (empty($aRow['m_connection']) ? Phpfox::getPhrase('admincp.site_wide') : $aRow['m_connection']) . (empty($aRow['component']) ? '' : '::' . rtrim(str_replace('|', '::', $aRow['component']), '::')) . (empty($aRow['title']) ? '' : ' (' . Phpfox_Locale::instance()->convert($aRow['title']) . ')') : Phpfox::getPhrase('admincp.add_new_block')), $this->url()->makeUrl('admincp.block.add'), true)
 			->setTitle(Phpfox::getPhrase('admincp.add_new_block'));
 	}
 	

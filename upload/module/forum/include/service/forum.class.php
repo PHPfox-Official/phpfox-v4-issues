@@ -306,7 +306,7 @@ class Forum_Service_Forum extends Phpfox_Service
 		$aItems = Phpfox::getService('forum.thread')->getForRss(Phpfox::getParam('rss.total_rss_display'), ($aForum['forum_id'] . (is_array($this->getChildren()) ? ',' . implode(',', $this->getChildren()) : '')));
 		
 		$aRss = array(
-			'href' => Phpfox::getLib('url')->makeUrl('forum', array($aForum['name_url'])),
+			'href' => Phpfox_Url::instance()->makeUrl('forum', array($aForum['name_url'])),
 			'title' => Phpfox::getPhrase('forum.latest_threads_in') . ': ' . $aForum['name'],
 			'description' => Phpfox::getPhrase('forum.latest_threads_on') . ': ' . Phpfox::getParam('core.site_title'),
 			'items' => $aItems
@@ -522,7 +522,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			{
 				$this->_getBreadcrumb($this->_aForums[$iId]['parent_id']);	
 			}
-			$this->_aBreadcrumbs[] = array(Phpfox::getLib('locale')->convert($this->_aForums[$iId]['name']), Phpfox::getLib('url')->permalink('forum', $this->_aForums[$iId]['forum_id'], $this->_aForums[$iId]['name']));		
+			$this->_aBreadcrumbs[] = array(Phpfox_Locale::instance()->convert($this->_aForums[$iId]['name']), Phpfox_Url::instance()->permalink('forum', $this->_aForums[$iId]['forum_id'], $this->_aForums[$iId]['name']));
 		}
 	}
 	
@@ -545,7 +545,7 @@ class Forum_Service_Forum extends Phpfox_Service
 
 			$iCnt++;		
 					
-			$sHtml .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <input type="hidden" name="order[' . $aForum['forum_id'] . ']" value="' . $iCnt . '" /> <a href="#?id=' . $aForum['forum_id'] . '" class="js_drop_down">' . Phpfox::getLib('locale')->convert($aForum['name']) . '</a>';
+			$sHtml .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <input type="hidden" name="order[' . $aForum['forum_id'] . ']" value="' . $iCnt . '" /> <a href="#?id=' . $aForum['forum_id'] . '" class="js_drop_down">' . Phpfox_Locale::instance()->convert($aForum['name']) . '</a>';
 			$sHtml .= $this->_buildAdminCp($aForum['forum_id']) . '</li>' . "\n";			
 		}
 		$sHtml .= '</ul>' . "\n";
@@ -579,7 +579,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			{
 				$sExt .= '&nbsp;&nbsp;&nbsp;';
 			}			
-			$sOptions .= '<option value="' . ($bIdOnly ? $aForum['forum_id'] : Phpfox::getLib('url')->permalink('forum', $aForum['forum_id'], $aForum['name'])) . '"' . ($this->_iActive == $aForum['forum_id'] ? ' selected="selected"' : '') . '>' . $sExt . Phpfox::getLib('locale')->convert($aForum['name']) . '</option>' . "\n";
+			$sOptions .= '<option value="' . ($bIdOnly ? $aForum['forum_id'] : Phpfox_Url::instance()->permalink('forum', $aForum['forum_id'], $aForum['name'])) . '"' . ($this->_iActive == $aForum['forum_id'] ? ' selected="selected"' : '') . '>' . $sExt . Phpfox_Locale::instance()->convert($aForum['name']) . '</option>' . "\n";
 			$sOptions .= $this->_buildJump($aForum['forum_id'], $bIdOnly, ($iCnt + 1));
 		}
 		
@@ -588,7 +588,7 @@ class Forum_Service_Forum extends Phpfox_Service
 	
 	private function _buildForum($iForumId)
 	{	
-		$oUrl = Phpfox::getLib('url');		
+		$oUrl = Phpfox_Url::instance();
 		$aForums = array();
 		foreach ($this->_aForums as $aForum)
 		{			
@@ -778,7 +778,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			$aRow['title'] = $aRow['text_parsed'];
 		}
 		
-		$aRow['link'] = Phpfox::getLib('url')->permalink('forum.thread', $aRow['thread_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('forum.thread', $aRow['thread_id'], $aRow['title']);
 		return $aRow;
 	}
 	

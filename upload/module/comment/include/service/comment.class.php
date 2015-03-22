@@ -103,7 +103,7 @@ class Comment_Service_Comment extends Phpfox_Service
 				->execute('getSlaveRows');			
 		}	
 
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');
 		foreach ($aRows as $iKey => $aRow)
 		{
@@ -193,7 +193,7 @@ class Comment_Service_Comment extends Phpfox_Service
 			$aComments[$iKey]['item_message'] = Phpfox::getPhrase('comment.user_link_left_a_comment_on_your_item', array(
 					'user' => $aComment,
 					'item_name' => Phpfox::callback($aComment['type_id'] . '.getCommentItemName'),
-					'link' => Phpfox::getLib('url')->makeUrl('request.view.comment', array('id' => $aComment['comment_id']))
+					'link' => Phpfox_Url::instance()->makeUrl('request.view.comment', array('id' => $aComment['comment_id']))
 				)
 			);
 		}
@@ -204,7 +204,7 @@ class Comment_Service_Comment extends Phpfox_Service
 	public function getForRss($sType, $iItem)
 	{
 		(($sPlugin = Phpfox_Plugin::get('comment.service_comment_getforrss__start')) ? eval($sPlugin) : false);
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		
 		$aSql = array(
 			"AND cmt.type_id = '" . Phpfox_Database::instance()->escape($sType) . "'",
@@ -249,7 +249,7 @@ class Comment_Service_Comment extends Phpfox_Service
 	{
 		if ($mPager !== null)
 		{
-			$this->database()->limit(Phpfox::getLib('request')->getInt('page'), $iLimit, $mPager);
+			$this->database()->limit(Phpfox_Request::instance()->getInt('page'), $iLimit, $mPager);
 		}
 		else 
 		{
@@ -431,7 +431,7 @@ class Comment_Service_Comment extends Phpfox_Service
 			->join(Phpfox::getT('user'), 'u', 'u.user_id = c.user_id')
 			->where('c.comment_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
-		$aRow['link'] = '';//Phpfox::getLib('url')->permalink('blog', $aRow['blog_id'], $aRow['title']);
+		$aRow['link'] = '';//Phpfox_Url::instance()->permalink('blog', $aRow['blog_id'], $aRow['title']);
 		return $aRow;
 	}
 }

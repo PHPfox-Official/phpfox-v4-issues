@@ -53,7 +53,7 @@ class User_Service_Auth extends Phpfox_Service
 			$sPasswordHash = $aRow['user_hash'];
 			$sIpAddress = $aRow['ip_address'];
 			
-			if ($sIpAddress != Phpfox::getLib('request')->getServer('REMOTE_ADDR')) // $_SERVER['REMOTE_ADDR'])
+			if ($sIpAddress != Phpfox_Request::instance()->getServer('REMOTE_ADDR')) // $_SERVER['REMOTE_ADDR'])
 			{
 				$iUserId = 0;
 				$this->_setDefault();
@@ -92,7 +92,7 @@ class User_Service_Auth extends Phpfox_Service
 				(($sPlugin = Phpfox_Plugin::get('user.service_auth___construct_start')) ? eval($sPlugin) : false);
 
 				$oSession = Phpfox::getLib('session');
-				$oRequest = Phpfox::getLib('request');
+				$oRequest = Phpfox_Request::instance();
 				$bLoadUserField = false;
 				$sUserFieldSelect = '';
 
@@ -117,21 +117,21 @@ class User_Service_Auth extends Phpfox_Service
 					}
 				}
 
-				if ((Phpfox::getLib('request')->get('req1') == ''
-						|| Phpfox::getLib('request')->get('req1') == 'request'
-						|| (Phpfox::getLib('request')->get('req1') == 'theme' && Phpfox::getLib('request')->get('req2') == 'select'))
+				if ((Phpfox_Request::instance()->get('req1') == ''
+						|| Phpfox_Request::instance()->get('req1') == 'request'
+						|| (Phpfox_Request::instance()->get('req1') == 'theme' && Phpfox_Request::instance()->get('req2') == 'select'))
 					|| (Phpfox::isModule('mail') && Phpfox::getParam('mail.display_total_mail_count')))
 				{
 					$this->database()->select('uc.*, ')->join(Phpfox::getT('user_count'), 'uc', 'uc.user_id = u.user_id');
 				}
 
-				if ((Phpfox::getLib('request')->get('req1') == '') || (Phpfox::getLib('request')->get('req1') == 'core'))
+				if ((Phpfox_Request::instance()->get('req1') == '') || (Phpfox_Request::instance()->get('req1') == 'core'))
 				{
 					$bLoadUserField = true;
 					$sUserFieldSelect .= 'uf.total_view, u.last_login, uf.location_latlng, ';
 				}
 					
-				if (strtolower(Phpfox::getLib('request')->get('req1')) == Phpfox::getParam('admincp.admin_cp'))
+				if (strtolower(Phpfox_Request::instance()->get('req1')) == Phpfox::getParam('admincp.admin_cp'))
 				{
 					$bLoadUserField = true;
 					$sUserFieldSelect .= 'uf.in_admincp, ';						
@@ -354,10 +354,10 @@ class User_Service_Auth extends Phpfox_Service
 			
 			if (defined('PHPFOX_MUST_PAY_FIRST'))
 			{
-				Phpfox::getLib('url')->send('subscribe.register', array('id' => PHPFOX_MUST_PAY_FIRST, 'login' => '1'));
+				Phpfox_Url::instance()->send('subscribe.register', array('id' => PHPFOX_MUST_PAY_FIRST, 'login' => '1'));
 			}
 			
-			Phpfox::getLib('url')->send('user.verify', null, Phpfox::getPhrase('user.you_need_to_verify_your_email_address_before_logging_in', array('email' => $aRow['email'])));
+			Phpfox_Url::instance()->send('user.verify', null, Phpfox::getPhrase('user.you_need_to_verify_your_email_address_before_logging_in', array('email' => $aRow['email'])));
 		}
 				
 		if (!isset($aRow['user_name']))
@@ -413,7 +413,7 @@ class User_Service_Auth extends Phpfox_Service
 			
 			$aReplace = array(
 					'iCoolDown' => Phpfox::getParam('user.brute_force_cool_down'),
-					'sForgotLink' => Phpfox::getLib('url')->makeUrl('user.password.request'),
+					'sForgotLink' => Phpfox_Url::instance()->makeUrl('user.password.request'),
 					'iUnlockTimeOut' => ceil($iRemaining / 60)
 			);
 			
@@ -454,7 +454,7 @@ class User_Service_Auth extends Phpfox_Service
 		{
 			Phpfox_Error::set(Phpfox::getPhrase('ban.global_ban_message'));
 		}
-		if (!$oBan->check('ip', Phpfox::getLib('request')->getIp()))
+		if (!$oBan->check('ip', Phpfox_Request::instance()->getIp()))
 		{
 			// this is a new phrase, text: "Your IP address is not allowed"
 			Phpfox_Error::set(Phpfox::getPhrase('ban.not_allowed_ip_address'));
@@ -505,7 +505,7 @@ class User_Service_Auth extends Phpfox_Service
 				$this->database()->insert(Phpfox::getT('session'), array(
 						'user_id' => $aRow['user_id'],
 						'last_activity' => PHPFOX_TIME,
-						'id_hash' => Phpfox::getLib('request')->getIdHash()
+						'id_hash' => Phpfox_Request::instance()->getIdHash()
 					)
 				);
 			}
@@ -615,7 +615,7 @@ class User_Service_Auth extends Phpfox_Service
 			$this->_setDefault();
 			$this->logout();
 			
-			Phpfox::getLib('url')->send('ban.spam');
+			Phpfox_Url::instance()->send('ban.spam');
 		}
 
 		if (Phpfox::getUserParam('core.user_is_banned'))
@@ -635,9 +635,9 @@ class User_Service_Auth extends Phpfox_Service
 					{
 						$aBanned['reason'] = str_replace('&#039;', "'", Phpfox::getLib('parse.output')->parse($aBanned['reason']));
 						$sReason = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1',array(), false, null, '" . Phpfox::getUserBy('language_id') . "') . ''", $aBanned['reason']);					
-						Phpfox::getLib('url')->send('',null,$sReason);
+						Phpfox_Url::instance()->send('',null,$sReason);
 					}
-					Phpfox::getLib('url')->send('ban.message');
+					Phpfox_Url::instance()->send('ban.message');
 				}
 				else
 				{
@@ -677,9 +677,9 @@ class User_Service_Auth extends Phpfox_Service
 			$this->_setDefault();
 			$this->logout();
 			
-			if (Phpfox::getLib('request')->get('req1') != 'user' && Phpfox::getLib('request')->get('req2') != 'verify')
+			if (Phpfox_Request::instance()->get('req1') != 'user' && Phpfox_Request::instance()->get('req2') != 'verify')
 			{						
-				Phpfox::getLib('url')->send('user.verify');
+				Phpfox_Url::instance()->send('user.verify');
 			}
 		}
 		
@@ -689,9 +689,9 @@ class User_Service_Auth extends Phpfox_Service
 			$this->_setDefault();
 			$this->logout();			
 			
-			if (Phpfox::getLib('request')->get('req1') != 'user' && Phpfox::getLib('request')->get('req2') != 'pending')
+			if (Phpfox_Request::instance()->get('req1') != 'user' && Phpfox_Request::instance()->get('req2') != 'pending')
 			{
-				Phpfox::getLib('url')->send('user.pending');
+				Phpfox_Url::instance()->send('user.pending');
 			}
 		}		
 		

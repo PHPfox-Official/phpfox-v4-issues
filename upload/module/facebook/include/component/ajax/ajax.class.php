@@ -24,7 +24,7 @@ class Facebook_Component_Ajax_Ajax extends Phpfox_Ajax
 			{
 				Phpfox::getService('user.auth')->login($aUser['user_name'], md5($aUser['fb_user_id']), false, 'user_name');
 				
-				$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('') . '\'');
+				$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('') . '\'');
 			}
 		}
 	}
@@ -33,14 +33,14 @@ class Facebook_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		Phpfox::isUser(true);
 		Phpfox::getService('facebook.process')->shareFeed($this->get('type'));
-		$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('facebook.sync') . '\';');
+		$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('facebook.sync') . '\';');
 	}
 	
 	public function sendEmail()
 	{
 		Phpfox::isUser(true);
 		Phpfox::getService('facebook.process')->sendEmail($this->get('type'));
-		$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('facebook.sync') . '\';');
+		$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('facebook.sync') . '\';');
 	}
 
 	public function check()

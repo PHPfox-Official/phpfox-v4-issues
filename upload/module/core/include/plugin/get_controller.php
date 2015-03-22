@@ -2,7 +2,7 @@
 
 if (!empty($_POST) && isset($_POST['id']) && Phpfox::isModule('feed') && Phpfox::getParam('feed.cache_each_feed_entry') && !PHPFOX_IS_AJAX)
 {
-	$oReq = Phpfox::getLib('request');
+	$oReq = Phpfox_Request::instance();
 	$oDb = Phpfox_Database::instance();
 	
 		$sCustomCurrentUrl = Phpfox_Module::instance()->getFullControllerName();

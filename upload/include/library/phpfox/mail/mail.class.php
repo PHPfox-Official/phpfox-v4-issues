@@ -227,7 +227,7 @@ class Phpfox_Mail
 			}
 			if (!isset($aMessage[1]['site_url']))
 			{
-				$aMessage[1]['site_url'] = Phpfox::getLib('url')->getDomain();
+				$aMessage[1]['site_url'] = Phpfox_Url::instance()->getDomain();
 			}
 		}
 		$this->_aMessage = $aMessage;
@@ -435,7 +435,7 @@ class Phpfox_Mail
 						}
 						else
 						{
-							$sMessage = Phpfox::getLib('locale')->getPhraseHistory($this->_aMessage, $aUser['language_id']);
+							$sMessage = Phpfox_Locale::instance()->getPhraseHistory($this->_aMessage, $aUser['language_id']);
 						} 
 						
 						if (is_array($this->_aMessagePlain))
@@ -444,11 +444,11 @@ class Phpfox_Mail
 						}
 						else
 						{
-							$sMessagePlain = Phpfox::getLib('locale')->getPhraseHistory($this->_aMessagePlain, $aUser['language_id']);
+							$sMessagePlain = Phpfox_Locale::instance()->getPhraseHistory($this->_aMessagePlain, $aUser['language_id']);
 						}
 
-						$sMessage = preg_replace('/' . preg_quote(Phpfox::getLib('url')->makeUrl(''), '/') . '/is', str_replace('mobile/', '', Phpfox::getLib('url')->makeUrl('')), $sMessage);
-						$sMessagePlain = preg_replace('/' . preg_quote(Phpfox::getLib('url')->makeUrl(''), '/') . '/is', str_replace('mobile/', '', Phpfox::getLib('url')->makeUrl('')), $sMessagePlain);
+						$sMessage = preg_replace('/' . preg_quote(Phpfox_Url::instance()->makeUrl(''), '/') . '/is', str_replace('mobile/', '', Phpfox_Url::instance()->makeUrl('')), $sMessage);
+						$sMessagePlain = preg_replace('/' . preg_quote(Phpfox_Url::instance()->makeUrl(''), '/') . '/is', str_replace('mobile/', '', Phpfox_Url::instance()->makeUrl('')), $sMessagePlain);
 						
 						if (is_array($this->_aSubject))
 						{
@@ -456,7 +456,7 @@ class Phpfox_Mail
 						}
 						else
 						{
-							$sSubject = Phpfox::getLib('locale')->getPhraseHistory($this->_aSubject, $aUser['language_id']);
+							$sSubject = Phpfox_Locale::instance()->getPhraseHistory($this->_aSubject, $aUser['language_id']);
 						}
 
 						$sMessage = preg_replace('/\{setting var=\'(.*)\'\}/ise', "'' . Phpfox::getParam('\\1') . ''", $sMessage);

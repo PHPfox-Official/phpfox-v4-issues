@@ -74,7 +74,7 @@ class User_Service_Api extends Phpfox_Service
 		
 		if ($this->_oApi->isAllowed('user.get_full_name'))
 		{
-			$aRow['full_name_link'] = '<a href="' . Phpfox::getLib('url')->makeUrl($aRow['user_name']) . '">' . $aRow['full_name'] . '</a>';
+			$aRow['full_name_link'] = '<a href="' . Phpfox_Url::instance()->makeUrl($aRow['user_name']) . '">' . $aRow['full_name'] . '</a>';
 		}
 		
 		$aRow['photo_50px'] = Phpfox::getLib('image.helper')->display(array(
@@ -134,7 +134,7 @@ class User_Service_Api extends Phpfox_Service
 		);		
 		
 		$aRow['gender'] = ($aRow['gender'] == '1' ? 'Male' : 'Female');
-		$aRow['profile_url'] = Phpfox::getLib('url')->makeUrl($aRow['user_name']);
+		$aRow['profile_url'] = Phpfox_Url::instance()->makeUrl($aRow['user_name']);
 		
 		unset($aRow['user_image']);
 

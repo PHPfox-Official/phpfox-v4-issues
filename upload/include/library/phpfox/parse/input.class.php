@@ -306,7 +306,7 @@ class Phpfox_Parse_Input
 		}
 		closedir($hDir);
 		
-		$aRewrites = Phpfox::getLib('url')->getRewrite();		
+		$aRewrites = Phpfox_Url::instance()->getRewrite();
 		if (is_array($aRewrites) && !empty($aRewrites))
 		{
 			foreach ($aRewrites as $sUrl => $aRow)
@@ -380,7 +380,7 @@ class Phpfox_Parse_Input
 		$aRow = $oDb->select(Phpfox::getUserField())->from(Phpfox::getT('user'), 'u')->where('u.user_name = \'' . $oDb->escape($aMatches[1]) . '\'')->execute('getSlaveRow');
 		if (isset($aRow['user_id']))
 		{			
-			return '<a href="' . Phpfox::getLib('url')->makeUrl($aRow['user_name']) . '">@' . $aRow['user_name'] . '</a>';
+			return '<a href="' . Phpfox_Url::instance()->makeUrl($aRow['user_name']) . '">@' . $aRow['user_name'] . '</a>';
 		}	
 		
 		return $aMatches[0];
@@ -1166,7 +1166,7 @@ class Phpfox_Parse_Input
         	{
         		if ($value == 42 || $value > 127)
         		{
-        			$sCacheValue = Phpfox::getLib('locale')->parse('&#' . $value . ';', false);       
+        			$sCacheValue = Phpfox_Locale::instance()->parse('&#' . $value . ';', false);
         		
         			$entities .= (preg_match('/[^a-zA-Z]+/', $sCacheValue) ? '-' . $value : $sCacheValue);   			
         		}

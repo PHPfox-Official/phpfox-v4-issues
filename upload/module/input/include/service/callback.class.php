@@ -42,7 +42,7 @@ class Input_Service_Callback extends Phpfox_Service
 		}
 		
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('feed' => $aRow['author'])),
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('feed' => $aRow['author'])),
 			'message' => $aRow['user_name'] .' tagged you in a comment in a relationship update',
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -101,7 +101,7 @@ class Input_Service_Callback extends Phpfox_Service
 		
 		$aFeed = $this->database()->select('f.*, u.user_name')
 				->from(Phpfox::getT('feed'), 'f')
-				->where('feed_id = ' . (int)Phpfox::getLib('request')->get('parent_id'))
+				->where('feed_id = ' . (int)Phpfox_Request::instance()->get('parent_id'))
 				->join(Phpfox::getT('user'), 'u', 'u.user_id = f.user_id')
 				->execute('getSlaveRow');
 		
@@ -124,7 +124,7 @@ class Input_Service_Callback extends Phpfox_Service
 		
 		if (!$bDoNotSendEmail)
 		{
-			$sLink = Phpfox::getLib('url')->makeUrl($aFeed['user_name'], array('feed-id' => $aFeed['feed_id']));
+			$sLink = Phpfox_Url::instance()->makeUrl($aFeed['user_name'], array('feed-id' => $aFeed['feed_id']));
 
 			Phpfox::getLib('mail')->to($aFeed['user_id'])
 					->subject(array('custom.full_name_liked_your_change_on_phrase_var_name', array('full_name' => Phpfox::getUserBy('full_name'), 'phrase_var_name' => Phpfox::getPhrase($aRow['phrase_var_name']))))
@@ -173,7 +173,7 @@ class Input_Service_Callback extends Phpfox_Service
 		}
 
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -252,7 +252,7 @@ class Input_Service_Callback extends Phpfox_Service
 		/* we only need the previous state if the current phrase has {previous_status} in its text */
 		$sPhrase = Phpfox::getService('custom')->getRelationshipPhrase($aRelation, $aFeed, $aReplace, $sPrevious);
 		/* For now lets just send the user to the friend page */
-		$sLink = Phpfox::getLib('url')->makeUrl($aRelation['user_name']) . 'feed_' . $aFeed['feed_id'] . '/';
+		$sLink = Phpfox_Url::instance()->makeUrl($aRelation['user_name']) . 'feed_' . $aFeed['feed_id'] . '/';
 
 		$aReturn = array(
 			'feed_link' => $sLink,
@@ -303,7 +303,7 @@ class Input_Service_Callback extends Phpfox_Service
 			Phpfox::getService('feed.process')->add('comment_relation', $aRow['relation_data_id']);
 		}
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('feed-id' => $aRow['feed_id']));
+		$sLink = Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('feed-id' => $aRow['feed_id']));
 		$sName = Phpfox::getUserBy('full_name');
 		$sTitle = $this->preParse()->clean(Phpfox::getPhrase($aRow['phrase_var_name']), 100);
 		$sContent = $this->preParse()->clean(Phpfox::getPhrase($aRow['phrase_var_name']), 100);
@@ -342,7 +342,7 @@ class Input_Service_Callback extends Phpfox_Service
 
 		// if (!$bDoNotSendEmail)
 		{
-			$sLink = Phpfox::getLib('url')->makeUrl('friend'); //Phpfox::permalink('friend');
+			$sLink = Phpfox_Url::instance()->makeUrl('friend'); //Phpfox::permalink('friend');
 
 			Phpfox::getLib('mail')->to($aRow['user_id'])
 					->subject(array('custom.full_name_liked_your_change_in_relationship_title', array('full_name' => Phpfox::getUserBy('full_name'), 'title' => $aRow['title'])))
@@ -427,7 +427,7 @@ class Input_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink($aRow['user_name'], 'feed_'. $iFeed),
+			'link' => Phpfox_Url::instance()->permalink($aRow['user_name'], 'feed_'. $iFeed),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -474,7 +474,7 @@ class Input_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink($aRow['user_name'], 'feed_' . $iFeed),
+			'link' => Phpfox_Url::instance()->permalink($aRow['user_name'], 'feed_' . $iFeed),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -483,7 +483,7 @@ class Input_Service_Callback extends Phpfox_Service
 	
 	public function getActivityFeed($aItem)
 	{
-		$sLink = Phpfox::getLib('url')->makeUrl($aItem['user_name']);
+		$sLink = Phpfox_Url::instance()->makeUrl($aItem['user_name']);
 		$aReturn = array(
 			'feed_link' => $sLink,
 			'feed_title' => '',
@@ -663,7 +663,7 @@ class Input_Service_Callback extends Phpfox_Service
 			Phpfox::getService('feed.process')->add('comment_custom', $aVals['item_id']);
 		}
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('feed-id' => $aRow['feed_id']));//Phpfox::getLib('url')->permalink('custom', $aRow['field_id'], Phpfox::getPhrase($aRow['phrase_var_name']));
+		$sLink = Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('feed-id' => $aRow['feed_id']));//Phpfox_Url::instance()->permalink('custom', $aRow['field_id'], Phpfox::getPhrase($aRow['phrase_var_name']));
 
 		Phpfox::getService('comment.process')->notify(array(
 			'user_id' => $aRow['user_id'],
@@ -717,7 +717,7 @@ class Input_Service_Callback extends Phpfox_Service
 		}
 
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('feed-id' => $aRow['feed_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('feed-id' => $aRow['feed_id'])),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);

@@ -116,7 +116,7 @@ class Event_Service_Api extends Phpfox_Service
 					'permalink' => Phpfox::permalink('event', $aRow['event_id'], $aRow['title']),
 					'info' => Phpfox::getLib('parse.output')->parse($aRow['description_parsed']),
 					'created_by' => $aRow['full_name'],
-					'created_by_url' => Phpfox::getLib('url')->makeUrl($aRow['user_name'])
+					'created_by_url' => Phpfox_Url::instance()->makeUrl($aRow['user_name'])
 				);
 			
 			$aReturn[$iKey]['photo_200px'] = Phpfox::getLib('image.helper')->display(array(

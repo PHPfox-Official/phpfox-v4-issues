@@ -246,7 +246,7 @@ class Event_Service_Event extends Phpfox_Service
 		
 		foreach ($aEvents as $iKey => $aEvent)
 		{			
-			$aEvents[$iKey]['url'] = Phpfox::getLib('url')->permalink('event', $aEvent['event_id'], $aEvent['title']);
+			$aEvents[$iKey]['url'] = Phpfox_Url::instance()->permalink('event', $aEvent['event_id'], $aEvent['title']);
 			$aEvents[$iKey]['start_time_stamp'] = Phpfox::getTime(Phpfox::getParam('event.event_view_time_stamp_profile'), $aEvent['start_time']);
 			$aEvents[$iKey]['location_clean'] = Phpfox::getLib('parse.output')->split(Phpfox::getLib('parse.output')->clean($aEvent['location']), 10);			
 		}
@@ -267,7 +267,7 @@ class Event_Service_Event extends Phpfox_Service
 			
 		foreach ($aEvents as $iKey => $aEvent)
 		{
-			$aEvents[$iKey]['url'] = Phpfox::getLib('url')->makeUrl('event', array('redirect' => $aEvent['event_id']));
+			$aEvents[$iKey]['url'] = Phpfox_Url::instance()->makeUrl('event', array('redirect' => $aEvent['event_id']));
 			$aEvents[$iKey]['start_time_stamp'] = Phpfox::getTime(Phpfox::getParam('event.event_view_time_stamp_profile'), $aEvent['start_time']);
 			$aEvents[$iKey]['location_clean'] = Phpfox::getLib('parse.output')->split(Phpfox::getLib('parse.output')->clean($aEvent['location']), 10);
 		}
@@ -477,7 +477,7 @@ class Event_Service_Event extends Phpfox_Service
 			d(__FILE__ . ':' . __LINE__);
 		}
 		
-		$aRow['link'] = Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('event', $aRow['event_id'], $aRow['title']);
 		return $aRow;
 	}
 	

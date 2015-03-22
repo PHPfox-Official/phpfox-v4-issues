@@ -207,7 +207,7 @@ class Pages_Service_Process extends Phpfox_Service
 			
 			Phpfox_File::instance()->unlink(Phpfox::getParam('pages.dir_image') . sprintf($sFileName, ''));
 			
-			$this->database()->update(Phpfox::getT('pages_widget'), array('image_server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'widget_id = ' . (int) $iId);
+			$this->database()->update(Phpfox::getT('pages_widget'), array('image_server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'widget_id = ' . (int) $iId);
 		}		
 		
 		return $iId;
@@ -452,7 +452,7 @@ class Pages_Service_Process extends Phpfox_Service
 			$iFileSizes = filesize(Phpfox::getParam('pages.dir_image') . sprintf($sFileName, ''));			
 			
 			$aUpdate['image_path'] = $sFileName;
-			$aUpdate['image_server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+			$aUpdate['image_server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 			
 			$iSize = 50;			
 			$oImage->createThumbnail(Phpfox::getParam('pages.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('pages.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);			
@@ -550,7 +550,7 @@ class Pages_Service_Process extends Phpfox_Service
 		
 		$aUserCache = array();
 		$this->database()->delete(Phpfox::getT('pages_admin'), 'page_id = ' . (int) $iId);
-		$aAdmins = Phpfox::getLib('request')->getArray('admins');
+		$aAdmins = Phpfox_Request::instance()->getArray('admins');
 		if (count($aAdmins))
 		{
 			foreach ($aAdmins as $iAdmin)
@@ -771,7 +771,7 @@ class Pages_Service_Process extends Phpfox_Service
 			$this->database()->insert(Phpfox::getT('session'), array(
 					'user_id' => $aPage['user_id'],
 					'last_activity' => PHPFOX_TIME,
-					'id_hash' => Phpfox::getLib('request')->getIdHash()
+					'id_hash' => Phpfox_Request::instance()->getIdHash()
 				)
 			);
 		}

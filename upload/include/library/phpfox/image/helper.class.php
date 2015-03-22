@@ -173,17 +173,17 @@ class Phpfox_Image_Helper
 			$aParams['title'] = ($bIsOnline ? Phpfox::getPhrase('core.full_name_is_online', array('full_name' => Phpfox::getLib('parse.output')->shorten($aParams['user'][$sSuffix . 'full_name'], Phpfox::getParam('user.maximum_length_for_full_name')))) : Phpfox::getLib('parse.output')->shorten($aParams['user'][$sSuffix . 'full_name'], Phpfox::getParam('user.maximum_length_for_full_name')));
 			
 			// Create the users link
-			// $sLink = Phpfox::getLib('url')->makeUrl('profile', $aParams['user'][$sSuffix . 'user_name']);
+			// $sLink = Phpfox_Url::instance()->makeUrl('profile', $aParams['user'][$sSuffix . 'user_name']);
 			if(!empty($aParams['user']['profile_page_id']) && !empty($aParams['user']['page_id']))
 			{
 				if(empty($aParams['user']['user_name']))
 				{
-					$sLink = Phpfox::getLib('url')->makeUrl('pages', $aParams['user']['page_id']);
+					$sLink = Phpfox_Url::instance()->makeUrl('pages', $aParams['user']['page_id']);
 				}
 			}
 			else
 			{
-				$sLink = Phpfox::getLib('url')->makeUrl('profile', $aParams['user'][$sSuffix . 'user_name']);
+				$sLink = Phpfox_Url::instance()->makeUrl('profile', $aParams['user'][$sSuffix . 'user_name']);
 			}			
 			
 			if (!empty($aParams['server_id']))
@@ -720,7 +720,7 @@ class Phpfox_Image_Helper
 
 		if (PHPFOX_IS_AJAX)
 		{
-			$aAjaxCall = Phpfox::getLib('request')->get('core');
+			$aAjaxCall = Phpfox_Request::instance()->get('core');
 			if (isset($aAjaxCall['call']) && in_array($aAjaxCall['call'], array('core.loadDelayedBlocks')))
 			{
 

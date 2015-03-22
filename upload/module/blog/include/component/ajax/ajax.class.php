@@ -83,7 +83,7 @@ class Blog_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if (Phpfox::getService('blog.process')->updateBlogTitle($this->get('blog_id'), $this->get('quick_edit_input')))
 		{			
-			$this->html('#' . $this->get('id'), '<a href="' . Phpfox::getLib('url')->makeUrl('blog', array($this->get('old_title'))) . '" id="js_blog_edit_inner_title' . $this->get('blog_id') . '">' . Phpfox::getLib('parse.output')->clean(Phpfox::getLib('parse.input')->clean($this->get('quick_edit_input'))) . '</a>', '.highlightFade()');
+			$this->html('#' . $this->get('id'), '<a href="' . Phpfox_Url::instance()->makeUrl('blog', array($this->get('old_title'))) . '" id="js_blog_edit_inner_title' . $this->get('blog_id') . '">' . Phpfox::getLib('parse.output')->clean(Phpfox::getLib('parse.input')->clean($this->get('quick_edit_input'))) . '</a>', '.highlightFade()');
 		}
 	}
 	
@@ -96,11 +96,11 @@ class Blog_Component_Ajax_Ajax extends Phpfox_Ajax
 			
 			if (Phpfox::getParam('core.is_personal_site'))
 			{
-				$sPermalink = Phpfox::getLib('url')->makeUrl('blog', $sTitle);
+				$sPermalink = Phpfox_Url::instance()->makeUrl('blog', $sTitle);
 			}
 			else 
 			{
-				$sPermalink = Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name'), array('blog', $sTitle));
+				$sPermalink = Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name'), array('blog', $sTitle));
 			}			
 			$sPermalink = preg_replace("/\/{$sTitle}\//i", "/<a href=\"#?type=input&amp;id=js_blog_edit_title&amp;content=js_blog_edit_inner_title&amp;call=blog.updatePermaLink&amp;blog_id=" . $this->get('blog_id') . "\" class=\"quickEdit\" title=\"" . Phpfox::getPhrase('blog.click_edit_permalink') . "\">{$sTitle}</a>/", $sPermalink);
 			
@@ -115,11 +115,11 @@ class Blog_Component_Ajax_Ajax extends Phpfox_Ajax
 		$sTitle = Phpfox::getService('blog')->prepareTitle($this->get('title'));
 		if (Phpfox::getParam('core.is_personal_site'))
 		{
-			$sPermalink = Phpfox::getLib('url')->makeUrl('blog', $sTitle);
+			$sPermalink = Phpfox_Url::instance()->makeUrl('blog', $sTitle);
 		}
 		else 
 		{
-			$sPermalink = Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name'), array('blog', $sTitle));
+			$sPermalink = Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name'), array('blog', $sTitle));
 		}		
 		$this->call("$('#js_permalink').html('" . Phpfox::getPhrase('blog.permalink') . ": {$sPermalink}').show();");
 	}
@@ -201,7 +201,7 @@ class Blog_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		$sCategory = Phpfox::getService('blog.category.process')->update($this->get('category_id'), $this->get('quick_edit_input'), $this->get('user_id'));
 		
-		$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('admincp.blog') . '\'');
+		$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('admincp.blog') . '\'');
 	}
 	
 	public function getNew()
@@ -209,7 +209,7 @@ class Blog_Component_Ajax_Ajax extends Phpfox_Ajax
 		Phpfox::getBlock('blog.new');
 		
 		$this->html('#' . $this->get('id'), $this->getContent(false));
-		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox::getLib('url')->makeUrl('blog') . '\');');
+		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox_Url::instance()->makeUrl('blog') . '\');');
 	}
 
 	public function quickSubmit()

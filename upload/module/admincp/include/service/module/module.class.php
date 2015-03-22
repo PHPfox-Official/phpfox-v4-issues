@@ -227,7 +227,7 @@ class Admincp_Service_Module_Module extends Phpfox_Service
 				)
 			)
 			->leftJoin(Phpfox::getT('language_phrase'), 'language_phrase', array(
-					"language_phrase.language_id = '" . Phpfox::getLib('locale')->getLangId() . "'",
+					"language_phrase.language_id = '" . Phpfox_Locale::instance()->getLangId() . "'",
 					'AND m.phrase_var_name = language_phrase.var_name'
 				)
 			)

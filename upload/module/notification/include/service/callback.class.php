@@ -40,7 +40,7 @@ class Notification_Service_Callback extends Phpfox_Service
 		$iTotal = Phpfox::getService('notification')->getUnseenTotal();
 		if ($iTotal > 0)
 		{				
-			Phpfox::getLib('ajax')->call('$(\'#js_total_new_notifications\').html(\'' . (int) $iTotal . '\').css({display: \'block\'}).show();');
+			Phpfox_Ajax::instance()->call('$(\'#js_total_new_notifications\').html(\'' . (int) $iTotal . '\').css({display: \'block\'}).show();');
 		}
 	}
 	

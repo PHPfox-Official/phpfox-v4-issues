@@ -69,7 +69,7 @@ class Blog_Component_Controller_View extends Phpfox_Component
 		{
 			if(!Phpfox::getService('pages')->hasPerm($aItem['item_id'], 'blog.view_browse_blogs'))
 			{
-				Phpfox::getLib('url')->send('privacy.invalid');
+				Phpfox_Url::instance()->send('privacy.invalid');
 			}
 		}
 		
@@ -140,7 +140,7 @@ class Blog_Component_Controller_View extends Phpfox_Component
 			$sCategories = '';
 			foreach ($aCategories[$aItem['blog_id']] as $iKey => $aCategory)
 			{
-				$sCategories .= ($iKey != 0 ? ',' : '') . ' <a href="' . ($aCategory['user_id'] ? $this->url()->permalink($aItem['user_name'] . '.blog.category', $aCategory['category_id'], $aCategory['category_name']) : $this->url()->permalink('blog.category', $aCategory['category_id'], $aCategory['category_name'])) . '">' . Phpfox::getLib('locale')->convert(Phpfox::getLib('parse.output')->clean($aCategory['category_name'])) . '</a>';
+				$sCategories .= ($iKey != 0 ? ',' : '') . ' <a href="' . ($aCategory['user_id'] ? $this->url()->permalink($aItem['user_name'] . '.blog.category', $aCategory['category_id'], $aCategory['category_name']) : $this->url()->permalink('blog.category', $aCategory['category_id'], $aCategory['category_name'])) . '">' . Phpfox_Locale::instance()->convert(Phpfox::getLib('parse.output')->clean($aCategory['category_name'])) . '</a>';
 				
 				$this->template()->setMeta('keywords', $aCategory['category_name']);
 			}
@@ -148,11 +148,11 @@ class Blog_Component_Controller_View extends Phpfox_Component
 
 		if (isset($sCategories))
 		{
-			$aItem['info'] = Phpfox::getPhrase('blog.posted_x_by_x_in_x', array('date' => Phpfox::getTime(Phpfox::getParam('blog.blog_time_stamp'), $aItem['time_stamp']), 'link' => Phpfox::getLib('url')->makeUrl('profile', array($aItem['user_name'])), 'user' => $aItem, 'categories' => $sCategories));
+			$aItem['info'] = Phpfox::getPhrase('blog.posted_x_by_x_in_x', array('date' => Phpfox::getTime(Phpfox::getParam('blog.blog_time_stamp'), $aItem['time_stamp']), 'link' => Phpfox_Url::instance()->makeUrl('profile', array($aItem['user_name'])), 'user' => $aItem, 'categories' => $sCategories));
 		}
 		else 
 		{
-			$aItem['info'] = Phpfox::getPhrase('blog.posted_x_by_x', array('date' => Phpfox::getTime(Phpfox::getParam('blog.blog_time_stamp'), $aItem['time_stamp']), 'link' => Phpfox::getLib('url')->makeUrl('profile', array($aItem['user_name'])), 'user' => $aItem));
+			$aItem['info'] = Phpfox::getPhrase('blog.posted_x_by_x', array('date' => Phpfox::getTime(Phpfox::getParam('blog.blog_time_stamp'), $aItem['time_stamp']), 'link' => Phpfox_Url::instance()->makeUrl('profile', array($aItem['user_name'])), 'user' => $aItem));
 		}		
 		
 		$aItem['bookmark_url'] = Phpfox::permalink('blog', $aItem['blog_id'], $aItem['title']);

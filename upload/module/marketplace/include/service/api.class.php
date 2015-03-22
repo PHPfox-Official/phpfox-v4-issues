@@ -105,7 +105,7 @@ class Marketplace_Service_Api extends Phpfox_Service
 			
 							$iFileSizes += filesize(Phpfox::getParam('marketplace.dir_image') . sprintf($sFileName, ''));
 			
-							$this->database()->insert(Phpfox::getT('marketplace_image'), array('listing_id' => $iId, 'image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')));
+							$this->database()->insert(Phpfox::getT('marketplace_image'), array('listing_id' => $iId, 'image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')));
 								
 							foreach ($aSizes as $iSize)
 							{
@@ -123,7 +123,7 @@ class Marketplace_Service_Api extends Phpfox_Service
 					return false;
 				}
 					
-				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'listing_id = ' . $iId);
+				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'listing_id = ' . $iId);
 					
 				Phpfox::getService('user.space')->update(Phpfox::getUserId(), 'marketplace', $iFileSizes);
 			}			
@@ -193,7 +193,7 @@ class Marketplace_Service_Api extends Phpfox_Service
 					'mini_description' => Phpfox::getLib('parse.output')->parse($aRow['mini_description']),
 					'description' => Phpfox::getLib('parse.output')->parse($aRow['description_parsed']),
 					'likes' => $aRow['total_like'],
-					'permalink' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
+					'permalink' => Phpfox_Url::instance()->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 					'currency_id' => $aRow['currency_id'],
 					'price' => $aRow['price'],
 					'country_iso' => $aRow['country_iso'],

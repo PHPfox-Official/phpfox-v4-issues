@@ -35,7 +35,7 @@ class Link_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('link.full_name_tagged_you_in_a_link', array('full_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']) . 'link-id_' . $aRow['link_id'] . '/comment_' . $aRow['comment_id'] . '/',
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']) . 'link-id_' . $aRow['link_id'] . '/comment_' . $aRow['comment_id'] . '/',
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -138,13 +138,13 @@ class Link_Service_Callback extends Phpfox_Service
 		
 		$aParts = parse_url($aRow['link']);		
 				
-		$sLink = Phpfox::getLib('url')->makeUrl($aRow['parent_user_name']);
+		$sLink = Phpfox_Url::instance()->makeUrl($aRow['parent_user_name']);
 		
 		$aReturn = array( 
 		    'feed_title' => $aRow['title'],             
 		    'feed_status' => $aRow['status_info'], 
-		    'feed_link_comment' => Phpfox::getLib('url')->makeUrl($aItem['user_name'], array('link-id' => $aRow['link_id'])),
-		    'feed_link' => Phpfox::getLib('url')->makeUrl($aItem['user_name'], array('link-id' => $aRow['link_id'])),
+		    'feed_link_comment' => Phpfox_Url::instance()->makeUrl($aItem['user_name'], array('link-id' => $aRow['link_id'])),
+		    'feed_link' => Phpfox_Url::instance()->makeUrl($aItem['user_name'], array('link-id' => $aRow['link_id'])),
 			'feed_link_actual' => $aRow['link'],
 		    'feed_content' => $aRow['description'], 
 		    'total_comment' => $aRow['total_comment'], 
@@ -166,8 +166,8 @@ class Link_Service_Callback extends Phpfox_Service
 		{
 			if (!preg_match('/' . preg_quote(Phpfox::getParam('core.host')) . '/i', $aRow['link']))
 			{
-				$aReturn['feed_link_actual'] = Phpfox::getLib('url')->makeUrl('core.redirect', array('url' => Phpfox::getLib('url')->encode($aRow['link'])));
-				$aReturn['feed_title_extra_link'] = Phpfox::getLib('url')->makeUrl('core.redirect', array('url' => Phpfox::getLib('url')->encode($aReturn['feed_title_extra_link'])));
+				$aReturn['feed_link_actual'] = Phpfox_Url::instance()->makeUrl('core.redirect', array('url' => Phpfox_Url::instance()->encode($aRow['link'])));
+				$aReturn['feed_title_extra_link'] = Phpfox_Url::instance()->makeUrl('core.redirect', array('url' => Phpfox_Url::instance()->encode($aReturn['feed_title_extra_link'])));
 			}						
 		}
 		
@@ -188,9 +188,9 @@ class Link_Service_Callback extends Phpfox_Service
 		}
 
 		// http://www.phpfox.com/tracker/view/15456/
-		if($aRow['module_id'] == 'pages' && empty($aRow['parent_user_name']) && Phpfox::getLib('request')->get('link-id') > 0)
+		if($aRow['module_id'] == 'pages' && empty($aRow['parent_user_name']) && Phpfox_Request::instance()->get('link-id') > 0)
 		{
-			$sLink = Phpfox::getLib('url')->makeUrl('pages', $aRow['parent_user_id']);
+			$sLink = Phpfox_Url::instance()->makeUrl('pages', $aRow['parent_user_id']);
 			$aReturn['feed_mini'] = true;
 			$aReturn['no_share'] = true;
 			$aReturn['feed_mini_content'] = Phpfox::getPhrase('friend.full_name_posted_a_href_link_a_link_a_on_a_href_parent_user_name', 
@@ -208,7 +208,7 @@ class Link_Service_Callback extends Phpfox_Service
 		{
 			$aReturn['feed_mini'] = true;
 			$aReturn['no_share'] = true;
-			$aReturn['feed_mini_content'] = Phpfox::getPhrase('friend.full_name_posted_a_href_link_a_link_a_on_a_href_parent_user_name', array('full_name' => Phpfox::getService('user')->getFirstName($aItem['full_name']), 'link' => $sLink, 'parent_user_name' => Phpfox::getLib('url')->makeUrl($aRow['parent_user_name']), 'parent_full_name' => $aRow['parent_full_name']));
+			$aReturn['feed_mini_content'] = Phpfox::getPhrase('friend.full_name_posted_a_href_link_a_link_a_on_a_href_parent_user_name', array('full_name' => Phpfox::getService('user')->getFirstName($aItem['full_name']), 'link' => $sLink, 'parent_user_name' => Phpfox_Url::instance()->makeUrl($aRow['parent_user_name']), 'parent_full_name' => $aRow['parent_full_name']));
 			
 			unset($aReturn['feed_status'], $aReturn['feed_image'], $aReturn['feed_title'], $aReturn['feed_content']);
 		}
@@ -277,7 +277,7 @@ class Link_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('link', $aRow['link_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('link', $aRow['link_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -313,7 +313,7 @@ class Link_Service_Callback extends Phpfox_Service
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('link', $aRow['link_id'], $aRow['title']);
+		$sLink = Phpfox_Url::instance()->permalink('link', $aRow['link_id'], $aRow['title']);
 		
 		Phpfox::getService('comment.process')->notify(array(
 				'user_id' => $aRow['user_id'],
@@ -374,7 +374,7 @@ class Link_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('link', $aRow['link_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('link', $aRow['link_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -423,7 +423,7 @@ class Link_Service_Callback extends Phpfox_Service
 					->where('l.link_id = ' . (int)$iId)
 					->execute('getSlaveField');
 		
-		$sLink = Phpfox::getLib('url')->makeUrl($aLink, array('link-id' => $iId));
+		$sLink = Phpfox_Url::instance()->makeUrl($aLink, array('link-id' => $iId));
 		return $sLink;
 	}
 	

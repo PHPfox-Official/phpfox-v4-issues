@@ -24,7 +24,7 @@ class Feed_Component_Controller_Index extends Phpfox_Component
 		$sFeedDisplay = 'feed.display';
 		(($sPlugin = Phpfox_Plugin::get('feed.component_controller_index_feeddisplay')) ? eval($sPlugin) : false);
 		/* Load the picup files if needed*/
-		if (Phpfox::isMobile() && ( ($sBrowser = Phpfox::getLib('request')->getBrowser()) && strpos($sBrowser, 'Safari') !== false))
+		if (Phpfox::isMobile() && ( ($sBrowser = Phpfox_Request::instance()->getBrowser()) && strpos($sBrowser, 'Safari') !== false))
 		{
 			$sMethod = 'simple';
 			$this->template()->setHeader(array(

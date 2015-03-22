@@ -189,6 +189,14 @@ class Phpfox_Locale
 		
 		define('PHPFOX_LOCALE_LOADED', true);
 	}
+
+	/**
+	 * @return $this
+	 */
+	public static function instance()
+	{
+		return Phpfox::getLib('locale');
+	}
 	
 	/**
 	 * Get all the information provided on the current language package being used.
@@ -273,15 +281,15 @@ class Phpfox_Locale
 			}			
 			else
 			{
-				//$sUrl = 'http://api.ipinfodb.com/v2/ip_query.php?ip=' . Phpfox::getLib('request')->getIp() . '&key=' . Phpfox::getParam('core.ip_infodb_api_key');
-				$sUrl = 'http://api.ipinfodb.com/v3/ip-city/?key='.Phpfox::getParam('core.ip_infodb_api_key').'&ip='.Phpfox::getLib('request')->getIp().'&format=xml';
+				//$sUrl = 'http://api.ipinfodb.com/v2/ip_query.php?ip=' . Phpfox_Request::instance()->getIp() . '&key=' . Phpfox::getParam('core.ip_infodb_api_key');
+				$sUrl = 'http://api.ipinfodb.com/v3/ip-city/?key='.Phpfox::getParam('core.ip_infodb_api_key').'&ip='.Phpfox_Request::instance()->getIp().'&format=xml';
 				if (function_exists('file_get_contents') && ini_get('allow_url_fopen'))
 				{
 					$sXML = file_get_contents($sUrl);
 				}
 				else
 				{
-					$sXML = Phpfox::getLib('request')->send($sUrl, array(), 'GET');
+					$sXML = Phpfox_Request::instance()->send($sUrl, array(), 'GET');
 				}
 				$aCallback = Phpfox::getLib('xml.parser')->parse($sXML, 'UTF-8');			
 
@@ -433,7 +441,7 @@ class Phpfox_Locale
 			$sUserPrefix = (isset($aParams['user_prefix']) ? $aParams['user_prefix'] : '');	
 			
 			$aUser = $aParams['user'];
-			$aUser['user_link'] = '<a href="' . Phpfox::getLib('url')->makeUrl($aUser[$sUserPrefix . 'user_name']) . '">' . Phpfox::getLib('parse.output')->clean($aUser[$sUserPrefix . 'full_name']) . '</a>';
+			$aUser['user_link'] = '<a href="' . Phpfox_Url::instance()->makeUrl($aUser[$sUserPrefix . 'user_name']) . '">' . Phpfox::getLib('parse.output')->clean($aUser[$sUserPrefix . 'full_name']) . '</a>';
 			unset($aParams['user']);
 			$aParams = array_merge($aParams, $aUser);
 		}
@@ -541,7 +549,7 @@ class Phpfox_Locale
 	public function setCache()
 	{
 		$this->_oCache = Phpfox::getLib('cache');
-		$this->_sCacheId = $this->_oCache->set(array('locale', 'language-' . $this->getLangId() . '-page-' . str_replace('/', '-', Phpfox::getLib('url')->getUrl()) . '-' . Phpfox_Module::instance()->getModuleName() . '-' . str_replace('_', '-', Phpfox_Module::instance()->getControllerName())));
+		$this->_sCacheId = $this->_oCache->set(array('locale', 'language-' . $this->getLangId() . '-page-' . str_replace('/', '-', Phpfox_Url::instance()->getUrl()) . '-' . Phpfox_Module::instance()->getModuleName() . '-' . str_replace('_', '-', Phpfox_Module::instance()->getControllerName())));
 		if (($this->_aPhrases = $this->_oCache->get($this->_sCacheId)))
 		{		
 			$this->_bIsCached = true;

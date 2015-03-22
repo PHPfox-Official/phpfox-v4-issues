@@ -17,7 +17,7 @@ class Janrain_Component_Ajax_Ajax extends Phpfox_Ajax
 {
 	public function login()
 	{
-		$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('janrain.login') . '\';');	
+		$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('janrain.login') . '\';');
 	}
 }
 

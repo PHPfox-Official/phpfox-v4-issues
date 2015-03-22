@@ -51,7 +51,7 @@ class Marketplace_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('marketplace.marketplace'),
-			'link' => Phpfox::getLib('url')->makeUrl('marketplace'),
+			'link' => Phpfox_Url::instance()->makeUrl('marketplace'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_marketplace.png'))
 		);
 	}	
@@ -112,7 +112,7 @@ class Marketplace_Service_Callback extends Phpfox_Service
 		
 		$sLink = Phpfox::permalink('marketplace', $aItem['listing_id'], $aItem['title']);
 		$sTitle = Phpfox::getLib('parse.output')->shorten($aItem['title'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') :50));
-		$sUser = '<a href="' . Phpfox::getLib('url')->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
+		$sUser = '<a href="' . Phpfox_Url::instance()->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
 		$sGender = Phpfox::getService('user')->gender($aItem['gender'], 1);
 		
 		if ($aRow['user_id'] == $aItem['user_id'])
@@ -195,7 +195,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 	
 	public function getItemName($iId, $sName)
 	{
-		return Phpfox::getPhrase('marketplace.a_href_link_on_name_s_listing_a',array('link' => Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)), 'name' => $sName));
+		return Phpfox::getPhrase('marketplace.a_href_link_on_name_s_listing_a',array('link' => Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)), 'name' => $sName));
 			
 	}	
 
@@ -216,7 +216,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 	
 	public function getCommentNewsFeed($aRow)
 	{		
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 
 		if ($aRow['owner_user_id'] == $aRow['item_user_id'])
@@ -292,7 +292,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 	public function getNewsFeed($aRow)
 	{
 		if ($sPlugin = Phpfox_Plugin::get('marketplace.service_callback_getnewsfeed_start')){eval($sPlugin);}
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		
 		$aRow['text'] = Phpfox::getPhrase('marketplace.a_href_user_link_owner_full_name_a_added_a_new_listing_a_href_title_link_title_a', array(
@@ -348,7 +348,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 	{
 		return array(
 			'message' => Phpfox::getPhrase('marketplace.your_listing_title_has_been_approved', array('title' => Phpfox::getLib('parse.output')->shorten($aRow['item_title'], 20, '...'))),
-			'link' => Phpfox::getLib('url')->makeUrl('marketplace', array('redirect' => $aRow['item_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl('marketplace', array('redirect' => $aRow['item_id'])),
 			'path' => 'marketplace.url_image',
 			'suffix' => '_120'
 		);		
@@ -368,7 +368,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		return array(
 			'phrase' => Phpfox::getPhrase('marketplace.listings'),
 			'value' => Phpfox::getService('marketplace')->getPendingTotal(),
-			'link' => Phpfox::getLib('url')->makeUrl('marketplace', array('view' => 'pending'))
+			'link' => Phpfox_Url::instance()->makeUrl('marketplace', array('view' => 'pending'))
 		);
 	}
 
@@ -429,7 +429,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 	{		
 		return array(
 			'message' => Phpfox::getPhrase('marketplace.user_link_invited_you_to_a_marketplace_listing', array('user' => $aRow)),
-			'link' => Phpfox::getLib('url')->makeUrl('marketplace', array('redirect' => $aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('marketplace', array('redirect' => $aRow['item_id']))
 		);
 	}		
 	
@@ -446,7 +446,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 			return null;
 		}
 
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('marketplace', array('view' => 'invitation')) . '"' . (!$iTotal ? ' onclick="alert(\'' . Phpfox::getPhrase('marketplace.no_listing_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'module/marketplace.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('marketplace.marketplace_invites') . ' (<span id="js_request_marketplace_count_total">' . $iTotal . '</span>)</a></li>';
+		return '<li><a href="' . Phpfox_Url::instance()->makeUrl('marketplace', array('view' => 'invitation')) . '"' . (!$iTotal ? ' onclick="alert(\'' . Phpfox::getPhrase('marketplace.no_listing_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'module/marketplace.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('marketplace.marketplace_invites') . ' (<span id="js_request_marketplace_count_total">' . $iTotal . '</span>)</a></li>';
 	}
 
 	public function reparserList()
@@ -503,7 +503,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 	    
 	    $aListing['title'] = Phpfox::getPhrase('marketplace.sponsor_title', array('sListingTitle' => $aListing['title']));
 	    $aListing['paypal_msg'] = Phpfox::getPhrase('marketplace.sponsor_paypal_message', array('sListingTitle' => $aListing['title']));
-	    //$aListing['link'] = Phpfox::getLib('url')->makeUrl('marketplace.view.'.$aListing['title_url']);
+	    //$aListing['link'] = Phpfox_Url::instance()->makeUrl('marketplace.view.'.$aListing['title_url']);
 	    $aListing['link'] = Phpfox::permalink('ad.sponsor', $aListing['item_id'], $aListing['title']);
 	    if (isset($aListing['image']) && $aListing['image'] != '')
 	    {
@@ -525,7 +525,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		{
 			$aRow['text'] = Phpfox::getPhrase('marketplace.a_href_user_link_full_name_a_likes_their_own_a_href_link_listing_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
 					'link' => $aRow['link']
 				)
@@ -535,9 +535,9 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		{
 			$aRow['text'] = Phpfox::getPhrase('marketplace.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_a_href_link_listing_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -553,11 +553,11 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		return array(
 			'message' => Phpfox::getPhrase('marketplace.a_href_user_link_full_name_a_likes_your_a_href_link_listing_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('marketplace', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('marketplace', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('marketplace', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('marketplace', array('redirect' => $aRow['item_id']))
 		);				
 	}	
 	
@@ -565,8 +565,8 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 	{
 		return Phpfox::getPhrase('marketplace.a_href_user_link_full_name_a_likes_your_a_href_link_listing_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('marketplace', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('marketplace', array('redirect' => $iItemId))
 				)
 			);
 	}			
@@ -639,8 +639,8 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 						'full_name' => $aInvoice['full_name'],
 						'site_name' => Phpfox::getParam('core.site_title'),
 						'title' => $aListing['title'],
-						'link' => Phpfox::getLib('url')->makeUrl('marketplace.view', $aListing['title_url']),
-						'user_link' => Phpfox::getLib('url')->makeUrl($aInvoice['user_name']),
+						'link' => Phpfox_Url::instance()->makeUrl('marketplace.view', $aListing['title_url']),
+						'user_link' => Phpfox_Url::instance()->makeUrl($aInvoice['user_name']),
 						'price' => Phpfox::getService('core.currency')->getCurrency($aInvoice['price'], $aInvoice['currency_id'])
 					)
 				)
@@ -725,7 +725,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -754,7 +754,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -776,7 +776,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		$sPhrase = Phpfox::getPhrase('marketplace.users_wants_you_to_check_out_the_listing_title', array('users' => Phpfox::getService('notification')->getUsers($aNotification), 'title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -899,7 +899,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->permalink('marketplace', $aRow['item_id'], $aRow['item_title']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->permalink('marketplace', $aRow['item_id'], $aRow['item_title']);
 		$aInfo['item_name'] = Phpfox::getPhrase('search.marketplace_listing');
 		
 		$aInfo['item_display_photo'] = Phpfox::getLib('image.helper')->display(array(
@@ -938,7 +938,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		$sPhrase = Phpfox::getPhrase('marketplace.your_marketplace_listing_title_has_been_approved',array('title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
@@ -958,7 +958,7 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 		$sPhrase = Phpfox::getPhrase('marketplace.user_name_tagged_you_in_a_marketplace_listing', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title'])  .'comment_' . $aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('marketplace', $aRow['listing_id'], $aRow['title'])  .'comment_' . $aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);

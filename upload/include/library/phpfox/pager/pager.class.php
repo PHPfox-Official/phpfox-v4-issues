@@ -135,11 +135,11 @@ class Phpfox_Pager
         
         if (isset($aParams['aParams']))
         {
-        	$this->_aParams = array_merge(Phpfox::getLib('request')->getRequests(), $aParams['aParams']);
+        	$this->_aParams = array_merge(Phpfox_Request::instance()->getRequests(), $aParams['aParams']);
         }
         else 
         {
-        	$this->_aParams = Phpfox::getLib('request')->getRequests();
+        	$this->_aParams = Phpfox_Request::instance()->getRequests();
         }      
 
         $this->_getInfo();        
@@ -329,7 +329,7 @@ class Phpfox_Pager
 
         list($nStart, $nEnd) = $this->_getPos();        
         
-        $oUrl = Phpfox::getLib('url');
+        $oUrl = Phpfox_Url::instance();
         $oUrl->clearParam('page');
         
         if ($this->_iPage != 1)

@@ -32,7 +32,7 @@ class Core_Service_System extends Phpfox_Service
 	    $aStats = array
 	    (
 	    	Phpfox::getPhrase('admincp.phpfox_version') => PhpFox::getVersion() . '<i>(build ' . Phpfox::getBuild() . ')</i>',
-			Phpfox::getPhrase('admincp.php_version') => '<a href="' . Phpfox::getLib('url')->makeUrl('admincp.core.phpinfo') . '">' . PHP_VERSION . '</a>',
+			Phpfox::getPhrase('admincp.php_version') => '<a href="' . Phpfox_Url::instance()->makeUrl('admincp.core.phpinfo') . '">' . PHP_VERSION . '</a>',
 	    	Phpfox::getPhrase('admincp.php_sapi') => php_sapi_name(),
 	    	Phpfox::getPhrase('admincp.php_safe_mode') => (PHPFOX_SAFE_MODE ? Phpfox::getPhrase('admincp.true') : Phpfox::getPhrase('admincp.false')),
 	    	Phpfox::getPhrase('admincp.php_open_basedir') => (PHPFOX_OPEN_BASE_DIR ? Phpfox::getPhrase('admincp.true') : Phpfox::getPhrase('admincp.false')),

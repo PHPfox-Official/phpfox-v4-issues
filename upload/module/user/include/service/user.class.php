@@ -148,7 +148,7 @@ class User_Service_User extends Phpfox_Service
 		 * 	- [Tradeoff] User changes does any activity OR query here for `user_activity` 
 		 */ 
 		 
-		if (Phpfox::getParam('profile.profile_caches_user') && Phpfox::getLib('request')->get('req2') == '')
+		if (Phpfox::getParam('profile.profile_caches_user') && Phpfox_Request::instance()->get('req2') == '')
 		{
 			// Any way to avoid this query?
 			if ($bUseId != true)
@@ -184,7 +184,7 @@ class User_Service_User extends Phpfox_Service
 		}
 		
 		// This is only needed in the info page		
-		if (Phpfox::getLib('request')->get('req2') == 'info')//&& Phpfox::getParam('rate.cache_rate_profiles'))
+		if (Phpfox_Request::instance()->get('req2') == 'info')//&& Phpfox::getParam('rate.cache_rate_profiles'))
 		{			
 			// Implement later, we're on the profile.index right now. Lets do profile.info tomorrow			
 			$this->database()->select('ur.rate_id AS has_rated, ')->leftJoin(Phpfox::getT('user_rating'), 'ur', 'ur.item_id = u.user_id AND ur.user_id = ' . Phpfox::getUserId());
@@ -487,7 +487,7 @@ class User_Service_User extends Phpfox_Service
 			$sUserName = $aRow['user_name'];
 		}
 		
-		return Phpfox::getLib('url')->makeUrl($sUserName, $aParams);
+		return Phpfox_Url::instance()->makeUrl($sUserName, $aParams);
 	}
 	
 	/**
@@ -789,7 +789,7 @@ class User_Service_User extends Phpfox_Service
 			->where('us.status_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
 						
-		$aRow['link'] = Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('status_id' => $aRow['status_id']));
+		$aRow['link'] = Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('status_id' => $aRow['status_id']));
 		return $aRow;
 	}
 	

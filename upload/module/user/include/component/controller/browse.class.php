@@ -140,7 +140,7 @@ class User_Component_Controller_Browse extends Phpfox_Component
 		$aUserGroups = array();
 		foreach (Phpfox::getService('user.group')->get() as $aUserGroup)
 		{
-		    $aUserGroups[$aUserGroup['user_group_id']] = Phpfox::getLib('locale')->convert($aUserGroup['title']);
+		    $aUserGroups[$aUserGroup['user_group_id']] = Phpfox_Locale::instance()->convert($aUserGroup['title']);
 		}
 
 		$aGenders = Phpfox::getService('core')->getGenders();
@@ -499,12 +499,12 @@ class User_Component_Controller_Browse extends Phpfox_Component
 			Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		}
 		
-		Phpfox::getLib('url')->setParam('page', $iPage);
+		Phpfox_Url::instance()->setParam('page', $iPage);
 		
 		// http://www.phpfox.com/tracker/view/15277/
 		if($iPage > Phpfox::getLib('pager')->getTotalPages())
 		{
-			Phpfox::getLib('url')->send('error.404');
+			Phpfox_Url::instance()->send('error.404');
 		}
 		
 		if ($this->request()->get('featured') == 1)

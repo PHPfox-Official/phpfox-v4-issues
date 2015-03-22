@@ -59,7 +59,7 @@ class Apps_Service_Browse extends Phpfox_Service
 					->leftJoin(Phpfox::getT('like'), 'lik', 'lik.type_id = \'pages\' AND lik.item_id = pages.page_id AND lik.user_id = ' . Phpfox::getUserId());
 		}
 		
-		if (Phpfox::getLib('request')->get('req2') != 'category')
+		if (Phpfox_Request::instance()->get('req2') != 'category')
 		{
 			$this->database()->select('ac.name AS category_name, ');
 			$this->database()->leftJoin(Phpfox::getT('app_category_data'), 'cdd','cdd.app_id = app.app_id');
@@ -74,7 +74,7 @@ class Apps_Service_Browse extends Phpfox_Service
 	 */
 	public function getQueryJoins($bIsCount = false, $bNoQueryFriend = false)
 	{
-		$oReq = Phpfox::getLib('request');
+		$oReq = Phpfox_Request::instance();
 		if ($oReq->get('view') == 'installed')
 		{
 			if ($bIsCount === false)

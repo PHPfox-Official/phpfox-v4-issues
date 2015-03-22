@@ -214,8 +214,8 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 				
 				$this->search()->setCondition('AND blog_category.category_id = ' . $this->request()->getInt(($bIsProfile === true ? 'req4' : 'req3')) . ' AND blog_category.user_id = ' . ($bIsProfile ? (int) $aUser['user_id'] : 0));
 				
-				$this->template()->setTitle(Phpfox::getLib('locale')->convert($aBlogCategory['name']));
-				$this->template()->setBreadCrumb(Phpfox::getLib('locale')->convert($aBlogCategory['name']), $this->url()->makeUrl('current'), true);
+				$this->template()->setTitle(Phpfox_Locale::instance()->convert($aBlogCategory['name']));
+				$this->template()->setBreadCrumb(Phpfox_Locale::instance()->convert($aBlogCategory['name']), $this->url()->makeUrl('current'), true);
 				
 				$this->search()->setFormUrl($this->url()->permalink(array('blog.category', 'view' => $this->request()->get('view')), $aBlogCategory['category_id'], $aBlogCategory['name']));
 				$bIsValidCategory = true;
@@ -273,7 +273,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 			
 			$aDrafts = array(
 				'phrase' => Phpfox::getPhrase('profile.drafts'),
-				'url' => Phpfox::getLib('url')->makeUrl('profile.blog.view_draft'),
+				'url' => Phpfox_Url::instance()->makeUrl('profile.blog.view_draft'),
 				'total' => Phpfox::getService('blog')->getTotalDrafts($aUser['user_id']),
 				'active' => $bIsActive
 			);

@@ -9,7 +9,7 @@ if (Phpfox::getParam('janrain.enable_janrain_login'))
     if (typeof window.janrain !== 'object') window.janrain = {};
     if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
     
-    janrain.settings.tokenUrl = '" . Phpfox::getLib('url')->makeUrl('janrain.rpx') . "';
+    janrain.settings.tokenUrl = '" . Phpfox_Url::instance()->makeUrl('janrain.rpx') . "';
 
     function isReady() { janrain.ready = true; };
     if (document.addEventListener) {

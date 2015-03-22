@@ -146,7 +146,7 @@ class Video_Service_Video extends Phpfox_Service
 		$oXmlBuilder->addTag('Action', $sAction);
 		$oXmlBuilder->addTag('UserID', Phpfox::getParam('video.vidly_user_key'));
 		$oXmlBuilder->addTag('UserKey', Phpfox::getParam('video.vidly_api_key'));
-		$oXmlBuilder->addTag('Notify', Phpfox::getLib('url')->makeUrl('video.vidly', array('vidlypost' => $sAction)) . $sExtra);
+		$oXmlBuilder->addTag('Notify', Phpfox_Url::instance()->makeUrl('video.vidly', array('vidlypost' => $sAction)) . $sExtra);
 		
 		foreach ($aPost as $mKey => $mNewPost)
 		{
@@ -167,7 +167,7 @@ class Video_Service_Video extends Phpfox_Service
 		
 		$oXmlBuilder->closeGroup();				
 		
-		$aReturn = Phpfox::getLib('request')->send('http://m.vid.ly/api/', array('xml' => $oXmlBuilder->output()));
+		$aReturn = Phpfox_Request::instance()->send('http://m.vid.ly/api/', array('xml' => $oXmlBuilder->output()));
 		
 		return $aReturn;
 	}
@@ -228,7 +228,7 @@ class Video_Service_Video extends Phpfox_Service
 
 	public function makeUrl($sUser, $sUrl, $aCallback = null)
 	{
-		return Phpfox::getLib('url')->makeUrl($sUser, array('video', $sUrl));
+		return Phpfox_Url::instance()->makeUrl($sUser, array('video', $sUrl));
 	}
 
 	public function getFileExt($bDisplay = false)
@@ -308,7 +308,7 @@ class Video_Service_Video extends Phpfox_Service
 		}
 
 		$aVideo['breadcrumb'] = Phpfox::getService('video.category')->getCategoriesById($aVideo['video_id']);
-		$aVideo['bookmark'] = ($this->_aCallback !== false ? Phpfox::getLib('url')->makeUrl($this->_aCallback['url'][0], array_merge($this->_aCallback['url'][1], array('video', $aVideo['title']))) : Phpfox::permalink('video', $aVideo['video_id'], $aVideo['title']));
+		$aVideo['bookmark'] = ($this->_aCallback !== false ? Phpfox_Url::instance()->makeUrl($this->_aCallback['url'][0], array_merge($this->_aCallback['url'][1], array('video', $aVideo['title']))) : Phpfox::permalink('video', $aVideo['video_id'], $aVideo['title']));
 		$aVideo['embed'] = '';
 
 		if ($aVideo['is_stream'])
@@ -738,7 +738,7 @@ class Video_Service_Video extends Phpfox_Service
 
 	public function getRelatedVideos($iVideoId, $sTitle, $iPage = 1, $bFindSuggestions = false, $bProcess = false)
 	{
-		Phpfox::getLib('request')->set('page_number', $iPage);
+		Phpfox_Request::instance()->set('page_number', $iPage);
 				
 		$oServiceVideoBrowse = Phpfox::getService('video.browse');
 		
@@ -818,7 +818,7 @@ class Video_Service_Video extends Phpfox_Service
 			->where('v.video_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
 						
-		$aRow['link'] = Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('video', $aRow['video_id'], $aRow['title']);
 		return $aRow;
 	}
 	

@@ -26,7 +26,7 @@ class Core_Service_Country_Country extends Phpfox_Service
 	{	
 		$this->_sTable = Phpfox::getT('country');
 		
-		$sCachedId = $this->cache()->set('country_' . Phpfox::getLib('locale')->getLangId());
+		$sCachedId = $this->cache()->set('country_' . Phpfox_Locale::instance()->getLangId());
 		if (!($this->_aCountries = $this->cache()->get($sCachedId)))
 		{
 			$aRows = $this->database()->select('c.country_iso, c.name')
@@ -35,7 +35,7 @@ class Core_Service_Country_Country extends Phpfox_Service
 				->execute('getRows');			
 			foreach ($aRows as $aRow)
 			{
-				$this->_aCountries[$aRow['country_iso']] = (Phpfox::getLib('locale')->isPhrase('core.translate_country_iso_' . strtolower($aRow['country_iso'])) ? Phpfox::getPhrase('core.translate_country_iso_' . strtolower($aRow['country_iso'])) : $aRow['name']);
+				$this->_aCountries[$aRow['country_iso']] = (Phpfox_Locale::instance()->isPhrase('core.translate_country_iso_' . strtolower($aRow['country_iso'])) ? Phpfox::getPhrase('core.translate_country_iso_' . strtolower($aRow['country_iso'])) : $aRow['name']);
 			}					
 			
 			$this->cache()->save($sCachedId, $this->_aCountries);
@@ -108,7 +108,7 @@ class Core_Service_Country_Country extends Phpfox_Service
 		
 		if ($bIsChecked === false)
 		{
-			$sCacheId = $this->cache()->set('country_child_' . Phpfox::getLib('locale')->getLangId());
+			$sCacheId = $this->cache()->set('country_child_' . Phpfox_Locale::instance()->getLangId());
 			
 			if (!($this->_aChildren = $this->cache()->get($sCacheId)))
 			{
@@ -118,7 +118,7 @@ class Core_Service_Country_Country extends Phpfox_Service
 					
 				foreach ($aRows as $aRow)
 				{
-					$this->_aChildren[$aRow['child_id']] = (Phpfox::getLib('locale')->isPhrase('core.translate_country_child_' . strtolower($aRow['child_id'])) ? Phpfox::getPhrase('core.translate_country_child_' . strtolower($aRow['child_id'])) : $aRow['name']);
+					$this->_aChildren[$aRow['child_id']] = (Phpfox_Locale::instance()->isPhrase('core.translate_country_child_' . strtolower($aRow['child_id'])) ? Phpfox::getPhrase('core.translate_country_child_' . strtolower($aRow['child_id'])) : $aRow['name']);
 				}
 				
 				$this->cache()->save($sCacheId, $this->_aChildren);
@@ -143,7 +143,7 @@ class Core_Service_Country_Country extends Phpfox_Service
 	
 	public function getCountriesAndChildren()
 	{
-		$sCacheId = $this->cache()->set('countries_and_children_' . Phpfox::getLib('locale')->getLangId());
+		$sCacheId = $this->cache()->set('countries_and_children_' . Phpfox_Locale::instance()->getLangId());
 		if (!($aCountries = $this->cache()->get($sCacheId)))
 		{
 			$aAll = $this->database()->select('cc.child_id, cc.name as child_name, c.country_iso, c.name as country_name')
@@ -198,7 +198,7 @@ class Core_Service_Country_Country extends Phpfox_Service
 	
 	public function getChildren($sCountry)
 	{		
-		$sCacheId = $this->cache()->set('country_child_' . $sCountry . '_' . Phpfox::getLib('locale')->getLangId());
+		$sCacheId = $this->cache()->set('country_child_' . $sCountry . '_' . Phpfox_Locale::instance()->getLangId());
 		
 		if (!($aChilds = $this->cache()->get($sCacheId)))
 		{
@@ -211,7 +211,7 @@ class Core_Service_Country_Country extends Phpfox_Service
 			$aChilds = array();
 			foreach ($aChildren as $aChild)
 			{
-				$aChilds[$aChild['child_id']] = (Phpfox::getLib('locale')->isPhrase('core.translate_country_child_' . strtolower($aChild['child_id'])) ? Phpfox::getPhrase('core.translate_country_child_' . strtolower($aChild['child_id'])) : $aChild['name']);
+				$aChilds[$aChild['child_id']] = (Phpfox_Locale::instance()->isPhrase('core.translate_country_child_' . strtolower($aChild['child_id'])) ? Phpfox::getPhrase('core.translate_country_child_' . strtolower($aChild['child_id'])) : $aChild['name']);
 			}	
 			
 			$this->cache()->save($sCacheId, $aChilds);

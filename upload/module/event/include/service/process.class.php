@@ -219,7 +219,7 @@ class Event_Service_Process extends Phpfox_Service
 			$iFileSizes = filesize(Phpfox::getParam('event.dir_image') . sprintf($sFileName, ''));			
 			
 			$aSql['image_path'] = $sFileName;
-			$aSql['server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+			$aSql['server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 
 			/*
 			$iSize = 50;			
@@ -285,7 +285,7 @@ class Event_Service_Process extends Phpfox_Service
 						continue;
 					}
 					
-					$sLink = Phpfox::getLib('url')->permalink('event', $aEvent['event_id'], $aEvent['title']);
+					$sLink = Phpfox_Url::instance()->permalink('event', $aEvent['event_id'], $aEvent['title']);
 
 					$sMessage = Phpfox::getPhrase('event.full_name_invited_you_to_the_title', array(
 							'full_name' => Phpfox::getUserBy('full_name'),
@@ -361,7 +361,7 @@ class Event_Service_Process extends Phpfox_Service
 					continue;
 				}
 				
-				$sLink = Phpfox::getLib('url')->permalink('event', $aEvent['event_id'], $aEvent['title']);
+				$sLink = Phpfox_Url::instance()->permalink('event', $aEvent['event_id'], $aEvent['title']);
 
 				$sMessage = Phpfox::getPhrase('event.full_name_invited_you_to_the_title', array(
 						'full_name' => Phpfox::getUserBy('full_name'),
@@ -733,7 +733,7 @@ class Event_Service_Process extends Phpfox_Service
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('event' , $aEvent['event_id'], $aEvent['title']);
+		$sLink = Phpfox_Url::instance()->permalink('event' , $aEvent['event_id'], $aEvent['title']);
 		
 		Phpfox::getLib('mail')->to($aEvent['user_id'])
 			->subject(array('event.your_event_has_been_approved_on_site_title', array('site_title' => Phpfox::getParam('core.site_title'))))
@@ -776,7 +776,7 @@ class Event_Service_Process extends Phpfox_Service
 		Phpfox::getService('ban')->checkAutomaticBan($sText);
 		list($iCnt, $aGuests) = Event_Service_Event::instance()->getInvites($iId, 1, $iPage, 20);
 		
-		$sLink = Phpfox::getLib('url')->permalink('event' , $aEvent['event_id'], $aEvent['title']);
+		$sLink = Phpfox_Url::instance()->permalink('event' , $aEvent['event_id'], $aEvent['title']);
 		
 		$sText = '<br />
 		' . Phpfox::getPhrase('event.notice_this_is_a_newsletter_sent_from_the_event') . ': ' . $aEvent['title'] . '<br />

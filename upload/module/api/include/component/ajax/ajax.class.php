@@ -23,7 +23,7 @@ class Api_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			Phpfox::addMessage('Purchase successfully completed.');
 			
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('') . '\'');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('') . '\'');
 		}
 	}
 	

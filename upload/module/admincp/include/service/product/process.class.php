@@ -111,7 +111,7 @@ class Admincp_Service_Product_Process extends Phpfox_Service
 		$iVersion = null;
 		if (!empty($aProduct['url_version_check']))
 		{
-			$mData = Phpfox::getLib('request')->send($aProduct['url_version_check']);
+			$mData = Phpfox_Request::instance()->send($aProduct['url_version_check']);
 			if (is_string($mData) && preg_match('/<phpfox>(.*?)<\/phpfox>/is', $mData))
 			{
 				$aXml = Phpfox::getLib('xml.parser')->parse($mData);

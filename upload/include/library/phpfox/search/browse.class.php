@@ -72,7 +72,7 @@ class Phpfox_Search_Browse
 		
 		$this->_oBrowse = Phpfox::getService($this->_aParams['service']);
 		
-		$this->_sView = Phpfox::getLib('request')->get('view');
+		$this->_sView = Phpfox_Request::instance()->get('view');
 		
 		if ($this->_sView == 'friend')
 		{
@@ -91,9 +91,9 @@ class Phpfox_Search_Browse
 		$aActualConditions = (array) $this->search()->getConditions();		
 		
 		list($sModule, $sService) = explode('.',$this->_aParams['service']);		
-		if (Phpfox::isModule('input') && (isset($_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sModule][Phpfox::getLib('request')->get('search-id')]['input'])))
+		if (Phpfox::isModule('input') && (isset($_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sModule][Phpfox_Request::instance()->get('search-id')]['input'])))
 		{
-			$aInputs = ($_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sModule][Phpfox::getLib('request')->get('search-id')]['input']);
+			$aInputs = ($_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sModule][Phpfox_Request::instance()->get('search-id')]['input']);
 			$aInputsToSearch = array();
 			foreach ($aInputs as $iInputId => $mValue)
 			{
@@ -175,7 +175,7 @@ class Phpfox_Search_Browse
 			
 			if ($this->search()->getPage() > 0 && count($this->_aRows) < 1)
 			{
-				Phpfox::getLib('url')->send('error.404');
+				Phpfox_Url::instance()->send('error.404');
 			}
 			
 			if (method_exists($this->_oBrowse, 'processRows'))
@@ -185,7 +185,7 @@ class Phpfox_Search_Browse
 		}
 		else if ($this->search()->getPage() > 0)
 		{
-			Phpfox::getLib('url')->send('error.404');
+			Phpfox_Url::instance()->send('error.404');
 		}
 					
 	}

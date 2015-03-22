@@ -365,9 +365,9 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 				->id($this->get('forum_id'))
 				->getForum();	
 				
-			$this->template()->setBreadcrumb('Forum', Phpfox::getLib('url')->makeUrl('forum'))
+			$this->template()->setBreadcrumb('Forum', Phpfox_Url::instance()->makeUrl('forum'))
 				->setBreadcrumb($aForum['breadcrumb'])
-				->setBreadcrumb($aForum['name'], Phpfox::getLib('url')->makeUrl('forum', $aForum['name_url'] . '-' . $aForum['forum_id']));
+				->setBreadcrumb($aForum['name'], Phpfox_Url::instance()->makeUrl('forum', $aForum['name_url'] . '-' . $aForum['forum_id']));
 				
 			list($aBreadCrumbs, $aBreadCrumbTitle) = $this->template()->getBreadCrumb();
 			$this->template()->assign(array(
@@ -378,7 +378,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 			$this->template()->getLayout('breadcrumb');			
 			*/
 			
-			$sUrl = Phpfox::getLib('url')->makeUrl('forum', array($aForum['name_url'] . '-' . $aForum['forum_id'], $aThread['title_url']));
+			$sUrl = Phpfox_Url::instance()->makeUrl('forum', array($aForum['name_url'] . '-' . $aForum['forum_id'], $aThread['title_url']));
 			
 			Phpfox::addMessage(Phpfox::getPhrase('forum.thread_successfully_moved'));
 			
@@ -413,7 +413,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 				->id($this->get('forum_id'))
 				->getForum();			
 			
-			$sUrl = Phpfox::getLib('url')->makeUrl('forum', array($aForum['name_url'] . '-' . $aForum['forum_id'], Phpfox::getLib('parse.input')->prepareTitle('forum', $this->get('title'), 'title_url', null, Phpfox::getT('forum_thread'), true)));
+			$sUrl = Phpfox_Url::instance()->makeUrl('forum', array($aForum['name_url'] . '-' . $aForum['forum_id'], Phpfox::getLib('parse.input')->prepareTitle('forum', $this->get('title'), 'title_url', null, Phpfox::getT('forum_thread'), true)));
 			
 			Phpfox::addMessage(Phpfox::getPhrase('forum.successfully_copied_the_thread'));
 			
@@ -464,7 +464,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 			}
 			else 
 			{
-				$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('forum') . '\';');	
+				$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('forum') . '\';');
 			}
 		}
 	}
@@ -671,11 +671,11 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 			
 			if ($this->get('new'))
 			{
-				$this->html('#js_thank_body_' . $this->get('post_id'), '<span>' . $sDeleteImage. '<a href="' . Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')) . '">' . Phpfox::getUserBy('full_name') . '</a></span>');
+				$this->html('#js_thank_body_' . $this->get('post_id'), '<span>' . $sDeleteImage. '<a href="' . Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')) . '">' . Phpfox::getUserBy('full_name') . '</a></span>');
 			}
 			else 
 			{
-				$this->append('#js_thank_body_' . $this->get('post_id'), '<span>, ' . $sDeleteImage . '<a href="' . Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')) . '">' . Phpfox::getUserBy('full_name') . '</a></span>');
+				$this->append('#js_thank_body_' . $this->get('post_id'), '<span>, ' . $sDeleteImage . '<a href="' . Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')) . '">' . Phpfox::getUserBy('full_name') . '</a></span>');
 			}
 		}
 	}

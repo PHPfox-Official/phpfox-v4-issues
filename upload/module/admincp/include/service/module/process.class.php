@@ -77,7 +77,7 @@ class Admincp_Service_Module_Process extends Phpfox_Service
 				);
 				
 				$sNewMenu[$sPhrase] = array(
-					'url' => Phpfox::getLib('url')->makeReverseUrl($aMenu['link'])
+					'url' => Phpfox_Url::instance()->makeReverseUrl($aMenu['link'])
 				);
 			}			
 		}
@@ -139,11 +139,11 @@ class Admincp_Service_Module_Process extends Phpfox_Service
 
 				if (isset($aMenu['phrase_var']) && Phpfox::getService('language.phrase')->isPhrase(array('module' => $sName . '|' . $sName, 'var_name' => $aMenu['phrase_var'])))	
 				{
-					$aMenu['text'] = array(Phpfox::getLib('locale')->getLangId() => $aMenu['phrase']);
+					$aMenu['text'] = array(Phpfox_Locale::instance()->getLangId() => $aMenu['phrase']);
 					
 					$sPhrase = $sName . '.' . $aMenu['phrase_var'];
 					
-					Phpfox::getService('language.phrase.process')->updateVarName(Phpfox::getLib('locale')->getLangId(), $sPhrase, $aMenu['phrase']);										
+					Phpfox::getService('language.phrase.process')->updateVarName(Phpfox_Locale::instance()->getLangId(), $sPhrase, $aMenu['phrase']);
 				}
 				else 
 				{					
@@ -159,7 +159,7 @@ class Admincp_Service_Module_Process extends Phpfox_Service
 				}
 				
 				$sNewMenu[$sPhrase] = array(
-					'url' => Phpfox::getLib('url')->makeReverseUrl($aMenu['link'])
+					'url' => Phpfox_Url::instance()->makeReverseUrl($aMenu['link'])
 				);				
 			}			
 		}		

@@ -26,7 +26,7 @@ class Poke_Service_Callback extends Phpfox_Service
 	public function getNotification($aItem)
 	{		
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aItem['user_name']),
+			'link' => Phpfox_Url::instance()->makeUrl($aItem['user_name']),
 			'message' => Phpfox::getPhrase('poke.full_name_has_poked_you', array('full_name' => $aItem['full_name']))
 		);	
 	}
@@ -62,7 +62,7 @@ class Poke_Service_Callback extends Phpfox_Service
 		}
 		
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id'])),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -100,7 +100,7 @@ class Poke_Service_Callback extends Phpfox_Service
 		}
 		
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id'])),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);		
@@ -125,11 +125,11 @@ class Poke_Service_Callback extends Phpfox_Service
 			return false;		
 		}
 		
-		$sLink = Phpfox::getLib('url')->makeUrl($aItem['user_name'], array('poke-id' => $aRow['poke_id']));
+		$sLink = Phpfox_Url::instance()->makeUrl($aItem['user_name'], array('poke-id' => $aRow['poke_id']));
 		$aReturn = array(
 			'feed_link' => $sLink,
 			'feed_title' => '',
-			'feed_info' => Phpfox::getPhrase('poke.poked_a_href_link_full_name_a', array('link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'])),
+			'feed_info' => Phpfox::getPhrase('poke.poked_a_href_link_full_name_a', array('link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'])),
 			'total_comment' => $aRow['total_comment'],			
 			'feed_total_like' => $aRow['total_like'],
 			'feed_is_liked' => isset($aRow['is_liked']) ? $aRow['is_liked'] : false,
@@ -162,8 +162,8 @@ class Poke_Service_Callback extends Phpfox_Service
 		
 		if (!$bDoNotSendEmail)
 		{
-			$sLink = Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id']));
-			$sLink2 = Phpfox::getLib('url')->makeUrl($aRow['to_user_name']);
+			$sLink = Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id']));
+			$sLink2 = Phpfox_Url::instance()->makeUrl($aRow['to_user_name']);
 			
 			Phpfox::getLib('mail')->to($aRow['user_id'])
 				->subject(array('poke.full_name_liked_one_of_your_pokes', array('full_name' => Phpfox::getUserBy('full_name'))))
@@ -231,7 +231,7 @@ class Poke_Service_Callback extends Phpfox_Service
 		}
 
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id']));
+		$sLink = Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('poke-id' => $aRow['poke_id']));
 
 		Phpfox::getService('comment.process')->notify(array(
 					'user_id' => $aRow['user_id'],

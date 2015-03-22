@@ -302,7 +302,7 @@ class Ad_Service_Process extends Phpfox_Service
 			
 			if ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('ad.dir_image'), $iId))
 			{
-				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'ad_id = ' . (int) $iId);		
+				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'ad_id = ' . (int) $iId);
 			}	
 		}		
 		
@@ -495,7 +495,7 @@ class Ad_Service_Process extends Phpfox_Service
 		{
 			if ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('ad.dir_image'), $iId))
 			{
-				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'ad_id = ' . (int) $iId);		
+				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'ad_id = ' . (int) $iId);
 			}		
 		}
 		
@@ -691,7 +691,7 @@ class Ad_Service_Process extends Phpfox_Service
 			'age_to' => (empty($aVals['age_from']) ? 0 : (int) $aVals['age_to']),
 			'gmt_offset' => ($iStartTime > 0 ? Phpfox::getLib('date')->getGmtOffset($iStartTime) : null),
 			'image_path' => $aVals['image_path'],
-			'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID'),
+			'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID'),
 			'is_cpm' => (int)$aVals['is_cpm']
 		);
 		//if ($sPlugin = Phpfox_Plugin::get('ad.service_process_addcustom_before_insert_ad')){eval($sPlugin);}
@@ -724,7 +724,7 @@ class Ad_Service_Process extends Phpfox_Service
 		{
 			if ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('ad.dir_image'), $iId))
 			{
-				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'ad_id = ' . (int) $iId);		
+				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'ad_id = ' . (int) $iId);
 			}		
 		}
 		else if (Phpfox::getParam('ad.multi_ad') != true)
@@ -738,7 +738,7 @@ class Ad_Service_Process extends Phpfox_Service
 				$aVals['html_code'] = str_replace('margin-left:130px;', '', $aVals['html_code']);
 			}			
 			*/		
-			$aVals['html_code'] = str_replace('#ad-link"', Phpfox::getLib('url')->makeUrl('ad', array('id' => $iId)) . '" target="_blank"', $aVals['html_code']);
+			$aVals['html_code'] = str_replace('#ad-link"', Phpfox_Url::instance()->makeUrl('ad', array('id' => $iId)) . '" target="_blank"', $aVals['html_code']);
 			$aVals['html_code'] = preg_replace('/id="js_sample_ad_form_(.*)_(.*)" class="js_ad_holder"/i', '', $aVals['html_code']);
 			
 			$this->database()->update(Phpfox::getT('ad'), array(
@@ -938,7 +938,7 @@ class Ad_Service_Process extends Phpfox_Service
 			$sSubject = array('ad.sponsor_ad_approved');
 			$sMessage = array('ad.your_sponsor_ad_on_site_name_has_been_approved', array(
 			    'site_name' => Phpfox::getParam('core.site_title'),
-			    'link' => Phpfox::getLib('url')->makeUrl('ad.sponsor', array('view' => $aAd['sponsor_id']))
+			    'link' => Phpfox_Url::instance()->makeUrl('ad.sponsor', array('view' => $aAd['sponsor_id']))
 			));
 		}
 		else 
@@ -946,7 +946,7 @@ class Ad_Service_Process extends Phpfox_Service
 			$sSubject = array('ad.ad_approved');
 			$sMessage = array('ad.your_ad_on_site_name_has_been_approved', array(
 					'site_name' => Phpfox::getParam('core.site_title'),
-					'link' => Phpfox::getLib('url')->makeUrl('ad.add', array('id' => $aAd['ad_id']))
+					'link' => Phpfox_Url::instance()->makeUrl('ad.add', array('id' => $aAd['ad_id']))
 				)
 			);
 		}
@@ -983,14 +983,14 @@ class Ad_Service_Process extends Phpfox_Service
 			$sSubject = array('ad.sponsor_ad_denied');
 			$sMessage = array('ad.your_sponsor_ad_on_site_name_has_been_denied', array(
 			    'site_name' => Phpfox::getParam('core.site_title'),
-			    'link' => Phpfox::getLib('url')->makeUrl('ad.sponsor', array('view' => $aAd['sponsor_id']))));
+			    'link' => Phpfox_Url::instance()->makeUrl('ad.sponsor', array('view' => $aAd['sponsor_id']))));
 		}
 		else 
 		{
 			$sSubject = array('ad.ad_denied');
 			$sMessage = array('ad.your_ad_on_site_name_has_been_denied', array(
 					'site_name' => Phpfox::getParam('core.site_title'),
-					'link' => Phpfox::getLib('url')->makeUrl('ad.add', array('id' => $aAd['ad_id']))
+					'link' => Phpfox_Url::instance()->makeUrl('ad.add', array('id' => $aAd['ad_id']))
 				)
 			);
 		}

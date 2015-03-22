@@ -79,7 +79,7 @@ class User_Service_Promotion_Promotion extends Phpfox_Service
 				{
 					$this->database()->update(Phpfox::getT('user'), array('user_group_id' => $aPromotion['upgrade_user_group_id']), 'user_id = ' . Phpfox::getUserId());
 					
-					Phpfox::getLib('url')->send('user.promotion');
+					Phpfox_Url::instance()->send('user.promotion');
 				}
 			}
 			else if ( ((int)$aPromotion['total_day'] > 0))
@@ -88,7 +88,7 @@ class User_Service_Promotion_Promotion extends Phpfox_Service
 				{
 					$this->database()->update(Phpfox::getT('user'), array('user_group_id' => $aPromotion['upgrade_user_group_id']), 'user_id = ' . Phpfox::getUserId());
 					
-					Phpfox::getLib('url')->send('user.promotion');
+					Phpfox_Url::instance()->send('user.promotion');
 				}
 			}
 		}

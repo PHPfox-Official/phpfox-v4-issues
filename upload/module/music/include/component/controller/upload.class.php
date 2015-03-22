@@ -186,7 +186,7 @@ class Music_Component_Controller_Upload extends Phpfox_Component
 						);
 						$this->template()->getTemplate('music.block.track-entry');
 						
-						$sOutput = Phpfox::getLib('ajax')->getContent(false);
+						$sOutput = Phpfox_Ajax::instance()->getContent(false);
 	
 						Phpfox::addMessage(Phpfox::getPhrase('music.song_successfully_uploaded'));
 						

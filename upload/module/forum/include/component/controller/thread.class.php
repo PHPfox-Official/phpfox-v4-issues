@@ -176,7 +176,7 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 		if ($aCallback === null)
 		{
 			$this->template()->setBreadcrumb(Phpfox::getPhrase('forum.forum'), $this->url()->makeUrl('forum'))
-				->setBreadcrumb($aForum['breadcrumb'])->setBreadcrumb(Phpfox::getLib('locale')->convert($aForum['name']), $this->url()->permalink('forum', $aForum['forum_id'], $aForum['name']));
+				->setBreadcrumb($aForum['breadcrumb'])->setBreadcrumb(Phpfox_Locale::instance()->convert($aForum['name']), $this->url()->permalink('forum', $aForum['forum_id'], $aForum['name']));
 		}	
 		else 
 		{

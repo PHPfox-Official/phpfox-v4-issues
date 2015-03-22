@@ -102,7 +102,7 @@ class Link_Service_Api extends Phpfox_Service
 					'status_info' => $aRow['status_info'],
 					'likes' => $aRow['total_like'],
 					'embed_code' => $aRow['embed_code'],
-					'permalink' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('link-id' => $aRow['link_id'])) 
+					'permalink' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('link-id' => $aRow['link_id']))
 					);
 		}
 		

@@ -24,7 +24,7 @@ class Friend_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('friend.friends'),
-			'link' => Phpfox::getLib('url')->makeUrl('friend'),
+			'link' => Phpfox_Url::instance()->makeUrl('friend'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_friends.png')),
 			'total' => Phpfox::getService('friend.request')->getUnseenTotal()
 		);
@@ -74,12 +74,12 @@ class Friend_Service_Callback extends Phpfox_Service
 			return null;
 		}
 
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('friend.accept') . '"' . (!$iTotal ? ' onclick="alert(\'' . Phpfox::getPhrase('friend.no_friends_requests') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/user.png') . '" alt="" class="v_middle" /> ' . Phpfox::getPhrase('friend.friend_requests_total', array('total' => $iTotal)) . '</a></li>';
+		return '<li><a href="' . Phpfox_Url::instance()->makeUrl('friend.accept') . '"' . (!$iTotal ? ' onclick="alert(\'' . Phpfox::getPhrase('friend.no_friends_requests') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/user.png') . '" alt="" class="v_middle" /> ' . Phpfox::getPhrase('friend.friend_requests_total', array('total' => $iTotal)) . '</a></li>';
 	}
 	
 	public function getActivityFeed($aFeed)
 	{
-		$aCore = Phpfox::getLib('request')->get('core');
+		$aCore = Phpfox_Request::instance()->get('core');
 		
 		$bForceUser = false;
 		if (defined('PHPFOX_CURRENT_USER_PROFILE') || isset($aCore['profile_user_id']))
@@ -144,7 +144,7 @@ class Friend_Service_Callback extends Phpfox_Service
 			'feed_title' => $aRow['full_name'],
 			'feed_title_sub' => $aRow['user_name'],
 			'feed_info' => Phpfox::getPhrase('feed.is_now_friends_with'),
-			'feed_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
+			'feed_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
 			'feed_icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'misc/friend_added.png', 'return_url' => true)),
 			// http://www.phpfox.com/tracker/view/14671/
 			'feed_total_like' => $iTotalLikes,
@@ -174,7 +174,7 @@ class Friend_Service_Callback extends Phpfox_Service
 			return false;
 		}
 
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 
 		$sOwnerImage = '';
 		$sViewerImage = '';
@@ -244,7 +244,7 @@ class Friend_Service_Callback extends Phpfox_Service
 	public function getNotificationAccepted($aNotification)
 	{
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aNotification['user_name']),
+			'link' => Phpfox_Url::instance()->makeUrl($aNotification['user_name']),
 			'message' => Phpfox::getPhrase('friend.full_name_added_you_as_a_friend', array('full_name' => Phpfox::getLib('parse.output')->shorten($aNotification['full_name'],Phpfox::getParam('user.maximum_length_for_full_name')))),
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'misc/user.png')
 		);							
@@ -286,7 +286,7 @@ class Friend_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'message' => Phpfox::getPhrase('friend.user_link_wished_you_a_happy_birthday', array('user' => $aRow)),
-			'link' => Phpfox::getLib('url')->makeUrl('friend.mybirthday', array('id' => $aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('friend.mybirthday', array('id' => $aRow['item_id']))
 		);
 	}
 
@@ -294,7 +294,7 @@ class Friend_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'message' => Phpfox::getPhrase('friend.user_link_wished_you_a_happy_birthday', array('user' => $aRow)),
-			'link' => Phpfox::getLib('url')->makeUrl('friend.mybirthday', array('id' => $aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('friend.mybirthday', array('id' => $aRow['item_id']))
 		);
 	}
 	
@@ -316,7 +316,7 @@ class Friend_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'message' => Phpfox::getPhrase('friend.user_link_asked_to_be_your_friend', array('user' => $aRow)),
-			'link' => Phpfox::getLib('url')->makeUrl('friend.accept', array('id' => $aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('friend.accept', array('id' => $aRow['item_id']))
 		);
 	}
 
@@ -501,7 +501,7 @@ class Friend_Service_Callback extends Phpfox_Service
 		$iTotal = Phpfox::getService('friend.request')->getUnseenTotal();
 		if ($iTotal > 0)
 		{
-			Phpfox::getLib('ajax')->call('$(\'#js_total_new_friend_requests\').html(\'' . (int) $iTotal . '\').css({display: \'block\'}).show();');
+			Phpfox_Ajax::instance()->call('$(\'#js_total_new_friend_requests\').html(\'' . (int) $iTotal . '\').css({display: \'block\'}).show();');
 		}
 	}	
 	

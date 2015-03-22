@@ -89,7 +89,7 @@ class Photo_Service_Photo extends Phpfox_Service
 				->limit($iPage, $iPageSize, $iCnt)
 				->execute('getSlaveRows');
 				
-			$oUrl = Phpfox::getLib('url');
+			$oUrl = Phpfox_Url::instance();
 			foreach ($aPhotos as $iKey => $aPhoto)
 			{				
 				$sCategoryList = '';
@@ -350,7 +350,7 @@ class Photo_Service_Photo extends Phpfox_Service
 			->limit($iLimit)
 			->execute('getSlaveRows');
 			
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		foreach ($aPhotos as $iKey => $aPhoto)
 		{				
 			$aPhotos[$iKey]['link'] = Phpfox::permalink('photo', $aPhoto['photo_id'], $aPhoto['title']);
@@ -384,7 +384,7 @@ class Photo_Service_Photo extends Phpfox_Service
 			->limit($iLimit)
 			->execute('getSlaveRows');
 			
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		foreach ($aPhotos as $iKey => $aPhoto)
 		{				
 			$aPhotos[$iKey]['link'] = Phpfox::permalink('photo', $aPhoto['photo_id'], $aPhoto['title']);
@@ -404,7 +404,7 @@ class Photo_Service_Photo extends Phpfox_Service
 			->limit(3)
 			->execute('getSlaveRows');
 			
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		foreach ($aPhotos as $iKey => $aPhoto)
 		{				
 			$aPhotos[$iKey]['link'] = Phpfox::permalink('photo', $aPhoto['photo_id'], $aPhoto['title']);
@@ -820,7 +820,7 @@ class Photo_Service_Photo extends Phpfox_Service
 			d($aItem);
 		}
 		
-		$aRow['link'] = Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('photo', $aRow['photo_id'], $aRow['title']);
 		return $aRow;
 	}
 	
@@ -889,7 +889,7 @@ class Photo_Service_Photo extends Phpfox_Service
 
 			if (!empty($aPrevious['photo_id']))
 			{
-				$aPrevious['link'] = Phpfox::getLib('url')->permalink('photo', $aPrevious['photo_id'], $aPrevious['title']) . ($iCategoryChecked !== null ? 'category_' . $iCategoryChecked : '');			
+				$aPrevious['link'] = Phpfox_Url::instance()->permalink('photo', $aPrevious['photo_id'], $aPrevious['title']) . ($iCategoryChecked !== null ? 'category_' . $iCategoryChecked : '');
 			}
 			
 			return array($iPreviousCnt, $aPrevious);	

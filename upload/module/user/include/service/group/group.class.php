@@ -120,7 +120,7 @@ class User_Service_Group_Group extends Phpfox_Service
 		
 		$sPhraseVar = 'user.' . str_replace(' ', '_', strtolower($aCache[$iId]['title']));
 		
-		if (Phpfox::getLib('locale')->isPhrase($sPhraseVar))
+		if (Phpfox_Locale::instance()->isPhrase($sPhraseVar))
 		{
 			$aCache[$iId]['title'] = Phpfox::getPhrase($sPhraseVar);
 		}

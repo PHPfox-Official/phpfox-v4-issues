@@ -656,7 +656,7 @@ class Phpfox_Validator
 		 	 				if (strpos($aFieldValue['php_id'], ']'))
 		 	 				{
 		 	 					$aParts = explode('[', $aFieldValue['php_id']);
-		 	 					$aPostArray = Phpfox::getLib('request')->getArray($aParts[0]);
+		 	 					$aPostArray = Phpfox_Request::instance()->getArray($aParts[0]);
 		 	 					$aKeyParts = explode('_', $sFieldKey);
 		 	 					if (isset($aPostArray[$aKeyParts[(count($aKeyParts) - 1)]]))
 		 	 					{

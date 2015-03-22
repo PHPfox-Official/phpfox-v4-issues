@@ -44,9 +44,9 @@ if (Phpfox::getParam('core.url_rewrite') != '3')
 	exit();
 }
 
-if (Phpfox::getLib('request')->get('req3') == '')
+if (Phpfox_Request::instance()->get('req3') == '')
 {
-	Phpfox::getLib('url')->send('admincp.theme.index');
+	Phpfox_Url::instance()->send('admincp.theme.index');
 }
 
 Phpfox::run();

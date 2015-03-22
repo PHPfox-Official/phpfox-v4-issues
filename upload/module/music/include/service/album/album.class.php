@@ -116,7 +116,7 @@ class Music_Service_Album_Album extends Phpfox_Service
 			return false;
 		}
 		
-		$aAlbum['bookmark'] = Phpfox::getLib('url')->permalink('music.album', $aAlbum['album_id'], $aAlbum['name']);
+		$aAlbum['bookmark'] = Phpfox_Url::instance()->permalink('music.album', $aAlbum['album_id'], $aAlbum['name']);
 			
 		return $aAlbum;
 	}

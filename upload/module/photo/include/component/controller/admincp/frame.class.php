@@ -175,7 +175,7 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 								'destination' => $sFileName,
 								'width' => $aSize[0],
 								'height' => $aSize[1],
-								'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID'),
+								'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID'),
 								'allow_rate' => (empty($aVals['album_id']) ? '1' : '0')
 							)
 						);				
@@ -209,7 +209,7 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 						$aImages[] = array(
 							'photo_id' => $iId,
 							// 'album' => (isset($aAlbum) ? $aAlbum : null),
-							'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID'),
+							'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID'),
 							'destination' => $sFileName,
 							'name' => $aImage['name'],
 							'ext' => $aImage['ext'],

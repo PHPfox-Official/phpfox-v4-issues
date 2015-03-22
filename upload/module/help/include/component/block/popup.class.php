@@ -30,7 +30,7 @@ class Help_Component_Block_Popup extends Phpfox_Component
 		
 		$bIsValid = false;
 		$sInfo = '';
-		if (Phpfox::getLib('locale')->isPhrase($this->getParam('phrase')))
+		if (Phpfox_Locale::instance()->isPhrase($this->getParam('phrase')))
 		{
 			$bIsValid = true;
 			$sInfo = Phpfox::getPhrase($this->getParam('phrase'));			

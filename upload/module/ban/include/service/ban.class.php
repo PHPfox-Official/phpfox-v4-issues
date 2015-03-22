@@ -245,7 +245,7 @@ class Ban_Service_Ban extends Phpfox_Service
 					}
 					else
 					{
-						Phpfox::getLib('url')->send('', array(), $sReason);
+						Phpfox_Url::instance()->send('', array(), $sReason);
 					}
 					return false;
 				}

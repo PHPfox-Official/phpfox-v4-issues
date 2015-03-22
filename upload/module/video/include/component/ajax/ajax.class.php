@@ -26,7 +26,7 @@ class Video_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			if (md5($sServer) == $aServer['url'])
 			{
-				$mReturn = json_decode(Phpfox::getLib('request')->send($sServer, array('action' => 'check', '_v_id' => $aServer['id'], '_v_secret' => Phpfox::getParam('video.convert_servers_secret'))));
+				$mReturn = json_decode(Phpfox_Request::instance()->send($sServer, array('action' => 'check', '_v_id' => $aServer['id'], '_v_secret' => Phpfox::getParam('video.convert_servers_secret'))));
 				if (!$mReturn->error)
 				{
 					$bCanAddVideo = true;
@@ -142,7 +142,7 @@ class Video_Component_Ajax_Ajax extends Phpfox_Ajax
 			{
 				$aVideo = Phpfox::getService('video')->getVideo($aVals['video_id'], true);
 				
-				$this->attr('#js_view_video_link', 'href', ($aVideo['module_id'] != 'video' ? Phpfox::getLib('url')->makeUrl('video', array('redirect' => $aVideo['video_id'])) : Phpfox::getService('video')->makeUrl(Phpfox::getUserBy('user_name'), $mReturn)));
+				$this->attr('#js_view_video_link', 'href', ($aVideo['module_id'] != 'video' ? Phpfox_Url::instance()->makeUrl('video', array('redirect' => $aVideo['video_id'])) : Phpfox::getService('video')->makeUrl(Phpfox::getUserBy('user_name'), $mReturn)));
 			}
 			
 			$this->show('#js_save_video')->html('#js_save_video', '<span class="valid_message">'.Phpfox::getPhrase('video.done').'</span>', '.fadeOut(5000)');
@@ -176,7 +176,7 @@ class Video_Component_Ajax_Ajax extends Phpfox_Ajax
 
 			$this->html('#js_video_edit_form', $this->getContent(false))
 				->show('#js_video_edit_form_outer')
-				->attr('#js_video_go_advanced', 'href', Phpfox::getLib('url')->makeUrl('video.edit', array('id' => $aVideo['video_id'])))
+				->attr('#js_video_go_advanced', 'href', Phpfox_Url::instance()->makeUrl('video.edit', array('id' => $aVideo['video_id'])))
 				->hide('#js_video_outer_body')
 				->call('$Core.loadInit();')
 				->call('var aCategories = explode(\',\', \'' . $aVideo['categories'] . '\'); for (i in aCategories) { $(\'#js_mp_holder_\' + aCategories[i]).show(); $(\'#js_mp_category_item_\' + aCategories[i]).attr(\'selected\', true); }');
@@ -274,7 +274,7 @@ class Video_Component_Ajax_Ajax extends Phpfox_Ajax
 		Phpfox::getBlock('video.new');
 		
 		$this->html('#' . $this->get('id'), $this->getContent(false));
-		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox::getLib('url')->makeUrl('video') . '\');');
+		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox_Url::instance()->makeUrl('video') . '\');');
 	}
 	
 	public function feature()

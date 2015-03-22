@@ -31,7 +31,7 @@ class Link_Component_Block_Display extends Phpfox_Component
 		{
 			if (!preg_match('/' . preg_quote(Phpfox::getParam('core.host')) . '/i', $aLink['link']))
 			{
-				$aLink['link'] = Phpfox::getLib('url')->makeUrl('core.redirect', array('url' => Phpfox::getLib('url')->encode($aLink['link'])));				
+				$aLink['link'] = Phpfox_Url::instance()->makeUrl('core.redirect', array('url' => Phpfox_Url::instance()->encode($aLink['link'])));
 			}						
 		}
 		

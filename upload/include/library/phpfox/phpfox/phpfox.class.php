@@ -14,7 +14,7 @@ defined('PHPFOX') or exit('NO DICE!');
  * All libraries are located within the folder: include/library/phpfox/
  * Example of connect to request library:
  * <code>
- * $oObject = Phpfox::getLib('request');
+ * $oObject = Phpfox_Request::instance();
  * </code>
  * 
  * @copyright		[PHPFOX_COPYRIGHT]
@@ -304,7 +304,7 @@ class Phpfox
 	 * 
 	 * Example usage:
 	 * <code>
-	 * Phpfox::getLib('url')->makeUrl('test');
+	 * Phpfox_Url::instance()->makeUrl('test');
 	 * </code>
 	 * In the example we called the URL library found in the folder: include/library/phpfox/url/url.class.php
 	 * then created an object for it so we could directly call the method "makeUrl".
@@ -546,7 +546,7 @@ class Phpfox
 	 */
 	public static function getIp($bReturnNum = false)
 	{
-		return Phpfox::getLib('request')->getIp($bReturnNum);
+		return Phpfox_Request::instance()->getIp($bReturnNum);
 	}
 	
 	/**
@@ -808,14 +808,14 @@ class Phpfox
 		{
 			if (PHPFOX_IS_AJAX || PHPFOX_IS_AJAX_PAGE)
 			{
-				return Phpfox::getLib('ajax')->isUser();
+				return Phpfox_Ajax::instance()->isUser();
 			}
 			else 
 			{
 				// Create a session so we know where we plan to redirect the user after they login
-				Phpfox::getLib('session')->set('redirect', Phpfox::getLib('url')->getFullUrl(true));
+				Phpfox::getLib('session')->set('redirect', Phpfox_Url::instance()->getFullUrl(true));
 				
-				Phpfox::getLib('url')->send('user.login');
+				Phpfox_Url::instance()->send('user.login');
 			}
 		}
 		
@@ -920,7 +920,7 @@ class Phpfox
 						continue;
 					}
 
-					if ($sIp == Phpfox::getLib('request')->getServer('REMOTE_ADDR')) // $_SERVER['REMOTE_ADDR'])
+					if ($sIp == Phpfox_Request::instance()->getServer('REMOTE_ADDR')) // $_SERVER['REMOTE_ADDR'])
 					{
 						$bPass = true;
 						break;
@@ -936,7 +936,7 @@ class Phpfox
 				if (!Phpfox::isUser())
 				{
 					// Are we using thickbox?
-					if (Phpfox::getLib('request')->get('tb'))
+					if (Phpfox_Request::instance()->get('tb'))
 					{
 						Phpfox::getBlock('user.login-ajax');	
 					}
@@ -953,7 +953,7 @@ class Phpfox
 				else 
 				{
 					// Are we using thickbox?
-					if (Phpfox::getLib('request')->get('tb'))
+					if (Phpfox_Request::instance()->get('tb'))
 					{
 						Phpfox::getBlock('subscribe.message');
 					}
@@ -964,7 +964,7 @@ class Phpfox
 						{
 							// echo $sJsCall;
 						}						
-						 echo "/*<script type='text/javascript'>*/window.location.href = '" . Phpfox::getLib('url')->makeUrl('subscribe.message') . "';/*</script>*/";
+						 echo "/*<script type='text/javascript'>*/window.location.href = '" . Phpfox_Url::instance()->makeUrl('subscribe.message') . "';/*</script>*/";
 					}
 				}
 				exit;				
@@ -976,14 +976,14 @@ class Phpfox
 					if (!Phpfox::isUser())
 					{
 						// Create a session so we know where we plan to redirect the user after they login
-						Phpfox::getLib('session')->set('redirect', Phpfox::getLib('url')->getFullUrl(true));
+						Phpfox::getLib('session')->set('redirect', Phpfox_Url::instance()->getFullUrl(true));
 			
 						// Okay thats it lets send them away so they can login
-						Phpfox::getLib('url')->send('user.login');
+						Phpfox_Url::instance()->send('user.login');
 					}	
 					else 
 					{				
-						Phpfox::getLib('url')->send('subscribe');
+						Phpfox_Url::instance()->send('subscribe');
 					}
 				}
 				return true;
@@ -1057,69 +1057,25 @@ class Phpfox
 	 */
 	public static function run()
 	{
-
 		$oTpl = Phpfox_Template::instance();
-		$aLocale = Phpfox::getLib('locale')->getLang();
-		$oReq = Phpfox::getLib('request');
+		$aLocale = Phpfox_Locale::instance()->getLang();
+		$oReq = Phpfox_Request::instance();
 		$oModule = Phpfox_Module::instance();
 
-		$cache_id = Phpfox::getLib('cache')->set('auth_token_' . $_SERVER['REMOTE_ADDR']);
-		if (defined('PHPFOX_FORCE_TOKEN') && !Phpfox::getLib('cache')->get($cache_id, 60)) {
-			require_once(PHPFOX_DIR_LIB . 'recaptcha' . PHPFOX_DS . 'recaptchalib.php');
-
-			$failed = '';
-			if (!empty($_POST["recaptcha_challenge_field"])) {
-				$resp = recaptcha_check_answer(PHPFOX_FORCE_PRIVATE,
-						$_SERVER["REMOTE_ADDR"],
-						$_POST["recaptcha_challenge_field"],
-						$_POST["recaptcha_response_field"]);
-
-				if (!$resp->is_valid) {
-					$failed = '<div class="error">Captcha Failed. Try again!</div>';
-				} else {
-					Phpfox::getLib('cache')->save($cache_id, true);
-
-					ob_clean();
-					header('Location: ' . Phpfox::getParam('core.path'));
-					exit;
-				}
+		$aStaticFolders = ['file', 'static', 'theme', 'module'];
+		if (in_array($oReq->segment(1), $aStaticFolders)) {
+			$sUri = Phpfox_Url::instance()->getUri();
+			if ($sUri == '/static/ajax.php') {
+				$oAjax = Phpfox_Ajax::instance();
+				$oAjax->process();
+				echo $oAjax->getData();
+				exit;
 			}
 
-			$html = '
-				<!DOCTYPE html>
-				<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
-					<head>
-						<title>Human Verification</title>
-						<style type="text/css">
-							body { background:#e2e2e2; margin:0px; font-size:90%; font:inherit; vertical-align: baseline; font-family: "Helvetica Neue", Arial, sans-serif; font-size:90%; color:#333; line-height:1.5; word-wrap:break-word; }
-							#site_auth { background:#fff; margin-top:200px; text-align:center; padding:50px 0px 50px 0px; }
-							#site_auth form { margin:0px; padding:0px; max-width:500px; margin:auto; }
-							h1 { font-size:2.6em; font-weight:300; letter-spacing:2px; }
-							p { padding:0px 0px 20px 0px; margin:0px; color:#808080; font-size:0.9em; }
-							.submit { margin:20px 0px 0px 0px; padding:10px 30px 10px 30px; background:#71B33D; color:#fff; font-size:1.1em; border:0px; text-transform:uppercase; cursor:pointer; border-radius:3px; }
-							.error { background:#EA5859; color:#fff; padding:20px; margin-bottom:10px; font-size:1.2em; }
-						</style>
-					</head>
-					<body>
-						<div id="site_auth">
-							<form method="post" action="' . Phpfox::getParam('core.path') . '">
-								<h1>Human Verification</h1>
-								<p>
-									This site requires you to be a human in order to view the site. Please take a moment to pass the captcha below.
-									Once you have verified you are human you will get a 1 hour token to view the site, thereafter you must renew your token.
-								</p>
-								' . $failed . '
-								<div style="margin:auto; display:inline-block;">' .  recaptcha_get_html(PHPFOX_FORCE_KEY) . '</div>
-								<div>
-									<input type="submit" value="Submit" class="submit" />
-								</div>
-							</form>
-						</div>
-					</body>
-				</html>
-			';
+			$sType = Phpfox_File::instance()->mime($sUri);
 
-			echo $html;
+			header('Content-type: ' . $sType);
+			echo @file_get_contents(PHPFOX_DIR . $sUri);
 			exit;
 		}
 		
@@ -1131,7 +1087,7 @@ class Phpfox
 		if (Phpfox::isMobile() && $oReq->get('req1') == 'go-to-full-site')
 		{
 			Phpfox::getLib('session')->set('mobilestatus', 'true');
-			Phpfox::getLib('url')->send('phpfox_full_site');
+			Phpfox_Url::instance()->send('phpfox_full_site');
 		}
 		
 		if (!Phpfox::getParam('core.branding'))
@@ -1139,7 +1095,7 @@ class Phpfox
 			$oTpl->setHeader(array('<meta name="author" content="phpFox" />'));
 		}
 		
-		if (strtolower(Phpfox::getLib('request')->get('req1')) == Phpfox::getParam('admincp.admin_cp'))
+		if (strtolower(Phpfox_Request::instance()->get('req1')) == Phpfox::getParam('admincp.admin_cp'))
 		{
 			self::$_bIsAdminCp = true;
 		}				
@@ -1148,7 +1104,7 @@ class Phpfox
 		
 		$bIsAd = false;
 		
-		$oRequest = Phpfox::getLib('request');
+		$oRequest = Phpfox_Request::instance();
 		if ($oRequest->get('id') && $oRequest->get('req1') == 'ad' && $oRequest->get('req2') == 'iframe')
 		{
 			$bIsAd = true;
@@ -1166,14 +1122,14 @@ class Phpfox
 				&& $bIsAd != true
 			)
 			{
-				if ((Phpfox::getLib('request')->get('req1') == 'user' 
+				if ((Phpfox_Request::instance()->get('req1') == 'user'
 					&& 
 					(
-						Phpfox::getLib('request')->get('req2') == 'login' ||
-						Phpfox::getLib('request')->get('req2') == 'logout'
+						Phpfox_Request::instance()->get('req2') == 'login' ||
+						Phpfox_Request::instance()->get('req2') == 'logout'
 					))
-					|| Phpfox::getLib('request')->get('req1') == 'contact'				
-					|| Phpfox::getLib('request')->get('req1') == 'captcha'				
+					|| Phpfox_Request::instance()->get('req1') == 'contact'
+					|| Phpfox_Request::instance()->get('req1') == 'captcha'
 				)
 				{
 					$oModule->setController();
@@ -1210,8 +1166,8 @@ class Phpfox
 							'<link rel="shortcut icon" type="image/x-icon" href="' . Phpfox::getParam('core.path') . 'favicon.ico?v=' . $oTpl->getStaticVersion() . '" />'						
 						)
 					)
-					->setMeta('keywords', Phpfox::getLib('locale')->convert(Phpfox::getParam('core.keywords')))
-					// ->setMeta('description',  Phpfox::getLib('locale')->convert(Phpfox::getParam('core.description')))
+					->setMeta('keywords', Phpfox_Locale::instance()->convert(Phpfox::getParam('core.keywords')))
+					// ->setMeta('description',  Phpfox_Locale::instance()->convert(Phpfox::getParam('core.description')))
 					->setMeta('robots', 'index,follow');
 				if (Phpfox::getParam('core.include_master_files') && Phpfox::isAdminPanel() != true)
 				{
@@ -1264,7 +1220,7 @@ class Phpfox
 		
 		if (!defined('PHPFOX_DONT_SAVE_PAGE'))
 		{
-			Phpfox::getLib('session')->set('redirect', Phpfox::getLib('url')->getFullUrl(true));
+			Phpfox::getLib('session')->set('redirect', Phpfox_Url::instance()->getFullUrl(true));
 		}
 	
 		if (!defined('PHPFOX_NO_CSRF'))
@@ -1413,7 +1369,7 @@ class Phpfox
 				'sLocaleCode' => $aLocale['language_code'],
 				'sLocaleFlagId' => $aLocale['image'],
 				'sLocaleName' => $aLocale['title'],
-				'aRequests' => Phpfox::getLib('request')->getRequests(),
+				'aRequests' => Phpfox_Request::instance()->getRequests(),
 				'aBreadCrumbs' => $aBreadCrumbs,
 				'aBreadCrumbTitle' => $aBreadCrumbTitle,
 				'sCopyright' => '&copy; ' . Phpfox::getPhrase('core.copyright') . ' ' . Phpfox::getParam('core.site_copyright')
@@ -1530,7 +1486,7 @@ class Phpfox
 	 */
 	public static function getPhrase($sParam, $aParams = array(), $bNoDebug = false, $sDefault = null, $sLang = '')
 	{
-		return Phpfox::getLib('locale')->getPhrase($sParam, $aParams, $bNoDebug, $sDefault, $sLang);
+		return Phpfox_Locale::instance()->getPhrase($sParam, $aParams, $bNoDebug, $sDefault, $sLang);
 	}
 	
 	/**
@@ -1541,7 +1497,7 @@ class Phpfox
 	 */	
 	public static function getPhraseT($sParam, $sPrefix)
 	{
-		return Phpfox::getLib('locale')->translate($sParam, $sPrefix);
+		return Phpfox_Locale::instance()->translate($sParam, $sPrefix);
 	}	
 	
 	/**
@@ -1655,7 +1611,7 @@ class Phpfox
 	 */
 	public static function permalink($sLink, $iId, $sTitle = null, $bRedirect = false, $sMessage = null, $aExtra = array())
 	{		
-		return Phpfox::getLib('url')->permalink($sLink, $iId, $sTitle, $bRedirect, $sMessage, $aExtra);
+		return Phpfox_Url::instance()->permalink($sLink, $iId, $sTitle, $bRedirect, $sMessage, $aExtra);
 	}
 	
 	/**

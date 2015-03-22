@@ -84,7 +84,7 @@ class User_Component_Controller_Admincp_Group_Add extends Phpfox_Component
 			)
 			->setBreadcrumb(Phpfox::getPhrase('user.user_groups'), $this->url()->makeUrl('admincp.user.group'))
 			->setBreadcrumb(Phpfox::getPhrase('user.manage_user_groups'), $this->url()->makeUrl('admincp.user.group'))
-			->setBreadcrumb(Phpfox::getPhrase('user.manage_settings') . ': ' . Phpfox::getLib('locale')->convert($aGroup['title']) . ' (ID#' . $aGroup['user_group_id'] . ')', null, true)
+			->setBreadcrumb(Phpfox::getPhrase('user.manage_settings') . ': ' . Phpfox_Locale::instance()->convert($aGroup['title']) . ' (ID#' . $aGroup['user_group_id'] . ')', null, true)
 			->setHeader('cache', array(
 					'template.css' => 'style_css'
 				)

@@ -54,7 +54,7 @@ class Photo_Component_Controller_Add extends Phpfox_Component
 						var sHash = "'.Phpfox::getService('core')->getHashForUpload().'";window.name="my_form";</script>',
 						));
 				
-			if ( ($sBrowser = Phpfox::getLib('request')->getBrowser()) && strpos($sBrowser, 'Safari') !== false)
+			if ( ($sBrowser = Phpfox_Request::instance()->getBrowser()) && strpos($sBrowser, 'Safari') !== false)
 			{
 				$this->template()->setHeader(array(
 					'mobile.js' => 'module_photo'

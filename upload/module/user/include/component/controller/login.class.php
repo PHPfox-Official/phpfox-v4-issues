@@ -63,7 +63,7 @@ class User_Component_Controller_Login extends Phpfox_Component
 							$aParts = explode('/', trim($sReturn, '/'));		
 							if (isset($aParts[0]))
 							{
-								$aParts[0] = Phpfox::getLib('url')->reverseRewrite($aParts[0]);
+								$aParts[0] = Phpfox_Url::instance()->reverseRewrite($aParts[0]);
 							}
 							if (isset($aParts[0]) && !Phpfox::isModule($aParts[0]))
 							{

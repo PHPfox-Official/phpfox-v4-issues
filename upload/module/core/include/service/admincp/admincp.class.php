@@ -98,7 +98,7 @@ class Core_Service_Admincp_Admincp extends Phpfox_Service
 		
 		if (!($aCache = $this->cache()->get($sCacheId, 60)))
 		{
-			$aNews = Phpfox::getLib('xml.parser')->parse(Phpfox::getLib('request')->send('http://feeds.feedburner.com/phpfox', array(), 'GET'));
+			$aNews = Phpfox::getLib('xml.parser')->parse(Phpfox_Request::instance()->send('http://feeds.feedburner.com/phpfox', array(), 'GET'));
 			$aCache = array();
 			$iCnt = 0;
 			if (!is_array($aNews))
@@ -151,7 +151,7 @@ class Core_Service_Admincp_Admincp extends Phpfox_Service
 		
 		if (!($aCache = $this->cache()->get($sCacheId, 60)))
 		{
-			$sHtml = Phpfox::getLib('request')->send('http://twitter.com/statuses/user_timeline/16987205.rss', array(), 'GET');
+			$sHtml = Phpfox_Request::instance()->send('http://twitter.com/statuses/user_timeline/16987205.rss', array(), 'GET');
 			
 			if (preg_match('/<html(.*?)>/i', $sHtml))
 			{

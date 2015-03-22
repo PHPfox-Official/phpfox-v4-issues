@@ -159,7 +159,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 		if (Phpfox::getService('user.auth')->hasAccess('photo_album', 'album_id', $this->get('album_id'), 'photo.can_edit_own_photo_album', 'photo.can_edit_other_photo_albums') && Phpfox::getService('photo.album.process')->updateTitle($this->get('album_id'), $this->get('quick_edit_input')))
 		{
-		    $this->html('#' . $this->get('id'), '<a href="' . Phpfox::getLib('url')->makeUrl($this->get('user_name'), array('photo', $this->get('old_title'))) . '" id="js_ge_edit_inner_title' . $this->get('album_id') . '">' . Phpfox::getLib('parse.output')->clean(Phpfox::getLib('parse.input')->clean($this->get('quick_edit_input'))) . '</a>', '.highlightFade()');
+		    $this->html('#' . $this->get('id'), '<a href="' . Phpfox_Url::instance()->makeUrl($this->get('user_name'), array('photo', $this->get('old_title'))) . '" id="js_ge_edit_inner_title' . $this->get('album_id') . '">' . Phpfox::getLib('parse.output')->clean(Phpfox::getLib('parse.input')->clean($this->get('quick_edit_input'))) . '</a>', '.highlightFade()');
 		}
     }
 
@@ -223,7 +223,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 		    }
 		    else 
 		    {
-		    	$this->call('window.location.href = "' . Phpfox::getLib('url')->permalink('photo', $aPhoto['photo_id'], Phpfox::getLib('parse.input')->clean($aVals['title'])) . '";');
+		    	$this->call('window.location.href = "' . Phpfox_Url::instance()->permalink('photo', $aPhoto['photo_id'], Phpfox::getLib('parse.input')->clean($aVals['title'])) . '";');
 		    }
 		}
     }
@@ -365,7 +365,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 		Phpfox::getBlock('photo.new');
 	
 		$this->html('#' . $this->get('id'), $this->getContent(false));
-		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox::getLib('url')->makeUrl('photo') . '\');');
+		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox_Url::instance()->makeUrl('photo') . '\');');
     }
 
     public function feature()
@@ -436,7 +436,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 		    Phpfox::getService('photo.tag.process')->deleteAll($this->get('photo_id'));
 
-		    $this->call('window.location.href = \'' . Phpfox::getLib('url')->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'refresh_1/' . (!empty($_REQUEST['currenturl']) ? $_REQUEST['currenturl'] : '') . '\';');
+		    $this->call('window.location.href = \'' . Phpfox_Url::instance()->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'refresh_1/' . (!empty($_REQUEST['currenturl']) ? $_REQUEST['currenturl'] : '') . '\';');
 		}
     }
 
@@ -638,11 +638,11 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 			// this next if is the one you will have to bypass if they come from sharing a photo in the activity feed.
 			if ( ($this->get('page_id') > 0) )
 			{
-				$this->call('window.location.href = "' . Phpfox::getLib('url')->permalink('pages', $this->get('page_id'), '') .'coverupdate_1";');
+				$this->call('window.location.href = "' . Phpfox_Url::instance()->permalink('pages', $this->get('page_id'), '') .'coverupdate_1";');
 			}
 			else if ($bIsPicup)
 			{
-				$this->call('window.location.href = "' . Phpfox::getLib('url')->permalink('mobile.photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '";');
+				$this->call('window.location.href = "' . Phpfox_Url::instance()->permalink('mobile.photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '";');
 
 			}
 		    else if ($this->get('action') == 'upload_photo_via_share')
@@ -652,7 +652,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 				{
 					Phpfox::getService('user.process')->updateCoverPhoto($aImage['photo_id']);
 					
-					$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('profile', array('coverupdate' => '1')) . '\';');
+					$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('profile', array('coverupdate' => '1')) . '\';');
 				}
 				else
 				{
@@ -676,11 +676,11 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 							$this->call('sImages = sImages + ' . $aImage['photo_id'] . ' + ",";');
 						}
 						// Make a call similar to the non HTML5 uploads.
-						$this->call('var sCurrentProgressLocation = \'' . Phpfox::getLib('url')->makeUrl('photo', array('view' => 'my', 'mode' => 'edit')) . '\';');
+						$this->call('var sCurrentProgressLocation = \'' . Phpfox_Url::instance()->makeUrl('photo', array('view' => 'my', 'mode' => 'edit')) . '\';');
 					}
 					else
 					{
-						$this->call('var sCurrentProgressLocation = \'' . Phpfox::getLib('url')->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
+						$this->call('var sCurrentProgressLocation = \'' . Phpfox_Url::instance()->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
 					}
 			    }
 			    else
@@ -690,13 +690,13 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 				    {
 						Phpfox::addMessage((count($aImages) == 1 ? Phpfox::getPhrase('photo.photo_successfully_uploaded') : Phpfox::getPhrase('photo.photos_successfully_uploaded')));
 
-						$this->call('window.parent.location.href = \'' . Phpfox::getLib('url')->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
+						$this->call('window.parent.location.href = \'' . Phpfox_Url::instance()->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
 				    }
 				    elseif ($this->get('action') == 'view_album' && isset($aImages[0]['album']))
 				    {
 						Phpfox::addMessage((count($aImages) == 1 ? Phpfox::getPhrase('photo.photo_successfully_uploaded') : Phpfox::getPhrase('photo.photos_successfully_uploaded')));
 
-						$this->call('window.location.href = \'' . Phpfox::getLib('url')->permalink('photo.album', $aImages[0]['album']['album_id'], $aImages[0]['album']['name']) . '\';');
+						$this->call('window.location.href = \'' . Phpfox_Url::instance()->permalink('photo.album', $aImages[0]['album']['album_id'], $aImages[0]['album']['name']) . '\';');
 				    }
 				    else
 				    {
@@ -709,11 +709,11 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 							{
 								$sImages .= $aImage['photo_id'] . ',';
 							}
-							$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('photo', array('view' => 'my', 'mode' => 'edit', 'photos' => urlencode(base64_encode($sImages)))) . '\';');
+							$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('photo', array('view' => 'my', 'mode' => 'edit', 'photos' => urlencode(base64_encode($sImages)))) . '\';');
 						}
 						else
 						{
-							$this->call('window.location.href = \'' . Phpfox::getLib('url')->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
+							$this->call('window.location.href = \'' . Phpfox_Url::instance()->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
 						}
 				    }
 			    }
@@ -901,7 +901,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if ($this->get('is_photo_upload'))
 		{
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
 		}
 		else
 		{
@@ -980,7 +980,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 		$oAttachment->update(array(
 				'file_size' => $sFileSize,
 				'destination' => $sFileName,
-				'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')
+				'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')
 		), $iId);
 					
 		$sThumbnail = Phpfox::getParam('core.dir_attachment') . sprintf($sFileName, '_thumb');
@@ -1036,7 +1036,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 		}
 		
 		Phpfox::addMessage(Phpfox::getPhrase('photo.profile_photo_successfully_updated'));
-		$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('user.photo') . '\';');
+		$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('user.photo') . '\';');
 	}
 }
 

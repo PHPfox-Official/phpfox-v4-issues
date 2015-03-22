@@ -34,7 +34,7 @@ class Music_Service_Song_Browse extends Phpfox_Service
 				'total_comment' => $aSong['total_comment'],
 				'feed_total_like' => $aSong['total_like'],
 				'total_like' => $aSong['total_like'],
-				'feed_link' => Phpfox::getLib('url')->permalink('music', $aSong['song_id'], $aSong['title']),
+				'feed_link' => Phpfox_Url::instance()->permalink('music', $aSong['song_id'], $aSong['title']),
 				'feed_title' => $aSong['title'],
 				'type_id' => 'music_song'
 			);

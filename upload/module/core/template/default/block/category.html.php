@@ -22,7 +22,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	    <span onclick="isClicked_{$aCategory.category_id}=true; $Core.toggleCategory('{if isset($sModule)}{$sModule}_{/if}subcategory_{$aCategory.category_id}',{$aCategory.category_id})" id="show_less_{$aCategory.category_id}" class="category_show_more_less" style="display:none;text-align:left;vertical-align:middle;">{img theme='misc/minus.gif' class='v_middle'}</span>
 		    {/if}		
 		
-	<a {if Phpfox::getParam('core.categories_to_show_at_first') < 1 && count($aCategory.sub) > 0}class="no_ajax_link category_show_more_less_link"{/if} href="{$aCategory.url}{if Phpfox::getLib('request')->get('view') != ''}view_{request var='view'}/{/if}" id="{if isset($sModule)}{$sModule}_{/if}category_{$aCategory.category_id}">
+	<a {if Phpfox::getParam('core.categories_to_show_at_first') < 1 && count($aCategory.sub) > 0}class="no_ajax_link category_show_more_less_link"{/if} href="{$aCategory.url}{if Phpfox_Request::instance()->get('view') != ''}view_{request var='view'}/{/if}" id="{if isset($sModule)}{$sModule}_{/if}category_{$aCategory.category_id}">
 	
 		    {$aCategory.name|convert|clean}
 	</a>

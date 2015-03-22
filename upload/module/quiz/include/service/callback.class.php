@@ -26,7 +26,7 @@ class Quiz_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('quiz.quizzes'),
-			'link' => Phpfox::getLib('url')->makeUrl('quiz'),
+			'link' => Phpfox_Url::instance()->makeUrl('quiz'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_quizzes.png'))
 		);
 	}	
@@ -49,7 +49,7 @@ class Quiz_Service_Callback extends Phpfox_Service
 	public function getNewsFeed($aRow)
 	{
 		if ($sPlugin = Phpfox_Plugin::get('quiz.service_callback_getnewsfeed_start')){eval($sPlugin);}
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');
 
 		$aRow['text'] = Phpfox::getPhrase('quiz.a_href_user_link_full_name_a_added_a_new_quiz_a_href_question_url_question_a', array(
@@ -101,21 +101,21 @@ class Quiz_Service_Callback extends Phpfox_Service
 		if (Phpfox::getParam('core.is_personal_site'))
 		{
 			$sLink = Phpfox::permalink('quiz', $aQuiz['quiz_id'], $aQuiz['title']);
-			return $sLink;//Phpfox::getLib('url')->makeUrl('quiz', $aQuiz['title_url']);
+			return $sLink;//Phpfox_Url::instance()->makeUrl('quiz', $aQuiz['title_url']);
 		}
 
 		if ($iChild > 0)
 		{
 			$sLink = Phpfox::permalink('quiz', $aQuiz['quiz_id'], $aQuiz['title']);
-			return $sLink .  'comment_' . $iChild . '/#comment-view';//Phpfox::getLib('url')->makeUrl($aQuiz['user_name'], array('quiz', $aQuiz['title_url'], 'comment' => $iChild, '#comment-view'));
+			return $sLink .  'comment_' . $iChild . '/#comment-view';//Phpfox_Url::instance()->makeUrl($aQuiz['user_name'], array('quiz', $aQuiz['title_url'], 'comment' => $iChild, '#comment-view'));
 		}		
 		$sLink = Phpfox::permalink('quiz', $aQuiz['quiz_id'], $aQuiz['title']);
-		return $sLink;//Phpfox::getLib('url')->makeUrl($aQuiz['user_name'], array('quiz', $aQuiz['title_url']));
+		return $sLink;//Phpfox_Url::instance()->makeUrl($aQuiz['user_name'], array('quiz', $aQuiz['title_url']));
 	}
 
 	public function getCommentNewsFeed($aRow)
 	{
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');
 
 		if ($aRow['owner_user_id'] == $aRow['item_user_id'])
@@ -178,7 +178,7 @@ class Quiz_Service_Callback extends Phpfox_Service
 			// Send the user an email
 			if (Phpfox::getParam('core.is_personal_site'))
 			{
-				$sLink = Phpfox::getLib('url')->makeUrl('quiz', $aQuiz['title_url']);
+				$sLink = Phpfox_Url::instance()->makeUrl('quiz', $aQuiz['title_url']);
 			}
 			else
 			{
@@ -227,7 +227,7 @@ class Quiz_Service_Callback extends Phpfox_Service
 		
 		$sLink = Phpfox::permalink('quiz', $aItem['quiz_id'], $aItem['title']);
 		$sTitle = Phpfox::getLib('parse.output')->shorten($aItem['title'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') :50));
-		$sUser = '<a href="' . Phpfox::getLib('url')->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
+		$sUser = '<a href="' . Phpfox_Url::instance()->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
 		$sGender = Phpfox::getService('user')->gender($aItem['gender'], 1);
 		
 		if ($aRow['user_id'] == $aItem['user_id'])
@@ -322,7 +322,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('quiz', $aRow['quiz_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('quiz', $aRow['quiz_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -335,7 +335,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 
 	public function getItemName($iId, $sName)
 	{
-		return '<a href="' . Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('quiz.on_name_s_quiz', array('name' => $sName)) . '</a>';
+		return '<a href="' . Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('quiz.on_name_s_quiz', array('name' => $sName)) . '</a>';
 	}	
 	
 	/**
@@ -429,7 +429,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 	
 	public function getItemView()
 	{
-		if (Phpfox::getLib('request')->get('req3') != '')
+		if (Phpfox_Request::instance()->get('req3') != '')
 		{
 			return true;
 		}
@@ -468,7 +468,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		{
 			$aRow['text'] = Phpfox::getPhrase('quiz.a_href_user_link_full_name_a_liked_their_own_a_href_link_quiz_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'link' => $aRow['link']
 				)
 			);
@@ -477,9 +477,9 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		{
 			$aRow['text'] = Phpfox::getPhrase('quiz.a_href_user_link_full_name_a_liked_a_href_view_user_link_view_full_name_a_s_a_href_link_quiz_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -495,11 +495,11 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		return array(
 			'message' => Phpfox::getPhrase('quiz.a_href_user_link_full_name_a_likes_your_a_href_link_quiz_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('quiz', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('quiz', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('quiz', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('quiz', array('redirect' => $aRow['item_id']))
 		);				
 	}	
 	
@@ -507,8 +507,8 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 	{
 		return Phpfox::getPhrase('quiz.a_href_user_link_full_name_a_likes_your_a_href_link_quiz_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('quiz', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('quiz', array('redirect' => $iItemId))
 				)
 			);
 	}
@@ -525,7 +525,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		$aPending[] = array(
 			'phrase' => Phpfox::getPhrase('quiz.quizzes'),
 			'value' => $this->database()->select('COUNT(*)')->from(Phpfox::getT('quiz'))->where('view_id = 1')->execute('getSlaveField'),
-			'link' => Phpfox::getLib('url')->makeUrl('quiz', array('view' => 'approval'))
+			'link' => Phpfox_Url::instance()->makeUrl('quiz', array('view' => 'approval'))
 		);		
 		
 		return $aPending;
@@ -577,7 +577,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('quiz', $aRow['quiz_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('quiz', $aRow['quiz_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -632,7 +632,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		$sPhrase = Phpfox::getPhrase('quiz.your_quiz_title_has_been_approved',array('title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('quiz', $aRow['quiz_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('quiz', $aRow['quiz_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
@@ -759,7 +759,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->permalink('quiz', $aRow['item_id'], $aRow['item_title']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->permalink('quiz', $aRow['item_id'], $aRow['item_title']);
 		$aInfo['item_name'] = Phpfox::getPhrase('search.quiz');
 		
 		return $aInfo;
@@ -794,7 +794,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 		$sPhrase = Phpfox::getPhrase('quiz.user_name_tagged_you_in_a_comment_in_a_quiz', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('quiz', $aRow['quiz_id'], $aRow['title'])  . 'comment_'.$aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('quiz', $aRow['quiz_id'], $aRow['title'])  . 'comment_'.$aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);

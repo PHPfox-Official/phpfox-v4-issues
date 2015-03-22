@@ -112,7 +112,7 @@ class Blog_Service_Category_Category extends Phpfox_Service
 				
 			foreach ($aItems as $iKey => $aItem)
 			{
-				$aItems[$iKey]['link'] = ($aItem['user_id'] ? Phpfox::getLib('url')->permalink($aItem['user_name'] . '.blog.category', $aItem['category_id'], $aItem['name']) : Phpfox::getLib('url')->permalink('blog.category', $aItem['category_id'], $aItem['name']));
+				$aItems[$iKey]['link'] = ($aItem['user_id'] ? Phpfox_Url::instance()->permalink($aItem['user_name'] . '.blog.category', $aItem['category_id'], $aItem['name']) : Phpfox_Url::instance()->permalink('blog.category', $aItem['category_id'], $aItem['name']));
 			}
 		}
 			

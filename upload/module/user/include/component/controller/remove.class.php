@@ -21,7 +21,7 @@ class User_Component_Controller_Remove extends Phpfox_Component
 		Phpfox::isUser(true);
 		if (!Phpfox::getUserParam('user.can_delete_own_account'))
 		{
-			Phpfox::getLib('url')->send('');
+			Phpfox_Url::instance()->send('');
 		}
 		if (Phpfox::isModule('friend'))
 		{

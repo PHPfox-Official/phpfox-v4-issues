@@ -98,7 +98,7 @@ class Blog_Service_Api extends Phpfox_Service
 					'permalink' => Phpfox::permalink('blog', $aRow['blog_id'], $aRow['title']),
 					'content' => Phpfox::getLib('parse.output')->parse($aRow['text_parsed']),
 					'created_by' => $aRow['full_name'],
-					'created_by_url' => Phpfox::getLib('url')->makeUrl($aRow['user_name'])
+					'created_by_url' => Phpfox_Url::instance()->makeUrl($aRow['user_name'])
 			);
 		}
 	

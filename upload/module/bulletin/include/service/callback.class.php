@@ -46,9 +46,9 @@ class Bulletin_Service_Callback extends Phpfox_Service
 			
 		if ($iChild > 0)
 		{
-			return Phpfox::getLib('url')->makeUrl('bulletin.view', array('id' => $aBulletin['bulletin_id'], 'comment' => $iChild, '#comment-view'));
+			return Phpfox_Url::instance()->makeUrl('bulletin.view', array('id' => $aBulletin['bulletin_id'], 'comment' => $iChild, '#comment-view'));
 		}			
-		return Phpfox::getLib('url')->makeUrl('bulletin.view', array('id' => $aBulletin['bulletin_id']));
+		return Phpfox_Url::instance()->makeUrl('bulletin.view', array('id' => $aBulletin['bulletin_id']));
 	}	
 	
 	public function getCommentItemName()
@@ -73,7 +73,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 	
 	public function getCommentNewsFeed($aRow)
 	{		
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 
 		$aReplacements = array(
@@ -121,7 +121,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 			(Phpfox::isModule('feed') ? Phpfox::getService('feed.process')->add('comment_bulletin', $aVals['item_id'], $aVals['text_parsed'], $iUserId, $aBulletin['user_id'], $aVals['comment_id']) : null);
 			
 			// Send the user an email			
-			$sLink = Phpfox::getLib('url')->makeUrl('bulletin.view', array('id' => $aBulletin['bulletin_id']));
+			$sLink = Phpfox_Url::instance()->makeUrl('bulletin.view', array('id' => $aBulletin['bulletin_id']));
 			Phpfox::getLib('mail')->to($aBulletin['user_id'])
 				->subject(array('bulletin.full_name_left_you_a_comment_on_site_title', array('full_name' => $sUserName, 'site_title' => Phpfox::getParam('core.site_title'))))
 				->message(array('bulletin.full_name_left_you_a_comment_on_site_title_message', array('full_name' => $sUserName, 'site_title' => Phpfox::getParam('core.site_title'), 'link' => $sLink)))
@@ -131,7 +131,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 		
 		if ($aVals['comment_view_id'] == 2 && Phpfox::isModule('request') && !Phpfox::getUserParam('comment.approve_all_comments'))
 		{
-			$sLink = Phpfox::getLib('url')->makeUrl('request', '#comment');
+			$sLink = Phpfox_Url::instance()->makeUrl('request', '#comment');
 			Phpfox::getLib('mail')->to($aBulletin['user_id'])
 				->subject(array('bulletin.full_name_left_you_a_comment_on_site_title', array('full_name' => $sUserName, 'site_title' => Phpfox::getParam('core.site_title'))))
 				->message(array('bulletin.full_name_left_you_a_comment_on_site_title_message_approve', array('full_name' => $sUserName, 'site_title' => Phpfox::getParam('core.site_title'), 'link' => $sLink)))
@@ -147,7 +147,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 
 	public function getItemName($iId, $sName)
 	{
-		return '<a href="' . Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('bulletin.on_name_s_bulletin', array('name' => $sName)) . '</a>';
+		return '<a href="' . Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('bulletin.on_name_s_bulletin', array('name' => $sName)) . '</a>';
 	}	
 	
 	public function deleteComment($iId)
@@ -175,7 +175,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 			(Phpfox::isModule('feed') ? Phpfox::getService('feed.process')->add('comment_bulletin', $aBulletin['bulletin_id'], $aBulletin['text_parsed'], $aBulletin['comment_user_id'], $aBulletin['user_id'], $aBulletin['comment_id']) : null);
 			
 			// Send the user an email
-			$sLink = Phpfox::getLib('url')->makeUrl('bulletin.view', array('id' => $aBulletin['bulletin_id']));
+			$sLink = Phpfox_Url::instance()->makeUrl('bulletin.view', array('id' => $aBulletin['bulletin_id']));
 			
 			Phpfox::getLib('mail')->to($aBulletin['comment_user_id'])
 				->subject(array('bulletin.full_name_approved_your_comment_on_site_title', array('full_name' => Phpfox::getUserBy('full_name'), 'site_title' => Phpfox::getParam('core.site_title'))))
@@ -196,7 +196,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 	public function getNewsFeed($aRow)
 	{
 		if ($sPlugin = Phpfox_Plugin::get('bulletin.service_callback_getnewsfeed_start')){eval($sPlugin);}
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');				
 		
 		$aRow['text'] = Phpfox::getPhrase('bulletin.owner_full_name_added_a_new_bulletin', array(
@@ -289,7 +289,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('bulletin.a_href_user_link_full_name_a_likes_their_own_a_href_link_bulletin_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
 					'link' => $aRow['link']
 				)
@@ -299,9 +299,9 @@ class Bulletin_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('bulletin.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_a_href_link_bulletin_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -317,11 +317,11 @@ class Bulletin_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('bulletin.a_href_user_link_full_name_a_likes_your_a_href_link_bulletin_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('bulletin', array('view', 'id' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('bulletin', array('view', 'id' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('bulletin', array('view', 'id' => $aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('bulletin', array('view', 'id' => $aRow['item_id']))
 		);				
 	}	
 	
@@ -329,8 +329,8 @@ class Bulletin_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('bulletin.a_href_user_link_full_name_a_likes_your_a_href_link_bulletin_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('bulletin', array('view', 'id' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('bulletin', array('view', 'id' => $iItemId))
 				)
 			);
 	}
@@ -347,7 +347,7 @@ class Bulletin_Service_Callback extends Phpfox_Service
 		return array(
 			'phrase' => Phpfox::getPhrase('bulletin.bulletins'),
 			'value' => $this->database()->select('COUNT(*)')->from(Phpfox::getT('bulletin'))->where('view_id = 1')->execute('getSlaveField'),
-			'link' => Phpfox::getLib('url')->makeUrl('bulletin', array('view' => 'approval'))
+			'link' => Phpfox_Url::instance()->makeUrl('bulletin', array('view' => 'approval'))
 		);
 	}	
 	

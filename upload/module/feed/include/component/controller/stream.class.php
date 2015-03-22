@@ -13,7 +13,7 @@ class Feed_Component_Controller_Stream extends Phpfox_Component {
 
 			Feed_Service_Feed::instance()->processAjax($id);
 
-			echo Phpfox::getLib('ajax')->getData();
+			echo Phpfox_Ajax::instance()->getData();
 			exit;
 		}
 

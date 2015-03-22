@@ -89,7 +89,7 @@ class Custom_Component_Block_Entry extends Phpfox_Component
 					$aData['value'] .= '<div id="js_custom_field_' . $aData['field_id'] . '" class="js_custon_field" style="display:none;"></div>';
 					$aData['value'] .= '</div>';
 					
-					//$sJsClick = 'window.location=\'' . Phpfox::getLib('url')->makeUrl('user.profile') .'\'';
+					//$sJsClick = 'window.location=\'' . Phpfox_Url::instance()->makeUrl('user.profile') .'\'';
 					break;
 				default:
 					if ($aData['type_id'] == 'profile_panel')

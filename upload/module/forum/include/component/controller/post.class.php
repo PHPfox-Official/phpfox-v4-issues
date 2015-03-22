@@ -286,7 +286,7 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 					
 					if (PHPFOX_IS_AJAX)
 					{
-						Phpfox::getLib('ajax')->setTitle(Phpfox::getPhrase('forum.editing_post') . ': ' . (empty($aPost['title']) ? '#' . $aPost['post_id'] : Phpfox::getLib('parse.output')->shorten($aPost['title'], 80, '...')));
+						Phpfox_Ajax::instance()->setTitle(Phpfox::getPhrase('forum.editing_post') . ': ' . (empty($aPost['title']) ? '#' . $aPost['post_id'] : Phpfox::getLib('parse.output')->shorten($aPost['title'], 80, '...')));
 					}
 				}
 				else 
@@ -351,7 +351,7 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 			
 			if (($iQuoteId = $this->request()->getInt('quote')) && ($aQuotePost = Phpfox::getService('forum.post')->getForEdit($iQuoteId)))
 			{
-				Phpfox::getLib('ajax')->setTitle(Phpfox::getPhrase('forum.replying_to_a_post_by_full_name', array('full_name' => Phpfox::getLib('parse.output')->shorten($aQuotePost['full_name'], 80, '...'))));				
+				Phpfox_Ajax::instance()->setTitle(Phpfox::getPhrase('forum.replying_to_a_post_by_full_name', array('full_name' => Phpfox::getLib('parse.output')->shorten($aQuotePost['full_name'], 80, '...'))));
 			}
 			
 			$aSubForms = array();

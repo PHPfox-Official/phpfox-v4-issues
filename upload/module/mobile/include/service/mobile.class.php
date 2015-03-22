@@ -39,7 +39,7 @@ class Mobile_Service_Mobile extends Phpfox_Service
 		foreach ($aMenus as $iKey => $aMenu)
 		{
 			$aMenus[$iKey]['phrase'] = Phpfox::getPhrase($aMenu['module'] . '.' . $aMenu['var_name']);
-			$aMenus[$iKey]['link'] = Phpfox::getLib('url')->makeUrl($aMenu['url']);
+			$aMenus[$iKey]['link'] = Phpfox_Url::instance()->makeUrl($aMenu['url']);
 			$aMenus[$iKey]['icon'] = Phpfox_Template::instance()->getStyle('image', 'mobile/' . $aMenu['mobile_icon']);
 		}		
 		

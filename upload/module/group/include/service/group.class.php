@@ -54,7 +54,7 @@ class Group_Service_Group extends Phpfox_Service
 		}
 		
 		$this->_aGroup['breadcrumb'] = Phpfox::getService('group.category')->getCategoriesById($this->_aGroup['group_id']);
-		$this->_aGroup['bookmark_url'] = Phpfox::getLib('url')->makeUrl('group', $this->_aGroup['title_url']);			
+		$this->_aGroup['bookmark_url'] = Phpfox_Url::instance()->makeUrl('group', $this->_aGroup['title_url']);
 
 		return $this->_aGroup;
 	}	
@@ -178,7 +178,7 @@ class Group_Service_Group extends Phpfox_Service
 			
 		foreach ($aRows as $iKey => $aRow)
 		{
-			$aRows[$iKey]['group_url'] = Phpfox::getLib('url')->makeUrl('group', array($aRow['title_url'], 'member'));
+			$aRows[$iKey]['group_url'] = Phpfox_Url::instance()->makeUrl('group', array($aRow['title_url'], 'member'));
 		}
 			
 		return $aRows;

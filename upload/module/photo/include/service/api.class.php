@@ -133,7 +133,7 @@ class Photo_Service_Api extends Phpfox_Service
 					'title' => $sPhotoTitle,
 					'width' => $aSize[0],
 					'height' => $aSize[1],					
-					'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')
+					'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')
 				)
 			);		
 			
@@ -227,7 +227,7 @@ class Photo_Service_Api extends Phpfox_Service
 					'comments' => $aRow['total_comment'],
 					'uploaded_by' => $aRow['full_name'],
 					'uploaded_by_id' => $aRow['user_id'],
-					'uploaded_by_url' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
+					'uploaded_by_url' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
 					'uploaded_by_username' => $aRow['user_name'],
 					'description' => Phpfox::getLib('parse.output')->parse($aRow['description']),
 					'permalink' => Phpfox::permalink('photo', $aRow['photo_id'], $aRow['title']),

@@ -119,7 +119,7 @@ class Video_Component_Controller_View extends Phpfox_Component
 
 		if (Phpfox::getParam('video.upload_for_html5') && !$aVideo['in_process'])
 		{
-			$aVideo['embed'] = htmlspecialchars('<iframe src="' . Phpfox::getLib('url')->makeUrl('video.play', array($aVideo['video_id'])) . '" width="640" height="390" frameborder="0"></iframe>');
+			$aVideo['embed'] = htmlspecialchars('<iframe src="' . Phpfox_Url::instance()->makeUrl('video.play', array($aVideo['video_id'])) . '" width="640" height="390" frameborder="0"></iframe>');
 		}
 
 		$this->template()->setTitle($aVideo['title'])

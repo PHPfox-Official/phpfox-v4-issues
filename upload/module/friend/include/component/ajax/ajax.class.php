@@ -65,7 +65,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 									'currency_code' => Phpfox::getService('core.currency')->getDefault(),
 									'amount' => $fCost,
 									'item_name' => 'egift card with message: ' . $sMessage . '',
-									'return' => Phpfox::getLib('url')->makeUrl('friend.invoice'),
+									'return' => Phpfox_Url::instance()->makeUrl('friend.invoice'),
 									'recurring' => 0,
 									'recurring_cost' => '',
 									'alternative_cost' => 0,
@@ -261,7 +261,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 					$this->call('js_box_remove($(\'#js_friend_list_add_error\'));');
 					$this->alert(Phpfox::getPhrase('friend.list_successfully_created'), Phpfox::getPhrase('friend.create_new_list'), 400, 150, true);
 					$this->call('$Core.friend.addNewList(' . (int) $iId . ', \'' . str_replace("'", "\\'", Phpfox::getLib('parse.input')->clean($sName)) . '\');');
-					$this->append('.sub_section_menu ul', '<li><a href="' . Phpfox::getLib('url')->makeUrl('friend', array('view' => 'list', 'id' => $iId)) . '">' . str_replace("'", "\\'", Phpfox::getLib('parse.input')->clean($sName)) . '</a></li>');
+					$this->append('.sub_section_menu ul', '<li><a href="' . Phpfox_Url::instance()->makeUrl('friend', array('view' => 'list', 'id' => $iId)) . '">' . str_replace("'", "\\'", Phpfox::getLib('parse.input')->clean($sName)) . '</a></li>');
 				}
 				$this->call('$Core.loadInit()');
 			}
@@ -391,7 +391,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			Phpfox::addMessage(Phpfox::getPhrase('friend.friends_successfully_moved'));
 			
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('friend', array('view' => 'list', 'id' => $this->get('list'))) . '\';');	
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('friend', array('view' => 'list', 'id' => $this->get('list'))) . '\';');
 		}		
 	}
 	
@@ -564,7 +564,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		if (!Phpfox::isUser())
 		{
-			$this->call('<script type="text/javascript">window.location.href = \'' . Phpfox::getLib('url')->makeUrl('user.login') . '\';</script>');
+			$this->call('<script type="text/javascript">window.location.href = \'' . Phpfox_Url::instance()->makeUrl('user.login') . '\';</script>');
 		}
 		else
 		{

@@ -45,7 +45,7 @@ class Language_Component_Controller_Admincp_Delete extends Phpfox_Component
 		{
 			if (Phpfox::getService('language.process')->delete($iId))
 			{
-				Phpfox::getLib('locale')->autoLoadLanguage();
+				Phpfox_Locale::instance()->autoLoadLanguage();
 				$this->url()->send('admincp', 'language', Phpfox::getPhrase('language.language_package_successfully_deleted'));
 			}
 		}

@@ -106,10 +106,17 @@ class Phpfox_Ajax
 	 */
 	public function __construct()
 	{
-		$this->_oReq = Phpfox::getLib('request');
+		$this->_oReq = Phpfox_Request::instance();
 		$this->_aRequest = $this->_oReq->getArray(Phpfox::getTokenName());	
 
 		(($sPlugin = Phpfox_Plugin::get('ajax__construct')) ? eval($sPlugin) : false);	
+	}
+
+	/**
+	 * @return $this
+	 */
+	public static function instance() {
+		return Phpfox::getLib('ajax');
 	}
 	
 	/**
@@ -475,9 +482,9 @@ class Phpfox_Ajax
 			}
 			else 
 			{				
-				if (Phpfox::getLib('request')->get('do') != '')
+				if (Phpfox_Request::instance()->get('do') != '')
 				{
-					Phpfox::getLib('session')->set('redirect', Phpfox::getLib('request')->get('do'));
+					Phpfox::getLib('session')->set('redirect', Phpfox_Request::instance()->get('do'));
 				}
 				
 				echo "tb_show('" . Phpfox::getPhrase('user.login_title') . "', \$.ajaxBox('user.login', 'height=250&width=400" . ((isset(self::$_aParams[Phpfox::getTokenName()]['is_admincp']) && self::$_aParams[Phpfox::getTokenName()]['is_admincp']) ? '&' . Phpfox::getTokenName() . '[is_admincp]=1' : '') . "'));";

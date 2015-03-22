@@ -361,7 +361,7 @@ class Core_Component_Ajax_Ajax extends Phpfox_Ajax
 			}
 			else
 			{   				
-				$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('') . '\';');
+				$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('') . '\';');
 			}			
 		}
 		else
@@ -411,8 +411,8 @@ class Core_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function getMyCity()
 	{
-		//$sInfo = Phpfox::getLib('request')->send('http://smart-ip.net/geoip-json/' . Phpfox::getLib('request')->getIp(), array(), 'GET');
-		$sInfo = Phpfox::getLib('request')->send('http://freegeoip.net/json/' . Phpfox::getLib('request')->getIp(), array(), 'GET');
+		//$sInfo = Phpfox_Request::instance()->send('http://smart-ip.net/geoip-json/' . Phpfox_Request::instance()->getIp(), array(), 'GET');
+		$sInfo = Phpfox_Request::instance()->send('http://freegeoip.net/json/' . Phpfox_Request::instance()->getIp(), array(), 'GET');
 		$oInfo = json_decode($sInfo);
 		if ($this->get('section') == 'feed')
 		{
@@ -470,7 +470,7 @@ class Core_Component_Ajax_Ajax extends Phpfox_Ajax
 			$sController = $this->get('loadContent');
 			if (!empty($aParams))
 			{
-				$oRequest = Phpfox::getLib('request');
+				$oRequest = Phpfox_Request::instance();
 				foreach ($aParams as $sIndex => $sKey)
 				{
 					$oRequest->set($sIndex, $sKey);

@@ -117,7 +117,7 @@ class Pages_Service_Api extends Phpfox_Service
 			$iFileSizes = filesize(Phpfox::getParam('pages.dir_image') . sprintf($sFileName, ''));
 				
 			$aUpdate['image_path'] = $sFileName;
-			$aUpdate['image_server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+			$aUpdate['image_server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 				
 			$iSize = 50;
 			$oImage->createThumbnail(Phpfox::getParam('pages.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('pages.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);
@@ -190,7 +190,7 @@ class Pages_Service_Api extends Phpfox_Service
 					'url' => Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']),
 					'info' => Phpfox::getLib('parse.output')->parse($aRow['text_parsed']),
 					'created_by' => $aRow['full_name'],
-					'created_by_url' => Phpfox::getLib('url')->makeUrl($aRow['user_name'])
+					'created_by_url' => Phpfox_Url::instance()->makeUrl($aRow['user_name'])
 				);
 			
 			$aReturn[$iKey]['photo_100px'] = Phpfox::getLib('image.helper')->display(array(

@@ -52,7 +52,7 @@ class Video_Service_Browse extends Phpfox_Service
 	{
 		foreach ($aRows as $iKey => $aRow)
 		{				
-			$aRows[$iKey]['link'] = ($this->_aCallback !== false ? Phpfox::getLib('url')->makeUrl($this->_aCallback['url'][0], array_merge($this->_aCallback['url'][1], array($aRow['title']))) : Phpfox::permalink('video', $aRow['video_id'], $aRow['title']));
+			$aRows[$iKey]['link'] = ($this->_aCallback !== false ? Phpfox_Url::instance()->makeUrl($this->_aCallback['url'][0], array_merge($this->_aCallback['url'][1], array($aRow['title']))) : Phpfox::permalink('video', $aRow['video_id'], $aRow['title']));
 		}
 	}
 	

@@ -82,7 +82,7 @@ class Video_Service_Category_Category extends Phpfox_Service
 	
 	public function get()
 	{
-		$sCacheId = $this->cache()->set('video_category_display_' . $this->_sDisplay . '_' . Phpfox::getLib('locale')->getLangId());
+		$sCacheId = $this->cache()->set('video_category_display_' . $this->_sDisplay . '_' . Phpfox_Locale::instance()->getLangId());
 		
 		if ($this->_sDisplay == 'admincp')
 		{
@@ -130,7 +130,7 @@ class Video_Service_Category_Category extends Phpfox_Service
 	
 	public function getCategoriesById($iId = null, &$aCategories = null)
 	{
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		
 		if ($aCategories === null)
 		{
@@ -152,12 +152,12 @@ class Video_Service_Category_Category extends Phpfox_Service
 		{			
 			foreach ($aCategories as $aCategory)
 			{				
-				$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategory['name']), Phpfox::permalink('video.category', $aCategory['category_id'], $aCategory['name']));
+				$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategory['name']), Phpfox::permalink('video.category', $aCategory['category_id'], $aCategory['name']));
 			}
 		}		
 		else 
 		{			
-			$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategories[0]['name']), Phpfox::permalink('video.category', $aCategories[0]['category_id'], $aCategories[0]['name']));
+			$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategories[0]['name']), Phpfox::permalink('video.category', $aCategories[0]['category_id'], $aCategories[0]['name']));
 		}
 		
 		return $aBreadcrumb;
@@ -321,16 +321,16 @@ class Video_Service_Category_Category extends Phpfox_Service
 				
 				if ($this->_sDisplay == 'option')
 				{
-					$this->_sOutput .= '<option value="' . $aCategory['category_id'] . '" id="js_mp_category_item_' . $aCategory['category_id'] . '">' . ($this->_iCnt > 0 ? str_repeat('&nbsp;', ($this->_iCnt * 2)) . ' ' : '') . Phpfox::getLib('locale')->convert($aCategory['name']) . '</option>' . "\n";
+					$this->_sOutput .= '<option value="' . $aCategory['category_id'] . '" id="js_mp_category_item_' . $aCategory['category_id'] . '">' . ($this->_iCnt > 0 ? str_repeat('&nbsp;', ($this->_iCnt * 2)) . ' ' : '') . Phpfox_Locale::instance()->convert($aCategory['name']) . '</option>' . "\n";
 					$this->_sOutput .= $this->_get($aCategory['category_id'], $iActive);					
 				}
 				elseif ($this->_sDisplay == 'admincp')
 				{
-					$sOutput .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <input type="hidden" name="order[' . $aCategory['category_id'] . ']" value="' . $aCategory['ordering'] . '" class="js_mp_order" /><a href="#?id=' . $aCategory['category_id'] . '" class="js_drop_down">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</a>' . $this->_get($aCategory['category_id'], $iActive) . '</li>' . "\n";
+					$sOutput .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <input type="hidden" name="order[' . $aCategory['category_id'] . ']" value="' . $aCategory['ordering'] . '" class="js_mp_order" /><a href="#?id=' . $aCategory['category_id'] . '" class="js_drop_down">' . Phpfox_Locale::instance()->convert($aCategory['name']) . '</a>' . $this->_get($aCategory['category_id'], $iActive) . '</li>' . "\n";
 				}
 				else 
 				{				
-					$this->_sOutput .= '<option value="' . $aCategory['category_id'] . '" id="js_mp_category_item_' . $aCategory['category_id'] . '">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</option>' . "\n";
+					$this->_sOutput .= '<option value="' . $aCategory['category_id'] . '" id="js_mp_category_item_' . $aCategory['category_id'] . '">' . Phpfox_Locale::instance()->convert($aCategory['name']) . '</option>' . "\n";
 				}
 			}
 			

@@ -85,7 +85,7 @@ class Photo_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('photo.photos'),
-			'link' => Phpfox::getLib('url')->makeUrl('photo'),
+			'link' => Phpfox_Url::instance()->makeUrl('photo'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_photos.png'))
 		);
 	}	
@@ -106,7 +106,7 @@ class Photo_Service_Callback extends Phpfox_Service
 	    {
 			return false;
 	    }
-	    //return Phpfox::getLib('url')->makeUrl($aPhoto['user_name'].'.photo.view.' . $aPhoto['title_url'] );
+	    //return Phpfox_Url::instance()->makeUrl($aPhoto['user_name'].'.photo.view.' . $aPhoto['title_url'] );
 		return Phpfox::permalink('photo', $aPhoto['photo_id'], $aPhoto['title']);
 	}
 	
@@ -122,7 +122,7 @@ class Photo_Service_Callback extends Phpfox_Service
 	
 	public function getTagLink()
 	{
-		return Phpfox::getLib('url')->makeUrl('photo.tag');
+		return Phpfox_Url::instance()->makeUrl('photo.tag');
 	}	
 	
 	public function getTagType()
@@ -167,7 +167,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			return false;
 		}
 			
-		return Phpfox::getLib('url')->permalink('photo.album', $aAlbum['album_id'], $aAlbum['name']);		
+		return Phpfox_Url::instance()->permalink('photo.album', $aAlbum['album_id'], $aAlbum['name']);
 	}
 	
 	public function getFeedRedirectAlbum_FeedLike($iId, $iChild = 0)
@@ -205,7 +205,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		
 		$aRow['text'] = Phpfox::getPhrase('photo.feed_user_add_photos', array(
 				'owner_full_name' => $aRow['owner_full_name'],
-				'owner_link' => Phpfox::getLib('url')->makeUrl('feed.user', array('id' => $aRow['owner_user_id'])),
+				'owner_link' => Phpfox_Url::instance()->makeUrl('feed.user', array('id' => $aRow['owner_user_id'])),
 				'total' => count($aRow['photo_images']),
 				'album_name' => Feed_Service_Feed::instance()->shortenTitle($aRow['album_name']),
 				'photo_images' => $aRow['photo_images'],
@@ -235,7 +235,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			
 			if (isset($aImage['link']))
 			{				
-				$aRow['link'] = Phpfox::getLib('url')->makeUrl($aImage['link'][0], array($aImage['link'][1], $aImage['link'][2], $aImage['link'][3]));
+				$aRow['link'] = Phpfox_Url::instance()->makeUrl($aImage['link'][0], array($aImage['link'][1], $aImage['link'][2], $aImage['link'][3]));
 			}			
 			if (isset($aImage['mature']))
 			{
@@ -266,7 +266,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		if (count($aImages) == 1)
 		{
 			$aRow['text'] = Phpfox::getPhrase('photo.a_href_profile_link_owner_full_name_a_uploaded_a_new_photo', array(
-					'profile_link' => Phpfox::getLib('url')->makeUrl('feed.user', array('id' => $aRow['owner_user_id'])),
+					'profile_link' => Phpfox_Url::instance()->makeUrl('feed.user', array('id' => $aRow['owner_user_id'])),
 					'owner_full_name' => $this->preParse()->clean($aRow['owner_full_name'])
 				)
 			);
@@ -274,7 +274,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		else 
 		{
 			$aRow['text'] = Phpfox::getPhrase('photo.a_href_profile_link_owner_full_name_a_uploaded_new_photos', array(
-					'profile_link' => Phpfox::getLib('url')->makeUrl('feed.user', array('id' => $aRow['owner_user_id'])),
+					'profile_link' => Phpfox_Url::instance()->makeUrl('feed.user', array('id' => $aRow['owner_user_id'])),
 					'owner_full_name' => $this->preParse()->clean($aRow['owner_full_name'])			
 				)
 			);
@@ -301,7 +301,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			
 			if (isset($aImage['link']))
 			{				
-				$aRow['link'] = Phpfox::getLib('url')->makeUrl(implode('.', $aImage['link']));
+				$aRow['link'] = Phpfox_Url::instance()->makeUrl(implode('.', $aImage['link']));
 			}			
 			
 			if (isset($aImage['mature']))
@@ -353,10 +353,10 @@ class Photo_Service_Callback extends Phpfox_Service
 
 	    if (empty($aImage))
 	    {
-			return array('error' => Phpfox::getPhrase('photo.sorry_the_photo_you_are_looking_for_no_longer_exists',array('link'=> Phpfox::getLib('url')->makeUrl('profile.photo'))));
+			return array('error' => Phpfox::getPhrase('photo.sorry_the_photo_you_are_looking_for_no_longer_exists',array('link'=> Phpfox_Url::instance()->makeUrl('profile.photo'))));
 	    }
 	    
-	    $aImage['link'] = Phpfox::permalink('photo',$aImage['item_id'], $aImage['title']);;//Phpfox::getLib('url')->makeUrl('photo.'.$aImage['photo_id'].'.'.$aImage['title']);
+	    $aImage['link'] = Phpfox::permalink('photo',$aImage['item_id'], $aImage['title']);;//Phpfox_Url::instance()->makeUrl('photo.'.$aImage['photo_id'].'.'.$aImage['title']);
 	    $aImage['paypal_msg'] = Phpfox::getPhrase('photo.sponsor_paypal_message', array('sPhotoTitle' => $aImage['title']));
 	    $aImage['image_dir'] = 'photo.url_photo';
 	    $aImage['title'] = Phpfox::getPhrase('photo.sponsor_title', array('sPhotoTitle' => $aImage['title']));
@@ -366,7 +366,7 @@ class Photo_Service_Callback extends Phpfox_Service
 	
 	public function getCommentNewsFeed($aRow)
 	{	
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		
 		$aPart = unserialize($aRow['content']);
@@ -483,7 +483,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		{
 			$sLink .= 'userid_' . $aItem['user_id'] . '/';
 		}
-		$sUser = '<a href="' . Phpfox::getLib('url')->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
+		$sUser = '<a href="' . Phpfox_Url::instance()->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
 		$sGender = Phpfox::getService('user')->gender($aItem['gender'], 1);
 		
 		if ($aRow['user_id'] == $aItem['user_id'])
@@ -583,7 +583,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']);
+		$sLink = Phpfox_Url::instance()->permalink('photo', $aRow['photo_id'], $aRow['title']);
 		
 		Phpfox::getService('comment.process')->notify(array(
 				'user_id' => $aRow['user_id'],
@@ -671,7 +671,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('photo', $aRow['photo_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -710,7 +710,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		}
 
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('photo', $aRow['photo_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -729,7 +729,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('photo.user_name_tagged_you_in_a_comment_in_a_photo', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title'])  .'comment_' . $aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('photo', $aRow['photo_id'], $aRow['title'])  .'comment_' . $aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -746,14 +746,14 @@ class Photo_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('photo.user_name_tagged_you_in_a_comment_in_a_photo_album', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('photo.album', $aRow['album_id'], $aRow['name'])  .'comment_' . $aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('photo.album', $aRow['album_id'], $aRow['name'])  .'comment_' . $aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
 	}
 	public function getItemName($iId, $sName)
 	{
-		return '<a href="' . Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('photo.on_name_s_photo', array('name' => $sName)) . '</a>';
+		return '<a href="' . Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('photo.on_name_s_photo', array('name' => $sName)) . '</a>';
 	}	
 
 	public function getRedirectComment($iId)
@@ -807,7 +807,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		}			
 		
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl('photo', array($aRow['photo_id'],)),
+			'link' => Phpfox_Url::instance()->makeUrl('photo', array($aRow['photo_id'],)),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);		
@@ -836,7 +836,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			(Phpfox::isModule('feed') ? Phpfox::getService('feed.process')->add('comment_photo', $iId, $aPhoto['text_parsed'], Phpfox::getUserBy('user_name'), $aPhoto['user_id'], $aPhoto['full_name'], $aPhoto['destination'], $aPhoto['comment_id']) : null);
 			
 			// Send the user an email			
-			$sLink = ($aPhoto['album_id'] ? Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name'), array('photo', $aPhoto['album_url'], $aPhoto['title_url'])) : Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name'), array('photo', 'view', $aPhoto['title_url'])));					
+			$sLink = ($aPhoto['album_id'] ? Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name'), array('photo', $aPhoto['album_url'], $aPhoto['title_url'])) : Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name'), array('photo', 'view', $aPhoto['title_url'])));
 			
 			Phpfox::getLib('mail')->to($aPhoto['comment_user_id'])
 				->subject(array('photo.full_name_approved_your_comment_on_site_title', array('full_name' => Phpfox::getUserBy('full_name'), 'site_title' => Phpfox::getParam('core.site_title'))))
@@ -913,18 +913,18 @@ class Photo_Service_Callback extends Phpfox_Service
 			
 			if ($bIsTagSearch == true)
 			{
-				$aResults['form'] = '<div><input type="button" value="' . Phpfox::getPhrase('photo.view_more_photos') . '" class="search_button" onclick="window.location.href = \'' . Phpfox::getLib('url')->makeUrl('photo', array('tag', $sQuery)) . '\';" /></div>';
+				$aResults['form'] = '<div><input type="button" value="' . Phpfox::getPhrase('photo.view_more_photos') . '" class="search_button" onclick="window.location.href = \'' . Phpfox_Url::instance()->makeUrl('photo', array('tag', $sQuery)) . '\';" /></div>';
 			}
 			else 
 			{			
-				$aResults['form'] = '<form method="post" action="' . Phpfox::getLib('url')->makeUrl('photo') . '"><div><input type="hidden" name="' . Phpfox::getTokenName() . '[security_token]" value="' . Phpfox::getService('log.session')->getToken() . '" /></div><div><input name="search[search]" value="' . Phpfox::getLib('parse.output')->clean($sQuery) . '" size="20" type="hidden" /></div><div><input type="submit" name="submit" value="' . Phpfox::getPhrase('photo.view_more_photos') . '" class="search_button" /></div></form>';
+				$aResults['form'] = '<form method="post" action="' . Phpfox_Url::instance()->makeUrl('photo') . '"><div><input type="hidden" name="' . Phpfox::getTokenName() . '[security_token]" value="' . Phpfox::getService('log.session')->getToken() . '" /></div><div><input name="search[search]" value="' . Phpfox::getLib('parse.output')->clean($sQuery) . '" size="20" type="hidden" /></div><div><input type="submit" name="submit" value="' . Phpfox::getPhrase('photo.view_more_photos') . '" class="search_button" /></div></form>';
 			}
 			
 			foreach ($aRows as $iKey => $aRow)
 			{
 				$aResults['results'][$iKey] = array(			
 					'title' => $aRow['title'],	
-					'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('photo', ($aRow['album_id'] ? $aRow['album_url'] : 'view'), $aRow['title_url'])),
+					'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('photo', ($aRow['album_id'] ? $aRow['album_url'] : 'view'), $aRow['title_url'])),
 					'image' => Phpfox::getLib('image.helper')->display(array(
 							'server_id' => $aRow['server_id'],
 							'title' => $aRow['title'],
@@ -936,9 +936,9 @@ class Photo_Service_Callback extends Phpfox_Service
 						)
 					),
 					'extra_info' => Phpfox::getPhrase('photo.a_href_photo_section_link_photo_a_uploaded_on_time_stamp_by_a_href_user_link', array(
-							'photo_section_link' => Phpfox::getLib('url')->makeUrl('photo'),
+							'photo_section_link' => Phpfox_Url::instance()->makeUrl('photo'),
 							'time_stamp' => Phpfox::getTime(Phpfox::getParam('core.global_update_time'), $aRow['time_stamp']),
-							'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
+							'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
 							'full_name' => $this->preParse()->clean($aRow['full_name'])
 						)
 					)
@@ -1000,7 +1000,7 @@ class Photo_Service_Callback extends Phpfox_Service
 				)
 			);			
 			
-			$aItems[$iKey]['link'] = Phpfox::getLib('url')->makeUrl($aItem['user_name'], array('photo', $aItem['album_url']));
+			$aItems[$iKey]['link'] = Phpfox_Url::instance()->makeUrl($aItem['user_name'], array('photo', $aItem['album_url']));
 		}		
 		
 		return array(
@@ -1030,7 +1030,7 @@ class Photo_Service_Callback extends Phpfox_Service
 				)
 			);			
 			
-			$aItems[$iKey]['link'] = ($aItem['album_id'] ? Phpfox::getLib('url')->makeUrl($aItem['user_name'], array('photo', $aItem['album_url'], $aItem['title_url'])) : Phpfox::getLib('url')->makeUrl($aItem['user_name'], array('photo', 'view', $aItem['title_url'])));			
+			$aItems[$iKey]['link'] = ($aItem['album_id'] ? Phpfox_Url::instance()->makeUrl($aItem['user_name'], array('photo', $aItem['album_url'], $aItem['title_url'])) : Phpfox_Url::instance()->makeUrl($aItem['user_name'], array('photo', 'view', $aItem['title_url'])));
 		}		
 		
 		return array(
@@ -1112,7 +1112,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 				Phpfox::getPhrase('photo.photos') => array(
 					'active' => 'photo',
-					'url' => Phpfox::getLib('url')->makeUrl('group', array($sGroupUrl, 'photo')
+					'url' => Phpfox_Url::instance()->makeUrl('group', array($sGroupUrl, 'photo')
 				)
 			)
 		);
@@ -1120,7 +1120,7 @@ class Photo_Service_Callback extends Phpfox_Service
 
 	public function getItemView()
 	{
-		if (Phpfox::getLib('request')->get('req3') == 'view')
+		if (Phpfox_Request::instance()->get('req3') == 'view')
 		{
 			return true;
 		}
@@ -1420,7 +1420,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('photo.a_href_user_link_full_name_a_liked_their_own_a_href_link_photo_album_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'link' => $aRow['link']
 				)
 			);
@@ -1429,9 +1429,9 @@ class Photo_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('photo.a_href_user_link_full_name_a_liked_a_href_view_user_link_view_full_name_a_s_a_href_link_photo_album_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']				
 				)
 			);
@@ -1448,7 +1448,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('photo.a_href_user_link_full_name_a_liked_their_own_a_href_link_photo_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'link' => $aRow['link']
 				)
 			);
@@ -1457,9 +1457,9 @@ class Photo_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('photo.a_href_user_link_full_name_a_liked_a_href_view_user_link_view_full_name_a_s_a_href_link_photo_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -1475,11 +1475,11 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('photo.a_href_user_link_full_name_a_liked_your_a_href_link_photo_album_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('photo', array('aredirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('photo', array('aredirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('photo', array('aredirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('photo', array('aredirect' => $aRow['item_id']))
 		);			
 	}
 	
@@ -1488,11 +1488,11 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('photo.a_href_user_link_full_name_a_liked_your_a_href_link_photo_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('photo', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('photo', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('photo', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('photo', array('redirect' => $aRow['item_id']))
 		);			
 	}
 	
@@ -1500,8 +1500,8 @@ class Photo_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('photo.a_href_user_link_full_name_a_liked_your_a_href_link_photo_album_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('photo', array('aredirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('photo', array('aredirect' => $iItemId))
 				)
 			);		
 	}
@@ -1510,8 +1510,8 @@ class Photo_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('photo.a_href_user_link_full_name_a_liked_your_a_href_link_photo_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('photo', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('photo', array('redirect' => $iItemId))
 				)
 			);			
 	}
@@ -1528,7 +1528,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			'phrase' => Phpfox::getPhrase('photo.photos'),
 			'value' => $this->database()->select('COUNT(*)')->from(Phpfox::getT('photo'))->where('view_id = 1')->execute('getSlaveField'),
-			'link' => Phpfox::getLib('url')->makeUrl('photo', array('view' => 'approval'))
+			'link' => Phpfox_Url::instance()->makeUrl('photo', array('view' => 'approval'))
 		);
 	}
 
@@ -1560,7 +1560,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['custom_data_cache']['parent_user_name']) && $aRow['custom_data_cache']['parent_user_id'] != Phpfox::getService('profile')->getProfileUserId())
 		{
 			$aRow['feed_mini'] = true;
-			$aRow['feed_mini_content'] = Phpfox::getPhrase('photo.full_name_posted_a_href_link_photo_a_photo_a_on_a_href_link_user_parent_full_name_a_s_a_href_link_wall_wall_a',array('full_name' => Phpfox::getService('user')->getFirstName('Test'), 'link_photo' => Phpfox::permalink('photo', $aRow['custom_data_cache']['photo_id'], $aRow['custom_data_cache']['title']), 'link_user' => Phpfox::getLib('url')->makeUrl($aRow['custom_data_cache']['parent_user_name']), 'parent_full_name' => $aRow['custom_data_cache']['parent_full_name'], 'link_wall' => Phpfox::getLib('url')->makeUrl($aRow['custom_data_cache']['parent_user_name'])));
+			$aRow['feed_mini_content'] = Phpfox::getPhrase('photo.full_name_posted_a_href_link_photo_a_photo_a_on_a_href_link_user_parent_full_name_a_s_a_href_link_wall_wall_a',array('full_name' => Phpfox::getService('user')->getFirstName('Test'), 'link_photo' => Phpfox::permalink('photo', $aRow['custom_data_cache']['photo_id'], $aRow['custom_data_cache']['title']), 'link_user' => Phpfox_Url::instance()->makeUrl($aRow['custom_data_cache']['parent_user_name']), 'parent_full_name' => $aRow['custom_data_cache']['parent_full_name'], 'link_wall' => Phpfox_Url::instance()->makeUrl($aRow['custom_data_cache']['parent_user_name'])));
 		}
 
 		return $aRow;
@@ -1724,7 +1724,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			if ($aRow['album_id'])
 			{
 				$aReturn['feed_status'] = '';
-				$aReturn['feed_info'] = Phpfox::getPhrase('feed.added_new_photos_to_gender_album_a_href_link_name_a', array('gender' => Phpfox::getService('user')->gender($aItem['gender'], 1), 'link' => Phpfox::permalink('photo.album', $aRow['album_id'], $aRow['name']), 'name' => Phpfox::getLib('locale')->convert(Phpfox::getLib('parse.output')->shorten($aRow['name'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ), '...'))));
+				$aReturn['feed_info'] = Phpfox::getPhrase('feed.added_new_photos_to_gender_album_a_href_link_name_a', array('gender' => Phpfox::getService('user')->gender($aItem['gender'], 1), 'link' => Phpfox::permalink('photo.album', $aRow['album_id'], $aRow['name']), 'name' => Phpfox_Locale::instance()->convert(Phpfox::getLib('parse.output')->shorten($aRow['name'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ), '...'))));
 			}
 			else
 			{
@@ -1742,7 +1742,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['parent_user_name']) && $aRow['parent_user_id'] != Phpfox::getService('profile')->getProfileUserId())
 			{
 				$aReturn['feed_mini'] = true;
-				$aReturn['feed_mini_content'] = Phpfox::getPhrase('photo.full_name_posted_a_href_link_photo_a_photo_a_on_a_href_link_user_parent_full_name_a_s_a_href_link_wall_wall_a',array('full_name' => Phpfox::getService('user')->getFirstName($aItem['full_name']), 'link_photo' => Phpfox::permalink('photo', $aRow['photo_id'], $aRow['title']), 'link_user' => Phpfox::getLib('url')->makeUrl($aRow['parent_user_name']), 'parent_full_name' => $aRow['parent_full_name'], 'link_wall' => Phpfox::getLib('url')->makeUrl($aRow['parent_user_name'])));
+				$aReturn['feed_mini_content'] = Phpfox::getPhrase('photo.full_name_posted_a_href_link_photo_a_photo_a_on_a_href_link_user_parent_full_name_a_s_a_href_link_wall_wall_a',array('full_name' => Phpfox::getService('user')->getFirstName($aItem['full_name']), 'link_photo' => Phpfox::permalink('photo', $aRow['photo_id'], $aRow['title']), 'link_user' => Phpfox_Url::instance()->makeUrl($aRow['parent_user_name']), 'parent_full_name' => $aRow['parent_full_name'], 'link_wall' => Phpfox_Url::instance()->makeUrl($aRow['parent_user_name'])));
 				
 				unset($aReturn['feed_status'], $aReturn['feed_image'], $aReturn['feed_content']);
 			}		
@@ -1818,7 +1818,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('photo.album', $aRow['album_id'], $aRow['name']),
+			'link' => Phpfox_Url::instance()->permalink('photo.album', $aRow['album_id'], $aRow['name']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -1918,7 +1918,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('photo.album', $aRow['album_id'], $aRow['name']),
+			'link' => Phpfox_Url::instance()->permalink('photo.album', $aRow['album_id'], $aRow['name']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -2013,15 +2013,15 @@ class Photo_Service_Callback extends Phpfox_Service
 		
 		if ($aItem['user_id'] == $aRow['photo_user_id'])
 		{
-			$sPhrase = Phpfox::getPhrase('feed.tagged_a_href_row_link_full_name_a_on_gender_a_href_link_photo_a', array('row_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'], 'gender' => Phpfox::getService('user')->gender($aItem['gender'], 1), 'link' => $sLink));
+			$sPhrase = Phpfox::getPhrase('feed.tagged_a_href_row_link_full_name_a_on_gender_a_href_link_photo_a', array('row_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'], 'gender' => Phpfox::getService('user')->gender($aItem['gender'], 1), 'link' => $sLink));
 		}
 		elseif ($aItem['user_id'] == $aRow['user_id'])
 		{
-			$sPhrase = Phpfox::getPhrase('photo.tagged_gender_on_a_href_link_photo_full_name_s_photo', array('gender' => Phpfox::getService('user')->gender($aItem['gender'], 2), 'link' => Phpfox::getLib('url')->makeUrl($aRow['photo_user_name']), 'photo_full_name' => $aRow['photo_full_name']));
+			$sPhrase = Phpfox::getPhrase('photo.tagged_gender_on_a_href_link_photo_full_name_s_photo', array('gender' => Phpfox::getService('user')->gender($aItem['gender'], 2), 'link' => Phpfox_Url::instance()->makeUrl($aRow['photo_user_name']), 'photo_full_name' => $aRow['photo_full_name']));
 		}
 		else 
 		{
-			$sPhrase = Phpfox::getPhrase('feed.tagged_a_href_row_link_full_name_a_on_a_href_photo_user_name_photo_full_name_a_a_href_link_photo_a', array('row_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'], 'photo_user_name' => Phpfox::getLib('url')->makeUrl($aRow['photo_user_name']), 'photo_full_name' => $aRow['photo_full_name'], 'link' => $sLink));
+			$sPhrase = Phpfox::getPhrase('feed.tagged_a_href_row_link_full_name_a_on_a_href_photo_user_name_photo_full_name_a_a_href_link_photo_a', array('row_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'], 'photo_user_name' => Phpfox_Url::instance()->makeUrl($aRow['photo_user_name']), 'photo_full_name' => $aRow['photo_full_name'], 'link' => $sLink));
 		}
 
 		$aReturn = array(
@@ -2075,7 +2075,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('photo', $aRow['photo_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);			
@@ -2111,7 +2111,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		{
 			$aSubMenu[] = array(
 				'phrase' => Phpfox::getPhrase('profile.albums'),
-				'url' => Phpfox::getLib('url')->makeUrl($aUser['user_name'].'.photo.albums'),
+				'url' => Phpfox_Url::instance()->makeUrl($aUser['user_name'].'.photo.albums'),
 				'total' => Phpfox::getService('photo.album')->getAlbumCount($aUser['user_id'])
 			);
 		}*/
@@ -2146,7 +2146,7 @@ class Photo_Service_Callback extends Phpfox_Service
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->permalink('photo', $aRow['item_id'], $aRow['item_title']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->permalink('photo', $aRow['item_id'], $aRow['item_title']);
 		$aInfo['item_name'] = Phpfox::getPhrase('search.photo');
 
 		$aInfo['item_display_photo'] = Phpfox::getLib('image.helper')->display(array(
@@ -2188,7 +2188,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		return array(
 			array(
 				'phrase' => Phpfox::getPhrase('photo.upload_a_new_image'),
-				'url' => Phpfox::getLib('url')->makeUrl('photo.add', array('module' => 'pages', 'item' => $aPage['page_id']))
+				'url' => Phpfox_Url::instance()->makeUrl('photo.add', array('module' => 'pages', 'item' => $aPage['page_id']))
 			)
 		);
 	}	
@@ -2262,7 +2262,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			return false;
 		}
 		
-		if (defined('PHPFOX_IS_USER_PROFILE') || (Phpfox::getLib('request')->get('req1') == 'feed'))
+		if (defined('PHPFOX_IS_USER_PROFILE') || (Phpfox_Request::instance()->get('req1') == 'feed'))
 		{
 		
 		}
@@ -2291,7 +2291,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('photo.your_photo_title_has_been_approved', array('title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('photo', $aRow['photo_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('photo', $aRow['photo_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true

@@ -76,7 +76,7 @@ class Profile_Component_Block_Info extends Phpfox_Component
 		
 		if (Phpfox::getUserGroupParam($aUser['user_group_id'], 'profile.display_membership_info'))
 		{
-			$aUserDetails[Phpfox::getPhrase('profile.membership')] = (empty($aUser['icon_ext']) ? '' : '<img src="' . Phpfox::getParam('core.url_icon') . $aUser['icon_ext'] . '" class="v_middle" alt="' . Phpfox::getLib('locale')->convert($aUser['title']) . '" title="' . Phpfox::getLib('locale')->convert($aUser['title']) . '" /> ') . $aUser['prefix'] . Phpfox::getLib('locale')->convert($aUser['title']) . $aUser['suffix'];
+			$aUserDetails[Phpfox::getPhrase('profile.membership')] = (empty($aUser['icon_ext']) ? '' : '<img src="' . Phpfox::getParam('core.url_icon') . $aUser['icon_ext'] . '" class="v_middle" alt="' . Phpfox_Locale::instance()->convert($aUser['title']) . '" title="' . Phpfox_Locale::instance()->convert($aUser['title']) . '" /> ') . $aUser['prefix'] . Phpfox_Locale::instance()->convert($aUser['title']) . $aUser['suffix'];
 		}
 		
 		$aUserDetails[Phpfox::getPhrase('profile.profile_views')] = $aUser['total_view'];
@@ -91,7 +91,7 @@ class Profile_Component_Block_Info extends Phpfox_Component
 		{
 			$sEditLink = '<div class="js_edit_header_bar">';
 			$sEditLink .= '<span id="js_user_basic_info" style="display:none;"><img src="' . $this->template()->getStyle('image', 'ajax/small.gif') . '" alt="" class="v_middle" /></span>';
-			$sEditLink .= '<a href="' . Phpfox::getLib('url')->makeUrl('user.profile') . '" id="js_user_basic_edit_link">';
+			$sEditLink .= '<a href="' . Phpfox_Url::instance()->makeUrl('user.profile') . '" id="js_user_basic_edit_link">';
 			$sEditLink .= '<img src="' . $this->template()->getStyle('image', 'misc/page_white_edit.png') . '" alt="" class="v_middle" />';
 			$sEditLink .= '</a>';			
 			$sEditLink .= '</div>';

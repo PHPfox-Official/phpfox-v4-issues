@@ -149,7 +149,7 @@ class Poll_Component_Ajax_Ajax extends Phpfox_Ajax
 		Phpfox::getBlock('poll.new');
 		
 		$this->html('#' . $this->get('id'), $this->getContent(false));
-		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox::getLib('url')->makeUrl('poll') . '\');');
+		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox_Url::instance()->makeUrl('poll') . '\');');
 	}
 
 	public function add()

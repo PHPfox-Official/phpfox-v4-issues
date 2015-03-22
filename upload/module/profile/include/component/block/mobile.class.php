@@ -59,8 +59,8 @@ class Profile_Component_Block_Mobile extends Phpfox_Component
 		}
 
 		$bIsInfo = false;
-		if((isset($aUser['landing_page']) && ($aUser['landing_page'] == 'info') && Phpfox::getLib('request')->get('req2') != 'wall')
-			|| (Phpfox::getLib('request')->get('req2') == 'info' )
+		if((isset($aUser['landing_page']) && ($aUser['landing_page'] == 'info') && Phpfox_Request::instance()->get('req2') != 'wall')
+			|| (Phpfox_Request::instance()->get('req2') == 'info' )
 		)
 		{
 			$bIsInfo = true;
@@ -68,8 +68,8 @@ class Profile_Component_Block_Mobile extends Phpfox_Component
 		
 		if(defined('PHPFOX_IS_PAGES_VIEW') && empty($aUser['vanity_url']))
 		{
-			if((isset($aUser['landing_page']) && ($aUser['landing_page'] == 'info') && Phpfox::getLib('request')->get('req3') != 'wall')
-			|| (Phpfox::getLib('request')->get('req3') == 'info' ))
+			if((isset($aUser['landing_page']) && ($aUser['landing_page'] == 'info') && Phpfox_Request::instance()->get('req3') != 'wall')
+			|| (Phpfox_Request::instance()->get('req3') == 'info' ))
 			{
 				$bIsInfo = true;
 			}

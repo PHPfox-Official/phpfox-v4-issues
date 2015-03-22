@@ -130,7 +130,7 @@ class Comment_Service_Process extends Phpfox_Service
 			'user_id' => $iUserId,
 			'owner_user_id' => $aItem['comment_user_id'],
 			'time_stamp' => PHPFOX_TIME,
-			'ip_address' => Phpfox::getLib('request')->getServer('REMOTE_ADDR'),
+			'ip_address' => Phpfox_Request::instance()->getServer('REMOTE_ADDR'),
 			'view_id' => (($aItem['comment_view_id'] == 2 && $aItem['comment_user_id'] != $iUserId) ? '1' : '0'),
 			'author' => (!empty($aVals['is_via_feed']) ? (int)$aVals['is_via_feed'] : '')
 		);
@@ -168,7 +168,7 @@ class Comment_Service_Process extends Phpfox_Service
 		{
 			$aInsert['view_id'] = '1';
 			$bIsSpam = true;
-			Phpfox::getLib('ajax')->sPopupMessage = Phpfox::getPhrase('core.notice');
+			Phpfox_Ajax::instance()->sPopupMessage = Phpfox::getPhrase('core.notice');
 			Phpfox_Error::set(Phpfox::getPhrase('comment.your_comment_has_successfully_been_added_however_it_is_pending_an_admins_approval'));
 		}
 
@@ -308,7 +308,7 @@ class Comment_Service_Process extends Phpfox_Service
 	public function deleteInline($iId, $iTypeId, $bForce = false)
 	{
 		$bCanDeleteOnProfile = false;
-		$aCore = Phpfox::getLib('request')->get('core');
+		$aCore = Phpfox_Request::instance()->get('core');
 		if (isset($aCore['is_user_profile']) && $aCore['is_user_profile'])
 		{			
 			if ($iTypeId == 'feed')
@@ -338,7 +338,7 @@ class Comment_Service_Process extends Phpfox_Service
 		}		
 		
 		
-		if (Phpfox::isModule('pages') && Phpfox::getLib('request')->get('type_id') == 'pages')
+		if (Phpfox::isModule('pages') && Phpfox_Request::instance()->get('type_id') == 'pages')
 		{
 			$aPagesParent = $this->database()->select('c1.*, pf.parent_user_id')
 				->from(Phpfox::getT('comment'), 'c1')
@@ -499,7 +499,7 @@ class Comment_Service_Process extends Phpfox_Service
 				'user_id' => $iUserId,
 				'rating' => $sNewRating,
 				'time_stamp' => PHPFOX_TIME,
-				'ip_address' => Phpfox::getLib('request')->getServer('REMOTE_ADDR')
+				'ip_address' => Phpfox_Request::instance()->getServer('REMOTE_ADDR')
 			));
 		}
 
@@ -615,7 +615,7 @@ class Comment_Service_Process extends Phpfox_Service
 					->subject(array('comment.comment_approved_on_site_title', array('site_title' => Phpfox::getParam('core.site_title'))))
 					->message(array('comment.one_of_your_comments_on_site_title', array(
 								'site_title' => Phpfox::getParam('core.site_title'),
-								'link' => Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $aComment['comment_id']))
+								'link' => Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $aComment['comment_id']))
 							)
 						)
 					)					

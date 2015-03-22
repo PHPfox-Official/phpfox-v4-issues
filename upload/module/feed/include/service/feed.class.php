@@ -165,8 +165,8 @@ class Feed_Service_Feed extends Phpfox_Service
 
 	public function get($iUserid = null, $iFeedId = null, $iPage = 0, $bForceReturn = false)
 	{
-		$oUrl = Phpfox::getLib('url');
-		$oReq = Phpfox::getLib('request');
+		$oUrl = Phpfox_Url::instance();
+		$oReq = Phpfox_Request::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');
 		
 		if ($oReq->get('get-new'))
@@ -237,11 +237,11 @@ class Feed_Service_Feed extends Phpfox_Service
 			}
 			
 			$iTimelineYear = 0;
-			if (($iTimelineYear = Phpfox::getLib('request')->get('year')) && !empty($iTimelineYear))
+			if (($iTimelineYear = Phpfox_Request::instance()->get('year')) && !empty($iTimelineYear))
 			{
 				$iMonth = 12;
 				$iDay = 31;
-				if (($iTimelineMonth = Phpfox::getLib('request')->get('month')) && !empty($iTimelineMonth))
+				if (($iTimelineMonth = Phpfox_Request::instance()->get('month')) && !empty($iTimelineMonth))
 				{
 					$iMonth = $iTimelineMonth;
 					$iDay = Phpfox::getLib('date')->lastDayOfMonth($iMonth, $iTimelineYear);
@@ -334,11 +334,11 @@ class Feed_Service_Feed extends Phpfox_Service
 			(($sPlugin = Phpfox_Plugin::get('feed.service_feed_get_userprofile')) ? eval($sPlugin) : '');
 			
 			$iTimelineYear = 0;
-			if (($iTimelineYear = Phpfox::getLib('request')->get('year')) && !empty($iTimelineYear))
+			if (($iTimelineYear = Phpfox_Request::instance()->get('year')) && !empty($iTimelineYear))
 			{
 				$iMonth = 12;
 				$iDay = 31;
-				if (($iTimelineMonth = Phpfox::getLib('request')->get('month')) && !empty($iTimelineMonth))
+				if (($iTimelineMonth = Phpfox_Request::instance()->get('month')) && !empty($iTimelineMonth))
 				{
 					$iMonth = $iTimelineMonth;
 					$iDay = Phpfox::getLib('date')->lastDayOfMonth($iMonth, $iTimelineYear);										
@@ -610,7 +610,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			}
 		}
 		
-		$oReq = Phpfox::getLib('request');
+		$oReq = Phpfox_Request::instance();
 		if (($oReq->getInt('status-id')
 				|| $oReq->getInt('comment-id')
 				|| $oReq->getInt('link-id')
@@ -640,7 +640,7 @@ class Feed_Service_Feed extends Phpfox_Service
 
 	public function _hashSearch()
 	{
-		if (Phpfox::getLib('request')->get('req1') != 'hashtag' && Phpfox::getLib('request')->get('hashtagsearch') == '')
+		if (Phpfox_Request::instance()->get('req1') != 'hashtag' && Phpfox_Request::instance()->get('hashtagsearch') == '')
 		{
 			return;
 		}
@@ -667,7 +667,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			}
 		}
 
-		$sTag = (Phpfox::getLib('request')->get('hashtagsearch') ? Phpfox::getLib('request')->get('hashtagsearch') : $sReq2);
+		$sTag = (Phpfox_Request::instance()->get('hashtagsearch') ? Phpfox_Request::instance()->get('hashtagsearch') : $sReq2);
 
 		if (empty($sTag))
 		{
@@ -702,7 +702,7 @@ class Feed_Service_Feed extends Phpfox_Service
 	    {
             $oLike = Phpfox::getService('like');
 	    }
-	    $oUrl = Phpfox::getLib('url');
+	    $oUrl = Phpfox_Url::instance();
 
 	    if ((!isset($aFeed['likes']) && isset($oLike)) || count($aFeed['likes']) > Phpfox::getParam('feed.total_likes_to_display'))
 	    {
@@ -975,7 +975,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			return false;
 		}
 		$aProcessedFeed = $this->_processFeed($aFeed, false, $aFeed['user_id'], false);		
-		Phpfox::getLib('url')->send($aProcessedFeed['feed_link'], array(), null, 302);
+		Phpfox_Url::instance()->send($aProcessedFeed['feed_link'], array(), null, 302);
                 /* Apparently in some CGI servers for some reason the redirect
                  * triggers a 500 error when the callback doesnt exist
                  * http://www.phpfox.com/tracker/view/6356/
@@ -1041,7 +1041,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			$aFeeds = array();
 			foreach ($aRows as $aRow)
 			{
-				$aRow['link'] = Phpfox::getLib('url')->makeUrl('feed.view', array('id' => $aRow['feed_id']));
+				$aRow['link'] = Phpfox_Url::instance()->makeUrl('feed.view', array('id' => $aRow['feed_id']));
 
 				$aParts1 = explode('.', $aRow['type_id']);
 				$sModule = $aParts1[0];
@@ -1081,7 +1081,7 @@ class Feed_Service_Feed extends Phpfox_Service
 	
 	public function processAjax($iId)
 	{
-		$oAjax = Phpfox::getLib('ajax');
+		$oAjax = Phpfox_Ajax::instance();
 				
 		$aFeeds = Feed_Service_Feed::instance()->get(Phpfox::getUserId(), $iId);
 		
@@ -1200,7 +1200,7 @@ class Feed_Service_Feed extends Phpfox_Service
         {
             return false;
         }
-		$aRow['link'] = Phpfox::getLib('url')->makeUrl($aRow['user_name']);
+		$aRow['link'] = Phpfox_Url::instance()->makeUrl($aRow['user_name']);
         
         
 		return $aRow;

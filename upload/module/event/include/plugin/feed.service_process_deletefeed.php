@@ -1,6 +1,6 @@
 <?php
 
-if (Phpfox::getLib('request')->get('module') == 'event')
+if (Phpfox_Request::instance()->get('module') == 'event')
 {
 	$aEvent = Event_Service_Event::instance()->getForEdit($aFeed['parent_user_id'], true);
 	if (isset($aEvent['event_id']) && $aEvent['user_id'] == Phpfox::getUserId())

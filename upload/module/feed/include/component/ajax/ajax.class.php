@@ -150,7 +150,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 									'currency_code' => Phpfox::getService('user')->getCurrency(),//Phpfox::getService('core.currency')->getDefault(),
 									'amount' => $aGift['price'][Phpfox::getService('user')->getCurrency()],
 									'item_name' => 'egift card with message: ' . $aVals['user_status'] . '',
-									'return' => Phpfox::getLib('url')->makeUrl('friend.invoice'),
+									'return' => Phpfox_Url::instance()->makeUrl('friend.invoice'),
 									'recurring' => 0,
 									'recurring_cost' => '',
 									'alternative_cost' => 0,

@@ -249,7 +249,7 @@ class Poll_Service_Poll extends Phpfox_Service
 		$aCond = array();
 		foreach ($this->search()->getConditions() as $sCond)
 		{
-			switch (Phpfox::getLib('request')->get('view'))
+			switch (Phpfox_Request::instance()->get('view'))
 			{
 				case 'friend':
 					$aCond[] = str_replace('%PRIVACY%', '0,1,2', $sCond);
@@ -557,7 +557,7 @@ class Poll_Service_Poll extends Phpfox_Service
 			d($aItem);
 		}
 		
-		$aRow['link'] = Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('poll', $aRow['poll_id'], $aRow['title']);
 		return $aRow;
 	}
 	

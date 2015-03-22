@@ -12,7 +12,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {for $i = 1; $i <= $iGenerCount; $i++}
-	<div class="{if PHPFOX_IS_AJAX && !$bIsGlobalEdit}info{else}table{/if} js_custom_groups js_custom_group_genre"{if Phpfox::getLib('request')->get('req1') == 'user'} style="display:none;"{/if}>
+	<div class="{if PHPFOX_IS_AJAX && !$bIsGlobalEdit}info{else}table{/if} js_custom_groups js_custom_group_genre"{if Phpfox_Request::instance()->get('req1') == 'user'} style="display:none;"{/if}>
 		<div class="{if PHPFOX_IS_AJAX && !$bIsGlobalEdit}info{else}table{/if}_left">
 			{phrase var='music.genre_total' total=$i}:
 		</div>

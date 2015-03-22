@@ -1,4 +1,4 @@
-{if PHPFOX_IS_AJAX && Phpfox::getLib('request')->get('theater') == 'true'}
+{if PHPFOX_IS_AJAX && Phpfox_Request::instance()->get('theater') == 'true'}
 
 
 {elseif isset($sFeedType) &&  $sFeedType == 'view___'}

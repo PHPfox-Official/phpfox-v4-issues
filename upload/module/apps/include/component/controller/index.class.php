@@ -25,7 +25,7 @@ class Apps_Component_Controller_Index extends Phpfox_Component
 		{
 			if (Phpfox::getService('apps.process')->deleteApp($iId))
 			{
-				Phpfox::getLib('url')->send('apps', null, Phpfox::getPhrase('apps.app_successfully_deleted'));
+				Phpfox_Url::instance()->send('apps', null, Phpfox::getPhrase('apps.app_successfully_deleted'));
 			}
 			else
 			{
@@ -40,7 +40,7 @@ class Apps_Component_Controller_Index extends Phpfox_Component
 		{
 			if (Phpfox::getService('apps.process')->uninstallApp($iId))
 			{
-				Phpfox::getLib('url')->send('apps', array('view' => 'installed'), Phpfox::getPhrase('apps.app_successfully_uninstalled'));
+				Phpfox_Url::instance()->send('apps', array('view' => 'installed'), Phpfox::getPhrase('apps.app_successfully_uninstalled'));
 			}
 		}
 		
@@ -75,15 +75,15 @@ class Apps_Component_Controller_Index extends Phpfox_Component
 		{
 			$this->setParam('iCategory', $iCategoryId);
 			
-			$this->template()->setBreadcrumb(Phpfox::getLib('locale')->convert($aType['name']), Phpfox::permalink('apps.category', $aType['category_id'], $aType['name']) . ($sView ? 'view_' . $sView . '/' . '' : ''), true);
+			$this->template()->setBreadcrumb(Phpfox_Locale::instance()->convert($aType['name']), Phpfox::permalink('apps.category', $aType['category_id'], $aType['name']) . ($sView ? 'view_' . $sView . '/' . '' : ''), true);
 		}		
 		
 		if ($this->request()->get('req2') == 'sub-category' && ($iSubCategoryId = $this->request()->getInt('req3')) && ($aCategory = Phpfox::getService('apps.category')->getCategoryById($iSubCategoryId)))
 		{
 			$this->setParam('iCategory', $aCategory['type_id']);
 			
-			// $this->template()->setBreadcrumb(Phpfox::getLib('locale')->convert($aCategory['type_name']), Phpfox::permalink('pages.category', $aCategory['type_id'], $aCategory['type_name']) . ($sView ? 'view_' . $sView . '/' . '' : ''));
-			$this->template()->setBreadcrumb(Phpfox::getLib('locale')->convert($aCategory['name']), Phpfox::permalink('apps.sub-category', $aCategory['category_id'], $aCategory['name']) . ($sView ? 'view_' . $sView . '/' . '' : ''), true);
+			// $this->template()->setBreadcrumb(Phpfox_Locale::instance()->convert($aCategory['type_name']), Phpfox::permalink('pages.category', $aCategory['type_id'], $aCategory['type_name']) . ($sView ? 'view_' . $sView . '/' . '' : ''));
+			$this->template()->setBreadcrumb(Phpfox_Locale::instance()->convert($aCategory['name']), Phpfox::permalink('apps.sub-category', $aCategory['category_id'], $aCategory['name']) . ($sView ? 'view_' . $sView . '/' . '' : ''), true);
 		}
 		
 		// Set up Browsing search filters

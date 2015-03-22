@@ -165,11 +165,11 @@ class Forum_Service_Post_Post extends Phpfox_Service
 				$iTotal++;
 				if (isset($this->_aCallback['group_id']))
 				{
-					$sLink = Phpfox::getLib('url')->makeUrl($this->_aCallback['url_home'], array($aPost['thread_title_url'], 'post' => $aPost['post_id']));	
+					$sLink = Phpfox_Url::instance()->makeUrl($this->_aCallback['url_home'], array($aPost['thread_title_url'], 'post' => $aPost['post_id']));
 				}
 				else 
 				{
-					$sLink = Phpfox::getLib('url')->makeUrl('forum', array($aPost['forum_url'] . '-' . $aPost['forum_id'], $aPost['thread_title_url'], 'post' => $aPost['post_id']));	
+					$sLink = Phpfox_Url::instance()->makeUrl('forum', array($aPost['forum_url'] . '-' . $aPost['forum_id'], $aPost['thread_title_url'], 'post' => $aPost['post_id']));
 				}
 				
 				$aPosts[$iKey]['count'] = $iTotal;
@@ -177,7 +177,7 @@ class Forum_Service_Post_Post extends Phpfox_Service
 				$aPosts[$iKey]['forum_info_phrase'] = Phpfox::getPhrase('forum.title_posted_in_forum_name', array(
 						'link' => $sLink,
 						'title' => Phpfox::getLib('parse.output')->clean($aPost['thread_title']),
-						'forum_link' => (isset($this->_aCallback['group_id']) ? Phpfox::getLib('url')->makeUrl($this->_aCallback['url_home']) : Phpfox::getLib('url')->makeUrl('forum', array($aPost['forum_url'] . '-' . $aPost['forum_id']))),
+						'forum_link' => (isset($this->_aCallback['group_id']) ? Phpfox_Url::instance()->makeUrl($this->_aCallback['url_home']) : Phpfox_Url::instance()->makeUrl('forum', array($aPost['forum_url'] . '-' . $aPost['forum_id']))),
 						'forum_name' => (isset($this->_aCallback['group_id']) ? $this->_aCallback['title'] : $aPost['forum_name'])
 					)
 				);
@@ -243,12 +243,12 @@ class Forum_Service_Post_Post extends Phpfox_Service
 		
 		foreach ($aRows as $iKey => $aRow)
 		{
-			$aRows[$iKey]['link'] = ($aRow['group_id'] ? Phpfox::getLib('url')->makeUrl('group.forum', array($aRow['title_url'], 'id' => $aRow['group_id'], 'post' => $aRow['post_id'])) : Phpfox::getLib('url')->makeUrl('forum', array($aRow['forum_url'] . '-' . $aRow['forum_id'], $aRow['title_url'], 'post' => $aRow['post_id'])));
+			$aRows[$iKey]['link'] = ($aRow['group_id'] ? Phpfox_Url::instance()->makeUrl('group.forum', array($aRow['title_url'], 'id' => $aRow['group_id'], 'post' => $aRow['post_id'])) : Phpfox_Url::instance()->makeUrl('forum', array($aRow['forum_url'] . '-' . $aRow['forum_id'], $aRow['title_url'], 'post' => $aRow['post_id'])));
 			$aRows[$iKey]['creator'] = $aRow['full_name'];
 		}
 			
 		$aRss = array(
-			'href' => Phpfox::getLib('url')->makeUrl('forum', array($aRows[0]['forum_url'] . '-' . $aRows[0]['forum_id'], $aRows[0]['title_url'])),
+			'href' => Phpfox_Url::instance()->makeUrl('forum', array($aRows[0]['forum_url'] . '-' . $aRows[0]['forum_id'], $aRows[0]['title_url'])),
 			'title' => Phpfox::getPhrase('forum.latest_posts_in') . ': ' . $aRows[0]['title'],
 			'description' => Phpfox::getPhrase('forum.latest_forum_posts_on') . ': ' . Phpfox::getParam('core.site_title'),
 			'items' => $aRows

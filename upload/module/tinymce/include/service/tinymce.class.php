@@ -39,12 +39,12 @@ class Tinymce_Service_Tinymce extends Phpfox_Service
 		if (is_array($aLoadTinyMce))
 		{	
 			$sControllFullName = Phpfox_Module::instance()->getFullControllerName();
-			if (Phpfox::getLib('url')->getUrl() == 'admincp/newsletter/add')
+			if (Phpfox_Url::instance()->getUrl() == 'admincp/newsletter/add')
 			{
 				$bLoadTinymce = true;
 				$this->_sId = '#text';
 			}
-			elseif (Phpfox::getLib('url')->getUrl() == 'admincp/page/add')
+			elseif (Phpfox_Url::instance()->getUrl() == 'admincp/page/add')
 			{
 				$bLoadTinymce = true;
 				$this->_sId = '#text';

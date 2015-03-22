@@ -82,7 +82,7 @@ class Core_Service_Category_Category extends Phpfox_Service
 			{
 				if ($sCategory === null)
 				{				
-					$aCategories[$iKey]['url'] = Phpfox::getLib('url')->makeUrl($this->_aParams['type_id'] . '.category', $aCategory['name_url']);
+					$aCategories[$iKey]['url'] = Phpfox_Url::instance()->makeUrl($this->_aParams['type_id'] . '.category', $aCategory['name_url']);
 				}
 				else 
 				{
@@ -99,7 +99,7 @@ class Core_Service_Category_Category extends Phpfox_Service
 					}			
 					$aParentCache[] = $aCategory['name_url'];
 					
-					$aCategories[$iKey]['url'] = Phpfox::getLib('url')->makeUrl($this->_aParams['type_id'] . '.category', $aParentCache);
+					$aCategories[$iKey]['url'] = Phpfox_Url::instance()->makeUrl($this->_aParams['type_id'] . '.category', $aParentCache);
 				}
 				
 				if ($sCategory === null)
@@ -112,7 +112,7 @@ class Core_Service_Category_Category extends Phpfox_Service
 						
 					foreach ($aCategories[$iKey]['sub'] as $iSubKey => $aSubCategory)
 					{
-						$aCategories[$iKey]['sub'][$iSubKey]['url'] = Phpfox::getLib('url')->makeUrl($this->_aParams['type_id'] . '.category', array($aCategory['name_url'], $aSubCategory['name_url']));
+						$aCategories[$iKey]['sub'][$iSubKey]['url'] = Phpfox_Url::instance()->makeUrl($this->_aParams['type_id'] . '.category', array($aCategory['name_url'], $aSubCategory['name_url']));
 					}
 				}
 			}
@@ -180,7 +180,7 @@ class Core_Service_Category_Category extends Phpfox_Service
 	
 	public function getCategoriesById($iId = null, &$aCategories = null)
 	{
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		
 		if ($aCategories === null)
 		{
@@ -218,17 +218,17 @@ class Core_Service_Category_Category extends Phpfox_Service
 					}	
 					$aCache[] = $aCategory['name_url'];
 					
-					$aBreadcrumb[] = array($aCategory['name'], Phpfox::getLib('url')->makeUrl($this->_aParams['type_id'] . '.category', $aCache));
+					$aBreadcrumb[] = array($aCategory['name'], Phpfox_Url::instance()->makeUrl($this->_aParams['type_id'] . '.category', $aCache));
 				}				
 				else 
 				{
-					$aBreadcrumb[] = array($aCategory['name'], Phpfox::getLib('url')->makeUrl($this->_aParams['type_id'] . '.category', $aCategory['name_url']));
+					$aBreadcrumb[] = array($aCategory['name'], Phpfox_Url::instance()->makeUrl($this->_aParams['type_id'] . '.category', $aCategory['name_url']));
 				}				
 			}
 		}		
 		else 
 		{			
-			$aBreadcrumb[] = array($aCategories[0]['name'], Phpfox::getLib('url')->makeUrl($this->_aParams['type_id'] . '.category', $aCategories[0]['name_url']));
+			$aBreadcrumb[] = array($aCategories[0]['name'], Phpfox_Url::instance()->makeUrl($this->_aParams['type_id'] . '.category', $aCategories[0]['name_url']));
 		}
 		
 		return $aBreadcrumb;

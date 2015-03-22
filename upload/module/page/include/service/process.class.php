@@ -52,7 +52,7 @@ class Page_Service_Process extends Phpfox_Service
 		// Make sure the phrase is really a phrase
 		if (isset($aVals['is_phrase']) && $aVals['is_phrase'])
 		{
-			if (!Phpfox::getLib('locale')->isPhrase($aVals['title']))
+			if (!Phpfox_Locale::instance()->isPhrase($aVals['title']))
 			{
 				$aVals['is_phrase'] = 0;
 			}

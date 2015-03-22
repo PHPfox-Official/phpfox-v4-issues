@@ -66,19 +66,19 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 	public function setCoverPhoto()
 	{
 		Phpfox::getService('user.process')->updateCoverPhoto($this->get('photo_id'));
-		$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('profile', array('coverupdate' => '1')) . '\';');
+		$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('profile', array('coverupdate' => '1')) . '\';');
 	}	
 	
 	public function removeLogo()
 	{
 		Phpfox::getService('user.process')->removeLogo();
-		$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('profile', array('newcoverphoto' => '1')) . '\';');
+		$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('profile', array('newcoverphoto' => '1')) . '\';');
 	}	
 	
 	public function updateCoverPosition()
 	{
 		Phpfox::getService('user.process')->updateCoverPosition($this->get('position'));
-		$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('profile', array('newcoverphoto' => '1')) . '\';');
+		$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('profile', array('newcoverphoto' => '1')) . '\';');
 	}
 	
 	public function lostPassword($aArgs)
@@ -361,7 +361,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 		Phpfox::getBlock('user.new');
 		
 		$this->html('#' . $this->get('id'), $this->getContent(false));
-		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox::getLib('url')->makeUrl('user.browse', array('sort' => 'joined')) . '\');');
+		$this->call('$(\'#' . $this->get('id') . '\').parents(\'.block:first\').find(\'.bottom li a\').attr(\'href\', \'' . Phpfox_Url::instance()->makeUrl('user.browse', array('sort' => 'joined')) . '\');');
 	}	
 	
 	public function getAccountSettings()
@@ -688,7 +688,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 			{
 				$oFile = Phpfox_File::instance();
 				
-				$iServerId = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+				$iServerId = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 				
 				$this->call('p(\'Completed resizing photos.\');');
 				
@@ -743,7 +743,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 				 */
 					Phpfox::addMessage(Phpfox::getPhrase('user.profile_photo_successfully_updated'));
 					
-					$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('user.photo') . '\';');	
+					$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('user.photo') . '\';');
 				/*
 				}
 				else 
@@ -787,7 +787,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			Phpfox::addMessage(Phpfox::getPhrase('user.password_successfully_updated'));
 			
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('user.setting') . '\';');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('user.setting') . '\';');
 		}
 		else 
 		{
@@ -838,7 +838,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 			/*$this->html('#js_ban_' . $this->get('user_id'), ($this->get('type') ?
 					'<a href="#" onclick="$.ajaxCall(\'user.ban\', \'user_id=' . $this->get('user_id') . '&amp;type=0\'); return false;">' . Phpfox::getPhrase('user.un_ban_user') . '</a>'
 					:
-					'<a href="'.Phpfox::getLib('url')->makeUrl('admincp.user.ban', array('user'=> $this->get('user_id'))) . '">' . Phpfox::getPhrase('user.ban_user') . '</a>'));
+					'<a href="'.Phpfox_Url::instance()->makeUrl('admincp.user.ban', array('user'=> $this->get('user_id'))) . '">' . Phpfox::getPhrase('user.ban_user') . '</a>'));
 			$this->html('#user_status_' . $this->get('user_id'), '');*/
 		}
 	}

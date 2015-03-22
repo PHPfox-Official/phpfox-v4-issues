@@ -151,7 +151,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 			<div class="table_right">
 			
-			{if $bIsEdit && isset($aForms.name) && Phpfox::getLib('locale')->isPhrase('$aForms.name')}
+			{if $bIsEdit && isset($aForms.name) && Phpfox_Locale::instance()->isPhrase('$aForms.name')}
 				{module name='language.admincp.form' type='text' id='name' mode='text' value=$aForms.name}
 			{else}
 				{if isset($aForms.name) && is_array($aForms.name)}

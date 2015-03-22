@@ -105,7 +105,7 @@ class Log_Service_Session extends Phpfox_Service
 			return $sToken;
 		}
 		
-		$sToken = (md5((Phpfox::getParam('core.csrf_protection_level') == 'high' ? uniqid(rand(), true) : '') . Phpfox::getLib('request')->getIdHash() . md5(Phpfox::getParam('core.salt'))));		
+		$sToken = (md5((Phpfox::getParam('core.csrf_protection_level') == 'high' ? uniqid(rand(), true) : '') . Phpfox_Request::instance()->getIdHash() . md5(Phpfox::getParam('core.salt'))));
 				
 		if (Phpfox::getParam('core.csrf_protection_level') == 'high')
 		{
@@ -123,7 +123,7 @@ class Log_Service_Session extends Phpfox_Service
 	public function setUserSession()
 	{		
 		$oSession = Phpfox::getLib('session');
-		$oRequest = Phpfox::getLib('request');
+		$oRequest = Phpfox_Request::instance();
 		
 		$sSessionHash = $oSession->get('session');		
 
@@ -150,8 +150,8 @@ class Log_Service_Session extends Phpfox_Service
 		
 		$sLocation = $oRequest->get(PHPFOX_GET_METHOD);
 		$sLocation = substr($sLocation, 0, 244);
-		$sBrowser = substr(Phpfox::getLib('request')->getBrowser(), 0, 99);	
-		$sIp = Phpfox::getLib('request')->getIp();			
+		$sBrowser = substr(Phpfox_Request::instance()->getBrowser(), 0, 99);
+		$sIp = Phpfox_Request::instance()->getIp();
 
 		if (Phpfox::getParam('core.log_site_activity'))
 		{
@@ -191,7 +191,7 @@ class Log_Service_Session extends Phpfox_Service
 		);
 		
 		// Don't log a session into the DB if we disallow it
-		if (Phpfox::getLib('url')->isUrl($aDisAllow))
+		if (Phpfox_Url::instance()->isUrl($aDisAllow))
 		{
 			return;
 		}	

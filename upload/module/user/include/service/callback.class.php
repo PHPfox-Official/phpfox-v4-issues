@@ -137,7 +137,7 @@ class User_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('user.members'),
-			'link' => Phpfox::getLib('url')->makeUrl('user.browse'),
+			'link' => Phpfox_Url::instance()->makeUrl('user.browse'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_groups.png'))
 		);
 	}	
@@ -146,7 +146,7 @@ class User_Service_Callback extends Phpfox_Service
 		
 		return array(
 			'message' => Phpfox::getPhrase('user.user_name_tagged_you_in_a_status_update', array('user_name' => $aRow['full_name'])),			
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('status-id' => $aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('status-id' => $aRow['item_id']))
 		);			
 	}
 	public function getNotificationTaggedComment($aRow)
@@ -154,7 +154,7 @@ class User_Service_Callback extends Phpfox_Service
 		
 		return array(
 			'message' => Phpfox::getPhrase('user.user_name_tagged_you_in_a_comment', array('user_name' => $aRow['full_name'])),			
-			'link' => Phpfox::getLib('url')->makeUrl('comment.view', array($aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('comment.view', array($aRow['item_id']))
 		);			
 	}
 	public function getCommentNotificationStatusTag($aRow) 
@@ -162,7 +162,7 @@ class User_Service_Callback extends Phpfox_Service
 		
 		return array(
 			'message' => Phpfox::getPhrase('user.user_name_tagged_you_in_a_comment', array('user_name' => $aRow['full_name'])),
-			'link' => Phpfox::getLib('url')->makeUrl('comment.view', array($aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('comment.view', array($aRow['item_id']))
 		);			
 	}
 	public function massAdmincpProductDelete($sProduct)
@@ -207,11 +207,11 @@ class User_Service_Callback extends Phpfox_Service
 			$aResults = array();
 			$aResults['total'] = $iCnt;
 			$aResults['menu'] = Phpfox::getPhrase('user.members');
-			$aResults['form'] = '<form method="post" action="' . Phpfox::getLib('url')->makeUrl('user.browse') . '"><div><input type="hidden" name="' . Phpfox::getTokenName() . '[security_token]" value="' . Phpfox::getService('log.session')->getToken() . '" /></div><div><input name="search[keyword]" value="' . Phpfox::getLib('parse.output')->clean($sQuery) . '" size="20" type="hidden" /></div><div><input type="hidden" name="search[type]" value="2" /></div><div><input type="submit" value="' . Phpfox::getPhrase('user.view_more_members') . '" class="search_button" /></div></form>';
+			$aResults['form'] = '<form method="post" action="' . Phpfox_Url::instance()->makeUrl('user.browse') . '"><div><input type="hidden" name="' . Phpfox::getTokenName() . '[security_token]" value="' . Phpfox::getService('log.session')->getToken() . '" /></div><div><input name="search[keyword]" value="' . Phpfox::getLib('parse.output')->clean($sQuery) . '" size="20" type="hidden" /></div><div><input type="hidden" name="search[type]" value="2" /></div><div><input type="submit" value="' . Phpfox::getPhrase('user.view_more_members') . '" class="search_button" /></div></form>';
 			foreach ($aUsers as $iKey => $aUser)
 			{
 				$aResults['results'][$iKey] = array(
-					'link' => Phpfox::getLib('url')->makeUrl($aUser['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl($aUser['user_name']),
 					'title' => $aUser['full_name'],					
 					'image' => Phpfox::getLib('image.helper')->display(array(
 							'user' => $aUser,
@@ -221,7 +221,7 @@ class User_Service_Callback extends Phpfox_Service
 						)
 					),
 					'extra_info' => Phpfox::getPhrase('user.a_href_link_member_a_joined_joined', array(
-							'link' => Phpfox::getLib('url')->makeUrl('user.browse'),
+							'link' => Phpfox_Url::instance()->makeUrl('user.browse'),
 							'joined' => Phpfox::getTime(Phpfox::getParam('core.global_update_time'), $aUser['joined'])
 						)
 					)
@@ -237,7 +237,7 @@ class User_Service_Callback extends Phpfox_Service
 		if ($sPlugin = Phpfox_Plugin::get('user.service_callback_getnewsfeedstatus_start')){eval($sPlugin);}
 		$oParseOutput = Phpfox::getLib('parse.output');
 
-		$aRow['text'] = '<a href="' . Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']) . '">' . $aRow['owner_full_name'] . '</a> ' . Feed_Service_Feed::instance()->shortenText($oParseOutput->clean($aRow['content'])) . '';
+		$aRow['text'] = '<a href="' . Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']) . '">' . $aRow['owner_full_name'] . '</a> ' . Feed_Service_Feed::instance()->shortenText($oParseOutput->clean($aRow['content'])) . '';
 		$aRow['icon'] = 'misc/user_feed.png';
 		$aRow['enable_like'] = true;
 
@@ -250,7 +250,7 @@ class User_Service_Callback extends Phpfox_Service
 		$oParseOutput = Phpfox::getLib('parse.output');
 
 		$aRow['text'] = Phpfox::getPhrase('user.a_href_link_full_name_a_updated_their_profile_picture', array(
-				'link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+				'link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 				'full_name' => $aRow['owner_full_name']
 			)
 		);
@@ -268,7 +268,7 @@ class User_Service_Callback extends Phpfox_Service
 					'style' => 'vertical-align:top; padding-right:5px;'
 				)
 			);
-			$aRow['text'] .= '<div class="p_4"><a href="' . Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']) . '">' . $sImage . '</a></div>';
+			$aRow['text'] .= '<div class="p_4"><a href="' . Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']) . '">' . $sImage . '</a></div>';
 		}
 		
 		$aRow['icon'] = 'misc/profile_photo.png';
@@ -281,7 +281,7 @@ class User_Service_Callback extends Phpfox_Service
 	{
 		if ($sPlugin = Phpfox_Plugin::get('user.service_callback_getnewsfeedjoined_start')){eval($sPlugin);}
 		$aRow['text'] = Phpfox::getPhrase('user.a_href_link_full_name_a_joined_the_community', array(
-				'link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+				'link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 				'full_name' => $aRow['owner_full_name']
 			)
 		);
@@ -318,7 +318,7 @@ class User_Service_Callback extends Phpfox_Service
 		return array(
 				Phpfox::getPhrase('user.members') => array(
 					'active' => 'member',
-					'url' => Phpfox::getLib('url')->makeUrl('group', array($sGroupUrl, 'member')
+					'url' => Phpfox_Url::instance()->makeUrl('group', array($sGroupUrl, 'member')
 				)
 			)
 		);
@@ -344,7 +344,7 @@ class User_Service_Callback extends Phpfox_Service
 			return false;
 		}
 
-		return Phpfox::getLib('url')->makeUrl($aUser['user_name']);
+		return Phpfox_Url::instance()->makeUrl($aUser['user_name']);
 	}
 	
 	public function getReportRedirectStatus($iStatusId)
@@ -360,7 +360,7 @@ class User_Service_Callback extends Phpfox_Service
 			return false;
 		}
 
-		return Phpfox::getLib('url')->makeUrl($aUser['user_name'], array('status-id' => $iStatusId));
+		return Phpfox_Url::instance()->makeUrl($aUser['user_name'], array('status-id' => $iStatusId));
 	}	
 
 	public function getRatingData($iId)
@@ -404,7 +404,7 @@ class User_Service_Callback extends Phpfox_Service
 				)
 			);
 
-			$aItems[$iKey]['link'] = Phpfox::getLib('url')->makeUrl($aItem['user_name']);
+			$aItems[$iKey]['link'] = Phpfox_Url::instance()->makeUrl($aItem['user_name']);
 			$aItems[$iKey]['extra_info'] = Phpfox::getPhrase('user.joined_time_stamp', array('time_stamp' => Phpfox::getTime(Phpfox::getParam('core.global_update_time'), $aItem['time_stamp'])));
 		}
 
@@ -539,7 +539,7 @@ class User_Service_Callback extends Phpfox_Service
 		return array(
 			'phrase' => Phpfox::getPhrase('user.users'),
 			'value' => Phpfox::getService('user')->getSpamTotal(),
-			'link' => Phpfox::getLib('url')->makeUrl('admincp.user.browse', array('view' => 'spam'))
+			'link' => Phpfox_Url::instance()->makeUrl('admincp.user.browse', array('view' => 'spam'))
 		);		
 	}	
 	
@@ -631,7 +631,7 @@ class User_Service_Callback extends Phpfox_Service
 				->from(Phpfox::getT('user'))
 				->where('view_id = 1')
 				->execute('getSlaveField'),
-			'link' => Phpfox::getLib('url')->makeUrl('admincp.user.browse', array('view' => 'pending'))		
+			'link' => Phpfox_Url::instance()->makeUrl('admincp.user.browse', array('view' => 'pending'))
 		);
 	}
 	
@@ -654,8 +654,8 @@ class User_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('user.a_href_user_link_full_name_a_liked_that_they_joined_the_community', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id']))
 				)
 			);
 		}
@@ -663,10 +663,10 @@ class User_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('user.a_href_user_link_full_name_a_liked_that_a_href_view_user_link_view_full_name_a_a_href_link_joined_a_the_community', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id']))					
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id']))
 				)
 			);
 		}
@@ -681,10 +681,10 @@ class User_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('user.a_href_user_link_full_name_a_liked_that_you_joined_the_community', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('welcome' => 'me'))					
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('welcome' => 'me'))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('welcome' => 'me'))
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('welcome' => 'me'))
 		);			
 	}
 	
@@ -692,7 +692,7 @@ class User_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('user.a_href_user_link_full_name_a_liked_that_you_joined_the_community', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name'), array('welcome' => 'me'))					
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name'), array('welcome' => 'me'))
 				)
 			);		
 	}
@@ -703,9 +703,9 @@ class User_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('user.a_href_user_link_full_name_a_likes_their_own_a_href_link_status_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
-					'link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id'], 'flike' => 'status'))
+					'link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id'], 'flike' => 'status'))
 				)
 			);
 		}
@@ -713,10 +713,10 @@ class User_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('user.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_a_href_link_status_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id'], 'flike' => 'status'))					
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id'], 'flike' => 'status'))
 				)
 			);
 		}
@@ -731,11 +731,11 @@ class User_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('user.a_href_user_link_full_name_a_likes_your_a_href_link_status_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' =>  Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name'), array('feed' => $aRow['item_id'], 'flike' => 'status'))	
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' =>  Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name'), array('feed' => $aRow['item_id'], 'flike' => 'status'))
 				)
 			),
-			'link' =>  Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name'), array('feed' => $aRow['item_id'], 'flike' => 'status'))
+			'link' =>  Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name'), array('feed' => $aRow['item_id'], 'flike' => 'status'))
 		);		
 	}
 	
@@ -743,8 +743,8 @@ class User_Service_Callback extends Phpfox_Service
 	{		
 		return Phpfox::getPhrase('user.a_href_user_link_full_name_a_likes_your_a_href_link_status_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl($aFeed['user_name'], array('feed' => $aFeed['feed_id'], 'flike' => 'status'))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl($aFeed['user_name'], array('feed' => $aFeed['feed_id'], 'flike' => 'status'))
 				)
 			);		
 	}	
@@ -755,9 +755,9 @@ class User_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('user.a_href_user_link_full_name_a_likes_their_own_profile_a_href_link_photo_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
-					'link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id'], 'flike' => 'photo'))
+					'link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id'], 'flike' => 'photo'))
 				)
 			);
 		}
@@ -765,10 +765,10 @@ class User_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('user.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_profile_a_href_link_photo_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id'], 'flike' => 'photo'))					
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name'], array('feed' => $aRow['item_id'], 'flike' => 'photo'))
 				)
 			);
 		}
@@ -783,11 +783,11 @@ class User_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('user.a_href_user_link_full_name_a_likes_your_profile_a_href_link_photo_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' =>  Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name'), array('feed' => $aRow['item_id'], 'flike' => 'photo'))	
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' =>  Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name'), array('feed' => $aRow['item_id'], 'flike' => 'photo'))
 				)
 			),
-			'link' =>  Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name'), array('feed' => $aRow['item_id'], 'flike' => 'photo'))
+			'link' =>  Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name'), array('feed' => $aRow['item_id'], 'flike' => 'photo'))
 		);		
 	}	
 	
@@ -795,8 +795,8 @@ class User_Service_Callback extends Phpfox_Service
 	{		
 		return Phpfox::getPhrase('user.a_href_user_link_full_name_a_likes_your_profile_a_href_link_photo_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl($aFeed['user_name'], array('feed' => $aFeed['feed_id'], 'flike' => 'photo'))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl($aFeed['user_name'], array('feed' => $aFeed['feed_id'], 'flike' => 'photo'))
 				)
 			);		
 	}	
@@ -867,7 +867,7 @@ class User_Service_Callback extends Phpfox_Service
 	
 	public function getFeedRedirectStatus($iId)
 	{
-		return $this->getReportRedirect($iId) . 'feed_' . Phpfox::getLib('request')->get('id') . '/#feed';		
+		return $this->getReportRedirect($iId) . 'feed_' . Phpfox_Request::instance()->get('id') . '/#feed';
 	}
 	
 	public function getSqlTitleField()
@@ -890,7 +890,7 @@ class User_Service_Callback extends Phpfox_Service
 		return array(
 			'feed_title' => '',
 			'feed_info' => Phpfox::getPhrase('feed.updated_gender_profile_photo', array('gender' => Phpfox::getService('user')->gender($aItem['gender'], 1))),
-			'feed_link' => Phpfox::getLib('url')->makeUrl($aItem['user_name']),
+			'feed_link' => Phpfox_Url::instance()->makeUrl($aItem['user_name']),
 			'feed_icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'misc/report_user.png', 'return_url' => true)),
 			'time_stamp' => $aItem['time_stamp'],			
 			'enable_like' => false		
@@ -919,7 +919,7 @@ class User_Service_Callback extends Phpfox_Service
 		{
 			if (!empty($aItem['content']))
 			{
-				$sLink = Phpfox::getLib('url')->makeUrl($aItem['user_name'], array('feed' => $aItem['feed_id']));
+				$sLink = Phpfox_Url::instance()->makeUrl($aItem['user_name'], array('feed' => $aItem['feed_id']));
 
 				$aReturn = array(
 					'no_share' => true,
@@ -937,7 +937,7 @@ class User_Service_Callback extends Phpfox_Service
 			return false;
 		}		
 		
-		$sLink = Phpfox::getLib('url')->makeUrl($aItem['user_name'], array('status-id' => $aRow['status_id']));
+		$sLink = Phpfox_Url::instance()->makeUrl($aItem['user_name'], array('status-id' => $aRow['status_id']));
 			
 		$aReturn = array(
 			//'no_share' => true,
@@ -1049,7 +1049,7 @@ class User_Service_Callback extends Phpfox_Service
 		
 		if (!$bDoNotSendEmail)
 		{
-			$sLink = Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id']));
+			$sLink = Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id']));
 			
 			Phpfox::getLib('mail')->to($aRow['user_id'])
 				->subject(array('user.full_name_liked_your_status_update_content', array('full_name' => Phpfox::getUserBy('full_name'), 'content' => Phpfox::getLib('parse.output')->shorten($aRow['content'], 50, '...'))))
@@ -1085,7 +1085,7 @@ class User_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id'])),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -1106,7 +1106,7 @@ class User_Service_Callback extends Phpfox_Service
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id']));
+		$sLink = Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id']));
 		
 		Phpfox::getService('comment.process')->notify(array(
 				'user_id' => $aRow['user_id'],
@@ -1168,7 +1168,7 @@ Phpfox::getPhrase('user.full_name_commented_on_gender_status_update_a_href_link_
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id'])),
 			'message' => $sPhrase
 		);
 	}	
@@ -1184,7 +1184,7 @@ Phpfox::getPhrase('user.full_name_commented_on_gender_status_update_a_href_link_
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->makeUrl($aRow['user_name']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->makeUrl($aRow['user_name']);
 		$aInfo['item_name'] = Phpfox::getPhrase('search.members');		
 		
 		return $aInfo;
@@ -1205,7 +1205,7 @@ Phpfox::getPhrase('user.full_name_commented_on_gender_status_update_a_href_link_
 			->where('us.status_id = ' . (int) $iId)
 			->execute('getSlaveRow');
 		
-		return Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id']));
+		return Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('status-id' => $aRow['status_id']));
 	}
 	
 	public function getProfileSettings()

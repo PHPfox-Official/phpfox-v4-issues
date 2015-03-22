@@ -69,7 +69,7 @@ class Contact_Service_Contact extends Phpfox_Service
 		{
 			$sText .= Phpfox::getPhrase('contact.full_name') . ': ' . Phpfox::getUserBy('full_name') . '<br />';
 			$sText .= Phpfox::getPhrase('contact.user_id') . ': ' . Phpfox::getUserId() . '<br />';
-			$sText .= Phpfox::getPhrase('contact.profile') . ': ' . Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')) . '<br />';
+			$sText .= Phpfox::getPhrase('contact.profile') . ': ' . Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')) . '<br />';
 		}
 		
 		$sText .= Phpfox::getPhrase('contact.email') . ': ' . $aValues['email'] . '<br />';
@@ -103,7 +103,7 @@ class Contact_Service_Contact extends Phpfox_Service
 			$sMail = trim($sMail);
 			$bSend = Phpfox::getLib('mail')->to($sMail)
 				->messageHeader(false)
-				->subject((!empty($aValues['category_id']) ? Phpfox::getLib('locale')->convert($aValues['category_id']) . ': ' : '') . $aValues['subject'])
+				->subject((!empty($aValues['category_id']) ? Phpfox_Locale::instance()->convert($aValues['category_id']) . ': ' : '') . $aValues['subject'])
 				->message($sText)
 				->fromName($aValues['full_name'])
 				// Relay error SMTP http://www.phpfox.com/tracker/view/14866/
@@ -118,7 +118,7 @@ class Contact_Service_Contact extends Phpfox_Service
 		{
 			Phpfox::getLib('mail')->to($aValues['email'])
 				->messageHeader(false)
-				->subject((!empty($aValues['category_id']) ? Phpfox::getLib('locale')->convert($aValues['category_id']) . ': ' : '') . $aValues['subject'])
+				->subject((!empty($aValues['category_id']) ? Phpfox_Locale::instance()->convert($aValues['category_id']) . ': ' : '') . $aValues['subject'])
 				->message($sText)
 				->fromName(Phpfox::getParam('core.mail_from_name'))
 				->fromEmail(Phpfox::getParam('core.email_from_email'))

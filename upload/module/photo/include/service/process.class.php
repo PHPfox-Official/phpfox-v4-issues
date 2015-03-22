@@ -302,7 +302,7 @@ class Photo_Service_Process extends Phpfox_Service
 		    $aVals['user_id'] = $iUserId;
 	
 		    // Add the original server ID for LB.
-		    $aVals['server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+		    $aVals['server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 	
 		    // Add the time stamp.
 		    $aVals['time_stamp'] = PHPFOX_TIME;

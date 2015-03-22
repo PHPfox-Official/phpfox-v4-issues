@@ -88,7 +88,7 @@ class Phpfox_Cache_Storage_Memcache extends Phpfox_Cache_Abstract
 		{
 			if ($sName[0] == 'feeds')
 			{
-				$sName[0] = $sName[0] . Phpfox::getLib('locale')->getLangId();
+				$sName[0] = $sName[0] . Phpfox_Locale::instance()->getLangId();
 			}
 			$sName = $sName[0] . $sName[1];	
 		}
@@ -318,7 +318,7 @@ class Phpfox_Cache_Storage_Memcache extends Phpfox_Cache_Abstract
 			{
 				if ($sName[0] == 'feeds')
 				{
-					$sName[0] = $sName[0] . Phpfox::getLib('locale')->getLangId();
+					$sName[0] = $sName[0] . Phpfox_Locale::instance()->getLangId();
 				}
 				$sName = $sName[0] . $sName[1];
 			}			

@@ -65,3 +65,31 @@ div#main div.block {
 		margin:0px 20px 20px 0px;
 	}
 }
+
+#site_content {
+	position:relative;
+}
+
+.block_content {
+	width:78%;
+}
+
+.block_search {
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:20%;
+	background:@blockBg;
+
+	.table_clear {
+		margin-bottom:0px;
+
+		input.button, a.button_off_link {
+			background:darken(@blockBg, 4%);
+			color:@brandPrimary;
+			width:100%;
+			padding-left:0px;
+			padding-right:0px;
+		}
+	}
+}

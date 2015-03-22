@@ -248,7 +248,7 @@ class Apps_Service_Apps extends Phpfox_Service
 			return Phpfox_Error::display(Phpfox::getPhrase('apps.this_app_does_not_exist'));
 		}
 			
-		$aApp['category_name'] = Phpfox::getLib('locale')->convert($aApp['category_name']);
+		$aApp['category_name'] = Phpfox_Locale::instance()->convert($aApp['category_name']);
 		
 		return $aApp;
 	}
@@ -263,7 +263,7 @@ class Apps_Service_Apps extends Phpfox_Service
 				->order('name ASC')
 				->execute('getSlaveRows');
 		$aCategories = array();
-		$sView = Phpfox::getLib('request')->get('view');
+		$sView = Phpfox_Request::instance()->get('view');
 		foreach ($aRows as $aRow)
 		{
 			$aCategories[] = array(
@@ -315,9 +315,9 @@ class Apps_Service_Apps extends Phpfox_Service
 				
 				$aAdd = array('sPhrase' => $sText, 'sVariable' => $sModule .'.'.$sVariable);
 				
-				if (Phpfox::getLib('locale')->isPhrase($aPerm))
+				if (Phpfox_Locale::instance()->isPhrase($aPerm))
 				{
-					$aPerm = Phpfox::getLib('locale')->getPhrase($aPerm);
+					$aPerm = Phpfox_Locale::instance()->getPhrase($aPerm);
 					$aAdd = array('sPhrase' => $sText, 'sVariable' => $sModule .'.'.$sVariable);
 				}
 				

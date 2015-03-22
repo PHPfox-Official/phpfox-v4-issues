@@ -51,7 +51,7 @@ class Video_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('video.videos'),
-			'link' => Phpfox::getLib('url')->makeUrl('video'),
+			'link' => Phpfox_Url::instance()->makeUrl('video'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_videos.png'))
 		);
 	}	
@@ -128,7 +128,7 @@ class Video_Service_Callback extends Phpfox_Service
 			return array('error' => Phpfox::getPhrase('video.sponsor_error_not_found'));
 	    }
 	    
-	    //$aVideo['link'] = Phpfox::getLib('url')->makeUrl('profile.video.'.$aVideo['title_url']);
+	    //$aVideo['link'] = Phpfox_Url::instance()->makeUrl('profile.video.'.$aVideo['title_url']);
 		$aVideo['link'] = Phpfox::permalink('ad.sponsor', $aVideo['item_id'], $aVideo['title']);
 	    $aVideo['paypal_msg'] = Phpfox::getPhrase('video.sponsor_paypal_message', array('sVideoTitle' => $aVideo['title']));//'Video Sponsor ' . $aVideo['title'];
 	    $aVideo['title'] = Phpfox::getPhrase('video.sponsor_title', array('sVideoTitle' => $aVideo['title']));
@@ -152,7 +152,7 @@ class Video_Service_Callback extends Phpfox_Service
 	    }
 			
 		$sLink = Phpfox::permalink('video', (int)$aParams['item_id'], $aVideo['title']);
-	    return $sLink;//Phpfox::getLib('url')->makeUrl($aVideo['user_name'].'.video.' . $aVideo['title_url'] );
+	    return $sLink;//Phpfox_Url::instance()->makeUrl($aVideo['user_name'].'.video.' . $aVideo['title_url'] );
 	}
 	
 	public function getActivityFeedComment($aRow)
@@ -184,7 +184,7 @@ class Video_Service_Callback extends Phpfox_Service
 		}
 		
 		$sLink = Phpfox::permalink('video', $aItem['video_id'], $aItem['title']);
-		$sUser = '<a href="' . Phpfox::getLib('url')->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
+		$sUser = '<a href="' . Phpfox_Url::instance()->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
 		$sGender = Phpfox::getService('user')->gender($aItem['gender'], 1);
 		
 		if ($aRow['user_id'] == $aItem['user_id'])
@@ -262,7 +262,7 @@ class Video_Service_Callback extends Phpfox_Service
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title']);
+		$sLink = Phpfox_Url::instance()->permalink('video', $aRow['video_id'], $aRow['title']);
 		
 		Phpfox::getService('comment.process')->notify(array(
 				'user_id' => $aRow['user_id'],
@@ -290,7 +290,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 	
 	public function getItemName($iId, $sName)
 	{
-		return '<a href="' . Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('video.on_name_s_video', array('name' => $sName)) . '</a>';
+		return '<a href="' . Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('video.on_name_s_video', array('name' => $sName)) . '</a>';
 	}	
 	
 	public function deleteComment($iId)
@@ -300,7 +300,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 	
 	public function getCommentNewsFeed($aRow)
 	{		
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		
 		if ($aRow['owner_user_id'] == $aRow['item_user_id'])
@@ -364,7 +364,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 	public function getNewsFeed($aRow)
 	{
 		if ($sPlugin = Phpfox_Plugin::get('video.service_callback_getnewsfeed_start')){eval($sPlugin);}
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		
 		$aRow['text'] = Phpfox::getPhrase('video.a_href_user_link_owner_full_name_a_added_a_new_video_a_href_title_link_title_a', array(
@@ -391,7 +391,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		return array(
 				Phpfox::getPhrase('friend.videos') => array(
 					'active' => 'video',
-					'url' => Phpfox::getLib('url')->makeUrl('group', array($sGroupUrl, 'video')
+					'url' => Phpfox_Url::instance()->makeUrl('group', array($sGroupUrl, 'video')
 				)
 			)
 		);
@@ -469,7 +469,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 	
 	public function getItemView()
 	{
-		if (Phpfox::getLib('request')->get('req3') != '')
+		if (Phpfox_Request::instance()->get('req3') != '')
 		{
 			return true;
 		}
@@ -492,7 +492,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 	{
 		return array(
 			'message' => Phpfox::getPhrase('video.your_video_title_has_been_approved', array('title' => Phpfox::getLib('parse.output')->shorten($aRow['item_title'], 20, '...'))),
-			'link' => Phpfox::getLib('url')->makeUrl('video', array('redirect' => $aRow['item_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl('video', array('redirect' => $aRow['item_id'])),
 			'path' => 'video.url_image',
 			'suffix' => '_120'
 		);		
@@ -513,7 +513,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		return array(
 			'phrase' => Phpfox::getPhrase('video.videos'),
 			'value' => Phpfox::getService('video')->getPendingTotal(),
-			'link' => Phpfox::getLib('url')->makeUrl('video', array('view' => 'pending'))
+			'link' => Phpfox_Url::instance()->makeUrl('video', array('view' => 'pending'))
 		);
 	}
 	
@@ -647,13 +647,13 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 	{
 		return array(
 			'message' => Phpfox::getPhrase('video.full_name_wrote_a_comment_on_your_video', array(
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
 					'full_name' => $aRow['full_name'],
-					'link' => Phpfox::getLib('url')->makeUrl('video', array('redirect' => $aRow['item_id'])),
+					'link' => Phpfox_Url::instance()->makeUrl('video', array('redirect' => $aRow['item_id'])),
 					'title' => Phpfox::getLib('parse.output')->shorten($aRow['item_title'], 20, '...')	
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('video', array('redirect' => $aRow['item_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl('video', array('redirect' => $aRow['item_id'])),
 			'path' => 'core.url_user',
 			'suffix' => '_50'
 		);	
@@ -709,18 +709,18 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 			
 			if ($bIsTagSearch == true)
 			{
-				$aResults['form'] = '<div><input type="button" value="' . Phpfox::getPhrase('video.view_more_videos') . '" class="search_button" onclick="window.location.href = \'' . Phpfox::getLib('url')->makeUrl('video', array('tag', $sQuery)) . '\';" /></div>';
+				$aResults['form'] = '<div><input type="button" value="' . Phpfox::getPhrase('video.view_more_videos') . '" class="search_button" onclick="window.location.href = \'' . Phpfox_Url::instance()->makeUrl('video', array('tag', $sQuery)) . '\';" /></div>';
 			}
 			else 
 			{
-				$aResults['form'] = '<form method="post" action="' . Phpfox::getLib('url')->makeUrl('video') . '"><div><input type="hidden" name="' . Phpfox::getTokenName() . '[security_token]" value="' . Phpfox::getService('log.session')->getToken() . '" /></div><div><input name="search[keyword]" value="' . Phpfox::getLib('parse.output')->clean($sQuery) . '" size="20" type="hidden" /></div><div><input type="submit" name="submit" value="' . Phpfox::getPhrase('video.view_more_videos') . '" class="search_button" /></div></form>';
+				$aResults['form'] = '<form method="post" action="' . Phpfox_Url::instance()->makeUrl('video') . '"><div><input type="hidden" name="' . Phpfox::getTokenName() . '[security_token]" value="' . Phpfox::getService('log.session')->getToken() . '" /></div><div><input name="search[keyword]" value="' . Phpfox::getLib('parse.output')->clean($sQuery) . '" size="20" type="hidden" /></div><div><input type="submit" name="submit" value="' . Phpfox::getPhrase('video.view_more_videos') . '" class="search_button" /></div></form>';
 			}			
 			
 			foreach ($aRows as $iKey => $aRow)
 			{
 				$aResults['results'][$iKey] = array(
 					'title' => $aRow['title'],
-					'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('video', $aRow['title_url'])),
+					'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('video', $aRow['title_url'])),
 					'image' => Phpfox::getLib('image.helper')->display(array(
 							'server_id' => $aRow['image_server_id'],
 							'title' => $aRow['title'],
@@ -732,9 +732,9 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 						)
 					),
 					'extra_info' => Phpfox::getPhrase('video.video_added_on_time_stamp_by_full_name', array(
-							'link' => Phpfox::getLib('url')->makeUrl('video'),
+							'link' => Phpfox_Url::instance()->makeUrl('video'),
 							'time_stamp' => Phpfox::getTime(Phpfox::getParam('core.global_update_time'), $aRow['time_stamp']),
-							'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
+							'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
 							'full_name' => $this->preParse()->clean($aRow['full_name'])
 						)
 					)
@@ -1019,7 +1019,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		{
 			$aRow['text'] = Phpfox::getPhrase('video.a_href_user_link_full_name_a_likes_their_own_a_href_link_video_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
 					'link' => $aRow['link']
 				)
@@ -1029,9 +1029,9 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		{
 			$aRow['text'] = Phpfox::getPhrase('video.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_a_href_link_video_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -1047,11 +1047,11 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		return array(
 			'message' => Phpfox::getPhrase('video.a_href_user_link_full_name_a_likes_your_a_href_link_video_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('video', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('video', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('video', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('video', array('redirect' => $aRow['item_id']))
 		);				
 	}	
 	
@@ -1059,8 +1059,8 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 	{
 		return Phpfox::getPhrase('video.a_href_user_link_full_name_a_likes_your_a_href_link_video_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('video', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('video', array('redirect' => $iItemId))
 				)
 			);
 	}			
@@ -1203,7 +1203,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 			if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['parent_user_name']) && $aRow['parent_user_id'] != Phpfox::getService('profile')->getProfileUserId())
 			{
 				$aReturn['feed_mini'] = true;
-				$aReturn['feed_mini_content'] = Phpfox::getPhrase('feed.full_name_posted_a_href_link_a_video_a_on_a_href_profile_parent_full_name_a_s_a_href_profile_link_wall_a', array('full_name' => Phpfox::getService('user')->getFirstName($aItem['full_name']), 'link' => Phpfox::permalink('video', $aRow['video_id'], $aRow['title']), 'profile' => Phpfox::getLib('url')->makeUrl($aRow['parent_user_name']), 'parent_full_name' => $aRow['parent_full_name'], 'profile_link' => Phpfox::getLib('url')->makeUrl($aRow['parent_user_name'])));
+				$aReturn['feed_mini_content'] = Phpfox::getPhrase('feed.full_name_posted_a_href_link_a_video_a_on_a_href_profile_parent_full_name_a_s_a_href_profile_link_wall_a', array('full_name' => Phpfox::getService('user')->getFirstName($aItem['full_name']), 'link' => Phpfox::permalink('video', $aRow['video_id'], $aRow['title']), 'profile' => Phpfox_Url::instance()->makeUrl($aRow['parent_user_name']), 'parent_full_name' => $aRow['parent_full_name'], 'profile_link' => Phpfox_Url::instance()->makeUrl($aRow['parent_user_name'])));
 				$aReturn['feed_title'] = '';
 				unset($aReturn['feed_status'], $aReturn['feed_image'], $aReturn['feed_content']);
 			}		
@@ -1316,7 +1316,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('video', $aRow['video_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -1345,7 +1345,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('video', $aRow['video_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -1367,7 +1367,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		$sPhrase = Phpfox::getPhrase('video.your_video_title_has_been_approved', array('title'=>Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('video', $aRow['video_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
@@ -1441,7 +1441,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->permalink('video', $aRow['item_id'], $aRow['item_title']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->permalink('video', $aRow['item_id'], $aRow['item_title']);
 		$aInfo['item_name'] = Phpfox::getPhrase('search.video');
 		
 		$aInfo['item_display_photo'] = Phpfox::getLib('image.helper')->display(array(
@@ -1475,7 +1475,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		return array(
 			array(
 				'phrase' => Phpfox::getPhrase('video.upload_share_a_video'),
-				'url' => Phpfox::getLib('url')->makeUrl('video.add', array('module' => 'pages', 'item' => $aPage['page_id']))
+				'url' => Phpfox_Url::instance()->makeUrl('video.add', array('module' => 'pages', 'item' => $aPage['page_id']))
 			)
 		);
 	}	
@@ -1530,7 +1530,7 @@ Phpfox::getPhrase('video.full_name_commented_on_gender_video_a_href_link_title_a
 		$sPhrase = Phpfox::getPhrase('video.user_name_tagged_you_in_a_comment_in_a_video', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('video', $aRow['video_id'], $aRow['title'])  . 'comment_'.$aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('video', $aRow['video_id'], $aRow['title'])  . 'comment_'.$aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);

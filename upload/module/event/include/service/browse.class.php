@@ -118,12 +118,12 @@ class Event_Service_Browse extends Phpfox_Service
 				'total_comment' => $aListing['total_comment'],
 				'feed_total_like' => $aListing['total_like'],
 				'total_like' => $aListing['total_like'],
-				'feed_link' => Phpfox::getLib('url')->permalink('event', $aListing['event_id'], $aListing['title']),
+				'feed_link' => Phpfox_Url::instance()->permalink('event', $aListing['event_id'], $aListing['title']),
 				'feed_title' => $aListing['title'],
 				'type_id' => 'event'
 			);				
 				
-			$aListing['url'] = Phpfox::getLib('url')->permalink('event', $aListing['event_id'], $aListing['title']);
+			$aListing['url'] = Phpfox_Url::instance()->permalink('event', $aListing['event_id'], $aListing['title']);
 			
 			$aRows[$iDate][] = $aListing;
 		}

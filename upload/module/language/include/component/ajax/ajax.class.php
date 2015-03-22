@@ -46,7 +46,7 @@ class Language_Component_Ajax_Ajax extends Phpfox_Ajax
 							$aParts = explode('/', trim($sReturn, '/'));		
 							if (isset($aParts[0]))
 							{
-								$aParts[0] = Phpfox::getLib('url')->reverseRewrite($aParts[0]);
+								$aParts[0] = Phpfox_Url::instance()->reverseRewrite($aParts[0]);
 							}
 							if (isset($aParts[0]) && !Phpfox::isModule($aParts[0]))
 							{
@@ -67,7 +67,7 @@ class Language_Component_Ajax_Ajax extends Phpfox_Ajax
 						
 						$sReturn = trim($sReturn, '/');
 			
-			$this->call('window.location.href = window.location.href;');// . Phpfox::getLib('url')->makeUrl($sReturn) . '\';');
+			$this->call('window.location.href = window.location.href;');// . Phpfox_Url::instance()->makeUrl($sReturn) . '\';');
 		}
 	}
 	

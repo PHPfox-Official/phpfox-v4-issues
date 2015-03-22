@@ -177,7 +177,7 @@ class Phpfox_Parse_Output
 		$sTagSearch = html_entity_decode($sTagSearch, null, 'UTF-8');
 		$sTagSearch = urlencode($sTagSearch);
 
-		$sTxt = '<a href="' . Phpfox::getLib('url')->makeUrl('hashtag', array($sTagSearch)) . '"' . ((Phpfox::isMobile() || defined('PHPFOX_FEED_HASH_POPUP')) ? '' : ' onclick="tb_show(\'\', $.ajaxBox(\'feed.hashtag\', \'height=300&width=600&hashtagsearch=' . $sTagSearch . '&hashtagpopup=true\')); return false;"') . '>' . strip_tags($aMatches[0]) . '</a>';
+		$sTxt = '<a href="' . Phpfox_Url::instance()->makeUrl('hashtag', array($sTagSearch)) . '"' . ((Phpfox::isMobile() || defined('PHPFOX_FEED_HASH_POPUP')) ? '' : ' onclick="tb_show(\'\', $.ajaxBox(\'feed.hashtag\', \'height=300&width=600&hashtagsearch=' . $sTagSearch . '&hashtagpopup=true\')); return false;"') . '>' . strip_tags($aMatches[0]) . '</a>';
 
 		return $sTxt;
 	}
@@ -283,7 +283,7 @@ class Phpfox_Parse_Output
 	                   
 	                    	if (!preg_match('/' . preg_quote(Phpfox::getParam('core.host')) . '/i', $sHref))
 	                    	{
-	                    		$sHref = Phpfox::getLib('url')->makeUrl('core.redirect', array('url' => Phpfox::getLib('url')->encode($sHref)));
+	                    		$sHref = Phpfox_Url::instance()->makeUrl('core.redirect', array('url' => Phpfox_Url::instance()->encode($sHref)));
 	                    	}
 	                   
 	                    
@@ -327,7 +327,7 @@ class Phpfox_Parse_Output
 				{
 					$sHref = str_replace(array('"', "'"), '', $sHref);
 					$sHref = substr_replace($sHref, '', 0, 5);
-					$sHref = 'href="' . Phpfox::getLib('url')->makeUrl('core.redirect', array('url' => Phpfox::getLib('url')->encode($sHref))) . '"';
+					$sHref = 'href="' . Phpfox_Url::instance()->makeUrl('core.redirect', array('url' => Phpfox_Url::instance()->encode($sHref))) . '"';
 				}
 				
 				return '<a ' . $sHref . '>';
@@ -372,7 +372,7 @@ class Phpfox_Parse_Output
 			{
 				if (isset($aUser['user_name']))
 				{
-					$sOut = '<a href="' . Phpfox::getLib('url')->makeUrl($aUser['user_name']) .'">' . $aUser['full_name'] .'</a>';
+					$sOut = '<a href="' . Phpfox_Url::instance()->makeUrl($aUser['user_name']) .'">' . $aUser['full_name'] .'</a>';
 				}
 			}
 			
@@ -904,7 +904,7 @@ class Phpfox_Parse_Output
 		{
 			if (!preg_match('/' . preg_quote(Phpfox::getParam('core.host')) . '/i', $sHref))
 			{
-				$sHref = Phpfox::getLib('url')->makeUrl('core.redirect', array('url' => Phpfox::getLib('url')->encode($sHref)));
+				$sHref = Phpfox_Url::instance()->makeUrl('core.redirect', array('url' => Phpfox_Url::instance()->encode($sHref)));
 			}
 		}	
 		

@@ -106,7 +106,7 @@ class Photo_Service_Tag_Process extends Phpfox_Service
 						return Phpfox_Error::set(Phpfox::getPhrase('photo.full_name_has_already_been_tagged_in_this_photo', array('full_name' => $aUser['full_name'])));
 					}
 					
-					$sReturn = '<a href="' . Phpfox::getLib('url')->makeUrl($aUser['user_name']) . '">' . $aUser['full_name'] . '</a>';
+					$sReturn = '<a href="' . Phpfox_Url::instance()->makeUrl($aUser['user_name']) . '">' . $aUser['full_name'] . '</a>';
 					
 					unset($aVals['note']);
 				}
@@ -134,7 +134,7 @@ class Photo_Service_Tag_Process extends Phpfox_Service
 				(($sPlugin = Phpfox_Plugin::get('photo.service_tag_process_add__1')) ? eval($sPlugin) : false);
 				Phpfox::getService('feed.process')->add('photo_tag', $iTagId, 0, 0, $iTagUserId);
 				
-				$sLink = Phpfox::getLib('url')->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']);
+				$sLink = Phpfox_Url::instance()->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']);
 				
 				Phpfox::getLib('mail')->to($iTagUserId)
 					->subject(array('photo.full_name_tagged_you_in_a_photo', array(

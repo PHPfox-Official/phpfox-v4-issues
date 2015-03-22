@@ -108,7 +108,7 @@ class Friend_Service_Api extends Phpfox_Service
 				)
 			);
 			
-			$aRows[$iKey]['permalink'] = Phpfox::getLib('url')->makeUrl($aRow['user_name']);
+			$aRows[$iKey]['permalink'] = Phpfox_Url::instance()->makeUrl($aRow['user_name']);
 			
 			unset($aRows[$iKey]['user_image']);		
 		}

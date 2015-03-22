@@ -37,7 +37,7 @@ class Admincp_Service_Setting_Group_Group extends Phpfox_Service
 			->from($this->_sTable, 'setting_group')
 			->leftJoin(Phpfox::getT('product'), 'product', 'product.product_id = setting_group.product_id')
 			->leftJoin(Phpfox::getT('language_phrase'), 'language_phrase', array(
-					"language_phrase.language_id = '" . $this->database()->escape(Phpfox::getLib('locale')->getLangId()) . "'",
+					"language_phrase.language_id = '" . $this->database()->escape(Phpfox_Locale::instance()->getLangId()) . "'",
 					"AND language_phrase.var_name = setting_group.var_name"
 				)
 			)
@@ -124,7 +124,7 @@ class Admincp_Service_Setting_Group_Group extends Phpfox_Service
 			->from($this->_sTable, 'setting_group')
 			->leftJoin(Phpfox::getT('product'), 'product', 'product.product_id = setting_group.product_id AND product.is_active = 1')
 			->leftJoin(Phpfox::getT('language_phrase'), 'language_phrase', array(
-					"language_phrase.language_id = '" . $this->database()->escape(Phpfox::getLib('locale')->getLangId()) . "'",
+					"language_phrase.language_id = '" . $this->database()->escape(Phpfox_Locale::instance()->getLangId()) . "'",
 					"AND language_phrase.var_name = setting_group.var_name"
 				)
 			)

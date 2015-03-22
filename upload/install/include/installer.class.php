@@ -148,8 +148,8 @@ class Phpfox_Installer
 	public function __construct()
 	{	
 		$this->_oTpl = Phpfox_Template::instance();
-		$this->_oReq = Phpfox::getLib('request');
-		$this->_oUrl = Phpfox::getLib('url');		
+		$this->_oReq = Phpfox_Request::instance();
+		$this->_oUrl = Phpfox_Url::instance();
 		
 		$this->_sTempDir = Phpfox_File::instance()->getTempDir();
 

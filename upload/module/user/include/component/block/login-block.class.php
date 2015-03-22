@@ -39,7 +39,7 @@ class User_Component_Block_Login_Block extends Phpfox_Component
 			return false;
 		}
 		
-		if (Phpfox::getLib('url')->isUrl(array('user/login', 'user/register', 'profile', 'user/password/request', 'forum')))
+		if (Phpfox_Url::instance()->isUrl(array('user/login', 'user/register', 'profile', 'user/password/request', 'forum')))
 		{
 			return false;
 		}

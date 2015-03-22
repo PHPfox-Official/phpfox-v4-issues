@@ -141,7 +141,7 @@ class Group_Service_Browse extends Phpfox_Service
 			foreach ($aGroups as $aGroup)
 			{				
 				$aGroup['breadcrumb'] = Phpfox::getService('group.category')->getCategoriesById($aGroup['group_id']);				
-				$aGroup['group_url'] = Phpfox::getLib('url')->makeUrl('group', array($aGroup['title_url'], 'member'));
+				$aGroup['group_url'] = Phpfox_Url::instance()->makeUrl('group', array($aGroup['title_url'], 'member'));
 				
 				$this->_aGroups[] = $aGroup;
 			}

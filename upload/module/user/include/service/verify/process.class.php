@@ -261,7 +261,7 @@ class User_Service_Verify_Process extends Phpfox_Service
 		));
 
 		// send email
-		$sLink = Phpfox::getLib('url')->makeUrl('user.verify', array('link' => $sHash));
+		$sLink = Phpfox_Url::instance()->makeUrl('user.verify', array('link' => $sHash));
 		Phpfox::getLib('mail')
 			->to($mUser['email'])
 			->subject(array('user.email_verification_on_site_title', array('site_title' => Phpfox::getParam('core.site_title'))))

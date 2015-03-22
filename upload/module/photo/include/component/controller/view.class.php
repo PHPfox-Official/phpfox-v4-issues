@@ -292,7 +292,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 					'bIsTheater' => ($this->request()->get('theater') ? true : false),
 					'sPhotoJsContent' => Phpfox::getService('photo.tag')->getJs($aPhoto['photo_id']),
 					'iForceAlbumId' => ($this->request()->getInt('albumid') > 0 ? $this->request()->getInt('albumid') : 0),
-					'sCurrentPhotoUrl' => Phpfox::getLib('url')->makeUrl('current'),
+					'sCurrentPhotoUrl' => Phpfox_Url::instance()->makeUrl('current'),
 					'sMicroPropType' => 'Photograph'
 				)
 			);		

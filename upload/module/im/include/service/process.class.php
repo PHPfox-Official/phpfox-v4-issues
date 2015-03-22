@@ -280,7 +280,7 @@ class Im_Service_Process extends Phpfox_Service
 		Phpfox::isUser(true);
 		
 		$oSession = Phpfox::getLib('session');
-		$oRequest = Phpfox::getLib('request');
+		$oRequest = Phpfox_Request::instance();
 		
 		$this->database()->update(Phpfox::getT('user'), array('im_hide' => '1'), 'user_id = ' . Phpfox::getUserId());
 		$this->database()->update(Phpfox::getT('log_session'), array(
@@ -295,7 +295,7 @@ class Im_Service_Process extends Phpfox_Service
 		Phpfox::isUser(true);
 		
 		$oSession = Phpfox::getLib('session');
-		$oRequest = Phpfox::getLib('request');
+		$oRequest = Phpfox_Request::instance();
 		
 		$this->database()->update(Phpfox::getT('user'), array('im_hide' => '0'), 'user_id = ' . Phpfox::getUserId());
 		$this->database()->update(Phpfox::getT('log_session'), array(
@@ -318,7 +318,7 @@ class Im_Service_Process extends Phpfox_Service
 		}
 		
 		$oSession = Phpfox::getLib('session');
-		$oRequest = Phpfox::getLib('request');
+		$oRequest = Phpfox_Request::instance();
 		
 		$this->database()->update(Phpfox::getT('user'), array('im_hide' => $iHide), 'user_id = ' . Phpfox::getUserId());
 		$this->database()->update(Phpfox::getT('log_session'), array(

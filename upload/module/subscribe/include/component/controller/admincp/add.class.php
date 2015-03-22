@@ -57,7 +57,7 @@ class Subscribe_Component_Controller_Admincp_Add extends Phpfox_Component
 		
 		$this->template()->setTitle(($bIsEdit ? Phpfox::getPhrase('subscribe.editing_subscription_package') . ': ' . $aPackage['title'] : Phpfox::getPhrase('subscribe.create_new_subscription_package')))	
 			->setBreadcrumb(Phpfox::getPhrase('subscribe.subscription_packages'), $this->url()->makeUrl('admincp.subscribe'))
-			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('subscribe.editing') . ': ' . Phpfox::getLib('locale')->convert($aPackage['title']) : Phpfox::getPhrase('subscribe.create_new_subscription_package')), null, true)
+			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('subscribe.editing') . ': ' . Phpfox_Locale::instance()->convert($aPackage['title']) : Phpfox::getPhrase('subscribe.create_new_subscription_package')), null, true)
 			->assign(array(
 					'aUserGroups' => Phpfox::getService('user.group')->get(),
 					'bIsEdit' => $bIsEdit

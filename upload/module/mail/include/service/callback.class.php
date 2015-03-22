@@ -24,7 +24,7 @@ class Mail_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('mail.mail'),
-			'link' => Phpfox::getLib('url')->makeUrl('mail'),
+			'link' => Phpfox_Url::instance()->makeUrl('mail'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_mail.png')),
 			'total' => Mail_Service_Mail::instance()->getUnseenTotal()
 		);
@@ -70,11 +70,11 @@ class Mail_Service_Callback extends Phpfox_Service
 		$sImage = '<img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/email.png') . '" alt="" class="v_middle" />';
 		if (is_array($mId) && $mTotal === null)
 		{	
-			return Phpfox::getPhrase('mail.li_a_href_link_email_image_new_messages_messages_number_a_li',array('link' => Phpfox::getLib('url')->makeUrl('mail'), 'email_image' => $sImage, 'messages_number' => (isset($mId['mail']) ? $mId['mail'] : '0')));
+			return Phpfox::getPhrase('mail.li_a_href_link_email_image_new_messages_messages_number_a_li',array('link' => Phpfox_Url::instance()->makeUrl('mail'), 'email_image' => $sImage, 'messages_number' => (isset($mId['mail']) ? $mId['mail'] : '0')));
 		}
 		else 
 		{			
-			return '<li><a href="' . Phpfox::getLib('url')->makeUrl('mail') . '" class="js_nofitication_' . $mId . '">' . $sImage . ' ' . ($mTotal > 1 ? Phpfox::getPhrase('mail.total_new_messages', array('total' => $mTotal)) : Phpfox::getPhrase('mail.1_new_message')) . '</a></li>';
+			return '<li><a href="' . Phpfox_Url::instance()->makeUrl('mail') . '" class="js_nofitication_' . $mId . '">' . $sImage . ' ' . ($mTotal > 1 ? Phpfox::getPhrase('mail.total_new_messages', array('total' => $mTotal)) : Phpfox::getPhrase('mail.1_new_message')) . '</a></li>';
 		}
 	}
 	
@@ -90,7 +90,7 @@ class Mail_Service_Callback extends Phpfox_Service
 	{		
 		return array(
 			'message' => Phpfox::getPhrase('mail.user_link_sent_you_a_message', array(($aRow['user_id'] > 0 ? 'user' : 'user_link') => ($aRow['user_id'] > 0 ? $aRow : Phpfox::getParam('core.site_title')))),
-			'link' => Phpfox::getLib('url')->makeUrl('mail.view', array('id' => $aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('mail.view', array('id' => $aRow['item_id']))
 		);
 	}	
 	
@@ -162,7 +162,7 @@ class Mail_Service_Callback extends Phpfox_Service
 
 	public function getReportRedirect($iId)
 	{
-		return Phpfox::getLib('url')->makeUrl('admincp.mail.view', array('id' => $iId));
+		return Phpfox_Url::instance()->makeUrl('admincp.mail.view', array('id' => $iId));
 	}
 
 	public function updateCounterList()
@@ -220,7 +220,7 @@ class Mail_Service_Callback extends Phpfox_Service
 		$iTotal = Mail_Service_Mail::instance()->getUnseenTotal();
 		if ($iTotal > 0)
 		{
-			Phpfox::getLib('ajax')->call('$(\'#js_total_new_messages\').html(\'' . (int) $iTotal . '\').css({display: \'block\'}).show();');
+			Phpfox_Ajax::instance()->call('$(\'#js_total_new_messages\').html(\'' . (int) $iTotal . '\').css({display: \'block\'}).show();');
 		}
 	}	
 

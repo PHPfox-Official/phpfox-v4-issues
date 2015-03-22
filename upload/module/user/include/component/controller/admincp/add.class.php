@@ -70,7 +70,7 @@ class User_Component_Controller_Admincp_Add extends Phpfox_Component
 		$aUserGroups = array();
 		foreach (Phpfox::getService('user.group')->get() as $aUserGroup)
 		{
-			$aUserGroups[$aUserGroup['user_group_id']] = Phpfox::getLib('locale')->convert($aUserGroup['title']);
+			$aUserGroups[$aUserGroup['user_group_id']] = Phpfox_Locale::instance()->convert($aUserGroup['title']);
 		}		
 		
 		$aLanguages = array();

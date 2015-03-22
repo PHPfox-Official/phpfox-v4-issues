@@ -80,7 +80,7 @@ class Phpfox_Error
 		}
 		if ($iErrCode !== null)
 		{
-			$oUrl = Phpfox::getLib('url');
+			$oUrl = Phpfox_Url::instance();
 			header($oUrl->getHeaderCode($iErrCode));
 		}
 		return false;
@@ -479,7 +479,7 @@ class Phpfox_Error
 				'message' => self::_escapeCdata($sMessage),
 				'backtrace' => var_export($aBacktrace, true),
 				'request' => var_export($_REQUEST, true),
-				'ip' => Phpfox::getLib('request')->getServer('REMOTE_ADDR') // $_SERVER['REMOTE_ADDR']
+				'ip' => Phpfox_Request::instance()->getServer('REMOTE_ADDR') // $_SERVER['REMOTE_ADDR']
 			)
 		);
 		

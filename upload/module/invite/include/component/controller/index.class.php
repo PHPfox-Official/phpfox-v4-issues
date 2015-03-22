@@ -54,7 +54,7 @@ class Invite_Component_Controller_Index extends Phpfox_Component
 
 					$sFromEmail = Phpfox::getParam('core.email_from_email');
 					// check if we could send the mail
-					$sLink = Phpfox::getLib('url')->makeUrl('invite', array('id' => $iInvite));
+					$sLink = Phpfox_Url::instance()->makeUrl('invite', array('id' => $iInvite));
 					$bSent = Phpfox::getLib('mail')->to($sMail)		
 						// SMTP error: from email is not the same as the SMTP account 
 						// ->fromEmail(Phpfox::getUserBy('email'))
@@ -112,7 +112,7 @@ class Invite_Component_Controller_Index extends Phpfox_Component
 					'sFullName' => Phpfox::getUserBy('full_name'),
 					'sSiteEmail' => Phpfox::getUserBy('email'),
 					'sSiteTitle' => Phpfox::getParam('core.site_title'),
-					'sIniviteLink' => Phpfox::getLib('url')->makeUrl('invite', array('user' => Phpfox::getUserId())),
+					'sIniviteLink' => Phpfox_Url::instance()->makeUrl('invite', array('user' => Phpfox::getUserId())),
 					'bIsRegistration' => $bIsRegistration,
 					'sNextUrl' => $this->url()->makeUrl($sNextUrl)
 				)

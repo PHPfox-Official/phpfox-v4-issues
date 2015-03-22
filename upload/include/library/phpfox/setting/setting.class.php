@@ -464,7 +464,7 @@ class Phpfox_Setting
 			
 			if (!defined('PHPFOX_INSTALLER') && ($mVar == 'core.footer_bar_site_name' || $mVar == 'core.site_copyright'))
 			{
-				$sParam = Phpfox::getLib('locale')->convert($sParam);	
+				$sParam = Phpfox_Locale::instance()->convert($sParam);
 			}			
 			
 			if ($mVar == 'admincp.admin_cp')

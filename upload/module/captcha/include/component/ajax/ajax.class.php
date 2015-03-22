@@ -17,7 +17,7 @@ class Captcha_Component_Ajax_Ajax extends Phpfox_Ajax
 {	
 	public function reload()
 	{
-		$sUrl = Phpfox::getLib('url')->makeUrl('captcha.image', array('id' => md5(rand(100, 1000))));
+		$sUrl = Phpfox_Url::instance()->makeUrl('captcha.image', array('id' => md5(rand(100, 1000))));
 		$sId = htmlspecialchars($this->get('sId'));
 		$sInput = htmlspecialchars($this->get('sInput'));
 		$this->call('$("#' . $sId . '").attr("src", "' . $sUrl . '"); $("#' . $sInput . '").val(""); $("#' . $sInput . '").focus(); $("#js_captcha_process").html("");');

@@ -59,7 +59,7 @@ class Comment_Service_Callback extends Phpfox_Service
 			return null;
 		}		
 		
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('request', '#comment') . '"' . (!$iTotalApproveCount ? ' onclick="alert(\'' . Phpfox::getPhrase('comment.nothing_new_to_approve') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/comment.png') . '" alt="" class="v_middle" /> ' . Phpfox::getPhrase('comment.comments_pending_approval_total', array('total' => $iTotalApproveCount)) . '</a></li>';
+		return '<li><a href="' . Phpfox_Url::instance()->makeUrl('request', '#comment') . '"' . (!$iTotalApproveCount ? ' onclick="alert(\'' . Phpfox::getPhrase('comment.nothing_new_to_approve') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/comment.png') . '" alt="" class="v_middle" /> ' . Phpfox::getPhrase('comment.comments_pending_approval_total', array('total' => $iTotalApproveCount)) . '</a></li>';
 	}
 	
 	public function getRedirectRequest($iId)
@@ -106,7 +106,7 @@ class Comment_Service_Callback extends Phpfox_Service
 	{		
 		return array(
 			'message' => Phpfox::getPhrase('comment.user_link_added_a_comment_and_is_pending_your_approval', array('user' => $aRow)),
-			'link' => Phpfox::getLib('url')->makeUrl('request', '#comment_id_' . $aRow['item_id'])
+			'link' => Phpfox_Url::instance()->makeUrl('request', '#comment_id_' . $aRow['item_id'])
 		);
 	}
 	
@@ -153,7 +153,7 @@ class Comment_Service_Callback extends Phpfox_Service
 		return array(
 			'phrase' => Phpfox::getPhrase('comment.comment_title'),
 			'value' => Phpfox::getService('comment')->getSpamTotal(),
-			'link' => Phpfox::getLib('url')->makeUrl('admincp.comment', array('view' => 'spam'))
+			'link' => Phpfox_Url::instance()->makeUrl('admincp.comment', array('view' => 'spam'))
 		);		
 	}
 
@@ -246,8 +246,8 @@ class Comment_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('comment.a_href_user_link_full_name_a_likes_your_a_href_link_comment_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl($aFeed['user_name'], array('feed' => $aFeed['feed_id'], 'flike' => 'fcomment'))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl($aFeed['user_name'], array('feed' => $aFeed['feed_id'], 'flike' => 'fcomment'))
 				)
 			);
 	}
@@ -264,7 +264,7 @@ class Comment_Service_Callback extends Phpfox_Service
 		return array(
 			'phrase' => Phpfox::getPhrase('comment.comments_approve'),
 			'value' => $this->database()->select('COUNT(*)')->from(Phpfox::getT('comment'))->where('view_id = 1')->execute('getSlaveField'),
-			'link' => Phpfox::getLib('url')->makeUrl('admincp.comment', array('view' => 'approval'))
+			'link' => Phpfox_Url::instance()->makeUrl('admincp.comment', array('view' => 'approval'))
 		);
 	}
 
@@ -364,7 +364,7 @@ class Comment_Service_Callback extends Phpfox_Service
 		{			
 			return Phpfox::getPhrase('comment.a_href_user_link_full_name_a_likes_your_a_href_link_comment_a', array(
 						'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-						'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
+						'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
 						'link' => Phpfox::callback(strtolower($aMatches[1]) . '.getFeedRedirect', $aArguments[0])
 					)
 				);			

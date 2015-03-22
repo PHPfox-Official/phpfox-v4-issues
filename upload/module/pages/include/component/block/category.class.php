@@ -39,7 +39,7 @@ class Pages_Component_Block_Category extends Phpfox_Component
 			return false;
 		}	
 		
-		if (($sView = Phpfox::getLib('request')->get('view')))
+		if (($sView = Phpfox_Request::instance()->get('view')))
 		{
 			foreach ($aCategories as $iKey => $aCategory)
 			{

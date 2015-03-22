@@ -38,7 +38,7 @@ class Link_Service_Link extends Phpfox_Service
 		}
 				
 		$aReturn = array();		
-		$oVideo = json_decode(Phpfox::getLib('request')->send('http://api.embed.ly/1/oembed?format=json&maxwidth=400&url=' . urlencode($sUrl), array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
+		$oVideo = json_decode(Phpfox_Request::instance()->send('http://api.embed.ly/1/oembed?format=json&maxwidth=400&url=' . urlencode($sUrl), array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
 
 		// http://www.phpfox.com/tracker/view/15305/
 		if(!isset($oVideo->thumbnail_url))
@@ -59,7 +59,7 @@ class Link_Service_Link extends Phpfox_Service
 					}
 				}
 				
-				$oThumbnail = json_decode(Phpfox::getLib('request')->send('https://graph.facebook.com/' . $iId . '/picture?redirect=false', array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
+				$oThumbnail = json_decode(Phpfox_Request::instance()->send('https://graph.facebook.com/' . $iId . '/picture?redirect=false', array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
 				$oVideo->thumbnail_url = $oThumbnail->data->url;
 				$oVideo->type = 'video';
 				$oVideo->html = '<iframe src="https://www.facebook.com/video/embed?video_id=' . $iId . '" width="400" height="300" frameborder="0"></iframe>';
@@ -82,7 +82,7 @@ class Link_Service_Link extends Phpfox_Service
 		}	
 		
 		$aParseBuild = array();
-		$sContent = Phpfox::getLib('request')->send($sUrl, array(), 'GET', $_SERVER['HTTP_USER_AGENT']);				
+		$sContent = Phpfox_Request::instance()->send($sUrl, array(), 'GET', $_SERVER['HTTP_USER_AGENT']);
 		preg_match_all('/<(meta|link)(.*?)>/i', $sContent, $aRegMatches);		
 		if (isset($aRegMatches[2]))
 		{
@@ -128,7 +128,7 @@ class Link_Service_Link extends Phpfox_Service
 				$aReturn['default_image'] = (isset($aParseBuild['og:image']) ? $aParseBuild['og:image'] : '');
 				if (isset($aParseBuild['application/json+oembed']))
 				{
-					$oJson = json_decode(Phpfox::getLib('request')->send($aParseBuild['application/json+oembed'], array(), 'GET', $_SERVER['HTTP_USER_AGENT']));					if (isset($oJson->html))
+					$oJson = json_decode(Phpfox_Request::instance()->send($aParseBuild['application/json+oembed'], array(), 'GET', $_SERVER['HTTP_USER_AGENT']));					if (isset($oJson->html))
 					{
 						$aReturn['embed_code'] = $oJson->html;	
 					}
@@ -139,7 +139,7 @@ class Link_Service_Link extends Phpfox_Service
 		}		
 		
 		
-		$sContent = Phpfox::getLib('request')->send($sUrl, array(), 'GET', $_SERVER['HTTP_USER_AGENT'], null, true);		
+		$sContent = Phpfox_Request::instance()->send($sUrl, array(), 'GET', $_SERVER['HTTP_USER_AGENT'], null, true);
 		
 		if( function_exists('mb_convert_encoding') )
       	{
@@ -264,7 +264,7 @@ class Link_Service_Link extends Phpfox_Service
 		$oLink = $oXpath->query("//link[@type='text/xml+oembed']")->item(0);
 		if (method_exists($oLink, 'getAttribute'))
 		{	
-			$aXml = Phpfox::getLib('xml.parser')->parse(Phpfox::getLib('request')->send($oLink->getAttribute('href'), array(), 'GET', $_SERVER['HTTP_USER_AGENT']));			
+			$aXml = Phpfox::getLib('xml.parser')->parse(Phpfox_Request::instance()->send($oLink->getAttribute('href'), array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
 			if (isset($aXml['html']))
 			{
 				$aReturn['embed_code'] = $aXml['html'];	
@@ -283,7 +283,7 @@ class Link_Service_Link extends Phpfox_Service
 		$sContent = '';
 		while( ($iMaxCount--) > 0)
 		{
-			$sContent = Phpfox::getLib('request')->send($sUrl, array(), 'GET', $_SERVER['HTTP_USER_AGENT'], null, true);
+			$sContent = Phpfox_Request::instance()->send($sUrl, array(), 'GET', $_SERVER['HTTP_USER_AGENT'], null, true);
 			$sHeaders = substr($sContent, 0, strpos($sContent, '<'));
 			// if (strpos($sHeaders, 'Moved') !== false && 
 			d($sHeaders);
@@ -357,7 +357,7 @@ class Link_Service_Link extends Phpfox_Service
 			->where('l.link_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
 		
-		$aRow['link'] = Phpfox::getLib('url')->permalink('link', $aRow['link_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('link', $aRow['link_id'], $aRow['title']);
 		return $aRow;
 	}
 	

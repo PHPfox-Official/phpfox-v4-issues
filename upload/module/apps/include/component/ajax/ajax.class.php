@@ -79,7 +79,7 @@ class Apps_Component_Ajax_Ajax extends Phpfox_Ajax
 				$this->call('window.location.href = \'' . Phpfox::getService('apps')->buildUrl($aApp['return_url'], $sKey) . '\';');				
 				return;
 			}
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->permalink('apps', $aApp['app_id'], $aApp['app_title']) . '\';');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->permalink('apps', $aApp['app_id'], $aApp['app_title']) . '\';');
 		}
 		else
 		{

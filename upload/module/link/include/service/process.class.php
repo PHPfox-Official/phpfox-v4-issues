@@ -76,7 +76,7 @@ class Link_Service_Process extends Phpfox_Service
 				->where('user_id = ' . (int) $aVals['parent_user_id'])
 				->execute('getRow');			
 			
-			$sLink = Phpfox::getLib('url')->makeUrl($aUser['user_name'], array('plink-id' => $iId));
+			$sLink = Phpfox_Url::instance()->makeUrl($aUser['user_name'], array('plink-id' => $iId));
 			
 			Phpfox::getLib('mail')->to($aVals['parent_user_id'])
 				->subject(array('link.full_name_posted_a_link_on_your_wall', array('full_name' => Phpfox::getUserBy('full_name'))))

@@ -56,7 +56,7 @@ class Feed_Service_Api extends Phpfox_Service
 							$sKey = 'likes';
 							break;
 						case 'info':
-							$mValue = '<a href="' . Phpfox::getLib('url')->makeUrl($aFeedRow['user_name']) . '">' . $aFeedRow['full_name'] . '</a> ' . $mValue;
+							$mValue = '<a href="' . Phpfox_Url::instance()->makeUrl($aFeedRow['user_name']) . '">' . $aFeedRow['full_name'] . '</a> ' . $mValue;
 							break;
 					}
 					$aFeeds[$iKey][$sKey] = $mValue;

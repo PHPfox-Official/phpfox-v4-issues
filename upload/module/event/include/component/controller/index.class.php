@@ -293,8 +293,8 @@ class Event_Component_Controller_Index extends Phpfox_Component
 				
 				if ($aCallback !== false)
 				{
-					$sHomeUrl = '/' . Phpfox::getLib('url')->doRewrite($aCallback['url_home'][0]) . '/' . implode('/', $aCallback['url_home'][1]) . '/' . Phpfox::getLib('url')->doRewrite('event') . '/';
-					$aCategory[1] = preg_replace('/^http:\/\/(.*?)\/' . Phpfox::getLib('url')->doRewrite('event') . '\/(.*?)$/i', 'http://\\1' . $sHomeUrl . '\\2', $aCategory[1]);
+					$sHomeUrl = '/' . Phpfox_Url::instance()->doRewrite($aCallback['url_home'][0]) . '/' . implode('/', $aCallback['url_home'][1]) . '/' . Phpfox_Url::instance()->doRewrite('event') . '/';
+					$aCategory[1] = preg_replace('/^http:\/\/(.*?)\/' . Phpfox_Url::instance()->doRewrite('event') . '\/(.*?)$/i', 'http://\\1' . $sHomeUrl . '\\2', $aCategory[1]);
 				}
 				
 				$this->template()->setBreadcrumb($aCategory[0], $aCategory[1], (empty($sView) ? true : false));

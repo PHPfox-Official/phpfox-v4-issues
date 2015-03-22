@@ -270,7 +270,7 @@ class Video_Service_Convert extends Phpfox_Service
 					'in_process' => 0,
 					'destination' => $sNewPath,				
 					'image_path' => str_replace(Phpfox::getParam('video.dir_image'), '', $sImageLocation),
-					'image_server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')
+					'image_server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')
 				);
 			}
 				
@@ -387,7 +387,7 @@ class Video_Service_Convert extends Phpfox_Service
 			
 			if (Phpfox::getParam('core.allow_cdn'))
 			{
-				$aSql['image_server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+				$aSql['image_server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 				if (Phpfox::getParam('video.upload_for_html5'))
 				{
 					foreach ($aHTML5Files as $sHTML5File)
@@ -400,7 +400,7 @@ class Video_Service_Convert extends Phpfox_Service
 					Phpfox::getLib('cdn')->put($sDestination);
 				}
 				
-				$aSql['server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+				$aSql['server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 			}			
 			
 			if ($bIsAttachment)

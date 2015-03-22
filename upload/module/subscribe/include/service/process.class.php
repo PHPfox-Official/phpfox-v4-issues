@@ -135,7 +135,7 @@ class Subscribe_Service_Process extends Phpfox_Service
 		
 		if (!empty($_FILES['image']['name']) && ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('subscribe.dir_image'), $iId)))
 		{
-			$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'package_id = ' . (int) $iId);		
+			$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'package_id = ' . (int) $iId);
 			
 			Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('subscribe.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('subscribe.dir_image') . sprintf($sFileName, '_120'), 120, 120);
 			

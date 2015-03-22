@@ -2,7 +2,7 @@
 
 if (!empty($_POST) && Phpfox::isModule('feed') && Phpfox::getParam('feed.cache_each_feed_entry') && PHPFOX_IS_AJAX)
 {
-	$oReq = Phpfox::getLib('request');
+	$oReq = Phpfox_Request::instance();
 	$oDb = Phpfox_Database::instance();
 
 		$aCoreCall = $oReq->getArray('core');

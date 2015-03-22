@@ -45,7 +45,7 @@ class Theme_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		if (Phpfox::getUserParam('theme.can_view_theme_sample'))
 		{
-			echo '<iframe src="' . Phpfox::getLib('url')->makeUrl('theme', array('sample', 'get-block-layout' => 'true')) . '" width="1300" height="400" frameborder="0"></iframe>';
+			echo '<iframe src="' . Phpfox_Url::instance()->makeUrl('theme', array('sample', 'get-block-layout' => 'true')) . '" width="1300" height="400" frameborder="0"></iframe>';
 		}
 	}
 	
@@ -53,7 +53,7 @@ class Theme_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		if (Phpfox::getService('theme.process')->revertDesign('profile'))
 		{
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('profile.designer') . '\';');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('profile.designer') . '\';');
 		}
 	}
 	

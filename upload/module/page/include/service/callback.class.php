@@ -36,7 +36,7 @@ class Page_Service_Callback extends Phpfox_Service
 	
 	public function getTagLink()
 	{
-		return Phpfox::getLib('url')->makeUrl('page.tag');
+		return Phpfox_Url::instance()->makeUrl('page.tag');
 	}	
 	
 	public function getTagType()

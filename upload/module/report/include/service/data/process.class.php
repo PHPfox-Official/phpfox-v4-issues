@@ -30,7 +30,7 @@ class Report_Service_Data_Process extends Phpfox_Service
 				'item_id' => $sType . '_' . (int) $iItemId,
 				'user_id' => Phpfox::getUserId(),
 				'added' => PHPFOX_TIME,
-				'ip_address' => Phpfox::getLib('request')->getServer('REMOTE_ADDR'),
+				'ip_address' => Phpfox_Request::instance()->getServer('REMOTE_ADDR'),
 				'feedback' => $sFeedback != '' ? Phpfox::getLib('parse.input')->clean($sFeedback) : ''
 			)
 		);

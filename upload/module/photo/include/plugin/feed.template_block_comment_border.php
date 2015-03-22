@@ -1,12 +1,12 @@
 <?php
-$aCore = Phpfox::getLib('request')->get('core');
+$aCore = Phpfox_Request::instance()->get('core');
 if (((Phpfox_Module::instance()->getFullControllerName() == 'photo.view' && !PHPFOX_IS_AJAX) && Phpfox::isUser() && !Phpfox::isMobile())
 	|| (PHPFOX_IS_AJAX && $aCore['call'] == 'feed.loadDelayedComments')
 	)
 {
 	if (!isset($this->_aVars['aForms']))
 	{
-		$aFeed = json_decode(Phpfox::getLib('request')->get('feed'), true);
+		$aFeed = json_decode(Phpfox_Request::instance()->get('feed'), true);
 		if ($aFeed['comment_type_id'] == 'photo')
 		{
 			$this->_aVars['aForms'] = Phpfox::getService('photo')->getPhoto($aFeed['item_id']);

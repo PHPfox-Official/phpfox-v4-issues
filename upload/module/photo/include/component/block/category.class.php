@@ -33,15 +33,15 @@ class Photo_Component_Block_Category extends Phpfox_Component
 			$aCallback = $this->getParam('aCallback', false);
 			if ($aCallback !== false && is_array($aCategories))
 			{
-				$sHomeUrl = '/' . Phpfox::getLib('url')->doRewrite($aCallback['url_home_array'][0]) . '/' . implode('/', $aCallback['url_home_array'][1]) . '/' . Phpfox::getLib('url')->doRewrite('photo') . '/';			
+				$sHomeUrl = '/' . Phpfox_Url::instance()->doRewrite($aCallback['url_home_array'][0]) . '/' . implode('/', $aCallback['url_home_array'][1]) . '/' . Phpfox_Url::instance()->doRewrite('photo') . '/';
 				foreach ($aCategories as $iKey => $aCategory)
 				{				
-					$aCategories[$iKey]['url'] = preg_replace('/^http:\/\/(.*?)\/' . Phpfox::getLib('url')->doRewrite('photo') . '\/(.*?)$/i', 'http://\\1' . $sHomeUrl . '\\2', $aCategory['url']);
+					$aCategories[$iKey]['url'] = preg_replace('/^http:\/\/(.*?)\/' . Phpfox_Url::instance()->doRewrite('photo') . '\/(.*?)$/i', 'http://\\1' . $sHomeUrl . '\\2', $aCategory['url']);
 					if (isset($aCategory['sub']))
 					{
 						foreach ($aCategory['sub'] as $iSubKey => $aSubCategory)
 						{
-							$aCategories[$iKey]['sub'][$iSubKey]['url'] = preg_replace('/^http:\/\/(.*?)\/' . Phpfox::getLib('url')->doRewrite('photo') . '\/(.*?)$/i', 'http://\\1' . $sHomeUrl . '\\2', $aSubCategory['url']);		
+							$aCategories[$iKey]['sub'][$iSubKey]['url'] = preg_replace('/^http:\/\/(.*?)\/' . Phpfox_Url::instance()->doRewrite('photo') . '\/(.*?)$/i', 'http://\\1' . $sHomeUrl . '\\2', $aSubCategory['url']);
 						}
 					}
 				}		
@@ -72,7 +72,7 @@ class Photo_Component_Block_Category extends Phpfox_Component
 	    
 	    if ($aCallback !== null)
 	    {
-			$sCategories = preg_replace('/href=\"(.*?)\/photo\/(.*?)\"/i', 'href="' . Phpfox::getLib('url')->makeUrl($aCallback['url_home']) . '\\2"', $sCategories);
+			$sCategories = preg_replace('/href=\"(.*?)\/photo\/(.*?)\"/i', 'href="' . Phpfox_Url::instance()->makeUrl($aCallback['url_home']) . '\\2"', $sCategories);
 	    }
 
 	    $this->template()->assign(array(

@@ -26,7 +26,7 @@ class Ad_Service_Ad extends Phpfox_Service
 	
 	public function getSectionMenu()
 	{
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		
 		$aFilterMenu = array(
 			Phpfox::getPhrase('ad.manage_ads') => 'ad.manage',

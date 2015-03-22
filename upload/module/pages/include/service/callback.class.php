@@ -179,7 +179,7 @@ class Pages_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('pages.pages'),
-			'link' => Phpfox::getLib('url')->makeUrl('pages'),
+			'link' => Phpfox_Url::instance()->makeUrl('pages'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_custom-fields.png'))
 		);
 	}	
@@ -276,7 +276,7 @@ class Pages_Service_Callback extends Phpfox_Service
 			
 		return array(
 			'breadcrumb_title' => Phpfox::getPhrase('pages.pages'),
-			'breadcrumb_home' => Phpfox::getLib('url')->makeUrl('pages'),
+			'breadcrumb_home' => Phpfox_Url::instance()->makeUrl('pages'),
 			'module_id' => 'pages',
 			'item_id' => $aRow['page_id'],
 			'title' => $aRow['title'],
@@ -508,7 +508,7 @@ class Pages_Service_Callback extends Phpfox_Service
 			
 		return array(
 			'breadcrumb_title' => Phpfox::getPhrase('pages.pages'),
-			'breadcrumb_home' => Phpfox::getLib('url')->makeUrl('pages'),
+			'breadcrumb_home' => Phpfox_Url::instance()->makeUrl('pages'),
 			'module_id' => 'pages',
 			'item_id' => $aRow['page_id'],
 			'title' => $aRow['title'],
@@ -600,7 +600,7 @@ class Pages_Service_Callback extends Phpfox_Service
 			$sLink = Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']);
 			if (!defined('PHPFOX_CANCEL_ACCOUNT') || PHPFOX_CANCEL_ACCOUNT != true)
 			{
-				Phpfox::getLib('ajax')->call('window.location.href = \'' . $sLink. '\';');
+				Phpfox_Ajax::instance()->call('window.location.href = \'' . $sLink. '\';');
 			}
 		}
         
@@ -690,7 +690,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		if (!$bIsApprove)
 		{
 			// $this->_loadLikeBlock($iItemId);
-			Phpfox::getLib('ajax')->call('window.location.href = \'' . $sLink. '\';');
+			Phpfox_Ajax::instance()->call('window.location.href = \'' . $sLink. '\';');
 			
 			// $this->database()->delete(Phpfox::getT('pages_invite'), 'page_id = ' . (int) $aRow['page_id'] . ' AND invited_user_id = ' . Phpfox::getUserId());
 		}
@@ -713,7 +713,7 @@ class Pages_Service_Callback extends Phpfox_Service
 			
 		return array(
 			'breadcrumb_title' => Phpfox::getPhrase('pages.pages'),
-			'breadcrumb_home' => Phpfox::getLib('url')->makeUrl('pages'),
+			'breadcrumb_home' => Phpfox_Url::instance()->makeUrl('pages'),
 			'module_id' => 'pages',
 			'item_id' => $aRow['page_id'],
 			'title' => $aRow['title'],
@@ -740,7 +740,7 @@ class Pages_Service_Callback extends Phpfox_Service
 			
 		return array(
 			'breadcrumb_title' => Phpfox::getPhrase('pages.pages'),
-			'breadcrumb_home' => Phpfox::getLib('url')->makeUrl('pages'),
+			'breadcrumb_home' => Phpfox_Url::instance()->makeUrl('pages'),
 			'module_id' => 'pages',
 			'item_id' => $aRow['page_id'],
 			'title' => $aRow['title'],
@@ -761,7 +761,7 @@ class Pages_Service_Callback extends Phpfox_Service
 	    $sLink = Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']);
 	    return array(
 		'breadcrumb_title' => Phpfox::getPhrase('pages.pages'),
-		'breadcrumb_home' => Phpfox::getLib('url')->makeUrl('pages'),
+		'breadcrumb_home' => Phpfox_Url::instance()->makeUrl('pages'),
 		'module_id' => 'pages',
 		'item_id' => $aRow['page_id'],
 		'title' => $aRow['title'],
@@ -962,7 +962,7 @@ class Pages_Service_Callback extends Phpfox_Service
 	
 	public function getItemName($iId, $sName)
 	{
-		return '<a href="' . Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('pages.page_group_name', array('name' => $sName)) . '</a>';
+		return '<a href="' . Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('pages.page_group_name', array('name' => $sName)) . '</a>';
 	}		
 	
 	public function getCommentItem($iId)
@@ -1194,8 +1194,8 @@ class Pages_Service_Callback extends Phpfox_Service
 		
 		if (!$bDoNotSendEmail)
 		{
-			$sLink = Phpfox::getLib('url')->permalink(array('pages', 'comment-id' => $aRow['feed_comment_id']), $aRow['page_id'], $aRow['title']);
-			$sItemLink = Phpfox::getLib('url')->permalink('pages', $aRow['page_id'], $aRow['title']);
+			$sLink = Phpfox_Url::instance()->permalink(array('pages', 'comment-id' => $aRow['feed_comment_id']), $aRow['page_id'], $aRow['title']);
+			$sItemLink = Phpfox_Url::instance()->permalink('pages', $aRow['page_id'], $aRow['title']);
 			
 			Phpfox::getLib('mail')->to($aRow['user_id'])
 				->subject(array('pages.full_name_liked_a_comment_you_made_on_the_page_title', array('full_name' => Phpfox::getUserBy('full_name'), 'title' => $aRow['title'])))
@@ -1284,7 +1284,7 @@ class Pages_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink(array('pages', 'comment-id' => $aRow['feed_comment_id']), $aRow['page_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink(array('pages', 'comment-id' => $aRow['feed_comment_id']), $aRow['page_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -1457,7 +1457,7 @@ class Pages_Service_Callback extends Phpfox_Service
 	{
 		$aPage = Phpfox::getService('pages')->getForView($iPage);
 		
-		$oAjax = Phpfox::getLib('ajax');		
+		$oAjax = Phpfox_Ajax::instance();
 		
 		Phpfox_Template::instance()->assign('aPage', $aPage);
 		Phpfox_Component::setPublicParam('aPage', $aPage);

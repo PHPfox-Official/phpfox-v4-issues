@@ -36,15 +36,15 @@ class Feed_Service_Process extends Phpfox_Service
 			return;
 		}
 				
-		$iParentId = Phpfox::getLib('request')->getInt('parent_id');
+		$iParentId = Phpfox_Request::instance()->getInt('parent_id');
 		if ($sType == 'feed_mini' && !empty($iParentId))
 		{
 			$sTable = '';
-			if (Phpfox::getLib('request')->get('pmodule') == 'event')
+			if (Phpfox_Request::instance()->get('pmodule') == 'event')
 			{
 				$sTable = 'event_';
 			}
-			elseif (Phpfox::getLib('request')->get('pmodule') == 'pages')
+			elseif (Phpfox_Request::instance()->get('pmodule') == 'pages')
 			{
 				$sTable = 'pages_';
 			}
@@ -66,7 +66,7 @@ class Feed_Service_Process extends Phpfox_Service
 		}
         else if ($sType == 'feed')
         {
-            $aVal = Phpfox::getLib('request')->getArray('val');
+            $aVal = Phpfox_Request::instance()->getArray('val');
             
             if (isset($aVal['is_via_feed']) && $aVal['is_via_feed'] > 0 )
             {
@@ -80,7 +80,7 @@ class Feed_Service_Process extends Phpfox_Service
         }
         else if ($sType == 'pages')
         {
-            $aVal = Phpfox::getLib('request')->getArray('val');
+            $aVal = Phpfox_Request::instance()->getArray('val');
             
             if (isset($aVal['is_via_feed']) && $aVal['is_via_feed'] > 0)
             {
@@ -141,10 +141,10 @@ class Feed_Service_Process extends Phpfox_Service
 		$iNewTimeStampCheck = Phpfox::getLib('date')->mktime(0, 0, 0, date('n', PHPFOX_TIME), date('j', PHPFOX_TIME), date('Y', PHPFOX_TIME));
 		if (Phpfox::getParam('feed.can_add_past_dates'))
 		{
-			$aVals = (array) Phpfox::getLib('request')->getArray('val');	
+			$aVals = (array) Phpfox_Request::instance()->getArray('val');
 			if (PHPFOX_IS_AJAX)
 			{
-				$oReq = Phpfox::getLib('request');
+				$oReq = Phpfox_Request::instance();
 				if ($oReq->get('start_year') && $oReq->get('start_month') && $oReq->get('start_day'))
 				{
 					$aVals['start_year'] = $oReq->get('start_year');
@@ -346,7 +346,7 @@ class Feed_Service_Process extends Phpfox_Service
 			//$this->database()->delete(Phpfox::getT('feed'), 'feed_id = ' . $aFeed['feed_id'] . ' AND user_id = ' . $aFeed['user_id'] .' AND time_stamp = ' . $aFeed['time_stamp']);
 			if ($aFeed['type_id'] == 'feed_comment')
 			{
-				$aCore = Phpfox::getLib('request')->getArray('core');
+				$aCore = Phpfox_Request::instance()->getArray('core');
 				if (isset($aCore['is_user_profile']) && $aCore['profile_user_id'] != Phpfox::getUserId())
 				{
 
@@ -445,7 +445,7 @@ class Feed_Service_Process extends Phpfox_Service
 			->where('user_id = ' . (int) $aVals['parent_user_id'])
 			->execute('getRow');
 		
-		$sLink = Phpfox::getLib('url')->makeUrl($aUser['user_name'], array('comment-id' => $iStatusId));
+		$sLink = Phpfox_Url::instance()->makeUrl($aUser['user_name'], array('comment-id' => $iStatusId));
 
 		/* When a user is tagged it needs to add a special feed */
 		if (!isset($aVals['feed_reference']) || empty($aVals['feed_reference']))

@@ -79,7 +79,7 @@ class Captcha_Service_Captcha extends Phpfox_Service
 	{
 		if (Phpfox::getParam('core.store_only_users_in_session'))
 		{
-			$oRequest = Phpfox::getLib('request');
+			$oRequest = Phpfox_Request::instance();
 			$oSession = Phpfox::getLib('session');
 
 			$sSessionHash = $oSession->get('sessionhash');

@@ -74,7 +74,7 @@ class User_Service_Group_Setting_Setting extends Phpfox_Service
 	
 	public function get($iGroupId, $iModuleId = null)
 	{
-		$oLocale = Phpfox::getLib('locale');
+		$oLocale = Phpfox_Locale::instance();
 		
 		switch($iGroupId)
 		{
@@ -139,7 +139,7 @@ class User_Service_Group_Setting_Setting extends Phpfox_Service
 			->where('user_group_setting.setting_id = ' . (int) $iId)			
 			->execute('getSlaveRow');
 
-		$aRow['info'] = (Phpfox::getLib('locale')->isPhrase('admincp.user_setting_' . $aRow['name']) ? Phpfox::getPhrase('admincp.user_setting_' . $aRow['name']) : $aRow['name']);
+		$aRow['info'] = (Phpfox_Locale::instance()->isPhrase('admincp.user_setting_' . $aRow['name']) ? Phpfox::getPhrase('admincp.user_setting_' . $aRow['name']) : $aRow['name']);
 		$aRow['module'] = $aRow['module_id'] . '|' . $aRow['module_name'];		
 			
 		return $aRow;

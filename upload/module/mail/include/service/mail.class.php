@@ -856,7 +856,7 @@ class Mail_Service_Mail extends Phpfox_Service
 			}
 			
 			$oXmlBuilder->addTag('conversation', $sUsers);
-			$oXmlBuilder->addTag('url', Phpfox::getLib('url')->makeUrl('mail.thread', array('id' => $aThread['thread_id'])));
+			$oXmlBuilder->addTag('url', Phpfox_Url::instance()->makeUrl('mail.thread', array('id' => $aThread['thread_id'])));
 			
 			$oXmlBuilder->addGroup('messages');			
 			foreach ($aMessages as $aMessage)

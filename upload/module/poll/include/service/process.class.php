@@ -81,7 +81,7 @@ class Poll_Service_Process extends Phpfox_Service
 			'privacy_comment' => (isset($aVals['privacy_comment']) ? $aVals['privacy_comment'] : '0'),
 			'view_id' => ((!$bIsCustom && Phpfox::getUserParam('poll.poll_requires_admin_moderation')) === true) ? 1 : 0,			
 			'randomize' => isset($aVals['randomize']) ? (int) $aVals['randomize'] : '1',
-			'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID'),
+			'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID'),
 			'hide_vote' => isset($aVals['hide_vote']) ? (int) $aVals['hide_vote'] : '0'
 		);
 		//(($sPlugin = Phpfox_Plugin::get('poll.service_process_add_ainsert')) ? eval($sPlugin) : false);
@@ -205,7 +205,7 @@ class Poll_Service_Process extends Phpfox_Service
 			// Update user space usage
 			Phpfox::getService('user.space')->update(Phpfox::getUserId(), 'poll', (filesize(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '')) + filesize(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '_' . $iSize))));
 			
-			$this->database()->update($this->_sTable, array('server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'poll_id = ' . (int) $iId);
+			$this->database()->update($this->_sTable, array('server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'poll_id = ' . (int) $iId);
 		}
 		
 		if (!$bIsCustom)
@@ -265,7 +265,7 @@ class Poll_Service_Process extends Phpfox_Service
 			(Phpfox::isModule('feed') ? Phpfox::getService('feed.process')->add('poll', $aPoll['poll_id'], $aPoll['privacy'], $aPoll['privacy_comment'], 0, $aPoll['user_id']) : null);
 			
 			// Send the user an email
-			$sLink = Phpfox::getLib('url')->permalink('poll', $aPoll['poll_id'], $aPoll['question']);
+			$sLink = Phpfox_Url::instance()->permalink('poll', $aPoll['poll_id'], $aPoll['question']);
 			Phpfox::getLib('mail')->to($aPoll['user_id'])
 				->subject(array('poll.your_poll_title_has_been_approved', array('title' => $aPoll['question'])))
 				->message( Phpfox::getPhrase('poll.your_poll_a_href_link_title_a_has_been_approved_to_view_this_poll_follow_the_link_below_a_href_link_link_a',array('link' => $sLink, 'title' => $aPoll['question'])))				

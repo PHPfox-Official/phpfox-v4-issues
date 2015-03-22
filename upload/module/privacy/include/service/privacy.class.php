@@ -69,7 +69,7 @@ class Privacy_Service_Privacy extends Phpfox_Service
 		{			
 			if ($bRedirect)
 			{				
-				Phpfox::getLib('url')->send('privacy.invalid');
+				Phpfox_Url::instance()->send('privacy.invalid');
 			}
 			
 			return false;
@@ -158,7 +158,7 @@ class Privacy_Service_Privacy extends Phpfox_Service
 		
 		if ($bCanViewItem === false)
 		{
-			Phpfox::getLib('url')->send('privacy.invalid');
+			Phpfox_Url::instance()->send('privacy.invalid');
 		}
 	}
 	

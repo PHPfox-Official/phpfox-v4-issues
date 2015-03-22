@@ -52,7 +52,7 @@ class Friend_Service_Friend extends Phpfox_Service
 			$bSuperCache = true;
 		}
 		
-		$bIsListView = ((Phpfox::getLib('request')->get('view') == 'list' || (defined('PHPFOX_IS_USER_PROFILE') && Phpfox::getLib('request')->getInt('list'))) ? true : false);
+		$bIsListView = ((Phpfox_Request::instance()->get('view') == 'list' || (defined('PHPFOX_IS_USER_PROFILE') && Phpfox_Request::instance()->getInt('list'))) ? true : false);
 		$iCnt = ($bCount ? 0 : 1);
 		$aRows = array();
 		
@@ -229,7 +229,7 @@ class Friend_Service_Friend extends Phpfox_Service
 			}
 			
 			$aRows[$iKey]['full_name'] = html_entity_decode(Phpfox::getLib('parse.output')->split($aRow['full_name'], 20), null, 'UTF-8');						
-			$aRows[$iKey]['user_profile'] = ($aRow['profile_page_id'] ? Phpfox::getService('pages')->getUrl($aRow['profile_page_id'], '', $aRow['user_name']) : Phpfox::getLib('url')->makeUrl($aRow['user_name']));
+			$aRows[$iKey]['user_profile'] = ($aRow['profile_page_id'] ? Phpfox::getService('pages')->getUrl($aRow['profile_page_id'], '', $aRow['user_name']) : Phpfox_Url::instance()->makeUrl($aRow['user_name']));
 			$aRows[$iKey]['is_page'] = ($aRow['profile_page_id'] ? true : false);
 			$aRows[$iKey]['user_image'] = Phpfox::getLib('image.helper')->display(array(
 					'user' => $aRow,
@@ -462,7 +462,7 @@ class Friend_Service_Friend extends Phpfox_Service
 		{
 			if (!$aCache[$iUserId][$iFriendId] && $bRedirect)
 			{
-				Phpfox::getLib('url')->send('friend', 'request');
+				Phpfox_Url::instance()->send('friend', 'request');
 			}			
 			
 			return $aCache[$iUserId][$iFriendId];
@@ -509,7 +509,7 @@ class Friend_Service_Friend extends Phpfox_Service
 	
 		if ($bRedirect)
 		{
-			Phpfox::getLib('url')->send('friend', 'request');
+			Phpfox_Url::instance()->send('friend', 'request');
 		}
 
 		$aCache[$iUserId][$iFriendId] = false;

@@ -74,10 +74,10 @@ class Core_Service_Redirect_Redirect extends Phpfox_Service
 			return;
 		}
 
-		$sTitle = urldecode(Phpfox::getLib('request')->get($sReq));
+		$sTitle = urldecode(Phpfox_Request::instance()->get($sReq));
 		if (empty($sTitle))
 		{
-			$aParts = explode('/', trim(Phpfox::getLib('request')->get(PHPFOX_GET_METHOD), '/'));
+			$aParts = explode('/', trim(Phpfox_Request::instance()->get(PHPFOX_GET_METHOD), '/'));
 			$iCnt = 0;
 			foreach ($aParts as $sPart)
 			{
@@ -95,7 +95,7 @@ class Core_Service_Redirect_Redirect extends Phpfox_Service
 			}
 		}
 		
-		$sActualTitle = Phpfox::getLib('url')->cleanTitle($sActualTitle);
+		$sActualTitle = Phpfox_Url::instance()->cleanTitle($sActualTitle);
 
 		if (empty($sActualTitle))
 		{
@@ -105,10 +105,10 @@ class Core_Service_Redirect_Redirect extends Phpfox_Service
 		if ($sTitle != $sActualTitle)
 		{
 			$sPath = '';
-			$aRequests = (array) Phpfox::getLib('request')->getRequests();
+			$aRequests = (array) Phpfox_Request::instance()->getRequests();
 			if (defined('PHPFOX_IS_AJAX_PAGE') && PHPFOX_IS_AJAX_PAGE)
 			{
-				$aSubRequests = explode('/', trim(Phpfox::getLib('request')->get(PHPFOX_GET_METHOD), '/'));				
+				$aSubRequests = explode('/', trim(Phpfox_Request::instance()->get(PHPFOX_GET_METHOD), '/'));
 				$aRequests = array();
 				foreach ($aSubRequests as $iKey => $sSubRequest)
 				{
@@ -141,7 +141,7 @@ class Core_Service_Redirect_Redirect extends Phpfox_Service
 			
 			if (!empty($sActualTitle))
 			{
-				Phpfox::getLib('url')->send($sPath, array(), null, 301);
+				Phpfox_Url::instance()->send($sPath, array(), null, 301);
 			}
 		}
 	}
@@ -187,7 +187,7 @@ class Core_Service_Redirect_Redirect extends Phpfox_Service
 		{
 			$aReserved = array_merge($aReserved, $aParams['reserved']);
 		}
-		$aUrls = Phpfox::getLib('url')->getParams();		
+		$aUrls = Phpfox_Url::instance()->getParams();
 		$iCnt = 0;
 		
 		foreach ($aUrls as $sKey => $sValue)

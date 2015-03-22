@@ -44,7 +44,7 @@ class Friend_Service_Request_Process extends Phpfox_Service
 		$iId = $this->database()->insert($this->_sTable, $aInsert);		
 
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->makeUrl('friend.accept', array('id' => $iId));
+		$sLink = Phpfox_Url::instance()->makeUrl('friend.accept', array('id' => $iId));
 		Phpfox::getLib('mail')->to($iFriendId)
 			->subject(array('friend.full_name_added_you_as_a_friend_on_site_title', array('full_name' => Phpfox::getUserBy('full_name'), 'site_title' => Phpfox::getParam('core.site_title'))))
 			->message(array('friend.full_name_added_you_as_a_friend_on_site_title_to_confirm_this_friend_request', array('full_name' => Phpfox::getUserBy('full_name'), 'site_title' => Phpfox::getParam('core.site_title'), 'link' => $sLink)))

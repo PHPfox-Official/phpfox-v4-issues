@@ -150,7 +150,7 @@ class Tag_Service_Tag extends Phpfox_Service
 	                'value' => $aRow['total'],
 	                'key' => $aRow['tag'],
 	                'url' => $aRow['tag_url'],
-	            	'link' => (($sCategory === null && Phpfox::getParam('tag.enable_hashtag_support')) ? Phpfox::getLib('url')->makeUrl('hashtag', array($aRow['tag_url'])) : Phpfox::getLib('url')->makeUrl($aParams['link'], array('tag', $aRow['tag_url'])))
+	            	'link' => (($sCategory === null && Phpfox::getParam('tag.enable_hashtag_support')) ? Phpfox_Url::instance()->makeUrl('hashtag', array($aRow['tag_url'])) : Phpfox_Url::instance()->makeUrl($aParams['link'], array('tag', $aRow['tag_url'])))
 				);				
 			}
 			

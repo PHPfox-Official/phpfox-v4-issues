@@ -70,7 +70,7 @@ class Profile_Component_Block_Header extends Phpfox_Component
 		{
 			$sPagesSection = Phpfox::getNonRewritten('pages');
 		    $sModule = ($this->request()->get('req1') == $sPagesSection ? $this->request()->get('req3') : $this->request()->get('req2'));
-		    $sModule = Phpfox::getLib('url')->reverseRewrite($sModule);
+		    $sModule = Phpfox_Url::instance()->reverseRewrite($sModule);
 		    if (Phpfox::isModule($sModule) && Phpfox::hasCallback($sModule, 'getPageSubMenu'))
 		    {
 		    	if (defined('PHPFOX_IS_PAGES_VIEW'))
@@ -86,7 +86,7 @@ class Profile_Component_Block_Header extends Phpfox_Component
 					    $aMenu[$iKey]['module'] = $sModule;
 					    if (isset($aSubMenu['phrase']))
 					    {
-							if (Phpfox::getLib('locale')->isPhrase($sModule . '.' . $aSubMenu['phrase']) )
+							if (Phpfox_Locale::instance()->isPhrase($sModule . '.' . $aSubMenu['phrase']) )
 							{
 								$aMenu[$iKey]['var_name'] = $aSubMenu['phrase'];
 							}

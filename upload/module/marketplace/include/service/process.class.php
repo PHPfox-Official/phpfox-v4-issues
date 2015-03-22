@@ -220,7 +220,7 @@ class Marketplace_Service_Process extends Phpfox_Service
 						
 						$iFileSizes += filesize(Phpfox::getParam('marketplace.dir_image') . sprintf($sFileName, ''));
 						
-						$this->database()->insert(Phpfox::getT('marketplace_image'), array('listing_id' => $iId, 'image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')));		
+						$this->database()->insert(Phpfox::getT('marketplace_image'), array('listing_id' => $iId, 'image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')));
 			
 						foreach ($aSizes as $iSize)
 						{						
@@ -238,7 +238,7 @@ class Marketplace_Service_Process extends Phpfox_Service
 				return false;
 			}
 			
-			$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'listing_id = ' . $iId);
+			$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'listing_id = ' . $iId);
 			
 			(($sPlugin = Phpfox_Plugin::get('marketplace.service_process_update__1')) ? eval($sPlugin) : false);
 			
@@ -281,7 +281,7 @@ class Marketplace_Service_Process extends Phpfox_Service
 						continue;
 					}
 					
-					$sLink = Phpfox::getLib('url')->permalink('marketplace', $aListing['listing_id'], $aListing['title']);
+					$sLink = Phpfox_Url::instance()->permalink('marketplace', $aListing['listing_id'], $aListing['title']);
 					$sMessage = Phpfox::getPhrase('marketplace.full_name_invited_you_to_view_the_marketplace_listing_title', array(
 							'full_name' => Phpfox::getUserBy('full_name'),
 							'title' => $oParseInput->clean($aVals['title'], 255),
@@ -353,7 +353,7 @@ class Marketplace_Service_Process extends Phpfox_Service
 					continue;
 				}
 				
-				$sLink = Phpfox::getLib('url')->permalink('marketplace', $aListing['listing_id'], $aListing['title']);
+				$sLink = Phpfox_Url::instance()->permalink('marketplace', $aListing['listing_id'], $aListing['title']);
 				$sMessage = Phpfox::getPhrase('marketplace.full_name_invited_you_to_view_the_marketplace_listing_title', array(
 						'full_name' => Phpfox::getUserBy('full_name'),
 						'title' => $oParseInput->clean($aVals['title'], 255),
@@ -662,7 +662,7 @@ class Marketplace_Service_Process extends Phpfox_Service
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('marketplace' , $aListing['listing_id'], $aListing['title']);
+		$sLink = Phpfox_Url::instance()->permalink('marketplace' , $aListing['listing_id'], $aListing['title']);
 		
 		$bAddFeed = true;
 		
@@ -738,7 +738,7 @@ class Marketplace_Service_Process extends Phpfox_Service
 							'site_name' => Phpfox::getParam('core.site_title'),
 							'title' => $aRow['title'],
 							'site_title' => Phpfox::getParam('core.site_title'),
-							'link' => Phpfox::getLib('url')->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
+							'link' => Phpfox_Url::instance()->permalink('marketplace', $aRow['listing_id'], $aRow['title']),
 							'days' => (Phpfox::getParam('marketplace.days_to_expire_listing') - Phpfox::getParam('marketplace.days_to_notify_expire'))
 							)))
 						->send();	

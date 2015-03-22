@@ -73,7 +73,7 @@ class Forum_Component_Controller_Rss extends Phpfox_Component
 			$aItems = Phpfox::getService('forum.thread')->getForRss(Phpfox::getParam('rss.total_rss_display'), null, $aGroup['page_id']);
 			
 			$aRss = array(
-				'href' => '', // Phpfox::getLib('url')->makeUrl('forum', array($aGroup['title_url'])),
+				'href' => '', // Phpfox_Url::instance()->makeUrl('forum', array($aGroup['title_url'])),
 				'title' => Phpfox::getPhrase('forum.latest_threads_in_group_forum') . ': ' . $aGroup['title'],
 				'description' => Phpfox::getPhrase('forum.latest_threads_on') . ': ' . $aGroup['title'],
 				'items' => $aItems

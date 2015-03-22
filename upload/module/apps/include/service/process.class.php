@@ -44,7 +44,7 @@ class Apps_Service_Process extends Phpfox_Service
 			return false;
 		}
 		
-		$mReturn = (bool) Phpfox::getLib('request')->send($aXml['appsinfo']['url'], array('app_key' => $sAppKey, 'app_url' => Phpfox::getParam('core.path')));
+		$mReturn = (bool) Phpfox_Request::instance()->send($aXml['appsinfo']['url'], array('app_key' => $sAppKey, 'app_url' => Phpfox::getParam('core.path')));
 
 		if ($mReturn)
 		{

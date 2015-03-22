@@ -51,7 +51,7 @@ class Event_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('event.events'),
-			'link' => Phpfox::getLib('url')->makeUrl('event'),
+			'link' => Phpfox_Url::instance()->makeUrl('event'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_events.png'))
 		);
 	}	
@@ -116,8 +116,8 @@ class Event_Service_Callback extends Phpfox_Service
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']);
-		$sItemLink = Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']);
+		$sLink = Phpfox_Url::instance()->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']);
+		$sItemLink = Phpfox_Url::instance()->permalink('event', $aRow['event_id'], $aRow['title']);
 		
 		Phpfox::getService('comment.process')->notify(array(
 				'user_id' => $aRow['user_id'],
@@ -194,7 +194,7 @@ class Event_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -234,7 +234,7 @@ class Event_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -274,7 +274,7 @@ class Event_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -303,7 +303,7 @@ class Event_Service_Callback extends Phpfox_Service
 	
 	public function getItemName($iId, $sName)
 	{
-		return Phpfox::getPhrase('event.a_href_link_on_name_s_event_a',array('link' => Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)), 'name' => $sName));		
+		return Phpfox::getPhrase('event.a_href_link_on_name_s_event_a',array('link' => Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)), 'name' => $sName));
 	}	
 
 	public function getLink($aParams)
@@ -317,13 +317,13 @@ class Event_Service_Callback extends Phpfox_Service
 	    {
 		return false;
 	    }
-	    //return Phpfox::getLib('url')->makeUrl('event.view.' . $aEvent['title_url'] );
+	    //return Phpfox_Url::instance()->makeUrl('event.view.' . $aEvent['title_url'] );
 		return Phpfox::permalink('event', $aEvent['event_id'], $aEvent['title']);
 	}
 
 	public function getCommentNewsFeed($aRow)
 	{		
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		
 		if (!Phpfox::getLib('parse.format')->isSerialized($aRow['content']))
@@ -378,7 +378,7 @@ class Event_Service_Callback extends Phpfox_Service
 	public function getNewsFeed($aRow)
 	{
 		if ($sPlugin = Phpfox_Plugin::get('event.service_callback_getnewsfeed_start')){eval($sPlugin);}
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		
 		$aRow['text'] = Phpfox::getPhrase('event.owner_full_name_added_a_new_event_title', array(
@@ -405,7 +405,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 				Phpfox::getPhrase('event.events') => array(
 					'active' => 'event',
-					'url' => Phpfox::getLib('url')->makeUrl('group', array($sGroupUrl, 'event')
+					'url' => Phpfox_Url::instance()->makeUrl('group', array($sGroupUrl, 'event')
 				)
 			)
 		);
@@ -492,7 +492,7 @@ class Event_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'message' => Phpfox::getPhrase('event.your_event_title_has_been_approved', array('title' => Phpfox::getLib('parse.output')->shorten($aRow['item_title'], 20, '...'))),
-			'link' => Phpfox::getLib('url')->makeUrl('event', array('redirect' => $aRow['item_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl('event', array('redirect' => $aRow['item_id'])),
 			'path' => 'event.url_image',
 			'suffix' => '_120'
 		);		
@@ -513,7 +513,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			'phrase' => Phpfox::getPhrase('event.events'),
 			'value' => Event_Service_Event::instance()->getPendingTotal(),
-			'link' => Phpfox::getLib('url')->makeUrl('event', array('view' => 'pending'))
+			'link' => Phpfox_Url::instance()->makeUrl('event', array('view' => 'pending'))
 		);
 	}	
 	
@@ -526,11 +526,11 @@ class Event_Service_Callback extends Phpfox_Service
 	{		
 		return array(
 			'message' => Phpfox::getPhrase('event.full_name_invited_you_to_an_event', array(
-				'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
+				'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
 				'full_name' => $aRow['full_name']
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('event', array('redirect' => $aRow['item_id']))
+			'link' => Phpfox_Url::instance()->makeUrl('event', array('redirect' => $aRow['item_id']))
 		);
 	}		
 	
@@ -541,7 +541,7 @@ class Event_Service_Callback extends Phpfox_Service
 			return null;
 		}
 
-		return '<li><a href="' . Phpfox::getLib('url')->makeUrl('event', array('view' => 'invitation')) . '"' . (!Phpfox::getUserBy('event_invite') ? ' onclick="alert(\'' . Phpfox::getPhrase('event.no_event_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'module/event.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('event.event_invites_total', array('total' => Phpfox::getUserBy('event_invite'))) . '</span></a></li>';
+		return '<li><a href="' . Phpfox_Url::instance()->makeUrl('event', array('view' => 'invitation')) . '"' . (!Phpfox::getUserBy('event_invite') ? ' onclick="alert(\'' . Phpfox::getPhrase('event.no_event_invites') . '\'); return false;"' : '') . '><img src="' . Phpfox_Template::instance()->getStyle('image', 'module/event.png') . '" class="v_middle" /> ' . Phpfox::getPhrase('event.event_invites_total', array('total' => Phpfox::getUserBy('event_invite'))) . '</span></a></li>';
 	}
 
 	public function reparserList()
@@ -603,7 +603,7 @@ class Event_Service_Callback extends Phpfox_Service
 	    
 	    $aEvent['title'] = Phpfox::getPhrase('event.sponsor_title', array('sEventTitle' => $aEvent['title']));
 	    $aEvent['paypal_msg'] = Phpfox::getPhrase('event.sponsor_paypal_message', array('sEventTitle' => $aEvent['title']));
-	    //$aEvent['link'] = Phpfox::getLib('url')->makeUrl('event.view.'.$aEvent['title_url']);	    
+	    //$aEvent['link'] = Phpfox_Url::instance()->makeUrl('event.view.'.$aEvent['title_url']);
 		$aEvent['link'] = Phpfox::permalink('event', $aEvent['item_id'], $aEvent['title']);
 	    $aEvent['extra'] = '<b>'.Phpfox::getPhrase('event.date').'</b> ' . Phpfox::getTime('l, F j, Y g:i a', $aEvent['start_time']) . ' - ';
 	    
@@ -631,7 +631,7 @@ class Event_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('event.a_href_user_link_full_name_a_liked_their_own_a_href_link_event_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'link' => $aRow['link']
 				)
 			);
@@ -640,9 +640,9 @@ class Event_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('event.a_href_user_link_full_name_a_liked_a_href_view_user_link_view_full_name_a_s_a_href_link_event_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -658,11 +658,11 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('event.a_href_user_link_full_name_a_liked_your_a_href_link_event_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('event', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('event', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('event', array('redirect' => $aRow['item_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl('event', array('redirect' => $aRow['item_id'])),
 			'path' => 'event.url_image',
 			'suffix' => '_120'
 		);				
@@ -672,8 +672,8 @@ class Event_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('event.a_href_user_link_full_name_a_liked_your_a_href_link_event_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('event', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('event', array('redirect' => $iItemId))
 				)
 			);
 	}
@@ -747,7 +747,7 @@ class Event_Service_Callback extends Phpfox_Service
 			return false;
 		}
 		
-		$sLink = Phpfox::getLib('url')->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']);
+		$sLink = Phpfox_Url::instance()->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']);
 		
 		$aReturn = array(
 			'no_share' => true,
@@ -786,8 +786,8 @@ class Event_Service_Callback extends Phpfox_Service
 		
 		if (!$bDoNotSendEmail)
 		{
-			$sLink = Phpfox::getLib('url')->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']);
-			$sItemLink = Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']);
+			$sLink = Phpfox_Url::instance()->permalink(array('event', 'comment-id' => $aRow['feed_comment_id']), $aRow['event_id'], $aRow['title']);
+			$sItemLink = Phpfox_Url::instance()->permalink('event', $aRow['event_id'], $aRow['title']);
 			
 			Phpfox::getLib('mail')->to($aRow['user_id'])
 				->subject(array('event.full_name_liked_a_comment_you_posted_on_the_event_title', array('full_name' => Phpfox::getUserBy('full_name'), 'title' => $aRow['title'])))
@@ -896,7 +896,7 @@ class Event_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('event', $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -1005,7 +1005,7 @@ class Event_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('event.your_event_title_has_been_approved', array('title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('event', $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
@@ -1028,7 +1028,7 @@ class Event_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('event.users_invited_you_to_the_event_title', array('users' => Phpfox::getService('notification')->getUsers($aNotification), 'title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('event', $aRow['event_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -1126,7 +1126,7 @@ class Event_Service_Callback extends Phpfox_Service
 			
 		return array(
 			'breadcrumb_title' => Phpfox::getPhrase('event.events'),
-			'breadcrumb_home' => Phpfox::getLib('url')->makeUrl('event'),
+			'breadcrumb_home' => Phpfox_Url::instance()->makeUrl('event'),
 			'module_id' => 'event',
 			'item_id' => $aRow['event_id'],
 			'title' => $aRow['title'],
@@ -1147,7 +1147,7 @@ class Event_Service_Callback extends Phpfox_Service
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->permalink('event', $aRow['item_id'], $aRow['item_title']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->permalink('event', $aRow['item_id'], $aRow['item_title']);
 		$aInfo['item_name'] = Phpfox::getPhrase('event.events');
 		
 		$aInfo['item_display_photo'] = Phpfox::getLib('image.helper')->display(array(
@@ -1197,7 +1197,7 @@ class Event_Service_Callback extends Phpfox_Service
 		return array(
 			array(
 				'phrase' => Phpfox::getPhrase('event.create_new_event'),
-				'url' => Phpfox::getLib('url')->makeUrl('event.add', array('module' => 'pages', 'item' => $aPage['page_id']))
+				'url' => Phpfox_Url::instance()->makeUrl('event.add', array('module' => 'pages', 'item' => $aPage['page_id']))
 			)
 		);
 	}	
@@ -1238,7 +1238,7 @@ class Event_Service_Callback extends Phpfox_Service
 			
 		return array(
 			'breadcrumb_title' => Phpfox::getPhrase('event.event'),
-			'breadcrumb_home' => Phpfox::getLib('url')->makeUrl('event'),
+			'breadcrumb_home' => Phpfox_Url::instance()->makeUrl('event'),
 			'module_id' => 'event',
 			'item_id' => $aRow['event_id'],
 			'title' => $aRow['title'],
@@ -1260,7 +1260,7 @@ class Event_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('event.user_name_tagged_you_in_a_comment_in_an_event', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('event', $aRow['event_id'], $aRow['title']) .'comment_' . $aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('event', $aRow['event_id'], $aRow['title']) .'comment_' . $aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);

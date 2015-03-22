@@ -30,7 +30,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 			->group('setting_id')
 			->where('s.is_hidden = 0')
 			->leftJoin(Phpfox::getT('language_phrase'), 'lp', array(				
-					"lp.language_id = '" . Phpfox::getLib('locale')->getLangId() . "'",
+					"lp.language_id = '" . Phpfox_Locale::instance()->getLangId() . "'",
 					"AND lp.var_name = s.phrase_var_name"
 				)
 			)			
@@ -43,7 +43,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 			{
 				$aParts = explode('</title><info>', $aRow['language_var_name']);
 				$aReturn[] = array(
-					'link' => Phpfox::getLib('url')->makeUrl('admincp.setting.edit', array('setting-id' => $aRow['setting_id'])),
+					'link' => Phpfox_Url::instance()->makeUrl('admincp.setting.edit', array('setting-id' => $aRow['setting_id'])),
 					'type' => 'Global Setting',
 					'title' => str_replace('<title>', '', $aParts[0])
 				);
@@ -63,7 +63,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 		$aSetting = $this->database()->select('s.*, lp.text AS language_var_name')
 			->from($this->_sTable, 's')
 			->leftJoin(Phpfox::getT('language_phrase'), 'lp', array(				
-					"lp.language_id = '" . Phpfox::getLib('locale')->getLangId() . "'",
+					"lp.language_id = '" . Phpfox_Locale::instance()->getLangId() . "'",
 					"AND lp.var_name = s.phrase_var_name"
 				)
 			)			
@@ -110,7 +110,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 			$this->database()->select('lp2.text AS language_var_name, ')
 			->leftJoin(Phpfox::getT('setting_group'), 'sg', 'sg.group_id = setting.group_id')
 			->leftJoin(Phpfox::getT('language_phrase'), 'lp2', array(				
-					"lp2.language_id = '" . Phpfox::getLib('locale')->getLangId() . "'",
+					"lp2.language_id = '" . Phpfox_Locale::instance()->getLangId() . "'",
 					"AND lp2.var_name = sg.var_name"
 				)				
 			);
@@ -120,7 +120,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 			->from($this->_sTable, 'setting')
 			->join(Phpfox::getT('module'), 'm', 'm.module_id = setting.module_id AND m.is_active = 1')	
 			->leftJoin(Phpfox::getT('language_phrase'), 'language_phrase', array(				
-					"language_phrase.language_id = '" . Phpfox::getLib('locale')->getLangId() . "'",
+					"language_phrase.language_id = '" . Phpfox_Locale::instance()->getLangId() . "'",
 					"AND language_phrase.var_name = setting.phrase_var_name"
 				)
 			)
@@ -330,8 +330,8 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 				$aRows[$iKey]['setting_info'] = (isset($aParts[1]) ? str_replace(array("\n", '</info>'), array("<br />", ''), $aParts[1]) : '');				
 				if ($aRows[$iKey]['setting_info'])
 				{					
-					$aRows[$iKey]['setting_info'] = preg_replace("/<setting>([a-z\._]+)<\/setting>/i", "<a href=\"" . Phpfox::getLib('url')->makeUrl('admincp', array('setting', 'search', 'var' => '$1')) . "\">$1</a>", $aRows[$iKey]['setting_info']);
-					$aRows[$iKey]['setting_info'] = preg_replace("/\{url link\='(.*?)'\}/is", "" . Phpfox::getLib('url')->makeUrl('$1') . "", $aRows[$iKey]['setting_info']);				
+					$aRows[$iKey]['setting_info'] = preg_replace("/<setting>([a-z\._]+)<\/setting>/i", "<a href=\"" . Phpfox_Url::instance()->makeUrl('admincp', array('setting', 'search', 'var' => '$1')) . "\">$1</a>", $aRows[$iKey]['setting_info']);
+					$aRows[$iKey]['setting_info'] = preg_replace("/\{url link\='(.*?)'\}/is", "" . Phpfox_Url::instance()->makeUrl('$1') . "", $aRows[$iKey]['setting_info']);
 				}
 			}			
 			

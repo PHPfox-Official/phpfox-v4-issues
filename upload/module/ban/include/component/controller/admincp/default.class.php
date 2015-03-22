@@ -52,7 +52,7 @@ class Ban_Component_Controller_Admincp_Default extends Phpfox_Component
 			{				
 				foreach ($aFilter['user_groups_affected'] as $aGroup)
 				{
-					$aFilters[$iKey]['s_user_groups_affected'] .= Phpfox::getLib('locale')->convert($aGroup['title']) . ', ';
+					$aFilters[$iKey]['s_user_groups_affected'] .= Phpfox_Locale::instance()->convert($aGroup['title']) . ', ';
 				}
 				$aFilters[$iKey]['s_user_groups_affected'] = rtrim($aFilters[$iKey]['s_user_groups_affected'], ', ');
 			}

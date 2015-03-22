@@ -177,13 +177,13 @@ class Custom_Service_Custom extends Phpfox_Service
 		
 		if (isset($aFeed['user_id']) && $aRelation['with_user_id'] == $aFeed['user_id'])
 		{
-			$aReplace['with_user_name'] = '<a href="' . Phpfox::getLib('url')->makeUrl($aRelation['user_name']) . '">' . $aRelation['user_name'] . '</a>';
-			$aReplace['with_full_name'] = '<a href="' . Phpfox::getLib('url')->makeUrl($aRelation['user_name']) . '">' . $aRelation['full_name'] . '</a>';
+			$aReplace['with_user_name'] = '<a href="' . Phpfox_Url::instance()->makeUrl($aRelation['user_name']) . '">' . $aRelation['user_name'] . '</a>';
+			$aReplace['with_full_name'] = '<a href="' . Phpfox_Url::instance()->makeUrl($aRelation['user_name']) . '">' . $aRelation['full_name'] . '</a>';
 		}
 		else if (isset($aRelation['with_user_name']))
 		{
-			$aReplace['with_user_name'] = '<a href="' . Phpfox::getLib('url')->makeUrl($aRelation['with_user_name']) . '">' . $aRelation['with_user_name'] . '</a>';
-			$aReplace['with_full_name'] = '<a href="' . Phpfox::getLib('url')->makeUrl($aRelation['with_user_name']) . '">' . $aRelation['with_full_name'] . '</a>';
+			$aReplace['with_user_name'] = '<a href="' . Phpfox_Url::instance()->makeUrl($aRelation['with_user_name']) . '">' . $aRelation['with_user_name'] . '</a>';
+			$aReplace['with_full_name'] = '<a href="' . Phpfox_Url::instance()->makeUrl($aRelation['with_user_name']) . '">' . $aRelation['with_full_name'] . '</a>';
 		}
 		/* This is the final phrase to output */
 		$sPhrase = '';
@@ -849,7 +849,7 @@ class Custom_Service_Custom extends Phpfox_Service
 			}
 		}
 		
-		$oReq = Phpfox::getLib('request');
+		$oReq = Phpfox_Request::instance();
 		$bIsRegistration = ($oReq->get('req1') == 'user' && $oReq->get('req2') == 'register') || ($oReq->get('req1') == 'core' && ($oReq->get('req2') == 'index-visitor' || $oReq->get('req2') == 'index-visitor-mobile')) || $oReq->get('req1') == '';
 
 		foreach ($aFields as $sFieldKey => $aField)
@@ -1114,7 +1114,7 @@ class Custom_Service_Custom extends Phpfox_Service
 			->join(Phpfox::getT('custom_relation'), 'cr', 'cr.relation_id = crd.relation_data_id')
 			->where('crd.relation_data_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
-		$aRow['link'] = Phpfox::getLib('url')->makeUrl('user_name');
+		$aRow['link'] = Phpfox_Url::instance()->makeUrl('user_name');
 		$aRow['title'] = Phpfox::getPhrase($aRow['phrase_var_name']);
 		return $aRow;
 	}

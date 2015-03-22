@@ -328,7 +328,7 @@ class Language_Service_Language extends Phpfox_Service
 				{
 					if (preg_match('/([a-z]+\.[a-z\_]+)/', $sTemp, $aMatch))
 					{
-						if (!Phpfox::getLib('locale')->isPhrase($aMatch[1]))
+						if (!Phpfox_Locale::instance()->isPhrase($aMatch[1]))
 						{
 							continue;
 						}

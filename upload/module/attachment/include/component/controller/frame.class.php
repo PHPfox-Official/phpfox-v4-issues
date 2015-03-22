@@ -101,7 +101,7 @@ class Attachment_Component_Controller_Frame extends Phpfox_Component
 					$oAttachment->update(array(
 						'file_size' => $sFileSize,
 						'destination' => $sFileName,
-						'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')
+						'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')
 					), $iId);
 					
 					if ($bIsImage)

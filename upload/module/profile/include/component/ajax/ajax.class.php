@@ -63,7 +63,7 @@ class Profile_Component_Ajax_Ajax extends Phpfox_Ajax
 			{
 				$aUrlParams[] = str_replace('profile_', '', $this->get('url'));
 			}
-			Phpfox::getLib('url')->setParam($aUrlParams);
+			Phpfox_Url::instance()->setParam($aUrlParams);
 			
 			$oModule->setController(Phpfox::callback($sProfileUrl . '.getAjaxProfileController'));
 			

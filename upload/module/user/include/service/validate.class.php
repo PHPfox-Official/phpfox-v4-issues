@@ -58,7 +58,7 @@ class User_Service_Validate extends Phpfox_Service
 		
 		if ($iCnt)
 		{
-			Phpfox_Error::set(Phpfox::getPhrase('user.email_is_in_use_and_user_can_login', array('email' => trim(strip_tags($sEmail)), 'link' => Phpfox::getLib('url')->makeUrl('user.login', array('email' => base64_encode($sEmail))))));
+			Phpfox_Error::set(Phpfox::getPhrase('user.email_is_in_use_and_user_can_login', array('email' => trim(strip_tags($sEmail)), 'link' => Phpfox_Url::instance()->makeUrl('user.login', array('email' => base64_encode($sEmail))))));
 		}
 		
 		if (!Phpfox::getService('ban')->check('email', $sEmail))

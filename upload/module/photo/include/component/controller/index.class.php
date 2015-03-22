@@ -577,8 +577,8 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 				/*
 				if ($aCallback !== null)
 				{
-					$sHomeUrl = '/' . Phpfox::getLib('url')->doRewrite($aCallback['url_home_array'][0]) . '/' . implode('/', $aCallback['url_home_array'][1]) . '/' . Phpfox::getLib('url')->doRewrite('photo') . '/';	
-					$aCategory[1] = preg_replace('/^http:\/\/(.*?)\/' . Phpfox::getLib('url')->doRewrite('photo') . '\/(.*?)$/i', 'http://\\1' . $sHomeUrl . '\\2', $aCategory[1]);						
+					$sHomeUrl = '/' . Phpfox_Url::instance()->doRewrite($aCallback['url_home_array'][0]) . '/' . implode('/', $aCallback['url_home_array'][1]) . '/' . Phpfox_Url::instance()->doRewrite('photo') . '/';
+					$aCategory[1] = preg_replace('/^http:\/\/(.*?)\/' . Phpfox_Url::instance()->doRewrite('photo') . '\/(.*?)$/i', 'http://\\1' . $sHomeUrl . '\\2', $aCategory[1]);
 				}				
 				*/
 				$this->template()->setBreadcrumb($aCategory[0], $aCategory[1], ($iCnt === count($aCategories) ? true : false));

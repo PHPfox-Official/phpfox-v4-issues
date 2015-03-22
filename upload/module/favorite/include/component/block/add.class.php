@@ -24,7 +24,7 @@ class Favorite_Component_Block_Add extends Phpfox_Component
 		
 		if (Phpfox::getService('favorite.process')->add($this->request()->get('type'), $this->request()->get('id')))
 		{
-			Phpfox::getLib('ajax')->call('<script type="text/javascript">$(\'#js_footer_bar_favorite_content\').html(\'<!-- EMPTY_FOOTER_BAR -->\');</script>');
+			Phpfox_Ajax::instance()->call('<script type="text/javascript">$(\'#js_footer_bar_favorite_content\').html(\'<!-- EMPTY_FOOTER_BAR -->\');</script>');
 		}		
 	}
 	

@@ -41,7 +41,7 @@ class Language_Service_Process extends Phpfox_Service
 			{
 				$sPhrase = $aValue['module_id'] . '.' . $aValue['var_name'];
 				$bPassed = true;
-				if (!$bIsInstall && !Phpfox::getLib('locale')->isPhrase($sPhrase))
+				if (!$bIsInstall && !Phpfox_Locale::instance()->isPhrase($sPhrase))
 				{
 					$bPassed = false;	
 				}

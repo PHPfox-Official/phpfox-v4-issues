@@ -38,7 +38,7 @@ class Forum_Service_Subscribe_Subscribe extends Phpfox_Service
 			
 			foreach ($aUsers as $aUser)
 			{			
-				$sLink = Phpfox::getLib('url')->permalink('forum.thread', $aUser['thread_id'], $aUser['title']) . 'view_' . $iPostId . '/';				
+				$sLink = Phpfox_Url::instance()->permalink('forum.thread', $aUser['thread_id'], $aUser['title']) . 'view_' . $iPostId . '/';
 				
 				Phpfox::getService('notification.process')->add('forum_subscribed_post', $iPostId, $aUser['user_id']);
 				

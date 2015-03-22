@@ -124,7 +124,7 @@ class Admincp_Service_Block_Block extends Phpfox_Service
 				$aRows[$iKey]['location'] = ((int) $iStyleId === 0 ? $aLocations['g'] : (isset($aLocations['s'][$iStyleId]) ? $aLocations['s'][$iStyleId] : $aLocations['g']));
 			}		
 			
-			$aRows[$iKey]['title'] = Phpfox::getLib('locale')->convert($aRow['title']);
+			$aRows[$iKey]['title'] = Phpfox_Locale::instance()->convert($aRow['title']);
 		}
 				
 		return $aRows;

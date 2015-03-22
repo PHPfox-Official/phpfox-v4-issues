@@ -95,7 +95,7 @@ class User_Service_Group_Setting_Process extends Phpfox_Service
 			'default_staff' => $aVals['user_group'][STAFF_USER_ID]
 		), 'setting_id = ' . (int) $aVals['setting_id']);
 		
-		if (Phpfox::getLib('locale')->isPhrase('admincp.user_setting_' . $aVals['name']))
+		if (Phpfox_Locale::instance()->isPhrase('admincp.user_setting_' . $aVals['name']))
 		{
 			foreach ($aVals['text'] as $sLang => $sValue)
 			{

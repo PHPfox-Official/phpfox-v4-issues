@@ -17,7 +17,7 @@ $sUserProfileImage = Phpfox::getLib('image.helper')->display(array_merge(array('
 
 $oTpl->assign(array(
 		'sUserProfileImage' => $sUserProfileImage,
-		'sUserProfileUrl' => Phpfox::getLib('url')->makeUrl('profile', Phpfox::getUserBy('user_name')), // Create the users profile URL
+		'sUserProfileUrl' => Phpfox_Url::instance()->makeUrl('profile', Phpfox::getUserBy('user_name')), // Create the users profile URL
 		'sCurrentUserName' => Phpfox::getLib('parse.output')->shorten(Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')), Phpfox::getParam('user.max_length_for_username'), '...'), // Get the users display name
 		)
 	);

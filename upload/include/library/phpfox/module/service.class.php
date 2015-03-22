@@ -106,7 +106,7 @@ class Phpfox_Service
 	 */
 	protected function request()
 	{
-		return Phpfox::getLib('request');	
+		return Phpfox_Request::instance();
 	}	    
 }
 

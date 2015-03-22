@@ -39,7 +39,7 @@ class Im_Component_Block_List extends Phpfox_Component
 		
 		Phpfox::getLib('pager')->set(array('ajax' => 'im.searchFriends', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
-		$sBrowser = Phpfox::getLib('request')->getBrowser();
+		$sBrowser = Phpfox_Request::instance()->getBrowser();
 		$sBrowser = preg_replace('/([0-9]*\.*)*/i', '', $sBrowser);
 		$sBrowser = strtolower($sBrowser);
 		$sBrowser = trim($sBrowser);

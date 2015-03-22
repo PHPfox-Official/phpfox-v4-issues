@@ -66,7 +66,7 @@ class Marketplace_Service_Marketplace extends Phpfox_Service
 		}		
 			
 		$aListing['categories'] = Phpfox::getService('marketplace.category')->getCategoriesById($aListing['listing_id']);
-		$aListing['bookmark_url'] = Phpfox::getLib('url')->permalink('marketplace', $aListing['listing_id'], $aListing['title']);
+		$aListing['bookmark_url'] = Phpfox_Url::instance()->permalink('marketplace', $aListing['listing_id'], $aListing['title']);
 		
 		return $aListing;
 	}
@@ -408,7 +408,7 @@ class Marketplace_Service_Marketplace extends Phpfox_Service
 			->where('m.listing_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
 				
-		$aRow['link'] = Phpfox::getLib('url')->permalink('forum.thread', $aRow['listing_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('forum.thread', $aRow['listing_id'], $aRow['title']);
 		return $aRow;
 	}
 	

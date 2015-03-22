@@ -31,7 +31,7 @@ class Janrain_Component_Controller_Rpx extends Phpfox_Component
 		        'extended' => 'true'
 			);
 
-		  	$sResult = Phpfox::getLib('request')->send('https://rpxnow.com/api/v2/auth_info', $aPost);
+		  	$sResult = Phpfox_Request::instance()->send('https://rpxnow.com/api/v2/auth_info', $aPost);
 		
 		  	$aInfo = json_decode($sResult, true);		  	
 		

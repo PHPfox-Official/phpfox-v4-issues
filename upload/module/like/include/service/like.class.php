@@ -235,7 +235,7 @@ class Like_Service_Like extends Phpfox_Service
 		    $sItemTypeId = 'feed';
 		}
 	
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		
 		
 		// Check that the module exists

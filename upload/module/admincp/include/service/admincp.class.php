@@ -26,7 +26,7 @@ class Admincp_Service_Admincp extends Phpfox_Service
 	{
 		$aPost['hash'] = Phpfox::getParam(array('db', 'host'));
 
-		$mReturn = json_decode(Phpfox::getLib('request')->send('http://oncloud.phpfox.com/oncloud/apicall_' . $sCall . '/', $aPost), true);
+		$mReturn = json_decode(Phpfox_Request::instance()->send('http://oncloud.phpfox.com/oncloud/apicall_' . $sCall . '/', $aPost), true);
 
 		return $mReturn;
 	}
@@ -152,7 +152,7 @@ class Admincp_Service_Admincp extends Phpfox_Service
 			if (isset($aPrivacyCache[Phpfox::getUserBy('user_group_id')]))
 			{
 				$aCache = $aPrivacyCache[Phpfox::getUserBy('user_group_id')];
-				$sUrl = Phpfox::getLib('url')->getFullUrl(true);
+				$sUrl = Phpfox_Url::instance()->getFullUrl(true);
 				$sUrl = str_replace('/', '.', $sUrl);
 				$sUrl = trim($sUrl, '.');
 				$sNewParts = '';
@@ -183,7 +183,7 @@ class Admincp_Service_Admincp extends Phpfox_Service
 				
 				if ($bFailed)
 				{
-					Phpfox::getLib('url')->send('admincp');
+					Phpfox_Url::instance()->send('admincp');
 				}
 			}
 			

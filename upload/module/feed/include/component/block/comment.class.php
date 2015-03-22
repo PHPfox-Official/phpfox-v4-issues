@@ -56,9 +56,9 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 			
 			return 'block';
 		}
-		else if (defined('PHPFOX_IS_AJAX') && PHPFOX_IS_AJAX && Phpfox::getLib('ajax')->get('delayedParam') != null)
+		else if (defined('PHPFOX_IS_AJAX') && PHPFOX_IS_AJAX && Phpfox_Ajax::instance()->get('delayedParam') != null)
 		{
-			$aFeed = json_decode(urldecode(Phpfox::getLib('ajax')->get('delayedParam')));
+			$aFeed = json_decode(urldecode(Phpfox_Ajax::instance()->get('delayedParam')));
 		}
 		
 		if (Phpfox::isModule('comment') && Phpfox::getUserParam('comment.can_delete_comment_on_own_item') && ($iOwnerDeleteCmt = $this->request()->getInt('ownerdeletecmt')) && isset($aFeed['user_id']) && $aFeed['user_id'] == Phpfox::getUserId())
@@ -146,7 +146,7 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 		{
 			Phpfox::getLib('pager')->set(array(
 					'ajax' => 'comment.viewMoreFeed', 
-					'page' => Phpfox::getLib('request')->getInt('page'), 
+					'page' => Phpfox_Request::instance()->getInt('page'),
 					'size' => $iPageLimit, 
 					'count' => $mPager,
 					'phrase' => Phpfox::isModule('comment') ? Phpfox::getPhrase('comment.view_previous_comments') : '',

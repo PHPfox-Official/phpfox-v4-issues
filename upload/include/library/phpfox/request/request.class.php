@@ -68,7 +68,15 @@ class Phpfox_Request
 	 */
 	public function __construct()
 	{
-		$this->_aArgs = $this->_trimData(array_merge($_GET, $_POST, $_FILES, Phpfox::getLib('url')->getParams()));
+		$this->_aArgs = $this->_trimData(array_merge($_GET, $_POST, $_FILES, Phpfox_Url::instance()->getParams()));
+	}
+
+	/**
+	 * @return $this
+	 */
+	public static function instance()
+	{
+		return Phpfox::getLib('request');
 	}
 	
 	/**
@@ -341,7 +349,7 @@ class Phpfox_Request
     		return false;
     	}
     	
-    	if ($bFirstCheck === false && !Phpfox::getLib('url')->isMobile() && !Phpfox::getLib('session')->get('mobilestatus'))
+    	if ($bFirstCheck === false && !Phpfox_Url::instance()->isMobile() && !Phpfox::getLib('session')->get('mobilestatus'))
     	{
     		$bFirstCheck = true;
     		
@@ -351,11 +359,11 @@ class Phpfox_Request
     		{
     			if ($this->get('req1') == 'apps' && $this->get('req2') == 'install')
     			{
-    				Phpfox::getLib('url')->send('mobile.apps.install.' . $this->get('req3'));
+    				Phpfox_Url::instance()->send('mobile.apps.install.' . $this->get('req3'));
     			}
     			elseif ($this->get('req1') == 'user' && $this->get('req2') == 'verify' && $this->get('link'))
     			{
-    				Phpfox::getLib('url')->send('mobile.user.verify', array('link' => $this->get('link')));
+    				Phpfox_Url::instance()->send('mobile.user.verify', array('link' => $this->get('link')));
     			}
     			
     			$sSendWhere = 'mobile';
@@ -363,7 +371,7 @@ class Phpfox_Request
     			// http://www.phpfox.com/tracker/view/15041/
     			if(Phpfox::getParam('core.redirect_guest_on_same_page'))
     			{
-					$sSendWhere = Phpfox::getLib('url')->getFullUrl(true);
+					$sSendWhere = Phpfox_Url::instance()->getFullUrl(true);
 					$sSendWhere = 'mobile.' . str_replace('/', '.', $sSendWhere);
 				}
 				
@@ -371,7 +379,7 @@ class Phpfox_Request
     			
     			if ($bRedirect && !empty($sSendWhere))
     			{
-					Phpfox::getLib('url')->send($sSendWhere);
+					Phpfox_Url::instance()->send($sSendWhere);
 				}
 				else
 				{
@@ -381,7 +389,7 @@ class Phpfox_Request
     		}
     	}
     	
-    	return Phpfox::getLib('url')->isMobile();    	
+    	return Phpfox_Url::instance()->isMobile();
     }
     
     /**

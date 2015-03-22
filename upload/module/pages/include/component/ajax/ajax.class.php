@@ -37,7 +37,7 @@ class Pages_Component_Ajax_Ajax extends Phpfox_Ajax
 		if (($this->get('widget_id') ? Phpfox::getService('pages.process')->updateWidget($this->get('widget_id'), $this->get('val')) : Phpfox::getService('pages.process')->addWidget($this->get('val'))))
 		{
 			$aVals = $this->get('val');
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('pages.add.widget', array('id' => $aVals['page_id'])) . '\';');			
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('pages.add.widget', array('id' => $aVals['page_id'])) . '\';');
 		}
 		else
 		{
@@ -64,7 +64,7 @@ class Pages_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			$aPage = Phpfox::getService('pages')->getPage($iId);
 			
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('pages.add', array('id' => $aPage['page_id'], 'new' => '1')) . '\';');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('pages.add', array('id' => $aPage['page_id'], 'new' => '1')) . '\';');
 		}
 		else
 		{
@@ -193,7 +193,7 @@ class Pages_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			Phpfox::getService('pages.process')->clearLogin($aUser['user_id']);
 			
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('') . '\';');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('') . '\';');
 		}
 		else
 		{
@@ -227,7 +227,7 @@ class Pages_Component_Ajax_Ajax extends Phpfox_Ajax
 			}			
 		}
 		
-		$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('') . '\';');
+		$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('') . '\';');
 		// $this->setTitle('Login');
 		// Phpfox::getBlock('pages.login-user');		
 	}
@@ -258,7 +258,7 @@ class Pages_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		if (Phpfox::getService('pages.process')->login($this->get('page_id')))
 		{
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('') . '\';');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('') . '\';');
 		}
 	}
 	

@@ -83,7 +83,7 @@ class Profile_Service_Profile extends Phpfox_Service
 			return true;
 		}
 		
-		$iUserId = Phpfox::getLib('request')->get('profile_user_id');
+		$iUserId = Phpfox_Request::instance()->get('profile_user_id');
 		
 		
 		if ((defined('PHPFOX_IS_USER_PROFILE') || !empty($iUserId)) && Phpfox::isModule('feed') && Phpfox::getParam('feed.force_timeline'))
@@ -92,9 +92,9 @@ class Profile_Service_Profile extends Phpfox_Service
 		}
 		
 		if (PHPFOX_IS_AJAX && (
-				Phpfox::getLib('request')->get('action') == 'upload_photo_via_share' &&
-				Phpfox::getLib('request')->get('callback_module') == 'pages' &&
-				Phpfox::getService('pages')->timelineEnabled(Phpfox::getLib('request')->get('callback_item_id'))
+				Phpfox_Request::instance()->get('action') == 'upload_photo_via_share' &&
+				Phpfox_Request::instance()->get('callback_module') == 'pages' &&
+				Phpfox::getService('pages')->timelineEnabled(Phpfox_Request::instance()->get('callback_item_id'))
 			))
 		{
 			return true;
@@ -102,9 +102,9 @@ class Profile_Service_Profile extends Phpfox_Service
 		
 		if (Phpfox::isModule('feed') && !Phpfox::getParam('feed.force_timeline'))
 		{
-			if (Phpfox::getParam('feed.timeline_optional') && PHPFOX_IS_AJAX && Phpfox::getLib('request')->get('profile_user_id') > 0)
+			if (Phpfox::getParam('feed.timeline_optional') && PHPFOX_IS_AJAX && Phpfox_Request::instance()->get('profile_user_id') > 0)
 			{
-				$aUser = Phpfox::getService('user')->getUserObject(Phpfox::getLib('request')->get('profile_user_id'));
+				$aUser = Phpfox::getService('user')->getUserObject(Phpfox_Request::instance()->get('profile_user_id'));
 				if (isset($aUser->use_timeline) && $aUser->use_timeline)
 				{
 					return true;
@@ -120,7 +120,7 @@ class Profile_Service_Profile extends Phpfox_Service
 				}
 			}		
 			
-			$aCore = Phpfox::getLib('request')->get('core');
+			$aCore = Phpfox_Request::instance()->get('core');
 			
 			if (PHPFOX_IS_AJAX && Phpfox::getParam('feed.timeline_optional') && isset($aCore['profile_user_id']) && $aCore['profile_user_id'] > 0)
 			{
@@ -196,15 +196,15 @@ class Profile_Service_Profile extends Phpfox_Service
 
 			if ($bSubIsSelected === false 
 				&& (
-					($aMenu['url'] == 'profile' . (Phpfox::getLib('request')->get('req2') ? '.' . Phpfox::getLib('request')->get('req2') : '') . (Phpfox::getLib('request')->get('req3') ? '.' . Phpfox::getLib('request')->get('req3') : ''))
-					|| (Phpfox::getLib('request')->get('req2') == '' && $iKey === 0 && !Phpfox::getService('user.privacy')->hasAccess($aUser['user_id'], 'feed.view_wall'))					
+					($aMenu['url'] == 'profile' . (Phpfox_Request::instance()->get('req2') ? '.' . Phpfox_Request::instance()->get('req2') : '') . (Phpfox_Request::instance()->get('req3') ? '.' . Phpfox_Request::instance()->get('req3') : ''))
+					|| (Phpfox_Request::instance()->get('req2') == '' && $iKey === 0 && !Phpfox::getService('user.privacy')->hasAccess($aUser['user_id'], 'feed.view_wall'))
 				)
 			)
 			{
 				$aMenus[$iKey]['is_selected'] = true;
 			}
 			
-			if ($aMenu['url'] == 'profile.photo' && Phpfox::getLib('request')->get('req2') == 'photo' && (Phpfox::getLib('request')->get('req3') == 'albums' || Phpfox::getLib('request')->get('req3') == 'photos'))
+			if ($aMenu['url'] == 'profile.photo' && Phpfox_Request::instance()->get('req2') == 'photo' && (Phpfox_Request::instance()->get('req3') == 'albums' || Phpfox_Request::instance()->get('req3') == 'photos'))
 			{
 				$aMenus[$iKey]['is_selected'] = true;
 			}
@@ -217,7 +217,7 @@ class Profile_Service_Profile extends Phpfox_Service
 			}
 			else 
 			{
-				$aMenus[$iKey]['url'] = $aUser['user_name'] . '.' . Phpfox::getLib('url')->doRewrite(preg_replace("/^profile\.(.*)$/i", "\\1", $aMenu['url']));
+				$aMenus[$iKey]['url'] = $aUser['user_name'] . '.' . Phpfox_Url::instance()->doRewrite(preg_replace("/^profile\.(.*)$/i", "\\1", $aMenu['url']));
 			}
 		}		
 		/* Reminder for purefan add a hook here */

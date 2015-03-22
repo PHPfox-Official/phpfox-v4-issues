@@ -215,7 +215,7 @@ class Api_Service_Gateway_Gateway extends Phpfox_Service
 		
 		if ($mReturn == 'redirect')
 		{
-			Phpfox::getLib('url')->send('');
+			Phpfox_Url::instance()->send('');
 		}
 	}
 	

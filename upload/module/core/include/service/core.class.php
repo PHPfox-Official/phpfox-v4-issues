@@ -431,7 +431,7 @@ class Core_Service_Core extends Phpfox_Service
 	{
 		$sSearch = str_replace('-', '.', $sSearch);
 		
-		if (!Phpfox::getLib('request')->isIp($sSearch))
+		if (!Phpfox_Request::instance()->isIp($sSearch))
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('admincp.not_a_valid_ip_address'));
 		}		
@@ -446,7 +446,7 @@ class Core_Service_Core extends Phpfox_Service
 			}
 			else
 			{
-				$sXML = Phpfox::getLib('request')->send($sUrl, array(), 'GET');
+				$sXML = Phpfox_Request::instance()->send($sUrl, array(), 'GET');
 			}
 			$aCallback = Phpfox::getLib('xml.parser')->parse($sXML, 'UTF-8');				
 			$aInfo = array(
@@ -484,7 +484,7 @@ class Core_Service_Core extends Phpfox_Service
 			$aResults[] = array(
 				'table' => Phpfox::getPhrase('admincp.ip_information'),
 				'results' => array(
-					Phpfox::getPhrase('admincp.missing_api_key') => Phpfox::getPhrase('admincp.enter_your_api_key', array('link' => Phpfox::getLib('url')->makeUrl('admincp.setting.edit', array('group-id' => 'ip_infodb'))))
+					Phpfox::getPhrase('admincp.missing_api_key') => Phpfox::getPhrase('admincp.enter_your_api_key', array('link' => Phpfox_Url::instance()->makeUrl('admincp.setting.edit', array('group-id' => 'ip_infodb'))))
 				)
 			);	
 		}
@@ -609,7 +609,7 @@ class Core_Service_Core extends Phpfox_Service
 			'user_id' => Phpfox::getUserId(),
 			'hash' => $sHash,
 			'user_hash' => Phpfox::getLib('parse.input')->clean(Phpfox::getCookie($aCookieNames[1])),
-			'ip_address' => Phpfox::getLib('request')->getServer('REMOTE_ADDR') //$_SERVER['REMOTE_ADDR']
+			'ip_address' => Phpfox_Request::instance()->getServer('REMOTE_ADDR') //$_SERVER['REMOTE_ADDR']
 				));
 		return $sHash;
 	}
@@ -622,7 +622,7 @@ class Core_Service_Core extends Phpfox_Service
 			'hash' => $sUrl,
 			'user_hash' => $sHash,
 			'time_stamp' => PHPFOX_TIME,
-			'ip_address' => Phpfox::getLib('request')->getServer('REMOTE_ADDR') //$_SERVER['REMOTE_ADDR']
+			'ip_address' => Phpfox_Request::instance()->getServer('REMOTE_ADDR') //$_SERVER['REMOTE_ADDR']
 		));
 		
 		// Delete tracks from last 15 minutes to avoid 
@@ -641,7 +641,7 @@ class Core_Service_Core extends Phpfox_Service
 		// do we have an api key for the IP?
 		if (Phpfox::getParam('core.ip_infodb_api_key') != '')
 		{
-			$aInfo = $this->ipSearch(Phpfox::getLib('request')->getServer('REMOTE_ADDR')); // $this->ipSearch($_SERVER['REMOTE_ADDR']);
+			$aInfo = $this->ipSearch(Phpfox_Request::instance()->getServer('REMOTE_ADDR')); // $this->ipSearch($_SERVER['REMOTE_ADDR']);
 			if (isset($aInfo[Phpfox::getPhrase('admincp.longitude')])
 				&& !empty($aInfo[Phpfox::getPhrase('admincp.longitude')])
 				&& isset($aInfo[Phpfox::getPhrase('admincp.latitude')])
@@ -684,7 +684,7 @@ class Core_Service_Core extends Phpfox_Service
 		
 		if (isset($aRow[$aSetting['field'][0]]))
 		{
-			Phpfox::getLib('url')->forward(Phpfox::permalink($aSetting['redirect'], $aRow[$aSetting['field'][0]], (isset($aSetting['field'][1]) ? $aRow[$aSetting['field'][1]] : (!empty($aSetting['sub_page']) ? $aSetting['sub_page'] . '/' : ''))), '', 301);
+			Phpfox_Url::instance()->forward(Phpfox::permalink($aSetting['redirect'], $aRow[$aSetting['field'][0]], (isset($aSetting['field'][1]) ? $aRow[$aSetting['field'][1]] : (!empty($aSetting['sub_page']) ? $aSetting['sub_page'] . '/' : ''))), '', 301);
 			
 			return true;
 		}		

@@ -13,127 +13,128 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if defined('PHPFOX_IS_ADMIN_SEARCH')}
-<form method="post" action="{url link='admincp.user.browse'}">
-	<div class="table_header">
-		{phrase var='user.member_search'}
-	</div>
-	<div class="table">
-		<div class="table_left">
-			{phrase var='user.search'}:
-		</div>
-		<div class="table_right">
-			{filter key='keyword'}
-			<div class="extra_info">
-				{phrase var='user.within'}: {filter key='type'}
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
-	
-	<div id="js_admincp_search_options" style="display:none;">
-	
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.user_group'}:
-			</div>
-			<div class="table_right">
-				{filter key='group'}
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.gender'}:
-			</div>
-			<div class="table_right">
-				{filter key='gender'}
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.location'}:
-			</div>
-			<div class="table_right">
-				{filter key='country'}
-				{module name='core.country-child' country_child_filter=true country_child_type='browse'}
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.city'}:
-			</div>
-			<div class="table_right">
-				{filter key='city'}
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.zip_postal_code'}:
-			</div>
-			<div class="table_right">
-				{filter key='zip'}
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.ip_address'}:
-			</div>
-			<div class="table_right">
-				{filter key='ip'}
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.age_group'}:
-			</div>
-			<div class="table_right">
-				{filter key='from'} and {filter key='to'}
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.show_members'}:
-			</div>
-			<div class="table_right">
-				{filter key='status'}
-			</div>
-			<div class="clear"></div>
-		</div>
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.sort_results_by'}:
-			</div>
-			<div class="table_right">
-				{filter key='sort'}
-			</div>
-			<div class="clear"></div>
-		</div>
-
+<div class="block_search">
+	<form method="post" action="{url link='admincp.user.browse'}">
 		<div class="table_header">
-			{phrase var='user.custom_fields'}
+			{phrase var='user.member_search'}
 		</div>
-		{foreach from=$aCustomFields item=aCustomField}
-			{template file='custom.block.foreachcustom'}
-		{/foreach}
-	</div>
-
-	<div class="table_clear">
-		<div class="table_clear_more_options">
-			<a href="#" onclick="$('#js_admincp_search_options').toggle(); return false;">{phrase var='user.view_more_search_options'}</a>
+		<div class="table">
+			<div class="table_left">
+				{phrase var='user.search'}:
+			</div>
+			<div class="table_right">
+				{filter key='keyword'}
+				<div class="extra_info">
+					{phrase var='user.within'}: {filter key='type'}
+				</div>
+			</div>
+			<div class="clear"></div>
 		</div>
-		<input type="submit" value="{phrase var='user.search'}" class="button" name="search[submit]" />		
-	</div>
-</form>
 
-<br />
+		<div id="js_admincp_search_options" style="display:none;">
 
-{pager}
+			<div class="table">
+				<div class="table_left">
+					{phrase var='user.user_group'}:
+				</div>
+				<div class="table_right">
+					{filter key='group'}
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="table">
+				<div class="table_left">
+					{phrase var='user.gender'}:
+				</div>
+				<div class="table_right">
+					{filter key='gender'}
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="table">
+				<div class="table_left">
+					{phrase var='user.location'}:
+				</div>
+				<div class="table_right">
+					{filter key='country'}
+					{module name='core.country-child' country_child_filter=true country_child_type='browse'}
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="table">
+				<div class="table_left">
+					{phrase var='user.city'}:
+				</div>
+				<div class="table_right">
+					{filter key='city'}
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="table">
+				<div class="table_left">
+					{phrase var='user.zip_postal_code'}:
+				</div>
+				<div class="table_right">
+					{filter key='zip'}
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="table">
+				<div class="table_left">
+					{phrase var='user.ip_address'}:
+				</div>
+				<div class="table_right">
+					{filter key='ip'}
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="table">
+				<div class="table_left">
+					{phrase var='user.age_group'}:
+				</div>
+				<div class="table_right">
+					{filter key='from'} and {filter key='to'}
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="table">
+				<div class="table_left">
+					{phrase var='user.show_members'}:
+				</div>
+				<div class="table_right">
+					{filter key='status'}
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="table">
+				<div class="table_left">
+					{phrase var='user.sort_results_by'}:
+				</div>
+				<div class="table_right">
+					{filter key='sort'}
+				</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="table_header">
+				{phrase var='user.custom_fields'}
+			</div>
+			{foreach from=$aCustomFields item=aCustomField}
+				{template file='custom.block.foreachcustom'}
+			{/foreach}
+		</div>
+
+		<div class="table_clear">
+			<div class="table_clear_more_options">
+				<a href="#" onclick="$('#js_admincp_search_options').toggle(); return false;">{phrase var='user.view_more_search_options'}</a>
+			</div>
+			<input type="submit" value="{phrase var='user.search'}" class="button" name="search[submit]" />
+		</div>
+	</form>
+</div>
+
+<div class="block_content">
+
 	<div class="table_header">
 		{phrase var='user.members'}
 	</div>
@@ -258,23 +259,9 @@ defined('PHPFOX') or exit('NO DICE!');
 			<input type="submit" name="delete" value="{phrase var='user.delete'}" class="sJsConfirm button sJsCheckBoxButton disabled" disabled="true" />
 		</div>
 	</form>
-{pager}
-
-{else}
-
-{if Phpfox::isMobile()}
-<div class="header_bar_menu">														
-	<div class="header_bar_search">
-		<form method="post" action="{url link='user.browse' view=$sView}">
-			<div><input type="hidden" name="search[submit]" value="1" /></div>
-			<div class="header_bar_search_holder">
-				{filter key='keyword'}
-				<div class="header_bar_search_input"></div>
-			</div>
-		</form>
-	</div>
+	{pager}
 </div>
-{/if}
+{else}
 
 {if count($aUsers)}
 {foreach from=$aUsers name=users item=aUser}

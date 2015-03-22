@@ -527,7 +527,7 @@ class Blog_Service_Process extends Phpfox_Service
 		(($sPlugin = Phpfox_Plugin::get('blog.service_process_approve__1')) ? eval($sPlugin) : false);
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('blog', $aBlog['blog_id'], $aBlog['title']);
+		$sLink = Phpfox_Url::instance()->permalink('blog', $aBlog['blog_id'], $aBlog['title']);
 		Phpfox::getLib('mail')->to($aBlog['user_id'])
 			->subject(array('blog.your_blog_has_been_approved_on_site_title', array('site_title' => Phpfox::getParam('core.site_title'))))
 			->message(array('blog.your_blog_has_been_approved_on_site_title_message', array('site_title' => Phpfox::getParam('core.site_title'), 'link' => $sLink)))

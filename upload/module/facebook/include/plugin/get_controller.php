@@ -21,7 +21,7 @@ else
 	{
 		if (Phpfox::isUser())
 		{
-			if (Phpfox::getLib('request')->get('req1') == 'facebook' && Phpfox::getLib('request')->get('req2') == 'unlink')
+			if (Phpfox_Request::instance()->get('req1') == 'facebook' && Phpfox_Request::instance()->get('req2') == 'unlink')
 			{
 					
 			}			
@@ -46,7 +46,7 @@ else
 									{
 										if (!response.authResponse)
 										{
-											window.location.href = \'' . Phpfox::getLib('url')->makeUrl('facebook.unlink', array('noapp' => '1')) . '\';
+											window.location.href = \'' . Phpfox_Url::instance()->makeUrl('facebook.unlink', array('noapp' => '1')) . '\';
 										}
 									});
 								};
@@ -101,15 +101,15 @@ else
 		}
 		else 
 		{
-			if (Phpfox::getLib('request')->get('req1') == 'facebook' && Phpfox::getLib('request')->get('req2') == 'frame')
+			if (Phpfox_Request::instance()->get('req1') == 'facebook' && Phpfox_Request::instance()->get('req2') == 'frame')
 			{
 
 			}
-			elseif (Phpfox::getLib('request')->get('req1') == 'facebook' && Phpfox::getLib('request')->get('req2') == 'logout')
+			elseif (Phpfox_Request::instance()->get('req1') == 'facebook' && Phpfox_Request::instance()->get('req2') == 'logout')
 			{
 
 			}		
-			elseif (Phpfox::getLib('request')->get('req1') == 'facebook' && Phpfox::getLib('request')->get('req2') == 'account')
+			elseif (Phpfox_Request::instance()->get('req1') == 'facebook' && Phpfox_Request::instance()->get('req2') == 'account')
 			{
 
 			}
@@ -136,7 +136,7 @@ else
 									if (response.authResponse)
                                     {
 										$(\'body\').html(\'<div id="fb-root"></div><div id="facebook_connection">' . Phpfox::getPhrase('facebook.connecting_to_facebook_please_hold') . '</div>\');
-										window.location.href = \'' . Phpfox::getLib('url')->makeUrl('facebook.frame') . '\';
+										window.location.href = \'' . Phpfox_Url::instance()->makeUrl('facebook.frame') . '\';
 									}
 								});
 						
@@ -145,7 +145,7 @@ else
 									if (response.authResponse) 
 									{
 										$(\'body\').html(\'<div id="fb-root"></div><div id="facebook_connection">' . Phpfox::getPhrase('facebook.connecting_to_facebook_please_hold') . '</div>\');
-										window.location.href = \'' . Phpfox::getLib('url')->makeUrl('facebook.frame') . '\';
+										window.location.href = \'' . Phpfox_Url::instance()->makeUrl('facebook.frame') . '\';
 									}
 								});
 							};	

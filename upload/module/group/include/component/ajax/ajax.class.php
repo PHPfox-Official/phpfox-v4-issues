@@ -21,7 +21,7 @@ class Group_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			if ($this->get('is_invite'))
 			{
-				$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('group', array('view' => 'invite')) . '\';');
+				$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('group', array('view' => 'invite')) . '\';');
 				return;
 			}
 			
@@ -57,7 +57,7 @@ class Group_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			if ($this->get('is_invite'))
 			{
-				$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('group', array('view' => 'invite')) . '\';');
+				$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('group', array('view' => 'invite')) . '\';');
 				return;
 			}			
 			
@@ -175,7 +175,7 @@ class Group_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			if (($aGroup = Phpfox::getService('group.process')->joinGroup($this->get('group_id'), Phpfox::getUserId())))
 			{
-				$this->html('#js_group_invite_' . $this->get('group_id'), '<div class="message">' . Phpfox::getPhrase('group.you_have_successfully_joined_the_group_title', array('link' => Phpfox::getLib('url')->makeUrl('group', $aGroup['title_url']), 'title' => Phpfox::getLib('parse.output')->shorten($aGroup['title'], 20, '...'))) . '</div>');		
+				$this->html('#js_group_invite_' . $this->get('group_id'), '<div class="message">' . Phpfox::getPhrase('group.you_have_successfully_joined_the_group_title', array('link' => Phpfox_Url::instance()->makeUrl('group', $aGroup['title_url']), 'title' => Phpfox::getLib('parse.output')->shorten($aGroup['title'], 20, '...'))) . '</div>');
 			}
 		}
 		else 

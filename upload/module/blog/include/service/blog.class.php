@@ -209,20 +209,20 @@ class Blog_Service_Blog extends Phpfox_Service
 
 					if ($aCategory['user_id'] && $sType == 'user_profile')
 					{
-						$sCategories .= ', <a href="' . Phpfox::getLib('url')->permalink($aValue['user_name'] . '.blog.category',  $aCategory['category_id'], $aCategory['category_name']) . '">' . Phpfox::getLib('locale')->convert($oFilterOutput->clean($aCategory['category_name'])) . '</a>';
+						$sCategories .= ', <a href="' . Phpfox_Url::instance()->permalink($aValue['user_name'] . '.blog.category',  $aCategory['category_id'], $aCategory['category_name']) . '">' . Phpfox_Locale::instance()->convert($oFilterOutput->clean($aCategory['category_name'])) . '</a>';
 					}
 					else 
 					{
-						$sCategories .= ', <a href="' . Phpfox::getLib('url')->permalink('blog.category',  $aCategory['category_id'], $aCategory['category_name']) . '">' . Phpfox::getLib('locale')->convert($oFilterOutput->clean($aCategory['category_name'])) . '</a>';
+						$sCategories .= ', <a href="' . Phpfox_Url::instance()->permalink('blog.category',  $aCategory['category_id'], $aCategory['category_name']) . '">' . Phpfox_Locale::instance()->convert($oFilterOutput->clean($aCategory['category_name'])) . '</a>';
 					}
 				}
 				$sCategories = trim(ltrim($sCategories, ','));
 
-				$aItems[$iKey]['info'] = Phpfox::getPhrase('blog.posted_x_by_x_in_x', array('date' => Phpfox::getTime(Phpfox::getParam('blog.blog_time_stamp'), $aValue['time_stamp']), 'link' => Phpfox::getLib('url')->makeUrl($aValue['user_name']), 'user' => $aValue, 'categories' => $sCategories));
+				$aItems[$iKey]['info'] = Phpfox::getPhrase('blog.posted_x_by_x_in_x', array('date' => Phpfox::getTime(Phpfox::getParam('blog.blog_time_stamp'), $aValue['time_stamp']), 'link' => Phpfox_Url::instance()->makeUrl($aValue['user_name']), 'user' => $aValue, 'categories' => $sCategories));
 			}
 			else 
 			{				
-				$aItems[$iKey]['info'] = Phpfox::getPhrase('blog.posted_x_by_x', array('date' => Phpfox::getTime(Phpfox::getParam('blog.blog_time_stamp'), $aValue['time_stamp']), 'link' => Phpfox::getLib('url')->makeUrl($aValue['user_name']), 'user' => $aValue));
+				$aItems[$iKey]['info'] = Phpfox::getPhrase('blog.posted_x_by_x', array('date' => Phpfox::getTime(Phpfox::getParam('blog.blog_time_stamp'), $aValue['time_stamp']), 'link' => Phpfox_Url::instance()->makeUrl($aValue['user_name']), 'user' => $aValue));
 			}
 			
 			if (isset($aTags[$aValue['blog_id']]))
@@ -317,7 +317,7 @@ class Blog_Service_Blog extends Phpfox_Service
 			->join(Phpfox::getT('user'), 'u', 'u.user_id = b.user_id')
 			->where('b.blog_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
-		$aRow['link'] = Phpfox::getLib('url')->permalink('blog', $aRow['blog_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('blog', $aRow['blog_id'], $aRow['title']);
 		return $aRow;
 	}
 	

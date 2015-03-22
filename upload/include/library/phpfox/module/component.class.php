@@ -193,7 +193,7 @@ class Phpfox_Component
 	 */
 	protected function url()
 	{
-		return Phpfox::getLib('url');	
+		return Phpfox_Url::instance();
 	}	
 	
 	/**
@@ -204,7 +204,7 @@ class Phpfox_Component
 	 */
 	protected function request()
 	{
-		return Phpfox::getLib('request');	
+		return Phpfox_Request::instance();
 	}	
 	
 	/**

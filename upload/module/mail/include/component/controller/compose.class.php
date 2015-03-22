@@ -266,7 +266,7 @@ class Mail_Component_Controller_Compose extends Phpfox_Component
 	{
 		if (!$this->_bReturn)
 		{
-			Phpfox::getLib('ajax')->call('$Core.processForm(\'#js_mail_compose_submit\', true);');
+			Phpfox_Ajax::instance()->call('$Core.processForm(\'#js_mail_compose_submit\', true);');
 		}
 		
 		return $this->_bReturn;

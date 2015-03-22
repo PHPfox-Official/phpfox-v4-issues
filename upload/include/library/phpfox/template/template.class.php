@@ -268,7 +268,7 @@ class Phpfox_Template
 		}
 		else 
 		{
-			$this->_bIsAdminCp = (strtolower(Phpfox::getLib('request')->get('req1')) == Phpfox::getParam('admincp.admin_cp'));			
+			$this->_bIsAdminCp = (strtolower(Phpfox_Request::instance()->get('req1')) == Phpfox::getParam('admincp.admin_cp'));
 			
 			if ($this->_bIsAdminCp)
 			{
@@ -381,7 +381,7 @@ class Phpfox_Template
 			}
 
 			// Hack to force admincp layout during an AJAX call, I don't like it but it will do for the time being.
-			if (($sMainUrl = Phpfox::getLib('request')->get('main_url')) && preg_match("/\/" . Phpfox::getParam('admincp.admin_cp') . "\//i", $sMainUrl))
+			if (($sMainUrl = Phpfox_Request::instance()->get('main_url')) && preg_match("/\/" . Phpfox::getParam('admincp.admin_cp') . "\//i", $sMainUrl))
 			{
 				$this->_sThemeLayout = 'adminpanel';
 				$this->_sStyleFolder = Phpfox::getParam('core.default_style_name');
@@ -714,7 +714,7 @@ class Phpfox_Template
 		
 		if ($bIsTitle === true)
 		{
-			$this->_aBreadCrumbTitle = array(Phpfox::getLib('locale')->convert($sPhrase), $sLink);
+			$this->_aBreadCrumbTitle = array(Phpfox_Locale::instance()->convert($sPhrase), $sLink);
 			if (!empty($sLink))
 			{
 				$this->setMeta('og:url', $sLink);
@@ -723,7 +723,7 @@ class Phpfox_Template
 		
 		if (!defined('PHPFOX_INSTALLER'))
 		{
-			$this->_aBreadCrumbs[$sLink] = Phpfox::getLib('locale')->convert($sPhrase);
+			$this->_aBreadCrumbs[$sLink] = Phpfox_Locale::instance()->convert($sPhrase);
 		}
 		
 		/*
@@ -940,18 +940,18 @@ class Phpfox_Template
 				
 		if (!Phpfox::getParam('core.include_site_title_all_pages'))
 		{
-			$sData .= (defined('PHPFOX_INSTALLER') ? Phpfox::getParam('core.global_site_title') : Phpfox::getLib('locale')->convert(Phpfox::getParam('core.global_site_title')));
+			$sData .= (defined('PHPFOX_INSTALLER') ? Phpfox::getParam('core.global_site_title') : Phpfox_Locale::instance()->convert(Phpfox::getParam('core.global_site_title')));
 		}
 		else
 		{
 			$sData = trim(rtrim(trim($sData), Phpfox::getParam('core.title_delim')));
 			if (empty($sData))
 			{
-				$sData = (defined('PHPFOX_INSTALLER') ? Phpfox::getParam('core.global_site_title') : Phpfox::getLib('locale')->convert(Phpfox::getParam('core.global_site_title')));
+				$sData = (defined('PHPFOX_INSTALLER') ? Phpfox::getParam('core.global_site_title') : Phpfox_Locale::instance()->convert(Phpfox::getParam('core.global_site_title')));
 			}
 		}
 		
-		$sSort = Phpfox::getLib('request')->get('sort');
+		$sSort = Phpfox_Request::instance()->get('sort');
 		if (!empty($sSort))
 		{
 			$mSortName = Phpfox::getLib('search')->getPhrase('sort', $sSort);
@@ -1129,7 +1129,7 @@ class Phpfox_Template
 		{
 			$this->setHeader(array('custom.css' => 'style_css'));
 
-			$aLocale = Phpfox::getLib('locale')->getLang();
+			$aLocale = Phpfox_Locale::instance()->getLang();
 			if ($aLocale['direction'] == 'rtl')
 			{
 				$this->setHeader(array(
@@ -1165,7 +1165,7 @@ class Phpfox_Template
 		$sCss = '';
 		$sJs = '';
 		$iVersion = $this->getStaticVersion();
-		$oUrl = Phpfox::getLib('url');		
+		$oUrl = Phpfox_Url::instance();
 		if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
 		{
 			$oCache = Phpfox::getLib('cache');			
@@ -1300,7 +1300,7 @@ class Phpfox_Template
 					$this->setHeader(array('player/' . Phpfox::getParam('core.default_music_player') . '/core.js' => 'static_script'));
 				}
 				
-				$sLocalDatepicker = PHPFOX_STATIC .'jscript/jquery/locale/jquery.ui.datepicker-' . strtolower(Phpfox::getLib('locale')->getLangId()) . '.js';				
+				$sLocalDatepicker = PHPFOX_STATIC .'jscript/jquery/locale/jquery.ui.datepicker-' . strtolower(Phpfox_Locale::instance()->getLangId()) . '.js';
 				
 				if (file_exists($sLocalDatepicker))
 				{
@@ -1311,7 +1311,7 @@ class Phpfox_Template
 				/* Only in a few cases will we want to add the visitor's IP */
 				if (Phpfox::getParam('core.google_api_key') != '' && Phpfox::getParam('core.ip_infodb_api_key'))
 				{
-					// $aJsVars['sIP'] = Phpfox::getLib('request')->getIp();
+					// $aJsVars['sIP'] = Phpfox_Request::instance()->getIp();
 				}
 				
 				$aJsVars['bEnableMicroblogSite'] = (Phpfox::isModule('microblog') ? Phpfox::getParam('microblog.enable_microblog_site') : false);		
@@ -1488,7 +1488,7 @@ class Phpfox_Template
 			$aSubCache = array();
 			$sStyleCacheData = '';
 			$sJsCacheData = '';		
-			$aUrl = Phpfox::getLib('url')->getParams();
+			$aUrl = Phpfox_Url::instance()->getParams();
 			// These two arrays hold the files to be combined+minified and put in CDN (if available)
             $aCacheJs = array();
             $aCacheCSS = array();
@@ -2171,7 +2171,7 @@ class Phpfox_Template
 						break;
 				}
 				$sMetaValue = str_replace('"', '\"', $sMetaValue);
-				$sMetaValue = Phpfox::getLib('locale')->convert($sMetaValue);				
+				$sMetaValue = Phpfox_Locale::instance()->convert($sMetaValue);
 				$sMetaValue = html_entity_decode($sMetaValue, null, 'UTF-8');
 				$sMetaValue = str_replace(array('<', '>'), '', $sMetaValue);	
 					
@@ -2242,7 +2242,7 @@ class Phpfox_Template
 
 			if (!$bHasNoDescription)
 			{
-				$sData .= "\t\t" . '<meta name="description" content="' . Phpfox::getLib('parse.output')->clean(Phpfox::getLib('locale')->convert(Phpfox::getParam('core.description'))) . '" />' . "\n";
+				$sData .= "\t\t" . '<meta name="description" content="' . Phpfox::getLib('parse.output')->clean(Phpfox_Locale::instance()->convert(Phpfox::getParam('core.description'))) . '" />' . "\n";
 			}
 		}
 
@@ -2827,7 +2827,7 @@ class Phpfox_Template
 	{
 		$oCache = Phpfox::getLib('cache');
 		$oDb = Phpfox_Database::instance();
-		$oReq = Phpfox::getLib('request');
+		$oReq = Phpfox_Request::instance();
 		
 		(($sPlugin = Phpfox_Plugin::get('template_template_getmenu_1')) ? eval($sPlugin) : false);
 		$aMenus = array();		
@@ -3191,7 +3191,7 @@ class Phpfox_Template
 	public function buildSectionMenu($sSection, $aFilterMenu)
 	{	
 		// Add a hook with return here 
-		$sView = Phpfox::getLib('request')->get('view');	
+		$sView = Phpfox_Request::instance()->get('view');
 		$aFilterMenuCache = array();		
 		$iFilterCount = 0;
 		$bHasMenu = false;		
@@ -3223,14 +3223,14 @@ class Phpfox_Template
 				if (!empty($sView) && $sView == $sMenuLink)
 				{
 					$this->setTitle(preg_replace('/<span(.*)>(.*)<\/span>/i', '', $sMenuName));
-					$this->setBreadcrumb(preg_replace('/<span(.*)>(.*)<\/span>/i', '', $sMenuName), Phpfox::getLib('url')->makeUrl($sSection, (empty($sMenuLink) ? array() : array('view' => $sMenuLink))), true);
+					$this->setBreadcrumb(preg_replace('/<span(.*)>(.*)<\/span>/i', '', $sMenuName), Phpfox_Url::instance()->makeUrl($sSection, (empty($sMenuLink) ? array() : array('view' => $sMenuLink))), true);
 				}				
 			}
 			else 
 			{				
-				if ((empty($sView) && str_replace('/', '.', Phpfox::getLib('url')->getUrl()) == $sMenuLink) 
-					|| (!empty($sView) && str_replace('/', '.', Phpfox::getLib('url')->getUrl()) . '.view_' . $sView == $sMenuLink) || (Phpfox_Module::instance()->getFullControllerName() == $sMenuLink)
-					|| (!empty($sView) && Phpfox::getLib('url')->getUrl() . '.view_' . $sView . '.id_' . Phpfox::getLib('request')->getInt('id') == $sMenuLink)	
+				if ((empty($sView) && str_replace('/', '.', Phpfox_Url::instance()->getUrl()) == $sMenuLink)
+					|| (!empty($sView) && str_replace('/', '.', Phpfox_Url::instance()->getUrl()) . '.view_' . $sView == $sMenuLink) || (Phpfox_Module::instance()->getFullControllerName() == $sMenuLink)
+					|| (!empty($sView) && Phpfox_Url::instance()->getUrl() . '.view_' . $sView . '.id_' . Phpfox_Request::instance()->getInt('id') == $sMenuLink)
 					|| (!empty($sView) && preg_match('/\/view_' . $sView . '\//i', $sMenuLink))
 				)
 				{					
@@ -3238,8 +3238,8 @@ class Phpfox_Template
 					$bForceActive = true;
 
 					$this->setTitle(preg_replace('/<span(.*)>(.*)<\/span>/i', '', $sMenuName));
-					// $this->setBreadcrumb(preg_replace('/<span(.*)>(.*)<\/span>/i', '', $sMenuName), Phpfox::getLib('url')->makeUrl($sSection, (empty($sMenuLink) ? array() : array('view' => $sMenuLink))), true);
-					$this->setBreadcrumb(preg_replace('/<span(.*)>(.*)<\/span>/i', '', $sMenuName), Phpfox::getLib('url')->makeUrl($sMenuLink), true);
+					// $this->setBreadcrumb(preg_replace('/<span(.*)>(.*)<\/span>/i', '', $sMenuName), Phpfox_Url::instance()->makeUrl($sSection, (empty($sMenuLink) ? array() : array('view' => $sMenuLink))), true);
+					$this->setBreadcrumb(preg_replace('/<span(.*)>(.*)<\/span>/i', '', $sMenuName), Phpfox_Url::instance()->makeUrl($sMenuLink), true);
 					
 					foreach ($aFilterMenuCache as $iSubKey => $aFilterMenuCacheRow)
 					{
@@ -3254,7 +3254,7 @@ class Phpfox_Template
 			
 			$aFilterMenuCache[] = array(
 				'name' => $sMenuName,
-				'link' => (!$bIsView ? Phpfox::getLib('url')->makeUrl($sMenuLink) : Phpfox::getLib('url')->makeUrl($sSection, (empty($sMenuLink) ? array() : array('view' => $sMenuLink)))),
+				'link' => (!$bIsView ? Phpfox_Url::instance()->makeUrl($sMenuLink) : Phpfox_Url::instance()->makeUrl($sSection, (empty($sMenuLink) ? array() : array('view' => $sMenuLink)))),
 				'active' => ($bForceActive ? true : ($sView == $sMenuLink ? true : false)),
 				'last' => (count($aFilterMenu) === $iFilterCount ? true : false)
 			);
@@ -3293,7 +3293,7 @@ class Phpfox_Template
 		$aMenu = $this->_aSectionMenu['menu'];
 		$aLink = $this->_aSectionMenu['link'];
 		
-		$sReq = Phpfox::getLib('request')->get('req3');
+		$sReq = Phpfox_Request::instance()->get('req3');
 		if (empty($sReq))
 		{
 			foreach ($aMenu as $sKey => $sValue)
@@ -3326,7 +3326,7 @@ class Phpfox_Template
 			'bIsFullLink' => $bIsFullLink
 		);
 		
-		$sPageCurrentUrl = Phpfox::getLib('url')->makeUrl('current');
+		$sPageCurrentUrl = Phpfox_Url::instance()->makeUrl('current');
 				
 		$this->assign(array(
 				'sPageSectionMenuName' => $sName,
@@ -3367,7 +3367,7 @@ class Phpfox_Template
 		{
 			$bDelayed = true;
 		}
-		$aSearch = Phpfox::getLib('request')->get('search');
+		$aSearch = Phpfox_Request::instance()->get('search');
 		if (!empty($aSearch))
 		{
 			$bDelayed = false;

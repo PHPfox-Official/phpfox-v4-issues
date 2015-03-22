@@ -1,8 +1,12 @@
 
-.error_message {
+.error_message, div.public_message, div.message {
 	.reset();
 	.alert();
 
 	background:@brandDanger;
 	color:@brandPrimaryColor;
+}
+
+div.public_message, div.message {
+	background:@brandInfo;
 }

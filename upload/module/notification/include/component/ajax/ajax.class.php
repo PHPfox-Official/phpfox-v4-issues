@@ -41,7 +41,7 @@ class Notification_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		if (!Phpfox::isUser())
 		{
-			$this->call('<script type="text/javascript">window.location.href = \'' . Phpfox::getLib('url')->makeUrl('user.login') . '\';</script>');
+			$this->call('<script type="text/javascript">window.location.href = \'' . Phpfox_Url::instance()->makeUrl('user.login') . '\';</script>');
 		}
 		else
 		{

@@ -47,7 +47,7 @@ class Photo_Service_Browse extends Phpfox_Service
 					->leftJoin(Phpfox::getT('action'), 'adisliked', 'adisliked.action_type_id = 2 AND adisliked.item_id = photo.photo_id AND adisliked.user_id = ' . Phpfox::getUserId());
 		}
 		
-		if (Phpfox::getLib('request')->get('mode') == 'edit')
+		if (Phpfox_Request::instance()->get('mode') == 'edit')
 		{
 			$this->database()->select('pi.description, ')->leftJoin(Phpfox::getT('photo_info'), 'pi', 'pi.photo_id = photo.photo_id');
 		}
@@ -55,7 +55,7 @@ class Photo_Service_Browse extends Phpfox_Service
 	
 	public function processRows(&$aRows)
 	{
-		$oReq = Phpfox::getLib('request');
+		$oReq = Phpfox_Request::instance();
 		foreach ($aRows as $iKey => $aRow)
 		{				
 			$aRows[$iKey]['link'] = Phpfox::permalink('photo', $aRow['photo_id'], $aRow['title']);
@@ -67,7 +67,7 @@ class Photo_Service_Browse extends Phpfox_Service
 			}
 			$aRows[$iKey]['destination'] = Phpfox::getService('photo')->getPhotoUrl($aRow);
 			
-			if (Phpfox::getLib('request')->get('mode') == 'edit')
+			if (Phpfox_Request::instance()->get('mode') == 'edit')
 			{
 				$sCategoryList = '';
 				$aCategories = (array) $this->database()->select('category_id')

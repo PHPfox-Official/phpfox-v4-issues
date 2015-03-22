@@ -72,7 +72,7 @@ class Photo_Service_Tag_Tag extends Phpfox_Service
 			
 			if (!empty($aTag['user_id']))
 			{
-				$sNotes .= 'note: \'<a href="' . Phpfox::getLib('url')->makeUrl($aTag['user_name']) . '" id="js_photo_tag_user_id_' . $aTag['user_id'] . '">' . $aTag['full_name'] . '</a>' . $sRemove . '\'';
+				$sNotes .= 'note: \'<a href="' . Phpfox_Url::instance()->makeUrl($aTag['user_name']) . '" id="js_photo_tag_user_id_' . $aTag['user_id'] . '">' . $aTag['full_name'] . '</a>' . $sRemove . '\'';
 			}
 			else 
 			{				

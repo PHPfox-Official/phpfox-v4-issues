@@ -20,23 +20,23 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 							
 							if ($bIsLoggedIn)
 							{
-								Phpfox::getLib('url')->send(Phpfox::getParam('user.redirect_after_login'));	
+								Phpfox_Url::instance()->send(Phpfox::getParam('user.redirect_after_login'));
 							}
 							else 
 							{
-								Phpfox::getLib('url')->send('facebook.account', array('type' => 'no-login'));
+								Phpfox_Url::instance()->send('facebook.account', array('type' => 'no-login'));
 							}
 						}
 						else 
 						{
-							Phpfox::getLib('url')->send('facebook.account', array('type' => 'no-account'));
+							Phpfox_Url::instance()->send('facebook.account', array('type' => 'no-account'));
 						}
 					}					
 					break;
 				default:							
 					if (!($oObject = Phpfox::getService('facebook')->get('me', Phpfox::getParam('core.path') . 'index.php?facebook-process-login=true')))
 					{
-						Phpfox::getLib('url')->send('facebook.account', array('type' => 'no-account'));	
+						Phpfox_Url::instance()->send('facebook.account', array('type' => 'no-account'));
 					}
 		
 					if (isset($oObject->id))
@@ -58,7 +58,7 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 								list($bIsLoggedIn, $aPostUserInfo) = Phpfox::getService('user.auth')->login($aUserCache['user_name'], null, false, 'user_name', true);
 								if ($bIsLoggedIn)
 								{							
-									Phpfox::getLib('url')->send(Phpfox::getParam('user.redirect_after_login'));	
+									Phpfox_Url::instance()->send(Phpfox::getParam('user.redirect_after_login'));
 								}																	
 							}
 						}
@@ -70,7 +70,7 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 							list($bIsLoggedIn, $aPostUserInfo) = Phpfox::getService('user.auth')->login($aUser['user_name'], null, false, 'user_name', true);
 							if ($bIsLoggedIn)
 							{						
-								Phpfox::getLib('url')->send(Phpfox::getParam('user.redirect_after_login'));	
+								Phpfox_Url::instance()->send(Phpfox::getParam('user.redirect_after_login'));
 							}							
 						}
 						
@@ -91,7 +91,7 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 							
 							if (empty($aVals['full_name']))
 							{
-								Phpfox::getLib('url')->send('facebook.account', array('type' => 'full-name'));
+								Phpfox_Url::instance()->send('facebook.account', array('type' => 'full-name'));
 							}					
 							
 							if (!empty($aUserInfo['link']))
@@ -110,7 +110,7 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 							Phpfox::getService('user.validate')->email($aUserInfo['email']);					
 							if (Phpfox_Error::get())
 							{
-								Phpfox::getLib('url')->send('facebook.account', array('type' => 'email'));
+								Phpfox_Url::instance()->send('facebook.account', array('type' => 'email'));
 							}
 							
 							$aVals['user_name'] = Phpfox::getLib('parse.input')->prepareTitle('user', $aVals['user_name'], 'user_name', null, Phpfox::getT('user'));
@@ -146,7 +146,7 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 							
 							if ($iUserId === false)
 							{
-								Phpfox::getLib('url')->send('facebook.account', array('type' => 'no-account', 'error' => serialize(Phpfox_Error::get())));
+								Phpfox_Url::instance()->send('facebook.account', array('type' => 'no-account', 'error' => serialize(Phpfox_Error::get())));
 							}
 							else 
 							{
@@ -173,11 +173,11 @@ if (Phpfox::getParam('facebook.enable_facebook_connect'))
 								
 								if (Phpfox::getService('user.auth')->login($aVals['user_name'], null, false, 'user_name', true))
 								{
-									Phpfox::getLib('url')->send('');	
+									Phpfox_Url::instance()->send('');
 								}
 								else 
 								{
-									Phpfox::getLib('url')->send('facebook.account', array('type' => 'no-login'));
+									Phpfox_Url::instance()->send('facebook.account', array('type' => 'no-login'));
 								}								
 							}
 						}

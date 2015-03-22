@@ -193,7 +193,7 @@ class Pages_Service_Pages extends Phpfox_Service
 						'return_url' => true,
 						'suffix' => '_75_square'
 						));
-					$sParsedPath = str_replace(Phpfox::getLib('url')->makeUrl(''),'',$sPath);
+					$sParsedPath = str_replace(Phpfox_Url::instance()->makeUrl(''),'',$sPath);
 					if (!file_exists($sParsedPath))
 					{
 						$sPath = $sPath = Phpfox::getLib('phpfox.image.helper')->display(array(
@@ -201,7 +201,7 @@ class Pages_Service_Pages extends Phpfox_Service
 						'return_url' => true,
 						'suffix' => '_120'
 						));
-						$sParsedPath = str_replace(Phpfox::getLib('url')->makeUrl(''),'',$sPath);
+						$sParsedPath = str_replace(Phpfox_Url::instance()->makeUrl(''),'',$sPath);
 						if (file_exists($sParsedPath))
 						{
 							$aPages[$iKey]['image_overwrite'] = $sPath;
@@ -481,11 +481,11 @@ class Pages_Service_Pages extends Phpfox_Service
 		
 		if (!empty($sVanityUrl))
 		{
-			return Phpfox::getLib('url')->makeUrl($sVanityUrl);
+			return Phpfox_Url::instance()->makeUrl($sVanityUrl);
 		}
 
 		// return Phpfox::permalink('pages', $iPageId, $sTitle);
-		return Phpfox::getLib('url')->makeUrl('pages', $iPageId);
+		return Phpfox_Url::instance()->makeUrl('pages', $iPageId);
 	}
 	
 	public function isPage($sUrl)
@@ -565,7 +565,7 @@ class Pages_Service_Pages extends Phpfox_Service
 				$sSubUrl = rtrim(str_replace($sHomeUrl, '', $aMenu['url']), '/');
 				if(!empty($sSubUrl))
 				{
-					$aMenus[$iKey]['url'] = $sHomeUrl . Phpfox::getLib('url')->doRewrite($sSubUrl) . PHPFOX_DS;
+					$aMenus[$iKey]['url'] = $sHomeUrl . Phpfox_Url::instance()->doRewrite($sSubUrl) . PHPFOX_DS;
 				}
 			}
 		}
@@ -576,37 +576,37 @@ class Pages_Service_Pages extends Phpfox_Service
 			{
 				$sSubUrl = rtrim(str_replace($sHomeUrl, '', $aMenu['url']), '/');			
 								
-				if ((Phpfox::getLib('request')->get('req3') == 'info' || Phpfox::getLib('request')->get('req2') == 'info') && $sSubUrl == 'info')
+				if ((Phpfox_Request::instance()->get('req3') == 'info' || Phpfox_Request::instance()->get('req2') == 'info') && $sSubUrl == 'info')
 				{
 					$aMenus[$iKey]['is_selected'] = true;
 					break;					
 				}
 				
-				if ((Phpfox::getLib('request')->get('req3') == 'wall' || Phpfox::getLib('request')->get('req2') == 'wall') && $sSubUrl == 'wall')
+				if ((Phpfox_Request::instance()->get('req3') == 'wall' || Phpfox_Request::instance()->get('req2') == 'wall') && $sSubUrl == 'wall')
 				{
 					$aMenus[$iKey]['is_selected'] = true;
 					break;					
 				}				
 				
-				if ((Phpfox::getLib('request')->get('req3') == 'pending' || Phpfox::getLib('request')->get('req2') == 'pending') && $sSubUrl == 'pending')
+				if ((Phpfox_Request::instance()->get('req3') == 'pending' || Phpfox_Request::instance()->get('req2') == 'pending') && $sSubUrl == 'pending')
 				{
 					$aMenus[$iKey]['is_selected'] = true;
 					break;					
 				}				
 				
-				if (empty($sSubUrl) && Phpfox::getLib('request')->get((empty($aPage['vanity_url']) ? 'req3' : 'req2')) == '')
+				if (empty($sSubUrl) && Phpfox_Request::instance()->get((empty($aPage['vanity_url']) ? 'req3' : 'req2')) == '')
 				{
 					$aMenus[$iKey]['is_selected'] = true;
 					break;										
 				}
 				
-				if ($sSubUrl == 'info' && $aPage['landing_page'] == 'info' && Phpfox::getLib('request')->get((empty($aPage['vanity_url']) ? 'req3' : 'req2')) == '')
+				if ($sSubUrl == 'info' && $aPage['landing_page'] == 'info' && Phpfox_Request::instance()->get((empty($aPage['vanity_url']) ? 'req3' : 'req2')) == '')
 				{
 					$aMenus[$iKey]['is_selected'] = true;
 					break;										
 				}			
 				
-				if (!empty($sSubUrl) && $sSubUrl == Phpfox::getLib('request')->get((empty($aPage['vanity_url']) ? 'req3' : 'req2')))
+				if (!empty($sSubUrl) && $sSubUrl == Phpfox_Request::instance()->get((empty($aPage['vanity_url']) ? 'req3' : 'req2')))
 				{
 					$aMenus[$iKey]['is_selected'] = true;
 					break;						
@@ -1021,7 +1021,7 @@ class Pages_Service_Pages extends Phpfox_Service
 			->where('p.page_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
 				
-		$aRow['link'] = Phpfox::getLib('url')->permalink('pages', $aRow['page_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('pages', $aRow['page_id'], $aRow['title']);
 		return $aRow;
 	}
 	

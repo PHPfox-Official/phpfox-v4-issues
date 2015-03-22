@@ -33,7 +33,7 @@ class Phpfox_Api
 	public function send($sCmd, $aVals = array())
 	{		
 		$aVals['domain'] = $this->_getDomain();
-		$mReturn = Phpfox::getLib('request')->send(PHPFOX::PHPFOX_API, array('request' => base64_encode(serialize(array_merge(array('cmd' => $sCmd), $aVals)))), 'POST');				
+		$mReturn = Phpfox_Request::instance()->send(PHPFOX::PHPFOX_API, array('request' => base64_encode(serialize(array_merge(array('cmd' => $sCmd), $aVals)))), 'POST');
 
 		$mReturn = unserialize($mReturn);	
 

@@ -166,7 +166,7 @@ class Forum_Service_Post_Process extends Phpfox_Service
 		
 		((Phpfox::isModule('feed') && !defined('PHPFOX_SKIP_FEED_ENTRY')) ? Phpfox::getService('feed.process')->add('forum_post', $iPostId, 0, 0, 0, $aPost['user_id']) : null);		
 		
-		$sCurrentUrl = Phpfox::getLib('url')->permalink('forum.thread', $aThread['thread_id'], $aThread['title'], false, null, array('view' => $aPost['post_id']));
+		$sCurrentUrl = Phpfox_Url::instance()->permalink('forum.thread', $aThread['thread_id'], $aThread['title'], false, null, array('view' => $aPost['post_id']));
 		
 		Phpfox::getLib('mail')->to($aPost['user_id'])
 			->subject(array('forum.forum_post_approved_on_site_title', array('site_title' => Phpfox::getParam('core.site_title'))))

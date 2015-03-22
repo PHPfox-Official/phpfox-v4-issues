@@ -25,7 +25,7 @@ class Pages_Component_Controller_Frame extends Phpfox_Component
 			if (($this->request()->get('widget_id') ? Phpfox::getService('pages.process')->updateWidget($this->request()->get('widget_id'), $this->request()->get('val')) : Phpfox::getService('pages.process')->addWidget($this->request()->get('val'))))
 			{
 				$aVals = $this->request()->get('val');
-				echo '<script type="text/javascript">window.parent.location.href = \'' . Phpfox::getLib('url')->makeUrl('pages.add.widget', array('id' => $aVals['page_id'])) . '\';</script>';
+				echo '<script type="text/javascript">window.parent.location.href = \'' . Phpfox_Url::instance()->makeUrl('pages.add.widget', array('id' => $aVals['page_id'])) . '\';</script>';
 			}
 			else
 			{

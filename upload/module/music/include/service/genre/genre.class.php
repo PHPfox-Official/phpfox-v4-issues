@@ -39,7 +39,7 @@ class Music_Service_Genre_Genre extends Phpfox_Service
 		
 		foreach ($aRows as $iKey => $aRow)
 		{
-			if (($sView = Phpfox::getLib('request')->get('view')))
+			if (($sView = Phpfox_Request::instance()->get('view')))
 			{
 				$aRows[$iKey]['link'] = Phpfox::permalink('music.genre', $aRow['genre_id'], $aRow['name'], false, null, array('view' => $sView));
 			}

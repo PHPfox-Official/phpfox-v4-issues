@@ -60,7 +60,7 @@ class Group_Service_Category_Category extends Phpfox_Service
 			{
 				if ($sCategory === null)
 				{				
-					$aCategories[$iKey]['url'] = Phpfox::getLib('url')->makeUrl('group.category', $aCategory['name_url']);
+					$aCategories[$iKey]['url'] = Phpfox_Url::instance()->makeUrl('group.category', $aCategory['name_url']);
 				}
 				else 
 				{
@@ -77,7 +77,7 @@ class Group_Service_Category_Category extends Phpfox_Service
 					}			
 					$aParentCache[] = $aCategory['name_url'];
 					
-					$aCategories[$iKey]['url'] = Phpfox::getLib('url')->makeUrl('group.category', $aParentCache);
+					$aCategories[$iKey]['url'] = Phpfox_Url::instance()->makeUrl('group.category', $aParentCache);
 				}
 				
 				//if ($sCategory === null)
@@ -90,7 +90,7 @@ class Group_Service_Category_Category extends Phpfox_Service
 						
 					foreach ($aCategories[$iKey]['sub'] as $iSubKey => $aSubCategory)
 					{
-						$aCategories[$iKey]['sub'][$iSubKey]['url'] = Phpfox::getLib('url')->makeUrl('group.category', array($aCategory['name_url'], $aSubCategory['name_url']));
+						$aCategories[$iKey]['sub'][$iSubKey]['url'] = Phpfox_Url::instance()->makeUrl('group.category', array($aCategory['name_url'], $aSubCategory['name_url']));
 					}
 				}
 			}
@@ -158,7 +158,7 @@ class Group_Service_Category_Category extends Phpfox_Service
 	
 	public function getCategoriesById($iId = null, &$aCategories = null)
 	{
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 
 		if ($aCategories === null)
 		{
@@ -196,17 +196,17 @@ class Group_Service_Category_Category extends Phpfox_Service
 					}	
 					$aCache[] = $aCategory['name_url'];
 					
-					$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategory['name']), Phpfox::getLib('url')->makeUrl('group.category', $aCache));
+					$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategory['name']), Phpfox_Url::instance()->makeUrl('group.category', $aCache));
 				}				
 				else 
 				{
-					$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategory['name']), Phpfox::getLib('url')->makeUrl('group.category', $aCategory['name_url']));
+					$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategory['name']), Phpfox_Url::instance()->makeUrl('group.category', $aCategory['name_url']));
 				}				
 			}
 		}		
 		else 
 		{			
-			$aBreadcrumb[] = array(Phpfox::getLib('locale')->convert($aCategories[0]['name']), Phpfox::getLib('url')->makeUrl('group.category', $aCategories[0]['name_url']));
+			$aBreadcrumb[] = array(Phpfox_Locale::instance()->convert($aCategories[0]['name']), Phpfox_Url::instance()->makeUrl('group.category', $aCategories[0]['name_url']));
 		}
 		
 		return $aBreadcrumb;
@@ -368,16 +368,16 @@ class Group_Service_Category_Category extends Phpfox_Service
 				
 				if ($this->_sDisplay == 'option')
 				{
-					$this->_sOutput .= '<option value="' . $aCategory['category_id'] . '" id="js_mp_category_item_' . $aCategory['category_id'] . '">' . ($this->_iCnt > 0 ? str_repeat('&nbsp;', ($this->_iCnt * 2)) . ' ' : '') . Phpfox::getLib('locale')->convert($aCategory['name']) . '</option>' . "\n";
+					$this->_sOutput .= '<option value="' . $aCategory['category_id'] . '" id="js_mp_category_item_' . $aCategory['category_id'] . '">' . ($this->_iCnt > 0 ? str_repeat('&nbsp;', ($this->_iCnt * 2)) . ' ' : '') . Phpfox_Locale::instance()->convert($aCategory['name']) . '</option>' . "\n";
 					$this->_sOutput .= $this->_get($aCategory['category_id'], $iActive);					
 				}
 				elseif ($this->_sDisplay == 'admincp')
 				{
-					$sOutput .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <input type="hidden" name="order[' . $aCategory['category_id'] . ']" value="' . $aCategory['ordering'] . '" class="js_mp_order" /><a href="#?id=' . $aCategory['category_id'] . '" class="js_drop_down">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</a>' . $this->_get($aCategory['category_id'], $iActive) . '</li>' . "\n";
+					$sOutput .= '<li><img src="' . Phpfox_Template::instance()->getStyle('image', 'misc/draggable.png') . '" alt="" /> <input type="hidden" name="order[' . $aCategory['category_id'] . ']" value="' . $aCategory['ordering'] . '" class="js_mp_order" /><a href="#?id=' . $aCategory['category_id'] . '" class="js_drop_down">' . Phpfox_Locale::instance()->convert($aCategory['name']) . '</a>' . $this->_get($aCategory['category_id'], $iActive) . '</li>' . "\n";
 				}
 				else 
 				{				
-					$this->_sOutput .= '<option value="' . $aCategory['category_id'] . '" id="js_mp_category_item_' . $aCategory['category_id'] . '">' . Phpfox::getLib('locale')->convert($aCategory['name']) . '</option>' . "\n";
+					$this->_sOutput .= '<option value="' . $aCategory['category_id'] . '" id="js_mp_category_item_' . $aCategory['category_id'] . '">' . Phpfox_Locale::instance()->convert($aCategory['name']) . '</option>' . "\n";
 				}
 			}
 			

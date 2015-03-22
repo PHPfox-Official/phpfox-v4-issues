@@ -27,7 +27,7 @@ class Ad_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function sample()
 	{
-		echo '<iframe src="' . Phpfox::getLib('url')->makeUrl('ad', array('sample', 'get-block-layout' => 'true', 'click' => ($this->get('click') ? '1' : '0'), 'no-click' => ($this->get('no-click') ? '1' : '0'))) . '" width="100%" height="500" frameborder="0" scrolling="yes"></iframe>';		
+		echo '<iframe src="' . Phpfox_Url::instance()->makeUrl('ad', array('sample', 'get-block-layout' => 'true', 'click' => ($this->get('click') ? '1' : '0'), 'no-click' => ($this->get('no-click') ? '1' : '0'))) . '" width="100%" height="500" frameborder="0" scrolling="yes"></iframe>';
 	}
 	
 	public function changeImage()

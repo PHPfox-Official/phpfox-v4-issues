@@ -142,7 +142,7 @@ class Theme_Service_Theme extends Phpfox_Service
 		
 		if (Phpfox::getParam(array('balancer', 'enabled')))
 		{
-			$sCacheFile = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID') . '_' . $sCacheFile;
+			$sCacheFile = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID') . '_' . $sCacheFile;
 		}
 		
 		$sCssFile = '<link id="js_user_profile_css" rel="stylesheet" type="text/css" href="' . Phpfox::getParam('css.url_cache') . $sCacheFile . '" />';

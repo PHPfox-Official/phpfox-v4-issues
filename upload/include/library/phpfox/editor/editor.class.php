@@ -125,7 +125,7 @@ class Phpfox_Editor
 	 */
 	public function getValue($iId, $sDefaultValue = null)
 	{
-		if (!($aParams = Phpfox::getLib('request')->getArray('val')))
+		if (!($aParams = Phpfox_Request::instance()->getArray('val')))
 		{
 			$aParams = Phpfox_Template::instance()->getVar('aForms');
 		}

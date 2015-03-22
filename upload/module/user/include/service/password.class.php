@@ -32,7 +32,7 @@ class User_Service_Password extends Phpfox_Service
 			return Phpfox_Error::set(Phpfox::getPhrase('user.not_a_valid_email'));
 		}
 		
-		$aVals = Phpfox::getLib('request')->getArray('val');
+		$aVals = Phpfox_Request::instance()->getArray('val');
 		
 		if (empty($aUser['email']) || $aUser['profile_page_id'] > 0)
 		{
@@ -51,7 +51,7 @@ class User_Service_Password extends Phpfox_Service
 			
 		// Send the user an email
 		$sHash = md5($aUser['user_id'] . $aUser['email'] . Phpfox::getParam('core.salt'));
-		$sLink = Phpfox::getLib('url')->makeUrl('user.password.verify', array('id' => $sHash));
+		$sLink = Phpfox_Url::instance()->makeUrl('user.password.verify', array('id' => $sHash));
 		Phpfox::getLib('mail')->to($aUser['user_id'])
 			->subject(array('user.password_request_for_site_title', array('site_title' => Phpfox::getParam('core.site_title'))))
 			->message(array('user.you_have_requested_for_us_to_send_you_a_new_password_for_site_title', array(
@@ -142,7 +142,7 @@ class User_Service_Password extends Phpfox_Service
 		$this->database()->delete(Phpfox::getT('password_request'), 'user_id = ' . $aRequest['user_id']);
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->makeUrl('user.login');
+		$sLink = Phpfox_Url::instance()->makeUrl('user.login');
 		
 		(($sPlugin = Phpfox_Plugin::get('user.service_password_verifyrequest_4')) ? eval($sPlugin) : false);
 		Phpfox::getLib('mail')->to($aRequest['user_id'])

@@ -37,7 +37,7 @@ class Apps_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('apps.apps'),
-			'link' => Phpfox::getLib('url')->makeUrl('apps'),
+			'link' => Phpfox_Url::instance()->makeUrl('apps'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_apps.png'))
 		);
 	}	

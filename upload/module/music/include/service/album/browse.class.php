@@ -32,7 +32,7 @@ class Music_Service_Album_Browse extends Phpfox_Service
 				'total_comment' => $aAlbum['total_comment'],
 				'feed_total_like' => $aAlbum['total_like'],
 				'total_like' => $aAlbum['total_like'],
-				'feed_link' => Phpfox::getLib('url')->permalink('music.album', $aAlbum['album_id'], $aAlbum['name']),
+				'feed_link' => Phpfox_Url::instance()->permalink('music.album', $aAlbum['album_id'], $aAlbum['name']),
 				'feed_title' => $aAlbum['name']			
 			);	
 		}

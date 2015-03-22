@@ -631,7 +631,7 @@ class Quiz_Service_Quiz extends Phpfox_Service
 			d(__FILE__ . ':' . __LINE__);
 		}
 		
-		$aRow['link'] = Phpfox::getLib('url')->permalink('quiz', $aRow['quiz_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('quiz', $aRow['quiz_id'], $aRow['title']);
 		return $aRow;
 	}
 	

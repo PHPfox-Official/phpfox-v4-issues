@@ -503,7 +503,7 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 			
 			Phpfox::getLib('pager')->set(array(
 					'ajax' => 'comment.viewMoreFeed', 
-					'page' => Phpfox::getLib('request')->getInt('page'), 
+					'page' => Phpfox_Request::instance()->getInt('page'),
 					'size' => $this->get('pagelimit'), 
 					'count' => $this->get('total'),
 					'phrase' => 'View previous comments',

@@ -51,7 +51,7 @@ class Video_Service_Grab extends Phpfox_Service
 			$aSites = array();		
 			if ((!($this->_aRegex = $this->cache()->get($sCacheId)) || (!($aSites = $this->cache()->get($sCacheId2)))))
 			{			
-				$oOutput = json_decode(Phpfox::getLib('request')->send('http://api.embed.ly/1/services/php', array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
+				$oOutput = json_decode(Phpfox_Request::instance()->send('http://api.embed.ly/1/services/php', array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
 
 				foreach ($oOutput as $aOutput)
 				{
@@ -206,7 +206,7 @@ class Video_Service_Grab extends Phpfox_Service
 					$sKey = 'key=' . Phpfox::getParam('video.embedly_api_key') . '&';
 				}
 				
-				$oVideo = json_decode(Phpfox::getLib('request')->send('http://api.embed.ly/1/oembed?' . $sKey . 'format=json&maxwidth=400&url=' . urlencode($this->_aData['url']), array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
+				$oVideo = json_decode(Phpfox_Request::instance()->send('http://api.embed.ly/1/oembed?' . $sKey . 'format=json&maxwidth=400&url=' . urlencode($this->_aData['url']), array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
 				
 				// http://www.phpfox.com/tracker/view/15256/
 				if(!isset($oVideo->thumbnail_url))
@@ -227,7 +227,7 @@ class Video_Service_Grab extends Phpfox_Service
 							}
 						}
 						
-						$oThumbnail = json_decode(Phpfox::getLib('request')->send('https://graph.facebook.com/' . $iId . '/picture?redirect=false', array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
+						$oThumbnail = json_decode(Phpfox_Request::instance()->send('https://graph.facebook.com/' . $iId . '/picture?redirect=false', array(), 'GET', $_SERVER['HTTP_USER_AGENT']));
 						$oVideo->thumbnail_url = $oThumbnail->data->url;
 						$oVideo->type = 'video';
 						$oVideo->html = '<iframe src="https://www.facebook.com/video/embed?video_id=' . $iId . '" width="560" height="430" frameborder="0"></iframe>';
@@ -263,7 +263,7 @@ class Video_Service_Grab extends Phpfox_Service
 	
 						}
 						parse_str($aUrl['query'], $aStr);
-						$xVideo = Phpfox::getLib('request')->send('http://gdata.youtube.com/feeds/api/videos/' . $aStr['v'], array(), 'GET');
+						$xVideo = Phpfox_Request::instance()->send('http://gdata.youtube.com/feeds/api/videos/' . $aStr['v'], array(), 'GET');
 						if ($xVideo == 'Video not found' || $xVideo == 'Private video')
 						{
 							return false;
@@ -282,7 +282,7 @@ class Video_Service_Grab extends Phpfox_Service
 						{
 							$this->_aData['url'] .= '/';
 						}
-						$this->_aData['html'] = Phpfox::getLib('request')->send($this->_aData['url'], array(), 'GET');
+						$this->_aData['html'] = Phpfox_Request::instance()->send($this->_aData['url'], array(), 'GET');
 						break;
 					default:
 	
@@ -429,7 +429,7 @@ class Video_Service_Grab extends Phpfox_Service
 			}
 
 			//@copy($sImage, sprintf($sImageLocation, '_120'));
-			$oImage = Phpfox::getLib('request')->send($sImage, array(), 'GET');
+			$oImage = Phpfox_Request::instance()->send($sImage, array(), 'GET');
 			$sTempImage = 'video_temporal_image_'.$iId;
 			Phpfox_File::instance()->writeToCache($sTempImage, $oImage);
 			@copy(PHPFOX_DIR_CACHE . $sTempImage, sprintf($sImageLocation, '_120'));

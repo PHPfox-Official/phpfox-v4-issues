@@ -128,7 +128,7 @@ class Quiz_Service_Process extends Phpfox_Service
 		}
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('quiz', $aQuiz['quiz_id'], $aQuiz['title']);
+		$sLink = Phpfox_Url::instance()->permalink('quiz', $aQuiz['quiz_id'], $aQuiz['title']);
 		Phpfox::getLib('mail')->to($aQuiz['user_id'])
 			->subject('Your quiz "' . $aQuiz['title'] . '" has been approved')
 			->message("Your quiz \"<a href=\"" . $sLink . "\">" . $aQuiz['title'] . "</a>\" has been approved.\nTo view this quiz follow the link below:\n<a href=\"" . $sLink . "\">" . $sLink . "</a>")				
@@ -214,7 +214,7 @@ class Quiz_Service_Process extends Phpfox_Service
 					$sFileName = $oFile->upload('image', Phpfox::getParam('quiz.dir_image'), (int)$aQuiz['quiz_id']);
 					// update the poll
 					$aUpdate['image_path'] = $sFileName;
-					$aUpdate['server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');
+					$aUpdate['server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 					// 'quiz_id = ' . (int)$aQuiz['quiz_id']);
 					// now the thumbnails
 					$iSize = Phpfox::getParam('quiz.quiz_max_image_pic_size');
@@ -566,7 +566,7 @@ class Quiz_Service_Process extends Phpfox_Service
 				$sFileName = $oFile->upload('image', Phpfox::getParam('quiz.dir_image'), $iQuizId);				
 				
 				// update the poll
-				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'quiz_id = ' . $iQuizId);
+				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'quiz_id = ' . $iQuizId);
 				// now the thumbnails
 				$iSize = Phpfox::getParam('quiz.quiz_max_image_pic_size');
 

@@ -115,7 +115,7 @@ class Music_Service_Music extends Phpfox_Service
 		}		
 			
 		$aSong['song_path'] = $this->getSongPath($aSong['song_path'], $aSong['server_id']);
-		$aSong['bookmark'] = Phpfox::getLib('url')->permalink('music', $aSong['song_id'], $aSong['title']);
+		$aSong['bookmark'] = Phpfox_Url::instance()->permalink('music', $aSong['song_id'], $aSong['title']);
 		if (!isset($aSong['song_total_comment']))
 		{
 		    $aSong['song_total_comment'] = 0;
@@ -184,7 +184,7 @@ class Music_Service_Music extends Phpfox_Service
 				
 			foreach ($aSongs as $iKey => $aSong)
 			{
-				$aSongs[$iKey]['url'] = Phpfox::getLib('url')->permalink('music', $aSong['song_id'], $aSong['title']);
+				$aSongs[$iKey]['url'] = Phpfox_Url::instance()->permalink('music', $aSong['song_id'], $aSong['title']);
 			}
 			
 			$this->cache()->save($sCacheId, $aSongs);
@@ -322,7 +322,7 @@ class Music_Service_Music extends Phpfox_Service
 				->join(Phpfox::getT('user'), 'u', 'u.user_id = ms.user_id')
 				->where('ms.song_id = ' . (int) $aItem['item_id'])
 				->execute('getSlaveRow');
-			$aRow['link'] = Phpfox::getLib('url')->permalink('music', $aRow['song_id'], $aRow['title']);
+			$aRow['link'] = Phpfox_Url::instance()->permalink('music', $aRow['song_id'], $aRow['title']);
 			return $aRow;
 		}
 		
@@ -332,7 +332,7 @@ class Music_Service_Music extends Phpfox_Service
 			->join(Phpfox::getT('user'), 'u', 'u.user_id = ma.user_id')
 			->where('ma.album_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
-		$aRow['link'] = Phpfox::getLib('url')->permalink('music.album', $aRow['album_id'], $aRow['title']);
+		$aRow['link'] = Phpfox_Url::instance()->permalink('music.album', $aRow['album_id'], $aRow['title']);
 		return $aRow;
 			
 	}

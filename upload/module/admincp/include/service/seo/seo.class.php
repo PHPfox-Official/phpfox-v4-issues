@@ -42,7 +42,7 @@ class Admincp_Service_Seo_Seo extends Phpfox_Service
 		
 		if (count($aNoFollows))
 		{
-			$sUrl = trim(Phpfox::getLib('url')->getFullUrl(true), '/');
+			$sUrl = trim(Phpfox_Url::instance()->getFullUrl(true), '/');
 			if (isset($aNoFollows[$sUrl]))
 			{
 				Phpfox_Template::instance()->setHeader('<meta name="robots" content="nofollow" />');
@@ -71,7 +71,7 @@ class Admincp_Service_Seo_Seo extends Phpfox_Service
 
 		if (count($aMetas))
 		{
-			$sUrl = trim(Phpfox::getLib('url')->getFullUrl(true), '/');
+			$sUrl = trim(Phpfox_Url::instance()->getFullUrl(true), '/');
 
 			if (isset($aMetas[$sUrl]))
 			{
@@ -79,7 +79,7 @@ class Admincp_Service_Seo_Seo extends Phpfox_Service
 				{
 					if ($aMeta['type_id'] == '2')
 					{
-						Phpfox_Template::instance()->setTitle(Phpfox::getLib('locale')->convert($aMeta['content']));
+						Phpfox_Template::instance()->setTitle(Phpfox_Locale::instance()->convert($aMeta['content']));
 						
 						continue;
 					}

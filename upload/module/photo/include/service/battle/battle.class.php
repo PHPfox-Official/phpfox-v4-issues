@@ -59,18 +59,18 @@ class Photo_Service_Battle_Battle extends Phpfox_Service
 			return false;
 		}
 		
-		$sMode = (Phpfox::getLib('request')->get('mode') == 'full' ? 'full' : '');
+		$sMode = (Phpfox_Request::instance()->get('mode') == 'full' ? 'full' : '');
 		
 		$aPhotos = array();
 		foreach ($aRows as $iKey => $aRow)
 		{
 			if ($iKey === 0)
 			{
-				$aRow['link'] = Phpfox::getLib('url')->makeUrl('photo.battle', array('w' => $aRow['photo_id'], 'l' => $aRows[1]['photo_id'], 'mode' => $sMode));
+				$aRow['link'] = Phpfox_Url::instance()->makeUrl('photo.battle', array('w' => $aRow['photo_id'], 'l' => $aRows[1]['photo_id'], 'mode' => $sMode));
 			}
 			else 
 			{
-				$aRow['link'] = Phpfox::getLib('url')->makeUrl('photo.battle', array('w' => $aRow['photo_id'], 'l' => $aRows[0]['photo_id'], 'mode' => $sMode));
+				$aRow['link'] = Phpfox_Url::instance()->makeUrl('photo.battle', array('w' => $aRow['photo_id'], 'l' => $aRows[0]['photo_id'], 'mode' => $sMode));
 			}
 			
 			$aPhotos[($iKey === 0 ? 'one' : 'two')] = $aRow;
@@ -98,7 +98,7 @@ class Photo_Service_Battle_Battle extends Phpfox_Service
 			}
 			elseif ($sKey == 'full_name')
 			{
-				$sValue = '<a href="' . Phpfox::getLib('url')->makeUrl($aPhoto['user_name']) . '">' . $aPhoto['full_name'] . '</a>';
+				$sValue = '<a href="' . Phpfox_Url::instance()->makeUrl($aPhoto['user_name']) . '">' . $aPhoto['full_name'] . '</a>';
 			}				
 			elseif ($sKey == 'time_stamp')
 			{

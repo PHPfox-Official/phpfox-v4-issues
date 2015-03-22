@@ -283,8 +283,8 @@ class Phpfox_Module
 			// Reset the lang. pack cache since we are using a new controller
 			if (Phpfox::getParam('language.cache_phrases'))
 			{				
-				Phpfox::getLib('locale')->cache();
-				Phpfox::getLib('locale')->setCache();
+				Phpfox_Locale::instance()->cache();
+				Phpfox_Locale::instance()->setCache();
 			}
 			
 			$this->getController();
@@ -294,8 +294,8 @@ class Phpfox_Module
 		
 		(($sPlugin = Phpfox_Plugin::get('module_setcontroller_start')) ? eval($sPlugin) : false);
 		
-		$oUrl = Phpfox::getLib('url');
-		$oReq = Phpfox::getLib('request');		
+		$oUrl = Phpfox_Url::instance();
+		$oReq = Phpfox_Request::instance();
 		$oPage = Phpfox::getService('page');
 		
 		$this->_sModule = (($sReq1 = $oReq->get('req1')) ? strtolower($sReq1) : Phpfox::getParam('core.module_core'));		
@@ -323,12 +323,12 @@ class Phpfox_Module
 		
 		if ($oReq->get('req2') == Phpfox::getParam('admincp.admin_cp'))
 		{
-			Phpfox::getLib('url')->send($oReq->get('req2') . '.' . $oReq->get('req1'));
+			Phpfox_Url::instance()->send($oReq->get('req2') . '.' . $oReq->get('req1'));
 		}
 		
 		if ($oReq->get('req1') == 'admincp' && Phpfox::getParam('admincp.admin_cp') != 'admincp')
 		{
-			Phpfox::getLib('url')->send('error.404');					
+			Phpfox_Url::instance()->send('error.404');
 		}		
 		
 		if ($oReq->get('req2') && file_exists($sDir . PHPFOX_DIR_MODULE_COMPONENT . PHPFOX_DS . 'controller' . PHPFOX_DS . strtolower($oReq->get('req2')) . '.class.php'))
@@ -390,7 +390,7 @@ class Phpfox_Module
 		// Set the language pack cache
 		if (Phpfox::getParam('language.cache_phrases'))
 		{			
-			Phpfox::getLib('locale')->setCache();
+			Phpfox_Locale::instance()->setCache();
 		}		
 		$bCookie = (Phpfox::getCookie('page_login') && Phpfox::getUserBy('profile_page_id') > 0);
 		
@@ -402,7 +402,7 @@ class Phpfox_Module
 			)
 		)
 		{
-			Phpfox::getLib('url')->send('user.photo', null, Phpfox::getPhrase('user.you_are_required_to_upload_a_profile_image'));
+			Phpfox_Url::instance()->send('user.photo', null, Phpfox::getPhrase('user.you_are_required_to_upload_a_profile_image'));
 		}
 		
 		if (Phpfox::getParam('core.force_https_secure_pages'))
@@ -417,7 +417,7 @@ class Phpfox_Module
 			{
 				if (!isset($_SERVER['HTTPS']))
 				{
-					Phpfox::getLib('url')->send($sController);
+					Phpfox_Url::instance()->send($sController);
 				}
 			}
 			else
@@ -426,7 +426,7 @@ class Phpfox_Module
 				{
 					if (!isset($_SERVER['HTTPS']))
 					{
-						Phpfox::getLib('url')->send($sController);
+						Phpfox_Url::instance()->send($sController);
 					}
 				}
 			}
@@ -596,7 +596,7 @@ class Phpfox_Module
 						continue;
 					}
 					
-					if (Phpfox::getLib('url')->isUrl(array('user/login', 'user/register', 'profile', 'user/password/request', 'forum')))
+					if (Phpfox_Url::instance()->isUrl(array('user/login', 'user/register', 'profile', 'user/password/request', 'forum')))
 					{
 						continue;
 					}					

@@ -30,7 +30,7 @@ class Subscribe_Component_Controller_View extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('subscribe.subscriptions'), $this->url()->makeUrl('subscribe.list'))
 			->setBreadcrumb(Phpfox::getPhrase('subscribe.order_purchase_id_title', array(
 					'purchase_id' => $aPurchase['purchase_id'],
-					'title' => Phpfox::getLib('locale')->convert($aPurchase['title'])
+					'title' => Phpfox_Locale::instance()->convert($aPurchase['title'])
 				)
 			), null, true)
 			->assign(array(

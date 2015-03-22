@@ -59,7 +59,7 @@ class Poll_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('poll.polls'),
-			'link' => Phpfox::getLib('url')->makeUrl('poll'),
+			'link' => Phpfox_Url::instance()->makeUrl('poll'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_polls.png'))
 		);
 	}	
@@ -133,7 +133,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		
 		$sLink = Phpfox::permalink('poll', $aItem['poll_id'], $aItem['question']);
 		$sTitle = Phpfox::getLib('parse.output')->shorten($aItem['question'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') :50));
-		$sUser = '<a href="' . Phpfox::getLib('url')->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
+		$sUser = '<a href="' . Phpfox_Url::instance()->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
 		$sGender = Phpfox::getService('user')->gender($aItem['gender'], 1);
 		
 		if ($aRow['user_id'] == $aItem['user_id'])
@@ -221,7 +221,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']),
+			'link' => Phpfox_Url::instance()->permalink('poll', $aRow['poll_id'], $aRow['question']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -234,7 +234,7 @@ class Poll_Service_Callback extends Phpfox_Service
 	
 	public function getItemName($iId, $sName)
 	{
-		return '<a href="' . Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('poll.on_name_s_poll', array('name' => $sName)) . '</a>';
+		return '<a href="' . Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)) . '">' . Phpfox::getPhrase('poll.on_name_s_poll', array('name' => $sName)) . '</a>';
 	}	
 	
 	public function deleteComment($iPoll)
@@ -269,7 +269,7 @@ class Poll_Service_Callback extends Phpfox_Service
 			// Send the user an email
 			if (Phpfox::getParam('core.is_personal_site'))
 			{
-				$sLink = Phpfox::getLib('url')->makeUrl('poll', $aPoll['title_url']);
+				$sLink = Phpfox_Url::instance()->makeUrl('poll', $aPoll['title_url']);
 			}		
 			else 
 			{
@@ -292,7 +292,7 @@ class Poll_Service_Callback extends Phpfox_Service
 
 	public function getCommentNewsFeed($aRow)
 	{		
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 
 		if ($aRow['owner_user_id'] == $aRow['item_user_id'])
@@ -336,7 +336,7 @@ class Poll_Service_Callback extends Phpfox_Service
 	public function getNewsFeed($aRow)
 	{
 		if ($sPlugin = Phpfox_Plugin::get('poll.service_callback_getnewsfeed_start')){eval($sPlugin);}
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');					
 		
 		$aRow['text'] = Phpfox::getPhrase('poll.a_href_user_link_full_name_a_added_a_new_poll_a_href_question_url_question_a', array(
@@ -474,7 +474,7 @@ class Poll_Service_Callback extends Phpfox_Service
 	
 	public function getItemView()
 	{
-		if (Phpfox::getLib('request')->get('req3') != '')
+		if (Phpfox_Request::instance()->get('req3') != '')
 		{
 			return true;
 		}
@@ -490,7 +490,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		return array(
 			'phrase' => Phpfox::getPhrase('poll.polls'),
 			'value' => Phpfox::getService('poll')->getPendingTotal(),
-			'link' => Phpfox::getLib('url')->makeUrl('poll', array('view' => 'pending'))
+			'link' => Phpfox_Url::instance()->makeUrl('poll', array('view' => 'pending'))
 		);
 	}
 
@@ -527,7 +527,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('poll.a_href_user_link_full_name_a_likes_their_own_a_href_link_poll_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
 					'link' => $aRow['link']
 				)
@@ -537,9 +537,9 @@ class Poll_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('poll.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_a_href_link_poll_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -555,11 +555,11 @@ class Poll_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('poll.a_href_user_link_full_name_a_likes_your_a_href_link_poll_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('poll', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('poll', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('poll', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('poll', array('redirect' => $aRow['item_id']))
 		);				
 	}		
 	
@@ -567,8 +567,8 @@ class Poll_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('poll.a_href_user_link_full_name_a_likes_your_a_href_link_poll_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('poll', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('poll', array('redirect' => $iItemId))
 				)
 			);
 	}			
@@ -684,7 +684,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']),
+			'link' => Phpfox_Url::instance()->permalink('poll', $aRow['poll_id'], $aRow['question']),
 			'message' => $sPhrase
 		);	
 	}
@@ -712,7 +712,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']),
+			'link' => Phpfox_Url::instance()->permalink('poll', $aRow['poll_id'], $aRow['question']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -767,7 +767,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('poll.your_poll_title_has_been_approved',array('title' => Phpfox::getLib('parse.output')->shorten($aRow['question'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']),
+			'link' => Phpfox_Url::instance()->permalink('poll', $aRow['poll_id'], $aRow['question']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
@@ -823,7 +823,7 @@ class Poll_Service_Callback extends Phpfox_Service
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->permalink('poll', $aRow['item_id'], $aRow['item_title']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->permalink('poll', $aRow['item_id'], $aRow['item_title']);
 		$aInfo['item_name'] = Phpfox::getPhrase('search.poll');
 		
 		return $aInfo;
@@ -857,7 +857,7 @@ class Poll_Service_Callback extends Phpfox_Service
 			return false;
 		}
 			
-		return Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']);
+		return Phpfox_Url::instance()->permalink('poll', $aRow['poll_id'], $aRow['question']);
 	}	
 	
 	public function getCommentNotificationTag($aNotification)
@@ -873,7 +873,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		Phpfox::getPhrase('poll.user_name_tagged_you_in_a_comment_in_a_poll', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('poll', $aRow['poll_id'], $aRow['question']) . 'comment_'. $aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('poll', $aRow['poll_id'], $aRow['question']) . 'comment_'. $aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);

@@ -84,7 +84,7 @@ class Egift_Service_Callback extends Phpfox_Service
 		if (Phpfox::isModule('notification'))
 			Phpfox::getService('notification.process')->add('friend_birthday', $aInvoice['birthday_id'], $aInvoice['user_to'], $aInvoice['user_from']);
 
-		$sLink = Phpfox::getLib('url')->makeUrl('friend.mybirthday', array('id' => $aInvoice['birthday_id']));
+		$sLink = Phpfox_Url::instance()->makeUrl('friend.mybirthday', array('id' => $aInvoice['birthday_id']));
 
 		$sFullName = $this->database()->select('full_name')->from(Phpfox::getT('user'))
 				->where('user_id = ' . (int)$aInvoice['user_from'])

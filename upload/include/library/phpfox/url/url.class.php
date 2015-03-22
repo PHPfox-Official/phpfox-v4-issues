@@ -99,15 +99,6 @@ class Phpfox_Url
        503 => "HTTP/1.1 503 Service Unavailable",
        504 => "HTTP/1.1 504 Gateway Time-out"
    );
-
-	public function getHeaderCode($iCode)
-	{
-		if (isset($this->_aHeaders[$iCode]))
-		{
-			return $this->_aHeaders[$iCode];
-		}
-		return null;
-	}
 	
 	/**
 	 * Class constructor is used to build the current URL and all the custom rewrite rules.
@@ -143,6 +134,22 @@ class Phpfox_Url
 
 		$this->_setParams();
 	}
+
+	/**
+	 * @return $this
+	 */
+	public static function instance() {
+		return Phpfox::getLib('url');
+	}
+
+	public function getHeaderCode($iCode)
+	{
+		if (isset($this->_aHeaders[$iCode]))
+		{
+			return $this->_aHeaders[$iCode];
+		}
+		return null;
+	}
 	
 	/**
 	 * Check to see if we are using a mobile device.
@@ -151,11 +158,7 @@ class Phpfox_Url
 	 */
 	public function isMobile()
 	{		
-		if (isset($_REQUEST['js_mobile_version']))
-		{
-			return true;
-		}
-		return self::$_isMobile;
+		return false;
 	}
 	
 	/**
@@ -331,7 +334,7 @@ class Phpfox_Url
 	{
 		if ($bNoPath)
 		{
-			return Phpfox::getLib('request')->get(PHPFOX_GET_METHOD);
+			return Phpfox_Request::instance()->get(PHPFOX_GET_METHOD);
 		}
 
 		return $this->makeUrl('current');
@@ -579,6 +582,7 @@ class Phpfox_Url
 		{
 			// www.site.com/foo/bar/
 			case 1:
+			case 2:
 				$aParts = explode('.', $sUrl);				
 				if ($bFullPath)
 				{
@@ -590,6 +594,7 @@ class Phpfox_Url
 							
 				break;
 			// www.site.com/index.php?foo=bar
+			/*
 			case 2:
 				$aParts = explode('.', $sUrl);
 				if ($bFullPath)
@@ -599,21 +604,7 @@ class Phpfox_Url
 				$sUrls .= Phpfox::getParam('core.path') . PHPFOX_INDEX_FILE . '?' . PHPFOX_GET_METHOD . '=/';
 				$sUrls .= $this->_makeUrl($aParts, $aParams);		
 				break;
-			// foo.site.com/bar/
-			case 3:				
-				if (empty($sUrl))
-				{
-					$sUrl = 'www';
-				}
-
-				$aParts = explode('.', $sUrl);
-				if (isset($this->aRewrite[$aParts[0]]) && !is_array($this->aRewrite[$aParts[0]]))
-				{
-					$aParts[0] = $this->aRewrite[$aParts[0]];
-				}	
-				$sUrls = preg_replace("/http:\/\/(.*?)\.(.*?)/i", "http://{$aParts[0]}.$2", Phpfox::getParam('core.path'));
-				$sUrls .= $this->_makeUrl($aParts, $aParams);
-				break;
+			*/
 		}
 		
 		if (!defined('PHPFOX_INSTALLER') && Phpfox::getParam('core.force_https_secure_pages'))
@@ -687,7 +678,7 @@ class Phpfox_Url
 	{
 		$bIsRegistration = false;
 		$sNextUrl = null;
-		if (Phpfox::getLib('request')->get('req' . $iReq) == 'register' && is_array(Phpfox::getParam('user.registration_steps')) && count(Phpfox::getParam('user.registration_steps')))
+		if (Phpfox_Request::instance()->get('req' . $iReq) == 'register' && is_array(Phpfox::getParam('user.registration_steps')) && count(Phpfox::getParam('user.registration_steps')))
 		{
 			$bIsRegistration = true;			
 			$aUrls = Phpfox::getParam('user.registration_steps');
@@ -774,7 +765,7 @@ class Phpfox_Url
 			$aExtra = array_merge($aExtra, $aExtraLinks);	
 		}
 		
-		$sUrl = Phpfox::getLib('url')->makeUrl($sLink, $aExtra);
+		$sUrl = Phpfox_Url::instance()->makeUrl($sLink, $aExtra);
 		
 		if ($bRedirect === true)
 		{
@@ -937,6 +928,7 @@ class Phpfox_Url
 				
 		if ($aParams && is_array($aParams))
 		{
+			$iIteration = 0;
 			foreach ($aParams as $sKey => $sValue)
 			{				
 				if (is_null($sValue))
@@ -947,10 +939,21 @@ class Phpfox_Url
 				if ($aParts[0] != 'admincp' && is_numeric($sKey) && isset($this->aRewrite[str_replace('.', '', $sValue)]) && !is_array($this->aRewrite[str_replace('.', '', $sValue)]))		
 				{
 					$sValue = $this->aRewrite[str_replace('.', '', $sValue)];
-				}				
-				
-				$sUrls .= (is_numeric($sKey) ? str_replace('.', '', $sValue) : $sKey . '_' . str_replace('.', '', $sValue)) . '/';
+				}
+
+				if (is_numeric($sKey)) {
+
+					$sUrls .= str_replace('.', '', $sValue) . '/';
+					continue;
+				}
+
+				$iIteration++;
+				if ($iIteration === 1) {
+					$sUrls .= '?';
+				}
+				$sUrls .= $sKey . '=' . str_replace('.', '', $sValue) . '&';
 			}
+			$sUrls = rtrim($sUrls, '&');
 		}		
 		
 		if (preg_match('/\#/', $sUrls))
@@ -967,6 +970,13 @@ class Phpfox_Url
 		}
 		
 		return $sUrls;	
+	}
+
+	public function getUri() {
+		if (!strpos($_SERVER['REQUEST_URI'], 'index.php')) {
+			return '/';
+		}
+		return '/' . ltrim(explode('?', str_replace(Phpfox::getParam('core.folder'), '', $_SERVER['REQUEST_URI']))[0], '/');
 	}
 	
 	/**
@@ -993,23 +1003,10 @@ class Phpfox_Url
 				}
 			}
 		}
-		
-		if (Phpfox::getParam('core.url_rewrite') == 3)
-		{
-			/**
-			 * @todo This method needs to be tested a little more on different OSsss
-			 */
-			$aServer = explode('.', (isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : $_SERVER['SERVER_NAME']));
-			if ($aServer[0] == 'www')
-			{
-				$aServer[0] = Phpfox::getParam('core.module_core');
-			}
-			$_GET[PHPFOX_GET_METHOD] = '/' . $aServer[0] . '/' . (isset($_GET[PHPFOX_GET_METHOD]) ? $_GET[PHPFOX_GET_METHOD] : '');			
-		}		
-		
+
 		if (!isset($_GET[PHPFOX_GET_METHOD]))
 		{
-			return '';
+			$_GET[PHPFOX_GET_METHOD] = $this->getUri();
 		}
 		
 		if (!defined('PHPFOX_INSTALLER'))

@@ -61,7 +61,7 @@ class Blog_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('blog.blogs'),
-			'link' => Phpfox::getLib('url')->makeUrl('blog'),
+			'link' => Phpfox_Url::instance()->makeUrl('blog'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_blogs.png'))
 		);
 	}	
@@ -163,7 +163,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		
 		$sLink = Phpfox::permalink('blog', $aItem['blog_id'], $aItem['title']);
 		$sTitle = Phpfox::getLib('parse.output')->shorten($aItem['title'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') :50));
-		$sUser = '<a href="' . Phpfox::getLib('url')->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
+		$sUser = '<a href="' . Phpfox_Url::instance()->makeUrl($aItem['user_name']) . '">' . $aItem['full_name'] . '</a>';
 		$sGender = Phpfox::getService('user')->gender($aItem['gender'], 1);
 		
 		if ($aRow['user_id'] == $aItem['user_id'])
@@ -316,7 +316,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('blog', $aRow['blog_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('blog', $aRow['blog_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -331,7 +331,7 @@ class Blog_Service_Callback extends Phpfox_Service
 	{
 		(($sPlugin = Phpfox_Plugin::get('blog.component_service_callback_getnewsfeed__start')) ? eval($sPlugin) : false);
 		
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		 
 		$aRow['text'] = Phpfox::getPhrase('blog.owner_full_name_added_a_new_blog_a_href_title_link_title_a',
@@ -355,7 +355,7 @@ class Blog_Service_Callback extends Phpfox_Service
 	public function getCommentNewsFeed($aRow, $iUserId = null)
 	{
 		(($sPlugin = Phpfox_Plugin::get('blog.component_service_callback_getcommentnewsfeed__start')) ? eval($sPlugin) : false);
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 
 		if ($aRow['owner_user_id'] == $aRow['item_user_id'])
@@ -453,7 +453,7 @@ class Blog_Service_Callback extends Phpfox_Service
 			$sExtra .= PHPFOX_TAG_PARENT_MODULE . '.' . PHPFOX_TAG_PARENT_ID . '.';
 		}
 		
-		return Phpfox::getLib('url')->makeUrl($sExtra . 'blog.tag');
+		return Phpfox_Url::instance()->makeUrl($sExtra . 'blog.tag');
 	}
 	
 	public function addTrack($iId, $iUserId = null)
@@ -565,7 +565,7 @@ class Blog_Service_Callback extends Phpfox_Service
 	
 	public function getItemName($iId, $sName)
 	{
-		return Phpfox::getPhrase('blog.a_href_link_on_name_s_blog_a', array('link' => Phpfox::getLib('url')->makeUrl('comment.view', array('id' => $iId)), 'name' => $sName));
+		return Phpfox::getPhrase('blog.a_href_link_on_name_s_blog_a', array('link' => Phpfox_Url::instance()->makeUrl('comment.view', array('id' => $iId)), 'name' => $sName));
 	}	
 	
 	public function getAttachmentField()
@@ -645,7 +645,7 @@ class Blog_Service_Callback extends Phpfox_Service
 			// Send the user an email
 			if (Phpfox::getParam('core.is_personal_site'))
 			{
-				$sLink = Phpfox::getLib('url')->makeUrl('blog', $aBlog['title_url']);
+				$sLink = Phpfox_Url::instance()->makeUrl('blog', $aBlog['title_url']);
 			}		
 			else 
 			{
@@ -720,18 +720,18 @@ class Blog_Service_Callback extends Phpfox_Service
 			
 			if ($bIsTagSearch == true)
 			{
-				$aResults['form'] = '<div><input type="button" value="' . Phpfox::getPhrase('blog.view_more_blogs') . '" class="search_button" onclick="window.location.href = \'' . Phpfox::getLib('url')->makeUrl('blog', array('tag', $sQuery)) . '\';" /></div>';
+				$aResults['form'] = '<div><input type="button" value="' . Phpfox::getPhrase('blog.view_more_blogs') . '" class="search_button" onclick="window.location.href = \'' . Phpfox_Url::instance()->makeUrl('blog', array('tag', $sQuery)) . '\';" /></div>';
 			}
 			else 
 			{				
-				$aResults['form'] = '<form method="post" action="' . Phpfox::getLib('url')->makeUrl('blog') . '"><div><input type="hidden" name="' . Phpfox::getTokenName() . '[security_token]" value="' . Phpfox::getService('log.session')->getToken() . '" /></div><div><input name="search[search]" value="' . Phpfox::getLib('parse.output')->clean($sQuery) . '" size="20" type="hidden" /></div><div><input type="submit" name="search[submit]" value="' . Phpfox::getPhrase('blog.view_more_blogs') . '" class="search_button" /></div></form>';
+				$aResults['form'] = '<form method="post" action="' . Phpfox_Url::instance()->makeUrl('blog') . '"><div><input type="hidden" name="' . Phpfox::getTokenName() . '[security_token]" value="' . Phpfox::getService('log.session')->getToken() . '" /></div><div><input name="search[search]" value="' . Phpfox::getLib('parse.output')->clean($sQuery) . '" size="20" type="hidden" /></div><div><input type="submit" name="search[submit]" value="' . Phpfox::getPhrase('blog.view_more_blogs') . '" class="search_button" /></div></form>';
 			}
 			
 			foreach ($aRows as $iKey => $aRow)
 			{
 				$aResults['results'][$iKey] = array(				
 					'title' => $aRow['title'],	
-					'link' => Phpfox::getLib('url')->makeUrl($aRow['user_name'], array('blog', $aRow['title_url'])),
+					'link' => Phpfox_Url::instance()->makeUrl($aRow['user_name'], array('blog', $aRow['title_url'])),
 					'image' => Phpfox::getLib('image.helper')->display(array(
 							'server_id' => $aRow['server_id'],
 							'title' => $aRow['full_name'],
@@ -743,9 +743,9 @@ class Blog_Service_Callback extends Phpfox_Service
 						)
 					),
 					'extra_info' => Phpfox::getPhrase('blog.blog_created_on_time_stamp_by_full_name', array(
-							'link' => Phpfox::getLib('url')->makeUrl('blog'),
+							'link' => Phpfox_Url::instance()->makeUrl('blog'),
 							'time_stamp' => Phpfox::getTime(Phpfox::getParam('core.global_update_time'), $aRow['time_stamp']),
-							'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
+							'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
 							'full_name' => $aRow['full_name']	
 						)
 					)			
@@ -800,7 +800,7 @@ class Blog_Service_Callback extends Phpfox_Service
 			
 			if (Phpfox::getParam('core.is_personal_site'))
 			{
-				$aItems[$iKey]['link'] = Phpfox::getLib('url')->makeUrl('blog', $aItem['title_url']);
+				$aItems[$iKey]['link'] = Phpfox_Url::instance()->makeUrl('blog', $aItem['title_url']);
 			}		
 			else 
 			{
@@ -880,7 +880,7 @@ class Blog_Service_Callback extends Phpfox_Service
 	
 	public function getItemView()
 	{
-		if (Phpfox::getLib('request')->get('req3') != '')
+		if (Phpfox_Request::instance()->get('req3') != '')
 		{
 			return true;
 		}
@@ -890,7 +890,7 @@ class Blog_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'message' => Phpfox::getPhrase('blog.your_blog_blog_title_has_been_approved', array('blog_title' => Phpfox::getLib('parse.output')->shorten($aRow['item_title'], 20, '...'))),
-			'link' => Phpfox::getLib('url')->makeUrl('blog', array('redirect' => $aRow['item_id']))		);		
+			'link' => Phpfox_Url::instance()->makeUrl('blog', array('redirect' => $aRow['item_id']))		);
 	}
 
 	public function spamCheck()
@@ -898,7 +898,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		return array(
 			'phrase' => Phpfox::getPhrase('blog.blogs'),
 			'value' => Phpfox::getService('blog')->getSpamTotal(),
-			'link' => Phpfox::getLib('url')->makeUrl('blog', array('view' => 'spam'))
+			'link' => Phpfox_Url::instance()->makeUrl('blog', array('view' => 'spam'))
 		);		
 	}		
 	
@@ -965,7 +965,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		}
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('blog', $aRow['blog_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('blog', $aRow['blog_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -975,13 +975,13 @@ class Blog_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'message' => Phpfox::getPhrase('blog.full_name_wrote_a_comment_on_your_blog_blog_title', array(
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
 					'full_name' => $aRow['full_name'],
-					'blog_link' => Phpfox::getLib('url')->makeUrl('blog', array('redirect' => $aRow['item_id'])),
+					'blog_link' => Phpfox_Url::instance()->makeUrl('blog', array('redirect' => $aRow['item_id'])),
 					'blog_title' => Phpfox::getLib('parse.output')->shorten($aRow['item_title'], 20, '...')	
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('blog', array('redirect' => $aRow['item_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl('blog', array('redirect' => $aRow['item_id'])),
 			'path' => 'core.url_user',
 			'suffix' => '_50'
 		);	
@@ -1031,7 +1031,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('blog.a_href_user_link_full_name_a_likes_their_own_a_href_link_blog_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
 					'link' => $aRow['link']
 				)
@@ -1041,9 +1041,9 @@ class Blog_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('blog.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_a_href_link_blog_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -1059,11 +1059,11 @@ class Blog_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('blog.a_href_user_link_full_name_a_likes_your_a_href_link_blog_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('blog', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('blog', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('blog', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('blog', array('redirect' => $aRow['item_id']))
 		);				
 	}	
 	
@@ -1074,8 +1074,8 @@ class Blog_Service_Callback extends Phpfox_Service
 		throw new Exception ('Deprecated.');
 		return Phpfox::getPhrase('blog.a_href_user_link_full_name_a_likes_your_a_href_link_blog_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('blog', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('blog', array('redirect' => $iItemId))
 				), false, false, $sLang
 			);
 	}			
@@ -1188,7 +1188,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		return array(
 			'phrase' => Phpfox::getPhrase('blog.blogs'),
 			'value' => Phpfox::getService('blog')->getPendingTotal(),
-			'link' => Phpfox::getLib('url')->makeUrl('blog', array('view' => 'pending'))
+			'link' => Phpfox_Url::instance()->makeUrl('blog', array('view' => 'pending'))
 		);
 	}
 
@@ -1242,7 +1242,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		{
 			$aSubMenu[] = array(
 				'phrase' => Phpfox::getPhrase('profile.drafts'),
-				'url' => Phpfox::getLib('url')->makeUrl('profile.blog.view_draft'),
+				'url' => Phpfox_Url::instance()->makeUrl('profile.blog.view_draft'),
 				'total' => Phpfox::getService('blog')->getTotalDrafts($aUser['user_id'])
 			);
 		}
@@ -1282,7 +1282,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('blog.your_blog_title_has_been_approved', array('title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('blog', $aRow['blog_id'], $aRow['title']),
+			'link' => Phpfox_Url::instance()->permalink('blog', $aRow['blog_id'], $aRow['title']),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog'),
 			'no_profile_image' => true
@@ -1300,7 +1300,7 @@ class Blog_Service_Callback extends Phpfox_Service
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->permalink('blog', $aRow['item_id'], $aRow['item_title']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->permalink('blog', $aRow['item_id'], $aRow['item_title']);
 		$aInfo['item_name'] = Phpfox::getPhrase('blog.blog');
 		
 		return $aInfo;
@@ -1335,7 +1335,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('blog.user_name_tagged_you_in_a_comment_in_a_blog', array('user_name' => $aRow['full_name']));
 		
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('blog', $aRow['blog_id'], $aRow['title']) . 'comment_' .$aNotification['item_id'],
+			'link' => Phpfox_Url::instance()->permalink('blog', $aRow['blog_id'], $aRow['title']) . 'comment_' .$aNotification['item_id'],
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);
@@ -1398,7 +1398,7 @@ class Blog_Service_Callback extends Phpfox_Service
 		return array(
 			array(
 				'phrase' => Phpfox::getPhrase('blog.add_new_blog'),
-				'url' => Phpfox::getLib('url')->makeUrl('blog.add', array('module' => 'pages', 'item' => $aPage['page_id']))
+				'url' => Phpfox_Url::instance()->makeUrl('blog.add', array('module' => 'pages', 'item' => $aPage['page_id']))
 			)
 		);
 	}

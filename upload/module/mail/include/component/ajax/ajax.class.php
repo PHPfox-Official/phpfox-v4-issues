@@ -124,7 +124,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 		if (Phpfox::getService('mail.folder.process')->move($this->get('folder'), $this->get('item_moderate')))
 		{
 			$this->call('$Core.moderationLinkClear();');
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('mail', array('view' => 'box', 'id' => $this->get('folder'))) . '\';');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('mail', array('view' => 'box', 'id' => $this->get('folder'))) . '\';');
 		}
 	}	
 	
@@ -158,7 +158,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 
 				$this->call('js_box_remove($(\'#js_mail_folder_add_error\'));');
 				$this->alert(Phpfox::getPhrase('mail.folder_successfully_created'), Phpfox::getPhrase('mail.create_new_folder'), 400, 150, true);
-				$this->append('.sub_section_menu ul', '<li><a href="' . Phpfox::getLib('url')->makeUrl('mail', array('view' => 'box', 'id' => $iId)) . '">' . str_replace("'", "\\'", Phpfox::getLib('parse.input')->clean($sNew)) . '</a></li>');
+				$this->append('.sub_section_menu ul', '<li><a href="' . Phpfox_Url::instance()->makeUrl('mail', array('view' => 'box', 'id' => $iId)) . '">' . str_replace("'", "\\'", Phpfox::getLib('parse.input')->clean($sNew)) . '</a></li>');
 			}
 		}
 	}
@@ -196,7 +196,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 		if (Phpfox::getService('mail.folder.process')->delete($this->get('id')))
 		{
 			Phpfox::addMessage(Phpfox::getPhrase('mail.folder_successfully_deleted'));
-			$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('mail') . '\'');
+			$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('mail') . '\'');
 		}
 	}
 	
@@ -205,7 +205,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 		Phpfox::isUser(true);
 		if (Phpfox::getUserParam('mail.can_compose_message') == false)
 		{
-			echo '<script type="text/javascript">window.location = "'. Phpfox::getLib('url')->makeUrl('subscribe') .'"; </script>';
+			echo '<script type="text/javascript">window.location = "'. Phpfox_Url::instance()->makeUrl('subscribe') .'"; </script>';
 			return;
 		}
 		$this->setTitle(Phpfox::getPhrase('mail.new_message'));
@@ -278,7 +278,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		if (!Phpfox::isUser())
 		{
-			$this->call('<script type="text/javascript">window.location.href = \'' . Phpfox::getLib('url')->makeUrl('user.login') . '\';</script>');
+			$this->call('<script type="text/javascript">window.location.href = \'' . Phpfox_Url::instance()->makeUrl('user.login') . '\';</script>');
 		}
 		else
 		{

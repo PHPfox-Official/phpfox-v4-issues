@@ -68,7 +68,7 @@ class Phpfox_Cache_Storage_File extends Phpfox_Cache_Abstract
 			{
 				if ($sName[0] == 'feeds')
 				{
-					$sName[0] = $sName[0] . Phpfox::getLib('locale')->getLangId();
+					$sName[0] = $sName[0] . Phpfox_Locale::instance()->getLangId();
 				}
 				$sNewDirectory = PHPFOX_DIR_CACHE . $sName[0];
 				if (!is_dir($sNewDirectory))
@@ -311,7 +311,7 @@ class Phpfox_Cache_Storage_File extends Phpfox_Cache_Abstract
 					$sName[0] = rtrim($sName[0], '/');
 					if ($sName[0] == 'feeds')
 					{
-						$sName[0] = $sName[0] . Phpfox::getLib('locale')->getLangId();
+						$sName[0] = $sName[0] . Phpfox_Locale::instance()->getLangId();
 					}
 					$sName = $sName[0] . PHPFOX_DS . $sName[1];
 				}				

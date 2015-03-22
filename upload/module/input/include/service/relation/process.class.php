@@ -368,7 +368,7 @@ class Custom_Service_Relation_Process extends Phpfox_Service
 		/* Send an email and insert in the feed table */
 		if ($iWith != $iUser)
 		{
-			$sLink = Phpfox::getLib('url')->makeUrl('friend.accept');
+			$sLink = Phpfox_Url::instance()->makeUrl('friend.accept');
 			Phpfox::getLib('mail')->to(array($iUser, $iWith))
 				->subject(array('custom.relationship_status_confirmation'))
 				->message(array('custom.full_name_wants_to_list_you_both_as_phrase_var_name', array('full_name' => Phpfox::getUserBy('full_name'), 'phrase_var_name' => Phpfox::getPhrase($aExisting['phrase_var_name']), 'link' => $sLink)))

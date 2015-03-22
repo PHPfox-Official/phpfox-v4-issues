@@ -97,7 +97,7 @@ class Music_Service_Album_Process extends Phpfox_Service
 				$iFileSizes += filesize(Phpfox::getParam('music.dir_image') . sprintf($sFileName, '_' . $iSize));			
 			}	
 							
-			$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'album_id = ' . $iId);
+			$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'album_id = ' . $iId);
 				
 			// Update user space usage
 			Phpfox::getService('user.space')->update(Phpfox::getUserId(), 'music_image', $iFileSizes);			
@@ -230,7 +230,7 @@ class Music_Service_Album_Process extends Phpfox_Service
 					$iFileSizes += filesize(Phpfox::getParam('music.dir_image') . sprintf($sFileName, '_' . $iSize));			
 				}	
 							
-				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')), 'album_id = ' . $iId);
+				$this->database()->update($this->_sTable, array('image_path' => $sFileName, 'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'album_id = ' . $iId);
 				
 				// Update user space usage
 				Phpfox::getService('user.space')->update($aAlbum['user_id'], 'music_image', $iFileSizes);				

@@ -406,9 +406,9 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 					$this->url()->send('forum');
 				}
 				
-				$this->template()->setTitle(Phpfox::getLib('locale')->convert($aForum['name']))
+				$this->template()->setTitle(Phpfox_Locale::instance()->convert($aForum['name']))
 					->setBreadcrumb($aForum['breadcrumb'])
-					->setBreadcrumb(Phpfox::getLib('locale')->convert($aForum['name']), $this->url()->permalink('forum', $aForum['forum_id'], $aForum['name']), true)
+					->setBreadcrumb(Phpfox_Locale::instance()->convert($aForum['name']), $this->url()->permalink('forum', $aForum['forum_id'], $aForum['name']), true)
 					->assign(array(
 						'bDisplayThreads' => true,
 						'aAnnouncements' => Phpfox::getService('forum.thread')->getAnnoucements($iForumId),

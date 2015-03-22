@@ -83,7 +83,7 @@ class Video_Service_Process extends Phpfox_Service
 			}
 			*/
 			
-			// Phpfox::getLib('request')->send('http://vupload.phpfox.com/', array('id' => $iUploadVideoId, 'action' => 'delete', 'key' => Phpfox::getParam('video.video_upload_public_key')));
+			// Phpfox_Request::instance()->send('http://vupload.phpfox.com/', array('id' => $iUploadVideoId, 'action' => 'delete', 'key' => Phpfox::getParam('video.video_upload_public_key')));
 
 			$aVideo = $this->database()->select('*')
 				->from(Phpfox::getT('video'))
@@ -150,7 +150,7 @@ class Video_Service_Process extends Phpfox_Service
 	
 	public function createVidlyToken()
 	{
-		$sHash = md5(Phpfox::getLib('request')->getServer('REMOTE_ADDR') /*$_SERVER['REMOTE_ADDR']*/ . $_SERVER['HTTP_USER_AGENT']);
+		$sHash = md5(Phpfox_Request::instance()->getServer('REMOTE_ADDR') /*$_SERVER['REMOTE_ADDR']*/ . $_SERVER['HTTP_USER_AGENT']);
 		
 		$this->database()->delete(Phpfox::getT('vidly'), 'user_id = ' . (int) Phpfox::getUserId());
 		$iId = $this->database()->insert(Phpfox::getT('vidly'), array(
@@ -261,7 +261,7 @@ class Video_Service_Process extends Phpfox_Service
 			$sImageLocation = Phpfox_File::instance()->getBuiltDir(Phpfox::getParam('video.dir_image')) . md5($iId) . '%s.jpg';
 			
 			$aUpdate['image_path'] = str_replace(Phpfox::getParam('video.dir_image'), '', $sImageLocation);
-			$aUpdate['image_server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');			
+			$aUpdate['image_server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 		}
 		
 		if (!isset($bAddedTitle))
@@ -425,7 +425,7 @@ class Video_Service_Process extends Phpfox_Service
 			'title' => (empty($aVals['title']) ? null : $this->preParse()->clean($aVals['title'], 255)),
 			'privacy' => (int) (isset($aVals['privacy']) ? $aVals['privacy'] : 0),
 			'privacy_comment' => (int) (isset($aVals['privacy_comment']) ? $aVals['privacy_comment'] : 0),
-			'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID'),
+			'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID'),
 			'file_ext' => $aVideo['ext'],
 			'time_stamp' => PHPFOX_TIME
 		);
@@ -587,7 +587,7 @@ class Video_Service_Process extends Phpfox_Service
 					$sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('video.dir_image'), $aVideo['video_id']);
 							
 					$aSql['image_path'] = $sFileName;
-					$aSql['server_id'] = Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID');					
+					$aSql['server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
 					
 					$iSize = 120;			
 					$oImage->createThumbnail(Phpfox::getParam('video.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('video.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);			
@@ -971,7 +971,7 @@ class Video_Service_Process extends Phpfox_Service
 
 		(($sPlugin = Phpfox_Plugin::get('video.service_process_approve__1')) ? eval($sPlugin) : false);
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->permalink('video', $aVideo['video_id'], $aVideo['title']);
+		$sLink = Phpfox_Url::instance()->permalink('video', $aVideo['video_id'], $aVideo['title']);
 		Phpfox::getLib('mail')->to($aVideo['user_id'])
 			->subject(array('video.your_video_has_been_approved_on_site_title', array('site_title' => Phpfox::getParam('core.site_title'))))
 			->message(array('video.your_video_has_been_approved_on_site_title_n_nto_view_this_video_follow_the_link_below_n_a_href', array('site_title' => Phpfox::getParam('core.site_title'), 'sLink' => $sLink)))

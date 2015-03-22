@@ -190,7 +190,7 @@ class Phpfox_Debug
     	$fLimit = 0.05 * 128;
     	$iSqlMemory = 0;
     	$aKeywords = array('SELECT', 'SELECT ', 'FROM', 'FROM ', 'WHERE ', 'UPDATE ', 'OFFSET', ' AS ', 'UNION ALL', 'INNER JOIN ', 'LEFT JOIN ', 'INSERT INTO ', 'SHOW COLUMNS ', 'ON', 'SET', 'USING', 'USE INDEX', 'JOIN ', 'ORDER BY', 'DESC', 'LIMIT', 'DELETE');
-    	$oRequest = Phpfox::getLib('request');
+    	$oRequest = Phpfox_Request::instance();
     	$oFile = Phpfox_File::instance();
     	$aReplaces = array_map(array('self', '_addKeywordSyntax'), $aKeywords);
     	$sDriver = Phpfox::getParam(array('db', 'driver'));

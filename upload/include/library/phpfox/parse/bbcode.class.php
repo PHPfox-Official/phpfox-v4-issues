@@ -475,7 +475,7 @@ class Phpfox_Parse_Bbcode
 			else 
 			{				
 				$sText = stripslashes($sText);
-				$sStr = '<a href="' . Phpfox::getLib('url')->makeUrl('attachment', array('download', 'id' => $iId)) . '" ';
+				$sStr = '<a href="' . Phpfox_Url::instance()->makeUrl('attachment', array('download', 'id' => $iId)) . '" ';
 				$sStr .= 'class="targetBlank parsed_image">' . "\n";
 				$sStr .= Phpfox::getLib('parse.input')->jsClean($sText) . "</a>\n";
 			}			
@@ -739,7 +739,7 @@ class Phpfox_Parse_Bbcode
 		switch ($sType)
 		{
 			case 'user':
-				$sTxt = '<a href="' . Phpfox::getLib('url')->makeUrl($sMember) . '">' . $sMember . '</a>';
+				$sTxt = '<a href="' . Phpfox_Url::instance()->makeUrl($sMember) . '">' . $sMember . '</a>';
 				break;
 			case 'profile':
 				$sTxt = Phpfox::getLib('image.helper')->display(array(
@@ -1093,7 +1093,7 @@ class Phpfox_Parse_Bbcode
 		
 		(($sPlugin = Phpfox_Plugin::get('parse_bbcode_quote_start')) ? eval($sPlugin) : false);
 		
-		$sTxt = '<div class="new_quote">' . ($bData ? '<div class="new_quote_header">' . ($bLink ? '<a href="' . Phpfox::getLib('url')->makeUrl('profile', $aUser['user_name']) . '">' : '') . ($bLink ? $aUser['full_name'] : $sDetail) . ($bLink ? '</a>' : '') . ' [PHPFOX_PHRASE]core.said[/PHPFOX_PHRASE]</div>' : '') . '<div class="new_quote_content_holder"><div class="new_quote_content">' . $sTxt . '</div></div></div>';
+		$sTxt = '<div class="new_quote">' . ($bData ? '<div class="new_quote_header">' . ($bLink ? '<a href="' . Phpfox_Url::instance()->makeUrl('profile', $aUser['user_name']) . '">' : '') . ($bLink ? $aUser['full_name'] : $sDetail) . ($bLink ? '</a>' : '') . ' [PHPFOX_PHRASE]core.said[/PHPFOX_PHRASE]</div>' : '') . '<div class="new_quote_content_holder"><div class="new_quote_content">' . $sTxt . '</div></div></div>';
 		
 		(($sPlugin = Phpfox_Plugin::get('parse_bbcode_quote_end')) ? eval($sPlugin) : false);
 		

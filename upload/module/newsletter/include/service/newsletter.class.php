@@ -37,7 +37,7 @@ class Newsletter_Service_Newsletter extends Phpfox_Service
 		if (!empty($aUsers))
 		{
 			Phpfox_Error::set(Phpfox::getPhrase('newsletter.there_are_users_still_missing_their_newsletter_total', array('total' => count($aUsers))));
-			return Phpfox::getLib('url')->makeUrl('admincp.newsletter.manage', array('task' => 'pending-users'));
+			return Phpfox_Url::instance()->makeUrl('admincp.newsletter.manage', array('task' => 'pending-users'));
 		}
 
 		$aNewsletters = $this->database()->select('newsletter_id')
@@ -47,7 +47,7 @@ class Newsletter_Service_Newsletter extends Phpfox_Service
 		if (!empty($aNewsletters))
 		{
 			Phpfox_Error::set(Phpfox::getPhrase('newsletter.there_are_newsletters_in_process_total', array('total' => count($aNewsletters))));
-			return Phpfox::getLib('url')->makeUrl('admincp.newsletter.manage', array('task' => 'pending-tasks'));
+			return Phpfox_Url::instance()->makeUrl('admincp.newsletter.manage', array('task' => 'pending-tasks'));
 		}
 	}	
 

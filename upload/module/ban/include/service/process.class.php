@@ -88,7 +88,7 @@ class Ban_Service_Process extends Phpfox_Service
 		}
 		else
 		{
-			$aVals['reason'] = !Phpfox::getLib('locale')->isPhrase($aVals['reason']) ? Phpfox::getLib('parse.input')->clean($aVals['reason']) : $aVals['reason'];
+			$aVals['reason'] = !Phpfox_Locale::instance()->isPhrase($aVals['reason']) ? Phpfox::getLib('parse.input')->clean($aVals['reason']) : $aVals['reason'];
 			$aVals['days_banned'] = (int)$aVals['days_banned'];
 			$aVals['return_user_group'] = (int)$aVals['return_user_group'];
 			if (!isset($aVals['user_groups_affected']))

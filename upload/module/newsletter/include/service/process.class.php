@@ -466,7 +466,7 @@ class Newsletter_Service_Process extends Phpfox_Service
 		);
 		
 		// Send the user an email
-		$sLink = Phpfox::getLib('url')->makeUrl('mail.view', array('id' => $iId));
+		$sLink = Phpfox_Url::instance()->makeUrl('mail.view', array('id' => $iId));
 		Phpfox::getLib('mail')->to($aVals['user_id'])
 			->subject(array('newsletter.site_newsletter_title', array('title' => $aVals['subject'])))
 			->message(array('newsletter.you_have_received_a_newsletter_from_title', array(

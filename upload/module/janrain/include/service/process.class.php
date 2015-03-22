@@ -36,7 +36,7 @@ class Janrain_Service_Process extends Phpfox_Service
 						
 		if (empty($aVals['full_name']))
 		{
-			Phpfox::getLib('url')->send('janrain.account', array('type' => 'full-name'));
+			Phpfox_Url::instance()->send('janrain.account', array('type' => 'full-name'));
 		}					
 							
 		if (!empty($aUserInfo['preferredUsername']))
@@ -54,7 +54,7 @@ class Janrain_Service_Process extends Phpfox_Service
 			Phpfox::getService('user.validate')->email($aUserInfo['email']);					
 			if (Phpfox_Error::get())
 			{
-				Phpfox::getLib('url')->send('janrain.account', array('type' => 'email'));
+				Phpfox_Url::instance()->send('janrain.account', array('type' => 'email'));
 			}
 		}
 							

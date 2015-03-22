@@ -117,7 +117,7 @@ class FoxporterModule_Ning extends Foxporter_Abstract
 				Phpfox::getLib('mail')->to($aData[2])
 					->messageHeader(false)
 					->subject('Commmunity Update')
-					->message("We have updated our community at: <a href=\"" . Phpfox::getLib('url')->makeUrl('') . "\">" . Phpfox::getLib('url')->makeUrl('') . "</a>\n\nNote we have provided your new login details below...\n#######\n\n\n\n\nEmail: " . $aData[2] . "\nPassword: " . $aUser['password'] . "\n")
+					->message("We have updated our community at: <a href=\"" . Phpfox_Url::instance()->makeUrl('') . "\">" . Phpfox_Url::instance()->makeUrl('') . "</a>\n\nNote we have provided your new login details below...\n#######\n\n\n\n\nEmail: " . $aData[2] . "\nPassword: " . $aUser['password'] . "\n")
 					->send();						
 			}
 		}

@@ -53,7 +53,7 @@ class Rss_Service_Rss extends Phpfox_Service
 				)
 			)
 			->addTag('title', $aParam['title'])
-			->addTag('link', (isset($aParams['link']) ? $aParam['link'] : Phpfox::getLib('url')->makeUrl('current')))
+			->addTag('link', (isset($aParams['link']) ? $aParam['link'] : Phpfox_Url::instance()->makeUrl('current')))
 			->addTag('description', $aParam['description']);	
 		
 
@@ -128,26 +128,26 @@ class Rss_Service_Rss extends Phpfox_Service
 		);
 		$oXmlBuilder->addGroup('channel');
 		$oXmlBuilder->addTag('atom:link', '', array(
-					'href' =>  Phpfox::getLib('url')->makeUrl($aUser['user_name'], 'rss'),
+					'href' =>  Phpfox_Url::instance()->makeUrl($aUser['user_name'], 'rss'),
 					'rel' => 'self',
 					'type' => 'application/rss+xml'
 				)
 			)
 			->addTag('title', Phpfox::getLib('parse.output')->clean($aUser['full_name']))
-			->addTag('link', Phpfox::getLib('url')->makeUrl($aUser['user_name']))
+			->addTag('link', Phpfox_Url::instance()->makeUrl($aUser['user_name']))
 			->addTag('description', Phpfox::getPhrase('rss.latest_updates_from_full_name', array('full_name' => Phpfox::getLib('parse.output')->clean($aUser['full_name']))));
 			
 		$iLog = $this->database()->select('COUNT(*)')
 			->from(Phpfox::getT('rss_log_user'))
-			->where('user_id = ' . $aUser['user_id'] . ' AND id_hash = \'' . Phpfox::getLib('request')->getIdHash() . '\'')
+			->where('user_id = ' . $aUser['user_id'] . ' AND id_hash = \'' . Phpfox_Request::instance()->getIdHash() . '\'')
 			->execute('getSlaveField');
 		if (!$iLog)
 		{
 			$this->database()->insert(Phpfox::getT('rss_log_user'), array(
 					'user_id' => $aUser['user_id'],
-					'id_hash' => Phpfox::getLib('request')->getIdHash(),
+					'id_hash' => Phpfox_Request::instance()->getIdHash(),
 					'ip_address' => Phpfox::getIp(),
-					'user_agent' => substr(Phpfox::getLib('request')->getBrowser(), 0, 100),
+					'user_agent' => substr(Phpfox_Request::instance()->getBrowser(), 0, 100),
 					'time_stamp' => PHPFOX_TIME
 				)
 			);
@@ -207,15 +207,15 @@ class Rss_Service_Rss extends Phpfox_Service
 		
 		$iLog = $this->database()->select('COUNT(*)')
 			->from(Phpfox::getT('rss_log'))
-			->where('feed_id = ' . $aFeed['feed_id'] . ' AND id_hash = \'' . Phpfox::getLib('request')->getIdHash() . '\'')
+			->where('feed_id = ' . $aFeed['feed_id'] . ' AND id_hash = \'' . Phpfox_Request::instance()->getIdHash() . '\'')
 			->execute('getSlaveField');
 		if (!$iLog)
 		{
 			$this->database()->insert(Phpfox::getT('rss_log'), array(
 					'feed_id' => $aFeed['feed_id'],
-					'id_hash' => Phpfox::getLib('request')->getIdHash(),
+					'id_hash' => Phpfox_Request::instance()->getIdHash(),
 					'ip_address' => Phpfox::getIp(),
-					'user_agent' => Phpfox::getLib('request')->getBrowser(),
+					'user_agent' => Phpfox_Request::instance()->getBrowser(),
 					'time_stamp' => PHPFOX_TIME
 				)
 			);
@@ -238,13 +238,13 @@ class Rss_Service_Rss extends Phpfox_Service
 		);
 		$oXmlBuilder->addGroup('channel');
 		$oXmlBuilder->addTag('atom:link', '', array(
-					'href' =>  Phpfox::getLib('url')->makeUrl('rss', array('id' => $aFeed['feed_id'])),
+					'href' =>  Phpfox_Url::instance()->makeUrl('rss', array('id' => $aFeed['feed_id'])),
 					'rel' => 'self',
 					'type' => 'application/rss+xml'
 				)
 			)
 			->addTag('title', html_entity_decode(Phpfox::getPhrase($aFeed['title_var']), null, 'UTF-8'))
-			->addTag('link', Phpfox::getLib('url')->makeUrl($aFeed['feed_link']))
+			->addTag('link', Phpfox_Url::instance()->makeUrl($aFeed['feed_link']))
 			->addTag('description', html_entity_decode($sDescription, null, 'UTF-8'));
 			
 		foreach ($aRows as $aItem)
@@ -272,7 +272,7 @@ class Rss_Service_Rss extends Phpfox_Service
 	public function getLinks()
 	{	
 		$aFeeds = array();
-		$sCacheId = $this->cache()->set('rss_link_' . Phpfox::getLib('locale')->getLangId());
+		$sCacheId = $this->cache()->set('rss_link_' . Phpfox_Locale::instance()->getLangId());
 		
 		if (!($aFeeds = $this->cache()->get($sCacheId)))
 		{		
@@ -300,7 +300,7 @@ class Rss_Service_Rss extends Phpfox_Service
 				}
 				else 
 				{
-					$aFeeds[Phpfox::getLib('url')->makeUrl('rss', array('id' => $aRow['feed_id']))] = Phpfox::getPhrase($aRow['title_var']);
+					$aFeeds[Phpfox_Url::instance()->makeUrl('rss', array('id' => $aRow['feed_id']))] = Phpfox::getPhrase($aRow['title_var']);
 				}
 			}		
 			

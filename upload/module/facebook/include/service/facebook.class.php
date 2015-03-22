@@ -49,7 +49,7 @@ class Facebook_Service_Facebook extends Phpfox_Service
 	
 	public function connect($sUrl)
 	{
-		$mReturn = Phpfox::getLib('request')->send('https://www.facebook.com/dialog/oauth', array(
+		$mReturn = Phpfox_Request::instance()->send('https://www.facebook.com/dialog/oauth', array(
 				'client_id' => '' . Phpfox::getParam('facebook.facebook_app_id') . '',
 				'redirect_uri' => $sUrl
 			)
@@ -63,7 +63,7 @@ class Facebook_Service_Facebook extends Phpfox_Service
 			return Phpfox_Error::trigger('Missing request code.', E_USER_ERROR);
 		}
 		
-		$mReturn = Phpfox::getLib('request')->send('https://graph.facebook.com/oauth/access_token', array(
+		$mReturn = Phpfox_Request::instance()->send('https://graph.facebook.com/oauth/access_token', array(
 				'client_id' => '' . Phpfox::getParam('facebook.facebook_app_id') . '',
 				'redirect_uri' => $sUrl,
 				'client_secret' => '' . Phpfox::getParam('facebook.facebook_secret') . '',

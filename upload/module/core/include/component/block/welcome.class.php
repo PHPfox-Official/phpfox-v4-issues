@@ -52,7 +52,7 @@ class Core_Component_Block_Welcome extends Phpfox_Component
 				'sCurrentTimeStamp' => Phpfox::getTime(Phpfox::getParam('core.global_welcome_time_stamp'), PHPFOX_TIME), // Get the current time stamp
 				'iTotalActivityPoints' => (int) Phpfox::getUserBy('activity_points'),
 				'iTotalProfileViews' => (int) Phpfox::getUserBy('total_view'),
-				'sUserGroupFullName' => Phpfox::getLib('locale')->convert($aGroup['title'])
+				'sUserGroupFullName' => Phpfox_Locale::instance()->convert($aGroup['title'])
 			)
 		);
 	}

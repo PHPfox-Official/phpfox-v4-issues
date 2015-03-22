@@ -112,7 +112,7 @@ class Quiz_Component_Ajax_Ajax extends Phpfox_Ajax
 			{
 				Phpfox::addMessage(Phpfox::getPhrase('quiz.quiz_successfully_deleted'));
 				
-				$this->call('window.location.href = \'' . Phpfox::getLib('url')->makeUrl('quiz') . '\';');
+				$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('quiz') . '\';');
 			}
 			else 
 			{

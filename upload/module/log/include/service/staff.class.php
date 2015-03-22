@@ -37,7 +37,7 @@ class Log_Service_Staff extends Phpfox_Service
 			'type_id' => $this->_aActions[$sAction],
 			'call_name' => $sMethod,
 			'time_stamp' => PHPFOX_TIME,
-			'ip_address' => Phpfox::getLib('request')->getIp()
+			'ip_address' => Phpfox_Request::instance()->getIp()
 		);
 		
 		if ($aExtra)

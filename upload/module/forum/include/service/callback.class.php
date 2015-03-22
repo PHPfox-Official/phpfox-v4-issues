@@ -70,7 +70,7 @@ class Forum_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'phrase' => Phpfox::getPhrase('forum.forum'),
-			'link' => Phpfox::getLib('url')->makeUrl('forum'),
+			'link' => Phpfox_Url::instance()->makeUrl('forum'),
 			'icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'mobile/small_forum.png'))
 		);
 	}	
@@ -103,12 +103,12 @@ class Forum_Service_Callback extends Phpfox_Service
 
 	public function getTagLink()
 	{		
-		return Phpfox::getLib('url')->makeUrl('forum.tag');
+		return Phpfox_Url::instance()->makeUrl('forum.tag');
 	}	
 	
 	public function getTagLinkGroup()
 	{		
-		return Phpfox::getLib('url')->makeUrl('forum.tag', array('module' => 'group', 'item' => Phpfox::getLib('request')->get('req2')));
+		return Phpfox_Url::instance()->makeUrl('forum.tag', array('module' => 'group', 'item' => Phpfox_Request::instance()->get('req2')));
 	}		
 
 	public function getTagTypeGroup()
@@ -132,7 +132,7 @@ class Forum_Service_Callback extends Phpfox_Service
 	public function getNewsFeed($aRow)
 	{
 		if ($sPlugin = Phpfox_Plugin::get('forum.service_callback_getnewsfeed_start')){eval($sPlugin);}
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		
 		$aRow['text'] = Phpfox::getPhrase('forum.owner_full_name_added_a_new_thread', array(
@@ -165,11 +165,11 @@ class Forum_Service_Callback extends Phpfox_Service
 		
 		if ($aThread['group_id'] > 0)
 		{
-			return Phpfox::getLib('url')->makeUrl('group.forum', array($aThread['title_url'], 'id' => $aThread['group_id']));
+			return Phpfox_Url::instance()->makeUrl('group.forum', array($aThread['title_url'], 'id' => $aThread['group_id']));
 		}
 		else 
 		{
-			return Phpfox::getLib('url')->makeUrl('forum', array($aThread['forum_url'] . '-' . $aThread['forum_id'], $aThread['title_url']));
+			return Phpfox_Url::instance()->makeUrl('forum', array($aThread['forum_url'] . '-' . $aThread['forum_id'], $aThread['title_url']));
 		}
 	}	
 	
@@ -223,7 +223,7 @@ class Forum_Service_Callback extends Phpfox_Service
 	    
 	    $aThread['title'] = Phpfox::getPhrase('forum.sponsor_title',array('sThreadTitle' => $aThread['title']));
 	    $aThread['paypal_msg'] = Phpfox::getPhrase('forum.sponsor_paypal_message', array('sThreadTitle' => $aThread['title']));
-	    $aThread['link'] = Phpfox::getLib('url')->makeUrl('forum.'.$aThread['name_url'].'.'.$aThread['title_url']);
+	    $aThread['link'] = Phpfox_Url::instance()->makeUrl('forum.'.$aThread['name_url'].'.'.$aThread['title_url']);
 	    
 	    return $aThread;
 	}
@@ -294,7 +294,7 @@ class Forum_Service_Callback extends Phpfox_Service
 		return array(
 				Phpfox::getPhrase('forum.forum') => array(
 					'active' => 'forum',
-					'url' => Phpfox::getLib('url')->makeUrl('group', array($sGroupUrl, 'forum')
+					'url' => Phpfox_Url::instance()->makeUrl('group', array($sGroupUrl, 'forum')
 				)
 			)
 		);
@@ -321,11 +321,11 @@ class Forum_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('forum.full_name_replied_to_the_thread_title', array(
 					'full_name' => $aRow['full_name'], 'title' => Phpfox::getLib('parse.output')->shorten($aRow['item_title'], 20, '...'), 
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('predirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('predirect' => $aRow['item_id']))
 				)
 			),		
-			'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('predirect' => $aRow['item_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('predirect' => $aRow['item_id'])),
 			'path' => 'core.url_user',
 			'suffix' => '_50'
 		);				
@@ -336,11 +336,11 @@ class Forum_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('forum.full_name_replied_to_the_thread_title', array(
 					'full_name' => $aRow['full_name'], 'title' => Phpfox::getLib('parse.output')->shorten($aRow['item_title'], 20, '...'), 
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('redirect' => $aRow['item_id']))
 				)
 			),		
-			'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('redirect' => $aRow['item_id'])),
+			'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('redirect' => $aRow['item_id'])),
 			'path' => 'core.url_user',
 			'suffix' => '_50'
 		);				
@@ -421,7 +421,7 @@ class Forum_Service_Callback extends Phpfox_Service
 	
 	public function getNewsFeedReply($aRow)
 	{
-		$oUrl = Phpfox::getLib('url');
+		$oUrl = Phpfox_Url::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');		
 		$aParts = unserialize($aRow['content']);
 		
@@ -627,7 +627,7 @@ class Forum_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('forum.a_href_user_link_full_name_a_likes_their_own_forum_a_href_link_thread_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
 					'link' => $aRow['link']
 				)
@@ -637,9 +637,9 @@ class Forum_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('forum.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_forum_a_href_link_thread_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -655,11 +655,11 @@ class Forum_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('forum.a_href_user_link_full_name_a_likes_your_forum_a_href_link_thread_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('redirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('redirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('redirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('redirect' => $aRow['item_id']))
 		);				
 	}		
 	
@@ -667,8 +667,8 @@ class Forum_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('forum.a_href_user_link_full_name_a_likes_your_forum_a_href_link_thread_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('redirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('redirect' => $iItemId))
 				)
 			);
 	}
@@ -677,8 +677,8 @@ class Forum_Service_Callback extends Phpfox_Service
 	{
 		return Phpfox::getPhrase('forum.a_href_user_link_full_name_a_likes_your_forum_a_href_link_post_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean(Phpfox::getUserBy('full_name')),
-					'user_link' => Phpfox::getLib('url')->makeUrl(Phpfox::getUserBy('user_name')),
-					'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('predirect' => $iItemId))
+					'user_link' => Phpfox_Url::instance()->makeUrl(Phpfox::getUserBy('user_name')),
+					'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('predirect' => $iItemId))
 				)
 			);
 	}	
@@ -688,11 +688,11 @@ class Forum_Service_Callback extends Phpfox_Service
 		return array(
 			'message' => Phpfox::getPhrase('forum.a_href_user_link_full_name_a_likes_your_forum_a_href_link_post_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['user_name']),
-					'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('predirect' => $aRow['item_id']))
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['user_name']),
+					'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('predirect' => $aRow['item_id']))
 				)
 			),
-			'link' => Phpfox::getLib('url')->makeUrl('forum.thread', array('predirect' => $aRow['item_id']))			
+			'link' => Phpfox_Url::instance()->makeUrl('forum.thread', array('predirect' => $aRow['item_id']))
 		);	
 	}
 	
@@ -702,7 +702,7 @@ class Forum_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('forum.a_href_user_link_full_name_a_likes_their_own_forum_a_href_link_reply_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'gender' => Phpfox::getService('user')->gender($aRow['owner_gender'], 1),
 					'link' => $aRow['link']
 				)
@@ -712,9 +712,9 @@ class Forum_Service_Callback extends Phpfox_Service
 		{
 			$aRow['text'] = Phpfox::getPhrase('forum.a_href_user_link_full_name_a_likes_a_href_view_user_link_view_full_name_a_s_forum_a_href_link_reply_a', array(
 					'full_name' => Phpfox::getLib('parse.output')->clean($aRow['owner_full_name']),
-					'user_link' => Phpfox::getLib('url')->makeUrl($aRow['owner_user_name']),
+					'user_link' => Phpfox_Url::instance()->makeUrl($aRow['owner_user_name']),
 					'view_full_name' => Phpfox::getLib('parse.output')->clean($aRow['viewer_full_name']),
-					'view_user_link' => Phpfox::getLib('url')->makeUrl($aRow['viewer_user_name']),
+					'view_user_link' => Phpfox_Url::instance()->makeUrl($aRow['viewer_user_name']),
 					'link' => $aRow['link']			
 				)
 			);
@@ -744,13 +744,13 @@ class Forum_Service_Callback extends Phpfox_Service
 		$aPending[] = array(
 			'phrase' => Phpfox::getPhrase('forum.forum_threads'),
 			'value' => $this->database()->select('COUNT(*)')->from(Phpfox::getT('forum_thread'))->where('view_id = 1')->execute('getSlaveField'),
-			'link' => Phpfox::getLib('url')->makeUrl('forum.search', array('view' => 'pending-thread'))
+			'link' => Phpfox_Url::instance()->makeUrl('forum.search', array('view' => 'pending-thread'))
 		);
 		
 		$aPending[] = array(
 			'phrase' => Phpfox::getPhrase('forum.forum_posts'),
 			'value' => $this->database()->select('COUNT(*)')->from(Phpfox::getT('forum_post'))->where('view_id = 1')->execute('getSlaveField'),
-			'link' => Phpfox::getLib('url')->makeUrl('forum.search', array('view' => 'pending-post'))
+			'link' => Phpfox_Url::instance()->makeUrl('forum.search', array('view' => 'pending-post'))
 		);		
 		
 		return $aPending;
@@ -859,7 +859,7 @@ class Forum_Service_Callback extends Phpfox_Service
 		}		
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('forum.thread', $aRow['thread_id'], $aRow['title'], false, null, array('view' => $aRow['post_id'])),
+			'link' => Phpfox_Url::instance()->permalink('forum.thread', $aRow['thread_id'], $aRow['title'], false, null, array('view' => $aRow['post_id'])),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);			
@@ -881,7 +881,7 @@ class Forum_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('forum.users_replied_to_the_thread_title', array('users' => Phpfox::getService('notification')->getUsers($aNotification), 'title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));		
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('forum.thread', $aRow['thread_id'], $aRow['title'], false, null, array('view' => $aRow['post_id'])),
+			'link' => Phpfox_Url::instance()->permalink('forum.thread', $aRow['thread_id'], $aRow['title'], false, null, array('view' => $aRow['post_id'])),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -902,7 +902,7 @@ class Forum_Service_Callback extends Phpfox_Service
 		$sPhrase = Phpfox::getPhrase('forum.your_thread_has_been_approved', array('thread_title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], 20,'...')));
 			
 		return array(
-			'link' => Phpfox::getLib('url')->permalink('forum.thread', $aRow['thread_id'], $aRow['title'], false, null),
+			'link' => Phpfox_Url::instance()->permalink('forum.thread', $aRow['thread_id'], $aRow['title'], false, null),
 			'message' => $sPhrase,
 			'icon' => Phpfox_Template::instance()->getStyle('image', 'activity.png', 'blog')
 		);	
@@ -984,7 +984,7 @@ class Forum_Service_Callback extends Phpfox_Service
 		}
 		else 
 		{
-			$sPhrase = Phpfox::getPhrase('feed.replied_on_a_href_user_name_full_name_a_s_thread_a_href_link_title_a', array('user_name' => Phpfox::getLib('url')->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'], 'link' => $sLink, 'title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
+			$sPhrase = Phpfox::getPhrase('feed.replied_on_a_href_user_name_full_name_a_s_thread_a_href_link_title_a', array('user_name' => Phpfox_Url::instance()->makeUrl($aRow['user_name']), 'full_name' => $aRow['full_name'], 'link' => $sLink, 'title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], Phpfox::getParam('notification.total_notification_title_length'), '...')));
 		}
 
 		// if (Phpfox::getParam('core.allow_html_in_activity_feed') && preg_match('/\[quote(.*)\]/i', $aRow['normal_text']))
@@ -1095,7 +1095,7 @@ class Forum_Service_Callback extends Phpfox_Service
 	public function getSearchInfo($aRow)
 	{
 		$aInfo = array();
-		$aInfo['item_link'] = Phpfox::getLib('url')->permalink('forum.thread', $aRow['item_id'], $aRow['item_title']);
+		$aInfo['item_link'] = Phpfox_Url::instance()->permalink('forum.thread', $aRow['item_id'], $aRow['item_title']);
 		$aInfo['item_name'] = Phpfox::getPhrase('search.forum_thread');
 		
 		return $aInfo;
@@ -1135,7 +1135,7 @@ class Forum_Service_Callback extends Phpfox_Service
 		return array(
 			array(
 				'phrase' => Phpfox::getPhrase('forum.post_a_new_thread'),
-				'url' => Phpfox::getLib('url')->makeUrl('forum.post.thread', array('module' => 'pages', 'item' => $aPage['page_id']))
+				'url' => Phpfox_Url::instance()->makeUrl('forum.post.thread', array('module' => 'pages', 'item' => $aPage['page_id']))
 			)
 		);
 	}	

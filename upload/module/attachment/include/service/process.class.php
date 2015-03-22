@@ -26,7 +26,7 @@ class Attachment_Service_Process extends Phpfox_Service
 	public function add($aVals)
 	{		
 		$aVals = array_merge($aVals, array(
-				'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')
+				'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')
 			)
 		);
 		
@@ -38,7 +38,7 @@ class Attachment_Service_Process extends Phpfox_Service
 			'file_name' => (empty($aVals['file_name']) ? null : $aVals['file_name']),
 			'extension' => (empty($aVals['extension']) ? null : $aVals['extension']),
 			'is_image' => ((isset($aVals['is_image']) && $aVals['is_image']) ? 1 : 0),
-			'server_id' => Phpfox::getLib('request')->getServer('PHPFOX_SERVER_ID')
+			'server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')
 		);
 
 		$iId = $this->database()->insert(Phpfox::getT('attachment'), $aInsert);

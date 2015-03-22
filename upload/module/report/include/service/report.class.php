@@ -189,8 +189,8 @@ class Report_Service_Report extends Phpfox_Service
 			}
 			
 			$aReports[] = array(
-				'phrase' => Phpfox::getLib('locale')->convert($aCategory['message']),
-				'link' => Phpfox::getLib('url')->makeUrl('admincp.report', array('id' =>  $aCategory['report_id'])),
+				'phrase' => Phpfox_Locale::instance()->convert($aCategory['message']),
+				'link' => Phpfox_Url::instance()->makeUrl('admincp.report', array('id' =>  $aCategory['report_id'])),
 				'value' => $iTotal
 			);
 		}

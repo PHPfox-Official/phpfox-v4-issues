@@ -1,0 +1,11 @@
+{% extends '@Theme/layout.html' %}
+{% import '@Theme/macro/form.html' as Form %}
+
+{% block content %}
+	Testing forms... {{ phrase('Hello') }}
+	<form method="post" action="" class="ajax_post">
+		{{ url('test', {foo: 'bar'}) }}
+		{{ Form.text('test', 'Testing') }}
+		{{ Form.submit('Submit') }}
+	</form>
+{% endblock %}

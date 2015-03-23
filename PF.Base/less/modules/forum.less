@@ -1,0 +1,263 @@
+
+div.sub_menu_bar_main, div.sub_menu_bar_main a, div.sub_menu_bar_main a:hover {
+	.reset();
+}
+
+div.sub_menu_bar_main {
+	position:absolute;
+	right:5px;
+	top:-42px;
+}
+
+div.sub_menu_bar_main a, div.sub_menu_bar_main a:hover {
+	.button();
+}
+
+div.sub_menu_bar_main a:hover {
+	.button_hover();
+}
+
+#page_forum_index br {
+	display:none;
+}
+
+.table_info {
+	background:transparent;
+	color:@textColor;
+	font-weight:200;
+	font-size:@fontSizeBase + 3;
+	letter-spacing:1px;
+	padding-left:0px;
+	padding-bottom:5px;
+	height:auto;
+	line-height:normal;
+
+	a, a:hover {
+		font-weight:200;
+		color:@textColor;
+	}
+}
+
+._forum_last_post {
+
+}
+
+#content ._forum_row {
+	background:@blockBg;
+	color:@blockColor;
+	border:0px;
+	margin-bottom:@blockMarginBottom;
+	position:relative;
+	height:350px;
+
+	h1 {
+		font-size:@fontSizeBase + 4;
+		margin:0px;
+		padding:0px;
+		text-indent:10px;
+		height:55px;
+		line-height:55px;
+
+		a, a:hover {
+			font-size:@fontSizeBase + 4;
+			font-weight:300;
+			letter-spacing:1px;
+			color:@linkFocus;
+		}
+
+		a:hover {
+			color:@linkFocusHover;
+		}
+	}
+}
+
+._forum_info {
+	display:table;
+	table-layout:fixed;
+	width:100%;
+
+	> li {
+		position:relative;
+		display:table-cell;
+		margin-left:8px;
+		padding:2px 0px;
+		width:50%;
+
+		> strong {
+			display:inline-block;
+			vertical-align:middle;
+			text-align:center;
+			font-size:@fontSizeBase - 2;
+			font-weight:200;
+		}
+
+		> span:before {
+			content: '/';
+			margin-right:6px;
+		}
+
+		> span {
+			display:inline-block;
+			vertical-align:middle;
+			font-size:@fontSizeBase - 2;
+			text-transform:uppercase;
+			margin-left:10px;
+			font-weight:200;
+		}
+	}
+}
+
+.forum_title {
+	width:auto;
+	left:70px;
+	top:10px;
+
+	.extra_info_link {
+		font-size:@fontSizeBase - 2;
+	}
+}
+
+.table_row {
+	border:0px;
+	background:@blockBg;
+	margin-bottom:@blockMarginBottom;
+	padding:@blockContentPadding;
+}
+
+.forum_thread_total {
+	right:10px;
+	top:10px;
+	position:absolute;
+}
+
+.forum_last_post, .forum_thread_last_post {
+	width:auto;
+	position:static;
+	border-radius:0px;
+	border:0px;
+	background:darken(@blockBg, 5%);
+	margin:-@blockContentPadding;
+	margin-top:@blockContentPadding;
+	padding-left:@blockContentPadding;
+	font-size:@fontSizeBase - 1;
+
+	.extra_info_link:after {
+		content:'@';
+	}
+
+	a, a:hover, .extra_info_link {
+		display:inline-block;
+		opacity:0.6;
+	}
+}
+
+.forum_last_post:hover, .forum_thread_last_post:hover {
+	a, a:hover, .extra_info_link {
+		opacity:1;
+		transition:@transition;
+	}
+}
+
+#content .forum_title h1 {
+	.reset();
+}
+
+a.forum_thread_link, a.forum_thread_link:hover {
+	font-size:@fontSizeBase + 2 !important;
+	color:@linkFocus !important;
+}
+
+a.forum_thread_link:hover {
+	color:@linkFocusHover !important;
+}
+
+div.forum_mini_new, div.forum_mini_old, div.forum_mini_closed {
+	background:transparent;
+}
+
+.forum_thread_photo, div.forum_outer, div.forum_outer div.forum_user_info_holder, div.forum_outer div.forum_user_info_holder_inner, div.forum_main, div.forum_content, .forum_user_info_holder_inner_image, div.forum_outer div.forum_user_info {
+	.reset();
+}
+
+div.forum_outer div.forum_user_info_holder {
+	height:70px;
+}
+
+div.forum_outer {
+	background:@blockBg;
+	margin-bottom:@blockMarginBottom;
+	position:relative;
+}
+
+.forum_thread_photo {
+	width:50px;
+	height:50px;
+	overflow:hidden;
+	position:absolute;
+	left:10px;
+	top:10px;
+
+	img {
+		max-width:50px;
+		max-height:50px;
+	}
+}
+
+.forum_thread_user {
+	padding-top:10px;
+}
+
+.forum_thread_user, .forum_user_info .extra_info {
+	padding-left:70px;
+}
+
+div.forum_content {
+	padding:@blockContentPadding;
+}
+
+.forum_user_info .extra_info {
+	font-size:@fontSizeBase - 1;
+}
+
+.forum_thread_user a, .forum_thread_user a:hover {
+	font-size:@fontSizeBase + 1;
+}
+
+.forum_post_count {
+	position:absolute;
+	right:10px;
+	top:10px;
+}
+
+.forum_quote {
+	display:block;
+	height:30px;
+	position:relative;
+
+	a, a:hover {
+		display:none;
+		right:10px;
+		top:5px;
+		position:absolute;
+		width:20px;
+		height:20px;
+		text-indent:-1000px;
+		overflow:hidden;
+		background:red;
+	}
+}
+
+.forum_outer:hover {
+	.forum_quote a {
+		display:block;
+	}
+}
+
+.forum_header_menu {
+	.reset();
+
+	position:absolute;
+	top:5px;
+	right:5px;
+	z-index:20;
+}

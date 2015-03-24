@@ -18,6 +18,10 @@ class Route {
 	private static $_active;
 
 	public function __construct($route) {
+		if (!self::$routes) {
+			self::$routes = require(PHPFOX_DIR_SETTING . 'routes.sett.php');
+		}
+
 		if (is_array($route)) {
 			foreach ($route as $key => $value) {
 				$value['path'] = \Core\Route\Controller::$active;

@@ -14,6 +14,7 @@ if (typeof window.console.log == 'undefined')
 	window.console.log = function(sTxt){};
 }
 
+
 $.fn.message = function(sMessage, sType) 
 {
 	switch(sType)
@@ -1649,7 +1650,6 @@ $Core.loadInit = function()
 	{		
 		this(this);
 	});
-
 };
 
 $Core.init = function()
@@ -1670,6 +1670,10 @@ $Core.init = function()
 
 		$.each($Behavior, function() 
 		{
+			this(this);
+		});
+
+		$.each($Events, function() {
 			this(this);
 		});
 	});    

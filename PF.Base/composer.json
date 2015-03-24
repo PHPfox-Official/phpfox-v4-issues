@@ -1,5 +1,6 @@
 {
 	"require": {
-		"twig/twig": "1.18.*@dev"
+		"twig/twig": "1.18.*@dev",
+		"leafo/lessphp": "0.4.0"
 	}
 }

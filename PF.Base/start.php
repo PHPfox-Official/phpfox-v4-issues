@@ -27,7 +27,10 @@ spl_autoload_register(function($class) {
 	$name = strtolower($class);
 	$name = str_replace("\\", '/', $name);
 
-	if (substr($name, 0, 5) == 'core/' || substr($name, 0, 5) == 'apps/' || substr($name, 0, 4) == 'api/') {
+	if (substr($name, 0, 5) == 'core/'
+		|| substr($name, 0, 5) == 'apps/'
+		|| substr($name, 0, 12) == 'controllers/'
+		|| substr($name, 0, 4) == 'api/') {
 		$class = str_replace("\\", '/', $class);
 		$dir = PHPFOX_DIR_SRC;
 		if (substr($name, 0, 5) == 'apps/') {
@@ -39,6 +42,14 @@ spl_autoload_register(function($class) {
 		require($path);
 	}
 });
+
+/**
+ * @param $element
+ * @return \Core\jQuery
+ */
+function j($element) {
+	return new \Core\jQuery($element);
+}
 
 function phrase() {
 	$Reflect = (new ReflectionClass('Phpfox_Locale'))->newInstanceWithoutConstructor();

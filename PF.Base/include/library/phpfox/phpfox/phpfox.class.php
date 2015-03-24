@@ -149,6 +149,13 @@ class Phpfox
 	{
 		return str_replace('.', '', self::VERSION);
 	}
+
+	public static function internalVersion() {
+		$version = self::getCleanVersion();
+		$version .= Phpfox::getParam('core.css_edit_id');
+
+		return $version;
+	}
 	
 	/**
 	 * Check if a feature can be used based on the package the client
@@ -1087,7 +1094,20 @@ class Phpfox
 
 			// header('Content-type: ' . $sType);
 			$HTTPCache->cache($sType, filemtime($sPath), 7);
-			echo @file_get_contents($sPath);
+
+			if ($oReq->segment(1) == 'themes') {
+				$Theme = $oTpl->theme()->get();
+				$Service = new Core\Theme\Service($Theme);
+				if ($sType == 'text/css') {
+					echo $Service->css()->getParsed();
+				}
+				else {
+					echo $Service->js()->get();
+				}
+			}
+			else {
+				echo @file_get_contents($sPath);
+			}
 			exit;
 		}
 		
@@ -1286,7 +1306,9 @@ class Phpfox
 			require_once(PHPFOX_DIR_CRON . 'exec.php');
 		}
 
-		if (!PHPFOX_IS_AJAX_PAGE && $oTpl->sDisplayLayout && !isset($View))
+		if ((!PHPFOX_IS_AJAX_PAGE && $oTpl->sDisplayLayout && !isset($View))
+			|| self::isAdminPanel()
+		)
 		{			
 			$oTpl->getLayout($oTpl->sDisplayLayout);
 			exit;

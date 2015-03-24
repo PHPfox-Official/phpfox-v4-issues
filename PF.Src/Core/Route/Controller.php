@@ -115,7 +115,8 @@ class Controller {
 					$parts = explode('@', $r['call']);
 
 					$Reflection = new \ReflectionClass($parts[0]);
-					$Controller = $Reflection->newInstance($routes[$uri]['path'] . 'views');
+					$Controller = $Reflection->newInstance((isset($routes[$uri]['path']) ? $routes[$uri]['path'] . 'views' : null));
+
 					$content = call_user_func_array([$Controller, $parts[1]], (isset($r['args']) ? $r['args'] : []));
 				}
 				else if (isset($r['url'])) {

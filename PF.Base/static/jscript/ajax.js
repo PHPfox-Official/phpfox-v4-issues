@@ -191,9 +191,32 @@ $Core.processPostForm = function(e, obj) {
 			eval('' + obj.data('callback') + '(e, obj);');
 		}
 	}
+
+	if (typeof(e.run) == 'string') {
+		eval(e.run);
+	}
+
+	if (typeof(e.ace) == 'string') {
+		$AceEditor.set(e.ace);
+	}
 };
 
 $Behavior.onAjaxSubmit = function() {
+	$('.ajax').click(function() {
+		var t = $(this),
+			url = t.data('url');
+
+		$.ajax({
+			url: url,
+			contentType: 'application/json',
+			success: function(e) {
+				$Core.processPostForm(e, t);
+			}
+		});
+
+		return false;
+	});
+
 	$('.ajax_post').submit(function() {
 		var t = $(this),
 			data = t.serialize();
@@ -220,3 +243,45 @@ $Behavior.onAjaxSubmit = function() {
 		}
 	});
 };
+
+var $AceEditor = {
+	obj: null,
+	set: function(value) {
+		$AceEditor.obj.getSession().setValue(value);
+	},
+	mode: function(mode) {
+		$AceEditor.obj.getSession().setMode('ace/mode/' + mode);
+	}
+};
+
+$Event(function() {
+	if ($('.ace_editor').length) {
+		var t = $('.ace_editor');
+		$.getScript('//cdn.jsdelivr.net/ace/1.1.8/min/ace.js', function() {
+			$AceEditor.obj = ace.edit(t.get(0));
+			$AceEditor.obj.setTheme('ace/theme/github');
+			$AceEditor.obj.getSession().setMode('ace/mode/' + t.data('ace-mode'));
+
+			if (t.data('ace-save')) {
+				$AceEditor.obj.commands.addCommand({
+					name: 'saveFile',
+					bindKey: {
+						win: 'Ctrl-S',
+						mac: 'Command-S',
+						sender: 'editor|cli'
+					},
+					exec: function(env, args, request) {
+						$.ajax({
+							url: t.data('ace-save'),
+							type: 'POST',
+							data: 'is_ajax_post=1&content=' + encodeURIComponent($AceEditor.obj.getSession().getValue()),
+							success: function(e) {
+								p(e);
+							}
+						});
+					}
+				});
+			}
+		});
+	}
+});

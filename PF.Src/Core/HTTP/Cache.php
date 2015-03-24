@@ -14,10 +14,12 @@ class Cache {
 	public function cacheId() {
 		$id = $this->_request->uri();
 
-		return 'request_is_cached_' . md5($id . \Phpfox::getCleanVersion());
+		return 'request_is_cached_' . md5($id . \Phpfox::internalVersion());
 	}
 
 	public function checkCache() {
+		return false;
+
 		if (($cache = $this->_cache->get($this->cacheId())) && $this->cache($cache['type'], $cache['modified'], $cache['days'])) {
 			header('IS-FROM-CACHE: 1');
 			exit;
@@ -43,9 +45,9 @@ class Cache {
 
 		$key = $this->cacheId();
 		if ((int) $modified_since === (int) $last_modified && $etag === $etagHeader && $this->_cache->get($key)) {
-			header('HTTP/1.1 304 Not Modified');
+			// header('HTTP/1.1 304 Not Modified');
 
-			return true;
+			// return true;
 		}
 
 		$this->_cache->set($key, [

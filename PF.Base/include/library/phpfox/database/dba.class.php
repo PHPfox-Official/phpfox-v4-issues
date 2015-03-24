@@ -188,12 +188,14 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 			foreach ($aConds as $sKey => $sValue)
 			{
 				if (is_string($sKey)) {
-					$this->_aQuery['where'] .= $sKey . ' = \'' . Phpfox_Database::instance()->escape($sValue) . '\'';
+					// $this->_aQuery['where'] .= $sKey . ' = \'' . Phpfox_Database::instance()->escape($sValue) . '\'';
+					$this->_aQuery['where'] .= $this->_where($sKey, $sValue);
 
 					continue;
 				}
 				$this->_aQuery['where'] .= $sValue . ' ';
 			}
+
 			$this->_aQuery['where'] = "WHERE " . trim(preg_replace("/^(AND|OR)(.*?)/i", "", trim($this->_aQuery['where'])));
 		}
 		else 
@@ -217,18 +219,21 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      */	
 	public function from($sTable, $sAlias = '')
 	{
-		if (substr($sTable, 0, 1) == ':') {
-			$sTable = Phpfox::getT(str_replace(':', '', $sTable));
-		}
-
 		if (PHPFOX_DEBUG && in_array(strtoupper($sAlias), $this->_aWords))
 		{
 			Phpfox_Error::trigger('The alias "' . $sAlias . '" is a reserved SQL word. Use another alias to resolve this problem.', E_USER_ERROR);
 		}
 		
-		$this->_aQuery['table'] = 'FROM ' . $sTable . ($sAlias ? ' AS ' . $sAlias : '');		
+		$this->_aQuery['table'] = 'FROM ' . $this->table($sTable) . ($sAlias ? ' AS ' . $sAlias : '');
 		
 		return $this;
+	}
+
+	public function table($sTable) {
+		if (substr($sTable, 0, 1) == ':') {
+			$sTable = Phpfox::getT(str_replace(':', '', $sTable));
+		}
+		return $sTable;
 	}
 	
     /**
@@ -663,7 +668,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
     		$this->_aData = array();
     	}
 
-        $sSql = $this->_insert($sTable, implode(', ', array_keys($aValues)), $sValues);
+        $sSql = $this->_insert($this->table($sTable), implode(', ', array_keys($aValues)), $sValues);
  
         if ($hRes = $this->query($sSql))
         {
@@ -736,6 +741,17 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
         	$this->_aData = array();
 		}
 
+	    if ($sTable == ':theme_template') {
+		    if (is_array($sCond)) {
+			    $aClone = $sCond;
+			    $sCond = '';
+			    foreach ($aClone as $sKey => $sValue) {
+				    $sCond .= $this->_where($sKey, $sValue);
+			    }
+			    $sCond = trim(preg_replace("/^(AND|OR)(.*?)/i", "", trim($sCond)));
+		    }
+	    }
+
         $sSets = '';
         foreach ($aValues as $sCol => $sValue)
         {
@@ -750,7 +766,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
         }
         $sSets[strlen($sSets)-2] = '  ';        
 		
-        return $this->query($this->_update($sTable, $sSets, $sCond));
+        return $this->query($this->_update($this->table($sTable), $sSets, $sCond));
     } 
     
     /**
@@ -942,6 +958,25 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 		}
 	}
 
+	protected function _where($sKey, $mValue) {
+		if (is_array($mValue)) {
+			$sWhere = 'AND ' . $sKey . '';
+			$sKey = array_keys($mValue)[0];
+			$sValue = array_values($mValue)[0];
+			switch ($sKey) {
+				case '=':
+					$sWhere .= '= ' . $sValue . ' ';
+					break;
+			}
+
+			return $sWhere;
+
+		}
+		$sWhere = 'AND ' . $sKey . ' = \'' . Phpfox_Database::instance()->escape($mValue) . '\' ';
+
+		return $sWhere;
+	}
+
 	/**
 	 * Performs all the joins based on information passed from JOIN methods within this class.
 	 *
@@ -964,14 +999,25 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 		{
 			$this->_aQuery['join'] = '';
 		}
-		$this->_aQuery['join'] .= $sType . " " . $sTable . " AS " . $sAlias;
+		$this->_aQuery['join'] .= $sType . " " . $this->table($sTable) . " AS " . $sAlias;
 		if (is_array($mParam))
 		{
 			$this->_aQuery['join'] .= "\n\tON(";
-			foreach ($mParam as $sValue)
+
+			$sJoins = '';
+			foreach ($mParam as $sKey => $sValue)
 			{
-				$this->_aQuery['join'] .= $sValue . " ";
+				if (is_string($sKey)) {
+					//
+					$sJoins .= $this->_where($sKey, $sValue);
+
+					continue;
+				}
+
+				$sJoins .= $sValue . " ";
 			}
+
+			$this->_aQuery['join'] .= preg_replace("/^(AND|OR)(.*?)/i", "", trim($sJoins));
 		}
 		else 
 		{
@@ -985,6 +1031,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 				Phpfox_Error::trigger('Not allowed to use "USING()" in SQL queries any longer.', E_USER_ERROR);
 			}
 		}
+
 		$this->_aQuery['join'] = preg_replace("/^(AND|OR)(.*?)/i", "", trim($this->_aQuery['join'])) . ")\n";
 	} 
 	

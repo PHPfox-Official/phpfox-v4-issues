@@ -13,11 +13,7 @@ defined('PHPFOX') or exit('NO DICE!');
  * @package  		Module_Theme
  * @version 		$Id: index.class.php 1179 2009-10-12 13:56:40Z Raymond_Benc $
  */
-class Theme_Component_Controller_Admincp_Index extends Phpfox_Component 
-{
-	/**
-	 * Controller
-	 */
+class Theme_Component_Controller_Admincp_Index extends Phpfox_Component {
 	public function process()
 	{
 		if (($iDeleteId = $this->request()->getInt('delete')))
@@ -29,21 +25,11 @@ class Theme_Component_Controller_Admincp_Index extends Phpfox_Component
 		}
 		
 		$this->template()->setTitle(Phpfox::getPhrase('theme.themes'))
+			->setSectionTitle('Themes')
 			->setBreadcrumb(Phpfox::getPhrase('theme.themes'), $this->url()->makeUrl('admincp.theme'))
 			->assign(array(
-					'aThemes' => Theme_Service_Theme::instance()->get()
+					'themes' => $this->template()->theme()->all()
 				)
 			);
 	}
-	
-	/**
-	 * Garbage collector. Is executed after this class has completed
-	 * its job and the template has also been displayed.
-	 */
-	public function clean()
-	{
-		(($sPlugin = Phpfox_Plugin::get('admincp.component_controller_product_index_clean')) ? eval($sPlugin) : false);
-	}
 }
-
-?>

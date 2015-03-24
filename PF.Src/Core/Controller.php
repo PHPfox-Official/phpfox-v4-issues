@@ -15,7 +15,7 @@ class Controller {
 		$this->active = (new \Api\User())->get(\Phpfox::getUserId());
 
 		$this->_view = new View();
-		if ($path !== null) {
+		if ($path !== null && is_dir($path)) {
 			$this->_view->loader()->addPath($path);
 		}
 	}

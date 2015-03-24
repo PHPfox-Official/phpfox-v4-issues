@@ -292,7 +292,7 @@ class Phpfox_Module
 			return null;
 		}
 
-		if (!Phpfox::isAdminPanel() && ($View = (new Core\Route\Controller())->get())) {
+		if (($View = (new Core\Route\Controller())->get())) {
 			return $View;
 		}
 		
@@ -875,6 +875,12 @@ class Phpfox_Module
 			$mReturn = $this->_aComponent[$sHash]->process();
 
 			if ($sType == 'controller' && (is_array($mReturn) || is_object($mReturn))) {
+				if ($mReturn instanceof Core\jQuery) {
+					$mReturn = [
+						'run' => (string) $mReturn
+					];
+				}
+
 				header('Content-type: application/json');
 				echo json_encode($mReturn);
 				exit;

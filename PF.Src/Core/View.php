@@ -8,7 +8,7 @@ class View {
 	private $_render = [];
 
 	public function __construct() {
-		$this->_loader = new \Twig_Loader_Filesystem();
+		$this->_loader = new View\Loader();
 		$this->_loader->addPath(PHPFOX_DIR_SITE . 'themes/default/html', 'Theme');
 		$this->_loader->addPath(PHPFOX_DIR . 'views', 'Base');
 
@@ -52,6 +52,7 @@ class View {
 					'h1' => new View\Functions('h1')
 				]
 			];
+
 		}
 
 		$params = $this->_render['params'];

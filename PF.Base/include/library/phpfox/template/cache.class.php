@@ -1551,6 +1551,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 		else
 		{
 			$sResult = "\$this->_aVars['$sVarName']";
+			// $sResult = "\$this->getVar('$sVarName')";
 		}
 
 		foreach ($aVariables as $sVar)

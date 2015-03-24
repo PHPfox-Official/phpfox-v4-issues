@@ -252,6 +252,8 @@ class Phpfox_Template
 	 * @var string
 	 */
 	protected static $_sStaticThemeFolder = null;
+
+	private $_theme;
 	
 	/**
 	 * Class constructor we use to build the current theme and style
@@ -268,6 +270,7 @@ class Phpfox_Template
 		}
 		else 
 		{
+			$this->_theme = new Core\Theme();
 			$this->_bIsAdminCp = (strtolower(Phpfox_Request::instance()->get('req1')) == Phpfox::getParam('admincp.admin_cp'));
 			
 			if ($this->_bIsAdminCp)
@@ -319,7 +322,15 @@ class Phpfox_Template
 		}
 		
 		return $this;
-	}	
+	}
+
+
+	/**
+	 * @return \Core\Theme
+	 */
+	public function theme() {
+		return $this->_theme;
+	}
 	
 	/**
 	 * Get the current theme we are using.
@@ -1339,7 +1350,7 @@ class Phpfox_Template
             $aCacheCSS = array();
             
             $this->_sFooter = '';
-            $sJs .= "\t\t\t" . 'var $Behavior = {};' . "\n";
+            $sJs .= "\t\t\t" . 'var $Behavior = {}, $Ready = $Ready = function(callback) {$Behavior[callback.toString().length] = callback;}, $Events = {}, $Event = function(callback) {$Events[callback.toString().length] = callback;};' . "\n";
             $sJs .= "\t\t\t" .'var $Core = {};' . "\n";
 			$aCustomCssFile = array();
 			
@@ -1733,7 +1744,8 @@ class Phpfox_Template
 		}
 
 		if (!defined('PHPFOX_INSTALLER') && !Phpfox::isAdminPanel()) {
-			$sData .= '<link href="' . Phpfox::getParam('core.path') . 'themes/default/flavor/default.css" rel="stylesheet">';
+			$Theme = $this->_theme->get();
+			$sData .= '<link href="' . Phpfox::getParam('core.path') . 'themes/' . $Theme->folder . '/flavor/' . $Theme->flavor_folder . '.css?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
 		}
 
 		$Apps = new Core\App();
@@ -1741,12 +1753,20 @@ class Phpfox_Template
 			$assets = $App->path . 'assets/';
 			if (file_exists($assets . 'autoload.js')) {
 				$url = str_replace(PHPFOX_DIR_SITE, Phpfox::getParam('core.path'), $assets) . 'autoload.js';
-				$this->_sFooter .= '<script src="' . $url . '"></script>';
+				$this->_sFooter .= '<script src="' . $url . '?v=' . Phpfox::internalVersion() . '"></script>';
 			}
 
 			if (file_exists($assets . 'autoload.css')) {
 				$url = str_replace(PHPFOX_DIR_SITE, Phpfox::getParam('core.path'), $assets) . 'autoload.css';
-				$sData .= '<link href="' . $url . '" rel="stylesheet">';
+				$sData .= '<link href="' . $url . '?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
+			}
+		}
+
+		if (is_object($this->_theme)) {
+			$asset = $this->_theme->get()->getPath() . 'assets/autoload.js';
+			if (file_exists($asset)) {
+				$url = str_replace(PHPFOX_DIR_SITE, Phpfox::getParam('core.path'), $asset);
+				$this->_sFooter .= '<script src="' . $url . '?v=' . Phpfox::internalVersion() . '"></script>';
 			}
 		}
 		
@@ -2080,6 +2100,10 @@ class Phpfox_Template
 	
 		foreach ($mVars as $sVar => $sValue)
 		{
+			if (is_object($sValue) && method_exists($sValue, '__toArray')) {
+				$sValue = (array) $sValue;
+			}
+
 			$this->_aVars[$sVar] = $sValue;
 		}
 			
@@ -2097,6 +2121,10 @@ class Phpfox_Template
 	{
 		if ($sName === null) {
 			return $this->_aVars;
+		}
+
+		if (isset($this->_aVars[$sName]) && is_object($this->_aVars[$sName])) {
+			$this->_aVars[$sName] = (array) $this->_aVars[$sName];
 		}
 
 		return (isset($this->_aVars[$sName]) ? $this->_aVars[$sName] : '');
@@ -3033,7 +3061,6 @@ class Phpfox_Template
 	public function getCacheName($sName) {
 		return $this->_getCachedName($this->getTemplateFile($sName));
 	}
-	
 	
 	/**
 	 * Get a menu.

@@ -53,17 +53,30 @@ elseif (file_exists(PHPFOX_DIR . 'file' . PHPFOX_DS . 'log' . PHPFOX_DS . 'debug
 }
 
 require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'constant.sett.php');
-if (php_sapi_name() == 'litespeed')
-{
-	ini_set('session.save_handler', 'files');
-	ini_set('session.save_path', PHPFOX_DIR_FILE . 'session' . PHPFOX_DS);
-}
 
 // Set error reporting enviroment
 error_reporting((PHPFOX_DEBUG ? E_ALL | E_STRICT : 0));
 
 spl_autoload_register(function($class) {
 	$class = strtolower($class);
+
+	$name = strtolower($class);
+	$name = str_replace("\\", '/', $name);
+
+	if (substr($name, 0, 5) == 'core/'
+		|| substr($name, 0, 5) == 'apps/'
+		|| substr($name, 0, 12) == 'controllers/'
+		|| substr($name, 0, 4) == 'api/') {
+		$class = str_replace("\\", '/', $class);
+		$dir = PHPFOX_DIR_SRC;
+		if (substr($name, 0, 5) == 'apps/') {
+			$dir = PHPFOX_DIR_SITE;
+		}
+
+		$path = $dir . $class . '.php';
+
+		require($path);
+	}
 
 	if (preg_match('/([a-zA-Z0-9]+)_service_([a-zA-Z0-9_]+)/', $class, $matches)) {
 		$parts = explode('_', $matches[2]);
@@ -87,25 +100,19 @@ require(PHPFOX_DIR_LIB_CORE . 'error' . PHPFOX_DS . 'error.class.php');
 require(PHPFOX_DIR_LIB_CORE . 'module' . PHPFOX_DS . 'service.class.php');
 require(PHPFOX_DIR_LIB_CORE . 'module' . PHPFOX_DS . 'component.class.php');
 
-
 // No need to load the debug class if the debug is disabled
 if (PHPFOX_DEBUG)
 {
-	require_once(PHPFOX_DIR_LIB_CORE . 'debug' . PHPFOX_DS . 'debug.class.php');	
-}
-// http://www.phpfox.com/tracker/view/14329/
-else
-{
-	foreach($_COOKIE AS $sKey => $sValue) 
-	{
-		if(preg_match('/js_console/i', $sKey))
-		{
-			setcookie($sKey, "0", time()-(3600*24), Phpfox::getParam('core.cookie_path'), Phpfox::getParam('core.cookie_domain'));
-		}
-	}
+	require_once(PHPFOX_DIR_LIB_CORE . 'debug' . PHPFOX_DS . 'debug.class.php');
+	$handler = new Whoops\Handler\PrettyPageHandler();
+	$handler->setEditor('textmate');
+
+	$whoops = new Whoops\Run;
+	$whoops->pushHandler($handler);
+	$whoops->register();
 }
 
-set_error_handler(array('Phpfox_Error', 'errorHandler'));
+// set_error_handler(array('Phpfox_Error', 'errorHandler'));
 
 (PHPFOX_DEBUG ? Phpfox_Debug::start('init') : false);
 
@@ -139,34 +146,6 @@ else
 	}
 }
 */
-
-if (!function_exists('json_encode')) 
-{
-	require(PHPFOX_DIR_LIB . 'json' . PHPFOX_DS . 'JSON.php');
-	
-	if (!function_exists('json_encode'))
-	{
-		function json_encode($mData) 
-		{
-			$json = new Services_JSON();
-			
-			return ($json->encode($mData));
-		}
-	}
-
-	if (!function_exists('json_decode'))
-	{
-		function json_decode($mData, $bIsArray = false) 
-		{
-			$json = new Services_JSON();
-			if ($bIsArray === true)
-			{
-				return (array) $json->decode($mData);	
-			}
-			return ($json->decode($mData));
-		}
-	}
-}
 
 // Start a session if needed
 if (!defined('PHPFOX_NO_SESSION'))

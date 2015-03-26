@@ -9,7 +9,7 @@ class View {
 
 	public function __construct() {
 		$this->_loader = new View\Loader();
-		$this->_loader->addPath(PHPFOX_DIR_SITE . 'themes/default/html', 'Theme');
+		$this->_loader->addPath(PHPFOX_DIR . 'theme/default/html', 'Theme');
 		$this->_loader->addPath(PHPFOX_DIR . 'views', 'Base');
 
 		$this->_env = new \Twig_Environment($this->_loader, array(

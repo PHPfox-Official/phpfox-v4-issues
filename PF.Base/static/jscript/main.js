@@ -1542,14 +1542,21 @@ $Behavior.linkClickAll = function()
 		if (!$sLink)
 		{
 			return;
-		}				
-		
-		if ((substr($sLink, 0, 7) != 'http://' && substr($sLink, 0, 8) != 'https://') || substr($sLink, -1) == '#')
+		}
+
+		if ((substr($sLink, 0, 7) != 'http://' && substr($sLink, 0, 8) != 'https://')
+			|| substr($sLink, -1) == '#'
+			|| $sLink == '#'
+		)
 		{
 			return;
 		}
 
-		if ($(this).hasClass('no_ajax_link') || $(this).hasClass('thickbox') || $(this).hasClass('popup') || $(this).hasClass('sJsConfirm'))
+		if ($(this).hasClass('no_ajax_link')
+			|| $(this).hasClass('thickbox')
+			|| $(this).hasClass('popup')
+			|| $(this).hasClass('ajax')
+			|| $(this).hasClass('sJsConfirm'))
 		{
 			return;
 		}

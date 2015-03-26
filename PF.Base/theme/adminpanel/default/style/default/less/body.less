@@ -73,24 +73,37 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	font-size:@fontSizeBase - 3;
 	letter-spacing:1px;
 	margin-top:15px;
-	border-bottom:1px darken(@headerBg, 6%) solid;
+	border-bottom:1px lighten(@headerBg, 20%) solid;
+	color:lighten(@headerColor, 30%);
 }
 
 .main_menu li a.main_menu_link, .main_menu li a.main_menu_link:hover {
 	color:lighten(@headerColor, 2%);
 	height:@headerHeight;
 	line-height:@headerHeight;
-	padding:0px 15px;
+	padding:0px 0px 0px 35px;
 	font-weight:300;
 	letter-spacing:1px;
 	font-size:@fontSizeBase - 1;
+	position:relative;
+
+	i {
+		position:absolute;
+		left:10px;
+		top:8px;
+		color:lighten(@headerColor, 2%);
+	}
 }
 
 .main_menu li a.main_menu_link:hover {
-	background:darken(@headerBg, 4%);
-	color:darken(@headerColor, 60%);
+	background:lighten(@headerBg, 10%);
+	color:lighten(@headerColor, 60%);
 	transition:@transition;
 	font-weight:300;
+
+	i {
+		color:lighten(@headerColor, 60%);
+	}
 }
 
 .main_menu li.main_menu_link_li {
@@ -111,6 +124,14 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	height:@topHeight;
 	line-height:@topHeight;
 	color:@topColor;
+	font-size:@fontSizeBase + 6;
+	font-weight:200;
+	letter-spacing:1px;
+
+	a, a:hover {
+		color:@topColor;
+		font-weight:200;
+	}
 
 	/*
 	> div {
@@ -132,7 +153,7 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 
 #top {
 	position:fixed;
-	top:@topHeight;
+	top:0px;
 	left:0px;
 	bottom:0px;
 	width:200px;
@@ -161,6 +182,10 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 .main_menu li.main_menu_link_li a.active, .main_menu li.main_menu_link_li a.active:hover {
 	background:@brandPrimary;
 	color:@brandPrimaryColor;
+
+	i {
+		color:lighten(@headerColor, 60%);
+	}
 }
 
 .main_menu li .main_sub_menu {
@@ -174,9 +199,9 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	z-index:200;
 	border:0px;
 	box-shadow:none;
-	border-right:2px darken(@headerSubBg, 10%) solid;
-	background:@headerSubBg;
-	color:@headerSubColor;
+	border-right:2px darken(@blockBg, 10%) solid;
+	background:darken(@blockBg, 5%);
+	color:@blockColor;
 	font-size:@fontSizeBase - 1;
 
 	.main_sub_menu_holder:first-of-type {
@@ -215,13 +240,13 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 				font-weight:normal;
 				padding:6px 0px;
 				text-indent:6px;
-				color:lighten(@headerColor, 20%);
+				color:@blockColor;
 			}
 
 			> a:hover {
-				background:darken(@headerBg, 8%);
+				background:darken(@blockBg, 8%);
 				transition:@transition;
-				color:darken(@headerColor, 40%);
+				color:darken(@blockColor, 40%);
 			}
 		}
 	}
@@ -293,10 +318,10 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 }
 
 .header_logo, .header_logo:hover {
+	display:none;
 	position:fixed;
 	top:0px;
 	left:0px;
-	display:block;
 	width:200px;
 	z-index:1000;
 	height:@topHeight;
@@ -304,8 +329,8 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	text-indent:10px;
 	font-size:@fontSizeBase + 4;
 	font-weight:200;
-	background:darken(@topBg, 15%);
-	color:@topColor;
+	background:darken(@headerBg, 15%);
+	color:@headerColor;
 }
 
 .main_menu_holder {
@@ -389,47 +414,47 @@ div#breadcrumb_holder {
 	position:fixed;
 	left:200px;
 	top:@topHeight;
-	right:0px;
-	background:@brandPrimary;
-	height:50px;
+	width:200px;
+	background:@blockBg;
+	color:@blockColor;
+	bottom:0px;
+
 	z-index:100;
 	font-size:@fontSizeBase - 1;
-	overflow:hidden;
+	overflow:auto;
+
+	.app_icons {
+		margin-top:20px;
+	}
 
 	> ul {
-		position:absolute;
-		left:10px;
-		top:10px;
-		bottom:0px;
-		right:10px;
-
+		margin-top:20px;
 		> li {
-			display:inline-block;
+			display:block;
 
 			> a, > a:hover {
-				height:50px;
-				line-height:40px;
 				font-weight:300;
 				display:block;
-				padding:0px 15px;
-				color:darken(@brandPrimaryColor, 20%);
+				padding:8px 0px;
+				text-indent:15px;
+				color:lighten(@blockColor, 4%);
 			}
 
 			> a:hover {
-				color:@brandPrimaryColor;
+				color:darken(@blockColor, 40%);
 				transition:@transition;
 			}
 
 			> a.active {
-				background:@bodyBg;
-				color:@linkFocus;
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
 			}
 		}
 	}
 }
 
 .apps_content {
-	padding-top:60px;
+	margin-left:200px;
 }
 
 div.sortable ul li {
@@ -509,7 +534,7 @@ div.sortable ul li ul {
 .admin_action_menu {
 	position:absolute;
 	right:0px;
-	top:-1px;
+	top:0px;
 
 	ul {
 		margin:0px;
@@ -519,6 +544,7 @@ div.sortable ul li ul {
 			display:inline-block;
 			height:@topHeight;
 			line-height:@topHeight;
+			vertical-align:top;
 
 			a, a:hover {
 				display:block;
@@ -530,6 +556,53 @@ div.sortable ul li ul {
 				padding:0px 10px;
 				letter-spacing:1px;
 			}
+		}
+	}
+}
+
+.admincp_user {
+	position:relative;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom:1px lighten(@headerBg, 20%) solid;
+	font-size:@fontSizeBase - 2;
+
+	.admincp_user_image {
+		position:absolute;
+		left:10px;
+		top:5px;
+	}
+
+	.admincp_user_content {
+		margin-left:70px;
+		min-height:60px;
+		padding-top:1px;
+
+		> div {
+			padding-top:10px;
+			font-size:@fontSizeBase - 6;
+			text-transform:uppercase;
+			opacity:0.6;
+
+			a, a:hover {
+				display:inline-block;
+				padding:2px 4px;
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+				font-weight:500;
+			}
+		}
+
+		a, a:hover {
+			color:@headerColor;
+			font-weight:normal;
+		}
+	}
+
+	.admincp_user_content:hover {
+		> div {
+			opacity:1;
+			transition:@transition;
 		}
 	}
 }

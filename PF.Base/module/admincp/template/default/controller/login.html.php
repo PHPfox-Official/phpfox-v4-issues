@@ -19,20 +19,13 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 			{error}
 			<div class="table">
-				<div class="table_left">
-					{phrase var='admincp.email'}:
-				</div>
 				<div class="table_right">
-					<input id="admincp_login_email" type="text" name="val[email]" value="{value id='email' type='input'}" size="40" />
+					<input id="admincp_login_email" type="text" name="val[email]" value="{value id='email' type='input'}" placeholder="{phrase var='admincp.email'}" size="40" />
 				</div>
-				<div class="clear"></div>
 			</div>
 			<div class="table">
-				<div class="table_left">
-					{phrase var='admincp.password'}:
-				</div>
 				<div class="table_right">
-					<input type="password" name="val[password]" value="{value id='password' type='input'}" size="40" />
+					<input type="password" name="val[password]" value="{value id='password' type='input'}" placeholder="{phrase var='admincp.password'}" size="40" />
 				</div>
 				<div class="clear"></div>
 			</div>			

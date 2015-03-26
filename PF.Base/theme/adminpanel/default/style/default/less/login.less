@@ -1,17 +1,50 @@
 
 div#admincp_site_link {
 	.reset();
+
+	padding-top:50px;
+	text-align:center;
+	a, a:hover {
+		font-weight:300;
+	}
 }
 
 #admincp_login {
 	.reset();
 
-	background:@blockBg;
+	background:transparent;
 	width:400px;
-	max-height:300px;
 	margin-left:-200px;
 	margin-top:-200px;
 	position:absolute;
 	left:50%;
 	top:50%;
+
+	.table, .table_clear {
+		margin:0px;
+	}
+
+	.table {
+		padding-top:20px;
+		padding-bottom:20px;
+	}
+
+	.table_clear input.button {
+		padding:10px 0px;
+		width:100%;
+		background:@brandPrimary;
+		color:@brandPrimaryColor;
+	}
+
+	.table .table_right input[type="text"], .table .table_right input[type="password"], .table .table_right textarea, .table .table_right textarea:focus {
+		font-size:@fontSizeBase + 4;
+		font-weight:200;
+		padding:15px 0px;
+	}
+}
+
+#page_admincp_login {
+	#site_content {
+		position:static;
+	}
 }

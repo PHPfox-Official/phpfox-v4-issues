@@ -1765,7 +1765,7 @@ class Phpfox_Template
 		if (is_object($this->_theme)) {
 			$asset = $this->_theme->get()->getPath() . 'assets/autoload.js';
 			if (file_exists($asset)) {
-				$url = str_replace(PHPFOX_DIR_SITE, Phpfox::getParam('core.path'), $asset);
+				$url = str_replace([PHPFOX_DIR_SITE, PHPFOX_DIR], Phpfox::getParam('core.path'), $asset);
 				$this->_sFooter .= '<script src="' . $url . '?v=' . Phpfox::internalVersion() . '"></script>';
 			}
 		}
@@ -2100,12 +2100,24 @@ class Phpfox_Template
 	
 		foreach ($mVars as $sVar => $sValue)
 		{
+			if (is_array($sValue) && count($sValue)) {
+				if (isset($sValue[0])) {
+					$first = $sValue[0];
+					if (is_object($first) && method_exists($first, '__toArray')) {
+						$sValue = array_map(function($val) {
+
+							return (array) $val;
+						}, $sValue);
+					}
+				}
+			}
 			if (is_object($sValue) && method_exists($sValue, '__toArray')) {
 				$sValue = (array) $sValue;
 			}
 
 			$this->_aVars[$sVar] = $sValue;
 		}
+
 			
 		return $this;
 	}

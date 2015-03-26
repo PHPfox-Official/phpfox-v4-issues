@@ -20,4 +20,12 @@ class Service {
 	public function js() {
 		return new JS($this->_theme);
 	}
+
+	public function design() {
+		return new Design($this->_theme);
+	}
+
+	public function flavor() {
+		return new Flavor($this->_theme);
+	}
 }

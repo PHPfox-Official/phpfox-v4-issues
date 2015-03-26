@@ -1086,6 +1086,10 @@ class Phpfox
 			}
 			$sPath = $sDir . $sUri;
 
+			if ($oReq->segment(1) == 'themes' && $oReq->segment(2) == 'default') {
+				$sPath = PHPFOX_DIR . str_replace('themes/default', 'theme/default', $sUri);
+			}
+
 			if ($oReq->segment(3) == 'emoticon') {
 				$sPath = str_replace('/file/pic/emoticon/default/', PHPFOX_DIR . 'static/image/emoticon/', $sUri);
 			}
@@ -1306,12 +1310,21 @@ class Phpfox
 			require_once(PHPFOX_DIR_CRON . 'exec.php');
 		}
 
+		if ($oReq->isPost()) {
+			header('X-Is-Posted: true');
+			exit;
+		}
+
+		if ($oReq->get('is_ajax_get')) {
+			header('X-Is-Get: true');
+			exit;
+		}
+
 		if ((!PHPFOX_IS_AJAX_PAGE && $oTpl->sDisplayLayout && !isset($View))
-			|| self::isAdminPanel()
+			|| (!PHPFOX_IS_AJAX_PAGE && self::isAdminPanel())
 		)
 		{			
 			$oTpl->getLayout($oTpl->sDisplayLayout);
-			exit;
 		}
 
 		if (PHPFOX_IS_AJAX_PAGE) {
@@ -1398,7 +1411,9 @@ class Phpfox
 			// sleep(4);
 		}
 		else {
-			echo $View->getContent();
+			if (isset($View)) {
+				echo $View->getContent();
+			}
 		}
 	}
 	

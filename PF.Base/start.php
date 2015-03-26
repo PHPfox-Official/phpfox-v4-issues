@@ -23,26 +23,6 @@ define('PHPFOX_START_TIME', array_sum(explode(' ', microtime())));
 require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/include/init.inc.php');
 
-spl_autoload_register(function($class) {
-	$name = strtolower($class);
-	$name = str_replace("\\", '/', $name);
-
-	if (substr($name, 0, 5) == 'core/'
-		|| substr($name, 0, 5) == 'apps/'
-		|| substr($name, 0, 12) == 'controllers/'
-		|| substr($name, 0, 4) == 'api/') {
-		$class = str_replace("\\", '/', $class);
-		$dir = PHPFOX_DIR_SRC;
-		if (substr($name, 0, 5) == 'apps/') {
-			$dir = PHPFOX_DIR_SITE;
-		}
-
-		$path = $dir . $class . '.php';
-
-		require($path);
-	}
-});
-
 /**
  * @param $element
  * @return \Core\jQuery

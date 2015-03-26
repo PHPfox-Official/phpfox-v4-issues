@@ -209,6 +209,10 @@ class Phpfox_Module
 		return Phpfox::getLib('module');
 	}
 
+	public function all() {
+		return $this->_aModules;
+	}
+
 	public function get($sModule) {
 		if (!isset($this->_aModules[$sModule])) {
 			Phpfox_Error::toss('Not a valid module.');

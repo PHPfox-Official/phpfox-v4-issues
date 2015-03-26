@@ -204,11 +204,12 @@ $Core.processPostForm = function(e, obj) {
 $Behavior.onAjaxSubmit = function() {
 	$('.ajax').click(function() {
 		var t = $(this),
-			url = t.data('url');
+			url = (t.data('url') ? t.data('url') : t.attr('href'));
 
 		$.ajax({
 			url: url,
 			contentType: 'application/json',
+			data: 'is_ajax_get=1',
 			success: function(e) {
 				$Core.processPostForm(e, t);
 			}
@@ -253,6 +254,71 @@ var $AceEditor = {
 		$AceEditor.obj.getSession().setMode('ace/mode/' + mode);
 	}
 };
+
+
+$Core.upload = {
+	listen: function(obj) {
+
+		var f_input = obj.get(0);
+
+		f_input.addEventListener("dragover", $Core.upload._prevent, false);
+		f_input.addEventListener("dragleave", $Core.upload._prevent, false);
+		f_input.addEventListener("drop",  function() {
+			$Core.upload._upload(obj, this);
+		}, false);
+
+		f_input.addEventListener("change", function() {
+			$Core.upload._upload(obj, this);
+		}, false);
+	},
+
+	file: function(obj, file) {
+		var xhr;
+
+		xhr = new XMLHttpRequest();
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				p('done!');
+			}
+		}
+
+		p('file upload...');
+
+		xhr.open('POST', obj.data('url'), true);
+
+		xhr.setRequestHeader("Content-Type", "multipart/form-data");
+		xhr.setRequestHeader("X-File-Name", file.name);
+		xhr.setRequestHeader("X-File-Size", file.size);
+		xhr.setRequestHeader("X-File-Type", file.type);
+
+		xhr.send(file);
+	},
+
+	_upload: function(obj, _this) {
+		if (typeof _this.files !== "undefined") {
+			for (var i=0, l = _this.files.length; i<l; i++) {
+				$Core.upload.file(obj, _this.files[i]);
+			}
+		}
+	},
+
+	_prevent: function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+	}
+};
+
+$Ready(function() {
+	if ($('.ajax_upload').length) {
+
+		$('.ajax_upload:not(.built)').each(function() {
+			$(this).addClass('built');
+
+			$Core.upload.listen($(this));
+		});
+	}
+});
 
 $Event(function() {
 	if ($('.ace_editor').length) {

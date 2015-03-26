@@ -3,11 +3,11 @@ input[type="text"], input[type="email"], input[type="password"], textarea, input
 	background:@formBg;
 	color:@formColor;
 	border:@formBorder;
-	padding:10px 0px;
+	padding:20px 0px;
 	text-indent:10px;
 	outline:0px;
 	font-family:@fontFamilyBase;
-	font-size:@fontSizeBase;
+	font-size:@fontSizeBase + 1;
 	box-shadow:none;
 }
 
@@ -19,6 +19,10 @@ select, select:focus {
 	.table {
 		padding:0px;
 		margin-bottom:10px;
+	}
+
+	.table_clear {
+		margin-bottom:0px;
 	}
 }
 
@@ -39,9 +43,12 @@ select, select:focus {
 
     .table_right {
 	    .reset();
+	    position:relative;
 
 		input[type="text"], input[type="password"], textarea, textarea:focus {
 			.full_input();
+
+			padding:20px 0px;
 		}
 
 	    select {
@@ -51,6 +58,10 @@ select, select:focus {
 	    .extra_info {
 		    font-size:@fontSizeBase - 2;
 		    color:lighten(@blockColor, 5%);
+	    }
+
+	    .p_4 {
+		    position:relative;
 	    }
 	}
 }
@@ -263,6 +274,28 @@ ul.action {
 			background:@brandPrimary;
 			color:@brandPrimaryColor;
 			transition:@transition;
+		}
+	}
+}
+
+a.delete_link, a.delete_link:hover {
+	right:0px;
+	top:0px;
+}
+
+#page_admincp_module_add {
+	.table_right {
+		.p_4 {
+			background:darken(@blockBg, 6%);
+			margin-bottom:20px;
+			padding:10px;
+			text-transform:uppercase;
+			font-weight:200;
+			font-size:@fontSizeBase - 2;
+
+			input:first-of-type {
+				margin-bottom:10px;
+			}
 		}
 	}
 }

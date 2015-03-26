@@ -11,16 +11,26 @@ class CSS extends \Core\Model {
 		$this->_theme = $Theme;
 	}
 
-	public function set($content) {
+	public function set($content, $vars = null) {
 		$less = new \lessc();
 
+		$lessContent = ($vars === null ? $this->get(true) : $vars) . "/** START CSS */\n";
+		$newContent = $lessContent . trim($content);
+
 		$less->setImportDir(PHPFOX_DIR . 'less/');
-		$content = str_replace('../../../../PF.Base/less/', '', $content);
+		$content = str_replace('../../../../PF.Base/less/', '', $newContent);
 		$parsed = $less->compile($content);
 
-		file_put_contents($this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder . '.min.css', $parsed);
+		$path = $this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder;
+		file_put_contents($path . '.less', $newContent);
+		file_put_contents($path . '.css', $parsed);
 
-		if ($this->_get()) {
+		return true;
+
+		// file_put_contents($this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder . '.min.css', $parsed);
+
+		// if ($this->_get()) {
+			/*
 			$this->db->update(':theme_template', [
 				'html_data' => $parsed,
 				'html_data_original' => $content,
@@ -28,10 +38,12 @@ class CSS extends \Core\Model {
 			], [
 				'folder' => $this->_theme->folder, 'type_id' => 'css', 'name' => $this->_theme->flavor_folder . '.css'
 			]);
+			*/
 
-			return true;
-		}
+		//	return true;
+		// }
 
+		/*
 		$this->db->insert(':theme_template', [
 			'folder' => $this->_theme->folder,
 			'type_id' => 'css',
@@ -40,30 +52,31 @@ class CSS extends \Core\Model {
 			'html_data_original' => $content,
 			'time_stamp' => PHPFOX_TIME
 		]);
+		*/
 
 		return true;
 	}
 
-	public function get() {
-		$html = $this->_get();
-		if (!$html) {
-			$html = $this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder . '.less';
-			$html = file_get_contents($html);
+	public function get($returnLess = false) {
+		$html = $this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder . '.less';
+		$html = file_get_contents($html);
+
+		$parts = explode('/** START CSS */', $html);
+		if ($returnLess) {
+			return $parts[0];
 		}
 
-		return $html;
+		return (isset($parts[1]) ? $parts[1] : '');
 	}
 
 	public function getParsed() {
-		$css = $this->_get('html_data');
-		if (!$css) {
-			$css = $this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder . '.css';
-			$css = file_get_contents($css);
-		}
+		$css = $this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder . '.css';
+		$css = file_get_contents($css);
 
 		return $css;
 	}
 
+	/*
 	private function _get($type = 'html_data_original') {
 		$html = $this->db->select('*')
 			->from(':theme_template')
@@ -76,4 +89,5 @@ class CSS extends \Core\Model {
 
 		return $html[$type];
 	}
+	*/
 }

@@ -12,6 +12,11 @@ class HTML extends \Core\Model {
 	}
 
 	public function set($content) {
+
+		$path = $this->_theme->getPath() . 'html/layout.html';
+		file_put_contents($path, $content);
+
+		/*
 		if ($this->_get()) {
 			$this->db->update(':theme_template', [
 				'html_data' => $content,
@@ -31,20 +36,19 @@ class HTML extends \Core\Model {
 			'html_data_original' => $content,
 			'time_stamp' => PHPFOX_TIME
 		]);
+		*/
 
 		return true;
 	}
 
 	public function get() {
-		$html = $this->_get();
-		if (!$html) {
-			$html = $this->_theme->getPath() . 'html/layout.html';
-			$html = file_get_contents($html);
-		}
+		$html = $this->_theme->getPath() . 'html/layout.html';
+		$html = file_get_contents($html);
 
 		return $html;
 	}
 
+	/*
 	private function _get() {
 		$html = $this->db->select('*')
 			->from(':theme_template')
@@ -57,4 +61,5 @@ class HTML extends \Core\Model {
 
 		return $html['html_data'];
 	}
+	*/
 }

@@ -61,7 +61,9 @@ class Phpfox_Debug
         	'name' => $sName,
         	'memory_before' => memory_get_usage(),
         	'start' => array_sum(explode(' ', microtime()))
-        );     
+        );
+
+		return null;
 	}
 	
 	/**
@@ -119,6 +121,8 @@ class Phpfox_Debug
 			);
 			self::reset($sName);
 		}
+
+		return null;
 	}	
 	
 	/**

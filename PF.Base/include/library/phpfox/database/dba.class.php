@@ -741,7 +741,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
         	$this->_aData = array();
 		}
 
-	    if ($sTable == ':theme_template') {
+	    // if ($sTable == ':theme_template') {
 		    if (is_array($sCond)) {
 			    $aClone = $sCond;
 			    $sCond = '';
@@ -750,7 +750,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 			    }
 			    $sCond = trim(preg_replace("/^(AND|OR)(.*?)/i", "", trim($sCond)));
 		    }
-	    }
+	    // }
 
         $sSets = '';
         foreach ($aValues as $sCol => $sValue)

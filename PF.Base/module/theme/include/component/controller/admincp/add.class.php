@@ -20,52 +20,14 @@ class Theme_Component_Controller_Admincp_Add extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$bIsEdit = false;
-		$aThemes = Theme_Service_Theme::instance()->get();
-		if (($iId = $this->request()->getInt('id')))
-		{
-			if (($aTheme = Theme_Service_Theme::instance()->getForEdit($iId)))
-			{
-				$bIsEdit = true;
-				foreach ($aThemes as $iKey => $aCacheTheme)
-				{
-					if ($aCacheTheme['theme_id'] == $aTheme['theme_id'])
-					{
-						unset($aThemes[$iKey]);
-					}
-				}
-				
-				$this->template()->assign(array(
-						'aForms' => $aTheme
-					)
-				);
-			}
-		}		
-		
-		if (($aVals = $this->request()->getArray('val')))
-		{
-			if ($bIsEdit)
-			{
-				if (Phpfox::getService('theme.process')->update($aTheme['theme_id'], $aVals))
-				{
-					$this->url()->send('admincp.theme.add', array('id' => $aTheme['theme_id']), Phpfox::getPhrase('theme.theme_successfully_updated'));
-				}
-			}
-			else 
-			{
-				if (Phpfox::getService('theme.process')->add($aVals))
-				{
-					$this->url()->send('admincp.theme.add', null, Phpfox::getPhrase('theme.theme_successfully_added'));
-				}
-			}
+		if (($val = $this->request()->getArray('val'))) {
+			$Theme = new Core\Theme();
+			$Theme->make($val);
 		}
 		
-		$this->template()->setTitle(($bIsEdit ? Phpfox::getPhrase('theme.editing_theme') . ':' . $aTheme['name'] : Phpfox::getPhrase('theme.create_new_theme')))
-			->setBreadcrumb(Phpfox::getPhrase('theme.themes'), $this->url()->makeUrl('admincp.theme'))
-			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('theme.editing_theme') . ':' . $aTheme['name'] : Phpfox::getPhrase('theme.create_theme')), null, true)
+		$this->template()
+			->setBreadcrumb('Create a Theme', $this->url()->makeUrl('current'), true)
 			->assign(array(
-					'bIsEdit' => $bIsEdit,
-					'aThemes' => $aThemes
 				)
 			);	
 	}

@@ -263,21 +263,21 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		);
 
 		$aMenus = [
-			'Dashboard' => 'admincp',
-			'Apps' => '#modules',
-			'Themes' => '#themes',
+			'<i class="fa fa-dashboard"></i>Dashboard' => 'admincp',
+			'<i class="fa fa-cubes"></i>Apps' => 'admincp.apps',
+			'<i class="fa fa-paint-brush"></i>Themes' => 'admincp.theme',
 
 			'Members',
-			'Search' => 'admincp.user.browse',
-			'User Groups' => 'admincp.user.group',
-			'Promotions' => 'admincp.user.promotion',
-			'Custom Fields' => 'admincp.custom',
+			'<i class="fa fa-search"></i>Search' => 'admincp.user.browse',
+			'<i class="fa fa-users"></i>User Groups' => 'admincp.user.group',
+			'<i class="fa fa-diamond"></i>Promotions' => 'admincp.user.promotion',
+			'<i class="fa fa-th-list"></i>Custom Fields' => 'admincp.custom',
 
 			'Site',
-			'Pages' => 'admincp.page',
-			'Menus' => 'admincp.menu',
-			'Blocks' => 'admincp.block',
-			'Phrases' => 'admincp.language.phrase',
+			'<i class="fa fa-file-text-o"></i>Pages' => 'admincp.page',
+			'<i class="fa fa-bars"></i>Menus' => 'admincp.menu',
+			'<i class="fa fa-th"></i>Blocks' => 'admincp.block',
+			'<i class="fa fa-language"></i>Phrases' => 'admincp.language.phrase',
 
 			'Tools',
 			'Settings' => [
@@ -296,7 +296,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'admincp.nofollow_urls' => 'admincp.seo.nofollow',
 				'admincp.rewrite_url' => 'admincp.seo.rewrite'
 			],
-			'Status' => array(
+			'<i class="fa fa-info"></i>Status' => array(
 				'core.site_statistics' => 'admincp.core.stat',
 				'core.admincp_menu_system_overview' => 'admincp.core.system',
 				'admincp.inactive_members' => 'admincp.user.inactivereminder'
@@ -309,7 +309,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'admincp.menu_create_new_stat' => 'admincp.stat.add'
 			),
 			*/
-			'Maintenance' => array(
+			'<i class="fa fa-server"></i>Maintenance' => array(
 				'admincp.menu_cache_manager' => 'admincp.maintain.cache',
 				'admincp.admincp_menu_reparser' => 'admincp.maintain.reparser',
 				'admincp.remove_duplicates' => 'admincp.maintain.duplicate',
@@ -318,7 +318,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'admincp.check_unknown_files' => 'admincp.checksum.unknown',
 				'admincp.find_missing_settings' => 'admincp.setting.missing'
 			),
-			'Ban Filters' => array(
+			'<i class="fa fa-ban"></i>Ban Filters' => array(
 				'ban.ban_filter_username' => 'admincp.ban.username',
 				'ban.ban_filter_email' => 'admincp.ban.email',
 				'ban.ban_filter_display_name' => 'admincp.ban.display',
@@ -344,7 +344,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'core.admincp_menu_online_guests' => 'admincp.core.online-guest'
 			),
 			*/
-			'SQL' => array(
+			'<i class="fa fa-database"></i>SQL' => array(
 				'admincp.sql_maintenance' => 'admincp.sql',
 				'admincp.sql_backup' => 'admincp.sql.backup',
 				'admincp.alter_title_fields' => 'admincp.sql.title'
@@ -362,10 +362,12 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			*/
 		];
 
+		/*
 		$aThemes = [];
 		foreach (Theme_Service_Theme::instance()->get() as $aTheme) {
 			$aThemes[$aTheme['name']] = $this->url()->makeUrl('admincp.theme.manage', ['id' => $aTheme['theme_id']]);
 		}
+		*/
 		// d($aThemes); exit;
 
 		list($aGroups, $aModules, $aProductGroups) = Phpfox::getService('admincp.setting.group')->get();
@@ -385,7 +387,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		}
 		*/
 
-		$aSkip = ['user', 'track', 'tinymce', 'theme', 'tag', 'subscribe', 'share', 'search', 'rss', 'request', 'report', 'rate', 'profile', 'privacy', 'page', 'notification', 'mobile', 'log', 'link', 'like', 'language', 'input', 'admincp', 'api', 'apps', 'attachment', 'ban', 'comment', 'contact', 'core', 'custom', 'emoticon', 'error', 'favorite', 'help', 'im'];
+		/*
+		$aSkip = ['apps', 'user', 'track', 'tinymce', 'theme', 'tag', 'subscribe', 'share', 'search', 'rss', 'request', 'report', 'rate', 'profile', 'privacy', 'page', 'notification', 'mobile', 'log', 'link', 'like', 'language', 'input', 'admincp', 'api', 'apps', 'attachment', 'ban', 'comment', 'contact', 'core', 'custom', 'emoticon', 'error', 'favorite', 'help', 'im'];
 		foreach (Phpfox_Module::instance()->getModules() as $sModule) {
 			if (in_array($sModule, $aSkip)) {
 				continue;
@@ -394,8 +397,11 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			// $aApps[$sModule] = $this->url()->makeUrl('admincp.app', ['id' => $sModule]);
 			$aApps[$sModule] = $this->url()->makeUrl('admincp.' . $sModule);
 		}
+		*/
 
 		foreach ($aMenus as $sKey => $mValue) {
+
+			/*
 			if ($mValue == '#modules') {
 				$aMenus[$sKey] = $aApps;
 
@@ -406,6 +412,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 				continue;
 			}
+			*/
 
 			$aMenus[$sKey] = $mValue;
 		}
@@ -415,7 +422,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			$aSettings[$sGroupName] = $this->url()->makeUrl('admincp.setting.edit', ['group-id' => $aGroupValues['group_id']]);
 			// $aMenus['Settings'][$sGroupName] = '#';
 		}
-		$aMenus['Settings'] = array_merge($aSettings, $aMenus['Settings']);
+		$aMenus['<i class="fa fa-cog"></i>Settings'] = array_merge($aSettings, $aMenus['Settings']);
+		unset($aMenus['Settings']);
 
 		// d($aMenus); exit;
 		
@@ -428,7 +436,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		$app = $this->request()->get('req2');
 		$bForceIndex = true;
 		if ($app == 'app') {
-			$app = $this->request()->get('req3');
+			$app = str_replace('__module_', '', $this->request()->get('id'));
 			$bForceIndex = false;
 		}
 
@@ -438,24 +446,24 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			$is_settings = true;
 		}
 
-		$aSkipModules = ['ban', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment'];
+		$aSkipModules = ['apps', 'ban', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment', 'theme'];
 
 		if ($app && Phpfox::isModule($app) && !in_array($app, $aSkipModules)) {
 			$app = Phpfox_Module::instance()->get($app);
 
-			$sSectionTitle = Phpfox_Locale::instance()->translate($app['module_id']);
+			$sSectionTitle = '<a href="' . $this->url()->makeUrl('admincp.apps') . '">Apps</a>';
 			$menu = unserialize($app['menu']);
 			$menus = [];
 			$current = $this->url()->getUrl();
 			$infoActive = false;
 
-			if ($this->url()->getUrl() == ($bForceIndex ? 'admincp/' . $app['module_id'] : 'admincp/app/' . $app['module_id'])) {
+			if ($this->request()->get('req2') == 'app') {
 				$infoActive = true;
 			}
 
-			$menus['Info'] = [
+			$menus[Phpfox_Locale::instance()->translate($app['module_id'], 'module')] = [
 				'is_active' => $infoActive,
-				'url' => $this->url()->makeUrl('admincp.app.' . $app['module_id'])
+				'url' => $this->url()->makeUrl('admincp.app', ['id' => '__module_' . $app['module_id']])
 			];
 			if (Admincp_Service_Setting_Setting::instance()->moduleHasSettings($app['module_id'])) {
 				$menus['Settings'] = [
@@ -483,7 +491,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			}
 
 			$this->template()->assign([
-				'aSectionAppMenus' => $menus
+				'aSectionAppMenus' => $menus,
+				'ActiveApp' => (new Core\App())->get($this->request()->get('id'))
 			]);
 		}
 		

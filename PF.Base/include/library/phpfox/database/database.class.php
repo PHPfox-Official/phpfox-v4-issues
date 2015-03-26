@@ -48,6 +48,10 @@ Phpfox::getLibClass('phpfox.database.dba');
  * @author			Raymond Benc
  * @package 		Phpfox
  * @version 		$Id: database.class.php 1666 2010-07-07 08:17:00Z Raymond_Benc $
+ *
+ * @method Phpfox_Database_Driver_Mysql select($select)
+ * @method Phpfox_Database_Driver_Mysql update($table, $fields, $where)
+ * @method Phpfox_Database_Driver_Mysql insert($table, $fields)
  */
 class Phpfox_Database
 {
@@ -92,5 +96,9 @@ class Phpfox_Database
 		}
 
 		return self::$_oObject;
+	}
+
+	public function __call($method, $args) {
+		return call_user_func_array([self::$_oObject, $method], $args);
 	}
 }

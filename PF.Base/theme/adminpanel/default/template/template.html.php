@@ -38,7 +38,21 @@
 
 		<div id="top">
 
+
 			<div class="main_menu_holder">
+
+				<div class="admincp_user">
+					<div class="admincp_user_image">
+						{img user=$aUserDetails suffix='_50_square'}
+					</div>
+					<div class="admincp_user_content">
+						{$aUserDetails|user}
+						<div>
+							<a href="{url link=''}">View Site</a>
+						</div>
+					</div>
+				</div>
+
 				<ul class="main_menu">
 					{foreach from=$aAdminMenus key=sPhrase item=sLink}
 					{if is_array($sLink)}
@@ -79,7 +93,13 @@
 					<div class="admin_action_menu">
 						<ul>
 							{foreach from=$aActionMenu key=sPhrase item=sUrl}
-							<li><a href="{$sUrl}">{$sPhrase}</a></li>
+							<li>
+								{if is_array($sUrl)}
+								<a href="{$sUrl.url}" class="{$sUrl.class}">{$sPhrase}</a>
+								{else}
+								<a href="{$sUrl}">{$sPhrase}</a>
+								{/if}
+							</li>
 							{/foreach}
 						</ul>
 					</div>
@@ -92,6 +112,8 @@
 
 					{if isset($aSectionAppMenus)}
 					<div class="apps_menu">
+						{$ActiveApp.icon}
+
 						<ul>
 						{foreach from=$aSectionAppMenus key=sPhrase item=aMenu}
 							<li><a href="{url link=$aMenu.url}"{if $aMenu.is_active} class="active"{/if}>{$sPhrase}</a></li>

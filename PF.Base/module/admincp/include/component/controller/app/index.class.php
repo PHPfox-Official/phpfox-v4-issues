@@ -3,13 +3,14 @@
 class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 	public function process() {
 
-		$app = Phpfox_Module::instance()->get(($this->request()->get('req3', $this->request()->get('req2'))));
+		// $app = Phpfox_Module::instance()->get(($this->request()->get('id')));
+		$App = (new Core\App())->get($this->request()->get('id'));
 
 		$this->template()
-			->setTitle($app['product_id'])
-			->setTitle($app['module_id'])
+			->setTitle($App->name)
+			// ->setSectionTitle($App->name)
 			->assign([
-				'app' => $app
+				'App' => $App
 			]);
 	}
 }

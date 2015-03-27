@@ -37,7 +37,7 @@ select {
     .table_right {
 	    position:relative;
 
-		input[type="text"], textarea, textarea:focus {
+		input[type="text"], input[type="password"], textarea, textarea:focus {
 			.full_input();
 		}
 
@@ -145,4 +145,11 @@ a.page_section_menu_link, a.page_section_menu_link:hover {
 a.page_section_menu_link:hover {
 	color:@linkColor;
 	transition:@transition;
+}
+
+.block {
+	.table {
+		padding:0px;
+		margin-bottom:20px;
+	}
 }

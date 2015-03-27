@@ -67,7 +67,6 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 		else
 		{
 			$sDivId = 'js_tmp_music_player_' . $aSong['song_id'];
-			$this->call('$Core.loadStaticFile(\'' . $this->template()->getStyle('static_script', 'player/' . Phpfox::getParam('core.default_music_player') . '/core.js') . '\');');
 			if ($this->get('feed_id') && $this->get('id'))
 			{
 				$this->call('$(\'#js_play_music_song_' . $this->get('feed_id') . $aSong['song_id'] . '\').find(\'.activity_feed_content_link:first\').html(\'<div id="' . $sDivId . '" style="width:425px; height:30px;"></div>\');');

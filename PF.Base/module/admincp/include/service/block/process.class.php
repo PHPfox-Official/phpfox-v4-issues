@@ -29,6 +29,8 @@ class Admincp_Service_Block_Process extends Phpfox_Service
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('admincp.select_component'));
 		}
+
+		d($aVals);
 		
 		// Find the user groups we disallowed
 		$aDisallow = array();
@@ -55,13 +57,13 @@ class Admincp_Service_Block_Process extends Phpfox_Service
 		{
 			$aParts = explode('|', $aVals['component']);
 			$aVals['component'] = $aParts[1];
-			// $aVals['module_id'] = Phpfox_Module::instance()->getModuleId($aParts[0]);
+			$aVals['module_id'] = Phpfox_Module::instance()->getModuleId($aParts[0]);
 		}
 		else 
 		{
 			$aParts = explode('|', $aVals['m_connection']);
 			$aVals['component'] = null;
-			// $aVals['module_id'] = Phpfox_Module::instance()->getModuleId($aParts[0]);
+			$aVals['module_id'] = Phpfox_Module::instance()->getModuleId($aParts[0]);
 		}
 		
 		if (empty($aVals['module_id']))
@@ -92,6 +94,8 @@ class Admincp_Service_Block_Process extends Phpfox_Service
 		}
 		
 		(($sPlugin = Phpfox_Plugin::get('admincp.service_block_process_add')) ? eval($sPlugin) : false);
+
+		// d($aVals); exit;
 		
 		if ($bIsUpdate)
 		{

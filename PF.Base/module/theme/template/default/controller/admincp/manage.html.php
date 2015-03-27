@@ -24,7 +24,8 @@
 			<div class="theme_actions">
 				<ul>
 					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id default=$theme.flavor_id}" class="ajax">Set as default</a></li>
-					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id export=1}" target="_blank">Export theme</a></li>
+					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id export=1}" target="_blank" class="no_ajax">Export theme</a></li>
+					<li><a href="{url link='admincp.theme.delete' id=$theme.theme_id}" class="popup">Remove theme</a></li>
 				</ul>
 			</div>
 		</div>

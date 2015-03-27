@@ -378,8 +378,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 					'pager.css' => 'style_css',
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
 					'quick_edit.js' => 'static_script',
-					'jquery/plugin/jquery.highlightFade.js' => 'static_script',
-					'player/flowplayer/flowplayer.js' => 'static_script'
+					'jquery/plugin/jquery.highlightFade.js' => 'static_script'
 				)
 			);		
 			
@@ -497,20 +496,6 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 					)
 				);	
 			}			
-		}
-		
-		if ($sSection != 'designer' && $sSection != 'design' && Phpfox::isModule('music') && (Phpfox::getUserGroupParam($aRow['user_group_id'], 'music.can_upload_music_public') || $aRow['total_profile_song']))
-		{
-			$this->template()->setHeader(array(
-					'player/' . Phpfox::getParam('core.default_music_player') . '/core.js' => 'static_script',					
-					'<script type="text/javascript">$Behavior.profile_index_load_player = function() { $Core.player.load({id: \'js_music_player\', type: \'music\'}); $Core.player.load({id: \'js_music_favorite_player\', type: \'music\'}); };</script>'
-				)
-			);
-		}
-
-		if (Phpfox::getParam('video.convert_servers_enable'))
-		{
-			$this->template()->setHeader('<script type="text/javascript">document.domain = "' . Phpfox::getParam('video.convert_js_parent') . '";</script>');
 		}
 	}
 	

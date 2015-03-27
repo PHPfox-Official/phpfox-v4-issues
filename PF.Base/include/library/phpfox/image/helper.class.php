@@ -247,6 +247,7 @@ class Phpfox_Image_Helper
 					
 					// $sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/' . $sGender . 'profile' . $sImageSuffix . '.png');
 
+					$sImageSize = $sImageSuffix;
 					$name = $aParams['user'][$sSuffix . 'full_name'];
 					$parts = explode(' ', $name);
 					$first = $name[0];
@@ -255,12 +256,16 @@ class Phpfox_Image_Helper
 						$last = $parts[1][0];
 					}
 
+					if (isset($aParams['max_width'])) {
+						$sImageSize = '_' . $aParams['max_width'];
+					}
+
 					$ele = 'a';
 					if (isset($aParams['no_link'])) {
 						$ele = 'span';
 					}
 
-					$image = '<' . $ele . ' href="' . $sLink . '" class="no_image_user _size_' . $sImageSuffix . ' _gender_' . $sGender . ' _first_' . $first . '"><span>' . $first . $last . '</span></' . $ele . '>';
+					$image = '<' . $ele . ' href="' . $sLink . '" class="no_image_user _size_' . $sImageSize . ' _gender_' . $sGender . ' _first_' . $first . '"><span>' . $first . $last . '</span></' . $ele . '>';
 
 					return $image;
 				}

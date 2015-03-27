@@ -12,22 +12,6 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {$sCreateJs}
-<script type="text/javascript">
-<!--
-function processDatabase()
-{literal}{{/literal}
-	if ({$sGetJsForm})
-	{literal}
-	{		
-		$('.button').attr('disabled', true);
-		$('.button').val('Processing...');
-		return true;
-	}
-	{/literal}	
-	return false;
-{literal}}{/literal}
--->
-</script>
 {if count($aTables)}
 <div class="label_flow" style="height:200px;">
 	<ul>
@@ -44,77 +28,67 @@ function processDatabase()
 	</p>
 </div>
 {/if}
-<form method="post" action="{url link=""$sUrl".configuration"}" id="js_form" onsubmit="return processDatabase();">
+<form method="post" action="#configuration" id="js_form">
 {if count($aTables)}
 {foreach from=$aTables item=sTable}
 	<div><input type="hidden" name="table[]" value="{$sTable}" /></div>
 {/foreach}
 {/if}
-<div class="table_header">
-	Database Configuration
-</div>
-<div class="table">
-	<div class="table_left">
-		Database Driver:
-	</div>
-	<div class="table_right">
-		<select name="val[driver]">
-		{foreach from=$aDrivers item=aDriver}
-			<option value="{$aDriver.driver}"{value type='select' id='driver' default='`$aDriver.driver`'}>{$aDriver.label}</option>
-		{/foreach}
-		</select>
-	</div>
-</div>
-<div class="table">
-	<div class="table_left">
-		Database Host:
-	</div>
-	<div class="table_right">
-		<input type="text" name="val[host]" id="host" value="{value type='input' id='host'}" size="30" />	
-	</div>
-</div>
-<div class="table">
-	<div class="table_left">
-		Database Name:
-	</div>
-	<div class="table_right">
-		<input type="text" name="val[name]" id="name" value="{value type='input' id='name'}" size="30" />	
-	</div>
-</div>
-<div class="table">
-	<div class="table_left">
-		Database User Name:
-	</div>
-	<div class="table_right">
-		<input type="text" name="val[user_name]" id="user_name" value="{value type='input' id='user_name'}" size="30" />	
-	</div>
-</div>
-<div class="table">
-	<div class="table_left">
-		Database Password:
-	</div>
-	<div class="table_right">
-		<input type="password" name="val[password]" id="password" value="{value type='input' id='password'}" size="30" />	
-	</div>
-</div>
 
-<div class="table_header">
-	Advanced Configuration
-</div>
-<div class="table" style="padding:10px;">
-	<a href="#" onclick="$('#js_advanced').toggle('fast'); return false;">Display Advanced Configuration</a>
-</div>
-<div id="js_advanced" style="display:none;">
 
-	<div class="table_sub_header">
-		Database
+	<div class="table_header">
+		Database Configuration
+	</div>
+	<div class="table" style="display:none;">
+		<div class="table_left">
+			Database Driver:
+		</div>
+		<div class="table_right">
+			<select name="val[driver]">
+			{foreach from=$aDrivers item=aDriver}
+				<option value="{$aDriver.driver}"{value type='select' id='driver' default='`$aDriver.driver`'}>{$aDriver.label}</option>
+			{/foreach}
+			</select>
+		</div>
+	</div>
+	<div class="table">
+		<div class="table_left">
+			Database Host:
+		</div>
+		<div class="table_right">
+			<input type="text" name="val[host]" id="host" value="{value type='input' id='host'}" size="30" />
+		</div>
+	</div>
+	<div class="table">
+		<div class="table_left">
+			Database Name:
+		</div>
+		<div class="table_right">
+			<input type="text" name="val[name]" id="name" value="{value type='input' id='name'}" size="30" />
+		</div>
+	</div>
+	<div class="table">
+		<div class="table_left">
+			Database User Name:
+		</div>
+		<div class="table_right">
+			<input type="text" name="val[user_name]" id="user_name" value="{value type='input' id='user_name'}" size="30" />
+		</div>
+	</div>
+	<div class="table">
+		<div class="table_left">
+			Database Password:
+		</div>
+		<div class="table_right">
+			<input type="password" name="val[password]" id="password" value="{value type='input' id='password'}" size="30" />
+		</div>
 	</div>
 	<div class="table">
 		<div class="table_left">
 			Database Port:
 		</div>
 		<div class="table_right">
-			<input type="text" name="val[port]" id="port" value="{value type='input' id='port'}" size="30" />	
+			<input type="text" name="val[port]" id="port" value="{value type='input' id='port'}" size="30" />
 		</div>
 	</div>
 	<div class="table">
@@ -122,41 +96,53 @@ function processDatabase()
 			Prefix for Tables in Database:
 		</div>
 		<div class="table_right">
-			<input type="text" name="val[prefix]" id="prefix" value="{value type='input' id='prefix' default='phpfox_'}" size="30" />	
+			<input type="text" name="val[prefix]" id="prefix" value="{value type='input' id='prefix' default='phpfox_'}" size="30" />
 		</div>
 	</div>
-	
-	<div class="table_sub_header">
-		Modules
-	</div>	
-	<div class="table">
-		<div class="table_left">
-			Modules:
+
+<div style="display:none;">
+	<div class="table_header">
+		Advanced Configuration
+	</div>
+	<div class="table" style="padding:10px;">
+		<a href="#" onclick="$('#js_advanced').toggle('fast'); return false;">Display Advanced Configuration</a>
+	</div>
+	<div id="js_advanced" style="display:none;">
+
+		<div class="table_sub_header">
+			Database
 		</div>
-		<div class="table_right">
-			Core:
-			<div class="moduleList">		
-			{foreach from=$aModules.core item=aModule}
-				<div class="p_4">
-					<div><input type="hidden" name="val[module][]" value="{$aModule.name}" /></div>
-					<label><input type="checkbox" name="null" value="{$aModule.name}" checked="checked" disabled="disabled" /> {$aModule.name}</label>
-				</div>
-			{/foreach}	
+
+
+		<div class="table_sub_header">
+			Modules
+		</div>
+		<div class="table">
+			<div class="table_left">
+				Modules:
 			</div>
-			<br />
-			Extended:
-			<div class="moduleList">		
-			{foreach from=$aModules.plugin item=aModule}
-				<div class="p_4">
-					<label><input type="checkbox" name="val[module][]" value="{$aModule.name}" checked="checked" /> {$aModule.name}</label>
+			<div class="table_right">
+				Core:
+				<div class="moduleList">
+				{foreach from=$aModules.core item=aModule}
+					<div class="p_4">
+						<div><input type="hidden" name="val[module][]" value="{$aModule.name}" /></div>
+						<label><input type="checkbox" name="null" value="{$aModule.name}" checked="checked" disabled="disabled" /> {$aModule.name}</label>
+					</div>
+				{/foreach}
 				</div>
-			{/foreach}	
+				<br />
+				Extended:
+				<div class="moduleList">
+				{foreach from=$aModules.plugin item=aModule}
+					<div class="p_4">
+						<label><input type="checkbox" name="val[module][]" value="{$aModule.name}" checked="checked" /> {$aModule.name}</label>
+					</div>
+				{/foreach}
+				</div>
 			</div>
 		</div>
-	</div>		
-	
-	{template file='video.block.install'}
-	
+	</div>
 </div>
 
 <div class="table_clear">

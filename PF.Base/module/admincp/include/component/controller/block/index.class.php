@@ -52,6 +52,12 @@ class Admincp_Component_Controller_Block_Index extends Phpfox_Component
 				
 		$this->template()
 			->setSectionTitle('<a href="' . $this->url()->makeUrl('admincp.block') . '">Site Blocks</a>')
+			->setActionMenu([
+				'Add Block' => [
+					'class' => 'popup',
+					'url' => $this->url()->makeUrl('admincp.block.add')
+				]
+			])
 			->setBreadCrumb(Phpfox::getPhrase('admincp.block_manager'))
 			->setTitle(Phpfox::getPhrase('admincp.block_manager'))
 			->setHeader('cache', array(

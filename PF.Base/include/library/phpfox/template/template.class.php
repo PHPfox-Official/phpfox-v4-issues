@@ -291,7 +291,7 @@ class Phpfox_Template
 	}
 
 	/**
-	 * @return $this
+	 * @return Phpfox_Template
 	 */
 	public static function instance()
 	{
@@ -1138,25 +1138,6 @@ class Phpfox_Template
 				{
 					$aJsVars['notification.notify_ajax_refresh'] = Phpfox::getParam('notification.notify_ajax_refresh');
 				}
-				if (Phpfox::isModule('im'))
-				{
-					if (Phpfox::isUser())
-					{
-						$aJsVars['im_beep'] = Phpfox::getUserBy('im_beep');
-					}
-					$this->setHeader(array('player/' . Phpfox::getParam('core.default_music_player') . '/core.js' => 'static_script'));
-					
-					$aJsVars['im_interval_for_update'] = Phpfox::getParam('im.js_interval_value');
-					if (Phpfox::getParam('im.server_for_ajax_calls') != '')
-					{
-						$aJsVars['im_server'] = Phpfox::getParam('im.server_for_ajax_calls');
-					}
-				}
-				// Video pop-up does not work because core.js is missing when the IM module is disabled.
-				elseif (Phpfox::isModule('video'))
-				{
-					$this->setHeader(array('player/' . Phpfox::getParam('core.default_music_player') . '/core.js' => 'static_script'));
-				}
 				
 				$sLocalDatepicker = PHPFOX_STATIC .'jscript/jquery/locale/jquery.ui.datepicker-' . strtolower(Phpfox_Locale::instance()->getLangId()) . '.js';
 				
@@ -1748,6 +1729,7 @@ class Phpfox_Template
 			$sData .= '<link href="' . Phpfox::getParam('core.path') . 'themes/' . $Theme->folder . '/flavor/' . $Theme->flavor_folder . '.css?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
 		}
 
+		if (!defined('PHPFOX_INSTALLER')) {
 		$Apps = new Core\App();
 		foreach ($Apps->all() as $App) {
 			$assets = $App->path . 'assets/';
@@ -1762,12 +1744,13 @@ class Phpfox_Template
 			}
 		}
 
-		if (is_object($this->_theme)) {
+		if (!Phpfox::isAdminPanel() && is_object($this->_theme)) {
 			$asset = $this->_theme->get()->getPath() . 'assets/autoload.js';
 			if (file_exists($asset)) {
 				$url = str_replace([PHPFOX_DIR_SITE, PHPFOX_DIR], Phpfox::getParam('core.path'), $asset);
 				$this->_sFooter .= '<script src="' . $url . '?v=' . Phpfox::internalVersion() . '"></script>';
 			}
+		}
 		}
 		
 		if ($bReturnArray)
@@ -3127,7 +3110,7 @@ class Phpfox_Template
 		if (defined('PHPFOX_INSTALLER_NO_TMP'))
 		{
 			eval(' ?>' . $mData . '<?php ');
-			exit;
+			return;
 		}
 
 		(PHPFOX_DEBUG ? Phpfox_Debug::start('template') : false);		
@@ -3194,7 +3177,7 @@ class Phpfox_Template
 	 */
 	private function _getCachedName($sName)
 	{		
-		if (!defined('PHPFOX_TMP_DIR'))
+		if (!defined('PHPFOX_INSTALLER'))
 		{
 			if (!is_dir(PHPFOX_DIR_CACHE . 'template' . PHPFOX_DS))
 			{

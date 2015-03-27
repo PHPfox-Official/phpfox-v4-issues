@@ -52,7 +52,7 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="profile.index" module_id="friend" component="mutual-friend" location="3" is_active="1" ordering="5" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="profile.index" module_id="friend" component="mutual-friend" location="1" is_active="1" ordering="3" disallow_access="" can_move="1">
 			<title><![CDATA[{phrase var=&#039;friend.mutual_friends&#039;}]]></title>
 			<source_code />
 			<source_parsed />
@@ -62,17 +62,12 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="profile.info" module_id="friend" component="mutual-friend" location="3" is_active="1" ordering="9" disallow_access="" can_move="1">
-			<title>Mutual Friends</title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="event.index" module_id="friend" component="birthday" location="3" is_active="1" ordering="1" disallow_access="" can_move="0">
 			<title>Birthdays</title>
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="profile.index" module_id="friend" component="remove" location="1" is_active="1" ordering="8" disallow_access="" can_move="0">
+		<block type_id="0" m_connection="profile.index" module_id="friend" component="remove" location="1" is_active="1" ordering="6" disallow_access="" can_move="0">
 			<title>Remove Friend</title>
 			<source_code />
 			<source_parsed />

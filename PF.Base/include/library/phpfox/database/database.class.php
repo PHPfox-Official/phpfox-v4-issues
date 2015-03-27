@@ -52,6 +52,7 @@ Phpfox::getLibClass('phpfox.database.dba');
  * @method Phpfox_Database_Driver_Mysql select($select)
  * @method Phpfox_Database_Driver_Mysql update($table, $fields, $where)
  * @method Phpfox_Database_Driver_Mysql insert($table, $fields)
+ * @method Phpfox_Database_Driver_Mysql delete($table, $where)
  */
 class Phpfox_Database
 {

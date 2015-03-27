@@ -146,7 +146,9 @@ class Phpfox_Installer
 	private static $_sSessionId = null;
 	
 	public function __construct()
-	{	
+	{
+		session_start();
+
 		$this->_oTpl = Phpfox_Template::instance();
 		$this->_oReq = Phpfox_Request::instance();
 		$this->_oUrl = Phpfox_Url::instance();
@@ -169,6 +171,7 @@ class Phpfox_Installer
 			
 			if (file_exists(PHPFOX_DIR . 'include' . PHPFOX_DS . 'settings' . PHPFOX_DS . 'server.sett.php'))
 			{
+				$_CONF = [];
 				require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'settings' . PHPFOX_DS . 'server.sett.php');
 				
 				$this->_aOldConfig = $_CONF;
@@ -223,10 +226,10 @@ class Phpfox_Installer
 				'completed'
 			);
 		}
-		
+
 		// Define some needed params
 		Phpfox::getLib('setting')->setParam(array(
-				'core.path' => self::getHostPath() . 'install/',
+				'core.path' => self::getHostPath(),
 				'core.url_static_script' => self::getHostPath() . 'static/jscript/',
 				'core.url_static_css' => self::getHostPath() . 'static/style/',
 				'core.url_static_image' => self::getHostPath() . 'static/image/',
@@ -283,14 +286,7 @@ class Phpfox_Installer
 	
 	public static function getHostPath()
 	{
-    	$sScriptPath = $_SERVER['PHP_SELF'];
-        $sSubfolder = dirname(substr($sScriptPath, 0, strrpos($sScriptPath, '/'))).'/';
-        if ($sSubfolder == '//' or $sSubfolder == '\/')
-        {
-        	$sSubfolder = '/';
-		}
-
-		return 'http://' . $_SERVER['HTTP_HOST'] . $sSubfolder;	
+		return 'http://' . $_SERVER['HTTP_HOST'] . str_replace(['index.php/', 'index.php'], '', $_SERVER['PHP_SELF']);
 	}
 	
 	public static function getPhrase($sVar)
@@ -318,7 +314,7 @@ class Phpfox_Installer
 			}
 		}		
 		
-		$sStep = ($this->_oReq->get('req2') ? strtolower($this->_oReq->get('req2')) : 'key');
+		$sStep = ($this->_oReq->get('step') ? strtolower($this->_oReq->get('step')) : 'key');
 
 		$this->_oTpl->setTitle(self::getPhrase('phpfox_installer'))->setBreadcrumb(self::getPhrase('phpfox_installer'));		
 		
@@ -353,20 +349,37 @@ class Phpfox_Installer
 		}
 		
 		$this->_sStep = $sStep;
+
+		$this->_oTpl->assign([
+			'sUrl' => $this->_sUrl
+		]);
 		
 		if (method_exists($this, $sMethod))
 		{			
-			call_user_func(array(&$this, $sMethod));
+			$data = call_user_func(array(&$this, $sMethod));
+			if (!Phpfox_Error::isPassed()) {
+				$data = [
+					'errors' => Phpfox_Error::get()
+				];
+			}
+
+			if ($sStep != 'key' && !is_array($data)) {
+				$content = $this->_oTpl->getLayout($sStep, true);
+				$data = [
+					'content' => $content
+				];
+			}
+
+			if (is_array($data)) {
+				header('Content-type: application/json');
+				echo json_encode($data);
+				exit;
+			}
 		}	
 		else 
 		{
 			$sStep = 'key';
 		}
-		
-		if (PHPFOX_DEBUG)
-		{
-			$this->_oTpl->setHeader(array('debug.css' => 'style_css'));
-		}	
 		
 		if (!file_exists($this->_oTpl->getLayoutFile($sStep)))
 		{
@@ -374,23 +387,23 @@ class Phpfox_Installer
 		}
 	
 		list($aBreadCrumbs, $aBreadCrumbTitle) = $this->_oTpl->getBreadCrumb();
-		
+
+		/*
 		$this->_oTpl->setImage(array(
 				'ajax_small' => 'ajax/small.gif',
 				'ajax_large' => 'ajax/large.gif',
 				'loading_animation' => 'misc/loading_animation.gif',
 				'close' => 'misc/close.gif'
 			)
-		);		
-		
+		);
+		*/
+
+		$base = self::getHostPath() . 'PF.Base/';
 		$this->_oTpl->setHeader(array(
-					'<link rel="shortcut icon" type="image/x-icon" href="' . Phpfox_Installer::getHostPath() . 'favicon.ico?v=' . $this->_oTpl->getStaticVersion() . '" />',
-					'layout.css' => 'style_css',			
-					'thickbox.css' => 'style_css',					
-					'jquery/jquery.js' => 'static_script',
-					'common.js' => 'static_script',
-					'main.js' => 'static_script',				
-					'thickbox/thickbox.js' => 'static_script'
+					'<script>var BasePath = \'' . self::getHostPath() . '\';</script>',
+					'<link href="' . $base . 'theme/install/default/style/default/css/layout.css" rel="stylesheet">',
+					'<script src="' . $base . 'static/jscript/jquery/jquery.js"></script>',
+					'<script src="' . $base . 'static/jscript/install.js"></script>'
 				)
 			)
 			->assign(array(
@@ -410,9 +423,7 @@ class Phpfox_Installer
 		{
 			$this->_oTpl->setTitle('Upgrading from: ' . $this->_getCurrentVersion());
 		}
-		
-		header("X-Content-Encoded-By: phpFox " . PhpFox::getVersion());
-		
+
 		$this->_oTpl->getLayout('template');
 		
 		Phpfox::clearMessage();
@@ -635,7 +646,7 @@ class Phpfox_Installer
 	private function _requirement()
 	{
 		$bIsPassed = true;
-		
+
 		$aVerify = array(
 			'php_version' => (version_compare(phpversion(), '5', '<') !== true ? true : false),
 			'php_xml_support' => (function_exists('xml_set_element_handler') ? true : false),
@@ -713,7 +724,9 @@ class Phpfox_Installer
 				{
 					foreach ($aFiles as $sDir)
 					{
-						mkdir(PHPFOX_DIR . $sDir, 0777, true);
+						if (!is_dir(PHPFOX_DIR . $sDir)) {
+							mkdir(PHPFOX_DIR . $sDir, 0777, true);
+						}
 					}
 				}
 			}
@@ -769,7 +782,8 @@ class Phpfox_Installer
 				'checks' => $aFileChecks
 			)
 		);	
-				
+
+		/*
 		$this->_oTpl->setTitle('Requirement Check')
 			->setBreadcrumb('Requirement Check')
 			->assign(array(
@@ -777,6 +791,12 @@ class Phpfox_Installer
 				'bIsPassed' => $bIsPassed
 				)
 			);
+		*/
+
+		return [
+			'message' => 'Checking requirements',
+			'next' => 'configuration'
+		];
 	}
 	
 	/**
@@ -866,7 +886,11 @@ class Phpfox_Installer
 								
 								if ($this->_saveSettings($aVals))
 								{								
-									$this->_pass('process');
+									// $this->_pass('process');
+									return [
+										'message' => 'Installing app tables',
+										'next' => 'process'
+									];
 								}
 							}
 						}
@@ -897,7 +921,7 @@ class Phpfox_Installer
 	}
 	
 	private function _process()
-	{		
+	{
 		Phpfox::getLibClass('phpfox.database.dba');
 		
 		if ( strtolower(preg_replace("/\W/i", "", Phpfox::getParam(array('db', 'driver')))) == 'database_driver')
@@ -937,7 +961,8 @@ class Phpfox_Installer
 		{
 			// Something went wrong...
 		}
-		
+
+		$aModules = [];
 		require_once($sCacheModules);
 		
 		$oModuleProcess = Phpfox::getService('admincp.module.process');
@@ -971,13 +996,18 @@ class Phpfox_Installer
 			unlink($sModuleLog);
 		}
 		
-		$this->_pass();
-		
+		// $this->_pass();
+		/*
 		$this->_oTpl->assign(array(
 				'sMessage' => 'Tables installed...',
 				'sNext' => $this->_step('import')
 			)
 		);
+		*/
+		return [
+			'message' => 'Importing language package',
+			'next' => 'import'
+		];
 	}
 		
 	private function _import()
@@ -985,12 +1015,17 @@ class Phpfox_Installer
 		Phpfox::getLib('phpfox.process')->import(Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_XML . 'version' . PHPFOX_XML_SUFFIX));
 		PhpFox::getService('core.country.process')->importForInstall(Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_XML . 'country' . PHPFOX_XML_SUFFIX));
 		
-		$this->_pass();	
-		
+		// $this->_pass();
+		/*
 		$this->_oTpl->assign(array(
 			'sMessage' => 'Imports complete...',
 			'sNext' => $this->_step('language')
-		));		
+		));
+		*/
+		return [
+			'message' => 'Importing language package',
+			'next' => 'language'
+		];
 	}	
 	
 	private function _language()
@@ -1011,14 +1046,36 @@ class Phpfox_Installer
 			)
 		);	
 		Phpfox::getService('language.process')->import(Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_XML . 'installer' . PHPFOX_XML_SUFFIX), 'phpfox_installer', true, true);
-		
+
+		$themeId = $this->_db()->insert(Phpfox::getT('theme'), [
+			'name' => 'Default',
+			'folder' => 'default',
+			'created' => PHPFOX_TIME,
+			'is_active' => 1,
+			'is_default' => 1
+		]);
+
+		$this->_db()->insert(Phpfox::getT('theme_style'), [
+			'theme_id' => $themeId,
+			'is_active' => 1,
+			'is_default' => 1,
+			'name' => 'Default',
+			'folder' => 'default',
+			'created' => PHPFOX_TIME
+		]);
+
+		/*
 		$this->_pass();
-		
 		$this->_oTpl->assign(array(
 				'sMessage' => 'Language package imported...',
 				'sNext' => $this->_step('module')
 			)
 		);
+		*/
+		return [
+			'message' => 'Setting up apps',
+			'next' => 'module'
+		];
 	}
 	
 	private function _module()
@@ -1028,7 +1085,8 @@ class Phpfox_Installer
 		if (!file_exists($sCacheModules))
 		{
 			// Something went wrong...
-		}		
+		}
+		$aModules = [];
 		require_once($sCacheModules);
 
 		$sModuleLog = PHPFOX_DIR_CACHE . 'installer_completed_modules.log';
@@ -1055,6 +1113,17 @@ class Phpfox_Installer
 		$iCnt = 0;
 		$sMessage = '';
 		$sInstalledModule = '';
+		$totalModules = count($aModules);
+		$installedModules = 0;
+		foreach ($aModules as $sModule)
+		{
+			if (isset($aInstalled[$sModule]))
+			{
+				$installedModules++;
+				continue;
+			}
+		}
+
 		foreach ($aModules as $sModule)
 		{
 			if (isset($aInstalled[$sModule]))
@@ -1075,6 +1144,7 @@ class Phpfox_Installer
 		}
 		fwrite($hFile, $sInstalledModule);
 		fclose($hFile);
+		// $leftToInstall = ($totalModules - $installedModules);
 		
 		if ($this->_bUpgrade)
 		{
@@ -1087,25 +1157,37 @@ class Phpfox_Installer
 			$this->_pass();
 			
 			unlink($sModuleLog);
-			
+			/*
 			$this->_oTpl->assign(array(
 					'sMessage' => 'All modules installed...',
 					'sNext' => $this->_step('post')
 				)
 			);
+			*/
+			return [
+				'message' => 'Checking install',
+				'next' => 'post'
+			];
 		}
 		else 
-		{		
+		{
+			/*
 			$this->_oTpl->assign(array(
 					'sMessage' => 'Installed Module(s): <div class="label_flow" style="height:200px;"><ul>' . $sMessage . '</ul></div>',
 					'sNext' => $this->_step('module')
 				)
-			);	
+			);
+			*/
+			return [
+				'message' => 'Setting up apps (' . $installedModules . ' out of ' . $totalModules . ')',
+				'next' => 'module'
+			];
 		}
 	}
 	
 	private function _post()
 	{
+		$aModules = [];
 		// Load the cached module list
 		$sCacheModules = PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'installer_modules.php';
 		if (!file_exists($sCacheModules))
@@ -1119,13 +1201,18 @@ class Phpfox_Installer
 		{		
 			$oModuleProcess->install($sModule, array('post_install' => true));			
 		}		
-		
+
+		/*
 		$this->_pass();
 		$this->_oTpl->assign(array(
 				'sMessage' => 'Post install completed...',
 				'sNext' => $this->_step('final')
 			)
 		);
+		*/
+		return [
+			'next' => 'final'
+		];
 	}
 	
 	private function _final()
@@ -1170,7 +1257,10 @@ class Phpfox_Installer
 						
 						$this->_video(true);
 						
-						$this->_pass('completed');
+						// $this->_pass('completed');
+						return [
+							'next' => 'completed'
+						];
 					}
 				}
 			}
@@ -1189,7 +1279,9 @@ class Phpfox_Installer
 	}
 	
 	private function _update()
-	{	
+	{
+		exit('Updates disabled...');
+
 		$aContent = array(
 			'action' => $this->_oReq->get('action'),
 			'version' => $this->_oReq->get('version'),
@@ -1301,7 +1393,10 @@ class Phpfox_Installer
 	            fclose($hServerConf);
 			}			
 		}
-		
+
+		$license = '';
+		file_put_contents(PHPFOX_DIR_SETTINGS . 'license.sett.php', $license);
+
 		if (!defined('PHPFOX_SKIP_INSTALL_KEY'))
 		{
 			$oApi = Phpfox::getLib('phpfox.api');
@@ -1426,7 +1521,9 @@ class Phpfox_Installer
 	* @todo We need to work on this routine, not working very well.
 	*/	
 	private function _isPassed($sStep)
-	{		
+	{
+		return true;
+
 		$aFile = file($this->_sSessionFile);
 		foreach ($aFile as $sLine)
 		{
@@ -1484,6 +1581,8 @@ class Phpfox_Installer
 		{
 			$aParams = array($aParams, 'sessionid' => self::$_sSessionId);
 		}
+
+		// d($this->_oUrl->makeUrl($this->_sUrl, $aParams)); exit;
 		
 		return $this->_oUrl->makeUrl($this->_sUrl, $aParams);
 	}
@@ -1491,12 +1590,7 @@ class Phpfox_Installer
 	private function _saveSettings($aVals)
 	{
 		// Get sub-folder
-    	$sScriptPath = $_SERVER['PHP_SELF'];
-        $sSubfolder = dirname(substr($sScriptPath, 0, strrpos($sScriptPath, '/'))).'/';
-        if ($sSubfolder == '//' or $sSubfolder == '\/')
-        {
-        	$sSubfolder = '/';
-		}		
+		$sSubfolder = str_replace(['index.php/', 'index.php'], '', $_SERVER['PHP_SELF']);
 		
 		// Get the settings content
 		$sContent = file_get_contents(PHPFOX_DIR_SETTING . 'server.sett.php.new');

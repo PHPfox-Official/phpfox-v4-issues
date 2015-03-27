@@ -1,4 +1,20 @@
 <upgrade>
+	<blocks>
+		<block>
+			<type_id>0</type_id>
+			<m_connection>profile.index</m_connection>
+			<module_id>pages</module_id>
+			<component>profile</component>
+			<location>1</location>
+			<is_active>1</is_active>
+			<ordering>4</ordering>
+			<disallow_access />
+			<can_move>1</can_move>
+			<title>Pages</title>
+			<source_code />
+			<source_parsed />
+		</block>
+	</blocks>
 	<phpfox_update_blocks>
 		<block>
 			<type_id>0</type_id>

@@ -167,9 +167,6 @@
 		<component module_id="music" component="featured-album" m_connection="" module="music" is_controller="0" is_block="1" is_active="1" />
 		<component module_id="music" component="profile" m_connection="music.profile" module="music" is_controller="1" is_block="0" is_active="1" />
 	</components>
-	<feed_share>
-		<share module_id="music" title="{phrase var='music.music'}" description="{phrase var='music.say_something_about_this_song'}" block_name="share" no_input="0" is_frame="1" ajax_request="" no_profile="1" icon="music.png" ordering="6" />
-	</feed_share>
 	<phrases>
 		<phrase module_id="music" version_id="2.0.0alpha1" var_name="module_music" added="1232964704">Music</phrase>
 		<phrase module_id="music" version_id="2.0.0alpha1" var_name="menu_music" added="1232964721">Music</phrase>

@@ -22,11 +22,6 @@
 		<setting group="" module_id="marketplace" is_hidden="0" type="integer" var_name="days_to_notify_expire" phrase_var_name="setting_days_to_notify_expire" ordering="1" version_id="3.5.0beta1">0</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="marketplace.view" module_id="marketplace" component="my" location="1" is_active="1" ordering="3" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="marketplace.index" module_id="marketplace" component="category" location="1" is_active="1" ordering="2" disallow_access="" can_move="0">
 			<title></title>
 			<source_code />
@@ -34,16 +29,6 @@
 		</block>
 		<block type_id="0" m_connection="marketplace.index" module_id="marketplace" component="sponsored" location="3" is_active="1" ordering="1" disallow_access="" can_move="0">
 			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="marketplace.view" module_id="marketplace" component="image" location="1" is_active="1" ordering="2" disallow_access="" can_move="0">
-			<title>Listing Photos</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="marketplace.view" module_id="marketplace" component="price" location="3" is_active="1" ordering="5" disallow_access="" can_move="0">
-			<title>Listing Price</title>
 			<source_code />
 			<source_parsed />
 		</block>

@@ -61,11 +61,10 @@ class Link_Service_Callback extends Phpfox_Service
 					->leftJoin(Phpfox::getT('like'), 'l', 'l.type_id = \'link\' AND l.item_id = link.link_id AND l.user_id = ' . Phpfox::getUserId());
 		}
 		
-		$aRow = $this->database()->select('link.*, p.app_id, a.image_path AS app_image_path, ' . Phpfox::getUserField('u', 'parent_'))
+		$aRow = $this->database()->select('link.*, p.app_id, ' . Phpfox::getUserField('u', 'parent_'))
 		    ->from($this->_sTable, 'link') 
 		    ->leftJoin(Phpfox::getT('user'), 'u', 'u.user_id = link.parent_user_id') 
-		    ->leftJoin(Phpfox::getT('pages'), 'p', 'p.page_id = u.profile_page_id') 
-		    ->leftJoin(Phpfox::getT('app'), 'a', 'a.app_id = p.app_id') 
+		    ->leftJoin(Phpfox::getT('pages'), 'p', 'p.page_id = u.profile_page_id')
 		    ->where('link.link_id = ' . (int) $aItem['item_id']) 
 		    ->execute('getSlaveRow'); 
 		

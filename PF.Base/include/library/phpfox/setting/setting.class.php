@@ -109,9 +109,13 @@ class Phpfox_Setting
 		$_CONF = array();
 		$sMessage = 'Oops! phpFox is not installed. Please run the install script to get your community setup.';
 		
-		if (!defined('PHPFOX_INSTALLER') && !file_exists(PHPFOX_DIR_SETTINGS . 'server.sett.php') && file_exists(PHPFOX_DIR . 'install' . PHPFOX_DS . 'index.php'))
-		{
-			Phpfox::getLib('phpfox.api')->message($sMessage);
+		if (defined('PHPFOX_INSTALLER') && !class_exists('Phpfox_Installer', false)) {
+			// Phpfox::getLib('phpfox.api')->message($sMessage);
+
+			require(PHPFOX_DIR . 'install/include/installer.class.php');
+
+			(new Phpfox_Installer())->run();
+			exit;
 		}
 			
 		if (file_exists(PHPFOX_DIR_SETTINGS . 'server.sett.php'))
@@ -147,25 +151,7 @@ class Phpfox_Setting
 		{
 			define('PHPFOX_SCRIPT_CONFIG', true);
 		}
-			
-		if ((!isset($_CONF['core.host'])) || (isset($_CONF['core.host']) && $_CONF['core.host'] == 'HOST_NAME'))
-		{
-			$_CONF['core.host'] = $_SERVER['HTTP_HOST'];
-		}
-			
-		if ((!isset($_CONF['core.folder'])) || (isset($_CONF['core.folder']) && $_CONF['core.folder'] == 'SUB_FOLDER'))
-		{
-			$_CONF['core.folder'] = '/';				
-		}
-			
-		require_once(PHPFOX_DIR_SETTING . 'common.sett.php');
-		
-		if (defined('PHPFOX_INSTALLER'))
-		{
-			$_CONF['core.path'] = '../';	
-			$_CONF['core.url_file'] = '../file/';
-		}		
-		
+
 		if (file_exists(PHPFOX_DIR_SETTING . 'video.default.php'))
 		{
 			if (file_exists(PHPFOX_DIR_SETTING . 'video.php'))
@@ -177,6 +163,28 @@ class Phpfox_Setting
 				require_once(PHPFOX_DIR_SETTING . 'video.default.php');
 			}
 		}
+			
+		if ((!isset($_CONF['core.host'])) || (isset($_CONF['core.host']) && $_CONF['core.host'] == 'HOST_NAME'))
+		{
+			$_CONF['core.host'] = $_SERVER['HTTP_HOST'];
+		}
+			
+		if ((!isset($_CONF['core.folder'])) || (isset($_CONF['core.folder']) && $_CONF['core.folder'] == 'SUB_FOLDER'))
+		{
+			$_CONF['core.folder'] = '/';				
+		}
+
+		if (!defined('PHPFOX_INSTALLER') && $_CONF['core.url_rewrite'] == '2') {
+			$_CONF['core.folder'] = $_CONF['core.folder'] . 'index.php/';
+		}
+			
+		require_once(PHPFOX_DIR_SETTING . 'common.sett.php');
+		
+		if (defined('PHPFOX_INSTALLER'))
+		{
+			$_CONF['core.path'] = '../';	
+			$_CONF['core.url_file'] = '../file/';
+		}
 
 		if (file_exists(PHPFOX_DIR_SETTING . 'security.sett.php'))
 		{
@@ -186,19 +194,18 @@ class Phpfox_Setting
 		{
 			require_once(PHPFOX_DIR_SETTING . 'security.sett.php.new');
 		}
-       
+
 		$this->_aParams =& $_CONF;
 		
 		if (defined('PHPFOX_INSTALLER'))
 		{
 			$this->_aParams['core.url_rewrite'] = '2';
 			// http://www.php.net/manual/en/intro.mysql.php
-			if (($this->_aParams['db']['driver'] == 'mysqli') && !function_exists('mysqli_connect'))
+			if (isset($this->_aParams['db']) && ($this->_aParams['db']['driver'] == 'mysqli') && !function_exists('mysqli_connect'))
 			{
 				$this->_aParams['db']['driver'] = 'mysql';
 			}			
-		}		
-		
+		}
 	}
 	
 	/**

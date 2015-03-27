@@ -131,9 +131,7 @@ class Music_Component_Controller_View extends Phpfox_Component
 					'comment.css' => 'style_css',
 					'pager.css' => 'style_css',
 					'feed.js' => 'module_feed',
-					'view.css' => 'module_music',
-					'player/flowplayer/flowplayer.js' => 'static_script',
-					'player/' . Phpfox::getParam('core.default_music_player') . '/core.js' => 'static_script'					
+					'view.css' => 'module_music'
 				)
 			)
 			->setHeader(array(

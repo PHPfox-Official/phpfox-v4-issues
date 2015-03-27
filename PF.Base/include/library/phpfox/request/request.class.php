@@ -72,7 +72,7 @@ class Phpfox_Request
 	}
 
 	/**
-	 * @return $this
+	 * @return Phpfox_Request
 	 */
 	public static function instance()
 	{

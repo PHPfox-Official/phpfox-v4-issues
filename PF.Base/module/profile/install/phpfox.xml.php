@@ -43,21 +43,6 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="profile.index" module_id="profile" component="pic" location="11" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="profile.info" module_id="profile" component="info" location="2" is_active="1" ordering="1" disallow_access="" can_move="1">
-			<title>Profile Info</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="profile.info" module_id="profile" component="pic" location="1" is_active="1" ordering="8" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="blog.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
 			<title><![CDATA[Profile Photo &amp; Menu]]></title>
 			<source_code />

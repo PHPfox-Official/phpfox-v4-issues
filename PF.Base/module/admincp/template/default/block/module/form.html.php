@@ -11,7 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="table">
+<div class="table" style="display:none;">
 	<div class="table_left">
 	{if $bModuleFormRequired}{required}{/if}{$sModuleFormTitle}:
 	</div>

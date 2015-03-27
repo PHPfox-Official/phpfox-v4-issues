@@ -8,11 +8,45 @@
 	padding:8px 0px;
 }
 
-#left, #right, #content {
+.user_block {
+	padding:@blockContentPadding;
+}
+
+#header_menu {
+	.block {
+		border-bottom:1px darken(@blockBg, 8%) solid;
+		padding-bottom:10px;
+		margin-bottom:10px;
+	}
+}
+
+#left, #right, #content, #header_menu {
 	.block, .block_clear {
 		background:@blockBg;
 		color:@blockColor;
 		margin-bottom:20px;
+
+		.bottom {
+			font-size:@fontSizeBase - 1;
+
+			> ul {
+				> li {
+					display:block;
+
+					a, a:hover {
+						display:block;
+						padding:4px 0px;
+						text-indent:@blockContentPadding;
+						color:@blockColor;
+					}
+
+					a:hover {
+						color:@linkColor;
+						transition:@transition;
+					}
+				}
+			}
+		}
 
 		> .title {
 			background:@blockTitleBg;

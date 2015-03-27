@@ -58,23 +58,6 @@ $Behavior.termsAndPrivacy = function()
 		</div>
 		{/if}
 {/if}
-{if Phpfox_Module::instance()->getFullControllerName() != 'user.register'}
-<div class="user_register_holder">
-	<div class="holder">
-		<div class="user_register_intro">		
-			{module name='user.welcome'}
-		</div>
-		<div class="user_register_form">
-
-			{if Phpfox::getParam('user.allow_user_registration')}
-			<div class="user_register_title">
-				{phrase var='user.sign_up'}
-				<div class="extra_info">
-					{phrase var='user.it_s_free_and_always_will_be'}
-				</div>
-			</div>
-			{/if}
-{/if}
 		{if Phpfox::isModule('invite') && Phpfox::getService('invite')->isInviteOnly()}
 		<div class="main_break">
 			<div class="extra_info">				
@@ -140,22 +123,15 @@ $Behavior.termsAndPrivacy = function()
 					
 					<div class="table_clear">
 					{if isset($bIsPosted) || !Phpfox::getParam('user.multi_step_registration_form')}
-						<input type="submit" value="{phrase var='user.sign_up'}" class="button_register" id="js_registration_submit" />
+						<input type="submit" value="{phrase var='user.sign_up'}" class="button" id="js_registration_submit" />
 					{else}
-						<input type="button" value="{phrase var='user.sign_up'}" class="button_register" id="js_registration_submit" onclick="$Core.registration.submitForm();" />
+						<input type="button" value="{phrase var='user.sign_up'}" class="button" id="js_registration_submit" onclick="$Core.registration.submitForm();" />
 					{/if}
 					</div>
 				</form>
 			</div>
 			{/if}
 		{/if}
-{if Phpfox_Module::instance()->getFullControllerName() != 'user.register'}
-		</div>
-		<div class="clear"></div>
-	</div>
-	{module name='user.images'}
-</div>
-{/if}
 {if Phpfox_Module::instance()->getFullControllerName() == 'user.register'}
 	</div>
 </div>

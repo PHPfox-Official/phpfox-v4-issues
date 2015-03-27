@@ -963,20 +963,6 @@ class User_Service_Callback extends Phpfox_Service
 			$aReturn['location_latlng'] = json_decode($aRow['location_latlng'], true);
 		}
 		
-		if (!empty($aItem['app_id']))
-		{
-			$aApp = $this->database()->select('app_title, app_id')->from(Phpfox::getT('app'))
-					->where('app_id = ' . (int)$aItem['app_id'])
-					->execute('getSlaveRow');
-			
-			if (empty($aApp))
-			{
-				return false;
-			}
-			$sLink = '<a href="' . Phpfox::permalink('apps', $aApp['app_id'], $aApp['app_title']) . '">' . $aApp['app_title'] . '</a>';
-			$aReturn['app_link'] = $sLink;
-		}
-		
 		return $aReturn;
 	}
 	

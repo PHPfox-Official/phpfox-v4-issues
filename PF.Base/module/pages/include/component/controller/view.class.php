@@ -136,8 +136,7 @@ class Pages_Component_Controller_View extends Phpfox_Component
 			->setHeader('cache', array(				
 				'profile.css' => 'style_css',
 				'pages.css' => 'style_css',
-				'pages.js' => 'module_pages',
-                'player/flowplayer/flowplayer.js' => 'static_script'
+				'pages.js' => 'module_pages'
 			)
 		);
 		

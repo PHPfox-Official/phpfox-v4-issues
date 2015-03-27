@@ -65,15 +65,6 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 				)
 			);
 		}
-		
-		if (Phpfox::isModule('video'))
-		{
-			$this->template()->setHeader('cache', array(
-					'player/flowplayer/flowplayer.js' => 'static_script',
-					'player/' . Phpfox::getParam('core.default_music_player') . '/core.js' => 'static_script'	
-				)
-			);
-		}
 
 		$this->template()->setEditor()
 			->setTitle(Phpfox::getPhrase('forum.forum'))

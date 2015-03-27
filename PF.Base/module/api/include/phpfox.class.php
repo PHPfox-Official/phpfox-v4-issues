@@ -25,7 +25,6 @@ class Module_Api
 	public static $aTables = array(
 		'api_gateway',
 		'api_gateway_log'
-		//'api_key'
 	);
 }
 

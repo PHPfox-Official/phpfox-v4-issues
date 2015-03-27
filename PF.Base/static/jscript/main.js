@@ -1556,6 +1556,7 @@ $Behavior.linkClickAll = function()
 			|| $(this).hasClass('thickbox')
 			|| $(this).hasClass('popup')
 			|| $(this).hasClass('ajax')
+			|| $(this).hasClass('no_ajax')
 			|| $(this).hasClass('sJsConfirm'))
 		{
 			return;
@@ -1672,8 +1673,10 @@ $Core.init = function()
 		
 	$(document).ready(function()
 	{
-		$('.nano, .nano-content').addClass('dont-unbind');
-		$('.nano').nanoScroller();
+		if ($('.nano').length) {
+			$('.nano, .nano-content').addClass('dont-unbind');
+			$('.nano').nanoScroller();
+		}
 
 		$.each($Behavior, function() 
 		{

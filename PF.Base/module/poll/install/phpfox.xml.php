@@ -115,9 +115,6 @@
 ->where('view_id = 0')
 ->execute('getSlaveField');]]></stat>
 	</stats>
-	<feed_share>
-		<share module_id="poll" title="{phrase var='poll.poll'}" description="{phrase var='poll.say_something_about_this_poll'}" block_name="share" no_input="1" is_frame="0" ajax_request="addViaStatusUpdate" no_profile="1" icon="poll.png" ordering="4" />
-	</feed_share>
 	<phrases>
 		<phrase module_id="poll" version_id="2.0.0alpha1" var_name="module_poll" added="1232964260">Polls</phrase>
 		<phrase module_id="poll" version_id="2.0.0alpha1" var_name="menu_poll" added="1232964276">Polls</phrase>

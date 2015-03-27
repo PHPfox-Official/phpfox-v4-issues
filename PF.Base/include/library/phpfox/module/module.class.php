@@ -862,7 +862,7 @@ class Phpfox_Module
 			{
                 (($sPlugin = Phpfox_Plugin::get('library_module_getcomponent_2')) ? eval($sPlugin) : false);if(isset($mPluginReturn)){return $mPluginReturn;}
 				// Opps, for some reason we have loaded an invalid component. Lets send back info to the dev.
-				Phpfox_Error::trigger('Failed to load component: ' . $sClassFile, E_USER_ERROR);
+				Phpfox_Error::trigger('Failed to load component: ' . $sClass . ' (' . $sClassFile . ')', E_USER_ERROR);
 			}
 			
 			// Require the component

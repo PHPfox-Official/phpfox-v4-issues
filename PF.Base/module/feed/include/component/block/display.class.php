@@ -184,6 +184,10 @@ class Feed_Component_Block_Display extends Phpfox_Component
 			$bUseFeedForm = false;
 		}
 
+		if (!Phpfox::isUser()) {
+			$bStreamMode = false;
+		}
+
 		$bForceReloadOnPage = (PHPFOX_IS_AJAX ? false : Phpfox::getParam('feed.force_ajax_on_load'));
 		$aRows = array();
 		if (PHPFOX_IS_AJAX || !$bForceReloadOnPage || $bIsCustomFeedView)

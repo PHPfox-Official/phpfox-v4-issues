@@ -7,7 +7,7 @@
 				<label for="first_name">{required}{phrase var='user.first_name'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[first_name]" id="first_name" value="{value type='input' id='first_name'}" size="30" />
+				<input placeholder="{required}{phrase var='user.first_name'}" type="text" name="val[first_name]" id="first_name" value="{value type='input' id='first_name'}" size="30" />
 			</div>			
 		</div>		
 		<div class="table">
@@ -21,21 +21,15 @@
 		<div class="separate"></div>
 		{else}
 		<div class="table">
-			<div class="table_left">
-				<label for="full_name">{required}{phrase var='user.full_name'}:</label>
-			</div>
 			<div class="table_right">
-				<input type="text" name="val[full_name]" id="full_name" value="{value type='input' id='full_name'}" size="30" />
+				<input placeholder="{phrase var='user.full_name'}" type="text" name="val[full_name]" id="full_name" value="{value type='input' id='full_name'}" size="30" />
 			</div>			
 		</div>
 		{/if}
 		{if !Phpfox::getParam('user.profile_use_id') && !Phpfox::getParam('user.disable_username_on_sign_up')}
 		<div class="table">
-			<div class="table_left">
-				<label for="user_name">{required}{phrase var='user.choose_a_username'}:</label>
-			</div>
 			<div class="table_right">                           
-				<input type="text" name="val[user_name]" id="user_name" onkeyup="$('.bt-wrapper').remove(); $(this).ajaxCall('user.showUserName');" {if Phpfox::getParam('user.suggest_usernames_on_registration')}onfocus="$('#btn_verify_username').slideDown()"{/if} title="{phrase var='user.your_username_is_used_to_easily_connect_to_your_profile'}" value="{value type='input' id='user_name'}" size="30" autocomplete="off" />				
+				<input placeholder="{phrase var='user.choose_a_username'}" type="text" name="val[user_name]" id="user_name" onkeyup="$('.bt-wrapper').remove(); $(this).ajaxCall('user.showUserName');" {if Phpfox::getParam('user.suggest_usernames_on_registration')}onfocus="$('#btn_verify_username').slideDown()"{/if} title="{phrase var='user.your_username_is_used_to_easily_connect_to_your_profile'}" value="{value type='input' id='user_name'}" size="30" autocomplete="off" />
 				<div class="p_4">
 					{url link=''}<strong id="js_signup_user_name">{phrase var='user.your_user_name'}</strong>/
 				</div>
@@ -53,11 +47,8 @@
 		<div class="separate"></div>
 		{/if}
 		<div class="table">
-			<div class="table_left">
-				<label for="email">{required}{phrase var='user.email'}:</label>
-			</div>
 			<div class="table_right">
-				<input type="text" name="val[email]" id="email" value="{value type='input' id='email'}" size="30" />
+				<input placeholder="{phrase var='user.email'}" type="text" name="val[email]" id="email" value="{value type='input' id='email'}" size="30" />
 			</div>			
 		</div>
 		{if Phpfox::getParam('user.reenter_email_on_signup')}
@@ -76,14 +67,11 @@
 
 		{plugin call='user.template_default_block_register_step1_5'}
 		<div class="table">
-			<div class="table_left">
-				<label for="password">{required}{phrase var='user.password'}:</label>
-			</div>
 			<div class="table_right">
 				{if isset($bIsPosted)}
-				<input type="password" name="val[password]" id="password" value="{value type='input' id='password'}" size="30" />
+				<input placeholder="{phrase var='user.password'}" type="password" name="val[password]" id="password" value="{value type='input' id='password'}" size="30" />
 				{else}
-				<input type="password" name="val[password]" id="password" value="" size="30" />
+				<input placeholder="{phrase var='user.password'}" type="password" name="val[password]" id="password" value="" size="30" />
 				{/if}
 			</div>			
 		</div>

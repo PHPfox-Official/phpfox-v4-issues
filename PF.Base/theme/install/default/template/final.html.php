@@ -1,34 +1,4 @@
-<?php 
-/**
- * [PHPFOX_HEADER]
- * 
- * @copyright		[PHPFOX_COPYRIGHT]
- * @author			Raymond Benc
- * @package 		Phpfox
- * @version 		$Id: final.html.php 759 2009-07-14 07:44:23Z Raymond_Benc $
- */
- 
-defined('PHPFOX') or exit('NO DICE!'); 
-
-?>
-{$sCreateJs}
-<script type="text/javascript">
-<!--
-function addUser()
-{literal}{{/literal}
-	if ({$sGetJsForm})
-	{literal}
-	{		
-		$('.button').attr('disabled', true);
-		$('.button').val('Processing...');
-		return true;
-	}
-	{/literal}	
-	return false;
-{literal}}{/literal}
--->
-</script>
-<form method="post" action="{url link=""$sUrl".final"}" id="js_form" onsubmit="return addUser();">
+<form method="post" action="#final" id="js_form">
 	<div class="table_header">
 		Administrators Account
 	</div>
@@ -93,10 +63,6 @@ function addUser()
 			{select_gender}
 		</div>
 		<div class="clear"></div>
-	</div>
-	
-	<div style="display:none;">
-	{template file='video.block.install'}
 	</div>
 	
 	<div class="table_clear">

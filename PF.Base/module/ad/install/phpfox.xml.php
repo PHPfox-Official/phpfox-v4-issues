@@ -5,7 +5,7 @@
 		<is_core>0</is_core>
 		<is_active>1</is_active>
 		<is_menu>1</is_menu>
-		<menu><![CDATA[a:6:{s:33:"ad.admin_menu_create_new_campaign";a:1:{s:3:"url";a:2:{i:0;s:2:"ad";i:1;s:3:"add";}}s:30:"ad.admin_menu_manage_campaigns";a:1:{s:3:"url";a:1:{i:0;s:2:"ad";}}s:31:"ad.admin_menu_manage_placements";a:1:{s:3:"url";a:2:{i:0;s:2:"ad";i:1;s:9:"placement";}}s:26:"ad.admin_menu_ad_placement";a:1:{s:3:"url";a:3:{i:0;s:2:"ad";i:1;s:9:"placement";i:2;s:3:"add";}}s:22:"ad.admin_menu_invoices";a:1:{s:3:"url";a:2:{i:0;s:2:"ad";i:1;s:7:"invoice";}}s:33:"ad.admin_menu_manage_sponsorships";a:1:{s:3:"url";a:2:{i:0;s:2:"ad";i:1;s:7:"sponsor";}}}]]></menu>
+		<menu><![CDATA[a:4:{s:30:"ad.admin_menu_manage_campaigns";a:1:{s:3:"url";a:1:{i:0;s:2:"ad";}}s:31:"ad.admin_menu_manage_placements";a:1:{s:3:"url";a:2:{i:0;s:2:"ad";i:1;s:9:"placement";}}s:22:"ad.admin_menu_invoices";a:1:{s:3:"url";a:2:{i:0;s:2:"ad";i:1;s:7:"invoice";}}s:33:"ad.admin_menu_manage_sponsorships";a:1:{s:3:"url";a:2:{i:0;s:2:"ad";i:1;s:7:"sponsor";}}}]]></menu>
 		<phrase_var_name>module_ad</phrase_var_name>
 		<writable><![CDATA[a:1:{i:0;s:12:"file/pic/ad/";}]]></writable>
 	</data>
@@ -93,7 +93,6 @@
 		<component module_id="ad" component="manage-sponsor" m_connection="ad.manage-sponsor" module="ad" is_controller="1" is_block="0" is_active="1" />
 	</components>
 	<phrases>
-		<phrase module_id="ad" version_id="2.0.0beta3" var_name="admin_menu_create_new_campaign" added="1243091789">Create New Campaign</phrase>
 		<phrase module_id="ad" version_id="2.0.0beta3" var_name="admin_menu_manage_campaigns" added="1243091789">Manage Campaigns</phrase>
 		<phrase module_id="ad" version_id="2.0.0beta3" var_name="module_ad" added="1243091789">Ad Management</phrase>
 		<phrase module_id="ad" version_id="2.0.0beta3" var_name="setting_ad_cache_limit" added="1243185354"><![CDATA[<title>Ad Cache Limit (Minutes)</title><info>Define in minutes how long we should cache ads.</info>]]></phrase>
@@ -227,7 +226,6 @@
 		<phrase module_id="ad" version_id="2.0.5" var_name="the_file_dimensions_are_too_big" added="1270730916">The file dimensions are too big.</phrase>
 		<phrase module_id="ad" version_id="2.0.5" var_name="provide_a_campaign_name" added="1270731048">Provide a campaign name.</phrase>
 		<phrase module_id="ad" version_id="2.0.5" var_name="admin_menu_manage_placements" added="1270807089">Manage Placements</phrase>
-		<phrase module_id="ad" version_id="2.0.5" var_name="admin_menu_ad_placement" added="1270807089">Ad Placement</phrase>
 		<phrase module_id="ad" version_id="2.0.5" var_name="ad_placement_successfully_deleted" added="1271066010">Ad placement successfully deleted.</phrase>
 		<phrase module_id="ad" version_id="2.0.5" var_name="manage_ad_placements" added="1271066020">Manage Ad Placements</phrase>
 		<phrase module_id="ad" version_id="2.0.5" var_name="ad_placements" added="1271066046">Ad Placements</phrase>

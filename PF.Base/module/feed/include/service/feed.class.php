@@ -294,10 +294,9 @@ class Feed_Service_Feed extends Phpfox_Service
         }		
 		elseif ($iUserid !== null && $iFeedId !== null)
 		{            			
-            $aRows = $this->database()->select('feed.*, apps.app_title, ' . Phpfox::getUserField().', u.view_id')
+            $aRows = $this->database()->select('feed.*, ' . Phpfox::getUserField().', u.view_id')
 				->from($this->_sTable, 'feed')			
 				->join(Phpfox::getT('user'), 'u', 'u.user_id = feed.user_id')
-				->leftJoin(Phpfox::getT('app'), 'apps', 'apps.app_id = feed.app_id')
 				->where((isset($aCustomCondition) ? $aCustomCondition : 'feed.feed_id = ' . (int) $iFeedId . ' AND feed.user_id = ' . (int) $iUserid . ''))
 				->order('feed.time_stamp DESC')
 				->limit(1)			
@@ -374,10 +373,9 @@ class Feed_Service_Feed extends Phpfox_Service
 				->where(array_merge($aCond, array('AND feed.parent_user_id = ' . (int) $iUserid)))
 				->union();
 			
-			$aRows = $this->database()->select('feed.*, apps.app_title,  ' . Phpfox::getUserField())
+			$aRows = $this->database()->select('feed.*, ' . Phpfox::getUserField())
 				->unionFrom('feed')
 				->join(Phpfox::getT('user'), 'u', 'u.user_id = feed.user_id')
-				->leftJoin(Phpfox::getT('app'), 'apps', 'apps.app_id = feed.app_id')
 				->order('feed.time_stamp DESC')
 				->group('feed.feed_id')
 				->limit($iOffset, $iTotalFeeds)			
@@ -391,7 +389,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			{
 				$this->_hashSearch();
 				
-				$sSelect = 'feed.*, apps.app_title, ' . Phpfox::getUserField();
+				$sSelect = 'feed.*, ' . Phpfox::getUserField();
 				if (Phpfox::isModule('friend'))
 				{
 					$sSelect .= ', f.friend_id AS is_friend';
@@ -401,7 +399,6 @@ class Feed_Service_Feed extends Phpfox_Service
 				$aRows = $this->database()->select($sSelect)
 						->from(Phpfox::getT('feed'), 'feed')			
 						->join(Phpfox::getT('user'), 'u', 'u.user_id = feed.user_id')
-						->leftJoin(Phpfox::getT('app'), 'apps', 'apps.app_id = feed.app_id')
 						->order($sOrder)
 						->group('feed.feed_id')
 						->limit($iOffset, $iTotalFeeds)			
@@ -482,7 +479,7 @@ class Feed_Service_Feed extends Phpfox_Service
 
 				$this->_hashSearch();
 
-				$sSelect = 'feed.*, apps.app_title, u.view_id,  ' . Phpfox::getUserField();
+				$sSelect = 'feed.*, u.view_id,  ' . Phpfox::getUserField();
 				if (Phpfox::isModule('friend'))
 				{
 					$sSelect .= ', f.friend_id AS is_friend';
@@ -492,7 +489,6 @@ class Feed_Service_Feed extends Phpfox_Service
 				$aRows = $this->database()->select($sSelect)
 						->unionFrom('feed')			
 						->join(Phpfox::getT('user'), 'u', 'u.user_id = feed.user_id')
-						->leftJoin(Phpfox::getT('app'), 'apps', 'apps.app_id = feed.app_id')
 						->order($sOrder)
 						->group('feed.feed_id')
 						->limit($iOffset, $iTotalFeeds)			

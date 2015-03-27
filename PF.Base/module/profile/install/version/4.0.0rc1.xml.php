@@ -14,19 +14,5 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block>
-			<type_id>0</type_id>
-			<m_connection>profile.index</m_connection>
-			<module_id>profile</module_id>
-			<component>pic</component>
-			<location>11</location>
-			<is_active>1</is_active>
-			<ordering>1</ordering>
-			<disallow_access />
-			<can_move>0</can_move>
-			<title />
-			<source_code />
-			<source_parsed />
-		</block>
 	</phpfox_update_blocks>
 </upgrade>

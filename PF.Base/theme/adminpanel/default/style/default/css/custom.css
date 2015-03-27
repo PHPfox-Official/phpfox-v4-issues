@@ -731,6 +731,7 @@ select:focus {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   box-shadow: none;
+  resize: none;
 }
 select,
 select:focus {
@@ -3344,6 +3345,135 @@ i._zz {
   top: 0px;
   opacity: 0;
   cursor: pointer;
+}
+/** initial setup **/
+.nano {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.nano > .nano-content {
+  position: absolute;
+  overflow: scroll;
+  overflow-x: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.nano > .nano-content:focus {
+  outline: thin dotted;
+}
+.nano > .nano-content::-webkit-scrollbar {
+  display: none;
+}
+.has-scrollbar > .nano-content::-webkit-scrollbar {
+  display: block;
+}
+.nano > .nano-pane {
+  background: #3f3f3f;
+  position: absolute;
+  width: 10px;
+  right: -4px;
+  top: 0;
+  bottom: 0;
+  visibility: hidden\9;
+  /* Target only IE7 and IE8 with this hack */
+  opacity: .01;
+  -webkit-transition: .2s;
+  -moz-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+  /*
+	-moz-border-radius    : 5px;
+	-webkit-border-radius : 5px;
+	border-radius         : 5px;
+	*/
+}
+.nano > .nano-pane > .nano-slider {
+  background: #8c8c8c;
+  /*background: rgba(0,0,0,.5);*/
+  position: relative;
+  margin: 0 1px;
+  /*
+	-moz-border-radius    : 3px;
+	-webkit-border-radius : 3px;
+	border-radius         : 3px;
+	*/
+}
+.nano:hover > .nano-pane,
+.nano-pane.active,
+.nano-pane.flashed {
+  visibility: visible\9;
+  /* Target only IE7 and IE8 with this hack */
+  opacity: 0.99;
+}
+.no_image_user,
+.no_image_user:hover {
+  display: inline-block;
+  background: #f0f0f0;
+  color: #999999;
+  position: relative;
+}
+.no_image_user > span,
+.no_image_user:hover > span {
+  display: block;
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+._size__50,
+._size__50:hover {
+  width: 50px;
+  height: 50px;
+}
+._size__50 > span,
+._size__50:hover > span {
+  top: 10px;
+  left: 2px;
+}
+._size__32,
+._size__32:hover {
+  width: 32px;
+  height: 32px;
+}
+._size__32 > span,
+._size__32:hover > span {
+  top: 7px;
+  left: 0px;
+  font-size: 12px;
+}
+._size__120,
+._size__120:hover {
+  width: 120px;
+  height: 120px;
+}
+._first_a,
+._first_a:hover {
+  background: #1abc9c;
+  color: #ffffff;
+}
+._first_s,
+._first_s:hover {
+  background: #3498db;
+  color: #ffffff;
+}
+._first_t,
+._first_t:hover {
+  background: #95a5a6;
+  color: #ffffff;
+}
+._first_b,
+._first_b:hover {
+  background: #d35400;
+  color: #ffffff;
 }
 .admincp_manager .am_top {
   background: #0c0c0c;

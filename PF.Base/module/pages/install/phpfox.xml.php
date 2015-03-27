@@ -32,7 +32,7 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="profile.info" module_id="pages" component="profile" location="2" is_active="1" ordering="2" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="profile.index" module_id="pages" component="profile" location="1" is_active="1" ordering="4" disallow_access="" can_move="1">
 			<title>Pages</title>
 			<source_code />
 			<source_parsed />

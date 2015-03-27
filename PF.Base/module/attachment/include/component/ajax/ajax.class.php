@@ -161,7 +161,6 @@ class Attachment_Component_Ajax_Ajax extends Phpfox_Ajax
 		}		
 		
 		$sDivId = 'js_tmp_avideo_player_' . $aAttachment['attachment_id'];
-		$this->call('$Core.loadStaticFile(\'' . $this->template()->getStyle('static_script', 'player/' . Phpfox::getParam('core.default_music_player') . '/core.js') . '\');');
 		$this->html('#js_attachment_id_' . $this->get('attachment_id') . '', '<div id="' . $sDivId . '" style="width:480px; height:295px;"></div>');
 		$this->call('$Core.player.load({id: \'' . $sDivId . '\', auto: true, type: \'video\', play: \'' . $sVideoPath . '\'}); $Core.player.play(\'' . $sDivId . '\', \'' . $sVideoPath . '\');');		
 	}

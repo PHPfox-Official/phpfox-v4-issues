@@ -31,7 +31,7 @@ class User_Component_Block_Register extends Phpfox_Component
 		}
 		
 		$this->template()->assign(array(
-				// 'sHeader' => 'Sign Up<div class="extra_info">Start connecting with your friends today.</div>',
+				'sHeader' => 'Sign Up',
 				'sSiteUrl' => Phpfox::getParam('core.path'),
 				'aTimeZones' => Phpfox::getService('core')->getTimeZones(),
 				'aPackages' => (Phpfox::isModule('subscribe') ? Phpfox::getService('subscribe')->getPackages(true) : null),
@@ -41,7 +41,7 @@ class User_Component_Block_Register extends Phpfox_Component
 			)
 		);
 		
-		// return 'block';
+		return 'block';
 	}
 	
 	/**

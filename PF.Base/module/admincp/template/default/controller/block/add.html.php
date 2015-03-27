@@ -13,13 +13,11 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 {literal}
 <script type="text/javascript">
-<!--
 	function changeBlockType(oObj)
 	{
 		$('.js_block_type').hide();
 		$('.js_block_type_id_' + oObj.value).show();		
 	}
--->
 </script>
 {/literal}
 {$sCreateJs}
@@ -31,9 +29,6 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div><input type="hidden" name="val[product_id]" value="1" /></div>
 	{/if}	
 
-	<div class="table_header">
-		{phrase var='admincp.block_details'}
-	</div>
 	{if Phpfox::getUserParam('admincp.can_view_product_options')}
 	{module name='admincp.product.form'}
 	{/if}
@@ -113,7 +108,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="table js_block_type js_block_type_id_0"{if $bIsEdit && $aForms.type_id > 0} style="display:none;"{/if}>
+	<div class="table" style="display:none;">
 		<div class="table_left">
 			{phrase var='admincp.can_drag_drop'}:
 		</div>
@@ -123,7 +118,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="clear"></div>
 	</div>	
-	<div class="table">
+	<div class="table" style="display:none;">
 		<div class="table_left">
 			{phrase var='admincp.active'}:
 		</div>
@@ -136,33 +131,36 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	
 	<div class="js_block_type js_block_type_id_1 js_block_type_id_2"{if $bIsEdit && $aForms.type_id == 0} style="display:none;"{/if}>
-		<div class="table_header">
-			PHP/HTML Code (Optional)
-		</div>
 		<div class="table">
-			<div class="table_span">
+			<div class="table_left">
+				PHP/HTML Code (Optional)
+			</div>
+			<div class="table_right">
 				<textarea name="val[source_code]" rows="20" cols="50" style="width:98%;" id="source_code">{value type='textarea' id='source_code'}</textarea>
 			</div>
 		</div>		
 	</div>
-	
-	<div class="table_header">
-		{phrase var='admincp.user_group_access'}
-	</div>
-	<div class="table">
-		<div class="table_left">
-			{phrase var='admincp.allow_access'}:
+
+	<div style="display:none;">
+		<div class="table_header">
+			{phrase var='admincp.user_group_access'}
 		</div>
-		<div class="table_right">
-		{foreach from=$aUserGroups item=aUserGroup}
-			<div class="p_4">
-				<label><input type="checkbox" name="val[allow_access][]" value="{$aUserGroup.user_group_id}"{if isset($aAccess) && is_array($aAccess)}{if !in_array($aUserGroup.user_group_id, $aAccess)} checked="checked" {/if}{else} checked="checked" {/if}/> {$aUserGroup.title|convert|clean}</label>
+		<div class="table">
+			<div class="table_left">
+				{phrase var='admincp.allow_access'}:
 			</div>
-		{/foreach}
-			{help var='admincp.block_add_access'}
+			<div class="table_right">
+			{foreach from=$aUserGroups item=aUserGroup}
+				<div class="p_4">
+					<label><input type="checkbox" name="val[allow_access][]" value="{$aUserGroup.user_group_id}"{if isset($aAccess) && is_array($aAccess)}{if !in_array($aUserGroup.user_group_id, $aAccess)} checked="checked" {/if}{else} checked="checked" {/if}/> {$aUserGroup.title|convert|clean}</label>
+				</div>
+			{/foreach}
+				{help var='admincp.block_add_access'}
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="clear"></div>
 	</div>
+
 	<div class="table_clear">
 		<input type="submit" value="{phrase var='core.submit'}" class="button" />
 	</div>

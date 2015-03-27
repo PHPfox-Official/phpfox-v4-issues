@@ -1,4 +1,4 @@
-<div class="block">
+<div class="user_block">
 	<div class="content">
 		<div class="feed_form_user">
 			{img user=$aGlobalUser suffix='_50_square'}

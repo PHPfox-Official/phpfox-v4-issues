@@ -192,6 +192,10 @@ $Core.processPostForm = function(e, obj) {
 		}
 	}
 
+	if (typeof(e.redirect) == 'string') {
+		window.location.href = e.redirect;
+	}
+
 	if (typeof(e.run) == 'string') {
 		eval(e.run);
 	}
@@ -279,11 +283,9 @@ $Core.upload = {
 
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
-				p('done!');
+				$Core.processPostForm($.parseJSON(xhr.responseText), obj);
 			}
 		}
-
-		p('file upload...');
 
 		xhr.open('POST', obj.data('url'), true);
 

@@ -270,6 +270,7 @@ select {
   position: relative;
 }
 .table .table_right input[type="text"],
+.table .table_right input[type="password"],
 .table .table_right textarea,
 .table .table_right textarea:focus {
   background: #e5e5e5;
@@ -412,6 +413,10 @@ a.page_section_menu_link:hover {
   color: #298ada;
   transition: all 0.5s ease;
 }
+.block .table {
+  padding: 0px;
+  margin-bottom: 20px;
+}
 #header_left {
   width: auto;
 }
@@ -539,11 +544,11 @@ a.page_section_menu_link:hover {
 }
 #header_menu > nav > ul > li {
   display: block;
-  float: none;
   font-size: 13px;
 }
 #header_menu > nav > ul > li > a,
 #header_menu > nav > ul > li > a:hover {
+  display: block;
   border: 0px;
   padding: 8px 0px;
   text-indent: 35px;
@@ -931,22 +936,86 @@ div#right div.menu ul li.active {
   background: #fafafa;
   padding: 8px 0px;
 }
+.user_block {
+  padding: 10px;
+}
+#header_menu .block {
+  border-bottom: 1px #ebebeb solid;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
 #left .block,
 #right .block,
 #content .block,
+#header_menu .block,
 #left .block_clear,
 #right .block_clear,
-#content .block_clear {
+#content .block_clear,
+#header_menu .block_clear {
   background: #ffffff;
   color: #999999;
   margin-bottom: 20px;
 }
+#left .block .bottom,
+#right .block .bottom,
+#content .block .bottom,
+#header_menu .block .bottom,
+#left .block_clear .bottom,
+#right .block_clear .bottom,
+#content .block_clear .bottom,
+#header_menu .block_clear .bottom {
+  font-size: 13px;
+}
+#left .block .bottom > ul > li,
+#right .block .bottom > ul > li,
+#content .block .bottom > ul > li,
+#header_menu .block .bottom > ul > li,
+#left .block_clear .bottom > ul > li,
+#right .block_clear .bottom > ul > li,
+#content .block_clear .bottom > ul > li,
+#header_menu .block_clear .bottom > ul > li {
+  display: block;
+}
+#left .block .bottom > ul > li a,
+#right .block .bottom > ul > li a,
+#content .block .bottom > ul > li a,
+#header_menu .block .bottom > ul > li a,
+#left .block_clear .bottom > ul > li a,
+#right .block_clear .bottom > ul > li a,
+#content .block_clear .bottom > ul > li a,
+#header_menu .block_clear .bottom > ul > li a,
+#left .block .bottom > ul > li a:hover,
+#right .block .bottom > ul > li a:hover,
+#content .block .bottom > ul > li a:hover,
+#header_menu .block .bottom > ul > li a:hover,
+#left .block_clear .bottom > ul > li a:hover,
+#right .block_clear .bottom > ul > li a:hover,
+#content .block_clear .bottom > ul > li a:hover,
+#header_menu .block_clear .bottom > ul > li a:hover {
+  display: block;
+  padding: 4px 0px;
+  text-indent: 10px;
+  color: #999999;
+}
+#left .block .bottom > ul > li a:hover,
+#right .block .bottom > ul > li a:hover,
+#content .block .bottom > ul > li a:hover,
+#header_menu .block .bottom > ul > li a:hover,
+#left .block_clear .bottom > ul > li a:hover,
+#right .block_clear .bottom > ul > li a:hover,
+#content .block_clear .bottom > ul > li a:hover,
+#header_menu .block_clear .bottom > ul > li a:hover {
+  color: #298ada;
+  transition: all 0.5s ease;
+}
 #left .block > .title,
 #right .block > .title,
 #content .block > .title,
+#header_menu .block > .title,
 #left .block_clear > .title,
 #right .block_clear > .title,
-#content .block_clear > .title {
+#content .block_clear > .title,
+#header_menu .block_clear > .title {
   background: #fafafa;
   color: #808080;
   padding: 10px;
@@ -957,15 +1026,19 @@ div#right div.menu ul li.active {
 #left .block > .title a,
 #right .block > .title a,
 #content .block > .title a,
+#header_menu .block > .title a,
 #left .block_clear > .title a,
 #right .block_clear > .title a,
 #content .block_clear > .title a,
+#header_menu .block_clear > .title a,
 #left .block > .title a:hover,
 #right .block > .title a:hover,
 #content .block > .title a:hover,
+#header_menu .block > .title a:hover,
 #left .block_clear > .title a:hover,
 #right .block_clear > .title a:hover,
-#content .block_clear > .title a:hover {
+#content .block_clear > .title a:hover,
+#header_menu .block_clear > .title a:hover {
   color: #808080;
   display: block;
   position: relative;
@@ -973,15 +1046,19 @@ div#right div.menu ul li.active {
 #left .block > .title a > span,
 #right .block > .title a > span,
 #content .block > .title a > span,
+#header_menu .block > .title a > span,
 #left .block_clear > .title a > span,
 #right .block_clear > .title a > span,
 #content .block_clear > .title a > span,
+#header_menu .block_clear > .title a > span,
 #left .block > .title a:hover > span,
 #right .block > .title a:hover > span,
 #content .block > .title a:hover > span,
+#header_menu .block > .title a:hover > span,
 #left .block_clear > .title a:hover > span,
 #right .block_clear > .title a:hover > span,
-#content .block_clear > .title a:hover > span {
+#content .block_clear > .title a:hover > span,
+#header_menu .block_clear > .title a:hover > span {
   display: block;
   position: absolute;
   font-size: 14px;
@@ -993,18 +1070,22 @@ div#right div.menu ul li.active {
 #left .block > .title a:hover,
 #right .block > .title a:hover,
 #content .block > .title a:hover,
+#header_menu .block > .title a:hover,
 #left .block_clear > .title a:hover,
 #right .block_clear > .title a:hover,
-#content .block_clear > .title a:hover {
+#content .block_clear > .title a:hover,
+#header_menu .block_clear > .title a:hover {
   color: #298ada;
   transition: all 0.5s ease;
 }
 #left .block > .title a:hover > span,
 #right .block > .title a:hover > span,
 #content .block > .title a:hover > span,
+#header_menu .block > .title a:hover > span,
 #left .block_clear > .title a:hover > span,
 #right .block_clear > .title a:hover > span,
-#content .block_clear > .title a:hover > span {
+#content .block_clear > .title a:hover > span,
+#header_menu .block_clear > .title a:hover > span {
   transition: all 0.5s ease;
   background: #298ada;
   color: #ffffff;
@@ -1012,18 +1093,22 @@ div#right div.menu ul li.active {
 #left .block > .content,
 #right .block > .content,
 #content .block > .content,
+#header_menu .block > .content,
 #left .block_clear > .content,
 #right .block_clear > .content,
-#content .block_clear > .content {
+#content .block_clear > .content,
+#header_menu .block_clear > .content {
   padding: 10px;
   font-size: 13px;
 }
 #left .block > .content .title,
 #right .block > .content .title,
 #content .block > .content .title,
+#header_menu .block > .content .title,
 #left .block_clear > .content .title,
 #right .block_clear > .content .title,
-#content .block_clear > .content .title {
+#content .block_clear > .content .title,
+#header_menu .block_clear > .content .title {
   background: transparent;
   border-radius: 0px;
   box-shadow: none;
@@ -1046,24 +1131,28 @@ div#right div.menu ul li.active {
 }
 #left #js_block_border_pages_like.block > .content,
 #right #js_block_border_pages_like.block > .content,
-#content #js_block_border_pages_like.block > .content {
+#content #js_block_border_pages_like.block > .content,
+#header_menu #js_block_border_pages_like.block > .content {
   padding: 0px;
 }
 #left .block_clear,
 #right .block_clear,
-#content .block_clear {
+#content .block_clear,
+#header_menu .block_clear {
   background: #e5e5e5;
 }
 #left .block_clear > .title,
 #right .block_clear > .title,
-#content .block_clear > .title {
+#content .block_clear > .title,
+#header_menu .block_clear > .title {
   background: #e5e5e5;
   padding: 0px;
   padding-bottom: 10px;
 }
 #left .block_clear > .content,
 #right .block_clear > .content,
-#content .block_clear > .content {
+#content .block_clear > .content,
+#header_menu .block_clear > .content {
   padding: 0px;
 }
 #content .user_block {
@@ -2233,6 +2322,17 @@ a.not_active:hover {
   top: 10px;
   left: 2px;
 }
+._size__32,
+._size__32:hover {
+  width: 32px;
+  height: 32px;
+}
+._size__32 > span,
+._size__32:hover > span {
+  top: 7px;
+  left: 0px;
+  font-size: 12px;
+}
 ._size__120,
 ._size__120:hover {
   width: 120px;
@@ -2640,7 +2740,7 @@ div.comment_mini_end {
   transition: all 0.5s ease;
 }
 .feed_form {
-  padding: 0px 10px 10px 10px;
+  /*padding:0px 10px 10px 10px;*/
 }
 .feed_form_user {
   position: relative;

@@ -38,9 +38,7 @@ class Feed_Component_Controller_Index extends Phpfox_Component
 				'feed.js' => 'module_feed',					
 				'comment.css' => 'style_css',					
 				'quick_edit.js' => 'static_script',
-				'jquery/plugin/jquery.highlightFade.js' => 'static_script',
-				'jquery/plugin/jquery.scrollTo.js' => 'static_script',
-				'player/flowplayer/flowplayer.js' => 'static_script'								
+				'jquery/plugin/jquery.highlightFade.js' => 'static_script'
 			)					
 		)
 		->assign(array('sFeedDisplay' => $sFeedDisplay));			

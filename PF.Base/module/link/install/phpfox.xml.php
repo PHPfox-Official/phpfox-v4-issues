@@ -22,9 +22,6 @@
 		<hook module_id="link" hook_type="service" module="link" call_name="link.component_service_callback_getactivityfeed__1" added="1335951260" version_id="3.2.0" />
 		<hook module_id="link" hook_type="service" module="link" call_name="link.service_callback_checkfeedsharelink" added="1358258443" version_id="3.5.0beta1" />
 	</hooks>
-	<feed_share>
-		<share module_id="link" title="{phrase var='link.link'}" description="{phrase var='link.say_something_about_this_link'}" block_name="share" no_input="0" is_frame="0" ajax_request="addViaStatusUpdate" no_profile="0" icon="link.png" ordering="3" />
-	</feed_share>
 	<phrases>
 		<phrase module_id="link" version_id="3.0.0Beta1" var_name="module_link" added="1295707931">Link</phrase>
 		<phrase module_id="link" version_id="3.0.0Beta1" var_name="link" added="1302203071">Link</phrase>

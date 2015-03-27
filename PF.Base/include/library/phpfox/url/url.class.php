@@ -136,7 +136,7 @@ class Phpfox_Url
 	}
 
 	/**
-	 * @return $this
+	 * @return Phpfox_Url
 	 */
 	public static function instance() {
 		return Phpfox::getLib('url');
@@ -565,33 +565,15 @@ class Phpfox_Url
 		
 		$sUrl = trim($sUrl, '.');		
 		$sUrls = '';
-		
-		if ($sUrl == 'phpfox_full_site')
-		{
-			$sUrl = '';
-		}
-		else 
-		{
-			if ($this->isMobile() && $sUrl != 'logout')
-			{
-				$sUrl = 'mobile.' . $sUrl;
-			}					
-		}		
-		
 		switch (Phpfox::getParam('core.url_rewrite'))
 		{
 			// www.site.com/foo/bar/
 			case 1:
 			case 2:
-				$aParts = explode('.', $sUrl);				
-				if ($bFullPath)
-				{
-					$sUrls .= Phpfox::getParam('core.path');
-				}
-				$sUrls .= Phpfox::getParam('core.path');				
-				$sUrls .= $this->_makeUrl($aParts, $aParams);	
-				
-							
+				$aParts = explode('.', $sUrl);
+				$sUrls .= Phpfox::getParam('core.path');
+				$sUrls .= $this->_makeUrl($aParts, $aParams);
+
 				break;
 			// www.site.com/index.php?foo=bar
 			/*
@@ -973,11 +955,9 @@ class Phpfox_Url
 	}
 
 	public function getUri() {
-		/*
-		if (!strpos($_SERVER['REQUEST_URI'], 'index.php')) {
+		if (Phpfox::getParam('core.url_rewrite') == '2' && !strpos($_SERVER['REQUEST_URI'], 'index.php')) {
 			return '/';
 		}
-		*/
 		return '/' . ltrim(explode('?', str_replace(Phpfox::getParam('core.folder'), '', $_SERVER['REQUEST_URI']))[0], '/');
 	}
 	

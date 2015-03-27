@@ -121,7 +121,12 @@ define('CRON_ONE_DAY', 86400);
 // Is an AJAX routine?
 if (!defined('PHPFOX_IS_AJAX'))
 {
-	define('PHPFOX_IS_AJAX', false);
+	if (isset($_REQUEST['core']) && isset($_REQUEST['core']['ajax'])) {
+		define('PHPFOX_IS_AJAX', true);
+	}
+	else {
+		define('PHPFOX_IS_AJAX', false);
+	}
 }
 
 if (!defined('PHPFOX_DEVELOPER'))
@@ -145,5 +150,3 @@ if (!defined('E_USER_DEPRECATED'))
  * Change this to true
  */
 define('PHPFOX_UNICODE_JSON', false);
-
-?>

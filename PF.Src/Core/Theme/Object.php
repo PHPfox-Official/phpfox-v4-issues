@@ -31,6 +31,19 @@ class Object extends \Core\Objectify {
 		return PHPFOX_DIR_SITE . 'themes/' . $this->folder . '/';
 	}
 
+	public function delete() {
+		if (is_dir($this->getPath())) {
+			\Phpfox_File::instance()->delete_directory($this->getPath());
+		}
+
+		foreach ($this->flavors() as $Flavor) {
+			$Flavor->delete();
+		}
+		$this->_db->delete(':theme', ['theme_id' => $this->theme_id]);
+
+		return ;
+	}
+
 	public function export() {
 
 		$zipFile = PHPFOX_DIR_FILE . 'static/' . $this->folder . '.zip';
@@ -44,8 +57,18 @@ class Object extends \Core\Objectify {
 		$export = [
 			'name' => $this->name,
 			'created' => $this->created,
+			'flavors' => [],
 			'files' => []
 		];
+
+		$flavors = $this->_db->select('*')
+			->from(':theme_style')
+			->where(['theme_id' => $this->theme_id])
+			->all();
+		foreach ($flavors as $flavor) {
+			$export['flavors'][$flavor['style_id']] = $flavor['name'];
+		}
+
 		$files = \Phpfox_File::instance()->getAllFiles($this->getPath());
 		foreach ($files as $file) {
 			$name = str_replace($this->getPath(), '', $file);
@@ -104,7 +127,7 @@ class Object extends \Core\Objectify {
 		foreach ($rows as $row) {
 			$row['is_selected'] = ($this->flavor_folder == $row['folder'] ? true : false);
 
-			$flavors[] = new Flavor\Object($row);
+			$flavors[] = new Flavor\Object($this, $row);
 		}
 
 		return $flavors;

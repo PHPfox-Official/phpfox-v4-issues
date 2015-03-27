@@ -13,6 +13,14 @@ class Theme extends Model {
 				->join(':theme_style', 'ts', ['t.theme_id' => ['=' => 'ts.theme_id'], 'ts.is_default' => 1])
 				->where(['t.is_default' => 1])
 				->get();
+
+			if (!self::$_active) {
+				self::$_active = [
+					'name' => 'Default',
+					'folder' => 'default',
+					'flavor_folder' => 'default'
+				];
+			}
 		}
 	}
 
@@ -28,18 +36,32 @@ class Theme extends Model {
 		$Zip->extractTo($file);
 		$Zip->close();
 
+		$themeId = 0;
 		$File = \Phpfox_File::instance();
 		foreach (scandir($file) as $f) {
 			if ($File->extension($f) == 'json') {
 				$data = json_decode(file_get_contents($file . $f));
 
-				$this->make([
+				$themeId = $this->make([
 					'name' => $data->name
-				]);
-				d($data);
-				break;
+				], $data->files);
+
+				$File->delete_directory($file);
+				$iteration = 0;
+				foreach ($data->flavors as $flavorId => $flavorName) {
+					$iteration++;
+
+					$this->db->insert(':theme_style', [
+						'theme_id' => $themeId,
+						'name' => $flavorName,
+						'folder' => $flavorId,
+						'is_default' => ($iteration === 1 ? '1' : '0')
+					]);
+				}
 			}
 		}
+
+		return $themeId;
 	}
 
 	public function make($val, $files = null) {
@@ -61,6 +83,21 @@ class Theme extends Model {
 		]);
 		$this->db->update(':theme', ['folder' => $id], ['theme_id' => $id]);
 
+		if ($files !== null) {
+			foreach ($files as $name => $content) {
+				$path = PHPFOX_DIR_SITE . 'themes/' . $id . '/' . $name;
+
+				$parts = pathinfo($path);
+				if (!is_dir($parts['dirname'])) {
+					mkdir($parts['dirname'], 0777, true);
+				}
+
+				file_put_contents($path, $content);
+			}
+
+			return $id;
+		}
+
 		$flavorId = $this->db->insert(':theme_style', [
 			'theme_id' => $id,
 			'is_active' => 1,
@@ -69,14 +106,6 @@ class Theme extends Model {
 			// 'folder' => 'default'
 		]);
 		$this->db->update(':theme_style', ['folder' => $flavorId], ['style_id' => $flavorId]);
-
-		if ($files !== null) {
-			foreach ($files as $name => $content) {
-
-			}
-
-			return $id;
-		}
 
 		$File = \Phpfox_File::instance();
 		$copy = [];

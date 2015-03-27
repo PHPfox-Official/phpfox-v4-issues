@@ -3,8 +3,10 @@
 class Theme_Component_Controller_Admincp_Import extends Phpfox_Component {
 	public function process() {
 		$Theme = new Core\Theme();
-		$Theme->import();
+		$id = $Theme->import();
 
-		exit('asd');
+		return [
+			'redirect' => $this->url()->makeUrl('admincp.theme.manage', ['id' => $id])
+		];
 	}
 }

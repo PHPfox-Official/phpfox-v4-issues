@@ -478,20 +478,5 @@
 			<source_parsed />
 		</block>
 	</phpfox_update_blocks>
-	<feed_share>
-		<share>
-			<module_id>music</module_id>
-			<title><![CDATA[{phrase var='music.music'}]]></title>
-			<description><![CDATA[{phrase var='music.say_something_about_this_song'}]]></description>
-			<block_name>share</block_name>
-			<no_input>0</no_input>
-			<is_frame>1</is_frame>
-			<ajax_request />
-			<no_profile>1</no_profile>
-			<icon>music.png</icon>
-			<ordering>6</ordering>
-			<value />
-		</share>
-	</feed_share>
 	<sql><![CDATA[a:5:{s:9:"ADD_FIELD";a:2:{s:18:"phpfox_music_album";a:5:{s:7:"privacy";a:4:{i:0;s:6:"TINT:1";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:15:"privacy_comment";a:4:{i:0;s:6:"TINT:1";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:10:"total_like";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:9:"module_id";a:4:{i:0;s:8:"VCHAR:75";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}s:7:"item_id";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}s:17:"phpfox_music_song";a:6:{s:7:"privacy";a:4:{i:0;s:6:"TINT:1";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:15:"privacy_comment";a:4:{i:0;s:6:"TINT:1";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:8:"genre_id";a:4:{i:0;s:5:"USINT";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:10:"total_like";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:9:"module_id";a:4:{i:0;s:8:"VCHAR:75";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}s:7:"item_id";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}}s:9:"ALTER_KEY";a:2:{s:18:"phpfox_music_album";a:3:{s:7:"view_id";a:2:{i:0;s:5:"INDEX";i:1;a:2:{i:0;s:7:"view_id";i:1;s:7:"privacy";}}s:9:"view_id_2";a:2:{i:0;s:5:"INDEX";i:1;a:3:{i:0;s:7:"view_id";i:1;s:7:"privacy";i:2;s:11:"is_featured";}}s:9:"view_id_3";a:2:{i:0;s:5:"INDEX";i:1;a:5:{i:0;s:7:"view_id";i:1;s:7:"privacy";i:2;s:11:"total_track";i:3;s:9:"module_id";i:4;s:7:"item_id";}}}s:17:"phpfox_music_song";a:6:{s:9:"view_id_3";a:2:{i:0;s:5:"INDEX";i:1;a:2:{i:0;s:7:"view_id";i:1;s:7:"privacy";}}s:7:"view_id";a:2:{i:0;s:5:"INDEX";i:1;a:3:{i:0;s:7:"view_id";i:1;s:7:"privacy";i:2;s:8:"genre_id";}}s:9:"view_id_2";a:2:{i:0;s:5:"INDEX";i:1;a:3:{i:0;s:7:"view_id";i:1;s:7:"privacy";i:2;s:11:"is_featured";}}s:9:"view_id_4";a:2:{i:0;s:5:"INDEX";i:1;a:3:{i:0;s:7:"view_id";i:1;s:7:"privacy";i:2;s:7:"user_id";}}s:9:"view_id_5";a:2:{i:0;s:5:"INDEX";i:1;a:3:{i:0;s:7:"view_id";i:1;s:7:"privacy";i:2;s:5:"title";}}s:9:"view_id_6";a:2:{i:0;s:5:"INDEX";i:1;a:4:{i:0;s:7:"view_id";i:1;s:7:"privacy";i:2;s:9:"module_id";i:3;s:7:"item_id";}}}}s:7:"ADD_KEY";a:1:{s:18:"phpfox_music_album";a:1:{s:7:"user_id";a:2:{i:0;s:5:"INDEX";i:1;s:7:"user_id";}}}s:10:"REMOVE_KEY";a:2:{s:18:"phpfox_music_album";a:2:{i:0;a:2:{i:0;s:5:"INDEX";i:1;s:7:"view_id";}i:1;a:2:{i:0;s:5:"INDEX";i:1;a:2:{i:0;s:7:"view_id";i:1;s:11:"is_featured";}}}s:18:"phpfox_music_genre";a:1:{i:0;a:2:{i:0;s:5:"INDEX";i:1;s:8:"name_url";}}}s:11:"ALTER_FIELD";a:1:{s:18:"phpfox_music_genre";a:1:{s:8:"name_url";a:4:{i:0;s:9:"VCHAR:255";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}}}}]]></sql>
 </upgrade>

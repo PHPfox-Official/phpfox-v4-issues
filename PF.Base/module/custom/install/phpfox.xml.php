@@ -13,43 +13,8 @@
 		<setting group="" module_id="custom" is_hidden="0" type="boolean" var_name="hide_custom_fields_when_empty" phrase_var_name="setting_hide_custom_fields_when_empty" ordering="1" version_id="2.0.0alpha3">1</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="profile.info" module_id="custom" component="cf_about_me" location="2" is_active="1" ordering="2" disallow_access="" can_move="1">
+		<block type_id="0" m_connection="profile.index" module_id="custom" component="cf_about_me" location="1" is_active="1" ordering="1" disallow_access="" can_move="1">
 			<title>About Me (Custom)</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="profile.info" module_id="custom" component="cf_who_i_d_like_to_meet" location="2" is_active="1" ordering="3" disallow_access="" can_move="1">
-			<title><![CDATA[Who I&#039;d Like to Meet (Custom)]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="profile.info" module_id="custom" component="panel" location="4" is_active="0" ordering="10" disallow_access="" can_move="1">
-			<title>Custom Fields for Profile Panel</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="profile.info" module_id="custom" component="cf_movies" location="2" is_active="1" ordering="5" disallow_access="" can_move="1">
-			<title>Custom Movies</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="profile.info" module_id="custom" component="cf_drinker" location="4" is_active="1" ordering="11" disallow_access="" can_move="1">
-			<title>Drinker</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="profile.info" module_id="custom" component="cf_smoker" location="4" is_active="1" ordering="12" disallow_access="" can_move="1">
-			<title>Smoker</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="profile.info" module_id="custom" component="cf_interests" location="2" is_active="1" ordering="6" disallow_access="" can_move="1">
-			<title>Interests</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="profile.info" module_id="custom" component="cf_music" location="2" is_active="1" ordering="7" disallow_access="" can_move="1">
-			<title>Music</title>
 			<source_code />
 			<source_parsed />
 		</block>

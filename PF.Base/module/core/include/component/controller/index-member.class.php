@@ -116,8 +116,7 @@ class Core_Component_Controller_Index_Member extends Phpfox_Component
 					'comment.css' => 'style_css',
 					'quick_edit.js' => 'static_script',
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',
-					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
-                    'player/flowplayer/flowplayer.js' => 'static_script'
+					'jquery/plugin/jquery.scrollTo.js' => 'static_script'
 				)
 			)
 			->setEditor(array(

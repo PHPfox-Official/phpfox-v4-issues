@@ -1663,25 +1663,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id ipsum n
 				'is_active' => '1',
 				'url' => '',
 				'url_version_check' => ''		
-			),
-			array(
-				'product_id' => 'phpfox_installer',
-				'title' => 'Core Installer',
-				'description' => '',
-				'version' => '1',
-				'is_active' => '1',
-				'url' => '',
-				'url_version_check' => ''		
-			),
-			array(
-				'product_id' => 'flowplayer',
-				'title' => 'Flowplayer',
-				'description' => 'Video Player for the Web',
-				'version' => '3.1',
-				'is_active' => '1',
-				'url' => null,
-				'url_version_check' => null
-			)	
+			)
 		);
 		foreach ($aRows as $aRow)
 		{

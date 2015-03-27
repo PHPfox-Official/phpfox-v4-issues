@@ -372,12 +372,11 @@ class Pages_Service_Callback extends Phpfox_Service
 	
 	public function getActivityFeedComment($aItem)
 	{		
-		$aRow = $this->database()->select('fc.*, l.like_id AS is_liked, e.reg_method, e.page_id, apps.image_path  AS app_image_path, e.title, e.app_id AS is_app, pu.vanity_url, ' . Phpfox::getUserField('u', 'parent_'))
+		$aRow = $this->database()->select('fc.*, l.like_id AS is_liked, e.reg_method, e.page_id, e.title, e.app_id AS is_app, pu.vanity_url, ' . Phpfox::getUserField('u', 'parent_'))
 			->from(Phpfox::getT('pages_feed_comment'), 'fc')
 			->join(Phpfox::getT('pages'), 'e', 'e.page_id = fc.parent_user_id')
 			->join(Phpfox::getT('user'), 'u', 'u.profile_page_id = e.page_id')
 			->leftJoin(Phpfox::getT('pages_url'), 'pu', 'pu.page_id = e.page_id')
-			->leftJoin(Phpfox::getT('app'), 'apps', 'apps.app_id = e.app_id')
 			->leftJoin(Phpfox::getT('like'), 'l', 'l.type_id = \'pages_comment\' AND l.item_id = fc.feed_comment_id AND l.user_id = ' . Phpfox::getUserId())
 			->where('fc.feed_comment_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');		

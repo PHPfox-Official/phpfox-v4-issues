@@ -43,4 +43,6 @@ function error() {
 	return call_user_func_array([$Reflect, 'toss'], func_get_args());
 }
 
-Phpfox::run();
+if (!defined('PHPFOX_NO_RUN')) {
+	Phpfox::run();
+}

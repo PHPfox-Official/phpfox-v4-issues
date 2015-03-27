@@ -5,7 +5,7 @@
 		<is_core>0</is_core>
 		<is_active>1</is_active>
 		<is_menu>1</is_menu>
-		<menu><![CDATA[a:2:{s:30:"announcement.admin_menu_manage";a:1:{s:3:"url";a:1:{i:0;s:12:"announcement";}}s:31:"announcement.admin_menu_add_new";a:1:{s:3:"url";a:2:{i:0;s:12:"announcement";i:1;s:3:"add";}}}]]></menu>
+		<menu><![CDATA[a:1:{s:30:"announcement.admin_menu_manage";a:1:{s:3:"url";a:1:{i:0;s:12:"announcement";}}}]]></menu>
 		<phrase_var_name>module_announcement</phrase_var_name>
 		<writable />
 	</data>
@@ -40,7 +40,6 @@
 	</components>
 	<phrases>
 		<phrase module_id="announcement" version_id="2.0.0beta4" var_name="admin_menu_manage" added="1244631261">Manage</phrase>
-		<phrase module_id="announcement" version_id="2.0.0beta4" var_name="admin_menu_add_new" added="1244631261">Add New</phrase>
 		<phrase module_id="announcement" version_id="2.0.0beta4" var_name="module_announcement" added="1244631261">Announcement</phrase>
 		<phrase module_id="announcement" version_id="2.0.0beta5" var_name="user_setting_can_close_announcement" added="1245317655">Are members of this user group allowed to close the announcements block in the dashboard?</phrase>
 		<phrase module_id="announcement" version_id="2.0.0rc2" var_name="im_afraid_you_are_not_allowed_to_close_this_announcement" added="1252909877"><![CDATA[I'm afraid you are not allowed to close this announcement.]]></phrase>

@@ -13,24 +13,22 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 {plugin call='user.template_controller_login_block__start'}
 <form method="post" action="{url link="user.login"}">
-	<div class="p_top_4">
-		<label for="js_email">{if Phpfox::getParam('user.login_type') == 'user_name'}{phrase var='user.user_name'}{elseif Phpfox::getParam('user.login_type') == 'email'}{phrase var='user.email'}{else}{phrase var='user.login'}{/if}</label>:
-		<div class="p_4">
-			<input type="text" name="val[login]" id="js_email" value="" size="30" style="width:90%;" />
+	<div class="table">
+		<div class="table_right">
+			<input placeholder="{if Phpfox::getParam('user.login_type') == 'user_name'}{phrase var='user.user_name'}{elseif Phpfox::getParam('user.login_type') == 'email'}{phrase var='user.email'}{else}{phrase var='user.login'}{/if}" type="text" name="val[login]" id="js_email" value="" size="30" />
 		</div>
 	</div>
 	
-	<div class="p_top_4">
-		<label for="js_password">{phrase var='user.password'}:</label> 
-		<div class="p_4">
-			<input type="password" name="val[password]" id="js_password" value="" size="30" style="width:90%;" />
-			<div class="p_top_8">
+	<div class="table">
+		<div class="table_right">
+			<input placeholder="{phrase var='user.password'}" type="password" name="val[password]" id="js_password" value="" size="30" />
+			<div class="p_top_8 user_rem_me">
 				<label><input type="checkbox" name="val[remember_me]" value="" class="checkbox" /> {phrase var='user.remember'}</label>
 			</div>
 		</div>
 	</div>
 	
-	<div class="p_top_8">
+	<div class="table_clear">
 		<input type="submit" value="{phrase var='user.login_button'}" class="button" />
 	</div>
 </form>

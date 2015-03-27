@@ -778,12 +778,20 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      */
     public function delete($sTable, $sQuery, $iLimit = null)
     {
+	    if (is_array($sQuery)) {
+		    $sCond = '';
+		    foreach ($sQuery as $sKey => $sValue) {
+			    $sCond .= $this->_where($sKey, $sValue);
+		    }
+		    $sQuery = trim(preg_replace("/^(AND|OR)(.*?)/i", "", trim($sCond)));
+	    }
+
     	if ($iLimit !== null)
     	{
     		$sQuery .= ' LIMIT ' . (int) $iLimit;
     	}
     	
-    	return $this->query("DELETE FROM {$sTable} WHERE ". $sQuery);    	
+    	return $this->query("DELETE FROM {$this->table($sTable)} WHERE ". $sQuery);
     }   
     
     /**

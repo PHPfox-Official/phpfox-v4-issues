@@ -255,16 +255,7 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 		}
 		
         $sCurrentThreadLink = ($aCallback === null ? $this->url()->makeUrl('forum', array($aForum['name_url'] . '-' . $aForum['forum_id'], $aThread['title_url'])) : $this->url()->makeUrl($aCallback['url_home'], $aThread['title_url']));
-        
-        if (Phpfox::isModule('video'))
-		{
-			$this->template()->setHeader('cache', array(
-					'player/flowplayer/flowplayer.js' => 'static_script',
-					'player/' . Phpfox::getParam('core.default_music_player') . '/core.js' => 'static_script'	
-				)
-			);
-		}
-        
+
 		$this->template()->setTitle($aThread['title'])						
 			->setBreadcrumb($aThread['title'], $this->url()->permalink('forum.thread', $aThread['thread_id'], $aThread['title']), true)
 			->setMeta('description', $aThread['title'] . ' - ' . $aForum['name'])

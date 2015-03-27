@@ -102,15 +102,6 @@ class Page_Service_Process extends Phpfox_Service
 		}
 		*/
 		
-		if (preg_match('/flowplayer\.swf\?config=/i', $aVals['text_parsed']))
-		{
-			preg_match_all('/flowplayer\.swf\?config=\{(.*?)\}/i', $aVals['text_parsed'], $aFlowMatches);
-			foreach ($aFlowMatches[0] as $sFlowMatch)
-			{
-				$aVals['text_parsed'] = str_replace($sFlowMatch, str_replace(array('{', '}'), array('{left_curly}', '{right_curly}'), $sFlowMatch), $aVals['text_parsed']);
-			}			
-		}
-		
 		// Remove comments to allow SMARTY type code
 		// if (preg_match("/{(.*?)}/ie", $aVals['text']))
 		{			

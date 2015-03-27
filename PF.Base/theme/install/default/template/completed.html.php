@@ -13,10 +13,10 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 <div class="completed_message">
 	{if $bIsUpgrade}
-	Successfully upgraded to phpFox version {$sUpgradeVersion}.
+	Successfully upgraded to PHPfox version {$sUpgradeVersion}.
 	{else}
-	Successfully installed phpFox {$sUpgradeVersion}.
+	Successfully installed PHPfox {$sUpgradeVersion}.
 	{/if}
 </div>
 
-<a href="../index.php" class="installed_link">View Your Site</a>
+<a href="./" class="installed_link">View Your Site</a>

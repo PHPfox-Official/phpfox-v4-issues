@@ -120,20 +120,5 @@ Note for larger communities we strongly advice to enable this feature as this wi
 			<source_parsed />
 		</block>
 	</phpfox_update_blocks>
-	<feed_share>
-		<share>
-			<module_id>blog</module_id>
-			<title><![CDATA[{phrase var='blog.blog'}]]></title>
-			<description><![CDATA[{phrase var='blog.write_your_blog_entry_here'}]]></description>
-			<block_name>share</block_name>
-			<no_input>0</no_input>
-			<is_frame>0</is_frame>
-			<ajax_request>addViaStatusUpdate</ajax_request>
-			<no_profile>1</no_profile>
-			<icon>blog.png</icon>
-			<ordering>5</ordering>
-			<value />
-		</share>
-	</feed_share>
 	<sql><![CDATA[a:5:{s:11:"ALTER_FIELD";a:1:{s:11:"phpfox_blog";a:1:{s:7:"privacy";a:4:{i:0;s:6:"TINT:1";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}}s:9:"ADD_FIELD";a:1:{s:11:"phpfox_blog";a:2:{s:15:"privacy_comment";a:4:{i:0;s:6:"TINT:1";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}s:10:"total_like";a:4:{i:0;s:7:"UINT:10";i:1;s:1:"0";i:2;s:0:"";i:3;s:2:"NO";}}}s:9:"ALTER_KEY";a:2:{s:11:"phpfox_blog";a:2:{s:9:"user_id_2";a:2:{i:0;s:5:"INDEX";i:1;a:4:{i:0;s:7:"user_id";i:1;s:11:"is_approved";i:2;s:7:"privacy";i:3;s:11:"post_status";}}s:7:"user_id";a:2:{i:0;s:5:"INDEX";i:1;a:5:{i:0;s:7:"user_id";i:1;s:10:"time_stamp";i:2;s:11:"is_approved";i:3;s:7:"privacy";i:4;s:11:"post_status";}}}s:20:"phpfox_blog_category";a:1:{s:8:"name_url";a:2:{i:0;s:5:"INDEX";i:1;s:7:"user_id";}}}s:7:"ADD_KEY";a:1:{s:11:"phpfox_blog";a:2:{s:10:"time_stamp";a:2:{i:0;s:5:"INDEX";i:1;a:4:{i:0;s:10:"time_stamp";i:1;s:11:"is_approved";i:2;s:7:"privacy";i:3;s:11:"post_status";}}s:5:"title";a:2:{i:0;s:5:"INDEX";i:1;a:4:{i:0;s:5:"title";i:1;s:11:"is_approved";i:2;s:7:"privacy";i:3;s:11:"post_status";}}}}s:10:"REMOVE_KEY";a:2:{s:11:"phpfox_blog";a:4:{i:0;a:2:{i:0;s:5:"INDEX";i:1;s:9:"title_url";}i:1;a:2:{i:0;s:5:"INDEX";i:1;s:7:"user_id";}i:2;a:2:{i:0;s:5:"INDEX";i:1;a:2:{i:0;s:7:"user_id";i:1;s:11:"is_approved";}}i:3;a:2:{i:0;s:5:"INDEX";i:1;a:3:{i:0;s:7:"user_id";i:1;s:11:"is_approved";i:2;s:11:"post_status";}}}s:16:"phpfox_blog_text";a:1:{i:0;a:2:{i:0;s:5:"INDEX";i:1;s:7:"blog_id";}}}}]]></sql>
 </upgrade>

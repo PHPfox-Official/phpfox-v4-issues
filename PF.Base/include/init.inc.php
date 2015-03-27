@@ -54,6 +54,15 @@ elseif (file_exists(PHPFOX_DIR . 'file' . PHPFOX_DS . 'log' . PHPFOX_DS . 'debug
 
 require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'constant.sett.php');
 
+if (!file_exists(PHPFOX_DIR_SETTINGS . 'license.sett.php')) {
+	define('PHPFOX_NO_PLUGINS', true);
+	define('PHPFOX_NO_USER_SESSION', true);
+	define('PHPFOX_NO_CSRF', true);
+	define('PHPFOX_INSTALLER', true);
+	define('PHPFOX_INSTALLER_NO_TMP', true);
+	define('PHPFOX_NO_RUN', true);
+}
+
 // Set error reporting enviroment
 error_reporting((PHPFOX_DEBUG ? E_ALL | E_STRICT : 0));
 
@@ -129,23 +138,6 @@ else
 }
 
 Phpfox::getLib('setting')->set();
-
-/*
-if (!defined('PHPFOX_NO_PLUGINS'))
-{
-	require(PHPFOX_DIR_LIB_CORE . 'plugin' . PHPFOX_DS . 'plugin.class.php');
-	
-	Phpfox_Plugin::set();
-}
-else 
-{
-	final class Phpfox_Plugin
-	{
-		public static function set() {}
-		public static function get() {return false;}
-	}
-}
-*/
 
 // Start a session if needed
 if (!defined('PHPFOX_NO_SESSION'))

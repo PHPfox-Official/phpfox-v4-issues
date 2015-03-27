@@ -141,9 +141,7 @@ class Music_Component_Controller_View_Album extends Phpfox_Component
 					'comment.css' => 'style_css',
 					'pager.css' => 'style_css',
 					'feed.js' => 'module_feed',
-					'album.js' => 'module_music',
-					'player/flowplayer/flowplayer.js' => 'static_script',
-					'player/' . Phpfox::getParam('core.default_music_player') . '/core.js' => 'static_script'
+					'album.js' => 'module_music'
 				)
 			)
 			->setEditor(array(

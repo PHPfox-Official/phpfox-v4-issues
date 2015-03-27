@@ -34,11 +34,6 @@
 		<setting group="" module_id="blog" is_hidden="1" type="boolean" var_name="digg_integration" phrase_var_name="setting_digg_integration" ordering="1" version_id="2.0.0rc8">0</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="core.index" module_id="blog" component="new-blogs" location="1" is_active="1" ordering="2" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="blog.index" module_id="blog" component="categories" location="1" is_active="1" ordering="3" disallow_access="" can_move="0">
 			<title>Categories</title>
 			<source_code />
@@ -209,9 +204,6 @@
 ->where('is_approved = 1 AND post_status = 1')
 ->execute('getSlaveField');]]></stat>
 	</stats>
-	<feed_share>
-		<share module_id="blog" title="{phrase var='blog.blog'}" description="{phrase var='blog.write_your_blog_entry_here'}" block_name="share" no_input="0" is_frame="0" ajax_request="addViaStatusUpdate" no_profile="1" icon="blog.png" ordering="5" />
-	</feed_share>
 	<phrases>
 		<phrase module_id="blog" version_id="2.0.0alpha1" var_name="user_setting_view_blogs" added="1214436163">Can view blogs.</phrase>
 		<phrase module_id="blog" version_id="2.0.0alpha1" var_name="user_setting_edit_own_blog" added="1214436244">Can edit their own blogs?</phrase>

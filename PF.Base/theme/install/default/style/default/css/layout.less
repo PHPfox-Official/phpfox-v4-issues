@@ -1,0 +1,133 @@
+
+@import "variables";
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+	background:@installBodyBg;
+	color:@installTextColor;
+	font-family:@installFontFamilyBase;
+	font-size:@installFontSizeBase;
+	line-height:@installLineHeightBase;
+}
+
+#installer {
+	width:400px;
+	margin:50px auto 50px auto;
+	text-align:center;
+
+	.process {
+		line-height:300px;
+		font-size:@installFontSizeBase + 4;
+		font-weight:300;
+		width:300px;
+		height:300px;
+		position:fixed;
+		top:50%;
+		left:50%;
+		margin-left:-150px;
+		margin-top:-150px;
+		letter-spacing:1px;
+	}
+}
+
+#installer > form {
+	text-align:left;
+
+	.table_header {
+		text-align:center;
+		border-bottom:3px lighten(@installBodyBg, 40%) solid;
+		color:@installTextColor;
+		font-size:@installFontSizeBase + 6;
+		margin-bottom:15px;
+		padding-bottom:15px;
+		font-weight:300;
+	}
+
+	.table {
+		padding-bottom:20px;
+
+		.table_left {
+			font-size:@installFontSizeBase + 2;
+			font-weight:300;
+			padding-bottom:5px;
+			letter-spacing:1px;
+		}
+
+		.table_right {
+			input, select {
+				width:100%;
+				margin:0px;
+				border:0px;
+				background:lighten(@installBodyBg, 30%);
+				color:@installBodyBg;
+				font-size:@installFontSizeBase + 2;
+				padding:15px 0px;
+				text-indent:10px;
+			}
+
+			input[type="text"]:focus, input[type="password"]:focus {
+				background:lighten(@installBodyBg, 80%);
+			}
+		}
+	}
+
+	.table_clear {
+		.button {
+			background:@installBrand;
+			color:@installBrandColor;
+			padding:15px 0px;
+			text-align:center;
+			border:0px;
+			outline:none;
+			width:100%;
+			cursor:pointer;
+			font-size:@installFontSizeBase + 3;
+			text-transform:uppercase;
+			font-weight:300;
+			letter-spacing:1px;
+		}
+	}
+}

@@ -182,9 +182,7 @@ class Music_Component_Controller_Index extends Phpfox_Component
 					'pager.css' => 'style_css',
 					'comment.css' => 'style_css',
 					'feed.js' => 'module_feed',
-					'browse.css' => 'module_music',
-					'player/flowplayer/flowplayer.js' => 'static_script',
-					'player/' . Phpfox::getParam('core.default_music_player') . '/core.js' => 'static_script'	
+					'browse.css' => 'module_music'
 				)
 			)			
 			->assign(array(

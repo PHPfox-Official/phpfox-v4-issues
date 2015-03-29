@@ -59,7 +59,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{if Phpfox::isModule('tag') && Phpfox::getUserParam('photo.can_add_tags_on_photos')}{if isset($aForms.photo_id)}{module name='tag.add' sType='photo' separate=false id=$aForms.photo_id}{else}{module name='tag.add' sType='photo' separate=false}{/if}{/if}
 		{/if}
 			{if Phpfox::getUserParam('photo.can_add_mature_images')}
-			<div class="table">
+			<div class="table" style="display:none;">
 				<div class="table_left">
 					{phrase var='photo.mature_content'}:
 				</div>
@@ -72,7 +72,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}
 			
 			{if Phpfox::getParam('photo.can_rate_on_photos') && Phpfox::getUserParam('photo.can_add_to_rating_module')}
-			<div class="table js_public_rating">
+			<div class="table js_public_rating" style="display:none;">
 				<div class="table_left">
 					{phrase var='photo.public_rating'}:
 				</div>
@@ -83,7 +83,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 			{/if}			
 			
-			<div class="table">
+			<div class="table" style="display:none;">
 				<div class="table_left">
 					{phrase var='photo.download_enabled'}:
 				</div>

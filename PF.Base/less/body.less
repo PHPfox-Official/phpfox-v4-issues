@@ -54,10 +54,13 @@ li {
 	line-height:@headerHeight;
 	text-indent:35px;
 	font-weight:200;
-	color:@headerColor;
-	background:darken(@headerBg, 20%);
+	color:@navColor;
+	background:@navBg;
 	letter-spacing:2px;
-	position:relative;
+	position:fixed;
+	left:0px;
+	top:0px;
+	z-index:401;
 
 	> i {
 		position:absolute;

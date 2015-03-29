@@ -37,47 +37,6 @@ class User_Service_Auth extends Phpfox_Service
 		$iUserId = (int) Phpfox::getCookie($this->_sNameCookieUserId);
 		$sPasswordHash = Phpfox::getCookie($this->_sNameCookieHash);
 
-		if (isset($_POST['flash_user_id']) && isset($_POST['sHash']))
-		{
-			/*
-			$hFile = fopen(PHPFOX_DIR_FILE . 'upload.log', 'a+');
-			fwrite($hFile, 'user_id = ' . $iUserId . ' AND hash = "' . Phpfox::getLib('parse.input')->clean($_POST['sHash']).'"' . "\n");
-			fclose($hFile);
-			*/		
-			
-			$iUserId = (int)$_POST['flash_user_id'];
-			$aRow = $this->database()->select('*')
-					->from(Phpfox::getT('upload_track'))
-					->where('user_id = ' . $iUserId . ' AND hash = "' . Phpfox::getLib('parse.input')->clean($_POST['sHash']).'"')
-					->execute('getSlaveRow');
-			$sPasswordHash = $aRow['user_hash'];
-			$sIpAddress = $aRow['ip_address'];
-			
-			if ($sIpAddress != Phpfox_Request::instance()->getServer('REMOTE_ADDR')) // $_SERVER['REMOTE_ADDR'])
-			{
-				$iUserId = 0;
-				$this->_setDefault();
-				$this->logout();
-			}
-			else
-			{
-				$sCacheId = Phpfox::getLib('cache')->set(array('uagent', $aRow['hash']));
-				$sUserAgent = Phpfox::getLib('cache')->get($sCacheId);
-				if (!empty($sUserAgent))
-				{
-					$_SERVER['HTTP_USER_AGENT'] = $sUserAgent;
-					define('PHPFOX_IS_FLASH_UPLOADER', true);
-				}
-				else
-				{
-					$iUserId = 0;
-					$this->_setDefault();
-					$this->logout();
-				}
-				// Phpfox::getLib('cache')->remove($sCacheId);
-			}
-		}
-
 		if (defined('PHPFOX_INSTALLER'))
 		{
 			$this->_setDefault();

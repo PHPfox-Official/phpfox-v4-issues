@@ -592,7 +592,15 @@ $Behavior.activityFeedLoader = function()
 	});
 	
 	$('.js_comment_feed_form').submit(function()
-	{		
+	{
+		var t = $(this);
+
+		if (t.hasClass('in_process')) {
+		//	p('is in process...');
+		//	return false;
+		}
+		t.addClass('in_process');
+
 		if ($Core.exists('#js_captcha_load_for_check')){
 			$('#js_captcha_load_for_check').css({
 				top: getPageScroll()[1] + (getPageHeight() / 5),
@@ -614,6 +622,7 @@ $Behavior.activityFeedLoader = function()
 		$(this).parent().parent().find('.js_feed_comment_process_form:first').show(); 
 		$(this).ajaxCall('comment.add'); 
 		$(this).find('.error_message').remove();
+		$(this).find('textarea:first').removeClass('dont-unbind');
 			
 		return false;		
 	});

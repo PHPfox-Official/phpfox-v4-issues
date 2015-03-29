@@ -31,16 +31,18 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 <div id="photo_edit_item_id_{$aForms.photo_id}" class="{if !isset($bSingleMode)}row1 {/if}photo_edit_row">
 	<div class="photo_edit_holder">
-		<div class="t_center">
+		<div class="t_center photo_edit_image">
 			{img server_id=$aForms.server_id path='photo.url_photo' file=$aForms.destination suffix='_150' max_width=150 max_height=150 title=$aForms.title class='js_mp_fix_width photo_holder'}
 		</div>
-		<div class="p_4">
-			{if !isset($bIsEditMode) && $aForms.album_id > 0}
-			<div class="photo_edit_input"><label><input type="radio" name="val[set_album_cover]" value="{$aForms.photo_id}" class="v_middle"{if $aForms.is_cover} checked="checked"{/if} /> {phrase var='photo.set_as_the_album_cover'}</label></div>
-			{/if}
-			{if !isset($bSingleMode)}
-			<div class="photo_edit_input"><label><input type="checkbox" name="val[{$aForms.photo_id}][delete_photo]" value="{$aForms.photo_id}" class="v_middle" /> {phrase var='photo.delete_this_photo_lowercase'}</label></div>
-			{/if}
+		<div>
+			<div class="table">
+				{if !isset($bIsEditMode) && $aForms.album_id > 0}
+				<div class="photo_edit_input"><label><input type="radio" name="val[set_album_cover]" value="{$aForms.photo_id}" class="v_middle"{if $aForms.is_cover} checked="checked"{/if} /> {phrase var='photo.set_as_the_album_cover'}</label></div>
+				{/if}
+				{if !isset($bSingleMode)}
+				<div class="photo_edit_input"><label><input type="checkbox" name="val[{$aForms.photo_id}][delete_photo]" value="{$aForms.photo_id}" class="v_middle" /> {phrase var='photo.delete_this_photo_lowercase'}</label></div>
+				{/if}
+			</div>
 			
 			{if $aForms.album_id == '0' && $aForms.group_id == '0'}
 			<div class="photo_edit_input">				
@@ -63,7 +65,7 @@ defined('PHPFOX') or exit('NO DICE!');
 						{/if}
 					</div>			
 				</div>
-				<div class="table">
+				<div class="table" style="display:none;">
 					<div class="table_left">
 						{phrase var='photo.comment_privacy'}:
 					</div>

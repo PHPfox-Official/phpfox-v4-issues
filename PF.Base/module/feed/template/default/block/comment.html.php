@@ -134,7 +134,7 @@
 						<div><input type="hidden" name="val[default_feed_value]" value="{phrase var='feed.write_a_comment'}" /></div>						
 						<div class="js_comment_feed_value">{phrase var='feed.write_a_comment'}</div>
 						<textarea cols="60" rows="4" name="val[text]" class="js_comment_feed_textarea" id="js_feed_comment_form_textarea_{$aFeed.feed_id}" placeholder="{phrase var='feed.write_a_comment'}"></textarea>
-						<div class="js_feed_comment_process_form">{phrase var='feed.adding_your_comment'}{img theme='ajax/add.gif'}</div>
+						<div class="js_feed_comment_process_form"><i class="fa fa-spin fa-circle-o-notch"></i></div>
 					</div>
 					{if !PHPFOX_IS_AJAX && !Phpfox::isMobile() && isset($sFeedType) &&  $sFeedType == 'view' && Phpfox::getUserParam('comment.wysiwyg_on_comments') && Phpfox::getParam('core.wysiwyg') == 'tiny_mce'}
 					<div><input type="hidden" name="val[is_in_view]" value="1" /></div>

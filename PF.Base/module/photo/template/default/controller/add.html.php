@@ -74,7 +74,7 @@ defined('PHPFOX') or exit('NO DICE!');
 							{module name='privacy.form' privacy_name='privacy' privacy_info='photo.control_who_can_see_these_photo_s' default_privacy='photo.default_privacy_setting'}
 						</div>			
 					</div>
-					<div class="table">
+					<div class="table" style="display:none;">
 						<div class="table_left">
 							{phrase var='photo.comment_privacy'}:
 						</div>
@@ -85,31 +85,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/if}
 			{/if}
 		</div>		
-		{if isset($sMethod) && $sMethod == 'massuploader'}
-			<div><input type="hidden" name="val[method]" value="massuploader" /></div>
-			<div class="table mass_uploader_table">
-				<div id="swf_photo_upload_button_holder">
-					<div class="swf_upload_holder">
-						<div id="swf_photo_upload_button"></div>
-					</div>
-					
-					<div class="swf_upload_text_holder">
-						<div class="swf_upload_progress"></div>
-						<div class="swf_upload_text">
-							{phrase var='photo.select_photo_s'}
-						</div>
-					</div>				
-				</div>
-				<div class="extra_info">
-					{phrase var='photo.you_can_upload_a_jpg_gif_or_png_file'}
-					{if $iMaxFileSize !== null}
-						<br />
-						{phrase var='photo.the_file_size_limit_is_file_size_if_your_upload_does_not_work_try_uploading_a_smaller_picture' file_size=$iMaxFileSize|filesize}
-					{/if}	
-				</div>			
-			</div>
-			<div class="mass_uploader_link">{phrase var='photo.upload_problems_try_the_basic_uploader' link=$sMethodUrl}</div>	
-		{else}				
+
 			<div class="table">
 				<div class="table_left">
 					{phrase var='photo.select_photo_s'}:
@@ -126,34 +102,11 @@ defined('PHPFOX') or exit('NO DICE!');
 					</div>
 				</div>
 			</div>
-			{if isset($bRawFileInput) && $bRawFileInput}
-				<input type="button" name="Filedata" id="Filedata" value="Choose photo">
-			{else}		
-				<div class="table_clear js_upload_button_link">
-					<input type="submit" value="{phrase var='photo.upload'}" class="button" />
-				</div>		
-			{/if}			
-		{/if}		
+
 		
 	</form>
 </div>
 <div id="js_photo_form_holder_loading" class="t_center" style="display:none;">
-	<span style="margin-left:4px; margin-right:4px; font-size:9pt; font-weight:normal;">
-		{img theme='ajax/large.gif' alt='' class='v_middle'}
-		{phrase var='core.uploading'}
-	</span>
+	{img theme='ajax/large.gif' alt='' class='v_middle'}
 </div>
-{/if}
-
-{if Phpfox::getParam('core.site_wide_ajax_browsing')}
-	<script type="text/javascript">
-		$Behavior.checkHTML5Setting = function()
-		{l}
-		{if Phpfox::getParam('photo.html5_upload_photo')}
-			$('.js_upload_button_link').hide();
-		{else}
-			$('.js_upload_button_link').show();
-		{/if}
-		{r}
-	</script>
 {/if}

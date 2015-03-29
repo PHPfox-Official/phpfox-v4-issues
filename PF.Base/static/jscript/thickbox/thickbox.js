@@ -525,8 +525,6 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 				$oNew.attr('style', '');
 			}
 
-			p('is popup...');
-
 			$.ajax({
 				url: thisObject.attr('href'),
 				contentType: 'application/json',

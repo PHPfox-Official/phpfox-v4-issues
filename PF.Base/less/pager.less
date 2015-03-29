@@ -1,5 +1,7 @@
 
-.pager_view_more_link a, .pager_view_more_link a:hover {
+.comment_mini .pager_view_more_link a, .comment_mini .pager_view_more_link a:hover, .pager_view_more_link a, .pager_view_more_link a:hover {
+	.reset();
+
 	text-align:center;
 	.button();
 	border-color:darken(@bodyBg, 2%);
@@ -7,11 +9,19 @@
 	height:50px;
 	line-height:50px;
 
+	> img {
+		display:none;
+	}
+
 	> span {
 		display:none;
 	}
 }
 
-.pager_view_more_link a:hover {
+.comment_mini .pager_view_more_link a:hover, .pager_view_more_link a:hover {
 	.button_hover();
+}
+
+.comment_mini .pager_view_more_link a, .comment_mini .pager_view_more_link a:hover {
+	border:0px;
 }

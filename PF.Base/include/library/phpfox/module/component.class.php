@@ -211,7 +211,7 @@ class Phpfox_Component
 	 * Extends the search class and returns its class object.
 	 *
 	 * @see Phpfox_Search
-	 * @return object
+	 * @return Phpfox_Search
 	 */
 	protected function search()
 	{
@@ -219,7 +219,7 @@ class Phpfox_Component
 	}
 	
 	/**
-	 * Creates a groupig for a param.
+	 * Creates a grouping for a param.
 	 *
 	 * @param string $sVar The name of the group.
 	 * @return object This this class.

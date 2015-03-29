@@ -41,7 +41,7 @@ function completeProgress()
 		if(sImages && 0 !== sImages.length)
 		{
 			// If the images are set, encode them using base64, and then URL encode the result.
-			window.location.href = sCurrentProgressLocation + 'photos_' + encodeURIComponent(base64_encode(sImages)) + '/';
+			window.location.href = sCurrentProgressLocation + '&photos=' + encodeURIComponent(base64_encode(sImages));
 		}
 		// original
 		else

@@ -51,11 +51,15 @@
 
 #page_photo_index {
 	#top {
-		margin-bottom:-30px;
+		/*margin-bottom:-30px;*/
 	}
 
-	.holder {
+	.holder, #container {
 		width:auto;
+	}
+
+	#container {
+		padding:0px 20px;
 	}
 
 	.mosaicflow_load {
@@ -231,4 +235,31 @@
 			background:darken(@blockBg, 6%);
 		}
 	}
+}
+
+.js_box_content {
+	.photo_edit_row {
+		width:auto;
+		margin:0px;
+		display:block;
+	}
+}
+
+.photo_edit_row {
+	display:inline-block;
+	vertical-align:top;
+	width:28%;
+	margin:0px 10px 20px 0px;
+
+	.table {
+		margin:0px;
+		padding:@blockContentPadding;
+		border-bottom:1px darken(@blockBg, 8%) solid;
+	}
+}
+
+.photo_edit_image {
+	background:#0c0c0c;
+	padding:20px;
+	margin-top:-@blockContentPadding;
 }

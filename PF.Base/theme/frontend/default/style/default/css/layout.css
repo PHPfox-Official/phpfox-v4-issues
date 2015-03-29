@@ -1648,14 +1648,6 @@ a.item_bar_flag:hover
 	background:#EFF9FF;
 }
 
-.sub_section_menu ul li.active a,
-.sub_section_menu ul li.active a:hover
-{
-	font-weight:bold;	
-	background:#333 url('../image/layout/sub_section_menu_active.png') repeat-x;
-	color:#fff;
-}
-
 .sub_section_menu ul li a span
 {
 	padding-left:4px;

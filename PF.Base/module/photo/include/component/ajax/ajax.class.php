@@ -640,11 +640,6 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 			{
 				$this->call('window.location.href = "' . Phpfox_Url::instance()->permalink('pages', $this->get('page_id'), '') .'coverupdate_1";');
 			}
-			else if ($bIsPicup)
-			{
-				$this->call('window.location.href = "' . Phpfox_Url::instance()->permalink('mobile.photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '";');
-
-			}
 		    else if ($this->get('action') == 'upload_photo_via_share')
 		    {
 		    	// $aCallback = ($this->get('callback_module') ? Phpfox::callback($this->get('callback_module') . '.addPhoto', $this->get('callback_item_id')) : null);		    	

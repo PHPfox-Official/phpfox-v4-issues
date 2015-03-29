@@ -121,6 +121,19 @@ class Phpfox_Image_Helper
 
 		if (isset($aParams['theme']))
 		{
+			if (substr($aParams['theme'], 0, 5) == 'ajax/') {
+				$type = str_replace(['ajax/', '.gif'], '', $aParams['theme']);
+				// $image = '<span class="_ajax_image_' . $type . '"></span>';
+				$image = '';
+				switch ($type) {
+					case 'large':
+						$image = '<i class="fa fa-spin fa-circle-o-notch _ajax_image_' . $type . '"></i>';
+						break;
+				}
+
+				return $image;
+			}
+
 			$sSrc = Phpfox_Template::instance()->getStyle('image', $aParams['theme']);
 			$sDirSrcTemp = str_replace(Phpfox::getParam('core.path'), PHPFOX_DIR, $sSrc);										
 			if (isset($aParams['default']) && !file_exists($sDirSrcTemp))
@@ -142,11 +155,11 @@ class Phpfox_Image_Helper
 		// Check if this is a users profile image
 		$bIsOnline = false;
 		$bDefer = false;
+		$sSuffix = '';
 		
 		if (isset($aParams['user']))
 		{
 			$bDefer = Phpfox::getParam('core.defer_loading_user_images');
-			$sSuffix = '';
 			if (isset($aParams['user_suffix']))
 			{
 				$sSuffix = $aParams['user_suffix'];	
@@ -204,7 +217,7 @@ class Phpfox_Image_Helper
 			{			
 				$iWidth = 80;			
 				$iHeight = 70;
-				if (isset($aParams['path']) && $aParams['path'] == 'core.url_user' && !isset($aParams['is_page_image']))
+				if (isset($aParams['path']) && $aParams['path'] == 'core.url_user' && !isset($aParams['is_page_image']) && isset($aParams['user']))
 				{
 					static $aGenders = null;
 					
@@ -248,26 +261,28 @@ class Phpfox_Image_Helper
 					// $sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/' . $sGender . 'profile' . $sImageSuffix . '.png');
 
 					$sImageSize = $sImageSuffix;
-					$name = $aParams['user'][$sSuffix . 'full_name'];
-					$parts = explode(' ', $name);
-					$first = $name[0];
-					$last = $name[1];
-					if (isset($parts[1])) {
-						$last = $parts[1][0];
+					if (isset($aParams['user'])) {
+						$name = $aParams['user'][$sSuffix . 'full_name'];
+						$parts = explode(' ', $name);
+						$first = $name[0];
+						$last = $name[1];
+						if (isset($parts[1])) {
+							$last = $parts[1][0];
+						}
+
+						if (isset($aParams['max_width'])) {
+							$sImageSize = '_' . $aParams['max_width'];
+						}
+
+						$ele = 'a';
+						if (isset($aParams['no_link'])) {
+							$ele = 'span';
+						}
+
+						$image = '<' . $ele . ' href="' . $sLink . '" class="no_image_user _size_' . $sImageSize . ' _gender_' . $sGender . ' _first_' . strtolower($first . $last) . '"><span>' . $first . $last . '</span></' . $ele . '>';
+
+						return $image;
 					}
-
-					if (isset($aParams['max_width'])) {
-						$sImageSize = '_' . $aParams['max_width'];
-					}
-
-					$ele = 'a';
-					if (isset($aParams['no_link'])) {
-						$ele = 'span';
-					}
-
-					$image = '<' . $ele . ' href="' . $sLink . '" class="no_image_user _size_' . $sImageSize . ' _gender_' . $sGender . ' _first_' . $first . '"><span>' . $first . $last . '</span></' . $ele . '>';
-
-					return $image;
 				}
 				else 
 				{

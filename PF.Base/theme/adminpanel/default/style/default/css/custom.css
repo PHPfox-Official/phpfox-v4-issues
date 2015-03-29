@@ -3412,8 +3412,7 @@ i._zz {
 .no_image_user,
 .no_image_user:hover {
   display: inline-block;
-  background: #f0f0f0;
-  color: #999999;
+  color: #fff;
   position: relative;
 }
 .no_image_user > span,
@@ -3455,25 +3454,10 @@ i._zz {
   width: 120px;
   height: 120px;
 }
-._first_a,
-._first_a:hover {
-  background: #1abc9c;
-  color: #ffffff;
-}
-._first_s,
-._first_s:hover {
-  background: #3498db;
-  color: #ffffff;
-}
-._first_t,
-._first_t:hover {
-  background: #95a5a6;
-  color: #ffffff;
-}
-._first_b,
-._first_b:hover {
-  background: #d35400;
-  color: #ffffff;
+._size__120 > span,
+._size__120:hover > span {
+  top: 36px;
+  font-size: 30px;
 }
 .admincp_manager .am_top {
   background: #0c0c0c;

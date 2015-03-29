@@ -97,12 +97,13 @@
 #header {
 	background:@headerBg;
 	color:@headerColor;
+	min-height:@headerHeight;
 	min-width:none;
 	position:fixed;
 	top:0px;
 	left:0px;
 	right:0px;
-	z-index:400;
+	z-index:298;
 
 	.holder {
 		width:auto;
@@ -172,22 +173,22 @@
 						left:10px;
 						top:9px;
 						font-size:15px;
-						color:lighten(@navColor, 28%);
+						color:@navColor;
 					}
 				}
 
 				> a:hover, > a.menu_is_selected {
-					color:darken(@navColor, 30%);
+					color:lighten(@navColor, 60%);
 					/*background:darken(@navBg, 6%);*/
 					transition:@transition;
 
 					i {
-						color:darken(@navColor, 5%);
+						color:lighten(@navColor, 60%);
 					}
 				}
 
 				> a.menu_is_selected {
-					color:darken(@navColor, 60%);
+					color:lighten(@navColor, 60%);
 
 					i {
 						color:@brandPrimary;

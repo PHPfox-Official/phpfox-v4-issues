@@ -49,6 +49,33 @@
 		height:100%;
 		background-size:contain;
 	}
+
+	> .p_4 {
+		display:none;
+	}
+
+	> .p_4 > a {
+		display:block;
+		position:absolute;
+		overflow:hidden;
+		text-indent:-1000px;
+		background:rgba(0, 0, 0, 0.4);
+		color:#fff;
+		top:0px;
+		right:0px;
+		left:0px;
+		bottom:0px;
+	}
+
+	> .p_4 > a:before {
+		.fa('\f093');
+		position:absolute;
+		left:50%;
+		top:50%;
+		font-size:30px;
+		margin-left:-15px;
+		margin-top:-15px;
+	}
 }
 
 .profiles_menu {

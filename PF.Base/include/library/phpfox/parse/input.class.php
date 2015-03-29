@@ -166,8 +166,10 @@ class Phpfox_Parse_Input
 		$sTxt = Phpfox::getLib('parse.output')->htmlspecialchars($sTxt);
 
 		// Parse for language package
+		/*
 		$sTxt = $this->_utf8ToUnicode($sTxt);
 		$sTxt = str_replace('\\', '&#92;', $sTxt);
+		*/
 		
 		if ($iShorten !== null)
 		{			
@@ -185,37 +187,7 @@ class Phpfox_Parse_Input
 	 */
 	private function _shorten($sTxt, $iLetters)
 	{
-		if (!preg_match('/(&#[0-9]+;)/', $sTxt))
-		{
-			return substr($sTxt, 0, $iLetters);
-		}
-		$sOut = '';
-		$iOutLen = 0;
-		$iPos = 0; 
-		$iTxtLen = strlen($sTxt);
-		for ($iPos; $iPos < $iTxtLen && $iOutLen <= $iLetters; $iPos++)
-		{
-			if ($sTxt[$iPos] == '&')
-			{
-				$iEnd = strpos($sTxt, ';', $iPos) + 1;
-				$sTemp = substr($sTxt, $iPos, $iEnd - $iPos);
-				if (preg_match('/(&#[0-9]+;)/', $sTemp))
-				{
-					$sTmp = $sOut;
-					$sOut .= $sTemp; // add the entity altogether
-					if (strlen($sOut) > $iLetters)
-					{
-						return $sTmp;
-					}
-					$iOutLen++; // increment the length of the returning string
-					$iPos = $iEnd-1; // move the pointer to skip the entity in the next run
-					continue;
-				}
-			}
-			$sOut .= $sTxt[$iPos];
-			$iOutLen++;
-		}
-		return $sOut;
+		return mb_substr($sTxt, 0, $iLetters);
 	}
 	
 	/**
@@ -395,16 +367,7 @@ class Phpfox_Parse_Input
 	 */
 	public function prepare($sTxt, $bNoClean = false)
 	{
-		if (Phpfox::isModule('microblog') && Phpfox::getParam('microblog.enable_microblog_site'))
-		{
-			$sTxt = $this->clean($sTxt);
-
-			// $sTxt = preg_replace($pattern, $replace, $sTxt);
-			$sTxt = preg_replace_callback('/@([a-zA-Z0-9\-]+)/', array($this, '_replaceUsernames'), $sTxt);
-			
-			return $sTxt;
-		}
-		
+		/*
 		// Parse Emoticons
 		if (Phpfox::isModule('emoticon'))
 		{		
@@ -439,8 +402,9 @@ class Phpfox_Parse_Input
 		$sTxt = str_replace('<br /></tr>', '</tr>', $sTxt);
 		$sTxt = str_replace('<br /></table>', '</table>', $sTxt);		
 		$sTxt = str_replace('<br /></ol>', '</ol>', $sTxt);
+		*/
 		
-		return $sTxt;
+		return Phpfox_Parse_Output::instance()->htmlspecialchars($sTxt);
 	}
 
 	/**

@@ -87,85 +87,27 @@ class Phpfox_Parse_Output
 		{
 			return $sTxt;
 		}
-		if ($sPlugin = Phpfox_Plugin::get('phpfox_parse_output_parse__start')){eval($sPlugin);}
-		$sTxt = ' ' . $sTxt;
-		
-		if (!Phpfox::getParam('core.allow_html'))
-		{
-			$oFilterBbcode = Phpfox::getLib('parse.bbcode');
-			
-			if (Phpfox::isModule('emoticon'))
-			{
-				$sTxt = Phpfox::getService('emoticon')->parse($sTxt);
-			}
-			
-			$sTxt = $oFilterBbcode->preParse($sTxt);
 
-			$sAllowedTags = '<p><b><i><u><br><br />';
-			$sTxt = strip_tags($sTxt, $sAllowedTags);
-			
-			// Add breaks without messing up HTML
-			$sTxt = str_replace("\n", "[br]", $sTxt);
-			$sTxt = preg_replace('/<(.*?)>/ise', "'<'. stripslashes(str_replace('[br]', '', '\\1')) .'>'", $sTxt);
-			$sTxt = str_replace("[br]", "<br />", $sTxt);
-			
-			// Parse BBCode
-			$sTxt = $oFilterBbcode->parse($sTxt);	
-		}				
+		if ($sPlugin = Phpfox_Plugin::get('phpfox_parse_output_parse__start')){eval($sPlugin);}
+
+		$sTxt = ' ' . $sTxt;
+
+		$sTxt = $this->htmlspecialchars($sTxt);
 
 		$sTxt = Phpfox::getService('ban.word')->clean($sTxt);
 
-		/*
-		if (Phpfox::getParam('core.xhtml_valid'))
-		{
-			$sTxt = Phpfox::getLib('parse.format')->validXhtml($sTxt);
-		}
-		*/
-		
 		$sTxt = $this->parseUrls($sTxt);
 
-		$sTxt = preg_replace_callback('/<object(.*?)>(.*?)<\/object>/is', array($this, '_embedWmode'), $sTxt);
-		// $sTxt = preg_replace_callback('/<iframe(.*?)>(.*?)<\/iframe>/is', array($this, '_embedWmode'), $sTxt);
-		
-		if (Phpfox::getParam('core.enable_html_purifier') && file_exists(PHPFOX_DIR_LIB . 'htmlpurifier/HTMLPurifier.auto.php'))
-		{
-			static $purifier = null;
-
-			Phpfox_Error::skip(true);
-
-			if ($purifier === null)
-			{
-				require_once PHPFOX_DIR_LIB . 'htmlpurifier/HTMLPurifier.auto.php';
-				$config = HTMLPurifier_Config::createDefault();
-				if (file_exists(PHPFOX_DIR_SETTING . 'htmlpurifier.sett.php'))
-				{
-					require_once(PHPFOX_DIR_SETTING . 'htmlpurifier.sett.php');
-				}
-				else
-				{
-					require_once(PHPFOX_DIR_SETTING . 'htmlpurifier.sett.php.new');
-				}
-				$config->set('Attr.AllowedRel', array('nofollow'));
-				$config->set('Attr.AllowedFrameTargets', array('_blank'));
-				$purifier = new HTMLPurifier($config);
-			}
-
-			$sTxt = $purifier->purify($sTxt);
-
-			Phpfox_Error::skip(false);
-		}
+		// $sTxt = preg_replace_callback('/<object(.*?)>(.*?)<\/object>/is', array($this, '_embedWmode'), $sTxt);
 		
 		$sTxt = preg_replace_callback('/\[PHPFOX_PHRASE\](.*?)\[\/PHPFOX_PHRASE\]/i', array($this, '_getPhrase'), $sTxt);
-
-		if (Phpfox::getParam('core.resize_images'))
-		{
-			$sTxt = preg_replace_callback('/<img(.*?)>/i', array($this, '_fixImageWidth'), $sTxt);
-		}
 
 		if (Phpfox::getParam('tag.enable_hashtag_support'))
 		{
 			$sTxt = $this->replaceHashTags($sTxt);
 		}
+
+		$sTxt = nl2br($sTxt);
 
 		return $sTxt;
 	}	
@@ -177,7 +119,7 @@ class Phpfox_Parse_Output
 		$sTagSearch = html_entity_decode($sTagSearch, null, 'UTF-8');
 		$sTagSearch = urlencode($sTagSearch);
 
-		$sTxt = '<a href="' . Phpfox_Url::instance()->makeUrl('hashtag', array($sTagSearch)) . '"' . ((Phpfox::isMobile() || defined('PHPFOX_FEED_HASH_POPUP')) ? '' : ' onclick="tb_show(\'\', $.ajaxBox(\'feed.hashtag\', \'height=300&width=600&hashtagsearch=' . $sTagSearch . '&hashtagpopup=true\')); return false;"') . '>' . strip_tags($aMatches[0]) . '</a>';
+		$sTxt = '<a href="' . Phpfox_Url::instance()->makeUrl('hashtag', array($sTagSearch)) . '" class="site_hash_tag">' . strip_tags($aMatches[0]) . '</a>';
 
 		return $sTxt;
 	}
@@ -388,48 +330,7 @@ class Phpfox_Parse_Output
 	
 	public function feedStrip($sStr)
 	{
-		$sStr = ' ' . $sStr;
-		
-		if (!Phpfox::getParam('core.allow_html_in_activity_feed'))
-		{
-			$sId = uniqid();
-			$sStr = preg_replace('/<img src="' . preg_quote(Phpfox::getParam('core.path'), '/') . 'file\/pic\/emoticon\/(.*?)"(.*?)\/>/is', '[EMOTICON' . $sId . ']\\1[/EMOTICON]', $sStr);
-						
-			$sStr = strip_tags($sStr, '<br ><br>');			
-			
-			$sStr = preg_replace('/\[EMOTICON' . $sId . '\](.*?)\[\/EMOTICON\]/is', '<img src="' . Phpfox::getParam('core.path') . 'file/pic/emoticon/\\1" class="v_middle" \/>', $sStr);
-		}
-		
-		$sStr = $this->parseUrls($sStr);		
-		if (Phpfox::isModule('emoticon'))
-		{
-			$sStr = Phpfox::getService('emoticon')->parse($sStr);
-		}
-		
-		if (Phpfox::getParam('core.resize_images'))
-		{
-			$sStr = preg_replace_callback('/<img(.*?)>/i', array($this, '_fixImageWidth'), $sStr);
-		}
-		
-		if (Phpfox::getParam('core.allow_html_in_activity_feed') && Phpfox::getParam('core.resize_embed_video'))
-		{
-			$this->setEmbedParser();
-			$sStr = preg_replace_callback('/<object(.*?)>(.*?)<\/object>/is', array($this, '_embedWmode'), $sStr);
-			$sStr = preg_replace_callback('/<iframe(.*?)><\/iframe>/is', array($this, '_embedIframe'), $sStr);
-		}
-		
-		$sStr = $this->replaceUserTag($sStr);
-		
-		$sStr = preg_replace_callback('/\[PHPFOX_PHRASE\](.*?)\[\/PHPFOX_PHRASE\]/i', array($this, '_getPhrase'), $sStr);
-		
-		$sStr = Phpfox::getService('ban.word')->clean($sStr);
-
-		if (Phpfox::isModule('tag') && Phpfox::getParam('tag.enable_hashtag_support'))
-		{
-			$sStr = $this->replaceHashTags($sStr);
-		}
-		
-		return $sStr;
+		return $this->parse($sStr);
 	}
 	
 	public function maxLine($sStr)

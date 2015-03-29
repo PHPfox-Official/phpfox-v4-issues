@@ -284,7 +284,7 @@ div.comment_mini_end {
 	position:relative;
 	padding-bottom:5px;
 	margin-bottom:10px;
-	border-bottom:1px darken(@blockBg, 7%) solid;
+	border-bottom:1px lighten(@navBg, 25%) solid;
 	height:60px;
 
 	img {
@@ -301,6 +301,10 @@ div.comment_mini_end {
 		top:0px;
 		right:0px;
 
+		.user_profile_link_span > a, .user_profile_link_span > a:hover {
+			color:lighten(@navColor, 20%) !important;
+		}
+
 		> span > a {
 			font-size:@blockContentSize;
 		}
@@ -311,7 +315,7 @@ div.comment_mini_end {
 
 			a, a:hover {
 				font-size:@blockContentSize - 1;
-				color:lighten(@blockColor, 5%);
+				color:lighten(@navColor, 5%);
 				display:inline-block;
 				margin-right:8px;
 			}
@@ -374,5 +378,36 @@ div.comment_mini_end {
 .feed_banner {
 	> img {
 		max-width:@contentWidth - (@blockContentPadding * 2);
+	}
+}
+
+.site_hash_tag, .site_hash_tag:hover {
+	color:@brandPrimary !important;
+	display:inline-block;
+}
+
+.site_hash_tag:hover {
+	background:@brandPrimary;
+	color:@brandPrimaryColor !important;
+	transition:@transition;
+}
+
+.js_feed_comment_process_form {
+	.reset();
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	z-index:100;
+	background:rgba(255, 255, 255, 0.6);
+	display:none;
+	overflow:hidden;
+
+	> i {
+		position:absolute;
+		right:15px;
+		top:15px;
+		color:@brandPrimary;
 	}
 }

@@ -21,7 +21,7 @@ class User_Component_Controller_Browse extends Phpfox_Component
     public function process()
     {    	
         if ($sPlugin = Phpfox_Plugin::get('user.component_controller_browse__1')){eval($sPlugin);if (isset($aPluginReturn)){return $aPluginReturn;}}
-        
+
 		$aCallback = $this->getParam('aCallback', false);
 		if ($aCallback !== false)
 		{

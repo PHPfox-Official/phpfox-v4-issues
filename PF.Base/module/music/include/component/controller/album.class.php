@@ -65,7 +65,7 @@ class Music_Component_Controller_Album extends Phpfox_Component
 			)
 		);
 		
-		$oValidator = Phpfox::getLib('validator')->set(array(
+		$oValidator = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_album_form',
 				'aParams' => $aValidation
 			)

@@ -24,7 +24,7 @@ class Photo_Component_Controller_Admincp_Index extends Phpfox_Component
 			'name' => Phpfox::getPhrase('photo.provide_a_name_for_your_photo_category')
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));	
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 
 		if (($aOrder = $this->request()->getArray('order')) && Phpfox::getUserParam('photo.can_edit_photo_categories', true) && Phpfox::getService('photo.category.process')->updateOrder($aOrder))
 		{

@@ -15,6 +15,10 @@ defined('PHPFOX') or exit('NO DICE!');
     <div class="item_info">
 		{$aQuiz.time_stamp|convert_time} {phrase var='quiz.by'} {$aQuiz|user}
     </div>
+
+	{if $aQuiz.image_path}
+	<div class="item_banner image_load" data-src="{img server_id=$aQuiz.server_id title=$aQuiz.title path='quiz.url_image' file=$aQuiz.image_path suffix='' return_url=true}"></div>
+	{/if}
     
 	{if (isset($aQuiz.view_id) && $aQuiz.view_id == 1)}
 	<div class="message js_moderation_off" id="js_approve_message">
@@ -81,13 +85,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		
 	{/if}		
 
-		<div>
-		{if isset($aQuiz.image_path) && $aQuiz.image_path != ''}
-		<div class="item_image" style="width:{param var='quiz.quiz_max_image_pic_size'}px;">
-			{img thickbox=true server_id=$aQuiz.server_id title=$aQuiz.title path='quiz.url_image' file=$aQuiz.image_path suffix=$sSuffix max_width='quiz.quiz_max_image_pic_size' max_height='quiz.quiz_max_image_pic_size'}
-		</div>
-		<div class="item_image_content" style="margin-left:{param var='quiz.quiz_max_image_pic_size'}px;">
-		{/if}	
+		<div class="item_content">
 		
 		{$aQuiz.description|parse|split:55}				
 
@@ -114,31 +112,25 @@ defined('PHPFOX') or exit('NO DICE!');
 		{else}
 			{if isset($bIsViewingQuiz)}
 				{if isset($aQuiz.question)}
-				<form name="js_form_answer" method="post" action="{permalink module='quiz' id=$aQuiz.quiz_id title=$aQuiz.title}answer/">
-					<div class="p_4" style="margin-top:10px;">
+				<form class="p_top_15" name="js_form_answer" method="post" action="{permalink module='quiz' id=$aQuiz.quiz_id title=$aQuiz.title}answer/">
 						{foreach from=$aQuiz.question key=iQuestionId name=questions item=aQuestion}
-							<b>{$phpfox.iteration.questions}.</b> {$aQuestion.question}
-							<div class="p_4" style="margin-left:30px;">
-								{foreach from=$aQuestion.answer key=iAnswerId name=answers item=sAnswer}
-									<div class="p_2">
-										<label><input class="checkbox" name="val[answer][{$iQuestionId}]" value="{$iAnswerId}" style="vertical-align: middle;" type="radio"> {$sAnswer}</label>
-									</div>
-								{/foreach}
-							</div>
+						<div class="quiz_questions">
+							<strong>{$phpfox.iteration.questions}. {$aQuestion.question}</strong>
+							{foreach from=$aQuestion.answer key=iAnswerId name=answers item=sAnswer}
+								<div class="quiz_answers">
+									<label><input class="checkbox" name="val[answer][{$iQuestionId}]" value="{$iAnswerId}" style="vertical-align: middle;" type="radio"> {$sAnswer}</label>
+								</div>
+							{/foreach}
+						</div>
 						{/foreach}
-					</div>
 					{if isset($aQuiz.view_id) && $aQuiz.view_id != 1}
-						<input type="submit" value="{phrase var='quiz.submit_your_answers'}" class="button" />
+						<input type="submit" value="{phrase var='quiz.submit_your_answers'}" class="button_link" />
 					{/if}
 				</form>
 				{/if}
 			{/if}
 		{/if}
 
-		{if isset($aQuiz.image_path) && $aQuiz.image_path != ''}
-		</div>
-		<div class="clear"></div>		
-		{/if}
 		
 	{if !isset($bIsViewingQuiz) && isset($aQuiz.aFeed)}
 	{module name='feed.comment' aFeed=$aQuiz.aFeed}

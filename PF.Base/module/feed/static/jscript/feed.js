@@ -222,7 +222,7 @@ $Core.resetFeedForm = function(f) {
 	$('.feed_form_textarea textarea').removeClass('dont-unbind');
 };
 
-$Behavior.activityFeedProcess = function(){
+$Behavior.activityFeedProcess = function() {
 
 	$('.feed_stream:not(.built)').each(function() {
 		var t = $(this),

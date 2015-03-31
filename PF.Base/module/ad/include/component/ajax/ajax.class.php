@@ -180,7 +180,7 @@ class Ad_Component_Ajax_Ajax extends Phpfox_Ajax
 			{
 				$aVals['url_link'] = 'http://' . $aVals['url_link'];
 			}
-			if (!Phpfox::getLib('validator')->verify('url', $aVals['url_link']))	
+			if (!Phpfox_Validator::instance()->verify('url', $aVals['url_link']))
 			{
 				Phpfox_Error::set(Phpfox::getPhrase('ad.provide_a_url_for_your_ad'));
 			}	

@@ -54,8 +54,8 @@ li {
 	line-height:@headerHeight;
 	text-indent:35px;
 	font-weight:200;
-	color:@navColor;
-	background:@navBg;
+	color:@headerColor;
+	background:darken(@headerBg, 10%);
 	letter-spacing:2px;
 	position:fixed;
 	left:0px;
@@ -106,7 +106,7 @@ li {
 
 #content {
 	width:@contentWidth;
-	margin-left:@columnLeftWidth + 20;
+	/*margin-left:@columnLeftWidth + 20;*/
 }
 
 #container {
@@ -114,7 +114,7 @@ li {
 		background:@blockBg;
 		padding:@blockContentPadding 0px @blockContentPadding @blockContentPadding;
 		width:@contentWidth - @blockContentPadding;
-		margin-left:@columnLeftWidth + (@blockContentPadding * 2);
+		/*margin-left:@columnLeftWidth + (@blockContentPadding * 2);*/
 		margin-bottom:0px;
 		border-bottom:1px darken(@blockBg, 6%) solid;
 		line-height:normal;
@@ -134,6 +134,7 @@ li {
 	}
 }
 
+/*
 #left {
 	width:@columnLeftWidth;
 	position:absolute;
@@ -148,6 +149,14 @@ li {
 	right:0px;
 	top:0px;
 	border:0px;
+}
+*/
+
+#panels {
+	width:@columnWidth;
+	position:absolute;
+	right:0px;
+	top:0px;
 }
 
 a.activity_feed_content_link_title, a.activity_feed_content_link_title:hover, #content div.row_title_info h1 a.link, #content div.row_title_info h1 a.link:hover {

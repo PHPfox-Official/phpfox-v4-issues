@@ -222,26 +222,30 @@ defined('PHPFOX') or exit('NO DICE!');
 				<input type="submit" value="{phrase var='marketplace.upload'}" class="button" />
 			</div>		
 		</div>
-		
-		{module name='marketplace.photo'}
+
+		<div class="form_extra">
+			{module name='marketplace.photo'}
+		</div>
 	
 	</div>	
 	
 	<div id="js_mp_block_invite" class="js_mp_block page_section_menu_holder" style="display:none;">	
 	
 			{if Phpfox::isModule('friend')}
-			<div style="width:75%; float:left; position:relative;">
-				<h3 style="margin-top:0px; padding-top:0px;">{phrase var='marketplace.invite_friends'}</h3>
-				<div style="height:370px;">			
+			<div class="block">
+
+				<div class="title">{phrase var='marketplace.invite_friends'}</div>
+				<div class="content">
 				{if isset($aForms.listing_id)}
+					<div id="js_selected_friends" class="hide_it"></div>
 					{module name='friend.search' input='invite' hide=true friend_item_id=$aForms.listing_id friend_module_id='marketplace'}
 				{/if}
 				</div>
 				{/if}
-				
-				<h3>{phrase var='marketplace.invite_people_via_email'}</h3>
-				<div class="p_4">
-					<textarea cols="40" rows="8" name="val[emails]" style="width:98%; height:60px;"></textarea>
+
+				<div class="title">{phrase var='marketplace.invite_people_via_email'}</div>
+				<div class="content">
+					<textarea cols="40" rows="8" name="val[emails]"></textarea>
 					<div class="extra_info">
 						{phrase var='marketplace.separate_multiple_emails_with_a_comma'}
 						<div>
@@ -249,31 +253,15 @@ defined('PHPFOX') or exit('NO DICE!');
 						</div>
 					</div>
 				</div>
-				
-				<h3>{phrase var='marketplace.add_a_personal_message'}</h3>
-				<div class="p_4">
-					<textarea cols="40" rows="8" name="val[personal_message]" style="width:98%; height:60px;"></textarea>					
-				</div>				
-				
-				<div class="p_top_8">
-					<input type="submit" value="{phrase var='marketplace.send_invitations'}" class="button" />
-				</div>
-				
-			</div>
-			{if Phpfox::isModule('friend')}
-			<div style="margin-left:77%; position:relative;">
-				<div class="block">
-					<div class="title">{phrase var='marketplace.new_guest_list'}</div>				
-					<div class="content">
-						<div class="label_flow" style="height:330px;">
-							<div id="js_selected_friends"></div>
-						</div>
+
+				<div class="title">{phrase var='marketplace.add_a_personal_message'}</div>
+				<div class="content">
+					<textarea cols="40" rows="8" name="val[personal_message]"></textarea>
+					<div class="p_top_8">
+						<input type="submit" value="{phrase var='marketplace.send_invitations'}" class="button" />
 					</div>
 				</div>
-			</div>			
-			
-			<div class="clear"></div>	
-			{/if}
+			</div>
 	</div>	
 	
 	{if isset($aForms.listing_id) && $bIsEdit}

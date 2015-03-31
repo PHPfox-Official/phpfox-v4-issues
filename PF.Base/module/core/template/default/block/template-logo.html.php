@@ -12,3 +12,4 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 <a href="{url link=''}" id="logo"><i></i>{param var='core.site_title'}</a>
+<span class="mobile_menu"></span>

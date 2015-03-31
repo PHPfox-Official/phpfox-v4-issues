@@ -36,20 +36,4 @@
 			<value />
 		</component>
 	</components>
-	<blocks>
-		<block>
-			<type_id>0</type_id>
-			<m_connection>forum</m_connection>
-			<module_id>forum</module_id>
-			<component>forums</component>
-			<location>1</location>
-			<is_active>1</is_active>
-			<ordering>1</ordering>
-			<disallow_access />
-			<can_move>0</can_move>
-			<title>Forums</title>
-			<source_code />
-			<source_parsed />
-		</block>
-	</blocks>
 </upgrade>

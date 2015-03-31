@@ -84,7 +84,7 @@ class Phpfox_Service
      */
     protected function validator()
     {
-    	return Phpfox::getLib('validator');
+    	return Phpfox_Validator::instance();
     }
     
     /**

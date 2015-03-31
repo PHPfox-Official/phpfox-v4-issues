@@ -65,15 +65,15 @@ defined('PHPFOX') or exit('NO DICE!');
 		{if Phpfox::getUserParam('quiz.can_upload_picture')}
 		<div class="table">
 			<div class="table_left">
-				{if Phpfox::getUserParam('quiz.is_picture_upload_required')}{required}{/if}{phrase var='quiz.image'}:
+				Banner:
 			</div>
 
 			<div class="table_right" id="js_event_current_image" {if !isset($aQuiz.image_path) || $aQuiz.image_path == ''} style="display: none;"{/if}>
 				 {if isset($aQuiz) && isset($aQuiz.title) && isset($aQuiz.image_path)}
-				 <div class="p_4">
-
-					{img thickbox=true title=$aQuiz.title path='quiz.url_image' file=$aQuiz.image_path suffix=$sSuffix max_width='quiz.quiz_max_image_pic_size' max_height='quiz.quiz_max_image_pic_size'}
-					<br />
+				 <div class="image_content_holder">
+					{img thickbox=true title=$aQuiz.title path='quiz.url_image' file=$aQuiz.image_path suffix=''}
+				</div>
+				<div class="extra_info">
 					<a href="#" onclick="$Core.quiz.deleteImage({$aQuiz.quiz_id});return false;">{phrase var='quiz.click_here_to_delete_this_image_and_upload_a_new_one_in_its_place'}</a>
 				</div>
 				{/if}

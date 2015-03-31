@@ -53,7 +53,7 @@ class User_Component_Controller_Admincp_Group_Setting extends Phpfox_Component
 			// 'info' => Phpfox::getPhrase('user.add_info_regarding_setting')
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));		
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{			

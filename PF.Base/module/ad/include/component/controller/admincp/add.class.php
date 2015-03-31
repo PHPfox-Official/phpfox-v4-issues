@@ -90,7 +90,7 @@ class Ad_Component_Controller_Admincp_Add extends Phpfox_Component
 			}
 		}
 		
-		$oValidator = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));	
+		$oValidator = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if (is_array($aVals) && count($aVals) > 0)
 		{

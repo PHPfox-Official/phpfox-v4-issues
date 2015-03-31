@@ -3,6 +3,10 @@ var sGlobalAdHolder = 'js_sample_ad_form_728_90';
 
 $Behavior.creatingAnAd = function()
 {
+	if (!$('#page_ad_add').length) {
+		return;
+	}
+
 	$('#js_upload_image_holder').hide();
 	
 	if ($('.tbl_province').length > 0)
@@ -10,22 +14,17 @@ $Behavior.creatingAnAd = function()
 		$('#country_iso_custom').change($Core.Ad.handleStates);
 	}
 	
-	
-	
-	if (!$Core.exists('#js_image_holder')){ console.log('exiting');
-		return;
-	}
-	
 	if ($Core.exists('#js_upload_image_holder_frame')){
 		/*$('body').append($('#js_upload_image_holder_frame').html());
 		$('#js_upload_image_holder_frame').remove(); */
 	}	
 
+	/*
 	var oLocation = $('#js_image_holder').offset();
-	
 	$('#js_upload_image_holder').css('left', oLocation.left + 'px');
 	$('#js_upload_image_holder').css('top', oLocation.top + 'px');
 	$('#js_upload_image_holder').show();
+	*/
 	
 	$('#title').keyup(function()
 	{
@@ -162,7 +161,7 @@ $Behavior.creatingAnAd = function()
 		$.ajaxCall('ad.changeImage', 'image=' + encodeURIComponent($('#js_image_id').val())); 
 		return false;
 	});
-}
+};
 
 $Core.Ad = 
 {
@@ -283,4 +282,4 @@ $Core.Ad =
 			}
 		});
 	}
-}
+};

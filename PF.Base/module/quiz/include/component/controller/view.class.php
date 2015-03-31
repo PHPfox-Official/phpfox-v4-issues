@@ -54,7 +54,7 @@ class Quiz_Component_Controller_View extends Phpfox_Component
 					$this->url()->send('quiz', null, Phpfox::getPhrase('quiz.you_are_not_allowed_to_answer_your_own_quiz'));
 				}
 				$iScore = false;
-				$iScore = Phpfox::getService('quiz.process')->answerQuiz($this->request()->get('req2'), $aVals['answer']);
+				$iScore = Quiz_Service_Process::instance()->answerQuiz($this->request()->get('req2'), $aVals['answer']);
 				if ( is_numeric($iScore))
 				{ // Answers submitted correctly
 					$aUser = $this->getParam('aUser');
@@ -206,7 +206,7 @@ class Quiz_Component_Controller_View extends Phpfox_Component
 		if (Phpfox::isUser() && (Phpfox::getUserId() != $aQuiz['user_id']) && !$aQuiz['is_viewed'] && !Phpfox::getUserBy('is_invisible'))
 		{
 			// the updateView should only happen when the user has submitted a
-			Phpfox::getService('quiz.process')->updateView($aQuiz, Phpfox::getUserId());			
+			Quiz_Service_Process::instance()->updateView($aQuiz, Phpfox::getUserId());
 			if (Phpfox::isModule('track'))
 			{
 				Phpfox::getService('track.process')->add('quiz', $aQuiz['quiz_id']);

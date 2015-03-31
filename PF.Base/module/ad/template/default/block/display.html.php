@@ -15,7 +15,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 	{if (!PHPFOX_IS_AJAX && !defined('PHPFOX_IS_AD_IFRAME')) || $bBlockIdForAds}
 	<div class="js_ad_space_parent">
-		<div id="js_ad_space_{$iBlockId}" class="t_center ad_space" style="padding:4px 0px 4px 0px;">
+		<div id="js_ad_space_{$iBlockId}" class="t_center ad_space">
 	{/if}
 
 {foreach from=$aBlockAds item=aAd name=iAds}

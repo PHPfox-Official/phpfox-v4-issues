@@ -24,7 +24,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		{
 			return false;
 		}
-		
+
 		if (defined('PHPFOX_IS_PAGES_VIEW') && ($this->request()->get('req3') == 'info' || $this->request()->get('req2') == 'info')) 
 		{
 		    return false;

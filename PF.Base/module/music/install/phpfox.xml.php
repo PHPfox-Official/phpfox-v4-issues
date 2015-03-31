@@ -12,7 +12,6 @@
 	<menus>
 		<menu module_id="music" parent_var_name="" m_connection="main" var_name="menu_music" ordering="31" url_value="music" version_id="2.0.0alpha1" disallow_access="" module="music" mobile_icon="music" />
 		<menu module_id="music" parent_var_name="" m_connection="music.index" var_name="menu_upload_a_song" ordering="74" url_value="music.upload" version_id="2.0.0beta1" disallow_access="" module="music" />
-		<menu module_id="music" parent_var_name="" m_connection="music.index" var_name="menu_create_an_album" ordering="75" url_value="music.album" version_id="2.0.0beta1" disallow_access="" module="music" />
 	</menus>
 	<settings>
 		<setting group="" module_id="music" is_hidden="0" type="integer" var_name="music_user_group_id" phrase_var_name="setting_music_user_group_id" ordering="1" version_id="2.0.0beta1">0</setting>
@@ -184,7 +183,6 @@
 		<phrase module_id="music" version_id="2.0.0beta1" var_name="user_setting_can_delete_own_music_album" added="1241097159">Can delete own music album?</phrase>
 		<phrase module_id="music" version_id="2.0.0beta1" var_name="user_setting_can_delete_other_music_albums" added="1241097213">Can delete albums added by other users?</phrase>
 		<phrase module_id="music" version_id="2.0.0beta1" var_name="menu_upload_a_song" added="1241340149">Upload a Song</phrase>
-		<phrase module_id="music" version_id="2.0.0beta1" var_name="menu_create_an_album" added="1241340185">Create an Album</phrase>
 		<phrase module_id="music" version_id="2.0.0beta1" var_name="admin_menu_add_genre" added="1241343069">Add Genre</phrase>
 		<phrase module_id="music" version_id="2.0.0beta1" var_name="admin_menu_manage_genres" added="1241343084">Manage Genres</phrase>
 		<phrase module_id="music" version_id="2.0.0beta2" var_name="user_setting_music_max_file_size" added="1242639441">Maximum file size of songs uploaded.</phrase>

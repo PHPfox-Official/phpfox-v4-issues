@@ -52,13 +52,13 @@ class Music_Component_Controller_Register extends Phpfox_Component
 			}
 		}		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aParams));
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aParams));
 
 		if ($aVals = $this->request()->getArray('val'))
 		{
 			if ($oValid->isValid($aVals))
 			{
-				if (Phpfox::getService('music.process')->convertMember($aVals, $this->request()->getArray('custom')))
+				if (Music_Service_Process::instance()->convertMember($aVals, $this->request()->getArray('custom')))
 				{
 					$this->url()->send('music', null, Phpfox::getPhrase('music.you_have_successfully_converted_your_account'));
 				}

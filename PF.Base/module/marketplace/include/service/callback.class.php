@@ -797,32 +797,41 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 					->leftJoin(Phpfox::getT('like'), 'l', 'l.type_id = \'marketplace\' AND l.item_id = e.listing_id AND l.user_id = ' . Phpfox::getUserId());
 		}
 		
-		$aRow = $this->database()->select('e.listing_id, e.title, e.time_stamp, e.image_path, e.server_id, e.total_like, e.total_comment, et.description_parsed')
+		$aRow = $this->database()->select('e.*, mc.name AS category_name, et.description_parsed')
 			->from(Phpfox::getT('marketplace'), 'e')
 			->leftJoin(Phpfox::getT('marketplace_text'), 'et', 'et.listing_id = e.listing_id')
+			->leftJoin(Phpfox::getT('marketplace_category_data'), 'mcd', 'mcd.listing_id = e.listing_id')
+			->leftJoin(Phpfox::getT('marketplace_category'), 'mc', 'mc.category_id = mcd.category_id')
 			->where('e.listing_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');
 		
 		if ($bIsChildItem)
 		{
 			$aItem = $aRow;
-		}			
-		
+		}
+
+
+		$aRow['is_in_feed'] = true;
+		$aRow['url'] = Phpfox::permalink('marketplace', $aRow['listing_id'], $aRow['title']);
+		Phpfox_Template::instance()->assign('aListing', $aRow);
+
 		$aReturn = array(
-			'feed_title' => $aRow['title'],
+			'feed_title' => '', // $aRow['title'],
 			'feed_info' => Phpfox::getPhrase('feed.created_a_listing'),
-			'feed_link' => Phpfox::permalink('marketplace', $aRow['listing_id'], $aRow['title']),
-			'feed_content' => $aRow['description_parsed'],
-			'feed_icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'module/marketplace.png', 'return_url' => true)),
+			'feed_link' => $aRow['url'],
+			// 'feed_content' => '', // $aRow['description_parsed'],
+			// 'feed_icon' => Phpfox::getLib('image.helper')->display(array('theme' => 'module/marketplace.png', 'return_url' => true)),
 			'time_stamp' => $aRow['time_stamp'],	
 			'feed_total_like' => $aRow['total_like'],
 			'feed_is_liked' => (isset($aRow['is_liked']) ? $aRow['is_liked'] : false),
 			'enable_like' => true,			
 			'like_type_id' => 'marketplace',
 			'total_comment' => $aRow['total_comment'],
-			'comment_type_id' => 'marketplace'
+			'comment_type_id' => 'marketplace',
+			'load_block' => 'marketplace.rows'
 		);
-		
+
+		/*
 		if (!empty($aRow['image_path']))
 		{
 			$sImage = Phpfox::getLib('image.helper')->display(array(
@@ -836,7 +845,8 @@ Phpfox::getPhrase('marketplace.full_name_commented_on_other_full_name',array('fu
 			);
 			
 			$aReturn['feed_image'] = $sImage;
-		}		
+		}
+		*/
 		
 		if ($bIsChildItem)
 		{

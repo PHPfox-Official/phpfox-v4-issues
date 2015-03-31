@@ -284,7 +284,7 @@ div.comment_mini_end {
 	position:relative;
 	padding-bottom:5px;
 	margin-bottom:10px;
-	border-bottom:1px lighten(@navBg, 25%) solid;
+	border-bottom:1px darken(@navBg, 8%) solid;
 	height:60px;
 
 	img {
@@ -302,7 +302,7 @@ div.comment_mini_end {
 		right:0px;
 
 		.user_profile_link_span > a, .user_profile_link_span > a:hover {
-			color:lighten(@navColor, 20%) !important;
+			color:darken(@navColor, 10%) !important;
 		}
 
 		> span > a {
@@ -410,4 +410,67 @@ div.comment_mini_end {
 		top:15px;
 		color:@brandPrimary;
 	}
+}
+
+._load_is_feed, ._load_is_feed:hover {
+	display:block;
+	background:@formBg;
+	color:@formColor;
+	padding:10px 0px 10px 10px;
+	border:@formBorder;
+	font-size:@fontSizeBase - 2;
+	cursor:text;
+}
+
+#panel {
+	.activity_feed_form_share {
+		background:@headerBg;
+
+		a, a:hover {
+			color:@headerColor;
+		}
+	}
+
+	.activity_feed_form_button {
+		display:block;
+	}
+
+	.activity_feed_form {
+		margin-bottom:0px;
+
+		input.button {
+			width:auto;
+			padding-left:20px;
+			padding-right:20px;
+		}
+	}
+
+	.activity_feed_form_button_position_button {
+		margin:0px;
+	}
+
+	.activity_feed_form_button_position {
+		border-top:1px darken(@blockBg, 10%) solid;
+		margin-top:10px;
+		padding-top:10px;
+	}
+
+	.activity_feed_form_button_position .privacy_setting_mini {
+		float:none;
+		position:absolute;
+		right:0px;
+		bottom:5px;
+	}
+}
+
+#global_attachment_status.global_attachment_holder_section {
+	background:transparent;
+	padding:0px;
+	margin:0px;
+}
+
+.global_attachment_holder_section {
+	background:darken(@blockBg, 6%);
+	padding:@blockContentPadding;
+	margin-bottom:10px;
 }

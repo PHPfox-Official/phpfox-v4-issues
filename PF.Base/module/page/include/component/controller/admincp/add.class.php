@@ -30,7 +30,7 @@ class Page_Component_Controller_Admincp_Add extends Phpfox_Component
 			'text' => Phpfox::getPhrase('page.page_missing_data')
 		);		
 
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if (($iPageId = $this->request()->getInt('id')) || ($iPageId = $this->request()->getInt('page_id')))
 		{

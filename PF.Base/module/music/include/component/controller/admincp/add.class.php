@@ -20,7 +20,7 @@ class Music_Component_Controller_Admincp_Add extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$oValidator = Phpfox::getLib('validator')->set(array(
+		$oValidator = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_genre_add',
 				'aParams' => array(
 					'name' => Phpfox::getPhrase('music.provide_a_genre_name')

@@ -44,5 +44,10 @@ function error() {
 }
 
 if (!defined('PHPFOX_NO_RUN')) {
-	Phpfox::run();
+	try {
+		Phpfox::run();
+	} catch (\Exception $e) {
+		header('Content-type: text/html');
+		throw new Exception($e->getMessage(), $e->getCode(), $e);
+	}
 }

@@ -75,7 +75,7 @@ class User_Component_Controller_Setting extends Phpfox_Component
 		
 		(($sPlugin = Phpfox_Plugin::get('user.component_controller_setting_process_validation')) ? eval($sPlugin) : false);
 
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if (count($aVals))
 		{			

@@ -495,7 +495,9 @@ class Feed_Service_Feed extends Phpfox_Service
 						->execute('getSlaveRows');					
 			}
 		}
-		
+
+		// d($aRows); exit;
+
 		if ($bForceReturn === true)
 		{
 			return $aRows;

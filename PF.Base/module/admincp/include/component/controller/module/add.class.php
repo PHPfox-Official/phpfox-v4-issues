@@ -66,7 +66,7 @@ class Admincp_Component_Controller_Module_Add extends Phpfox_Component
 			'module_id' => Phpfox::getPhrase('admincp.select_name_for_your_module')
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));		
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{			

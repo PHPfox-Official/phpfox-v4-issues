@@ -25,7 +25,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function deleteTrack()
 	{
-		if (Phpfox::getService('music.process')->delete($this->get('id')))
+		if (Music_Service_Process::instance()->delete($this->get('id')))
 		{
 			
 		}
@@ -33,7 +33,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function play()
 	{
-		Phpfox::getService('music.process')->play($this->get('id'));
+		Music_Service_Process::instance()->play($this->get('id'));
 		
 		$this->removeClass('.js_music_track', 'isSelected')
 			->addClass('#js_music_track_' . $this->get('id'), 'isSelected');
@@ -50,7 +50,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 			return false;
 		}
 		
-		Phpfox::getService('music.process')->play($aSong['song_id']);
+		Music_Service_Process::instance()->play($aSong['song_id']);
 		
 		$sSongPath = $aSong['song_path'];
 		
@@ -115,7 +115,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function userProfile()
 	{
-		if (Phpfox::getService('music.process')->addForProfile($this->get('id'), $this->get('type')))
+		if (Music_Service_Process::instance()->addForProfile($this->get('id'), $this->get('type')))
 		{
 			if ($this->get('type'))
 			{
@@ -137,7 +137,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		if (($aSong = Phpfox::getService('music.album')->getNextSong($this->get('album_id'), $this->get('song_id'))))
 		{
-			Phpfox::getService('music.process')->play($aSong['song_id']);	
+			Music_Service_Process::instance()->play($aSong['song_id']);
 			
 			$this->call('$Core.player.play(\'js_music_player\', \'' . sprintf($aSong['song_path'], '') . '\');')
 				->html('#js_music_cache_id', $aSong['song_id'])
@@ -162,7 +162,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function featureSong()
 	{
-		if (Phpfox::getService('music.process')->feature($this->get('song_id'), $this->get('type')))
+		if (Music_Service_Process::instance()->feature($this->get('song_id'), $this->get('type')))
 		{
 			if ($this->get('type'))
 			{
@@ -197,7 +197,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 	public function sponsorSong()
 	{
 	    Phpfox::isUser(true);
-	    if (Phpfox::getService('music.process')->sponsorSong($this->get('song_id'), $this->get('type')))
+	    if (Music_Service_Process::instance()->sponsorSong($this->get('song_id'), $this->get('type')))
 	    {
 		if ($this->get('type') == '1')
 		{
@@ -226,7 +226,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 	    Phpfox::isUser(true);
 	    
-	    if (true == Phpfox::getService('music.process')->sponsorAlbum($this->get('album_id'), $this->get('type')))
+	    if (true == Music_Service_Process::instance()->sponsorAlbum($this->get('album_id'), $this->get('type')))
 	    {
 		
 		if ($this->get('type') == '1')
@@ -256,7 +256,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 
 	public function approveSong()
 	{
-		if (Phpfox::getService('music.process')->approve($this->get('id')))
+		if (Music_Service_Process::instance()->approve($this->get('id')))
 		{
 			$this->alert(Phpfox::getPhrase('music.song_has_been_approved'), Phpfox::getPhrase('music.song_approved'), 300, 100, true);
 			$this->hide('#js_item_bar_approve_image');
@@ -301,7 +301,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 				Phpfox::getUserParam('music.can_approve_songs', true);
 				foreach ((array) $this->get('item_moderate') as $iId)
 				{
-					Phpfox::getService('music.process')->approve($iId);
+					Music_Service_Process::instance()->approve($iId);
 					$this->remove('#js_controller_music_track_' . $iId);					
 				}				
 				$this->updateCount();
@@ -311,7 +311,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 				Phpfox::getUserParam('music.can_delete_other_tracks', true);
 				foreach ((array) $this->get('item_moderate') as $iId)
 				{
-					Phpfox::getService('music.process')->delete($iId);
+					Music_Service_Process::instance()->delete($iId);
 					$this->slideUp('#js_controller_music_track_' . $iId);
 				}				
 				$sMessage = Phpfox::getPhrase('music.songs_s_successfully_deleted');
@@ -320,7 +320,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 				Phpfox::getUserParam('music.can_feature_songs', true);
 				foreach ((array) $this->get('item_moderate') as $iId)
 				{
-					Phpfox::getService('music.process')->feature($iId, 1);
+					Music_Service_Process::instance()->feature($iId, 1);
 					$this->addClass('#js_controller_music_track_' . $iId, 'row_featured');
 				}				
 				$sMessage = Phpfox::getPhrase('music.songs_s_successfully_featured');
@@ -329,7 +329,7 @@ class Music_Component_Ajax_Ajax extends Phpfox_Ajax
 				Phpfox::getUserParam('music.can_feature_songs', true);
 				foreach ((array) $this->get('item_moderate') as $iId)
 				{
-					Phpfox::getService('music.process')->feature($iId, 0);					
+					Music_Service_Process::instance()->feature($iId, 0);
 					$this->removeClass('#js_controller_music_track_' . $iId, 'row_featured');
 				}				
 				$sMessage = Phpfox::getPhrase('music.songs_s_successfully_un_featured');

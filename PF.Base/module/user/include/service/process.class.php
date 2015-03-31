@@ -321,7 +321,7 @@ class User_Service_Process extends Phpfox_Service
 		
 		if (!defined('PHPFOX_INSTALLER') && Phpfox::getParam('user.validate_full_name'))
 		{
-			if (!Phpfox::getLib('validator')->check($aVals['full_name'], array('html', 'url')))
+			if (!Phpfox_Validator::instance()->check($aVals['full_name'], array('html', 'url')))
 			{
 				return Phpfox_Error::set(Phpfox::getPhrase('user.not_a_valid_name'));
 			}
@@ -332,7 +332,7 @@ class User_Service_Process extends Phpfox_Service
 			return Phpfox_Error::set(Phpfox::getPhrase('user.not_a_valid_name'));
 		}
 		
-		if (!defined('PHPFOX_INSTALLER') &&  Phpfox::getParam('core.city_in_registration') && isset($aVals['city_location']) && !Phpfox::getLib('validator')->check($aVals['city_location'], array('html', 'url')))
+		if (!defined('PHPFOX_INSTALLER') &&  Phpfox::getParam('core.city_in_registration') && isset($aVals['city_location']) && !Phpfox_Validator::instance()->check($aVals['city_location'], array('html', 'url')))
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('user.not_a_valid_city'));
 		}
@@ -667,7 +667,7 @@ class User_Service_Process extends Phpfox_Service
 		
 		if (!empty($aVals['city_location']))
 		{
-			if (!Phpfox::getLib('validator')->check($aVals['city_location'], array('html', 'url')))
+			if (!Phpfox_Validator::instance()->check($aVals['city_location'], array('html', 'url')))
 			{
 				return Phpfox_Error::set(Phpfox::getPhrase('user.not_a_valid_city'));
 			}
@@ -675,7 +675,7 @@ class User_Service_Process extends Phpfox_Service
 
 		if (isset($aVals['full_name']) && Phpfox::getParam('user.validate_full_name'))
 		{
-			if (!Phpfox::getLib('validator')->check($aVals['full_name'], array('html', 'url')))
+			if (!Phpfox_Validator::instance()->check($aVals['full_name'], array('html', 'url')))
 			{
 				return Phpfox_Error::set(Phpfox::getPhrase('user.not_a_valid_name'));
 			}

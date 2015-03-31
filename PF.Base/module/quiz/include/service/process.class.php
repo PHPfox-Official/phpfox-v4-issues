@@ -215,26 +215,22 @@ class Quiz_Service_Process extends Phpfox_Service
 					// update the poll
 					$aUpdate['image_path'] = $sFileName;
 					$aUpdate['server_id'] = Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID');
-					// 'quiz_id = ' . (int)$aQuiz['quiz_id']);
-					// now the thumbnails
-					$iSize = Phpfox::getParam('quiz.quiz_max_image_pic_size');
-					$oImage->createThumbnail(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);
 
-					if (file_exists(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, '')) && 
-						file_exists(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, '_' . $iSize)) &&
+					$oImage->createThumbnail(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, ''), 600, 400);
+
+					if (file_exists(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, '')) &&
 						isset($aOriginalQuiz['image_path']) && !empty($aOriginalQuiz['image_path']))
 					{
 						// delete the old picture						
 							Phpfox_File::instance()->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], ''));
-							Phpfox_File::instance()->unlink(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], '_' . $iSize));
 							// get space used by current picture
-							$iOldPictureSpaceUsed = (filesize(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], '')) + filesize(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], '_' . $iSize)));
+							$iOldPictureSpaceUsed = (filesize(Phpfox::getParam('quiz.dir_image') . sprintf($aOriginalQuiz['image_path'], '')));
 							// decrease the count for the old picture
 							Phpfox::getService('user.space')->update((int)$iUser, 'quiz', $iOldPictureSpaceUsed, '-');
 					}
 
 					// Update user space usage with the new picture
-					Phpfox::getService('user.space')->update(Phpfox::getUserId(), 'quiz', (filesize(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, '')) + filesize(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, '_' . $iSize))));
+					Phpfox::getService('user.space')->update(Phpfox::getUserId(), 'quiz', (filesize(Phpfox::getParam('quiz.dir_image') . sprintf($sFileName, ''))));
 				}
 			}
 

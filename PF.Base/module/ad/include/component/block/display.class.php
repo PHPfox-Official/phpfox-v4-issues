@@ -158,6 +158,11 @@ class Ad_Component_Block_Display extends Phpfox_Component
 			if(!$this->getParam('bNoTitle'))
 			{
 				$this->template()->assign('sHeader', Phpfox::getPhrase('ad.sponsored'));
+				$this->template()->assign([
+					'aFooter' => [
+						'Create an Ad' => $this->url()->makeUrl('ad.add')
+					]
+				]);
 			}
 
 			return 'block';

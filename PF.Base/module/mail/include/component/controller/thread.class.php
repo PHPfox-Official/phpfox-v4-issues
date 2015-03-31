@@ -60,7 +60,7 @@ class Mail_Component_Controller_Thread extends Phpfox_Component
 			'message' => Phpfox::getPhrase('mail.add_reply')
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array(
+		$oValid = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_form', 
 				'aParams' => $aValidation
 			)

@@ -46,7 +46,7 @@ class Admincp_Component_Controller_Product_Add extends Phpfox_Component
 			'title' => Phpfox::getPhrase('admincp.add_a_product_title')
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));		
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{			

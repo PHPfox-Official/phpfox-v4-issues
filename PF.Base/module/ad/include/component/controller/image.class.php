@@ -23,18 +23,15 @@ class Ad_Component_Controller_Image extends Phpfox_Component
 		if (!Phpfox::isUser())
 		{
 			exit;
-		}		
+		}
 		
 		$aImage = Phpfox_File::instance()->load('image', array('jpg', 'gif', 'png'));
-			
 		if ($aImage === false)
 		{
-			echo '<script type="text/javascript">window.parent().$(\'#js_image_error\').show();</script>';
-			exit;
+			return j('#js_image_error')->show();
 		}			
 		
-		$aParts = explode('x', $this->request()->get('ad_size'));		
-		
+		$aParts = explode('x', $this->request()->get('ad_size'));
 		if ($sFileName = Phpfox_File::instance()->upload('image', Phpfox::getParam('ad.dir_image'), Phpfox::getUserId() . uniqid()))
 		{
 			Phpfox_Image::instance()->createThumbnail(Phpfox::getParam('ad.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('ad.dir_image') . sprintf($sFileName, '_thumb'), (Phpfox::getParam('ad.multi_ad') ? 100 : ($aParts[0] / 3)), (Phpfox::getParam('ad.multi_ad') ? 72 : ($aParts[1] - 20)));
@@ -48,7 +45,9 @@ class Ad_Component_Controller_Image extends Phpfox_Component
 				Phpfox::getLib('cdn')->put(Phpfox::getParam('ad.dir_image') . sprintf($sFileName, ''));
 			}
 			
-			echo '<script type="text/javascript">window.parent.$(\'.js_ad_image\').html(\'<a href="#ad-link"><img src="' . Phpfox::getParam('ad.url_image') . sprintf($sFileName, '') . '" alt="" /></a>\').show(); window.parent.$(\'#js_image_holder_message\').hide(); window.parent.$(\'#js_image_holder_link\').show(); window.parent.$(\'#js_image_id\').val(\'' . sprintf($sFileName, '') . '\');</script>';
+			return [
+				'run' => '$(\'.js_ad_image\').html(\'<a href="#ad-link"><img src="' . Phpfox::getParam('ad.url_image') . sprintf($sFileName, '') . '" alt="" /></a>\').show(); window.parent.$(\'#js_image_holder_message\').hide(); window.parent.$(\'#js_image_holder_link\').show(); window.parent.$(\'#js_image_id\').val(\'' . sprintf($sFileName, '') . '\');'
+			];
 		}
 		
 		exit;

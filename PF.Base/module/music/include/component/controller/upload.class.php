@@ -46,7 +46,7 @@ class Music_Component_Controller_Upload extends Phpfox_Component
 			'title' => Phpfox::getPhrase('music.provide_a_name_for_this_song')
 		);
 		
-		$oValidator = Phpfox::getLib('validator')->set(array(
+		$oValidator = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_music_form',
 				'aParams' => $aValidation
 			)
@@ -80,7 +80,7 @@ class Music_Component_Controller_Upload extends Phpfox_Component
 		{
 			if ($oValidator->isValid($aVals))
 			{
-				if (Phpfox::getService('music.process')->update($aEditSong['song_id'], $aVals))
+				if (Music_Service_Process::instance()->update($aEditSong['song_id'], $aVals))
 				{
 					$this->url()->permalink('music', $aEditSong['song_id'], $aEditSong['title'], true, 'Song successfully updated.');
 				}
@@ -97,7 +97,7 @@ class Music_Component_Controller_Upload extends Phpfox_Component
 				
 				if ($oValidator->isValid($aVals))
 				{
-					if (($aSong = Phpfox::getService('music.process')->upload($aVals, (isset($aVals['album_id']) ? (int) $aVals['album_id'] : 0))))
+					if (($aSong = Music_Service_Process::instance()->upload($aVals, (isset($aVals['album_id']) ? (int) $aVals['album_id'] : 0))))
 					{
 						if (isset($aVals['iframe']))
 						{
@@ -174,7 +174,7 @@ class Music_Component_Controller_Upload extends Phpfox_Component
 			{	
 				$_FILES['mp3'] = $_FILES['Filedata'];
 				
-				if (($aSong = Phpfox::getService('music.process')->upload($aVals, (isset($aVals['album_id']) ? (int) $aVals['album_id'] : 0))))
+				if (($aSong = Music_Service_Process::instance()->upload($aVals, (isset($aVals['album_id']) ? (int) $aVals['album_id'] : 0))))
 				{
 					if (isset($aVals['inline']))
 					{

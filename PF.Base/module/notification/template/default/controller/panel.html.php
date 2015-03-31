@@ -1,3 +1,4 @@
+{if $aNotifications}
 <ul class="panel_rows">
 	{foreach from=$aNotifications name=notifications item=aNotification}
 	<li><a href="{$aNotification.link}" class="{if !$aNotification.is_seen} is_new{/if}">
@@ -16,3 +17,8 @@
 	</li>
 	{/foreach}
 </ul>
+{else}
+<div class="message">
+	No new notifications
+</div>
+{/if}

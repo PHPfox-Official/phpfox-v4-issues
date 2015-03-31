@@ -279,14 +279,21 @@ class Phpfox_Image_Helper
 							$ele = 'span';
 						}
 
-						$image = '<' . $ele . ' href="' . $sLink . '" class="no_image_user _size_' . $sImageSize . ' _gender_' . $sGender . ' _first_' . strtolower($first . $last) . '"><span>' . $first . $last . '</span></' . $ele . '>';
+						$image = '<' . $ele . '' . ($ele == 'a' ? ' href="' . $sLink . '"' : '') . ' class="no_image_user _size_' . $sImageSize . ' _gender_' . $sGender . ' _first_' . strtolower($first . $last) . '"><span>' . $first . $last . '</span></' . $ele . '>';
 
 						return $image;
 					}
 				}
 				else 
 				{
-					$sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/item.png');
+					$ele = 'span';
+					$sImageSize = '';
+					if (isset($aParams['suffix'])) {
+						$sImageSize = $aParams['suffix'];
+					}
+					$image = '<' . $ele . ' class="no_image_item i_size_' . $sImageSize . '"><span></span></' . $ele . '>';
+
+					return $image;
 				}
 				
 				$bIsValid = false;			
@@ -652,25 +659,7 @@ class Phpfox_Image_Helper
 				}
 			}			
 		}
-		
-		// Use thickbox effect?
-		if (isset($aParams['thickbox']))
-		{
-			// Remove the image suffix (eg _thumb.jpg, _view.jpg, _75.jpg etc...).
-			if (preg_match('/female\_noimage\.png/i', $sSrc))
-			{
-				$sLink = $sSrc;	
-			}
-			elseif (preg_match('/^(.*)_(.*)_square\.(.*)$/i', $sSrc, $aMatches))
-			{
-				$sLink = $aMatches[1] . (isset($aParams['thickbox_suffix']) ? $aParams['thickbox_suffix'] : '') . '.' . $aMatches[3];	
-			} 
-			else 
-			{
-				$sLink = preg_replace("/^(.*)_(.*)\.(.*)$/i", "$1" . (isset($aParams['thickbox_suffix']) ? $aParams['thickbox_suffix'] : '') . ".$3", $sSrc);
-			}			
-		}		
-		
+
 		if (isset($aParams['no_link']) && $aParams['no_link'])
 		{
 			unset($sLink);

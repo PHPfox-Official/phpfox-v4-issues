@@ -19,7 +19,7 @@ class Music_Component_Controller_Index extends Phpfox_Component
 	 * Controller
 	 */
 	public function process()
-	{		
+	{
 		if (defined('PHPFOX_IS_USER_PROFILE') && ($sLegacyTitle = $this->request()->get('req4')) && !empty($sLegacyTitle))
 		{			
 			Phpfox::getService('core')->getLegacyItem(array(
@@ -47,7 +47,7 @@ class Music_Component_Controller_Index extends Phpfox_Component
 		
 		$aParentModule = $this->getParam('aParentModule');	
 		
-		if ($this->request()->get('req2') == 'delete' && ($iDeleteId = $this->request()->getInt('id')) && ($mDeleteReturn = Phpfox::getService('music.process')->delete($iDeleteId)))
+		if ($this->request()->get('req2') == 'delete' && ($iDeleteId = $this->request()->getInt('id')) && ($mDeleteReturn = Music_Service_Process::instance()->delete($iDeleteId)))
 		{
 			if (is_bool($mDeleteReturn))
 			{
@@ -124,9 +124,9 @@ class Music_Component_Controller_Index extends Phpfox_Component
 			'table' => Phpfox::getT('music_song'),
 			'hide_view' => array('pending', 'my')				
 		);
-		
-		$iGenre = $this->request()->getInt('req3');		
-		
+
+		$iGenre = $this->request()->getInt('req3');
+
 		switch ($sView)
 		{
 			case 'my':
@@ -173,7 +173,9 @@ class Music_Component_Controller_Index extends Phpfox_Component
 		$this->search()->browse()->params($aBrowseParams)->execute();
 		
 		$aSongs = $this->search()->browse()->getRows();
-		
+
+		// d($aSongs); exit;
+
 		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));		
 		
 		if ($sPlugin = Phpfox_Plugin::get('music.component_controller_music_index')){ eval($sPlugin); }

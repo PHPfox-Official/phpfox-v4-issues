@@ -389,6 +389,66 @@ $Core.reloadActivityFeed = function(){
 	}
 };
 
+$Ready(function() {
+	$('.audio_player:not(.built)').each(function() {
+		var t = $(this),
+			onPlay = t.data('onplay');
+
+		// p('loading...');
+
+		t.addClass('built');
+		var audio = document.createElement('audio');
+		audio.setAttribute('src', t.data('src'));
+		audio.setAttribute('controls', 'controls');
+		audio.setAttribute('preload', 'none');
+
+		// audio.setAttribute('preload', 'none');
+
+		t.get(0).appendChild(audio);
+
+		if (onPlay) {
+			audio.addEventListener('play', function() {
+				$.ajax({
+					url: onPlay
+				});
+			});
+		}
+	});
+});
+
+$Core.player = {
+	load: function(params) {
+		var t = $('#' + params.id),
+			html = '';
+
+		if (params.type != 'music') {
+			return '';
+		}
+
+		/*
+		html = '<audio controls>' +
+			'<source src="' + params.play + '" type="audio/mpeg">' +
+			'</audio>';
+		*/
+
+		var audio = document.createElement('audio');
+		audio.setAttribute('src', params.play);
+		audio.setAttribute('controls', 'controls');
+		audio.setAttribute('preload', 'none');
+
+		// audio.setAttribute("autoplay","autoplay");
+
+		t.get(0).appendChild(audio);
+
+		if (typeof(params.on_start) == 'function') {
+			audio.addEventListener('play', params.on_start);
+		}
+
+		// t.html(audio);
+		// audio.prependTo(t);
+	}
+};
+
 $Core.getCurrentFeedIds = function()
 {
 	var sMoreFeedIds = '';
@@ -516,9 +576,15 @@ $Core.loadStaticFiles = function($aFiles)
 	}
 };
 
+var lastClassName;
 $Core.openPanel = function(obj) {
-	$('body').addClass('panel_is_active');
-
+	// $('body').addClass('panel_is_active');
+	$('#header_search_form').hide();
+	$('._search').show();
+	if (lastClassName) {
+		$('#panel').removeClass(lastClassName).attr('style', '');
+		lastClassName = null;
+	}
 	if (obj instanceof jQuery) {
 		if (obj.hasClass('active')) {
 			obj.removeClass('active');
@@ -527,8 +593,17 @@ $Core.openPanel = function(obj) {
 			return;
 		}
 
+		if (obj.data('class')) {
+			lastClassName = obj.data('class');
+			$('#panel').addClass(obj.data('class')).css({
+				top: obj.offset().top
+			});
+		}
+
 		$('.notifications a.active').removeClass('active');
 		obj.addClass('active');
+		$('body').addClass('panel_is_active');
+
 		$('#panel').html('');
 		$.ajax({
 			url: obj.data('open'),
@@ -543,6 +618,10 @@ $Core.openPanel = function(obj) {
 
 $Behavior.globalInit = function()
 {
+	$('.mobile_menu').click(function() {
+		$('body').toggleClass('show_mobile_menu');
+		$('body').removeClass('panel_is_active');
+	});
 
 	$('.feed_form_toggle').click(function() {
 
@@ -579,17 +658,21 @@ $Behavior.globalInit = function()
 		t.parents('form:first').addClass('active');
 	});
 
+	/*
 	$('._search').click(function() {
 		var t = $(this);
 
+		$('.notifications a.active').removeClass('active');
 		$Core.openPanel();
 		t.hide().addClass('active');
-		// $('#header_search_form').show();
-		// $('#header_search_form input').focus();
+		// t.addClass('active');
+		$('#header_search_form').show();
+		$('#header_search_form input').focus();
 
 
 		return false;
 	});
+	*/
 
 	$('._panel').click(function() {
 		$Core.openPanel($(this));
@@ -603,7 +686,7 @@ $Behavior.globalInit = function()
 				// $('.mosaicflow_load').addClass('mosaicflow');
 
 				$('.mosaicflow_load').mosaicflow({
-					minItemWidth: 300,
+					minItemWidth: 200,
 					itemHeightCalculation: 'attribute'
 				});
 				clearInterval(mLoad);
@@ -711,15 +794,15 @@ $Behavior.globalInit = function()
 	    var p = $(this).parents('.item_is_active_holder:first');
 
 	    p.removeClass('item_selection_active').removeClass('item_selection_not_active');
-    	$(this).parent().find('.js_item_active input').attr('checked', false);
+    	$(this).parent().find('.js_item_active input').prop('checked', false);
     	if ($(this).hasClass('item_is_active'))
     	{
-    		$(this).parent().find('.item_is_active input').attr('checked', true);
+    		$(this).parent().find('.item_is_active input').prop('checked', true);
 		    p.addClass('item_selection_active');
     	}
     	else
     	{
-    		$(this).parent().find('.item_is_not_active input').attr('checked', true);
+    		$(this).parent().find('.item_is_not_active input').prop('checked', true);
 		    p.addClass('item_selection_not_active');
     	}
     }); 
@@ -1413,6 +1496,11 @@ $Core.page = function(url) {
 		url: url,
 		contentType: 'application/json',
 		complete: function(e) {
+			if (e.responseText.substr(0, 1) != '{') {
+				eval(e.responseText);
+				return;
+			}
+
 			e = $.parseJSON(e.responseText);
 
 			$Core.show_page(e);
@@ -1557,6 +1645,7 @@ $Behavior.linkClickAll = function()
 			|| $(this).hasClass('popup')
 			|| $(this).hasClass('ajax')
 			|| $(this).hasClass('no_ajax')
+			|| $(this).hasClass('inlinePopup')
 			|| $(this).hasClass('sJsConfirm'))
 		{
 			return;

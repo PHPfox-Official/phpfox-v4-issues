@@ -47,7 +47,7 @@ class Contact_Component_Controller_Index extends Phpfox_Component
 			'title' => Phpfox::getPhrase('contact.provide_a_valid_email')
 		);
 
-		$oValid = Phpfox::getLib('validator')->set(array(
+		$oValid = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_contact_form', 
 				'aParams' => $aValidation
 			)

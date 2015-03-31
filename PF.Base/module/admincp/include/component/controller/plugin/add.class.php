@@ -33,7 +33,7 @@ class Admincp_Component_Controller_Plugin_Add extends Phpfox_Component
 			'php_code' => Phpfox::getPhrase('admincp.provide_php_code_for_your_plugin')		
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if (($iEditId = $this->request()->get('id')))
 		{			

@@ -502,9 +502,18 @@ class Phpfox_Url
 				}
 				else 
 				{					
-					$sUrl .= $sKey . '_' . urlencode($sValue) . '.';
+					// $sUrl .= $sKey . '_' . urlencode($sValue) . '.';
+					$aParams[$sKey] = $sValue;
 				}
 			}
+
+			$aGets = $_GET;
+			unset($aGets['do']);
+			if ($aGets) {
+				$aParams = array_merge($aParams, $aGets);
+			}
+
+			$sUrl = rtrim($sUrl, '.');
 		}
 		
 		(($sPlugin = Phpfox_Plugin::get('check_url_is_array')) ? eval($sPlugin) : false);

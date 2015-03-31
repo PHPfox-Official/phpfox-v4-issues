@@ -987,6 +987,8 @@ class Pages_Service_Pages extends Phpfox_Service
 		{
 			$aRows[$iKey]['link'] = Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']);
 		}
+
+		// ob_clean(); d($aRows); exit;
 				
 		return array($iCnt, $aRows);
 	}

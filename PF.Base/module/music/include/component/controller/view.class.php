@@ -20,6 +20,14 @@ class Music_Component_Controller_View extends Phpfox_Component
 	 */
 	public function process()
 	{
+		if (($playId = $this->request()->get('play'))) {
+			Music_Service_Process::instance()->play($this->request()->get('play'));
+
+			return [
+				'played' => true
+			];
+		}
+
 		Phpfox::getUserParam('music.can_access_music', true);
 		
 		if (Phpfox::isUser() && Phpfox::isModule('notification'))

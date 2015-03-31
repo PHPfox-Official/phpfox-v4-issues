@@ -49,7 +49,8 @@ class View {
 					'top' => new View\Functions('top'),
 					'breadcrumb' => new View\Functions('breadcrumb'),
 					'title' => new View\Functions('title'),
-					'h1' => new View\Functions('h1')
+					'h1' => new View\Functions('h1'),
+					'errors' => new View\Functions('errors')
 				]
 			];
 

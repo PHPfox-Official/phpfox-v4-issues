@@ -160,7 +160,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div id="js_event_block_customize_holder">
 			<div class="table">
 				<div class="table_left">
-					{phrase var='event.event_photo'}:
+					Banner:
 				</div>
 				<div class="table_right">
 					{if $bIsEdit && !empty($aForms.image_path)}
@@ -203,7 +203,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 			<div class="title">{phrase var='event.invite_people_via_email'}</div>
 			<div class="content">
-				<textarea cols="40" rows="8" name="val[emails]" style="width:98%; height:60px;"></textarea>
+				<textarea cols="40" rows="8" name="val[emails]"></textarea>
 				<div class="extra_info">
 					{phrase var='event.separate_multiple_emails_with_a_comma'}
 				</div>
@@ -211,7 +211,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 			<div class="title">{phrase var='event.add_a_personal_message'}</div>
 			<div class="content">
-				<textarea cols="40" rows="8" name="val[personal_message]" style="width:98%; height:60px;"></textarea>
+				<textarea cols="40" rows="8" name="val[personal_message]"></textarea>
 				<div class="p_top_8">
 					<input type="submit" value="{phrase var='event.send_invitations'}" class="button" />
 				</div>

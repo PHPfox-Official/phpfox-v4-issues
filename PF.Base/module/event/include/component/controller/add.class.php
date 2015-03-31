@@ -77,7 +77,7 @@ class Event_Component_Controller_Add extends Phpfox_Component
 			'location' => Phpfox::getPhrase('event.provide_a_location_for_this_event')
 		);
 		
-		$oValidator = Phpfox::getLib('validator')->set(array(
+		$oValidator = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_event_form',
 				'aParams' => $aValidation
 			)
@@ -148,20 +148,16 @@ class Event_Component_Controller_Add extends Phpfox_Component
 		{
 			$aMenus = array(
 				'detail' => Phpfox::getPhrase('event.event_details'),
-				'customize' => Phpfox::getPhrase('event.photo'),
+				'customize' => 'Banner',
 				'invite' => Phpfox::getPhrase('event.invite_guests')
 			);
-			// Dont show the photo upload for iOS
-			if ($this->request()->isIOS())
-			{
-				//unset($aMenus['customize']);
-			}
+
 			if (!$bIsSetup)
 			{
 				$aMenus['manage'] = Phpfox::getPhrase('event.manage_guest_list');
-				$aMenus['email'] = Phpfox::getPhrase('event.mass_email');
+				// $aMenus['email'] = Phpfox::getPhrase('event.mass_email');
 			}
-			
+
 			$this->template()->buildPageMenu('js_event_block', 
 				$aMenus,
 				array(

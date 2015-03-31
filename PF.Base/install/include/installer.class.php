@@ -576,7 +576,7 @@ class Phpfox_Installer
 		}
 		
 		$oApi = Phpfox::getLib('phpfox.api');
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => array(
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => array(
 					'email' => array(			
 						'def' => 'email',
 						'title' => 'Enter a valid email.'
@@ -821,7 +821,7 @@ class Phpfox_Installer
 		// Get supported database drivers
 		$aDrivers = Phpfox::getLib('database.support')->getSupported(true);
 
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => array(
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => array(
 					'prefix' => 'No database prefix provided.'
 				)
 			)
@@ -1239,7 +1239,7 @@ class Phpfox_Installer
 			)
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));			
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if ($aVals = $this->_oReq->getArray('val'))
 		{			

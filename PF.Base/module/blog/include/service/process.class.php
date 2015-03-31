@@ -55,7 +55,7 @@ class Blog_Service_Process extends Phpfox_Service
 
 		if (!Phpfox::getParam('blog.allow_links_in_blog_title'))
 		{
-			if (!Phpfox::getLib('validator')->check($aVals['title'], array('url')))
+			if (!Phpfox_Validator::instance()->check($aVals['title'], array('url')))
 			{
 				return Phpfox_Error::set(Phpfox::getPhrase('blog.we_do_not_allow_links_in_titles'));
 			}
@@ -316,7 +316,7 @@ class Blog_Service_Process extends Phpfox_Service
 			Phpfox::getService('ban')->checkAutomaticBan($sTitle);
 			if (!Phpfox::getParam('blog.allow_links_in_blog_title'))
 			{
-				if (!Phpfox::getLib('validator')->check($sTitle, array('url')))
+				if (!Phpfox_Validator::instance()->check($sTitle, array('url')))
 				{
 					return Phpfox_Error::set(Phpfox::getPhrase('blog.we_do_not_allow_links_in_titles'));
 				}

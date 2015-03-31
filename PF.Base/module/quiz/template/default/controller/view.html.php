@@ -14,7 +14,6 @@ defined('PHPFOX') or exit('NO DICE!');
 {if isset($aQuiz)}	
 <div class="item_view">
 	{template file='quiz.block.entry'}
-	
 	<div id="js_comment_module" {if $aQuiz.view_id == 1}style="display:none;" class="js_moderation_on"{/if}>
 		{module name='feed.comment'}
 	</div>	

@@ -236,7 +236,7 @@ div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_d
 }
 
 .breadcrumbs_menu {
-	position:absolute;
+	position:fixed;
 	top:0px;
 	right:0px;
 
@@ -244,9 +244,11 @@ div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_d
 		display:inline-block;
 		height:@headerHeight;
 		line-height:@headerHeight;
+		vertical-align:top;
 	}
 
-	li:last-of-type {
+	/* :last-of-type */
+	li {
 		a, a:hover {
 			display:block;
 			background:@brandPrimary;

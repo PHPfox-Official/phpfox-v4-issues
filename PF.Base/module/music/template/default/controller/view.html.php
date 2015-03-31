@@ -11,11 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="music_rate_body">
-	<div class="music_rate_display">
-		{module name='rate.display'}
-	</div>
-</div>
 <div class="item_view">
     <div class="item_info">
 		{$aSong.time_stamp|convert_time} {phrase var='music.by_lowercase'} {$aSong|user:'':'':50}{if $aSong.album_id} {phrase var='music.in'} <a href="{permalink module='music.album' id=$aSong.album_id title=$aSong.album_url}" title="{$aSong.album_url|clean}">{$aSong.album_url|clean|shorten:50:'...'|split:50}</a>{/if}
@@ -46,11 +41,12 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>       
 	{/if}
 
-	<div id="js_music_player" style="height:30px; width:500px;"></div>
-	
-	<div class="music_view_total_play">
-		{phrase var='music.total_plays' total=$aSong.total_play|number_format}
-	</div>	
+	<div class="item_content">
+		<div id="js_music_player"></div>
+		<div class="music_view_total_play">
+			{phrase var='music.total_plays' total=$aSong.total_play|number_format}
+		</div>
+	</div>
 	<div {if $aSong.view_id != 0}style="display:none;" class="js_moderation_on"{/if}>
 		{module name='feed.comment'}
 	</div>

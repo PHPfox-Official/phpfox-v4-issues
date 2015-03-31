@@ -47,7 +47,7 @@ class Quiz_Component_Controller_Add extends Phpfox_Component
 			{
 				$this->url()->send('quiz', null, Phpfox::getPhrase('quiz.that_quiz_does_not_exist_or_its_awaiting_moderation'));
 			}
-			
+
 			if ($aVals = $this->request()->getArray('val'))
 			{
 				$aQuestions = isset($aVals['q']) ? $aVals['q'] : false;
@@ -59,7 +59,7 @@ class Quiz_Component_Controller_Add extends Phpfox_Component
 				
 				if ($mValid === true)
 				{
-					list($mEdit, $sUrl) = Phpfox::getService('quiz.process')->update($aVals, Phpfox::getUserId());
+					list($mEdit, $sUrl) = Quiz_Service_Process::instance()->update($aVals, Phpfox::getUserId());
 					if ($mEdit === true)
 					{
 						$this->url()->permalink('quiz', $aQuiz['quiz_id'], Phpfox::getLib('parse.input')->clean($aVals['title']), true, Phpfox::getPhrase('quiz.your_quiz_has_been_edited'));
@@ -98,7 +98,7 @@ class Quiz_Component_Controller_Add extends Phpfox_Component
 				'title' => Phpfox::getPhrase('quiz.you_need_to_write_a_description')
 			)
 		);
-		$oValid = Phpfox::getLib('validator')->set(array(
+		$oValid = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_form',	
 				'aParams' => $aValidation
 			)
@@ -142,7 +142,7 @@ class Quiz_Component_Controller_Add extends Phpfox_Component
 			
 			if ($oValid->isValid($aVals))
 			{
-				if (($iId = Phpfox::getService('quiz.process')->add($aVals, Phpfox::getUserId())))
+				if (($iId = Quiz_Service_Process::instance()->add($aVals, Phpfox::getUserId())))
 				{					
 					$this->url()->permalink('quiz', $iId, Phpfox::getLib('parse.input')->clean($aVals['title']), true, (Phpfox::getUserParam('quiz.new_quizzes_need_moderation') ? Phpfox::getPhrase('quiz.your_quiz_has_been_added_it_needs_to_be_approved_by_our_staff_before_it_can_be_shown') : Phpfox::getPhrase('quiz.your_quiz_has_been_added')));
 				}

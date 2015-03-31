@@ -36,11 +36,6 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="forum" module_id="forum" component="forums" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title>Forums</title>
-			<source_code />
-			<source_parsed />
-		</block>
 	</blocks>
 	<hooks>
 		<hook module_id="forum" hook_type="controller" module="forum" call_name="forum.component_controller_search_clean" added="1240687633" version_id="2.0.0beta1" />

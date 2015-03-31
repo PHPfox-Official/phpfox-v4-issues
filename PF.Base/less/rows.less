@@ -3,6 +3,7 @@
 	div.row1, div.row2 {
 		padding-top:0px;
 		padding-bottom:@blockContentPadding;
+		border-bottom:1px darken(@blockBg, 8%) solid;
 		margin-bottom:0px;
 
 		h1, .h1 {
@@ -38,6 +39,7 @@ div.row_title_info {
 
 		h1, .h1 {
 			padding:0px;
+			line-height:normal;
 		}
 
 		.row_header {
@@ -248,7 +250,8 @@ a.item_bar_action:before {
 		left:0px;
 		right:0px;
 		font-size:@fontSizeBase - 3;
-		text-indent:4px;
+		/*text-indent:4px;*/
+		text-align:center;
 		overflow:hidden;
 		/*display:none;*/
 	}

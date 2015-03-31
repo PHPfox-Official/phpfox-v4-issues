@@ -115,14 +115,17 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 			}
 		}
 		Phpfox::getService('forum')->id(null);
+
+		/*
 		list($iCnt, $aThreads) = Phpfox::getService('forum.thread')
 			->get('ft.forum_id IN(' . implode(',', $aIds) . ') AND ft.group_id = 0 AND ft.view_id >= 0 AND ft.is_announcement = 0', 'ft.order_id DESC', '', 0, 20);
+		*/
 
 		$this->template()->setTitle(Phpfox::getPhrase('forum.forum'))
 			->assign(array(
-				// 'aForums' => Phpfox::getService('forum')->live()->getForums(),
+				 'aForums' => Phpfox::getService('forum')->live()->getForums(),
 					'bHasCategory' => Phpfox::getService('forum')->hasCategory(),
-					'aThreads' => $aThreads,
+					// 'aThreads' => $aThreads,
 					'aCallback' => null
 			)
 		);	

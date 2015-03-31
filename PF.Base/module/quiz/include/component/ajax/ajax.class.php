@@ -19,7 +19,7 @@ class Quiz_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		(($sPlugin = Phpfox_Plugin::get('quiz.component_ajax_deleteimage_start')) ? eval($sPlugin) : false);
 		$iQuiz = (int)$this->get('iQuiz');
-		if (Phpfox::getService('quiz.process')->deleteImage($iQuiz, Phpfox::getUserId()))
+		if (Quiz_Service_Process::instance()->deleteImage($iQuiz, Phpfox::getUserId()))
 		{
 			$this->call('$("#js_submit_upload_image").show();');
 			$this->call('$("#js_event_current_image").remove();');
@@ -39,7 +39,7 @@ class Quiz_Component_Ajax_Ajax extends Phpfox_Ajax
 		Phpfox::getUserParam('quiz.can_approve_quizzes', true);
 
 		$iQuiz = (int)$this->get('iQuiz');
-		$bApproved = Phpfox::getService('quiz.process')->approveQuiz($iQuiz);
+		$bApproved = Quiz_Service_Process::instance()->approveQuiz($iQuiz);
 
 		if ($bApproved == true)
 		{
@@ -76,7 +76,7 @@ class Quiz_Component_Ajax_Ajax extends Phpfox_Ajax
 				Phpfox::getUserParam('quiz.can_approve_quizzes', true);
 				foreach ((array) $this->get('item_moderate') as $iId)
 				{
-					Phpfox::getService('quiz.process')->approveQuiz($iId);
+					Quiz_Service_Process::instance()->approveQuiz($iId);
 					$this->remove('#js_quiz_' . $iId);
 				}	
 				$this->updateCount();			
@@ -85,7 +85,7 @@ class Quiz_Component_Ajax_Ajax extends Phpfox_Ajax
 			case 'delete':
 				foreach ((array) $this->get('item_moderate') as $iId)
 				{
-					Phpfox::getService('quiz.process')->deleteQuiz($iId, Phpfox::getUserId());
+					Quiz_Service_Process::instance()->deleteQuiz($iId, Phpfox::getUserId());
 					$this->slideUp('#js_quiz_' . $iId);
 				}				
 				$sMessage = Phpfox::getPhrase('quiz.quiz_zes_successfully_deleted');
@@ -104,7 +104,7 @@ class Quiz_Component_Ajax_Ajax extends Phpfox_Ajax
 	public function delete()
 	{
 		$iQuiz = (int)$this->get('iQuiz');
-		$bDeleted = Phpfox::getService('quiz.process')->deleteQuiz($iQuiz, Phpfox::getUserId());
+		$bDeleted = Quiz_Service_Process::instance()->deleteQuiz($iQuiz, Phpfox::getUserId());
 
 		if ($bDeleted == true)
 		{

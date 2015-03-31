@@ -59,7 +59,7 @@ class Admincp_Component_Controller_Setting_Add extends Phpfox_Component
 			)
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_setting_form', 'aParams' => $aValidation));		
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_setting_form', 'aParams' => $aValidation));
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{			

@@ -14,7 +14,7 @@ defined('PHPFOX') or exit('NO DICE!');
 <div class="item_view">
 	<div class="item_info">
 		<ul>
-			<li>{$aItem.time_stamp}</li>
+			<li>{$aItem.time_stamp|convert_time}</li>
 			<li>{phrase var='blog.by_user' full_name=$aItem|user:'':'':50:'':'author'}</li>
 		</ul>
 	</div>

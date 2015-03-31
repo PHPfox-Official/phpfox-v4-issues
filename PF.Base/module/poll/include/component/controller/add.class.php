@@ -53,7 +53,7 @@ class Poll_Component_Controller_Add extends Phpfox_Component
 			$aValidation['image_verification'] = Phpfox::getPhrase('captcha.complete_captcha_challenge');
 		}
 
-		$oValid = Phpfox::getLib('validator')->set(array(
+		$oValid = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_poll_form',	
 				'aParams' => $aValidation
 			)

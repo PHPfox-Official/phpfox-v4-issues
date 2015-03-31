@@ -57,7 +57,7 @@ class Custom_Component_Controller_Admincp_Add extends Phpfox_Component
 			'var_type' => Phpfox::getPhrase('custom.select_what_type_of_custom_field_this_is')
 		);
 		
-		$oCustomValidator = Phpfox::getLib('validator')->set(array(
+		$oCustomValidator = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_custom_field', 
 				'aParams' => $aFieldValidation,
 				'bParent' => true
@@ -142,7 +142,7 @@ class Custom_Component_Controller_Admincp_Add extends Phpfox_Component
 			'type_id' => Phpfox::getPhrase('custom.select_where_this_custom_field_should_be_located')			
 		);
 		
-		$oGroupValidator = Phpfox::getLib('validator')->set(array(
+		$oGroupValidator = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_group_field', 
 				'aParams' => $aGroupValidation,
 				'bParent' => true

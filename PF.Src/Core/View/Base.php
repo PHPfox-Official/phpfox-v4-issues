@@ -17,6 +17,7 @@ abstract class Base extends \Twig_Template {
 		}
 		else if ($name == 'right') {
 			$this->_loadBlocks(3);
+			\Phpfox::getBlock('ad.display', array('block_id' => 3));
 		}
 		else if ($name == 'content') {
 			$this->_loadBlocks(2);

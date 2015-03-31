@@ -228,46 +228,16 @@ defined('PHPFOX') or exit('NO DICE!');
 								</div>
 							</div>
 							<div class="clear"></div>
-						</div>			
-						
-						<div class="table">
-							<div class="table_left">
-								{if Phpfox::getParam('ad.multi_ad')}
-									{phrase var='ad.image'}:
-								{else}
-									{phrase var='ad.image_optional'}:
-								{/if}
-							</div>
-							<div class="table_right">
-								<a href="#" id="link_show_image_uploader" style="z-index:1;" onclick="var thisPosition = $(this).position(); $('#js_upload_image_holder_frame').css({l}'top': thisPosition.top + 'px', 'left': '0px', 'z-index': '1000px'{r}); $('#js_upload_image_holder_frame').show(); return false;"> {phrase var='ad.choose_image'} </a>
-								<div id="js_image_holder"></div>
-								<div id="js_image_holder_link" style="display:none;">
-									<a href="#">{phrase var='ad.change_image'}</a>
-								</div>
-								<div id="js_image_holder_message" style="display:none;">{img theme='ajax/small.gif'}</div>
-								<div class="extra_info" style="padding-top:35px;">				
-									<div id="js_image_error" style="display:none;">
-										<div class="error_message" style="width:60%;">
-											{phrase var='ad.we_only_accept_the_following_extensions_gif_jpg_and_png'}
-										</div>
-									</div>
-									{phrase var='ad.supported_extensions_gif_jpg_and_png'}
-									{if Phpfox::getParam('ad.multi_ad')}
-									&middot; Recommended image dimensions are 100x72 pixels.
-									{/if}
-								</div>
-							</div>
-							<div class="clear"></div>
-						</div>		
+						</div>
 					</div>
 					
-					<div id="js_upload_ad" class="hide_sub_block" style="display:none;">
+					<div id="js_upload_ad" class="hide_sub_block">
 						<div class="table">
 							<div class="table_left">
 								{phrase var='ad.image'}:
 							</div>
 							<div class="table_right">
-								<input type="file" name="image" />
+								<input type="file" name="image" class="ajax_upload" data-url="{url link='ad.image'}" />
 								<div class="extra_info">				
 									{phrase var='ad.supported_extensions_gif_jpg_and_png'}		
 								</div>
@@ -275,8 +245,6 @@ defined('PHPFOX') or exit('NO DICE!');
 							<div class="clear"></div>
 						</div>			
 					</div>
-					
-					
 					
 					<div class="table">
 						<div class="table_left">

@@ -45,9 +45,9 @@ class Cache {
 
 		$key = $this->cacheId();
 		if ((int) $modified_since === (int) $last_modified && $etag === $etagHeader && $this->_cache->get($key)) {
-			// header('HTTP/1.1 304 Not Modified');
+			header('HTTP/1.1 304 Not Modified');
 
-			// return true;
+			return true;
 		}
 
 		$this->_cache->set($key, [

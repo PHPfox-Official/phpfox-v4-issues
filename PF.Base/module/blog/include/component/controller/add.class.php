@@ -119,7 +119,7 @@ class Blog_Component_Controller_Add extends Phpfox_Component
 		
 		(($sPlugin = Phpfox_Plugin::get('blog.component_controller_add_process_validation')) ? eval($sPlugin) : false);
 
-		$oValid = Phpfox::getLib('validator')->set(array(
+		$oValid = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'core_js_blog_form', 
 				'aParams' => $aValidation
 			)

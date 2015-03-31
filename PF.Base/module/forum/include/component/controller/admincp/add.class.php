@@ -24,7 +24,7 @@ class Forum_Component_Controller_Admincp_Add extends Phpfox_Component
 			'name' => Phpfox::getPhrase('forum.provide_a_name_for_your_forum')
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array(
+		$oValid = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_form', 
 				'aParams' => $aValidation
 			)

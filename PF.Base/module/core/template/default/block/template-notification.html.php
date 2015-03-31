@@ -15,13 +15,15 @@ defined('PHPFOX') or exit('NO DICE!');
 <nav class="notifications">
 	<ul>
 		<li>
-			<a href="#" class="_search">
+			<a href="#" class="_panel" data-open="{url link='search.panel'}">
 				<i class="fa fa-search"></i>
 				Search
 			</a>
+			{*
 			<form method="post" id='header_search_form' action="{url link='search'}">
 				<input type="text" name="q" placeholder="{phrase var='core.search_dot'}" id="header_sub_menu_search_input" autocomplete="off" class="js_temp_friend_search_input" />
 			</form>
+			*}
 		</li>
 		<li>
 			<a href="#" class="_panel" data-open="{url link='notification.panel'}">

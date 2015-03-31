@@ -15,6 +15,10 @@ defined('PHPFOX') or exit('NO DICE!');
     <div class="item_info">
 		{$aPoll.time_stamp|convert_time} {phrase var='poll.by'} {$aPoll|user}
     </div>
+
+{if $aPoll.image_path}
+<div class="item_banner image_load" data-src="{img server_id=$aPoll.server_id title=$aPoll.question path='poll.url_image' file=$aPoll.image_path suffix='' return_url=true}"></div>
+{/if}
     
 	{if isset($bIsViewingPoll) && (isset($aPoll.view_id) && !isset($bDesign) && $aPoll.view_id == 1)}
 	<div class="message js_moderation_off" id="js_approve_message">
@@ -83,14 +87,6 @@ defined('PHPFOX') or exit('NO DICE!');
 
 
 				<div class="item_content">
-
-			{if isset($aPoll.image_path) && $aPoll.image_path != ''}
-			<div class="item_image" style="width:{param var='poll.poll_max_image_pic_size'}px;">
-				{img thickbox=true server_id=$aPoll.server_id title=$aPoll.question path='poll.url_image' file=$aPoll.image_path suffix=$sSuffix max_width='poll.poll_max_image_pic_size' max_height='poll.poll_max_image_pic_size'}
-			</div>
-			<div class="item_image_content" style="margin-left:{param var='poll.poll_max_image_pic_size'}px;">
-			{/if}	
-
 			<div id="js_poll_results_{$aPoll.poll_id}">
 				{template file='poll.block.vote'}
 			</div>
@@ -116,11 +112,6 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}
 			{/if}
 		{/if}
-	{/if}
-	
-	{if isset($aPoll.image_path) && $aPoll.image_path != ''}
-		</div>
-	<div class="clear"></div>
 	{/if}
 
 

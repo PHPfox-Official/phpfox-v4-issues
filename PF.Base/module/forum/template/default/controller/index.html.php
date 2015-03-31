@@ -47,6 +47,10 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="clear"></div>
 </div>
 
+
+
+*}
+
 {if !count($aForums)}
 <div class="extra_info">
 	{phrase var='forum.no_forums_have_been_created'}
@@ -60,8 +64,8 @@ defined('PHPFOX') or exit('NO DICE!');
 {template file='forum.block.entry'}
 {/if}
 
-*}
-
+{*
 {foreach from=$aThreads item=aThread}
 	{template file='forum.block.thread-entry'}
 {/foreach}
+*}

@@ -81,6 +81,11 @@
 			<source_code />
 			<source_parsed />
 		</block>
+		<block type_id="0" m_connection="core.index-visitor" module_id="feed" component="display" location="2" is_active="1" ordering="2" disallow_access="" can_move="0">
+			<title>Guest Feed</title>
+			<source_code />
+			<source_parsed />
+		</block>
 	</blocks>
 	<hooks>
 		<hook module_id="feed" hook_type="controller" module="feed" call_name="feed.component_controller_user_clean" added="1231838390" version_id="2.0.0alpha1" />

@@ -96,11 +96,6 @@
 		<setting group="" module_id="user" is_hidden="1" type="drop" var_name="login_module" phrase_var_name="setting_login_module" ordering="0" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:6:"cookie";s:6:"values";a:2:{i:0;s:6:"cookie";i:1;s:7:"session";}}]]></setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="core.index-visitor" module_id="user" component="register" location="11" is_active="1" ordering="3" disallow_access="" can_move="0">
-			<title>Registration Block</title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="user.browse" module_id="user" component="filter" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
 			<title></title>
 			<source_code />
@@ -108,6 +103,16 @@
 		</block>
 		<block type_id="0" m_connection="user.browse" module_id="user" component="featured" location="1" is_active="1" ordering="2" disallow_access="" can_move="0">
 			<title></title>
+			<source_code />
+			<source_parsed />
+		</block>
+		<block type_id="0" m_connection="core.index-visitor" module_id="user" component="register" location="3" is_active="1" ordering="1" disallow_access="" can_move="0">
+			<title>User SignUp for Guests</title>
+			<source_code />
+			<source_parsed />
+		</block>
+		<block type_id="0" m_connection="core.index-visitor" module_id="user" component="featured" location="1" is_active="1" ordering="3" disallow_access="" can_move="0">
+			<title>Featured Users for Guests</title>
 			<source_code />
 			<source_parsed />
 		</block>

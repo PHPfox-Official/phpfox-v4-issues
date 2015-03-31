@@ -25,7 +25,6 @@ class Ad_Component_Controller_Add extends Phpfox_Component
 		// $aAllCountries = Phpfox::getService('core.country')->get();
 		$aAllCountries = Phpfox::getService('core.country')->getCountriesAndChildren();
 		
-		
 		$bIsEdit = false;
 		$bCompleted = ($this->request()->get('req3') == 'completed' ? true : false);		
 		if (($iId = $this->request()->getInt('id')) && ($aAd = Phpfox::getService('ad')->getForEdit($iId)))
@@ -73,7 +72,7 @@ class Ad_Component_Controller_Add extends Phpfox_Component
 			$aValidation['total_view'] = Phpfox::getPhrase('ad.define_how_many_impressions_for_this_ad');
 		}
 		
-		$oValidator = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));			
+		$oValidator = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if (($aVals = $this->request()->getArray('val')))
 		{
@@ -163,7 +162,7 @@ class Ad_Component_Controller_Add extends Phpfox_Component
 				)
 			);			
 		}
-		
+
 		$this->template()->setTitle(($bIsEdit ? Phpfox::getPhrase('ad.updating_an_ad') : Phpfox::getPhrase('ad.creating_an_ad')))	
 			->setBreadcrumb(Phpfox::getPhrase('ad.advertise'), $this->url()->makeUrl('ad'))
 			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('ad.updating_an_ad') : Phpfox::getPhrase('ad.creating_an_ad')), $this->url()->makeUrl('ad.add'), true)
@@ -192,9 +191,9 @@ class Ad_Component_Controller_Add extends Phpfox_Component
 			)
 			->setHeader('cache', array(					
 					'jquery/plugin/jquery.limitTextarea.js' => 'static_script',
-					'colorpicker.js' => 'static_script',
-					'colorpicker.css' => 'style_css',
-					'colorpicker/js/colorpicker.js' => 'static_script',
+					// 'colorpicker.js' => 'static_script',
+					// 'colorpicker.css' => 'style_css',
+					// 'colorpicker/js/colorpicker.js' => 'static_script',
 					'add.css' => 'module_ad',
 					'<script type="text/javascript">$Behavior.setMulti = function(){ oParams[\'ad.multi_ad\'] = ' . (Phpfox::getParam('ad.multi_ad') ? 'true': 'false'). ';};</script>'
 				)

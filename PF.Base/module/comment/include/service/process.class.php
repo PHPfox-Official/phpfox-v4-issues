@@ -139,7 +139,7 @@ class Comment_Service_Process extends Phpfox_Service
 		{
 			$aInsert['author'] = substr($aVals['author'], 0, 255);
 			$aInsert['author_email'] = $aVals['author_email'];
-			if (!empty($aVals['author_url']) && Phpfox::getLib('validator')->verify('url', $aVals['author_url']))
+			if (!empty($aVals['author_url']) && Phpfox_Validator::instance()->verify('url', $aVals['author_url']))
 			{
 				$aInsert['author_url'] = $aVals['author_url'];
 			}

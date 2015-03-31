@@ -66,12 +66,7 @@ class Phpfox_Validator
 		'url' => '~(?>[a-z+]{2,}://|www\.)(?:[a-z0-9]+(?:\.[a-z0-9]+)?@)?(?:(?:[a-z](?:[a-z0-9]|(?<!-)-)*[a-z0-9])(?:\.[a-z](?:[a-z0-9]|(?<!-)-)*[a-z0-9])+|(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))(?:/[^\\/:?*"<>|\n]*[a-z0-9])*/?(?:\?[a-z0-9_.%]+(?:=[a-z0-9_.%:/+-]*)?(?:&[a-z0-9_.%]+(?:=[a-z0-9_.%:/+-]*)?)*)?(?:#[a-z0-9_%.]+)?~is',
 		'currency_id' => '/^[A-Z]{3,3}$/'
 	);
-	
-	public function allowZero()
-	{
-		$this->_bAllowZero = true;
-		return $this;
-	}
+
 	/**
 	 * Class constructor used to load default validator rules.
 	 * Found in the file: include/setting/validator.sett.php
@@ -85,6 +80,19 @@ class Phpfox_Validator
 		$this->_aRegex['user_name'] = '/^[a-zA-Z0-9_\- ]{' . Phpfox::getParam('user.min_length_for_username') . ',' . Phpfox::getParam('user.max_length_for_username') . '}$/';
 		
 		(($sPlugin = Phpfox_Plugin::get('validator_construct')) ? eval($sPlugin) : false);
+	}
+
+	/**
+	 * @return $this
+	 */
+	public static function instance() {
+		return Phpfox::getLib('validator');
+	}
+
+	public function allowZero()
+	{
+		$this->_bAllowZero = true;
+		return $this;
 	}
 	
 	/**

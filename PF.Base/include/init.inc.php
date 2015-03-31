@@ -142,7 +142,7 @@ Phpfox::getLib('setting')->set();
 // Start a session if needed
 if (!defined('PHPFOX_NO_SESSION'))
 {
-	Phpfox::getLib('session.handler')->init();
+	// Phpfox_Session_Handler::instance()->init();
 }
 
 if (!defined('PHPFOX_NO_USER_SESSION'))

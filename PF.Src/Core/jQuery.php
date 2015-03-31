@@ -14,6 +14,8 @@ namespace Core;
  * @method jQuery addClass($class)
  * @method jQuery remove()
  * @method jQuery parent()
+ * @method jQuery show()
+ * @method jQuery hide()
  * @method jQuery val($value)
  */
 class jQuery {

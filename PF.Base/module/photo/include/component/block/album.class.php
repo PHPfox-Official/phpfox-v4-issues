@@ -46,7 +46,7 @@ class Photo_Component_Block_Album extends Phpfox_Component
 			'privacy' => Phpfox::getPhrase('photo.select_a_privacy_setting_for_your_album')
 		);				
 
-		$oValid = Phpfox::getLib('validator')->set(array(
+		$oValid = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_create_new_album', 
 				'aParams' => $aValidation
 			)

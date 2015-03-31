@@ -80,6 +80,10 @@ defined('PHPFOX') or exit('NO DICE!');
 			{$aFeed.feed_image_banner}
 		{/if}
 
+			{if isset($aFeed.load_block)}
+				{module name=$aFeed.load_block}
+			{else}
+
 			<div class="feed_block_title_content {if (!empty($aFeed.feed_content) || !empty($aFeed.feed_custom_html)) && empty($aFeed.feed_image) && empty($aFeed.feed_image_banner)} activity_feed_content_no_image{/if}{if !empty($aFeed.feed_image)} activity_feed_content_float{/if}"{if isset($aFeed.feed_custom_width)} style="margin-left:{$aFeed.feed_custom_width};"{/if}>
 				{if !empty($aFeed.feed_title)}
 					{if isset($aFeed.feed_title_sub)}
@@ -115,6 +119,8 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/if}
 				
 			</div>
+
+			{/if}
 
 		{if isset($aFeed.feed_image_banner)}
 		</div>

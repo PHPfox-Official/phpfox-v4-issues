@@ -21,7 +21,7 @@ class Phpfox_Session_Handler
 	 *
 	 * @var object
 	 */
-	private $_oObject = null;
+	private static $_oObject = null;
 
 	/**
 	 * Class constructor which loads the session hanlder we should use.
@@ -30,9 +30,10 @@ class Phpfox_Session_Handler
 	 */
 	public function __construct()
 	{
-		if (!$this->_oObject)
+		if (!self::$_oObject)
 		{
-			$sStorage = 'phpfox.session.handler.default';		
+			$sStorage = 'phpfox.session.handler.default';
+			/*
 			if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
 			{
 				$sStorage = 'phpfox.session.handler.memcache';
@@ -51,21 +52,35 @@ class Phpfox_Session_Handler
 					}
 				}
 			}
+			*/
 			
-			$this->_oObject = Phpfox::getLib($sStorage);
+			self::$_oObject = Phpfox::getLib($sStorage);
 		}
-		return $this->_oObject;
+		// return self::$_oObject;
 	}	
 	
 	/**
 	 * Get session object.
 	 *
-	 * @return Returns the session object we loaded with the class constructor.
+	 * @return Phpfox_Session_Handler_Default
 	 */
 	public function &getInstance()
 	{
-		return $this->_oObject;
-	}	
-}
+		return self::$_oObject;
+	}
 
-?>
+	/**
+	 * @return Phpfox_Session_Handler_Default
+	 */
+	public static function instance() {
+		if (!self::$_oObject) {
+			new self();
+		}
+
+		return self::$_oObject;
+	}
+
+	public function __call($method, $args) {
+		return call_user_func_array([self::$_oObject, $method], $args);
+	}
+}

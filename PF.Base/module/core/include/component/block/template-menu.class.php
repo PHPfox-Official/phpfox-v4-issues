@@ -20,7 +20,12 @@ class Core_Component_Block_Template_Menu extends Phpfox_Component
 	 */
 	public function process()
 	{
-		
+		if (Phpfox::isUser()) {
+			list(,$pages) = Pages_Service_Pages::instance()->getMyLoginPages(0, 20);
+			$this->template()->assign([
+				'pages' => $pages
+			]);
+		}
 	}
 	
 	/**

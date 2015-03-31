@@ -61,7 +61,7 @@ class Marketplace_Component_Controller_Add extends Phpfox_Component
 			)
 		);
 		
-		$oValidator = Phpfox::getLib('validator')->set(array(
+		$oValidator = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_marketplace_form',
 				'aParams' => $aValidation
 			)

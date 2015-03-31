@@ -73,7 +73,7 @@ class Newsletter_Component_Controller_Admincp_Add extends Phpfox_Component
 		);
 
 		// 2 = html; 1 = plain text;
-		$oValidator = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
+		$oValidator = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		$aAge = array();
 		for ($i = 18; $i <= 68; $i++)
 		{

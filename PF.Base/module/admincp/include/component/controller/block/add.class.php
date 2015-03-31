@@ -41,7 +41,7 @@ class Admincp_Component_Controller_Block_Add extends Phpfox_Component
 			'is_active' => Phpfox::getPhrase('admincp.specify_block_active')
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));		
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{			

@@ -2,7 +2,7 @@
 #panel {
 	position:fixed;
 	top:0px;
-	left:(@navWidth - 400);
+	left:-(@navWidth + 300);
 	bottom:0px;
 	width:300px;
 	z-index:299;
@@ -17,6 +17,21 @@
 	#panel {
 		left:@navWidth;
 		transition:@transition;
+	}
+
+	#panel.is_feed {
+		z-index:2000;
+		bottom:auto;
+		left:10px;
+		top:0px;
+		margin-top:-40px;
+		width:600px;
+		overflow:visible;
+
+		-moz-transition: none;
+		-webkit-transition: none;
+		-o-transition: color 0 ease-in;
+		transition: none;
 	}
 }
 

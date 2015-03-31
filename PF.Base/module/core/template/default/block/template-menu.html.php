@@ -30,4 +30,22 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/foreach}
 	</ul>
 	{/if}
+	{if Phpfox::isUser()}
+	<div class="nav_pages_holder">
+		<div class="nav_title">
+			<a href="{url link='pages'}" class="browse">
+				<i class="fa fa-th"></i>
+				Pages
+			</a>
+			<a href="{url link='pages.add'}" class="create">Create</a>
+		</div>
+		<div class="nav_pages">
+			{foreach from=$pages item=page}
+			<a href="#" data-src="{img server_id=$page.user_server_id path='core.url_user' file=$page.user_image suffix='_120_square' return_url=true}" class="image_load js_hover_title">
+				<span class="js_hover_info">{$page.title|clean}</span>
+			</a>
+			{/foreach}
+		</div>
+	</div>
+	{/if}
 </nav>

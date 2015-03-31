@@ -24,7 +24,7 @@ class Blog_Component_Controller_Admincp_Add extends Phpfox_Component
 			'name' => Phpfox::getPhrase('blog.provide_blog_category')
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));	
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 
 		if ($aVals = $this->request()->getArray('val'))
 		{			

@@ -1,3 +1,4 @@
+{if $aMessages}
 <ul class="panel_rows">
 	{foreach from=$aMessages item=aMail}
 	<li><a href="{url link='mail.thread' id=$aMail.thread_id}" class="popup {if $aMail.viewer_is_new} is_new{/if}" data-custom-class="mail_thread">
@@ -27,3 +28,8 @@
 	</li>
 	{/foreach}
 </ul>
+{else}
+<div class="message">
+	No new messages
+</div>
+{/if}

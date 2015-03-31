@@ -16,15 +16,19 @@
 </div>
 
 {if $sPublicMessage && !is_bool($sPublicMessage)}
-<div class="public_message" id="public_message">
-	{$sPublicMessage}
+<div class="block">
+	<div class="content">
+		<div class="public_message" id="public_message">
+			{$sPublicMessage}
+		</div>
+	</div>
+	<script type="text/javascript">
+		$Behavior.template_error = function()
+		{l}
+		$('#public_message').show();
+		{r};
+	</script>
 </div>
-<script type="text/javascript">
-	$Behavior.template_error = function()
-	{l}
-	$('#public_message').show();
-	{r};
-</script>
 {/if}
 <div id="pem"><a href="#"></a></div>
 <div id="core_js_messages">

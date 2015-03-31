@@ -52,9 +52,7 @@ defined('PHPFOX') or exit('NO DICE!');
 {else}
 <form method="post" action="#" onsubmit="$Core.ajaxMessage(); $(this).ajaxCall('user.updateSettings'); return false;">	
 	<div><input type="hidden" name="id" value="{$aForms.user_group_id}" /></div>	
-	<div class="table_header">
-		{phrase var='user.module_settings'}
-	</div>	
+
 	<div id="content_editor_holder">
 		<div id="content_editor_menu">
 			<ul>

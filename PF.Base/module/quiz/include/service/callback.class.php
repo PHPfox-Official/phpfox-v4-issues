@@ -162,7 +162,7 @@ class Quiz_Service_Callback extends Phpfox_Service
 		if ($sAction == 'approve')
 		{
 			// Update the blog count
-			Phpfox::getService('quiz.process')->updateCounter($iId);
+			Quiz_Service_Process::instance()->updateCounter($iId);
 
 			// Get the blogs details so we can add it to our news feed
 			$aQuiz = $this->database()->select('q.quiz_id, q.user_id, q.title_url, ct.text_parsed, c.user_id AS comment_user_id, c.comment_id')
@@ -423,7 +423,7 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 			->execute('getSlaveRows');
 		foreach ($aQuizzes as $aQuiz)
 		{
-			Phpfox::getService('quiz.process')->deleteQuiz($aQuiz['quiz_id'], $iUser);
+			Quiz_Service_Process::instance()->deleteQuiz($aQuiz['quiz_id'], $iUser);
 		}
 	}
 	
@@ -686,14 +686,12 @@ Phpfox::getPhrase('quiz.full_name_commented_on_gender_quiz',array('full_name' =>
 					'server_id' => $aRow['server_id'],
 					'path' => 'quiz.url_image',
 					'file' => $aRow['image_path'],
-					'suffix' => '_' . Phpfox::getParam('quiz.quiz_max_image_pic_size'),
-					'max_width' => Phpfox::getParam('quiz.quiz_max_image_pic_size'),
-					'max_height' => Phpfox::getParam('quiz.quiz_max_image_pic_size')					
+					'suffix' => ''
 				)
 			);			
 			
-			$aReturn['feed_image'] = $sImage;
-			$aReturn['feed_custom_width'] = '78px';
+			$aReturn['feed_image_banner'] = $sImage;
+			// $aReturn['feed_custom_width'] = '78px';
 		}
 		
 		if ($bIsChildItem)

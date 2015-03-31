@@ -40,7 +40,7 @@ class Core_Component_Controller_Index_Visitor_Mobile extends Phpfox_Component
 		}
 		$aValidation['password'] = Phpfox::getPhrase('user.provide_your_password');		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_login_form', 'aParams' => $aValidation));
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_login_form', 'aParams' => $aValidation));
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{

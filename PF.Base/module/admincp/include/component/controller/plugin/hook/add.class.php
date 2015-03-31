@@ -31,7 +31,7 @@ class Admincp_Component_Controller_Plugin_Hook_Add extends Phpfox_Component
 			'hook_type' => Phpfox::getPhrase('admincp.select_what_type_of_a_hook_this_is')
 		);		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));		
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{

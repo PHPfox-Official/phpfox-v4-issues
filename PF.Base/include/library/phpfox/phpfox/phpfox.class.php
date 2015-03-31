@@ -1049,7 +1049,8 @@ class Phpfox
 			'main.js' => 'static_script',
 			'ajax.js' => 'static_script',
 			'thickbox/thickbox.js' => 'static_script',
-			'search.js' => 'module_friend'
+			'search.js' => 'module_friend',
+			'feed.js' => 'module_feed'
 		);
 		
 		(($sPlugin = Phpfox_Plugin::get('get_master_files')) ? eval($sPlugin) : false);

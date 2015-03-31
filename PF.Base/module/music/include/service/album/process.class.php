@@ -243,7 +243,7 @@ class Music_Service_Album_Process extends Phpfox_Service
 					return Phpfox_Error::set(Phpfox::getPhrase('music.provide_a_title_for_this_track'));
 				}
 				
-				if (!Phpfox::getService('music.process')->upload($aVals, $aAlbum['album_id']))
+				if (!Music_Service_Process::instance()->upload($aVals, $aAlbum['album_id']))
 				{
 					return false;
 				}
@@ -359,7 +359,7 @@ class Music_Service_Album_Process extends Phpfox_Service
 				
 			foreach ($aSongs as $aSong)
 			{
-				Phpfox::getService('music.process')->delete($aSong['song_id'], $aSong);
+				Music_Service_Process::instance()->delete($aSong['song_id'], $aSong);
 			}
 			
 			(Phpfox::isModule('feed') ? Phpfox::getService('feed.process')->delete('comment_music_album', $iId) : null);

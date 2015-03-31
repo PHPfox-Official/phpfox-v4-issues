@@ -95,7 +95,7 @@ class Mail_Component_Controller_View extends Phpfox_Component
 		
 		(($sPlugin = Phpfox_Plugin::get('mail.component_controller_view_process_validation')) ? eval($sPlugin) : false);
 
-		$oValid = Phpfox::getLib('validator')->set(array(
+		$oValid = Phpfox_Validator::instance()->set(array(
 				'sFormName' => 'js_form', 
 				'aParams' => $aValidation
 			)

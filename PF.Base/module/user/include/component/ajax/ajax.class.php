@@ -139,7 +139,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		$aVal['user_name'] = str_replace(' ', '_', $aVal['user_name']);
 		
-		if (Phpfox::getLib('validator')->verify('username', $aVal['user_name']))
+		if (Phpfox_Validator::instance()->verify('username', $aVal['user_name']))
 		{
 			Phpfox::getService('user.validate')->user($aVal['user_name']);
 
@@ -165,7 +165,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		$aVal['user_name'] = str_replace(' ', '_', $aVal['user_name']);
 	
-		if (Phpfox::getLib('validator')->verify('username', $aVal['user_name']))
+		if (Phpfox_Validator::instance()->verify('username', $aVal['user_name']))
 		{
 			Phpfox::getService('user.validate')->user($aVal['user_name']);
 
@@ -293,7 +293,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		$aVals = $this->get('val');		
 				
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => Phpfox::getService('user.register')->getValidation($this->get('step'))));		
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => Phpfox::getService('user.register')->getValidation($this->get('step'))));
 		
 		if ($this->get('step') == '1')
 		{
@@ -393,7 +393,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 			$aValidation['year'] = Phpfox::getPhrase('user.select_year_of_birth');
 		}	
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
 		
 		if (!$oValid->isValid($this->get('val')))
 		{
@@ -443,7 +443,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		$aUser['user_name'] = str_replace(' ', '_', $aUser['user_name']);
 		
-		Phpfox::getLib('validator')->verify('username', $aUser['user_name']);		
+		Phpfox_Validator::instance()->verify('username', $aUser['user_name']);
 		
 		if (!Phpfox_Error::isPassed())
 		{			
@@ -480,7 +480,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 			while ( count($aValidNames) < Phpfox::getParam('user.how_many_usernames_to_suggest'))
 			{
 				$sTry = $aSuggestedNames[array_rand($aSuggestedNames)] . $iRand;
-				if (Phpfox::getLib('validator')->verify('username', $sTry)
+				if (Phpfox_Validator::instance()->verify('username', $sTry)
 					&& Phpfox::getLib('parse.input')->allowTitle($sTry, 'Username is already in use.')
 					&& Phpfox::getService('ban')->check('username', $sTry)	
 				)

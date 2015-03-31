@@ -42,7 +42,7 @@ class Language_Component_Controller_Admincp_Phrase_Add extends Phpfox_Component
 		*/
 		$aValidation = array();		
 		
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_phrase_form', 'aParams' => $aValidation));		
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_phrase_form', 'aParams' => $aValidation));
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{			

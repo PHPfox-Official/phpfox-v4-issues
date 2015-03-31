@@ -32,7 +32,7 @@ class User_Component_Controller_Register extends Phpfox_Component
 			$this->url()->send('profile');
 		}
 
-		$oValid = Phpfox::getLib('validator')->set(array('sFormName' => 'js_form', 'aParams' => Phpfox::getService('user.register')->getValidation()));
+		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => Phpfox::getService('user.register')->getValidation()));
 		if ($aVals = $this->request()->getArray('val'))
 		{
 			if (Phpfox::isModule('invite') && Phpfox::getService('invite')->isInviteOnly())

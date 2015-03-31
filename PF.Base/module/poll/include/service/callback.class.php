@@ -615,10 +615,12 @@ class Poll_Service_Callback extends Phpfox_Service
 		
 		$aRow = Phpfox::getService('poll')->getPollByUrl($aRow['item_id']);				
 
+		/*
 		$aRow['poll_is_in_feed'] = true;
 		$oTpl = Phpfox_Template::instance();
 		$oTpl->assign(array('aPoll' => $aRow, 'iKey' => rand(2,900)));
 		$sOutput = $oTpl->getTemplate('poll.block.vote', true);
+		*/
 		
 		$aReturn = array(
 			'feed_title' => $aRow['question'],
@@ -632,7 +634,7 @@ class Poll_Service_Callback extends Phpfox_Service
 			'enable_like' => true,			
 			'comment_type_id' => 'poll',
 			'like_type_id' => 'poll',			
-			'feed_custom_html' => $sOutput
+			// 'feed_custom_html' => $sOutput
 		);
 		
 		if (!empty($aRow['image_path']))
@@ -641,14 +643,12 @@ class Poll_Service_Callback extends Phpfox_Service
 					'server_id' => $aRow['server_id'],
 					'path' => 'poll.url_image',
 					'file' => $aRow['image_path'],
-					'suffix' => '_' . Phpfox::getParam('poll.poll_max_image_pic_size'),
-					'max_width' => Phpfox::getParam('poll.poll_max_image_pic_size'),
-					'max_height' => Phpfox::getParam('poll.poll_max_image_pic_size')
+					'suffix' => ''
 				)
 			);			
 			
-			$aReturn['feed_image'] = $sImage;
-			$aReturn['feed_custom_width'] = '78px';
+			$aReturn['feed_image_banner'] = $sImage;
+			// $aReturn['feed_custom_width'] = '78px';
 		}
 		
 		if ($bIsChildItem)

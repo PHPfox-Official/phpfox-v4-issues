@@ -42,32 +42,25 @@
 	{/if}
 	<form class="poll_form" method="post" action="{url link='current'}" id="js_poll_form_{$aPoll.poll_id}">
 		<div><input type="hidden" name="val[poll_id]" value="{$aPoll.poll_id}" /></div>
-		{if isset($aPoll.answer)}
-		{foreach from=$aPoll.answer item=answer}
-		{if !empty($answer.answer)}
-		<div class="p_bottom_15">
-			<label {if !isset($aPoll.poll_is_in_feed)}onclick="$('#js_submit_vote{if isset($iKey)}_{$iKey}{/if}').show(); $('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').attr('checked', false); $(this).find('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').attr('checked', true);"{/if}>
-			{if !isset($aPoll.poll_is_in_feed)}<input class="checkbox js_poll_answer{if isset($iKey)}_{$iKey}{/if}" type="radio" name="val[answer]" value="{$answer.answer_id}" style="vertical-align:middle;" />{/if}
-			<span title="{$answer.answer|clean}">{$answer.answer|clean|split:50|shorten:150:'...'}</span>
-			</label>
-		</div>
-		{/if}
-		{/foreach}
-		{/if}
-		<div class="p_top_15" id="js_submit_vote{if isset($iKey)}_{$iKey}{/if}" style="display:none;">
-			{if isset($aPoll.view_id) && !isset($bDesign) && $aPoll.view_id == 1}
-			<div class="extra_info js_moderation_off">
-				{phrase var='poll.cannot_cast_a_vote_when_a_poll_is_pending_approval'}
+		<div class="poll_question">
+			{if isset($aPoll.answer)}
+			{foreach from=$aPoll.answer item=answer}
+			{if !empty($answer.answer)}
+			<div class="p_bottom_15">
+				<label {if !isset($aPoll.poll_is_in_feed)}onclick="$('#js_submit_vote{if isset($iKey)}_{$iKey}{/if}').show(); $('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').attr('checked', false); $(this).find('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').attr('checked', true);"{/if}>
+				{if !isset($aPoll.poll_is_in_feed)}<input class="checkbox js_poll_answer{if isset($iKey)}_{$iKey}{/if}" type="radio" name="val[answer]" value="{$answer.answer_id}" style="vertical-align:middle;" />{/if}
+				<span title="{$answer.answer|clean}">{$answer.answer|clean|split:50|shorten:150:'...'}</span>
+				</label>
 			</div>
 			{/if}
-			<div {if !isset($aPoll.poll_is_in_feed) && (isset($aPoll.view_id) && !isset($bDesign) && $aPoll.view_id == 1)}style="display:none;" class="js_moderation_on"{/if}>
-			<input type="button" value="{phrase var='poll.submit_your_vote'}" class="button" onclick="$(this).parent().hide(); $(this).parents('.p_4:first').find('.js_poll_image_ajax:first').show(); $('#js_poll_form_{$aPoll.poll_id}').ajaxCall('poll.addVote');return false;" />&nbsp;<input type="button" class="button button_off" onclick="$('#js_poll_form_{$aPoll.poll_id}')[0].reset(); $('#js_submit_vote{if isset($iKey)}_{$iKey}{/if}').hide();" value="{phrase var='poll.cancel_uppercase'}" />
+			{/foreach}
+			{/if}
 		</div>
+		<div><input type="button" value="{phrase var='poll.submit_your_vote'}" class="button_link" onclick="$(this).parent().hide(); $(this).parents('.p_4:first').find('.js_poll_image_ajax:first').show(); $('#js_poll_form_{$aPoll.poll_id}').ajaxCall('poll.addVote');return false;" /></div>
 		<div class="js_poll_image_ajax" style="display:none;">
 			{img theme='ajax/add.gif' class='v_middle'}
 		</div>
-</div>
-</form>
+	</form>
 {if !PHPFOX_IS_AJAX}
 </div>
 {/if}

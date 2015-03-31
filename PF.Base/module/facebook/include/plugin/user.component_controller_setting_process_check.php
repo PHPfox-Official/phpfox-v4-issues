@@ -13,7 +13,7 @@
 			}
 			else 
 			{
-				Phpfox::getLib('validator')->verify('email', $aVals['email']);
+				Phpfox_Validator::instance()->verify('email', $aVals['email']);
 			}
 		}
 	}

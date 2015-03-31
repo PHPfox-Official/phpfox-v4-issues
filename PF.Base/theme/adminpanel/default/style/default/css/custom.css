@@ -3459,6 +3459,14 @@ i._zz {
   top: 36px;
   font-size: 30px;
 }
+.no_image_item {
+  display: inline-block;
+  background: #fafafa;
+}
+.i_size__120_square {
+  width: 120px;
+  height: 120px;
+}
 .admincp_manager .am_top {
   background: #0c0c0c;
   color: #808080;

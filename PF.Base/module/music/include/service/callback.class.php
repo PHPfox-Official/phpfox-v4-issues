@@ -52,11 +52,11 @@ class Music_Service_Callback extends Phpfox_Service
 	{
 	    if ($aParams['section'] == 'album')
 	    {
-		return Phpfox::getService('music.process')->sponsorAlbum($aParams['item_id'], 1);
+		return Music_Service_Process::instance()->sponsorAlbum($aParams['item_id'], 1);
 	    }
 	    if ($aParams['section'] == 'song')
 	    {
-		return Phpfox::getService('music.process')->sponsorSong($aParams['item_id'], 1);
+		return Music_Service_Process::instance()->sponsorSong($aParams['item_id'], 1);
 	    }
 	}
 
@@ -531,7 +531,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 
 		foreach ($aSongs as $aSong)
 		{
-			Phpfox::getService('music.process')->delete($aSong['song_id']);
+			Music_Service_Process::instance()->delete($aSong['song_id']);
 		}
 		
 
@@ -1073,7 +1073,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 				->leftJoin(Phpfox::getT('like'), 'l', 'l.type_id = \'music_song\' AND l.item_id = ms.song_id AND l.user_id = ' . Phpfox::getUserId());
 		}
 		
-		$aRow = $this->database()->select('ms.song_id, ms.title, ms.module_id, ms.item_id, ms.description, ms.total_play, ms.privacy, ms.time_stamp, ms.total_comment, ms.total_like, ms.user_id')
+		$aRow = $this->database()->select('ms.*')
 			->from(Phpfox::getT('music_song'), 'ms')
 			->where('ms.song_id = ' . (int) $aItem['item_id'])
 			->execute('getSlaveRow');		
@@ -1101,13 +1101,17 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 			$bShowAlbumTitle = true;	
 		}
 
-		$iTitleLength = (Phpfox::isModule('notification') ? (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ) : 50);
+		$aRow['is_in_feed'] = true;
+		$aRow['song_path'] = Phpfox::getService('music')->getSongPath($aRow['song_path'], $aRow['server_id']);
+		Phpfox_Template::instance()->assign('aSong', $aRow);
+
+		// $iTitleLength = (Phpfox::isModule('notification') ? (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ) : 50);
 		$aReturn = array(
-			'feed_title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], $iTitleLength, '...'),
-			'feed_status' => $aRow['description'],
+			'feed_title' => '', // Phpfox::getLib('parse.output')->shorten($aRow['title'], $iTitleLength, '...'),
+			// 'feed_status' => $aRow['description'],
 			'feed_info' => ($bShowAlbumTitle ? Phpfox::getPhrase('feed.shared_a_song_from_gender_album_a_href_album_link_album_name_a', array('gender' => Phpfox::getService('user')->gender($aRow['gender'], 1), 'album_link' => Phpfox_Url::instance()->permalink('music.album', $aRow['album_id'], $aRow['album_name']), 'album_name' => Phpfox::getLib('parse.output')->shorten($aRow['album_name'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ), '...'))) : Phpfox::getPhrase('feed.shared_a_song')),
 			'feed_link' => Phpfox::permalink('music', $aRow['song_id'], $aRow['title']),
-			'feed_content' => ($aRow['total_play'] > 1 ? $aRow['total_play'] . ' ' . Phpfox::getPhrase('music.plays_lowercase') : Phpfox::getPhrase('music.1_play')),
+			// 'feed_content' => ($aRow['total_play'] > 1 ? $aRow['total_play'] . ' ' . Phpfox::getPhrase('music.plays_lowercase') : Phpfox::getPhrase('music.1_play')),
 			'total_comment' => $aRow['total_comment'],
 			'feed_total_like' => $aRow['total_like'],
 			'feed_is_liked' => (isset($aRow['is_liked']) ? $aRow['is_liked'] : false),
@@ -1116,17 +1120,21 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 			'enable_like' => true,
 			'comment_type_id' => ($bIsAlbum ? 'music_album' : 'music_song'),
 			'like_type_id' => 'music_song',
-			'feed_custom_width' => '38px',
+			// 'feed_custom_width' => '38px',
+			'load_block' => 'music.rows',
 			'custom_data_cache' => $aRow,
+			'' => '',
+			/*
 			'song' => array(
 				'privacy' => $aRow['privacy'],
 				'song_id' => $aRow['song_id'],
 				'user_id' => $aRow['user_id'],
 				'is_on_profile' => $aRow['is_on_profile']
 			)
+			*/
 		);
 
-		
+		/*
 		if (!$bIsChildItem || (isset($aItem['feed_id']) && $aItem['feed_id'] > 0))
 		{
 			$aReturn['feed_image'] = Phpfox::getLib('image.helper')->display(array(
@@ -1140,6 +1148,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 			$aReturn['feed_image_onclick'] = '$(this).parents(\'.' . $sParentId . ':first\').attr(\'id\', \'js_play_music_song_' . (isset($aItem['feed_id']) ? $aItem['feed_id'] : 0) . '' . $aRow['song_id'] . '\'); $.ajaxCall(\'music.playInFeed\', \'id=' . $aRow['song_id'] . '&amp;feed_id=' . (isset($aItem['feed_id']) ? $aItem['feed_id'] : 0) . '\', \'GET\'); return false;';
 			$aReturn['feed_image_onclick_no_image'] = true;
 		}
+		*/
 		
 		if ($bIsChildItem)
 		{

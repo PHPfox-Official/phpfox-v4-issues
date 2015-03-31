@@ -13,6 +13,9 @@ defined('PHPFOX') or exit('NO DICE!');
  * <code>
  * $this->hide('#foo')->show('#bar')->html('Test Content')->call('init();');
  * </code>
+ *
+ * @method Phpfox_Ajax removeClass()
+ * @method Phpfox_Ajax addClass()
  * 
  * @copyright		[PHPFOX_COPYRIGHT]
  * @author			Raymond Benc
@@ -214,7 +217,7 @@ class Phpfox_Ajax
 	 *
 	 * @param string $sVar Name of the post param
 	 * @param mixed $mDef You can pass a default value incase the $_POST data was not sent
-	 * @return mixed Returns the value if the $_POST data, which is usually either a string or array
+	 * @return string|array
 	 */
 	public function get($sVar, $mDef = null)
 	{
@@ -259,7 +262,7 @@ class Phpfox_Ajax
 	 * @param string $sId HTML id for the element
 	 * @param string $sContent Content to place inside the HTML element
 	 * @param string $sExtra Optional jQuery functions you may want to execute
-	 * @return object Return the AJAX object
+	 * @return $this
 	 */
 	public function html($sId, $sContent, $sExtra = '')
 	{
@@ -281,7 +284,7 @@ class Phpfox_Ajax
 	 * @param string $sId HTML id for the element
 	 * @param string $sContent Content to prepend
 	 * @param string $sExtra Optional jQuery functions you may want to execute
-	 * @return object Return the AJAX object
+	 * @return $this
 	 */	
 	public function prepend($sId, $sContent, $sExtra = '')
 	{
@@ -304,7 +307,7 @@ class Phpfox_Ajax
 	 * @param string $sId HTML id for the element
 	 * @param string $sContent Content to append
 	 * @param string $sExtra Optional jQuery functions you may want to execute
-	 * @return object Return the AJAX object
+	 * @return $this
 	 */		
 	public function append($sId, $sContent, $sExtra = '')
 	{
@@ -324,7 +327,7 @@ class Phpfox_Ajax
 	 *
 	 * @example $this->call("document.getElementById('test').style.display = 'none';"); or $this->call('$("#test").hide();');
 	 * @param string $sCall JavaScript that you plan to execute back to the browser
-	 * @return object Return the AJAX object
+	 * @return $this
 	 */
 	public function call($sCall)
 	{
@@ -499,7 +502,7 @@ class Phpfox_Ajax
 	 * Sets the title of the AJAX modal
 	 *
 	 * @param string $sTitle Title to set
-	 * @return object Return the AJAX object
+	 * @return $this
 	 */
 	public function setTitle($sTitle)
 	{
@@ -589,6 +592,7 @@ class Phpfox_Ajax
 	 *
 	 * @param string $sMethod jQuery method we are trying to call.
 	 * @param array $aArguments Array of option arguments being passed to jQuery.
+	 * @return $this
 	 */
 	public function __call($sMethod, $aArguments)
 	{

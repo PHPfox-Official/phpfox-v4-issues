@@ -156,7 +156,7 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 				$aValidation['image_verification'] = Phpfox::getPhrase('captcha.complete_captcha_challenge');
 			}			
 			
-			$oValid = Phpfox::getLib('validator')->set(array(
+			$oValid = Phpfox_Validator::instance()->set(array(
 					'sFormName' => 'js_form', 
 					'aParams' => $aValidation
 				)
@@ -372,7 +372,7 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 				$aValidation['image_verification'] = Phpfox::getPhrase('captcha.complete_captcha_challenge');
 			}				
 			
-			$oValid = Phpfox::getLib('validator')->set(array(
+			$oValid = Phpfox_Validator::instance()->set(array(
 					'sFormName' => 'js_form', 
 					'aParams' => $aValidation
 				)

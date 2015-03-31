@@ -72,7 +72,3 @@ defined('PHPFOX') or exit('NO DICE!');
 </div>
 {/if}
 {unset var=$sHeader var2=$sComponent var3=$aFooter var4=$sBlockBorderJsId var5=$bBlockDisableSort var6=$bBlockCanMove var7=$aEditBar var8=$sDeleteBlock var9=$sBlockTitleBar var10=$sBlockJsId var11=$sCustomClassName var12=$aMenu}
-
-{if isset($sClass)}
-    {module name='ad.inner' sClass=$sClass}
-{/if}

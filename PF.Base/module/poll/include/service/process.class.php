@@ -200,10 +200,12 @@ class Poll_Service_Process extends Phpfox_Service
 			// update the poll
 			$this->database()->update($this->_sTable, array('image_path' => $sFileName), 'poll_id = ' . $iId);			
 			// now the thumbnails
-			$iSize = Phpfox::getParam('poll.poll_max_image_pic_size');
-			$oImage->createThumbnail(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);
+
+			// $iSize = Phpfox::getParam('poll.poll_max_image_pic_size');
+			$oImage->createThumbnail(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, ''), Phpfox::getParam('poll.dir_image') . sprintf($sFileName, ''), 600, 400);
+
 			// Update user space usage
-			Phpfox::getService('user.space')->update(Phpfox::getUserId(), 'poll', (filesize(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '')) + filesize(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, '_' . $iSize))));
+			Phpfox::getService('user.space')->update(Phpfox::getUserId(), 'poll', (filesize(Phpfox::getParam('poll.dir_image') . sprintf($sFileName, ''))));
 			
 			$this->database()->update($this->_sTable, array('server_id' => Phpfox_Request::instance()->getServer('PHPFOX_SERVER_ID')), 'poll_id = ' . (int) $iId);
 		}

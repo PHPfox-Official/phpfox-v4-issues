@@ -114,3 +114,77 @@
 		}
 	}
 }
+
+.categories(@ele) {
+	#left, #right {
+		#@{ele} {
+			border:1px darken(@blockBg, 14%) solid;
+
+			> .title {
+				text-transform:uppercase;
+				font-size:@fontSizeBase;
+				border:0px;
+				height:40px;
+				line-height:40px;
+				position:relative;
+				padding:0px;
+				text-indent:50px;
+			}
+
+			> .title:before {
+				position:absolute;
+				left:0px;
+				top:0px;
+				width:40px;
+				height:40px;
+				background:darken(@blockBg, 8%);
+				content:'';
+				z-index:1;
+			}
+
+			> .title:after {
+				.fa('\f0c9');
+				position:absolute;
+				left:8px;
+				top:8px;
+				font-size:24px;
+				color:lighten(@blockColor, 20%);
+				z-index:2;
+			}
+
+			> .content {
+				display:none;
+				max-height:300px;
+				overflow:auto;
+				position:absolute;
+				background:@blockBg;
+				left:0px;
+				right:0px;
+				z-index:100;
+			}
+		}
+
+		#@{ele}:hover {
+			border:1px @brandPrimary solid;
+			box-shadow:@blockBoxShadowLight;
+
+			> .title:before {
+				background:darken(@brandPrimary, 5%);
+			}
+
+			> .title:after {
+				color:@brandPrimaryColor;
+			}
+
+			> .title {
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+			}
+
+			> .content {
+				display:block;
+				transition:@transition;
+			}
+		}
+	}
+}

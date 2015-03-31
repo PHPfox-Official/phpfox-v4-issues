@@ -1125,7 +1125,24 @@ class Phpfox_File
 	 * @return mixed If a file was not allowed to be uploaded we return a FALSE, however if it is allowed we return an ARRAY with meta information about the uploaded file.
 	 */
 	public function load($sFormItem, $aSupported = array(), $iMaxSize = null)
-	{				
+	{
+		$Request = Phpfox_Request::instance();
+		if (Phpfox::isUser() && $Request->getHeader('X-File-Name')) {
+			if (!defined('PHPFOX_HTML5_PHOTO_UPLOAD')) {
+				define('PHPFOX_HTML5_PHOTO_UPLOAD', true);
+			}
+
+			$file = PHPFOX_DIR_FILE . 'static/' . uniqid();
+			file_put_contents($file, file_get_contents('php://input'));
+			$_FILES['image'] = [
+				'tmp_name' => $file,
+				'name' => $Request->getHeader('X-File-Name'),
+				'type' => $Request->getHeader('X-File-Type'),
+				'size' => $Request->getHeader('X-File-Size'),
+				'error' => 0
+			];
+		}
+		
 		if (is_string($aSupported))
 		{
 			$aSupported = array($aSupported);			
@@ -1211,10 +1228,6 @@ class Phpfox_File
 		}
 	
         if ($sPlugin = Phpfox_Plugin::get('library_phpfox_file_file_upload_1')){eval($sPlugin);if (isset($mReturnFromPlugin)){return $mReturnFromPlugin;}}
-    	if (!defined('PHPFOX_APP_USER_ID') && !is_uploaded_file($this->_aFile['tmp_name']) && !defined('PHPFOX_HTML5_PHOTO_UPLOAD'))
-        {
-            return Phpfox_Error::set(Phpfox::getPhrase('core.unable_to_upload_the_image'));
-        }    	
         
         if ($bModifyFileName === true)
         {
@@ -1237,7 +1250,8 @@ class Phpfox_File
         $sDest = $this->_sDestination . $sFileName . '.' . $this->_sExt;
 		
 	if ($sPlugin = Phpfox_Plugin::get('library_phpfox_file_file_upload_2')){eval($sPlugin);if (isset($mReturnFromPlugin)){return $mReturnFromPlugin;}}
-		if (defined('PHPFOX_APP_USER_ID') || defined('PHPFOX_HTML5_PHOTO_UPLOAD'))
+
+	    if (defined('PHPFOX_APP_USER_ID') || defined('PHPFOX_HTML5_PHOTO_UPLOAD'))
 		{
 			 @copy($this->_aFile['tmp_name'], $sDest);
 			 @unlink($this->_aFile['tmp_name']);

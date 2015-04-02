@@ -11,9 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-{if isset($bSpecialMenu) && $bSpecialMenu == true}
-    {template file='photo.block.specialmenu'}
-{/if}
 {if $sView == 'my' && count($aPhotos)}
 		<div class="item_bar">
 			<div class="item_bar_action_holder">				

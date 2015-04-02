@@ -144,7 +144,7 @@ class Poll_Component_Controller_Index extends Phpfox_Component
 			);
 		}		
 		
-		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $iCnt));
 		
 		// check if user has voted here already
 		$aVotedPollsByUser = Phpfox::getService('poll')->getVotedAnswersByUser(Phpfox::getUserId());

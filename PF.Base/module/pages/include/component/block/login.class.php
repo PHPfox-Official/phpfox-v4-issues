@@ -29,7 +29,7 @@ class Pages_Component_Block_Login extends Phpfox_Component
 
 		if($iTotal > $iPageSize)
 		{
-			Phpfox::getLib('pager')->set(
+			Phpfox_Pager::instance()->set(
 				array(
 					'page' => $iPage, 
 					'size' => $iPageSize, 

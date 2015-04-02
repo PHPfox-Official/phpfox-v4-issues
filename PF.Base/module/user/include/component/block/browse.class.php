@@ -37,7 +37,7 @@ class User_Component_Block_Browse extends Phpfox_Component
 			->sort('u.last_login DESC')
 			->get();
 		
-		Phpfox::getLib('pager')->set(array('ajax' => 'user.browseAjax', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));	
+		Phpfox_Pager::instance()->set(array('ajax' => 'user.browseAjax', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 
 		$this->template()->assign(array(
 				'aUsers' => $aUsers,

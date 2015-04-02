@@ -32,7 +32,7 @@ class Link_Service_Api extends Phpfox_Service
 		@method POST
 		@extra user_id=#{Pass a user_id if you want to return links from a specific user.|int|no}&id=#{Pass a link ID to get a specific link.|int|no}
 		*/		
-		$aLink = Phpfox::getService('link')->getLink($this->_oApi->get('url'));
+		$aLink = Link_Service_Link::instance()->getLink($this->_oApi->get('url'));
 		if (!$aLink)
 		{
 			return false;

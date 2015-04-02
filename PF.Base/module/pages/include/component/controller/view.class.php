@@ -63,22 +63,7 @@ class Pages_Component_Controller_View extends Phpfox_Component
 		$sCurrentModule = Phpfox_Url::instance()->reverseRewrite($this->request()->get(($this->request()->get('req1') == 'pages' ? 'req3' : 'req2')));
 		
 		Phpfox::getService('pages')->buildWidgets($aPage['page_id']);				
-		
-		if ($aPage['designer_style_id'])
-		{
-			$this->template()->setStyle(array(
-					'style_id' => $aPage['designer_style_id'],
-					'style_folder_name' => $aPage['designer_style_folder'],
-					'theme_folder_name' => $aPage['designer_theme_folder'],
-					'theme_parent_id' => $aPage['theme_parent_id'],
-					'total_column' => $aPage['total_column'],
-					'l_width' => $aPage['l_width'],
-					'c_width' => $aPage['c_width'],
-					'r_width' => $aPage['r_width']				
-				)
-			);
-		}		
-		
+
 		(($sPlugin = Phpfox_Plugin::get('pages.component_controller_view_build')) ? eval($sPlugin) : false);
 		
 		
@@ -103,7 +88,8 @@ class Pages_Component_Controller_View extends Phpfox_Component
 		}
 		
 		(($sPlugin = Phpfox_Plugin::get('pages.component_controller_view_assign')) ? eval($sPlugin) : false);
-		
+
+		/*
 		if (isset($aPage['use_timeline']) && $aPage['use_timeline'])
 		{
 			$aPageMenus = Phpfox::getService('pages')->getMenu($aPage);
@@ -121,6 +107,7 @@ class Pages_Component_Controller_View extends Phpfox_Component
 					'<script type="text/javascript">oParams["keepContent4"] = false;</script>'
 					));
 		}
+		*/
 		
 		$this->setParam('aPage', $aPage);
 		
@@ -144,12 +131,14 @@ class Pages_Component_Controller_View extends Phpfox_Component
 		{
 			$this->template()->setBreadcrumb($aPage['title'], Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']), true);
 		}
-		
+
+		/*
 		$this->setParam('aCallbackShoutbox', array(
 				'module' => 'pages',
 				'item' => $aPage['page_id']
 			)
-		);		
+		);
+		*/
 		
 		if ($bCanViewPage && $sModule && Phpfox::isModule($sModule) && Phpfox::hasCallback($sModule, 'getPageSubMenu') && !$this->request()->getInt('comment-id'))
 		{
@@ -161,8 +150,10 @@ class Pages_Component_Controller_View extends Phpfox_Component
 			$this->template()->assign('bIsPagesViewSection', true);
 			$this->setParam('bIsPagesViewSection', true);
 			$this->setParam('sCurrentPageModule', $sModule);
-			
+
 			Phpfox::getComponent($sModule . '.index', array('bNoTemplate' => true), 'controller');
+
+			Phpfox_Module::instance()->resetBlocks();
 		}
 		elseif ($bCanViewPage && $sModule && Phpfox::getService('pages')->isWidget($sModule) && !$this->request()->getInt('comment-id'))
 		{
@@ -241,53 +232,6 @@ class Pages_Component_Controller_View extends Phpfox_Component
 					)
 				);
 
-			if (Phpfox::getParam('video.convert_servers_enable'))
-			{
-				$this->template()->setHeader('<script type="text/javascript">document.domain = "' . Phpfox::getParam('video.convert_js_parent') . '";</script>');
-			}
-
-			if ($sModule == 'designer' && $aPage['is_admin'])
-			{
-				Phpfox::getUserParam('pages.can_design_pages', true);
-				define('PHPFOX_IN_DESIGN_MODE', true);
-				define('PHPFOX_CAN_MOVE_BLOCKS', true);		
-				
-				if (($iTestStyle = $this->request()->get('test_style_id')))
-				{
-					if (Phpfox_Template::instance()->testStyle($iTestStyle))
-					{
-						
-					}
-				}
-				
-				$aDesigner = array(
-					'current_style_id' => $aPage['designer_style_id'],
-					'design_header' => 'Customize Page',
-					'current_page' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']),
-					'design_page' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'designer/',
-					'block' => 'pages.view',				
-					'item_id' => $aPage['page_id'],
-					'type_id' => 'pages'
-				);
-				
-				$this->setParam('aDesigner', $aDesigner);	
-				
-				$this->template()->setHeader('cache', array(
-								'jquery/ui.js' => 'static_script',
-								'sort.js' => 'module_theme',
-								'style.css' => 'style_css',
-								'select.js' => 'module_theme',
-								'design.js' => 'module_theme'							
-							)					
-						)
-						->setHeader(array(
-							'<script type="text/javascript">$Behavior.pages_controller_view_designonuptade = function() { function designOnUpdate() { $Core.design.updateSorting(); } };</script>',		
-							'<script type="text/javascript">$Behavior.pages_controller_view_design_init = function() { $Core.design.init({type_id: \'pages\', item_id: \'' . $aPage['page_id'] . '\'}); };</script>'
-							)
-						)
-						->assign('sCustomDesignId', $aPage['page_id']
-					);
-			}				
 		}
 	}
 	

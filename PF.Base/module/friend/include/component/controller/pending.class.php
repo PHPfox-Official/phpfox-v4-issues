@@ -35,7 +35,7 @@ class Friend_Component_Controller_Pending extends Phpfox_Component
 		
 		list($iCnt, $aPendingRequests) = Phpfox::getService('friend.request')->getPending($iPage, $iPageSize);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
 		Friend_Service_Friend::instance()->buildMenu();
 		

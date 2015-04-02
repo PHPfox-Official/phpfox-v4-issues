@@ -176,7 +176,7 @@ class Music_Component_Controller_Index extends Phpfox_Component
 
 		// d($aSongs); exit;
 
-		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));		
+		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
 		
 		if ($sPlugin = Phpfox_Plugin::get('music.component_controller_music_index')){ eval($sPlugin); }
 		

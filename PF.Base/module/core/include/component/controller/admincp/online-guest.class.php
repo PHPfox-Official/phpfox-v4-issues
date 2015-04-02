@@ -71,7 +71,7 @@ class Core_Component_Controller_Admincp_Online_Guest extends Phpfox_Component
 
 		list($iCnt, $aGuests) = Phpfox::getService('log')->getOnlineGuests($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $oSearch->getDisplay());
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $oSearch->getDisplay(), 'count' => $oSearch->getSearchTotal($iCnt)));		
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $oSearch->getDisplay(), 'count' => $oSearch->getSearchTotal($iCnt)));
 		
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.online_guests'))
 			->setBreadcrumb(Phpfox::getPhrase('admincp.online'), $this->url()->makeUrl('admincp.core.online-guest'))

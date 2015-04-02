@@ -16,6 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	var $iTotalAttachmentImages = {if isset($iTotalImages)}{$iTotalImages}{else}0{/if};	
 	$Core.loadStaticFile('{jscript file='preview.js' module='link'}');
 </script>
+<div><input type="hidden" name="val[link][url]" value="{$aLink.link|clean}"></div>
 {if !empty($aLink.embed_code)}
 <div style="display:none;"><textarea cols="30" rows="4" name="val[link][embed_code]">{$aLink.embed_code|clean}</textarea></div>
 {/if}

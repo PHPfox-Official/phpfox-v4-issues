@@ -263,35 +263,8 @@ defined('PHPFOX') or exit('NO DICE!');
 </div>
 {else}
 
-{if count($aUsers)}
 {foreach from=$aUsers name=users item=aUser}
 	{template file='user.block.rows'}
 {/foreach}
-
-{if !PHPFOX_IS_AJAX}
-<div id="js_view_more_users"></div>
-{/if}
-
 {pager}
-
-{else}
-<div class="extra_info">
-{if $sView == 'online'}
-	{phrase var='user.there_are_no_members_online'}
-{elseif $sView == 'top'}
-	{phrase var='user.no_top_members_found'}
-{elseif $sView == 'featured'}
-	{phrase var='user.no_featured_members'}
-{else}
-{if isset($aCallback.no_member_message)}
-	{$aCallback.no_member_message}
-{else}
-	{phrase var='user.unable_to_find_any_members_with_the_current_browse_criteria'}
-	<ul class="action">
-		<li><a href="{url link='user.browse'}">{phrase var='user.reset_browse_criteria'}</a></li>
-	</ul>
-{/if}
-{/if}
-</div>
-{/if}
 {/if}

@@ -143,7 +143,7 @@ class Comment_Component_Block_View extends Phpfox_Component
 			}				
 
 			// Set the pager
-			Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'comment.browse', 'aParams' => array(
+			Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'comment.browse', 'aParams' => array(
 						'sType' => $sType,
 						'iItemId' => $iItemId,
 						'iTotal' => $iCnt
@@ -185,7 +185,7 @@ class Comment_Component_Block_View extends Phpfox_Component
 		else 
 		{
 			// Set the pager
-			Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'comment.browse', 'aParams' => array(
+			Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'comment.browse', 'aParams' => array(
 						'sType' => $sType,
 						'iItemId' => $iItemId,
 						'iTotal' => $iCnt

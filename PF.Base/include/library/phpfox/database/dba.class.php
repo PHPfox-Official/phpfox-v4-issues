@@ -373,7 +373,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 		
 		if ($bCorrectMax == true)
 		{
-			$iOffset = ($iCnt === null ? $iPage : Phpfox::getLib('pager')->getOffset($iPage, $sLimit, $iCnt));
+			$iOffset = ($iCnt === null ? $iPage : Phpfox_Pager::instance()->getOffset($iPage, $sLimit, $iCnt));
 			$this->_aQuery['limit'] = ($sLimit ? 'LIMIT ' . $sLimit : '') . ($iOffset ? ' OFFSET ' . $iOffset : '');
 		}
 		else

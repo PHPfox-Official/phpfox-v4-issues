@@ -354,7 +354,7 @@ class Marketplace_Component_Controller_Index extends Phpfox_Component
 			)
 		);			
 		
-		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
+		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
 	}
 	
 	/**

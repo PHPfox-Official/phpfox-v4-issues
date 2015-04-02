@@ -100,7 +100,7 @@ class Report_Component_Controller_Admincp_Index extends Phpfox_Component
 		
 		list($iCnt, $aReports) = Phpfox::getService('report')->get($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));		
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));
 		
 		$this->template()->setTitle(Phpfox::getPhrase('report.reports'))
 			->setBreadcrumb(Phpfox::getPhrase('report.reports'), $this->url()->makeUrl('admincp.report'))

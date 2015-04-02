@@ -45,7 +45,7 @@ class Profile_Component_Block_Pic extends Phpfox_Component
 				}
 			}
 			
-			if (Phpfox::getService('profile')->timeline())
+			if (Profile_Service_Profile::instance()->timeline())
 			{
 				$this->template()->assign(array(
 						'sProfileUrl' => Phpfox::getParam('core.url_user') . sprintf($aUser['image_path'], ''),

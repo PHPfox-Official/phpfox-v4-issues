@@ -172,10 +172,11 @@ class Phpfox_Search_Browse
 				->order($this->search()->getSort())
 				->limit($this->search()->getPage(), $this->search()->getDisplay(), $this->_iCnt, false, false)
 				->execute('getSlaveRows');
-			
+
 			if ($this->search()->getPage() > 0 && count($this->_aRows) < 1)
 			{
-				Phpfox_Url::instance()->send('error.404');
+				// Phpfox_Url::instance()->send('error.404');
+				throw error('no_items');
 			}
 			
 			if (method_exists($this->_oBrowse, 'processRows'))
@@ -185,9 +186,10 @@ class Phpfox_Search_Browse
 		}
 		else if ($this->search()->getPage() > 0)
 		{
-			Phpfox_Url::instance()->send('error.404');
+			// Phpfox_Url::instance()->send('error.404');
+			throw error('no_items');
 		}
-					
+
 	}
 	
 	/**

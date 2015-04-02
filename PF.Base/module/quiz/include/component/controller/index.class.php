@@ -124,7 +124,7 @@ class Quiz_Component_Controller_Index extends Phpfox_Component
 			$this->template()->setMeta('keywords', $this->template()->getKeywords($aQuiz['title']));
 		}
 		
-		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $iCnt));		
+		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $iCnt));
 		
 		$aFilterMenu = array();
 		if (!defined('PHPFOX_IS_USER_PROFILE'))

@@ -52,7 +52,7 @@ class Event_Component_Block_List extends Phpfox_Component
 		
 		list($iCnt, $aInvites) = Event_Service_Event::instance()->getInvites($aEvent['event_id'], $iRsvp, $iPage, $iPageSize);
 				
-		Phpfox::getLib('pager')->set(array('ajax' => 'event.listGuests', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'aParams' => 
+		Phpfox_Pager::instance()->set(array('ajax' => 'event.listGuests', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'aParams' =>
 			array(
 					'id' => $aEvent['event_id'],
 					'module' => $sModule,

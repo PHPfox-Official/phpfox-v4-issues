@@ -68,11 +68,11 @@ class Admincp_Component_Controller_Maintain_Reparser extends Phpfox_Component
 		{			
 			$iCnt = Phpfox::getService('admincp.maintain')->reParseText($aModules[$sModule], $iPage, $iLimit);
 			
-			Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $iCnt));
+			Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $iCnt));
 			
-			$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();		
-			$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();		
-			$iPage = (int) Phpfox::getLib('pager')->getNextPage();			
+			$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+			$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+			$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 			
 			if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 			{				

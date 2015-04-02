@@ -499,7 +499,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 		{
 			$aPager['size'] = Phpfox::getUserParam('photo.max_photo_display_limit');
 		}
-		Phpfox::getLib('pager')->set($aPager);
+		Phpfox_Pager::instance()->set($aPager);
 				
 		
 		$this->template()->setTitle(($bIsUserProfile ? Phpfox::getPhrase('photo.full_name_s_photos', array('full_name' => $aUser['full_name'])) : Phpfox::getPhrase('photo.photos')))

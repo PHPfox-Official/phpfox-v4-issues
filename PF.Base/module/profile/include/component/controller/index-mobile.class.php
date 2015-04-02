@@ -162,7 +162,7 @@ class Profile_Component_Controller_Index_Mobile extends Phpfox_Component
 			
 			$iTotalFeeds = (int) Phpfox::getComponentSetting(Phpfox::getUserId(), 'feed.feed_display_limit_dashboard', Phpfox::getParam('feed.feed_display_limit'));
 			
-			Phpfox::getLib('pager')->set(array('page' => $iFeedPage, 'size' => $iTotalFeeds, 'count' => $iFeedCount));
+			Phpfox_Pager::instance()->set(array('page' => $iFeedPage, 'size' => $iTotalFeeds, 'count' => $iFeedCount));
 			
 			$this->template()->setMobileHeader(array(					
 						'feed.css' => 'module_feed'

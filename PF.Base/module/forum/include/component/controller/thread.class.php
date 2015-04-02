@@ -105,7 +105,7 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 			$this->url()->send('forum', null, Phpfox::getPhrase('forum.you_do_not_have_the_proper_permission_to_view_this_thread'));
 		}
 	
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));	
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 			
 		$aForum = Phpfox::getService('forum')			
 			->id($aThread['forum_id'])

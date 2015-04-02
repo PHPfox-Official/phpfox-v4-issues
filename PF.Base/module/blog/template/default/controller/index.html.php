@@ -19,14 +19,17 @@ defined('PHPFOX') or exit('NO DICE!');
 	{phrase var='blog.no_blogs_found'}
 </div>
 {else}
+
 {foreach from=$aItems name=blog item=aItem}
 	{item name='BlogPosting'}
 		{template file='blog.block.entry'}
 	{/item}
 {/foreach}
-{if Phpfox::getUserParam('blog.can_approve_blogs') || Phpfox::getUserParam('blog.delete_user_blog')}
+{pager}
+
+{if !PHPFOX_IS_AJAX && (Phpfox::getUserParam('blog.can_approve_blogs') || Phpfox::getUserParam('blog.delete_user_blog'))}
 {moderation}
 {/if}
+
 {unset var=$aItems}
-{pager}
 {/if}

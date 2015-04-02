@@ -86,7 +86,7 @@ class Comment_Component_Controller_Admincp_Index extends Phpfox_Component
 			}
 		}
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $oSearch->getDisplay(), 'count' => $oSearch->getSearchTotal($iCnt)));		
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $oSearch->getDisplay(), 'count' => $oSearch->getSearchTotal($iCnt)));
 		
 		$this->template()->setTitle(Phpfox::getPhrase('comment.comment_title'))
 			->setBreadcrumb(Phpfox::getPhrase('comment.comment_title'), $this->url()->makeUrl('admincp.comment'))

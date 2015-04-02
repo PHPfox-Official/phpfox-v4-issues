@@ -20,8 +20,8 @@
 }
 
 .profiles_banner {
-	margin-top:-20px;
 	min-height:155px;
+	max-height:500px;
 	position:relative;
 
 	.cover > img {
@@ -38,7 +38,7 @@
 	border-radius:@borderRadiusBase;
 	position:absolute;
 	left:20px;
-	bottom:-40px;
+	bottom:-20px;
 	width:160px;
 	height:160px;
 	overflow:hidden;
@@ -78,34 +78,110 @@
 	}
 }
 
+.profile_menu_is_fixed {
+
+	.profiles_menu {
+		position:fixed;
+		top:0px;
+		left:@navWidth;
+		right:0px;
+		z-index:1000;
+
+		> ul {
+			transition:@transition;
+			left:(@headerHeight - 15) + 20;
+		}
+	}
+
+	.profile_image {
+		position:fixed;
+		bottom:auto;
+		top:5px;
+		left:@navWidth + 20;
+		height:@headerHeight - 15;
+		width:@headerHeight - 15;
+		z-index:2000;
+	}
+}
+
 .profiles_menu {
-	background:@blockBg;
-	height:50px;
+	background:@headerBg;
+	height:@headerHeight;
 	position:relative;
 
 	> ul {
 		position:absolute;
 		left:200px;
-		top:-2px;
+		top:0px;
 		z-index:2;
 
 		> li {
+			vertical-align:top;
 			border-bottom:3px transparent solid;
 			display:inline-block;
-			height:50px;
-			line-height:53px;
+			height:@headerHeight;
+			line-height:@headerHeight;
 			margin-right:-2px;
+			position:relative;
+
+			> ul {
+				display:none;
+				position:absolute;
+				right:0px;
+				width:250px;
+				background:@blockBg;
+				box-shadow:@blockBoxShadowLight;
+				line-height:normal;
+
+				a, a:hover {
+					.reset();
+
+					display:block;
+					padding:8px 12px;
+					font-weight:normal;
+					color:@blockColor;
+					font-size:@fontSizeBase - 1;
+				}
+
+				a:hover {
+					color:@linkColor;
+					transition:@transition;
+				}
+			}
+
+			> a.explore, > a.explore:hover {
+				font-size:24px;
+				border-left:2px darken(@headerBg, 6%) solid;
+			}
+
+			> a.explore:hover {
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+
+				i:hover {
+					color:@brandPrimaryColor;
+				}
+			}
 
 			> a, > a:hover {
 				display:block;
-				color:@blockColor;
+				color:@headerColor;
 				padding:0px 20px;
 			}
 		}
 
 		> li:hover {
-			border-color:darken(@blockBg, 20%);
+			border-color:darken(@headerBg, 20%);
 			transition:@transition;
+
+			> a.explore, > a.explore:hover {
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+			}
+
+			> ul {
+				display:block;
+			}
 		}
 
 		> li.active {
@@ -116,13 +192,14 @@
 
 .profiles_info {
 	position:absolute;
-	bottom:30px;
+	bottom:20px;
 	left:200px;
 
 	h1 {
 		font-size:32px;
 		font-weight:200;
 		letter-spacing:1px;
+		padding-bottom:4px;
 	}
 }
 
@@ -133,7 +210,8 @@
 
 	> ul {
 		> li:hover {
-			background:darken(@blockBg, 6%);
+			background:@brandPrimary;
+			color:@brandPrimaryColor;
 
 			> ul {
 				display:block;
@@ -146,8 +224,8 @@
 				position:absolute;
 				right:0px;
 				width:300px;
-				background:darken(@blockBg, 6%);
-				border:1px darken(@blockBg, 12%) solid;
+				background:@blockBg;
+				box-shadow:@blockBoxShadowLight;
 				border-top:0px;
 				font-size:@fontSizeBase - 1;
 				z-index:100;
@@ -156,15 +234,14 @@
 				> li {
 					a, a:hover {
 						display:block;
-						padding:6px 0px;
+						padding:8px 12px;
 						text-indent:10px;
-						color:@linkColor;
-						border-bottom:1px darken(@blockBg, 8%) solid;
+						color:@blockColor;
 					}
 
 					a:hover {
-						background:darken(@blockBg, 12%);
-						color:darken(@blockColor, 10%);
+						color:@linkColor;
+						transition:@transition;
 					}
 				}
 			}
@@ -175,14 +252,14 @@
 
 			> a, > a:hover {
 				display:block;
-				height:50px;
-				line-height:50px;
+				height:@headerHeight;
+				line-height:@headerHeight;
 				font-size:20px;
 				padding:0px 10px;
-				border-left:1px darken(@blockBg, 8%) solid;
+				border-left:1px darken(@headerBg, 8%) solid;
 
 				i {
-					color:darken(@blockColor, 4%);
+					color:darken(@headerColor, 4%);
 				}
 
 				span {
@@ -192,7 +269,7 @@
 
 			> a:hover {
 				i {
-					color:@brandPrimary;
+					color:@brandPrimaryColor;
 				}
 			}
 		}
@@ -213,3 +290,6 @@
 		transition:@transition;
 	}
 }
+
+.threeColumn(page_profile_index);
+.noHeader(page_profile_index);

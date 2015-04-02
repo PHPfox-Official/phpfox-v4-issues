@@ -142,7 +142,7 @@ class Ad_Component_Controller_Admincp_Index extends Phpfox_Component
 		
 		list($iCnt, $aAds) = Phpfox::getService('ad')->get($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));
 		
 		$this->template()->setTitle(Phpfox::getPhrase('ad.manage_ad_campaigns'))
 			->setBreadcrumb(Phpfox::getPhrase('ad.manage_ad_campaigns'), $this->url()->makeUrl('admincp.ad'))

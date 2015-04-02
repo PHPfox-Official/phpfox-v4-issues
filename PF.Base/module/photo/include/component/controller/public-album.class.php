@@ -34,7 +34,7 @@ class Photo_Component_Controller_Public_Album extends Phpfox_Component
 		
 		list($iCnt, $aAlbums) = Phpfox::getService('photo.album')->get($aCond, 'pa.time_stamp DESC', $iPage, $iPageSize);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
 		$this->template()->setTitle(Phpfox::getPhrase('photo.photo_albums'))
 			->setHeader(array(

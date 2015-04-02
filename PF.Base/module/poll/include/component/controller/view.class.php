@@ -47,7 +47,7 @@ class Poll_Component_Controller_View extends Phpfox_Component
 		// we need to load one poll
 		$aPoll = Phpfox::getService('poll')->getPollByUrl($iPoll, $iPage, $iPageSize, true);
 		
-		Phpfox::getLib('pager')->set(array('ajax'=> 'poll.pageVotes', 'page' => 0, 'size' => Phpfox::getParam('poll.show_x_users_who_took_poll'), 'count' => $aPoll['total_votes']));
+		Phpfox_Pager::instance()->set(array('ajax'=> 'poll.pageVotes', 'page' => 0, 'size' => Phpfox::getParam('poll.show_x_users_who_took_poll'), 'count' => $aPoll['total_votes']));
 		
 		if ($aPoll === false)
 		{			

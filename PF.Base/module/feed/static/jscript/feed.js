@@ -26,7 +26,7 @@ $Core.Like.Actions = {
 	}
 };
 
-$Core.isInView = function(elem)
+$Core.isInView = function(elem, item)
 {
     if (!$Core.exists(elem)){
 		return false;
@@ -36,7 +36,10 @@ $Core.isInView = function(elem)
     var docViewBottom = docViewTop + $(window).height();
 
     var elemTop = $(elem).offset().top;
-    var elemBottom = elemTop + $(elem).height();
+    var elemBottom = (elemTop + $(elem).height());
+	if (item) {
+		elemBottom = (elemBottom - parseInt(item));
+	}
 
 	return ((docViewTop < elemTop) && (docViewBottom > elemBottom));
 }
@@ -170,11 +173,17 @@ $Core.forceLoadOnFeed = function()
 	setTimeout("$.ajaxCall('feed.viewMore', $('#js_feed_pass_info').html().replace(/&amp;/g, '&') + '&iteration=" + $iReloadIteration + "', 'GET');", 1000);
 }
 
+var postingFeedUrl = false;
 $Core.handlePasteInFeed = function(oObj)
 {
+	if (postingFeedUrl) {
+		return;
+	}
+
 	if ((substr($(oObj).val(), 0, 7) == 'http://' || substr($(oObj).val(), 0, 8) == 'https://' || (substr($(oObj).val(), 0, 4) == 'www.')))
 	{
 		bCheckUrlCheck = true;
+		postingFeedUrl = true;
 		
 		$('#activity_feed_submit').attr("disabled","disabled");
 
@@ -186,7 +195,8 @@ $Core.handlePasteInFeed = function(oObj)
 				'no_page_update': '1',
 				value: $(oObj).val()
 			},
-			success: function($sOutput){		
+			success: function($sOutput) {
+				postingFeedUrl = false;
 				$('.activity_feed_form_share_process').hide();
 				if (substr($sOutput, 0, 1) == '{'){
 					
@@ -326,7 +336,7 @@ $Behavior.activityFeedProcess = function() {
 		
 		$('#global_attachment_status textarea').focus(function()
 		{			
-			if ($(this).val() == $('#global_attachment_status_value').html())
+			// if ($(this).val() == $('#global_attachment_status_value').html())
 			{
 				$(this).val('');
 				$(this).css({height: '50px'});

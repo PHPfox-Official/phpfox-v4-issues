@@ -48,7 +48,7 @@ class Invite_Component_Controller_Invitations extends Phpfox_Component
 
 		list($iCnt, $aInvites) = Phpfox::getService('invite')->get(Phpfox::getUserId(), $iPage, $iPageSize);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
 		$this->setParam('global_moderation', array(
 				'name' => 'invitations',

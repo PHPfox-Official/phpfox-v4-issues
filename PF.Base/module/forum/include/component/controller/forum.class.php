@@ -28,8 +28,8 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		
 		Phpfox::getUserParam('forum.can_view_forum', true);
 		
-		$aParentModule = $this->getParam('aParentModule');	
-		
+		$aParentModule = $this->getParam('aParentModule');
+
 		$bIsSearch = ($this->request()->getInt('search-id', false) ? true : false);	
 		$aCallback = $this->getParam('aCallback', null);
 		$sView = $this->request()->get('view');	
@@ -296,7 +296,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		
 		$aAccess = Phpfox::getService('forum')->getUserGroupAccess($iForumId, Phpfox::getUserBy('user_group_id'));
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
 		$this->template()->assign(array(
 						'aThreads' => $aThreads,
@@ -375,7 +375,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				}
 			}
 
-			if ($aCallback === null) {
+			if ($aCallback === null && $aParentModule === null) {
 				if (!$aForum['is_closed'] && Phpfox::getUserParam('forum.can_add_new_thread') || Phpfox::getService('forum.moderate')->hasAccess($aForum['forum_id'], 'add_thread')) {
 					$this->template()->setMenu([
 						'forum.forum' => [
@@ -388,7 +388,17 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				}
 			}
 			else {
-
+				if ($aParentModule !== null) {
+					$this->template()->setMenu([
+						'forum.forum' => [
+							'menu_id' => null,
+							'module' => 'forum',
+							'url' => $this->url()->makeUrl('forum.post.thread', ['module' => $aParentModule['module_id'], 'item' => $aParentModule['item_id']]),
+							'var_name' => 'new_thread'
+						]
+					]);
+					// d($aParentModule); exit;
+				}
 			}
 			/*
 			{if !$aForumData.is_closed && Phpfox::getUserParam('forum.can_add_new_thread') || Phpfox::getService('forum.moderate')->hasAccess('' . $aForumData.forum_id . '', 'add_thread')}

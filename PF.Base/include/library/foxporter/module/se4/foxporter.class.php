@@ -500,11 +500,11 @@ class FoxporterModule_Se4 extends Foxporter_Abstract
 	
 	private function _pager($iCnt)
 	{
-		Phpfox::getLib('pager')->set(array('page' => $this->_iPage, 'size' => $this->_iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_iPage, 'size' => $this->_iLimit, 'count' => $iCnt));
 
-		$this->_iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$this->_iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$this->_iNextPage = (int) Phpfox::getLib('pager')->getNextPage();			
+		$this->_iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$this->_iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$this->_iNextPage = (int) Phpfox_Pager::instance()->getNextPage();
 	}
 	
 	private function _isDone()

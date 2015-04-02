@@ -97,7 +97,7 @@ class Subscribe_Component_Controller_Admincp_List extends Phpfox_Component
 		
 		$iCnt = $oFilter->getSearchTotal($iCnt);		
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));		
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
 		$this->template()->setTitle(Phpfox::getPhrase('subscribe.subscription_purchase_orders'))	
 			->setBreadcrumb(Phpfox::getPhrase('subscribe.subscription_packages'), $this->url()->makeUrl('admincp.subscribe'))

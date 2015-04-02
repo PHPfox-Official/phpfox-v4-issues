@@ -12,7 +12,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if !Phpfox::isMobile()}
-{if !Phpfox::getService('profile')->timeline()}
+{if !Profile_Service_Profile::instance()->timeline()}
 <div class="go_left t_center" style="width:125px;">
 	{img user=$aUser suffix='_120' max_width='120' max_height='120'}
 </div>
@@ -23,7 +23,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{phrase var='profile.profile_is_private'}
 	</div>
 {if !Phpfox::isMobile()}
-{if !Phpfox::getService('profile')->timeline()}
+{if !Profile_Service_Profile::instance()->timeline()}
 </div>
 <div class="clear"></div>
 {/if}

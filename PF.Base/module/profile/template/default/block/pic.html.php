@@ -70,20 +70,21 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	{/if}
 </div>
-<div class="profiles_menu">
+<div class="profiles_menu set_to_fixed" data-class="profile_menu_is_fixed">
 	<ul>
-		{foreach from=$aProfileLinks item=aProfileLink}
-			<li class="{if isset($aProfileLink.is_selected)} active{/if}">
-				<a href="{url link=$aProfileLink.url}" class="ajax_link">{$aProfileLink.phrase}{if isset($aProfileLink.total)}<span>({$aProfileLink.total|number_format})</span>{/if}</a>
-				{if isset($aProfileLink.sub_menu) && is_array($aProfileLink.sub_menu) && count($aProfileLink.sub_menu)}
-				<ul>
-				{foreach from=$aProfileLink.sub_menu item=aProfileLinkSub}
-					<li class="{if isset($aProfileLinkSub.is_selected)} active{/if}"><a href="{$aProfileLinkSub.url}">{$aProfileLinkSub.phrase}{if isset($aProfileLinkSub.total) && $aProfileLinkSub.total > 0}<span class="pending">{$aProfileLinkSub.total|number_format}</span>{/if}</a></li>
+		<li><a href="{url link=$aUser.user_name}">Profile</a></li>
+		<li><a href="{url link=''$aUser.user_name'.info'}">Info</a></li>
+		<li><a href="{url link=''$aUser.user_name'.friend'}">Friends</a></li>
+		<li>
+			<a href="#" class="explore"><i class="fa fa-ellipsis-h"></i></a>
+			<ul>
+				{foreach from=$aProfileLinks item=aProfileLink}
+					<li class="{if isset($aProfileLink.is_selected)} active{/if}">
+						<a href="{url link=$aProfileLink.url}" class="ajax_link">{$aProfileLink.phrase}{if isset($aProfileLink.total)}<span>({$aProfileLink.total|number_format})</span>{/if}</a>
+					</li>
 				{/foreach}
-				</ul>
-				{/if}
-			</li>
-		{/foreach}
+			</ul>
+		</li>
 	</ul>
 
 	<div class="profiles_action">

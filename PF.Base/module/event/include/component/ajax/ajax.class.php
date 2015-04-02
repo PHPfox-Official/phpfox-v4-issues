@@ -222,13 +222,13 @@ class Event_Component_Ajax_Ajax extends Phpfox_Ajax
 			return;
 		}		
 	
-		Phpfox::getLib('pager')->set(array('ajax' => 'event.massEmail', 'page' => $iPage, 'size' => 20, 'count' => $iCnt));		
+		Phpfox_Pager::instance()->set(array('ajax' => 'event.massEmail', 'page' => $iPage, 'size' => 20, 'count' => $iCnt));
 		
-		if ($iPage < Phpfox::getLib('pager')->getLastPage())
+		if ($iPage < Phpfox_Pager::instance()->getLastPage())
 		{
 			$this->call('$.ajaxCall(\'event.massEmail\', \'id=' . $this->get('id') . '&page=' . ($iPage + 1) . '&subject=' . $this->get('subject') . '&text=' . $this->get('text') . '\');');
 			
-			$this->html('#js_event_mass_mail_send', Phpfox::getPhrase('event.email_progress_page_total', array('page' => $iPage, 'total' => Phpfox::getLib('pager')->getLastPage())));
+			$this->html('#js_event_mass_mail_send', Phpfox::getPhrase('event.email_progress_page_total', array('page' => $iPage, 'total' => Phpfox_Pager::instance()->getLastPage())));
 		}
 		else 
 		{

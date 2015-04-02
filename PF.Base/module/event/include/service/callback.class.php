@@ -1172,6 +1172,8 @@ class Event_Service_Callback extends Phpfox_Service
 	
 	public function getPageMenu($aPage)
 	{
+		return false;
+
 		if (!Phpfox::getService('pages')->hasPerm($aPage['page_id'], 'event.view_browse_events'))
 		{
 			return null;

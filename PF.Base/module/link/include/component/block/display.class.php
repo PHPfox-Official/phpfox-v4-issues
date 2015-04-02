@@ -22,7 +22,7 @@ class Link_Component_Block_Display extends Phpfox_Component
 	{
 		$iLinkId = (int) $this->getParam('link_id');	
 		
-		if (!($aLink = Phpfox::getService('link')->getLinkById($iLinkId)))
+		if (!($aLink = Link_Service_Link::instance()->getLinkById($iLinkId)))
 		{
 			return false;
 		}

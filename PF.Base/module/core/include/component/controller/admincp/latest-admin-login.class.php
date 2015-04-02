@@ -67,7 +67,7 @@ class Core_Component_Controller_Admincp_Latest_Admin_Login extends Phpfox_Compon
 
 		list($iCnt, $aUsers) = Phpfox::getService('core.admincp')->getAdminLogins($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $oSearch->getDisplay());
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $oSearch->getDisplay(), 'count' => $oSearch->getSearchTotal($iCnt)));		
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $oSearch->getDisplay(), 'count' => $oSearch->getSearchTotal($iCnt)));
 		
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.admincp_logins'))
 			->setBreadcrumb(Phpfox::getPhrase('admincp.admincp_logins'))

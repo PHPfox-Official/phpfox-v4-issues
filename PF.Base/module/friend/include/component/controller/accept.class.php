@@ -42,7 +42,7 @@ class Friend_Component_Controller_Accept extends Phpfox_Component
 		
 		list($iCnt, $aFriends) = Phpfox::getService('friend.request')->get($iPage, $iLimit, $iRequestId);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $iCnt));
 		
 		Friend_Service_Friend::instance()->buildMenu();
 		

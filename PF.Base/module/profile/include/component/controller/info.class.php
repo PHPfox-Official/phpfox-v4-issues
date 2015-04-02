@@ -43,7 +43,7 @@ class Profile_Component_Controller_Info extends Phpfox_Component
 			));						
 		}
 		
-		$this->template()->setTitle(Phpfox::getService('profile')->getProfileTitle($aRow));
+		$this->template()->setTitle(Profile_Service_Profile::instance()->getProfileTitle($aRow));
 		
 		if (Phpfox::isModule('rate'))
 		{

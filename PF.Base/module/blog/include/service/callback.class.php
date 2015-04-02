@@ -1373,6 +1373,8 @@ class Blog_Service_Callback extends Phpfox_Service
 	
 	public function getPageMenu($aPage)
 	{
+		return false;
+
 		if (!Phpfox::getService('pages')->hasPerm($aPage['page_id'], 'blog.view_browse_blogs'))
 		{
 			return null;

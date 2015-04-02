@@ -306,7 +306,7 @@ class Event_Component_Controller_Index extends Phpfox_Component
 			$this->template()->rebuildMenu('event.index', $aCallback['url_home']);			
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
+		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
 		
 		$this->setParam('global_moderation', array(
 				'name' => 'event',

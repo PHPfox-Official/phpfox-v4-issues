@@ -140,10 +140,11 @@ class Profile_Service_Profile extends Phpfox_Service
 	public function getProfileMenu($aUser)
 	{
 		$aMenus = array();
+		/*
 		if (Phpfox::getService('user.privacy')->hasAccess($aUser['user_id'], 'feed.view_wall'))
 		{
 			$aMenus[] = array(
-				'phrase' => Phpfox::getPhrase('profile.wall'),
+				'phrase' => 'Profile',
 				'url' => 'profile' . ($aUser['landing_page'] == 'info' ? '.wall' : ''),
 				'icon' => 'misc/comment.png'	
 			);
@@ -154,7 +155,8 @@ class Profile_Service_Profile extends Phpfox_Service
 			'url' => 'profile' . ($aUser['landing_page'] == 'info' ? '' : '.info' . (defined('PHPFOX_IN_DESIGN_MODE') ? '.design' : '')),
 			'icon' => 'misc/application_view_list.png'	
 		);	
-		
+		*/
+
 		if (!Phpfox::getUserBy('profile_page_id') && !defined('PHPFOX_IN_DESIGN_MODE'))
 		{
 			$aModuleCalls = Phpfox::massCallback('getProfileMenu', $aUser);
@@ -171,6 +173,11 @@ class Profile_Service_Profile extends Phpfox_Service
 		
 		foreach ($aMenus as $iKey => $aMenu)
 		{
+			if (isset($aMenu['total']) && !$aMenu['total']) {
+				unset($aMenus[$iKey]);
+				continue;
+			}
+
 			$bSubIsSelected = false;
 			if (isset($aMenu['sub_menu']))
 			{
@@ -219,7 +226,8 @@ class Profile_Service_Profile extends Phpfox_Service
 			{
 				$aMenus[$iKey]['url'] = $aUser['user_name'] . '.' . Phpfox_Url::instance()->doRewrite(preg_replace("/^profile\.(.*)$/i", "\\1", $aMenu['url']));
 			}
-		}		
+		}
+
 		/* Reminder for purefan add a hook here */
 		if ($sPlugin = Phpfox_Plugin::get('profile.service_profile_get_profile_menu'))
 		{

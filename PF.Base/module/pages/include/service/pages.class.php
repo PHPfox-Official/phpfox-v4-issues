@@ -529,18 +529,19 @@ class Pages_Service_Pages extends Phpfox_Service
 		}
 		
 		$aMenus[] = array(
-			'phrase' => Phpfox::getPhrase('pages.wall'),
+			'phrase' => 'Home',
 			'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . (empty($aPage['landing_page']) ? '' : 'wall/'),
 			'icon' => 'misc/comment.png',
 			'landing' => ''
 		);
-		
+		/*
 		$aMenus[] = array(
 			'phrase' => Phpfox::getPhrase('pages.info'),
 			'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'info/',
 			'icon' => 'misc/application_view_list.png',
 			'landing' => 'info'
-		);		
+		);
+		*/
 		
 		$aModuleCalls = Phpfox::massCallback('getPageMenu', $aPage);
 		foreach ($aModuleCalls as $sModule => $aModuleCall)

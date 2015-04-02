@@ -25,7 +25,7 @@ class Attachment_Component_Block_Archive extends Phpfox_Component
 		
 		list($iCnt, $aItems) = Phpfox::getService('attachment')->get(array("attachment.user_id = " . Phpfox::getUserId() . ""), 'attachment.time_stamp DESC',	$iPage, $iPageSize);
 	
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'attachment.browse'));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'attachment.browse'));
 		
 		$aUser = Phpfox::getService('user')->get(Phpfox::getUserId(), true);		
 		

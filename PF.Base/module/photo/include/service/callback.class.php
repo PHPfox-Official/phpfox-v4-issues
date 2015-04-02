@@ -1557,7 +1557,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			$aRow['parent_user'] = Phpfox::getService('user')->getUserFields(true, $aRow['custom_data_cache'], 'parent_');
 		}
 
-		if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['custom_data_cache']['parent_user_name']) && $aRow['custom_data_cache']['parent_user_id'] != Phpfox::getService('profile')->getProfileUserId())
+		if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['custom_data_cache']['parent_user_name']) && $aRow['custom_data_cache']['parent_user_id'] != Profile_Service_Profile::instance()->getProfileUserId())
 		{
 			$aRow['feed_mini'] = true;
 			$aRow['feed_mini_content'] = Phpfox::getPhrase('photo.full_name_posted_a_href_link_photo_a_photo_a_on_a_href_link_user_parent_full_name_a_s_a_href_link_wall_wall_a',array('full_name' => Phpfox::getService('user')->getFirstName('Test'), 'link_photo' => Phpfox::permalink('photo', $aRow['custom_data_cache']['photo_id'], $aRow['custom_data_cache']['title']), 'link_user' => Phpfox_Url::instance()->makeUrl($aRow['custom_data_cache']['parent_user_name']), 'parent_full_name' => $aRow['custom_data_cache']['parent_full_name'], 'link_wall' => Phpfox_Url::instance()->makeUrl($aRow['custom_data_cache']['parent_user_name'])));
@@ -1633,7 +1633,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		
 		if (($aRow['mature'] == 0 || (($aRow['mature'] == 1 || $aRow['mature'] == 2) && Phpfox::getUserId() && Phpfox::getUserParam('photo.photo_mature_age_limit') <= Phpfox::getUserBy('age'))) || $aRow['user_id'] == Phpfox::getUserId())
 		{
-			$iImageMaxSuffix = (Phpfox::getService('profile')->timeline() ? '1024' : '1024');
+			$iImageMaxSuffix = (Profile_Service_Profile::instance()->timeline() ? '1024' : '1024');
 			$sCustomCss = '' . $sThickbox . ' photo_holder_image';
 			$sImage = Phpfox::getLib('image.helper')->display(array(
 					'server_id' => $aRow['server_id'],
@@ -1739,7 +1739,7 @@ class Photo_Service_Callback extends Phpfox_Service
 				$aReturn['parent_user'] = Phpfox::getService('user')->getUserFields(true, $aRow, 'parent_');
 			}
 			
-			if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['parent_user_name']) && $aRow['parent_user_id'] != Phpfox::getService('profile')->getProfileUserId())
+			if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['parent_user_name']) && $aRow['parent_user_id'] != Profile_Service_Profile::instance()->getProfileUserId())
 			{
 				$aReturn['feed_mini'] = true;
 				$aReturn['feed_mini_content'] = Phpfox::getPhrase('photo.full_name_posted_a_href_link_photo_a_photo_a_on_a_href_link_user_parent_full_name_a_s_a_href_link_wall_wall_a',array('full_name' => Phpfox::getService('user')->getFirstName($aItem['full_name']), 'link_photo' => Phpfox::permalink('photo', $aRow['photo_id'], $aRow['title']), 'link_user' => Phpfox_Url::instance()->makeUrl($aRow['parent_user_name']), 'parent_full_name' => $aRow['parent_full_name'], 'link_wall' => Phpfox_Url::instance()->makeUrl($aRow['parent_user_name'])));

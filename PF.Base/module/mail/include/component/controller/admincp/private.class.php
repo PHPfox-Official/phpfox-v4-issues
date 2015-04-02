@@ -160,7 +160,7 @@ class Mail_Component_Controller_Admincp_Private extends Phpfox_Component
 		
 		list($aMessages, $iCnt) = Mail_Service_Mail::instance()->getPrivate($oFilter->getConditions(), 10, $oFilter->getSort(), $iPage);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => 10, 'count' => $oFilter->getSearchTotal($iCnt)));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => 10, 'count' => $oFilter->getSearchTotal($iCnt)));
 		
 		
 		$this->template()->setTitle(Phpfox::getPhrase('mail.private_messages'))

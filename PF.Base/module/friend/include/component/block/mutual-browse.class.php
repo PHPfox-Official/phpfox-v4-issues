@@ -28,7 +28,7 @@ class Friend_Component_Block_Mutual_Browse extends Phpfox_Component
 		
 		list($iCnt, $aFriends) = Friend_Service_Friend::instance()->get($aCond, 'friend.time_stamp DESC', $iPage, $iPageSize, true, false, false, $this->request()->getInt('user_id'));
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'friend.getMutualFriends'));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'friend.getMutualFriends'));
 		
 		$this->template()->assign(array(
 				'aFriends' => $aFriends,

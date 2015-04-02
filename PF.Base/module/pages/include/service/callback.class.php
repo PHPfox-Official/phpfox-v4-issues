@@ -422,7 +422,7 @@ class Pages_Service_Callback extends Phpfox_Service
 			'comment_type_id' => 'pages',
 			'like_type_id' => 'pages_comment',
 			'is_custom_app' => $aRow['is_app'],
-			'app_image_path' => $aRow['app_image_path'],
+			// 'app_image_path' => $aRow['app_image_path'],
 			'custom_data_cache' => $aRow
 		);
 

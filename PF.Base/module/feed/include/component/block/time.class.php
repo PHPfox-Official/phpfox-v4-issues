@@ -20,7 +20,7 @@ class Feed_Component_Block_Time extends Phpfox_Component
 	 */
 	public function process()
 	{
-		if (!Phpfox::getService('profile')->timeline() && !$this->getParam('bIsPage'))
+		if (!Profile_Service_Profile::instance()->timeline() && !$this->getParam('bIsPage'))
 		{
 			return false;
 		}

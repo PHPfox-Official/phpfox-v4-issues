@@ -28,8 +28,15 @@ class Pages_Component_Block_Photo extends Phpfox_Component
 		$aPage = $this->getParam('aPage');
 		$aCoverPhoto = ($aPage['cover_photo_id'] ? Phpfox::getService('photo')->getCoverPhoto($aPage['cover_photo_id']) : false);
 
+		$aPageMenus = Phpfox::getService('pages')->getMenu($aPage);
+		/*
+		ob_clean();
+		d($aPageMenus);
+		exit;
+		*/
 		$this->template()->assign([
-			'aCoverPhoto' => $aCoverPhoto
+			'aCoverPhoto' => $aCoverPhoto,
+			'aPageMenus' => $aPageMenus
 		]);
 	}
 	

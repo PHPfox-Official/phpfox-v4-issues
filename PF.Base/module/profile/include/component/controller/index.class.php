@@ -178,7 +178,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 			)		
 			->assign(array(
 				'aUser' => $aRow,
-				'aProfileLinks' => Phpfox::getService('profile')->getProfileMenu($aRow),
+				'aProfileLinks' => Profile_Service_Profile::instance()->getProfileMenu($aRow),
 				'bIsBlocked' => (Phpfox::isUser() ? Phpfox::getService('user.block')->isBlocked(Phpfox::getUserId(), $aRow['user_id']) : false),
 				'bOwnProfile' => $aRow['user_id'] == Phpfox::getUserId()
 			)
@@ -249,7 +249,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 			return Phpfox_Module::instance()->setController('profile.private');
 		}				
 		
-		Phpfox::getService('profile')->setUserId($aRow['user_id']);
+		Profile_Service_Profile::instance()->setUserId($aRow['user_id']);
 		
 		(($sPlugin = Phpfox_Plugin::get('profile.component_controller_index_process_start')) ? eval($sPlugin) : false);
 
@@ -334,7 +334,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 			}
 		}		
 		
-		$sPageTitle = Phpfox::getService('profile')->getProfileTitle($aRow);		
+		$sPageTitle = Profile_Service_Profile::instance()->getProfileTitle($aRow);
 		
 		if (!defined('PHPFOX_IS_USER_PROFILE_INDEX'))
 		{
@@ -357,7 +357,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 					)
 				);
 		
-		if (($iLinkId = $this->request()->get('link-id')) && ($aLinkShare = Phpfox::getService('link')->getLinkById($iLinkId)) && isset($aLinkShare['link_id']))
+		if (($iLinkId = $this->request()->get('link-id')) && ($aLinkShare = Link_Service_Link::instance()->getLinkById($iLinkId)) && isset($aLinkShare['link_id']))
 		{
 			$sPageTitle = $aLinkShare['title'];
 			$sDescription = $aLinkShare['description'];

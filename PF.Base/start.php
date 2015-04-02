@@ -47,6 +47,14 @@ if (!defined('PHPFOX_NO_RUN')) {
 	try {
 		Phpfox::run();
 	} catch (\Exception $e) {
+		if (PHPFOX_IS_AJAX_PAGE) {
+			header('Content-type: application/json');
+			echo json_encode([
+				'error' => $e->getMessage()
+			]);
+			exit;
+		}
+
 		header('Content-type: text/html');
 		throw new Exception($e->getMessage(), $e->getCode(), $e);
 	}

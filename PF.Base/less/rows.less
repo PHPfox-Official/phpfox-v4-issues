@@ -140,6 +140,12 @@ div.row_title_info div.extra_info {
 	z-index:10;
 }
 
+._is_pages_view {
+	a.item_bar_action, a.item_bar_action:hover {
+		background:rgba(0, 0, 0, 0.4);
+	}
+}
+
 a.item_bar_action, a.item_bar_action:hover {
 	background:darken(@blockBg, 10%);
 	width:40px;
@@ -169,6 +175,7 @@ a.item_bar_action:before {
 	box-shadow:@blockBoxShadow;
 	font-size:@fontSizeBase - 1;
 	background:@blockBg;
+	z-index:400;
 
 	li {
 		a, a:hover {

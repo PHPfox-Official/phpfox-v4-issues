@@ -99,7 +99,7 @@ class Music_Component_Controller_Browse_Album extends Phpfox_Component
 		
 		$this->search()->browse()->params($aBrowseParams)->execute();		
 		
-		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));				
+		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
 		
 		$this->template()->setHeader('cache', array(
 					'pager.css' => 'style_css',

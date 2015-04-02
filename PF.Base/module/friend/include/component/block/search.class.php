@@ -118,7 +118,7 @@ class Friend_Component_Block_Search extends Phpfox_Component
 		$aParams['friend_module_id'] = $this->getParam('friend_module_id');
 		$aParams['type'] = $this->getParam('type');
 			
-		Phpfox::getLib('pager')->set(array('ajax' => 'friend.searchAjax', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'aParams' => $aParams));
+		Phpfox_Pager::instance()->set(array('ajax' => 'friend.searchAjax', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'aParams' => $aParams));
 		
 		$sFriendModuleId = $this->getParam('friend_module_id', '');
 

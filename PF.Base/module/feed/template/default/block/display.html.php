@@ -110,7 +110,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					{/if}
 				</div>				
 			{else}
-				{if defined('PHPFOX_IS_USER_PROFILE') && Phpfox::getService('profile')->timeline()}
+				{if defined('PHPFOX_IS_USER_PROFILE') && Profile_Service_Profile::instance()->timeline()}
 					{module name='user.birth'}
 				{else}
 					<br />

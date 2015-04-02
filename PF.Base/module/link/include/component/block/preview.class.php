@@ -20,7 +20,7 @@ class Link_Component_Block_Preview extends Phpfox_Component
 	 */
 	public function process()
 	{
-		if (!($aLink = Phpfox::getService('link')->getLink($this->request()->get('value'))))
+		if (!($aLink = Link_Service_Link::instance()->getLink($this->request()->get('value'))))
 		{
 			return false;
 		}

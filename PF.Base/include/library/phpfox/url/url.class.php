@@ -942,6 +942,15 @@ class Phpfox_Url
 				if ($iIteration === 1) {
 					$sUrls .= '?';
 				}
+				
+				if (is_array($sValue)) {
+					foreach ($sValue as $subKey => $subValue) {
+						$sUrls .= $sKey . '[' . $subKey . ']=' . str_replace('.', '', $subValue) . '&';
+					}
+
+					continue;
+				}
+				
 				$sUrls .= $sKey . '=' . str_replace('.', '', $sValue) . '&';
 			}
 			$sUrls = rtrim($sUrls, '&');

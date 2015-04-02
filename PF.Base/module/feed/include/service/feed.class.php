@@ -1097,7 +1097,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			Phpfox_Template::instance()->assign(array(
 				'aFeed' => $aFeeds[0],
 				'aFeedCallback' => array('module' => str_replace('_comment','',$aFeeds[0]['type_id']), 'item_id' => $aFeeds[0]['item_id'])
-				))->getTemplate((Phpfox::getService('profile')->timeline() ? 'feed.block.timeline' : 'feed.block.entry'));				
+				))->getTemplate((Profile_Service_Profile::instance()->timeline() ? 'feed.block.timeline' : 'feed.block.entry'));
 		}
 		else
 		{
@@ -1108,7 +1108,7 @@ class Feed_Service_Feed extends Phpfox_Service
 		
 		$sNewContent =  '<div id="' . $sId . '" class="js_temp_new_feed_entry js_feed_view_more_entry_holder">' . $oAjax->getContent(false) . '</div>';
 		
-		if (Phpfox::getService('profile')->timeline())
+		if (Profile_Service_Profile::instance()->timeline())
 		{
 			$oAjax->prepend('.timeline_left_new', '<div class="timeline_feed_row"><div class="timeline_arrow_left">0</div><div class="timeline_float_left">0</div>' . $sNewContent . '</div>');
 		}

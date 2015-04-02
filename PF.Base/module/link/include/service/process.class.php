@@ -40,7 +40,12 @@ class Link_Service_Process extends Phpfox_Service
 		if (empty($aVals['privacy']))
 		{
 			$aVals['privacy'] = 0;
-		}			
+		}
+
+		// d($aVals); exit;
+		if (trim($aVals['link']['url']) == trim($aVals['status_info'])) {
+			$aVals['status_info'] = null;
+		}
 		
 		$iId = $this->database()->insert($this->_sTable, array(
 				'user_id' => Phpfox::getUserId(),

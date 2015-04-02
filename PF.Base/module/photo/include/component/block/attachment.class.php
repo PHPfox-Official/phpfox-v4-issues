@@ -31,7 +31,7 @@ class Photo_Component_Block_Attachment extends Phpfox_Component
 		list($iCnt, $aPhotos) = Phpfox::getService('photo')->get($aConditions, 'p.time_stamp DESC', $iPage, $iPageSize);
 		
 		// Set the pager for the photos
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'photo.getForAttachment'));		
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'photo.getForAttachment'));
 		
 		$this->template()->assign(array(
 				'aPhotos' => $aPhotos,

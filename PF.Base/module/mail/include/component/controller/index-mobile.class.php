@@ -56,7 +56,7 @@ class Mail_Component_Controller_Index_Mobile extends Phpfox_Component
 		
 		list($iCnt, $aMessages, $aInputs) = Mail_Service_Mail::instance()->get($aCond, 'm.time_updated DESC', $iPage, $iPageSize, $bIsSentbox);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 				
 		$this->template()->assign(array(
 				'bMobileInboxIsActive' => true,

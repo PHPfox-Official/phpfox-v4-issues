@@ -264,7 +264,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 		}
 		
 		// http://www.phpfox.com/tracker/view/15445/
-		if (Phpfox::getService('profile')->timeline() && ($bIsProfile || defined('PHPFOX_IS_PAGES_VIEW')))
+		if (Profile_Service_Profile::instance()->timeline() && ($bIsProfile || defined('PHPFOX_IS_PAGES_VIEW')))
 		{
 			// Should we set the special menu?
 			$bSpecialMenu = (!defined('PHPFOX_IS_AJAX_CONTROLLER'));
@@ -293,7 +293,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 		
 		$aItems = $this->search()->browse()->getRows();
 		
-		Phpfox::getLib('pager')->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
+		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
 		
 		Phpfox::getService('blog')->getExtra($aItems, 'user_profile');
 

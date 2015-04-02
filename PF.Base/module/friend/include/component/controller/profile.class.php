@@ -90,7 +90,7 @@ class Friend_Component_Controller_Profile extends Phpfox_Component
 
 		$iCnt = $oFilter->getSearchTotal($iCnt);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));		
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
 		$this->setParam('aTotalFriends', $iCnt);		
 		

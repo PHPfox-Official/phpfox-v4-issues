@@ -20,7 +20,7 @@ class Link_Component_Controller_Index extends Phpfox_Component
 	 */
 	public function process()
 	{
-		if (($aLink = Phpfox::getService('link')->getLinkById($this->request()->getInt('req2'))))
+		if (($aLink = Link_Service_Link::instance()->getLinkById($this->request()->getInt('req2'))))
 		{
 			$this->url()->send($aLink['user_name'], array('link-id' => $aLink['link_id']));
 		}		

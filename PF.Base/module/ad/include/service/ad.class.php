@@ -275,7 +275,7 @@ class Ad_Service_Ad extends Phpfox_Service
 			return $aCacheAd[$iId];	
 	    }	    
 		
-		if (Phpfox::getService('profile')->timeline() && $iId == '1')
+		if (Profile_Service_Profile::instance()->timeline() && $iId == '1')
 		{
 			$aCacheAd[$iId] = array();
 			

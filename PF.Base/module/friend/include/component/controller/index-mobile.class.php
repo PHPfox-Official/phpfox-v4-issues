@@ -49,7 +49,7 @@ class Friend_Component_Controller_Index_Mobile extends Phpfox_Component
 		
 		list($iCnt, $aFriends) = Friend_Service_Friend::instance()->get($aCond, 'u.full_name ASC', $iPage, $iPageSize);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
 		$this->template()->assign(array(
 				'aFriends' => $aFriends,

@@ -98,7 +98,7 @@ class Friend_Component_Controller_Index extends Phpfox_Component
 		
 		list($iCnt, $aRows) = Friend_Service_Friend::instance()->get($this->search()->getConditions(), $this->search()->getSort(), $this->search()->getPage(), $iPageSize, true, true, $bIsOnline, null, true);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'friend.viewMoreFriends'));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'friend.viewMoreFriends'));
 		
 		Friend_Service_Friend::instance()->buildMenu();
 		

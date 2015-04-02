@@ -266,6 +266,10 @@ class Phpfox_Module
 		}		
 		return 'core';		
 	}
+
+	public function resetBlocks() {
+		$this->_aModuleBlocks = [];
+	}
 	
 	/**
 	 * Sets the controller for the page we are on. This method controlls what component to load, which 
@@ -280,16 +284,9 @@ class Phpfox_Module
 			$aParts = explode('.', $sController);			
 			$this->_sModule = $aParts[0];
 			$this->_sController = substr_replace($sController, '', 0, strlen($this->_sModule . '_'));			
-			$this->getModuleBlocks(1, true);			
+			// $this->getModuleBlocks(1, true);
 
 			(($sPlugin = Phpfox_Plugin::get('set_defined_controller')) ? eval($sPlugin) : false);
-			
-			// Reset the lang. pack cache since we are using a new controller
-			if (Phpfox::getParam('language.cache_phrases'))
-			{				
-				Phpfox_Locale::instance()->cache();
-				Phpfox_Locale::instance()->setCache();
-			}
 			
 			$this->getController();
 			
@@ -440,6 +437,15 @@ class Phpfox_Module
 		}
 	}
 
+	public function getPageClass() {
+		$class = '';
+		if (defined('PHPFOX_IS_PAGES_VIEW')) {
+			$class .= ' _is_pages_view ';
+		}
+
+		return $class;
+	}
+
 	public function getPageId() {
 		$id = str_replace(['/', '.'], '_', $this->getFullControllerName());
 
@@ -530,6 +536,10 @@ class Phpfox_Module
 			$aBlocks[$iId][] = 'profile.pic';
 		}
 
+		if (defined('PHPFOX_IS_PAGES_VIEW') && $iId == 11) {
+			$aBlocks[$iId][] = 'pages.photo';
+		}
+
 		(($sPlugin = Phpfox_Plugin::get('get_module_blocks')) ? eval($sPlugin) : false);
 
 		/*
@@ -537,9 +547,10 @@ class Phpfox_Module
 			call_user_func([$this->_oBlocklet, 'location_' . $iId]);
 		}
 		*/
-		
+
 		//$sController = strtolower($this->_sModule . '.' . $this->_sController);
 		$sController = strtolower($this->_sModule . '.' . str_replace(array('\\', '/'), '.' , $this->_sController));
+
 		if (isset($this->_aModuleBlocks[$sController][$iId]) || isset($this->_aModuleBlocks[str_replace('.index','',$sController)][$iId]) || isset($this->_aModuleBlocks[$this->_sModule][$iId]) || isset($this->_aModuleBlocks[''][$iId]))
 		{
 			$aCachedBlocks = array();			

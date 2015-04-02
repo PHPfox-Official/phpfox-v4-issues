@@ -1,4 +1,6 @@
 
+@pagesWidth: 1180px;
+
 #page_pages_add {
 	#js_pages_add_holder {
 		> .extra_info, > form > strong, > form > select {
@@ -71,10 +73,10 @@
 */
 
 .pages_header {
-	background:#0c0c0c;
 	height:420px;
-	overflow:hidden;
 	position:relative;
+	width:@pagesWidth;
+	margin:auto;
 	margin-bottom:@blockMarginBottom;
 
 	.pages_header_cover {
@@ -84,106 +86,207 @@
 			height:420px;
 		}
 	}
+}
 
-	.pages_like_join, .pages_like_join:hover {
-		.button();
-		display:inline-block;
-	}
+.pages_like_join, .pages_like_join:hover {
+	.button();
 
-	.pages_like_join:hover {
-		.button_hover();
-	}
+	color:@brandPrimaryColor;
+	display:inline-block;
+}
 
-	.pages_header_info {
-		background:rgba(0, 0, 0, 0.6);
-		padding:@blockContentPadding;
+.pages_like_join:hover {
+	.button_hover();
+}
+
+.pages_unlike_unjoin {
+	opacity:0.5;
+}
+
+.pages_unlike_unjoin:hover {
+	opacity:1;
+}
+
+.pages_header_info {
+	background:rgba(0, 0, 0, 0.6);
+	padding:10px 0px;
+	position:absolute;
+	z-index:100;
+	top:0px;
+	right:0px;
+	left:0px;
+
+	/*
+	.pages_like_join {
 		position:absolute;
-		z-index:100;
-		left:10px;
-		bottom:10px;
+		right:10px;
+		top:10px;
+	}
+	*/
 
-		.pages_header_name {
-			padding-top:5px;
-			padding-bottom:10px;
-			display:block;
+	.pages_header_name {
+		padding-top:5px;
+		padding-bottom:5px;
+		display:block;
 
-			h1 {
-				color:#fff;
-				line-height:normal;
-				padding:0px;
-				margin:0px;
-			}
-
-			ul {
-				margin-top:1px;
-				margin-bottom:5px;
-
-				li {
-					color:darken(#f1f1f1, 10%);
-					font-size:@fontSizeBase - 1;
-					font-weight:300;
-					display:inline-block;
-				}
-
-				li:first-of-type:after {
-					content:' - ';
-				}
-			}
+		h1 {
+			color:#fff;
+			line-height:normal;
+			padding:0px;
+			margin:0px;
 		}
 
-		> div {
+		ul {
+			margin-top:1px;
+			margin-bottom:5px;
+
+			li {
+				color:darken(#f1f1f1, 10%);
+				font-size:@fontSizeBase - 1;
+				font-weight:300;
+				display:inline-block;
+			}
+
+			li:first-of-type:after {
+				content:' - ';
+			}
+		}
+	}
+
+	> div {
+		display:inline-block;
+		vertical-align:top;
+		margin-left:10px;
+		margin-bottom:-6px;
+	}
+
+	.pages_header_image {
+		img {
+			max-width:100px;
+			max-height:100px;
+		}
+	}
+}
+
+.pages_header_fixed {
+	.pages_header_info {
+		position:fixed;
+		width:@pagesWidth;
+		right:auto;
+		top:0px;
+		left:50%;
+		margin-left:-((@pagesWidth - (@navWidth))/2);
+	}
+}
+
+.pages_menu {
+	position:absolute;
+	right:10px;
+	bottom:15px;
+	z-index:10;
+
+	> ul {
+		li {
 			display:inline-block;
-			vertical-align:top;
-			margin-right:10px;
-		}
+			margin-left:10px;
 
-		.pages_header_image {
-			img {
-				max-width:120px;
-				max-height:120px;
+			a, a:hover {
+				color:darken(#fff, 20%);
+				font-weight:200;
+				font-size:@fontSizeBase + 3;
+				text-transform:lowercase;
+				letter-spacing:1px;
+			}
+
+			a:hover {
+				color:#fff;
+				transition:@transition;
 			}
 		}
 	}
 }
 
+.pages_header {
+	height:120px;
+	background:transparent;
+	margin:auto;
+}
+
+.pages_header_cover {
+	display:none;
+}
+
 #page_pages_view {
-	#activity_feed_share_this_one {
-		display:none;
+	.pages_header_cover {
+		display:block;
+	}
+
+	.pages_header {
+		height:420px;
+		background:inherit;
+		margin:auto;
 	}
 
 
-
-	#panels, #main_content {
+	#panels, #content {
 		display:table-cell;
 		vertical-align:top;
 	}
 
-	#content_holder {
+	#container {
 		display:table;
-		table-layout:fixed;
-		width:100%;
+		width:@pagesWidth;
 	}
 
 	#panels {
 		padding-left:20px;
+		width:auto;
 	}
 
-	#main_content {
+	#content {
 		width:600px;
 	}
 
 	#content {
 		margin-left:0px;
-		width:auto;
 	}
 
-	#left {
+	#panels {
 		position:static;
-		width:auto;
+	}
+}
+
+._is_pages_view {
+	.breadcrumbs_menu {
+		position:absolute;
+		right:10px;
+		top:10px;
+		z-index:200;
 	}
 
-	#right {
+	div.header_bar_menu {
+		width:@pagesWidth;
+		margin:auto;
+	}
+
+	#activity_feed_share_this_one {
 		display:none;
+	}
+
+	#header {
+		display:none;
+	}
+
+	#top {
+		background:transparent;
+		margin-top:20px;
+	}
+
+	.item_bar {
+		top:10px;
+		right:10px;
+		box-shadow:@blockBoxShadowLight;
+		z-index:100;
 	}
 }
 

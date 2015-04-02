@@ -141,7 +141,7 @@ class Photo_Component_Controller_Albums extends Phpfox_Component
 		{
 			$aPager['size'] = Phpfox::getUserParam('photo.max_photo_display_limit');
 		}
-		Phpfox::getLib('pager')->set($aPager);
+		Phpfox_Pager::instance()->set($aPager);
 		
 		if (Phpfox::getParam('photo.show_info_on_mouseover') && isset($aUser['use_timeline']) && $aUser['use_timeline'])
 		{

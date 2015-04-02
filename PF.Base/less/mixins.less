@@ -188,3 +188,43 @@
 		}
 	}
 }
+
+.threeColumn(@id) {
+
+	#@{id} {
+		#panels {
+			position:static;
+			width:auto;
+		}
+
+		#left {
+			position:absolute;
+			left:-(@columnLeftWidth + 20);
+			top:0px;
+			width:@columnLeftWidth;
+		}
+
+		#right {
+			position:absolute;
+			right:0px;
+			top:0px;
+			width:@columnWidth;
+		}
+
+		#container {
+			margin-left:@columnLeftWidth + 40;
+		}
+	}
+}
+
+.noHeader(@id) {
+	#@{id} {
+		#top {
+			margin-top:-@headerHeight;
+		}
+
+		#header {
+			display:none;
+		}
+	}
+}

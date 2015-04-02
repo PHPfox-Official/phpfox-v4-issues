@@ -29,11 +29,14 @@ class Friend_Component_Block_Birthday extends Phpfox_Component
 
 		$aBirthdays = Friend_Service_Friend::instance()->getBirthdays(Phpfox::getuserId());
 
+		$bIsEventSection = true;
+		/*
 		$bIsEventSection = (Phpfox_Module::instance()->getFullControllerName() == 'event.index' ? true : false);
 		if (!Phpfox::isModule('event'))
 		{
 			$bIsEventSection = true;
 		}
+		*/
 		
 		if ($bIsEventSection && empty($aBirthdays) && (Phpfox::getParam('friend.show_empty_birthdays') == false))
 		{

@@ -172,7 +172,7 @@ class Phpfox_Ajax
 		if (isset($this->_aRequest['is_user_profile']) && $this->_aRequest['is_user_profile'] && !defined('PHPFOX_IS_USER_PROFILE') && isset($this->_aRequest['profile_user_id']))
 		{
 			define('PHPFOX_IS_USER_PROFILE', true);
-			Phpfox::getService('profile')->setUserId($this->_aRequest['profile_user_id']);
+			Profile_Service_Profile::instance()->setUserId($this->_aRequest['profile_user_id']);
 		}
 		
 		$bCache = false;

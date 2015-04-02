@@ -491,18 +491,18 @@ class User_Component_Controller_Browse extends Phpfox_Component
 
 		if (!(defined('PHPFOX_IS_ADMIN_SEARCH')))
 		{
-			//Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'user.mainBrowse'));
-			Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'user.mainBrowse', 'aParams' => $aNewCustomValues));
+			//Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'user.mainBrowse'));
+			Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'user.mainBrowse', 'aParams' => $aNewCustomValues));
 		}
 		else
 		{
-			Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
+			Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		}
 		
 		Phpfox_Url::instance()->setParam('page', $iPage);
 		
 		// http://www.phpfox.com/tracker/view/15277/
-		if($iPage > Phpfox::getLib('pager')->getTotalPages())
+		if($iPage > Phpfox_Pager::instance()->getTotalPages())
 		{
 			Phpfox_Url::instance()->send('error.404');
 		}

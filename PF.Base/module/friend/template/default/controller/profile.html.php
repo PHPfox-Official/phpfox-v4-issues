@@ -12,7 +12,9 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if count($aFriends)}
-{foreach from=$aFriends name=friend item=aFriend}
+{foreach from=$aFriends name=friend item=aUser}
+	{template file='user.block.rows'}
+{*
 <div id="js_friend_{$aFriend.friend_id}" class="go_left row_friend_browse" style="width:32%; padding-bottom:10px; position:relative;">
 	<div class="t_center" style="width:80px; float:left;">
 		{img user=$aFriend suffix='_50_square' max_width=75 max_height=75}				
@@ -27,9 +29,10 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	<div class="clear"></div>
 </div>
+*}
 
 {/foreach}
-<div class="clear"></div>
+
 {pager}
 {else}
 

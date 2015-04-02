@@ -209,7 +209,7 @@ class Language_Component_Controller_Admincp_Phrase_Phrase extends Phpfox_Compone
 			$aOut[$aRow['phrase_id']]['is_translated'] = (md5($aRow['text_default']) != md5($aRow['text']) ? true : false);
 		}
 		$aRows = $aOut;
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $oSearch->getSearchTotal($iCnt)));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $oSearch->getSearchTotal($iCnt)));
 			
 		$this->template()->assign(array(
 			'aRows' => $aRows,

@@ -94,7 +94,7 @@ class Feed_Component_Controller_Admincp_Index extends Phpfox_Component
 
 		list($iCnt, $aFeeds) = Feed_Service_Feed::instance()->getForBrowse($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $oSearch->getDisplay());
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $oSearch->getDisplay(), 'count' => $oSearch->getSearchTotal($iCnt)));		
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $oSearch->getDisplay(), 'count' => $oSearch->getSearchTotal($iCnt)));
 		
 		$this->template()->setTitle(Phpfox::getPhrase('comment.comment_title'))
 			->setBreadcrumb(Phpfox::getPhrase('comment.comment_title'), $this->url()->makeUrl('admincp.comment'))

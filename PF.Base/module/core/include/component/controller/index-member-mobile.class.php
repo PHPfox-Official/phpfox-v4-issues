@@ -44,7 +44,7 @@ class Core_Component_Controller_Index_Member_Mobile extends Phpfox_Component
 				)
 			);
 			
-			// Phpfox::getLib('pager')->set(array('page' => $iFeedPage, 'size' => $iTotalFeeds, 'count' => $iFeedCount));
+			// Phpfox_Pager::instance()->set(array('page' => $iFeedPage, 'size' => $iTotalFeeds, 'count' => $iFeedCount));
 			
 			$this->template()
 				->setMobileHeader(array(

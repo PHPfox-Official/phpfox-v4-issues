@@ -51,8 +51,8 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		
 		Phpfox::getUserParam('forum.can_view_forum', true);
 		
-		$aParentModule = $this->getParam('aParentModule');	
-		
+		$aParentModule = $this->getParam('aParentModule');
+
 		if (Phpfox::getParam('core.phpfox_is_hosted') && empty($aParentModule))
 		{
 			$this->url()->send('');

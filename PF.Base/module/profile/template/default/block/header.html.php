@@ -11,10 +11,10 @@
 defined('PHPFOX') or exit('NO DICE!');
 
 ?>
-	<div{if Phpfox::getService('profile')->timeline()} class="profile_timeline_header_holder"{/if}>
-		<div class="profile_header{if Phpfox::getService('profile')->timeline()} profile_timeline_header{/if}{if (empty($aUser.cover_photo) && (!isset($aUser.cover_photo_id) || $aUser.cover_photo_id < 1)) || (!Phpfox::getService('user.privacy')->hasAccess('' . $aUser.user_id . '', 'profile.view_profile'))} no_cover_photo {/if}">
+	<div{if Profile_Service_Profile::instance()->timeline()} class="profile_timeline_header_holder"{/if}>
+		<div class="profile_header{if Profile_Service_Profile::instance()->timeline()} profile_timeline_header{/if}{if (empty($aUser.cover_photo) && (!isset($aUser.cover_photo_id) || $aUser.cover_photo_id < 1)) || (!Phpfox::getService('user.privacy')->hasAccess('' . $aUser.user_id . '', 'profile.view_profile'))} no_cover_photo {/if}">
 
-			{if Phpfox::getService('profile')->timeline()}
+			{if Profile_Service_Profile::instance()->timeline()}
 				{module name='profile.pic'}
 			{/if}
 
@@ -43,7 +43,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					</h1>
 				{/if}
 			{/if}
-			<div class="profile_header_inner{if Phpfox::getService('profile')->timeline()} profile_header_timeline{/if}">
+			<div class="profile_header_inner{if Profile_Service_Profile::instance()->timeline()} profile_header_timeline{/if}">
 				<div id="section_menu">
 					{if defined('PHPFOX_IS_USER_PROFILE_INDEX') || defined('PHPFOX_PROFILE_PRIVACY') || Phpfox_Module::instance()->getFullControllerName() == 'profile.info'}
 					<ul>						
@@ -209,7 +209,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 			</div>
 		</div>
-		{if Phpfox::getService('profile')->timeline() && (isset($aUser.page_id) || Phpfox::getService('user.privacy')->hasAccess('' . $aUser.user_id . '', 'profile.view_profile'))	}
+		{if Profile_Service_Profile::instance()->timeline() && (isset($aUser.page_id) || Phpfox::getService('user.privacy')->hasAccess('' . $aUser.user_id . '', 'profile.view_profile'))	}
 			<div class="timeline_main_menu">
 				<ul>
 					{foreach from=$aProfileLinks item=aProfileLink}

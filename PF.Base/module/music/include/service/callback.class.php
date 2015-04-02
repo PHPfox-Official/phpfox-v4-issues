@@ -1143,7 +1143,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 				)
 			);
 
-			$sParentId = (Phpfox::getService('profile')->timeline() ? 'activity_feed_content_text' : 'activity_feed_content');
+			$sParentId = (Profile_Service_Profile::instance()->timeline() ? 'activity_feed_content_text' : 'activity_feed_content');
 			
 			$aReturn['feed_image_onclick'] = '$(this).parents(\'.' . $sParentId . ':first\').attr(\'id\', \'js_play_music_song_' . (isset($aItem['feed_id']) ? $aItem['feed_id'] : 0) . '' . $aRow['song_id'] . '\'); $.ajaxCall(\'music.playInFeed\', \'id=' . $aRow['song_id'] . '&amp;feed_id=' . (isset($aItem['feed_id']) ? $aItem['feed_id'] : 0) . '\', \'GET\'); return false;';
 			$aReturn['feed_image_onclick_no_image'] = true;
@@ -1465,6 +1465,8 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 	
 	public function getPageMenu($aPage)
 	{
+		return false;
+
 		(($sPlugin = Phpfox_Plugin::get('music.service_callback_getpagemenu')) ? eval($sPlugin) : null);
 		
 		if (isset($bForceNoMusicOnPages))

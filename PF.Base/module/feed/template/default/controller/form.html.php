@@ -1,4 +1,5 @@
 
+<span class="cancel_post"><i class="fa fa-close"></i></span>
 {module name='feed.form'}
 {literal}
 <script>

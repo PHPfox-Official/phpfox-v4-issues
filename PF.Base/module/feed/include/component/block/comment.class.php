@@ -144,7 +144,7 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 		
 		if ($sFeedType == 'view')
 		{
-			Phpfox::getLib('pager')->set(array(
+			Phpfox_Pager::instance()->set(array(
 					'ajax' => 'comment.viewMoreFeed', 
 					'page' => Phpfox_Request::instance()->getInt('page'),
 					'size' => $iPageLimit, 

@@ -40,11 +40,11 @@ class Language_Component_Controller_Admincp_Add extends Phpfox_Component
 			
 			$iCnt = Phpfox::getService('language.phrase.process')->importPhrases($sLanguageId, $iPage, $iLimit);			
 			
-			Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $iCnt));
+			Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $iCnt));
 			
-			$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();		
-			$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();		
-			$iPage = (int) Phpfox::getLib('pager')->getNextPage();					
+			$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+			$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+			$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 			
 			if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 			{

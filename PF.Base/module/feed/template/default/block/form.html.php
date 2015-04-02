@@ -27,7 +27,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}
 			{foreach from=$aFeedStatusLinks item=aFeedStatusLink name=feedlinks}
 
-			{if $phpfox.iteration.feedlinks == 3 && Phpfox::getService('profile')->timeline()}
+			{if $phpfox.iteration.feedlinks == 3 && Profile_Service_Profile::instance()->timeline()}
 			<li><a href="#" rel="view_more_link" class="timeline_view_more js_hover_title"><span class="js_hover_info">{phrase var='feed.view_more'}</span></a>
 				<ul class="view_more_drop">
 			{/if}
@@ -52,7 +52,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/if}
 			{/if}
 
-			{if $phpfox.iteration.feedlinks == count($aFeedStatusLinks) && Phpfox::getService('profile')->timeline()}
+			{if $phpfox.iteration.feedlinks == count($aFeedStatusLinks) && Profile_Service_Profile::instance()->timeline()}
 				</ul>
 			</li>
 			{/if}
@@ -121,14 +121,14 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 			<div class="activity_feed_form_button_position">
 				
-				{if ((defined('PHPFOX_IS_PAGES_VIEW') && $aPage.is_admin) || ((Phpfox::isModule('share') && !defined('PHPFOX_IS_USER_PROFILE') && !defined('PHPFOX_IS_PAGES_VIEW') && !defined('PHPFOX_IS_EVENT_VIEW') && ((Phpfox::getParam('share.share_on_facebook') && Phpfox::getParam('facebook.facebook_app_id') && Phpfox::getParam('facebook.facebook_secret')) || Phpfox::getParam('share.share_on_twitter'))) || (defined('PHPFOX_IS_USER_PROFILE') && isset($aUser.user_id) && $aUser.user_id == Phpfox::getUserId() && Phpfox::getService('profile')->timeline() && Phpfox::getParam('feed.can_add_past_dates'))))}
+				{if ((defined('PHPFOX_IS_PAGES_VIEW') && $aPage.is_admin) || ((Phpfox::isModule('share') && !defined('PHPFOX_IS_USER_PROFILE') && !defined('PHPFOX_IS_PAGES_VIEW') && !defined('PHPFOX_IS_EVENT_VIEW') && ((Phpfox::getParam('share.share_on_facebook') && Phpfox::getParam('facebook.facebook_app_id') && Phpfox::getParam('facebook.facebook_secret')) || Phpfox::getParam('share.share_on_twitter'))) || (defined('PHPFOX_IS_USER_PROFILE') && isset($aUser.user_id) && $aUser.user_id == Phpfox::getUserId() && Profile_Service_Profile::instance()->timeline() && Phpfox::getParam('feed.can_add_past_dates'))))}
 					
 					<div id="activity_feed_share_this_one">
 						<ul>
 							{if (Phpfox::isModule('share') && !defined('PHPFOX_IS_USER_PROFILE') && !defined('PHPFOX_IS_PAGES_VIEW') && !defined('PHPFOX_IS_EVENT_VIEW') && ((Phpfox::getParam('share.share_on_facebook') && Phpfox::getParam('facebook.facebook_app_id') && Phpfox::getParam('facebook.facebook_secret')) || Phpfox::getParam('share.share_on_twitter')))}
 							<li><a href="#" class="activity_feed_share_this_one_link parent feed_share_site js_hover_title" rel="feed_share_on_holder"><span class="js_hover_info">{phrase var='feed.share_this_on'}</span></a></li>
 							{/if}
-							{if ((defined('PHPFOX_IS_PAGES_VIEW') && $aPage.is_admin && Phpfox::getService('profile')->timeline()) || (defined('PHPFOX_IS_USER_PROFILE') && isset($aUser.user_id) && $aUser.user_id == Phpfox::getUserId() && Phpfox::getService('profile')->timeline() && Phpfox::getParam('feed.can_add_past_dates')))}
+							{if ((defined('PHPFOX_IS_PAGES_VIEW') && $aPage.is_admin && Profile_Service_Profile::instance()->timeline()) || (defined('PHPFOX_IS_USER_PROFILE') && isset($aUser.user_id) && $aUser.user_id == Phpfox::getUserId() && Profile_Service_Profile::instance()->timeline() && Phpfox::getParam('feed.can_add_past_dates')))}
 							<li>
 								<a href="#" class="activity_feed_share_this_one_link parent feed_share_watch js_hover_title" rel="timeline_date_holder_share"><span class="js_hover_info">{phrase var='feed.set_a_date'}</span></a>
 							</li>
@@ -174,7 +174,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div><input type="hidden" name="val[connection][twitter]" value="0" id="js_share_connection_twitter" class="js_share_connection" /></div>
 				</div>					
 				{/if}
-				{if ((defined('PHPFOX_IS_PAGES_VIEW') && $aPage.is_admin) || (defined('PHPFOX_IS_USER_PROFILE') && isset($aUser.user_id) && $aUser.user_id == Phpfox::getUserId() && Phpfox::getService('profile')->timeline() && Phpfox::getParam('feed.can_add_past_dates')))}
+				{if ((defined('PHPFOX_IS_PAGES_VIEW') && $aPage.is_admin) || (defined('PHPFOX_IS_USER_PROFILE') && isset($aUser.user_id) && $aUser.user_id == Phpfox::getUserId() && Profile_Service_Profile::instance()->timeline() && Phpfox::getParam('feed.can_add_past_dates')))}
 				<div class="timeline_date_holder_share timeline_date_holder">					
 					<div class="t_center p_top_8">{img theme='ajax/add.gif'}</div>					
 				</div>

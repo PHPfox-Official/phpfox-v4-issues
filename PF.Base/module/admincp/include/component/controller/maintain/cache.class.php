@@ -108,7 +108,7 @@ class Admincp_Component_Controller_Maintain_Cache extends Phpfox_Component
 	
 		list($iCnt, $aCaches) = Phpfox::getLib('cache')->getCachedFiles($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);			
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));				
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));
 		
 		if ($this->request()->get('clear'))
 		{

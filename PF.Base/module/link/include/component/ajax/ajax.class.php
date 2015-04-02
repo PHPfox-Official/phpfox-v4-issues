@@ -73,7 +73,7 @@ class Link_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function play()
 	{
-		$sEmbedCode = Phpfox::getService('link')->getEmbedCode($this->get('id'), ($this->get('popup') ? true : false));
+		$sEmbedCode = Link_Service_Link::instance()->getEmbedCode($this->get('id'), ($this->get('popup') ? true : false));
 		
 		if ($this->get('popup'))
 		{

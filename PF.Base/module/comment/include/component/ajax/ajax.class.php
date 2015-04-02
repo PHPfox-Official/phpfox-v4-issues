@@ -501,7 +501,7 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 		{			
 			$this->prepend('#js_feed_comment_view_more_' . ($this->get('feed_id') ? $this->get('feed_id') : $this->get('item_id')), $this->getContent(false));
 			
-			Phpfox::getLib('pager')->set(array(
+			Phpfox_Pager::instance()->set(array(
 					'ajax' => 'comment.viewMoreFeed', 
 					'page' => Phpfox_Request::instance()->getInt('page'),
 					'size' => $this->get('pagelimit'), 

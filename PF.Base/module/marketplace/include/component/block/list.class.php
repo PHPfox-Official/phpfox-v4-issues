@@ -36,7 +36,7 @@ class Marketplace_Component_Block_List extends Phpfox_Component
 		
 		list($iCnt, $aInvites) = Phpfox::getService('marketplace')->getInvites($aListing['listing_id'], $iType, $iPage, $iPageSize);
 		
-		Phpfox::getLib('pager')->set(array('ajax' => 'marketplace.listInvites', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'aParams' => array('id' => $aListing['listing_id'])));
+		Phpfox_Pager::instance()->set(array('ajax' => 'marketplace.listInvites', 'page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'aParams' => array('id' => $aListing['listing_id'])));
 		
 		$this->template()->assign(array(
 				'aInvites' => $aInvites,

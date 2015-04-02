@@ -184,7 +184,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 			$bUseFeedForm = false;
 		}
 
-		if (!Phpfox::isUser()) {
+		if (!Phpfox::isUser() || defined('PHPFOX_IS_PAGES_VIEW')) {
 			$bStreamMode = false;
 		}
 

@@ -91,7 +91,7 @@ class Blog_Component_Controller_Admincp_Index extends Phpfox_Component
 		
 		list($iCnt, $aCategories) = Phpfox::getService('blog.category')->get($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);
 		
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));
 		
 		$this->template()->setTitle(Phpfox::getPhrase('blog.blog'))
 			->setBreadcrumb(Phpfox::getPhrase('blog.blog'), $this->url()->makeUrl('admincp.blog'))

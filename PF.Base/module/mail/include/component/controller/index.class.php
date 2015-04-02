@@ -267,7 +267,7 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 			
 			list($iCnt, $aRows, $aInputs) = Mail_Service_Mail::instance()->get($this->search()->getConditions(), $this->search()->getSort(), $this->search()->getPage(), $iPageSize, $bIsSentbox, $bIsTrash);
 
-			Phpfox::getLib('pager')->set(array(
+			Phpfox_Pager::instance()->set(array(
 					'page' => $iPage,
 					'size' => $iPageSize,
 					'count' => $iCnt

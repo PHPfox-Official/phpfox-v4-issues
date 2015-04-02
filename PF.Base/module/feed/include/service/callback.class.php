@@ -279,7 +279,7 @@ class Feed_Service_Callback extends Phpfox_Service
 			$aReturn['parent_user'] = Phpfox::getService('user')->getUserFields(true, $aInvoice, 'parent_');
 		}		
 		
-		if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aInvoice['parent_user_name']) && $aInvoice['parent_user_id'] != Phpfox::getService('profile')->getProfileUserId())
+		if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aInvoice['parent_user_name']) && $aInvoice['parent_user_id'] != Profile_Service_Profile::instance()->getProfileUserId())
 		{
 			if (empty($_POST))
 			{
@@ -309,7 +309,7 @@ class Feed_Service_Callback extends Phpfox_Service
 		*/
 		
 		// http://www.phpfox.com/tracker/view/15336/
-		if($aItem['user_id'] == Phpfox::getService('profile')->getProfileUserId())
+		if($aItem['user_id'] == Profile_Service_Profile::instance()->getProfileUserId())
 		{
 			return false;
 		}
@@ -347,7 +347,7 @@ class Feed_Service_Callback extends Phpfox_Service
 			$aReturn['parent_user'] = Phpfox::getService('user')->getUserFields(true, $aRow, 'parent_');
 		}		
 				
-		if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['parent_user_name']) && $aRow['parent_user_id'] != Phpfox::getService('profile')->getProfileUserId())
+		if (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['parent_user_name']) && $aRow['parent_user_id'] != Profile_Service_Profile::instance()->getProfileUserId())
 		{			
 			$aReturn['feed_info'] = Phpfox::getPhrase('feed.posted_on_parent_full_names_wall', array('parent_user_name' => Phpfox_Url::instance()->makeUrl($aRow['parent_user_name']), 'parent_full_name' => $aRow['parent_full_name']));
 			$aReturn['feed_status'] = $aRow['content'];
@@ -355,7 +355,7 @@ class Feed_Service_Callback extends Phpfox_Service
 			$aReturn['parent_user_id'] = $aRow['user_id'];
 						
 			/*
-			if (Phpfox::getService('profile')->timeline())
+			if (Profile_Service_Profile::instance()->timeline())
 			{
 				$aReturn['feed_info'] = Phpfox::getPhrase('feed.posted_on_parent_full_names_wall', array('parent_user_name' => Phpfox_Url::instance()->makeUrl($aRow['parent_user_name']), 'parent_full_name' => $aRow['parent_full_name']));
 				$aReturn['feed_status'] = $aRow['content'];

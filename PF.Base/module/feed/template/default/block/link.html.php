@@ -30,7 +30,7 @@
 {/if}
 
 <ul>
-	{if !Phpfox::getService('profile')->timeline()}
+	{if !Profile_Service_Profile::instance()->timeline()}
 		{if !isset($aFeed.feed_mini)}		
 			{if $aFeed.privacy > 0}
 			<li class="privacy_icon_holder"><div class="js_hover_title">{img theme='layout/privacy_icon.png' alt=$aFeed.privacy}<span class="js_hover_info">{if Phpfox::isModule('privacy')}{$aFeed.privacy|privacy_phrase}{else}Privacy {$aFeed.privacy}{/if}</span></div></li>

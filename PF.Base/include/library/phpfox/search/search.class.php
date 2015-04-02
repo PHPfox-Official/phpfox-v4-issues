@@ -896,7 +896,7 @@ class Phpfox_Search
 		}
 		
 		$aSearchIds = explode(',', $aRow['search_ids']);		
-		$iOffSet = Phpfox::getLib('pager')->getOffset($iPage, $iPageSize, count($aSearchIds));		
+		$iOffSet = Phpfox_Pager::instance()->getOffset($iPage, $iPageSize, count($aSearchIds));
 		$iCnt = 0;
 		foreach ($aSearchIds as $iKey => $sValue)
 		{

@@ -157,7 +157,7 @@ class Link_Service_Callback extends Phpfox_Service
 		    'feed_title_extra' => $aParts['host'], 
 		    'feed_title_extra_link' => $aParts['scheme'] . '://' . $aParts['host'], 
 		    'is_custom_app' => $aRow['app_id'], 
-		    'app_image_path' => $aRow['app_image_path'],
+		    // 'app_image_path' => $aRow['app_image_path'],
 			'custom_data_cache' => $aRow
 		); 
 		
@@ -172,7 +172,7 @@ class Link_Service_Callback extends Phpfox_Service
 		
 		if (!empty($aRow['image']))
 		{
-			$aReturn['feed_image'] = '<img src="' . $aRow['image'] . '" alt="" style="max-width:120px; max-height:90px;" />';
+			$aReturn['feed_image'] = '<img src="' . $aRow['image'] . '" alt="" />';
 		}
 		
 		if ($aRow['module_id'] == 'pages' || $aRow['module_id'] == 'event')
@@ -203,7 +203,7 @@ class Link_Service_Callback extends Phpfox_Service
 			
 			unset($aReturn['feed_status'], $aReturn['feed_image'], $aReturn['feed_title'], $aReturn['feed_content']);
 		}
-		elseif (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['parent_user_name']) && $aRow['parent_user_id'] != Phpfox::getService('profile')->getProfileUserId())
+		elseif (!PHPFOX_IS_AJAX && defined('PHPFOX_IS_USER_PROFILE') && !empty($aRow['parent_user_name']) && $aRow['parent_user_id'] != Profile_Service_Profile::instance()->getProfileUserId())
 		{
 			$aReturn['feed_mini'] = true;
 			$aReturn['no_share'] = true;

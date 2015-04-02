@@ -1401,6 +1401,7 @@ class Phpfox
 				'search' => $search,
 				'menuSub' => $menuSub,
 				'id' => Phpfox_Module::instance()->getPageId(),
+				'class' => Phpfox_Module::instance()->getPageClass(),
 				'h1' => $h1,
 				'error' => $error
 			]);

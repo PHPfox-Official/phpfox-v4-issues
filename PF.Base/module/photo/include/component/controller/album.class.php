@@ -103,7 +103,7 @@ class Photo_Component_Controller_Album extends Phpfox_Component
 		list($iCnt, $aPhotos) = Phpfox::getService('photo')->get($aConditions, 'p.photo_id DESC', $iPage, $iPageSize);
 		
 		// Set the pager for the photos
-		Phpfox::getLib('pager')->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));		
+		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 
 		foreach ($aPhotos as $aPhoto)
 		{

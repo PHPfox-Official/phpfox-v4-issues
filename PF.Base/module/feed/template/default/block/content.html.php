@@ -11,11 +11,11 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>	
-{if !Phpfox::getService('profile')->timeline()}
+{if !Profile_Service_Profile::instance()->timeline()}
 	<div class="activity_feed_content">							
 {/if}
 	<div class="activity_feed_content_text{if isset($aFeed.comment_type_id) && $aFeed.comment_type_id == 'poll'} js_parent_module_feed_{$aFeed.comment_type_id}{/if}">
-		{if !isset($aFeed.feed_mini) && !Phpfox::getService('profile')->timeline()}
+		{if !isset($aFeed.feed_mini) && !Profile_Service_Profile::instance()->timeline()}
 			<div class="activity_feed_content_info">
 				{$aFeed|user:'':'':50}{if !empty($aFeed.parent_module_id)} {phrase var='feed.shared'}{else}{if isset($aFeed.parent_user)} {img theme='layout/arrow.png' class='v_middle'} {$aFeed.parent_user|user:'parent_':'':50} {/if}{if !empty($aFeed.feed_info)} {$aFeed.feed_info}{/if}{/if}
 				<time>
@@ -151,7 +151,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<a href="#" class="activity_feed_content_view_more" onclick="$(this).parents('.js_feed_view_more_entry_holder:first').find('.js_feed_view_more_entry').show(); $(this).remove(); return false;">{phrase var='feed.see_total_more_posts_from_full_name' total=$iTotalExtraFeedsToShow full_name=$aFeed.full_name|shorten:40:'...'}</a>			
 		{/if}			
 	{/if}
-{if !Phpfox::getService('profile')->timeline()}
+{if !Profile_Service_Profile::instance()->timeline()}
 	</div><!-- // .activity_feed_content -->
 {/if}
 

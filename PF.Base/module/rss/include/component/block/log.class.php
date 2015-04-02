@@ -53,7 +53,7 @@ class Rss_Component_Block_Log extends Phpfox_Component
 		{
 			list($iCnt, $aUsers) = Phpfox::getService('rss.log')->getUsers($aParam, $this->request()->get('page'), 20);
 			
-			Phpfox::getLib('pager')->set(array('page' => $this->request()->get('page'), 'size' => 20, 'count' => $iCnt));
+			Phpfox_Pager::instance()->set(array('page' => $this->request()->get('page'), 'size' => 20, 'count' => $iCnt));
 		}
 		
 		$this->template()->assign(array(				

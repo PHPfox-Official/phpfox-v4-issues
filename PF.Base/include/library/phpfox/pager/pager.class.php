@@ -102,6 +102,13 @@ class Phpfox_Pager
     public function __construct()
     {    	
     }
+
+	/**
+	 * @return Phpfox_Pager
+	 */
+	public static function instance() {
+		return Phpfox::getLib('pager');
+	}
     
     /**
      * Set all variables and build the pagination enviroment for this specific page.
@@ -109,8 +116,8 @@ class Phpfox_Pager
      * @param array $aParams ARRAY of params.
      */
 	public function set($aParams = array())
-	{	
-		$this->_iPage = $aParams['page'];		
+	{
+		$this->_iPage = $aParams['page'];
 		$this->_iPageSize =  max(intval($aParams['size']), 1);
 		$this->_iCnt = max(intval($aParams['count']), 0);
 		$this->_iPagesCount = ceil($this->_iCnt / $this->_iPageSize);
@@ -270,6 +277,7 @@ class Phpfox_Pager
      */
     private function _getInfo()
     {
+	    /*
 		if($this->getTotalPages() == 0)
 		{
 			return false;
@@ -374,10 +382,16 @@ class Phpfox_Pager
         }   
 		
 		$aInfo['sParamsAjax'] = str_replace("'", "\\'", $aInfo['sParams']);
-		
+	    */
+
+	    $sNextPage = ((int) Phpfox_Request::instance()->get('page', 1) + 1);
+	    Phpfox_Url::instance()->clearParam('page');
+	    $_GET['page'] = $sNextPage;
         Phpfox_Template::instance()->assign(array(
-        		'aPager' => $aInfo,
-        		'sAjax' => $this->_sAjax
+        		// 'aPager' => $aInfo,
+        		// 'sAjax' => $this->_sAjax,
+		        'sCurrentUrl' => Phpfox_Url::instance()->makeUrl('current'),
+		        'sNextIteration' => $sNextPage
         	)
         );
     }	

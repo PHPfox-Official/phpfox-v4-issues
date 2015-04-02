@@ -364,11 +364,11 @@ switch($this->_oReq->get('action'))
 			}
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -477,11 +477,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->insert(Phpfox::getT('favorite'), $aInsert);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -542,11 +542,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->insert(Phpfox::getT('favorite'), $aInsert);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -604,11 +604,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->insert(Phpfox::getT('favorite'), $aInsert);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -663,11 +663,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->updateCounter('video', 'total_comment', 'video_id', $aRow['new_item_id']);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -813,11 +813,11 @@ switch($this->_oReq->get('action'))
 			}
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -872,11 +872,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->insert(Phpfox::getT('music_profile'), $aInsert);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -938,11 +938,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->updateCounter('music_album', 'total_track', 'album_id', $aRow['album_id']);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1008,11 +1008,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->insert(Phpfox::getT('music_album_text'), $aInsertText);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1170,11 +1170,11 @@ switch($this->_oReq->get('action'))
 			);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1310,11 +1310,11 @@ switch($this->_oReq->get('action'))
 			);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1414,11 +1414,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->insert(Phpfox::getT('bulletin_text'), $aInsertText);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1475,11 +1475,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->insert(Phpfox::getT('event_invite'), $aInsert);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1586,11 +1586,11 @@ switch($this->_oReq->get('action'))
 			);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1684,11 +1684,11 @@ switch($this->_oReq->get('action'))
 			}
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1784,11 +1784,11 @@ switch($this->_oReq->get('action'))
 			}
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1863,11 +1863,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->insert(Phpfox::getT('photo_info'), $aInsertInfo);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -1932,11 +1932,11 @@ switch($this->_oReq->get('action'))
 				), 'thread_id = ' . $aRow['new_thread_id']);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2011,11 +2011,11 @@ switch($this->_oReq->get('action'))
 			$this->_db()->update(Phpfox::getT('forum_thread'), array('start_id' => $iPostId), 'thread_id = ' . (int) $iId);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2075,11 +2075,11 @@ switch($this->_oReq->get('action'))
 
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2200,11 +2200,11 @@ switch($this->_oReq->get('action'))
 			);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2328,11 +2328,11 @@ switch($this->_oReq->get('action'))
 				), 'thread_id = ' . $aRow['new_thread_id']);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2431,11 +2431,11 @@ switch($this->_oReq->get('action'))
 				), 'forum_id = ' . $aRow['new_forum_id']);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2526,11 +2526,11 @@ switch($this->_oReq->get('action'))
 			);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2613,11 +2613,11 @@ switch($this->_oReq->get('action'))
 			}
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2726,11 +2726,11 @@ switch($this->_oReq->get('action'))
 			}
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2842,11 +2842,11 @@ switch($this->_oReq->get('action'))
 			}
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2918,11 +2918,11 @@ switch($this->_oReq->get('action'))
 			);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -2997,11 +2997,11 @@ switch($this->_oReq->get('action'))
 			Phpfox::getService('friend.process')->updateFriendCount($aFriend['user_id'], $aFriend['friend_user_id']);
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -3064,11 +3064,11 @@ switch($this->_oReq->get('action'))
 			}
 		}
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		if ($iTotalPages === $iCurrentPage || $iTotalPages === 0)
 		{
@@ -3214,11 +3214,11 @@ switch($this->_oReq->get('action'))
 			->limit($this->_sPage, $iLimit, $iCnt)
 			->execute('getRows');
 
-		Phpfox::getLib('pager')->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
+		Phpfox_Pager::instance()->set(array('page' => $this->_sPage, 'size' => $iLimit, 'count' => $iCnt));
 
-		$iTotalPages = (int) Phpfox::getLib('pager')->getTotalPages();
-		$iCurrentPage = (int) Phpfox::getLib('pager')->getCurrentPage();
-		$iPage = (int) Phpfox::getLib('pager')->getNextPage();
+		$iTotalPages = (int) Phpfox_Pager::instance()->getTotalPages();
+		$iCurrentPage = (int) Phpfox_Pager::instance()->getCurrentPage();
+		$iPage = (int) Phpfox_Pager::instance()->getNextPage();
 
 		$oParseInput = Phpfox::getLib('parse.input');
 

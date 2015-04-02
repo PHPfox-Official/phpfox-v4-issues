@@ -45,14 +45,14 @@ defined('PHPFOX') or exit('NO DICE!');
 	</script>
 
 	<div><input type="hidden" name="val[egift_id]" id="egift_id" value=""></div>
-	<div class="egift_selector{if Phpfox::getService('profile')->timeline()}_timeline{/if}">
+	<div class="egift_selector{if Profile_Service_Profile::instance()->timeline()}_timeline{/if}">
 		<select onchange="if (!empty(this.value)) {l} showGiftsByCategory(); {r}" id="selectCategory">
 			{foreach from=$aCategories name=giftcategories item=aCat}
 			<option value="{$aCat.category_id}">{phrase var=$aCat.phrase}</option>
 			{/foreach}
 		</select>		
 	</div>
-	<div class="extra_info" {if Phpfox::getService('profile')->timeline()} style="width:65%;"{/if}>
+	<div class="extra_info" {if Profile_Service_Profile::instance()->timeline()} style="width:65%;"{/if}>
 		{phrase var='egift.you_can_choose_an_egift_to_send'}
 	</div>
 	<div class="egift_selection">

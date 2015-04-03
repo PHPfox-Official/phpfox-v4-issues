@@ -77,7 +77,6 @@ class Pages_Component_Controller_Index extends Phpfox_Component
                     ->setBreadcrumb(Phpfox::getPhrase('pages.pages'), $this->url()->makeUrl('pages'));
         }
 
-		/*
 		$this->search()->set(array(
 				'type' => 'pages',
 				'field' => 'pages.page_id',				
@@ -97,7 +96,6 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 				)
 			)
 		);
-		*/
 		
 		$aBrowseParams = array(
 			'module_id' => 'pages',
@@ -194,27 +192,30 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 		}
 
 		$aPages = [];
-		/*
-		$this->search()->browse()->params($aBrowseParams)->execute();
-		$aPages = $this->search()->browse()->getRows();
-		
-		foreach ($aPages as $iKey => $aPage)
-		{
-			if (!isset($aPage['vanity_url']) || empty($aPage['vanity_url']))
-			{
-				$aPages[$iKey]['url'] = Phpfox::permalink('pages', $aPage['page_id'], $aPage['title']);
-			}
-			else
-			{
-				$aPages[$iKey]['url'] = $aPage['vanity_url'];
-			}
-		}
-		
-		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
-		*/
+		$aCategories = [];
+		$bShowCategories = false;
+		if ($bIsValidCategory) {
+			$this->search()->browse()->params($aBrowseParams)->execute();
+			$aPages = $this->search()->browse()->getRows();
 
-		$bShowCategories = true;
-		$aCategories = Phpfox::getService('pages.category')->getForBrowse(0, true);
+			foreach ($aPages as $iKey => $aPage)
+			{
+				if (!isset($aPage['vanity_url']) || empty($aPage['vanity_url']))
+				{
+					$aPages[$iKey]['url'] = Phpfox::permalink('pages', $aPage['page_id'], $aPage['title']);
+				}
+				else
+				{
+					$aPages[$iKey]['url'] = $aPage['vanity_url'];
+				}
+			}
+
+			Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
+		}
+		else {
+			$bShowCategories = true;
+			$aCategories = Phpfox::getService('pages.category')->getForBrowse(0, true);
+		}
 
 		$this->template()->setHeader('cache', array(
 					'comment.css' => 'style_css',
@@ -227,7 +228,7 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 					'sView' => $sView,
 					'aPages' => $aPages,
 					'aCategories' => $aCategories,
-					'bShowCategories' => true
+					'bShowCategories' => $bShowCategories
 				)
 			);
 			

@@ -20,11 +20,6 @@ class Ad_Component_Block_Display extends Phpfox_Component
 	 */
 	public function process()
 	{
-		if (defined('PHPFOX_IS_AJAX_PAGE') && PHPFOX_IS_AJAX_PAGE)
-		{
-		
-		}
-		
 		(($sPlugin = Phpfox_Plugin::get('ad.component_block_display_process__start')) ? eval($sPlugin) : false);
 		if (!Phpfox::getParam('ad.enable_ads'))
 		{
@@ -47,7 +42,7 @@ class Ad_Component_Block_Display extends Phpfox_Component
 				return false;
 			}		
 		}
-				
+
 		if (Phpfox::getParam('ad.multi_ad') && $this->getParam('block_id') != 3 && $this->getParam('block_id') != 50 && $this->getParam('bIsIframe') != true)
 		{
 			return false;
@@ -57,16 +52,16 @@ class Ad_Component_Block_Display extends Phpfox_Component
 		{
 			$this->setParam('block_id', 50);
 		}
-	
+
 		if (Phpfox::getParam('ad.multi_ad') != true && $this->getParam('adId') !== null && is_numeric($this->getParam('adId')) && $this->getParam('adId') > 0)
 		{
-			$aAds = Phpfox::getService('ad')->get(array('ad_id = ' . (int)$this->getParam('adId')));
+			$aAds = Ad_Service_Ad::instance()->get(array('ad_id = ' . (int)$this->getParam('adId')));
 		}
 		else
 		{
-			$aAds = Phpfox::getService('ad')->getForBlock($this->getParam('block_id'), true);			
+			$aAds = Ad_Service_Ad::instance()->getForBlock($this->getParam('block_id'), true);
 		}
-		
+
 		if (!is_array($aAds))
 		{
 			$aAds = array();

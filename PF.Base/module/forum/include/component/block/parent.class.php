@@ -22,7 +22,7 @@ class Forum_Component_Block_Parent extends Phpfox_Component
 	{
 		$aGroup = $this->getParam('aGroup');
 		
-		$aThreads = Phpfox::getService('forum.thread')->getForParent($aGroup['group_id']);	
+		$aThreads = Forum_Service_Thread_Thread::instance()->getForParent($aGroup['group_id']);
 		
 		if (!count($aThreads) && !defined('PHPFOX_IN_DESIGN_MODE'))
 		{

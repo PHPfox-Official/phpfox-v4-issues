@@ -35,6 +35,7 @@ class Admincp_Component_Controller_Checksum_Unknown extends Phpfox_Component {
 				|| substr($file, 0, 8) == 'install/'
 				|| $file == '.DS_Store'
 				|| $file == '.htaccess'
+				|| $file == 'include/setting/dev.sett.php'
 			) {
 				continue;
 			}

@@ -295,14 +295,14 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 		if (Phpfox::getParam('forum.forum_database_tracking'))
 		{
 			$this->database()->select('ftr.thread_id AS is_seen, ftr.time_stamp AS last_seen_time, ')->leftJoin(Phpfox::getT('forum_thread_track'), 'ftr', 'ftr.thread_id = ft.thread_id AND ftr.user_id = ' . Phpfox::getUserId());
-		}		
+		}
 
 		$aThread = $this->database()->select('ft.thread_id, ft.time_stamp, ft.time_update, ft.group_id, ft.view_id, ft.forum_id, ft.is_closed, ft.user_id, ft.is_announcement, ft.order_id, ft.title_url, ft.time_update AS last_time_stamp, ft.title, fs.subscribe_id AS is_subscribed, ft.poll_id')		
 			->from($this->_sTable, 'ft')
 			->leftJoin(Phpfox::getT('forum_subscribe'), 'fs', 'fs.thread_id = ft.thread_id AND fs.user_id = ' . Phpfox::getUserId())
 			->where($aThreadCondition)
 			->execute('getSlaveRow');
-		
+
 		if (!isset($aThread['thread_id']))
 		{
 			return array(0, array());
@@ -394,9 +394,13 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 			->join(Phpfox::getT('forum_post_text'), 'fpt', 'fpt.post_id = fp.post_id')			
 			->where($mConditions)
 			->order($sOrder)
-			->limit($iPage, $iPageSize, $iCnt)
+			->limit($iPage, $iPageSize, $iCnt, false, false)
 			->execute('getSlaveRows');
-					
+
+		if (!count($aThread['posts'])) {
+			throw error('no_items');
+		}
+
 		$sPostIds = '';
 		$iTotal = ($iPage > 1 ? (($iPageSize * $iPage) - $iPageSize) : 0);		
 		foreach ($aThread['posts'] as $iKey => $aPost)

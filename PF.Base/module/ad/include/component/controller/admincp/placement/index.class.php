@@ -28,7 +28,7 @@ class Ad_Component_Controller_Admincp_Placement_Index extends Phpfox_Component
 		$this->template()->setTitle(Phpfox::getPhrase('ad.manage_ad_placements'))
 			->setBreadcrumb(Phpfox::getPhrase('ad.manage_ad_placements'), $this->url()->makeUrl('ad.placement'))			
 			->assign(array(
-					'aPlacements' => Phpfox::getService('ad')->getPlacements()
+					'aPlacements' => Ad_Service_Ad::instance()->getPlacements()
 				)
 			);		
 	}

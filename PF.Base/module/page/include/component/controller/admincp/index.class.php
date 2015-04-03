@@ -41,7 +41,11 @@ class Page_Component_Controller_Admincp_Index extends Phpfox_Component
 		$this->template()
 			->setSectionTitle('Custom Pages')
 			->setActionMenu([
-				'Create a Page' => $this->url()->makeUrl('admincp.page.add')
+				'Create a Page' => [
+					'custom' => 'data-custom-class="js_box_full"',
+					'class' => 'popup',
+					'url' => $this->url()->makeUrl('admincp.page.add')
+				]
 			])
 			->setTitle(Phpfox::getPhrase('page.manage_pages'))
 			->setBreadCrumb(Phpfox::getPhrase('page.manage_pages'))

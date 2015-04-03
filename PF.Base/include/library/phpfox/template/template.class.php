@@ -254,6 +254,7 @@ class Phpfox_Template
 	protected static $_sStaticThemeFolder = null;
 
 	private $_theme;
+	private $_meta;
 	
 	/**
 	 * Class constructor we use to build the current theme and style
@@ -822,6 +823,10 @@ class Phpfox_Template
 		$oFilterOutput = Phpfox::getLib('parse.output');
 		
 		(($sPlugin = Phpfox_Plugin::get('template_gettitle')) ? eval($sPlugin) : false);
+
+		if (isset($this->_meta['title'])) {
+			return $this->_meta['title'];
+		}
 		
 		$sData = '';
 		/*
@@ -1006,7 +1011,15 @@ class Phpfox_Template
 		
 		return $sVersion;
 	}
-		
+
+	public function setPageMeta($meta) {
+		$this->_meta = $meta;
+	}
+
+	public function getPageMeta() {
+		return $this->_meta;
+	}
+
 	/**
 	 * Gets any data we plan to place within the HTML tags <head></head>.
 	 * This method also groups the data to give the template a nice clean look.
@@ -1062,29 +1075,9 @@ class Phpfox_Template
 		$iVersion = $this->getStaticVersion();
 		$oUrl = Phpfox_Url::instance();
 		$aUrl = $oUrl->getParams();
-		if (Phpfox::getUserParam('core.can_design_dnd') && Theme_Service_Theme::instance()->isInDnDMode() && (!isset($aUrl['req2']) || $aUrl['req2'] != 'designer'))
+		if (!defined('PHPFOX_DESIGN_DND'))
 		{
-			if (!defined('PHPFOX_DESIGN_DND')) 
-			{
-				define('PHPFOX_DESIGN_DND', true);
-			}
-			
-			/* .
-			 * Tells if the user is Design mode with Drag and Drop support.
-			 * Its important to note the difference in the purpose of this
-			 * constant as it does Not tell if the user CAN enter DesignDND 
-			 * mode but instead it tells if the user IS already in this 
-			 * mode
-			 * .
-			 */
-			$this->_aHeaders[] = array('designdnd.js' => 'module_theme');
-		}
-		else
-		{
-			if (!defined('PHPFOX_DESIGN_DND'))
-			{
-				define('PHPFOX_DESIGN_DND', false);
-			}
+			define('PHPFOX_DESIGN_DND', false);
 		}
 			
 		if (!PHPFOX_IS_AJAX_PAGE)
@@ -1730,27 +1723,34 @@ class Phpfox_Template
 		}
 
 		if (!defined('PHPFOX_INSTALLER')) {
-		$Apps = new Core\App();
-		foreach ($Apps->all() as $App) {
-			$assets = $App->path . 'assets/';
-			if (file_exists($assets . 'autoload.js')) {
-				$url = str_replace(PHPFOX_DIR_SITE, Phpfox::getParam('core.path'), $assets) . 'autoload.js';
-				$this->_sFooter .= '<script src="' . $url . '?v=' . Phpfox::internalVersion() . '"></script>';
+			$Apps = new Core\App();
+			foreach ($Apps->all() as $App) {
+				$assets = $App->path . 'assets/';
+				if (file_exists($assets . 'autoload.js')) {
+					$url = str_replace(PHPFOX_DIR_SITE, Phpfox::getParam('core.path'), $assets) . 'autoload.js';
+					$this->_sFooter .= '<script src="' . $url . '?v=' . Phpfox::internalVersion() . '"></script>';
+				}
+
+				if (file_exists($assets . 'autoload.css')) {
+					$url = str_replace(PHPFOX_DIR_SITE, Phpfox::getParam('core.path'), $assets) . 'autoload.css';
+					$sData .= '<link href="' . $url . '?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
+				}
 			}
 
-			if (file_exists($assets . 'autoload.css')) {
-				$url = str_replace(PHPFOX_DIR_SITE, Phpfox::getParam('core.path'), $assets) . 'autoload.css';
-				$sData .= '<link href="' . $url . '?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
+			if (!Phpfox::isAdminPanel() && is_object($this->_theme)) {
+				$asset = $this->_theme->get()->getPath() . 'assets/autoload.js';
+				if (file_exists($asset)) {
+					$url = str_replace([PHPFOX_DIR_SITE, PHPFOX_DIR], Phpfox::getParam('core.path'), $asset);
+					$this->_sFooter .= '<script src="' . $url . '?v=' . Phpfox::internalVersion() . '"></script>';
+				}
 			}
 		}
 
-		if (!Phpfox::isAdminPanel() && is_object($this->_theme)) {
-			$asset = $this->_theme->get()->getPath() . 'assets/autoload.js';
-			if (file_exists($asset)) {
-				$url = str_replace([PHPFOX_DIR_SITE, PHPFOX_DIR], Phpfox::getParam('core.path'), $asset);
-				$this->_sFooter .= '<script src="' . $url . '?v=' . Phpfox::internalVersion() . '"></script>';
+		if (isset($this->_meta['head'])) {
+			$sData .= $this->_meta['head'];
+			if (Phpfox::isAdmin()) {
+				$this->_sFooter .= '<script>var page_editor_meta = ' . json_encode(['head' => $this->_meta['head']]) . ';</script>';
 			}
-		}
 		}
 		
 		if ($bReturnArray)
@@ -1785,7 +1785,12 @@ class Phpfox_Template
 						
 				switch ($sMeta)
 				{
-					case 'keywords':						
+					case 'keywords':
+						if (isset($this->_meta['keywords'])) {
+							$sMetaValue = $this->_meta['keywords'];
+							continue;
+						}
+
 						$sKeywordSearch = Phpfox::getParam('core.words_remove_in_keywords');
 						if (!empty($sKeywordSearch))
 						{
@@ -1818,6 +1823,11 @@ class Phpfox_Template
 						$sMetaValue = rtrim(trim($sMetaValue), ',');
 						break;
 					case 'description':
+						if (isset($this->_meta['description'])) {
+							$sMetaValue = $this->_meta['description'];
+							continue;
+						}
+
 						$bHasNoDescription = true;
 						$sMetaValue = $oPhpfoxParseOutput->shorten($oPhpfoxParseOutput->clean($sMetaValue), Phpfox::getParam('core.meta_description_limit'));
 						break;
@@ -1912,6 +1922,12 @@ class Phpfox_Template
 	}
 
 	public function getFooter() {
+		if (Phpfox::isAdmin() && !Phpfox::isAdminPanel()) {
+			$this->_sFooter .= '<div id="pf_admin"><a href="' . Phpfox_Url::instance()->makeUrl('admincp') . '" class="js_hover_title no_ajax"><i class="fa fa-diamond"></i><span class="js_hover_info">AdminCP</span></a>';
+			$this->_sFooter .= '<a id="page_editor_popup" href="' . Phpfox_Url::instance()->makeUrl('admincp.element.edit', ['controller' => base64_encode(Phpfox_Module::instance()->getFullControllerName())]) . '" class="popup js_hover_title" data-custom-class="js_box_full"><i class="fa fa-code"></i><span class="js_hover_info">Edit this page</span></a>';
+			$this->_sFooter .= '</div>';
+		}
+
 		return $this->_sFooter;
 	}
 
@@ -2257,13 +2273,13 @@ class Phpfox_Template
 		
 		$sName = str_replace('.', PHPFOX_DS, $sName);
 		
-		if (!defined('PHPFOX_INSTALLER') && !defined('PHPFOX_LIVE_TEMPLATES') && $bCheckDb === true)
-		{			
+		if (!defined('PHPFOX_INSTALLER') && !defined('PHPFOX_LIVE_TEMPLATES'))
+		{
 			$oDb = Phpfox_Database::instance();
 			$aTemplate = $oDb->select('html_data')
 				->from(Phpfox::getT('theme_template'))
-				->where("folder = '" . $this->_sThemeFolder . "' AND type_id = '" . $oDb->escape($aParts[1]) . "' AND module_id = '" . $oDb->escape($sModule) . "' AND name = '" . $oDb->escape($aParts[2]) . (isset($aParts[3]) ? '/' . $aParts[3] : ''). PHPFOX_TPL_SUFFIX . "'")
-				->execute('getSlaveRow');	
+				->where("type_id = 'controller' AND name = '" . $oDb->escape($sTemplate) . "'")
+				->execute('getSlaveRow');
 
 			if (!empty($aTemplate))
 			{
@@ -2375,7 +2391,7 @@ class Phpfox_Template
 	public function getTemplate($sTemplate, $bReturn = false)
 	{	
 		(($sPlugin = Phpfox_Plugin::get('template_gettemplate')) ? eval($sPlugin) : false);
-		
+
 		$sFile = $this->getTemplateFile($sTemplate);
 		
 		if ($bReturn)
@@ -2386,7 +2402,7 @@ class Phpfox_Template
 		}
 
 		if ($this->_sSetLayout)
-		{			
+		{
 			if (!$this->_isCached($sFile))
 			{
 				if (!defined('PHPFOX_INSTALLER') && !defined('PHPFOX_LIVE_TEMPLATES') && $this->_bIsAdminCp === false)
@@ -2444,7 +2460,7 @@ class Phpfox_Template
 		}
 		else
 		{
-			$this->_getFromCache($sFile);
+			$this->_getFromCache($sFile, $sTemplate);
 		}
 		
 		if ($bReturn)
@@ -3095,14 +3111,19 @@ class Phpfox_Template
 	 *
 	 * @param string $sFile Full path of the template we are loading.
 	 */
-	private function _getFromCache($sFile)
-	{		
+	private function _getFromCache($sFile, $sTemplate = null)
+	{
+		if (is_array($sFile)) {
+			$sContent = $sFile[0];
+			$sFile = $sTemplate;
+		}
+
 		if (!$this->_isCached($sFile))
 		{
 			$oTplCache = Phpfox::getLib('template.cache');
-	
-			$sContent = (file_exists($sFile) ? file_get_contents($sFile) : null);
-			
+			if (!isset($sContent)) {
+				$sContent = (file_exists($sFile) ? file_get_contents($sFile) : null);
+			}
 			$mData = $oTplCache->compile($this->_getCachedName($sFile), $sContent);
 		}		
 		
@@ -3113,7 +3134,7 @@ class Phpfox_Template
 			return;
 		}
 
-		(PHPFOX_DEBUG ? Phpfox_Debug::start('template') : false);		
+		(PHPFOX_DEBUG ? Phpfox_Debug::start('template') : false);
 		$this->_requireFile($sFile);
 		(PHPFOX_DEBUG ? Phpfox_Debug::end('template', array('name' => $sFile)) : false);
 	}
@@ -3144,12 +3165,7 @@ class Phpfox_Template
 		{
 			return false;
 		}
-		
-		if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
-		{			
-			return Phpfox::getLib('cache')->memcache()->append(md5(PHPFOX_IS_HOSTED_SCRIPT . md5($this->_getCachedName($sName))), '');
-		}
-		
+
 		if (!file_exists($this->_getCachedName($sName)))
 		{
 			return false;

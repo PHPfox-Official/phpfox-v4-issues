@@ -81,7 +81,7 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 		{			
 			if ($iEditId = $this->request()->getInt('edit'))
 			{
-				$aThread = Phpfox::getService('forum.thread')->getForEdit($iEditId);
+				$aThread = Forum_Service_Thread_Thread::instance()->getForEdit($iEditId);
 				
 				if (!isset($aThread['thread_id']))
 				{
@@ -286,7 +286,7 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 				}
 			}			
 			
-			$aThread = Phpfox::getService('forum.thread')->getActualThread($iId, $aCallback);
+			$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($iId, $aCallback);
 
 			if (!isset($aThread['thread_id']))
 			{

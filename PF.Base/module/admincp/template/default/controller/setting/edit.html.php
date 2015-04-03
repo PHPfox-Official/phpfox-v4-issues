@@ -59,14 +59,12 @@ function addInput(oObj, sVarName)
 <form method="post" action="{url link='current'}" enctype="multipart/form-data">
 {foreach from=$aSettings item=aSetting}
 <div id="{$aSetting.var_name}"></div>
-<div class="table_header2">
-	{if PHPFOX_DEBUG}<div class="go_left"> <input type="text" name="val[order][{$aSetting.var_name}]" value="{$aSetting.ordering}" style="font-size:9pt; padding:0px; text-align:center;" onclick="this.select();" size="2" /> {/if} <a name="#{$aSetting.var_name}" style="color:#333333">{$aSetting.setting_title}</a>{if PHPFOX_DEBUG}</div><div class="t_right">{if isset($aSetting.group_title)} ({$aSetting.group_title}) {/if}<input type="text" name="param{$aSetting.var_name}" value="{$aSetting.module_id}.{$aSetting.var_name}" style="font-size:9pt; padding:0px;" onclick="this.select();" /></div>{/if}
+<div class="table_header2 settings">
+		{if PHPFOX_DEBUG}<div class="go_left"> <input type="text" name="val[order][{$aSetting.var_name}]" value="{$aSetting.ordering}" style="font-size:9pt; padding:0px; text-align:center;" onclick="this.select();" size="2" /> {/if} <a name="#{$aSetting.var_name}"></a>{$aSetting.setting_title}{if PHPFOX_DEBUG}</div><div class="t_right">{if isset($aSetting.group_title)} ({$aSetting.group_title}) {/if}<input type="text" name="param{$aSetting.var_name}" value="{$aSetting.module_id}.{$aSetting.var_name}" style="font-size:9pt; padding:0px;" onclick="this.select();" /></div>{/if}
 </div>
-<div class="table3">
-	<div class="row_left">
-		{$aSetting.setting_info} 
-	</div>
-	<div class="row_right" style="margin-bottom:20px;">
+<div class="table3 settings">
+
+	<div class="row_right">
 		{if $aSetting.type_id == 'multi_text'}
 		{foreach from=$aSetting.values key=mKey item=sDropValue}
 		<div class="p_4">
@@ -101,11 +99,21 @@ function addInput(oObj, sVarName)
 		</select>	
 		{elseif ($aSetting.type_id == 'integer')}
 		<input type="text" name="val[value][{$aSetting.var_name}]" value="{$aSetting.value_actual}" size="40" onclick="this.select();" />
-		{elseif ($aSetting.type_id == 'boolean')}		
+		{elseif ($aSetting.type_id == 'boolean')}
+		<div class="item_is_active_holder">
+			<span class="js_item_active item_is_active">
+				<input type="radio" value="1" name="val[value][{$aSetting.var_name}]"{if $aSetting.value_actual == 1} checked="checked"{/if}> Yes
+			</span>
+			<span class="js_item_active item_is_not_active">
+				<input type="radio" value="0" name="val[value][{$aSetting.var_name}]"{if $aSetting.value_actual != 1} checked="checked"{/if}> No
+			</span>
+		</div>
+		{*
 		<select name="val[value][{$aSetting.var_name}]">
 			<option value="1" {if $aSetting.value_actual == 1}selected="selected"{/if}>{phrase var='admincp.true'}</option>
 			<option value="0" {if $aSetting.value_actual != 1}selected="selected"{/if}>{phrase var='admincp.false'}</option>
 		</select>
+		*}
 		{elseif ($aSetting.type_id == 'array')}
 		<div class="js_array_holder">
 			{if is_array($aSetting.value_actual)}
@@ -122,7 +130,11 @@ function addInput(oObj, sVarName)
 		</div>
 		{/if}
 	</div>
-	<div class="clear"></div>
+
+	<div class="extra_info">
+		{$aSetting.setting_info}
+	</div>
+
 </div>
 {if $aSetting.var_name == 'watermark_option'}
 <div class="table_header2">

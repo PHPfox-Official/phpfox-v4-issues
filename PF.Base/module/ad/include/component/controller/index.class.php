@@ -23,7 +23,7 @@ class Ad_Component_Controller_Index extends Phpfox_Component
 	    (($sPlugin = Phpfox_Plugin::get('ad.component_controller_process__start')) ? eval($sPlugin) : false);
 		if (($iAd = $this->request()->getInt('id')))
 		{
-			if (($sUrl = Phpfox::getService('ad')->getAdRedirect($iAd)))
+			if (($sUrl = Ad_Service_Ad::instance()->getAdRedirect($iAd)))
 			{
 				$this->url()->forward($sUrl);
 			}
@@ -31,7 +31,7 @@ class Ad_Component_Controller_Index extends Phpfox_Component
 		
 		$this->url()->send('ad.manage');
 		
-		Phpfox::getService('ad')->getSectionMenu();
+		Ad_Service_Ad::instance()->getSectionMenu();
 		
 		$this->template()->setTitle(Phpfox::getPhrase('ad.advertise'))
 			->setBreadcrumb(Phpfox::getPhrase('ad.advertise'), $this->url()->makeUrl('ad'))							

@@ -44,7 +44,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		    
 		    {else}
 
-			<div class="clearfix mosaicflow_load">
+			<div class="clearfix mosaicflow_load" data-width="200">
 				{foreach from=$aPhotos item=aPhoto}
 				<article class="photos_row">
 					<header>

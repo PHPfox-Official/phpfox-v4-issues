@@ -33,7 +33,7 @@ class Ad_Component_Block_Inner extends Phpfox_Component
 		}
 
 		
-		$aAd = Phpfox::getService('ad')->getForLocation($this->getParam('sClass'));
+		$aAd = Ad_Service_Ad::instance()->getForLocation($this->getParam('sClass'));
 
 		if (!is_array($aAd))
 		{			

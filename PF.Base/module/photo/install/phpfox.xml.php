@@ -26,7 +26,7 @@
   5 => '1024'
 );";]]></setting>
 		<setting group="" module_id="photo" is_hidden="0" type="integer" var_name="total_photo_input_bars" phrase_var_name="setting_total_photo_input_bars" ordering="1" version_id="2.0.0alpha1">5</setting>
-		<setting group="time_stamps" module_id="photo" is_hidden="0" type="string" var_name="photo_image_details_time_stamp" phrase_var_name="setting_photo_image_details_time_stamp" ordering="1" version_id="2.0.0alpha1">F j, Y</setting>
+		<setting group="" module_id="photo" is_hidden="0" type="string" var_name="photo_image_details_time_stamp" phrase_var_name="setting_photo_image_details_time_stamp" ordering="1" version_id="2.0.0alpha1">F j, Y</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="protect_photos_from_public" phrase_var_name="setting_protect_photos_from_public" ordering="1" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="can_rate_on_photos" phrase_var_name="setting_can_rate_on_photos" ordering="1" version_id="2.0.0alpha1">1</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="integer" var_name="rating_total_photos_cache" phrase_var_name="setting_rating_total_photos_cache" ordering="1" version_id="2.0.0alpha1">10</setting>
@@ -47,34 +47,14 @@
 		<setting group="" module_id="photo" is_hidden="0" type="drop" var_name="in_main_photo_section_show" phrase_var_name="setting_in_main_photo_section_show" ordering="1" version_id="3.5.0beta1"><![CDATA[a:2:{s:7:"default";s:6:"photos";s:6:"values";a:2:{i:0;s:6:"photos";i:1;s:6:"albums";}}]]></setting>
 		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="show_info_on_mouseover" phrase_var_name="setting_show_info_on_mouseover" ordering="1" version_id="3.5.0beta1">0</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="html5_upload_photo" phrase_var_name="setting_html5_upload_photo" ordering="1" version_id="3.7.0rc1">0</setting>
-		<setting group="image_processing" module_id="photo" is_hidden="0" type="boolean" var_name="enabled_watermark_on_photos" phrase_var_name="setting_enabled_watermark_on_photos" ordering="1" version_id="2.0.0rc1">0</setting>
+		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="enabled_watermark_on_photos" phrase_var_name="setting_enabled_watermark_on_photos" ordering="1" version_id="2.0.0rc1">0</setting>
 		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="enable_mass_uploader" phrase_var_name="setting_enable_mass_uploader" ordering="1" version_id="2.0.8">0</setting>
-		<setting group="cache" module_id="photo" is_hidden="1" type="boolean" var_name="pre_load_header_view" phrase_var_name="setting_pre_load_header_view" ordering="1" version_id="3.6.0rc1">1</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="pre_load_header_view" phrase_var_name="setting_pre_load_header_view" ordering="1" version_id="3.6.0rc1">1</setting>
 		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="rating_randomize_photos" phrase_var_name="setting_rating_randomize_photos" ordering="1" version_id="2.0.0alpha1">0</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="photo.rate" module_id="photo" component="stat" location="3" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="photo.rate" module_id="photo" component="category" location="1" is_active="1" ordering="2" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="photo.battle" module_id="photo" component="category" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="group.view" module_id="photo" component="parent" location="2" is_active="1" ordering="5" disallow_access="" can_move="1">
 			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="photo.album" module_id="photo" component="album-tag" location="3" is_active="1" ordering="2" disallow_access="" can_move="0">
-			<title>In This Album</title>
 			<source_code />
 			<source_parsed />
 		</block>

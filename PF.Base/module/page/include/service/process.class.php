@@ -257,7 +257,7 @@ class Page_Service_Process extends Phpfox_Service
 			$this->database()->delete(Phpfox::getT('page_log'), 'page_id = ' . $aPage['page_id']);
 			$this->database()->delete(Phpfox::getT('page_text'), 'page_id = ' . $aPage['page_id']);
 			
-			Phpfox::getService('admincp.menu.process')->delete($aPage['title_url'], true);
+			Admincp_Service_Menu_Process::instance()->delete($aPage['title_url'], true);
 			
 			if (Phpfox::isModule('attachment'))
 			{

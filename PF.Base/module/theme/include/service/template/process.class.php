@@ -181,28 +181,19 @@ class Theme_Service_Template_Process extends Phpfox_Service
 	
 	public function update($aVals)
 	{
-		if (empty($aVals['module']))
-		{
-			$aTemplate = $this->database()->select('template_id, is_custom')
-				->from($this->_sTable)
-				->where("folder = '" . $aVals['theme'] . "' AND type_id = 'layout' AND name = '" . $this->database()->escape($aVals['name']) . "'")
-				->execute('getSlaveRow');	
-		}
-		else 
-		{
-			$aTemplate = $this->database()->select('template_id, is_custom')
-				->from($this->_sTable)
-				->where("folder =  '" . $aVals['theme'] . "' AND type_id = '" . $this->database()->escape($aVals['type']) . "' AND module_id = '" . $this->database()->escape($aVals['module']) . "' AND name = '" . $this->database()->escape($aVals['name']) . "'")
-				->execute('getSlaveRow');	
-		}		
-		
+		$aTemplate = $this->database()->select('template_id, is_custom')
+			->from($this->_sTable)
+			->where("name =  '" . $this->database()->escape($aVals['name']) . "'")
+			->execute('getSlaveRow');
+
 		$aSql = array(
 			'product_id' => $aVals['product_id'],
 			'folder' => $aVals['theme'],
 			'type_id' => $aVals['type'],
 			'module_id' => (empty($aVals['module']) ? null : $aVals['module']),
 			'name' => $aVals['name'],
-			'html_data' => str_replace('\\','\\\\',$aVals['text']),
+			// 'html_data' => str_replace('\\','\\\\',$aVals['text']),
+			'html_data' => $aVals['text'],
 			'full_name' => Phpfox::getUserBy('full_name')			
 		);
 		

@@ -76,8 +76,8 @@
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="invite_only_community" phrase_var_name="setting_invite_only_community" ordering="17" version_id="3.0.0beta1">0</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="new_user_terms_confirmation" phrase_var_name="setting_new_user_terms_confirmation" ordering="18" version_id="3.0.0beta3">0</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="enable_relationship_status" phrase_var_name="setting_enable_relationship_status" ordering="1" version_id="3.0.0beta4">1</setting>
-		<setting group="time_stamps" module_id="user" is_hidden="0" type="string" var_name="user_dob_month_day_year" phrase_var_name="setting_user_dob_month_day_year" ordering="1" version_id="3.0.0">F j, Y</setting>
-		<setting group="time_stamps" module_id="user" is_hidden="0" type="string" var_name="user_dob_month_day" phrase_var_name="setting_user_dob_month_day" ordering="2" version_id="3.0.0">F j</setting>
+		<setting group="" module_id="user" is_hidden="0" type="string" var_name="user_dob_month_day_year" phrase_var_name="setting_user_dob_month_day_year" ordering="1" version_id="3.0.0">F j, Y</setting>
+		<setting group="" module_id="user" is_hidden="0" type="string" var_name="user_dob_month_day" phrase_var_name="setting_user_dob_month_day" ordering="2" version_id="3.0.0">F j</setting>
 		<setting group="" module_id="user" is_hidden="0" type="drop" var_name="default_privacy_brithdate" phrase_var_name="setting_default_privacy_brithdate" ordering="1" version_id="3.1.0beta1"><![CDATA[a:2:{s:7:"default";s:13:"full_birthday";s:6:"values";a:4:{i:0;s:13:"full_birthday";i:1;s:9:"month_day";i:2;s:8:"show_age";i:3;s:4:"hide";}}]]></setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="no_show_activity_points" phrase_var_name="setting_no_show_activity_points" ordering="1" version_id="3.1.0beta1">1</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="shorter_password_reset_routine" phrase_var_name="setting_shorter_password_reset_routine" ordering="1" version_id="3.1.0rc1">0</setting>
@@ -89,10 +89,10 @@
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="can_purchase_activity_points" phrase_var_name="setting_can_purchase_activity_points" ordering="1" version_id="3.4.0beta1">0</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="prevent_profile_photo_cache" phrase_var_name="setting_prevent_profile_photo_cache" ordering="1" version_id="3.4.0beta2">0</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="require_all_spam_questions_on_signup" phrase_var_name="setting_require_all_spam_questions_on_signup" ordering="20" version_id="3.5.0beta1">0</setting>
-		<setting group="cache" module_id="user" is_hidden="0" type="boolean" var_name="cache_featured_users" phrase_var_name="setting_cache_featured_users" ordering="1" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="user" is_hidden="0" type="boolean" var_name="cache_user_inner_joins" phrase_var_name="setting_cache_user_inner_joins" ordering="2" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="user" is_hidden="0" type="integer" var_name="cache_recent_logged_in" phrase_var_name="setting_cache_recent_logged_in" ordering="3" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="user" is_hidden="0" type="boolean" var_name="disable_store_last_user" phrase_var_name="setting_disable_store_last_user" ordering="4" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="cache_featured_users" phrase_var_name="setting_cache_featured_users" ordering="1" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="cache_user_inner_joins" phrase_var_name="setting_cache_user_inner_joins" ordering="2" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="user" is_hidden="0" type="integer" var_name="cache_recent_logged_in" phrase_var_name="setting_cache_recent_logged_in" ordering="3" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="disable_store_last_user" phrase_var_name="setting_disable_store_last_user" ordering="4" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="user" is_hidden="1" type="drop" var_name="login_module" phrase_var_name="setting_login_module" ordering="0" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:6:"cookie";s:6:"values";a:2:{i:0;s:6:"cookie";i:1;s:7:"session";}}]]></setting>
 	</settings>
 	<blocks>

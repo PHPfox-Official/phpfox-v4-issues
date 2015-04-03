@@ -1,4 +1,72 @@
 <upgrade>
+	<phpfox_update_settings>
+		<setting>
+			<group />
+			<module_id>friend</module_id>
+			<is_hidden>0</is_hidden>
+			<type>integer</type>
+			<var_name>birthdays_cache_time_out</var_name>
+			<phrase_var_name>setting_birthdays_cache_time_out</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.0beta4</version_id>
+			<value>5</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>friend</module_id>
+			<is_hidden>0</is_hidden>
+			<type>integer</type>
+			<var_name>cache_mutual_friends</var_name>
+			<phrase_var_name>setting_cache_mutual_friends</phrase_var_name>
+			<ordering>2</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>friend</module_id>
+			<is_hidden>0</is_hidden>
+			<type>integer</type>
+			<var_name>cache_rand_list_of_friends</var_name>
+			<phrase_var_name>setting_cache_rand_list_of_friends</phrase_var_name>
+			<ordering>3</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>60</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>friend</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>cache_is_friend</var_name>
+			<phrase_var_name>setting_cache_is_friend</phrase_var_name>
+			<ordering>4</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>friend</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>cache_friend_list</var_name>
+			<phrase_var_name>setting_cache_friend_list</phrase_var_name>
+			<ordering>5</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>friend</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>load_friends_online_ajax</var_name>
+			<phrase_var_name>setting_load_friends_online_ajax</phrase_var_name>
+			<ordering>6</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+	</phpfox_update_settings>
 	<phpfox_update_blocks>
 		<block>
 			<type_id>0</type_id>

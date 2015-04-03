@@ -178,6 +178,8 @@ class Phpfox_Module
 	public $sFinalModuleCallback = '';
 
 	private $_oBlocklet;
+
+	private $_sControllerTemplateClass;
 	
 	/**
 	 * Class constructor that caches all the modules, components (blocks/controllers) and drag/drop information.
@@ -461,6 +463,23 @@ class Phpfox_Module
 	{		
 		// Get the component
 		$this->_oController = $this->getComponent($this->_sModule . '.' . $this->_sController, array('bNoTemplate' => true), 'controller');
+
+		if (!Phpfox::isAdminPanel() && !defined('PHPFOX_INSTALLER')) {
+			$db = Phpfox_Database::instance();
+			$cache = Phpfox_Cache::instance();
+
+			$name = Phpfox_Module::instance()->getFullControllerName();
+			$pageMeta = $cache->set('page_meta_' . $name);
+			$meta = $cache->get($pageMeta);
+			if ($meta === false) {
+				$theme = $db->select('*')->from(':theme_template')->where(['type_id' => 'meta', 'name' => $name])->get();
+				$cache->save($pageMeta, (isset($theme['template_id']) ? json_decode($theme['html_data']) : []));
+				$meta = $cache->get($pageMeta);
+			}
+
+			// $this->_meta = $meta;
+			Phpfox_Template::instance()->setPageMeta($meta);
+		}
 	}
 	
 	/**
@@ -472,7 +491,7 @@ class Phpfox_Module
 	{
 		return $this->_sModule . '.' . str_replace('\\', '/', $this->_sController);
 	}
-	
+
 	/**
 	 * Gets the controllers template. We do this automatically since each controller has a specific template that it loads to
 	 * output data to the site.
@@ -488,7 +507,7 @@ class Phpfox_Module
 		}
 		
 		(($sPlugin = Phpfox_Plugin::get('module_getcontrollertemplate')) ? eval($sPlugin) : false);
-		
+
 		// Get the template and display its content for the specific controller component
 		Phpfox_Template::instance()->getTemplate($sClass);
 

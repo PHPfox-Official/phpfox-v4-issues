@@ -29,9 +29,9 @@ class Ad_Component_Controller_Invoice_Index extends Phpfox_Component
 		$aCond = array();
 		$aCond[] = 'ai.user_id = ' . Phpfox::getUserId();
 		
-		list($iCnt, $aInvoices) = Phpfox::getService('ad')->getInvoices($aCond);
+		list($iCnt, $aInvoices) = Ad_Service_Ad::instance()->getInvoices($aCond);
 		
-		Phpfox::getService('ad')->getSectionMenu();
+		Ad_Service_Ad::instance()->getSectionMenu();
 		
 		$this->template()->setTitle(Phpfox::getPhrase('ad.ad_invoices'))
 			->setFullSite()

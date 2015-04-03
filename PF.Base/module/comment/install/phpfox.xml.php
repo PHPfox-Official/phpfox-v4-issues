@@ -10,7 +10,7 @@
 		<writable />
 	</data>
 	<settings>
-		<setting group="time_stamps" module_id="comment" is_hidden="0" type="string" var_name="comment_time_stamp" phrase_var_name="setting_comment_time_stamp" ordering="2" version_id="2.0.0alpha1">F j, Y</setting>
+		<setting group="" module_id="comment" is_hidden="0" type="string" var_name="comment_time_stamp" phrase_var_name="setting_comment_time_stamp" ordering="2" version_id="2.0.0alpha1">F j, Y</setting>
 		<setting group="" module_id="comment" is_hidden="0" type="integer" var_name="comment_page_limit" phrase_var_name="setting_comment_page_limit" ordering="0" version_id="2.0.0alpha1">10</setting>
 		<setting group="spam" module_id="comment" is_hidden="0" type="boolean" var_name="spam_check_comments" phrase_var_name="setting_spam_check_comments" ordering="6" version_id="2.0.0rc1">1</setting>
 		<setting group="spam" module_id="comment" is_hidden="0" type="boolean" var_name="comment_hash_check" phrase_var_name="setting_comment_hash_check" ordering="8" version_id="2.0.0rc1">0</setting>
@@ -19,7 +19,7 @@
 		<setting group="" module_id="comment" is_hidden="0" type="integer" var_name="total_comments_in_activity_feed" phrase_var_name="setting_total_comments_in_activity_feed" ordering="1" version_id="3.0.0Beta1">2</setting>
 		<setting group="" module_id="comment" is_hidden="0" type="boolean" var_name="comment_is_threaded" phrase_var_name="setting_comment_is_threaded" ordering="1" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="comment" is_hidden="0" type="integer" var_name="thread_comment_total_display" phrase_var_name="setting_thread_comment_total_display" ordering="1" version_id="3.0.0">3</setting>
-		<setting group="cache" module_id="comment" is_hidden="0" type="boolean" var_name="load_delayed_comments_items" phrase_var_name="setting_load_delayed_comments_items" ordering="1" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="comment" is_hidden="0" type="boolean" var_name="load_delayed_comments_items" phrase_var_name="setting_load_delayed_comments_items" ordering="1" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="comment" is_hidden="1" type="integer" var_name="total_amount_of_comments_to_load" phrase_var_name="setting_total_amount_of_comments_to_load" ordering="1" version_id="3.0.0Beta1">10</setting>
 		<setting group="" module_id="comment" is_hidden="1" type="integer" var_name="total_child_comments" phrase_var_name="setting_total_child_comments" ordering="1" version_id="2.0.0rc1">4</setting>
 		<setting group="" module_id="comment" is_hidden="1" type="boolean" var_name="wysiwyg_comments" phrase_var_name="setting_wysiwyg_comments" ordering="0" version_id="2.0.0alpha1">0</setting>

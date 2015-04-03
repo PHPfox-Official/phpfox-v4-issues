@@ -147,13 +147,14 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div id="js_post_new_thread"></div>
 </div>
 
-{if (Phpfox::getUserParam('forum.can_approve_forum_thread') || Phpfox::getUserParam('forum.can_delete_other_posts'))}
+{pager}
+
+{if !PHPFOX_IS_AJAX && (Phpfox::getUserParam('forum.can_approve_forum_thread') || Phpfox::getUserParam('forum.can_delete_other_posts'))}
 {moderation}
 {/if}
 
 {if $sPermaView === null}
 {if !$aThread.is_announcement}
-{pager}
 {if $aThread.is_closed}
 <div class="sub_menu_bar_main sub_menu_bar_main_bottom"><a href="#" onclick="return false;">{phrase var='forum.closed'}</a></div>
 {else}

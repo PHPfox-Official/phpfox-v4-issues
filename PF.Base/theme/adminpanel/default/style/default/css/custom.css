@@ -10,12 +10,12 @@ body {
 }
 a,
 a:hover {
-  color: #222222;
+  color: #f4645f;
   font-weight: 500;
   text-decoration: none;
 }
 a:hover {
-  color: #f4645f;
+  color: #fbc0be;
   text-decoration: none;
   transition: all 0.5s ease;
 }
@@ -23,7 +23,7 @@ a:hover {
   color: #cdcdcd;
 }
 .fa:hover {
-  color: #222222;
+  color: #f4645f;
   transition: all 0.5s ease;
 }
 ul,
@@ -722,14 +722,14 @@ input:focus,
 textarea:focus,
 select,
 select:focus {
-  background: #e5e5e5;
+  background: #f6f6f6;
   color: #808080;
-  border: 1px #dfdfdf solid;
-  padding: 20px 0px;
+  border: 1px #e4e4e4 solid;
+  padding: 12px 0px;
   text-indent: 10px;
   outline: 0px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   box-shadow: none;
   resize: none;
 }
@@ -740,16 +740,19 @@ select:focus {
 .js_box .table {
   padding: 0px;
   margin-bottom: 10px;
+  border: 0px;
 }
 .js_box .table_clear {
   margin-bottom: 0px;
 }
-.table {
+.table,
+.table3 {
   background: #ffffff;
   padding: 10px;
   margin-bottom: 20px;
 }
-.table .table_left {
+.table .table_left,
+.table3 .table_left {
   text-align: left;
   background: transparent;
   border-radius: 0px;
@@ -773,7 +776,12 @@ select:focus {
   letter-spacing: 1px;
   padding-bottom: 10px;
 }
-.table .table_right {
+.table .table_right,
+.table3 .table_right,
+.table .table_right_text,
+.table3 .table_right_text,
+.table .row_right,
+.table3 .row_right {
   text-align: left;
   background: transparent;
   border-radius: 0px;
@@ -794,26 +802,61 @@ select:focus {
   position: relative;
 }
 .table .table_right input[type="text"],
+.table3 .table_right input[type="text"],
+.table .table_right_text input[type="text"],
+.table3 .table_right_text input[type="text"],
+.table .row_right input[type="text"],
+.table3 .row_right input[type="text"],
 .table .table_right input[type="password"],
+.table3 .table_right input[type="password"],
+.table .table_right_text input[type="password"],
+.table3 .table_right_text input[type="password"],
+.table .row_right input[type="password"],
+.table3 .row_right input[type="password"],
 .table .table_right textarea,
-.table .table_right textarea:focus {
-  background: #e5e5e5;
+.table3 .table_right textarea,
+.table .table_right_text textarea,
+.table3 .table_right_text textarea,
+.table .row_right textarea,
+.table3 .row_right textarea,
+.table .table_right textarea:focus,
+.table3 .table_right textarea:focus,
+.table .table_right_text textarea:focus,
+.table3 .table_right_text textarea:focus,
+.table .row_right textarea:focus,
+.table3 .row_right textarea:focus {
+  background: #f6f6f6;
   color: #808080;
-  border: 1px #dfdfdf solid;
+  border: 1px #e4e4e4 solid;
   padding: 10px 0px;
   width: 100%;
   outline: none;
   text-indent: 10px;
-  padding: 20px 0px;
+  /*padding:10px 0px;*/
 }
-.table .table_right select {
+.table .table_right select,
+.table3 .table_right select,
+.table .table_right_text select,
+.table3 .table_right_text select,
+.table .row_right select,
+.table3 .row_right select {
   width: 100%;
 }
-.table .table_right .extra_info {
+.table .table_right .extra_info,
+.table3 .table_right .extra_info,
+.table .table_right_text .extra_info,
+.table3 .table_right_text .extra_info,
+.table .row_right .extra_info,
+.table3 .row_right .extra_info {
   font-size: 12px;
   color: #a6a6a6;
 }
-.table .table_right .p_4 {
+.table .table_right .p_4,
+.table3 .table_right .p_4,
+.table .table_right_text .p_4,
+.table3 .table_right_text .p_4,
+.table .row_right .p_4,
+.table3 .row_right .p_4 {
   position: relative;
 }
 ul.table_clear_button li {
@@ -883,8 +926,11 @@ input.button_off {
   letter-spacing: 1px;
 }
 table th {
-  background: #595959;
-  color: #bfbfbf;
+  background: #f5f5f5;
+  border: 0px;
+  border-top: 1px #ebebeb solid;
+  border-bottom: 1px #ebebeb solid;
+  color: #f4645f;
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -959,6 +1005,7 @@ ul.action {
 }
 .table_clear_more_options {
   text-align: center;
+  margin-bottom: 10px;
 }
 .table_clear_more_options a,
 .table_clear_more_options a:hover {
@@ -1063,6 +1110,72 @@ a.delete_link:hover {
 #page_admincp_module_add .table_right .p_4 input:first-of-type {
   margin-bottom: 10px;
 }
+.item_is_active,
+.item_is_not_active {
+  background: #ebebeb;
+  color: #999999;
+  border: 0px;
+  padding: 0px 8px;
+  text-align: center;
+  cursor: pointer;
+}
+.item_is_active > input,
+.item_is_not_active > input,
+.item_is_active > label > input,
+.item_is_not_active > label > input {
+  display: none;
+}
+.item_is_active:hover,
+.item_is_not_active:hover {
+  background: #d9d9d9;
+  transition: all 0.5s ease;
+}
+.item_is_active_holder {
+  height: 40px;
+  line-height: 40px;
+}
+.item_selection_not_active .item_is_not_active,
+.item_selection_active .item_is_active {
+  background: #f4645f;
+  color: #ffffff;
+}
+.settings .go_left {
+  font-weight: 500;
+}
+.settings .extra_info {
+  padding-top: 10px;
+}
+.lang_table {
+  display: table;
+  width: 100%;
+}
+.lang_table .lang_title {
+  width: 20%;
+  padding-left: 10px;
+}
+.lang_table .lang_value,
+.lang_table .lang_title {
+  display: table-cell;
+  vertical-align: middle;
+}
+.ajax_processing {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 100000000;
+  min-width: 200px;
+  height: 30px;
+  line-height: 30px;
+  text-align: right;
+  background: #3f3f3f;
+}
+.ajax_processing i {
+  display: inline-block;
+  font-size: 18px;
+  color: #808080;
+  margin-right: 10px;
+  vertical-align: middle;
+}
 #js_block_border_core_site-stat .p_4,
 #js_block_border_core_site-stat div.info_right,
 div.info_right,
@@ -1165,11 +1278,16 @@ div#main div.block div.content {
 }
 .block_search .table_clear input.button,
 .block_search .table_clear a.button_off_link {
+  opacity: 0.4;
   background: #f5f5f5;
   color: #f4645f;
   width: 100%;
   padding-left: 0px;
   padding-right: 0px;
+}
+.block_search .table_clear input.button:hover,
+.block_search .table_clear a.button_off_link:hover {
+  opacity: 1;
 }
 .error_message,
 div.public_message,
@@ -3230,6 +3348,2034 @@ i._zy {
 i._zz {
   background: #f1c40f;
 }
+._first_aa {
+  background: #2980b9;
+}
+._first_ab {
+  background: #c0392b;
+}
+._first_ac {
+  background: #1abc9c;
+}
+._first_ad {
+  background: #f1c40f;
+}
+._first_ae {
+  background: #E87E04;
+}
+._first_af {
+  background: #2c3e50;
+}
+._first_ag {
+  background: #663399;
+}
+._first_ah {
+  background: #663399;
+}
+._first_ai {
+  background: #f1c40f;
+}
+._first_aj {
+  background: #1abc9c;
+}
+._first_ak {
+  background: #4ECDC4;
+}
+._first_al {
+  background: #2c3e50;
+}
+._first_am {
+  background: #4ECDC4;
+}
+._first_an {
+  background: #9b59b6;
+}
+._first_ao {
+  background: #663399;
+}
+._first_ap {
+  background: #663399;
+}
+._first_aq {
+  background: #1abc9c;
+}
+._first_ar {
+  background: #2980b9;
+}
+._first_as {
+  background: #663399;
+}
+._first_at {
+  background: #d35400;
+}
+._first_au {
+  background: #2980b9;
+}
+._first_av {
+  background: #f1c40f;
+}
+._first_aw {
+  background: #c0392b;
+}
+._first_ax {
+  background: #d35400;
+}
+._first_ay {
+  background: #81CFE0;
+}
+._first_az {
+  background: #2c3e50;
+}
+._first_ba {
+  background: #9b59b6;
+}
+._first_bb {
+  background: #1abc9c;
+}
+._first_bc {
+  background: #7f8c8d;
+}
+._first_bd {
+  background: #2c3e50;
+}
+._first_be {
+  background: #2c3e50;
+}
+._first_bf {
+  background: #2980b9;
+}
+._first_bg {
+  background: #F62459;
+}
+._first_bh {
+  background: #F62459;
+}
+._first_bi {
+  background: #d35400;
+}
+._first_bj {
+  background: #81CFE0;
+}
+._first_bk {
+  background: #4ECDC4;
+}
+._first_bl {
+  background: #c0392b;
+}
+._first_bm {
+  background: #f1c40f;
+}
+._first_bn {
+  background: #E87E04;
+}
+._first_bo {
+  background: #c0392b;
+}
+._first_bp {
+  background: #2c3e50;
+}
+._first_bq {
+  background: #81CFE0;
+}
+._first_br {
+  background: #d35400;
+}
+._first_bs {
+  background: #c0392b;
+}
+._first_bt {
+  background: #7f8c8d;
+}
+._first_bu {
+  background: #f1c40f;
+}
+._first_bv {
+  background: #E87E04;
+}
+._first_bw {
+  background: #f1c40f;
+}
+._first_bx {
+  background: #d35400;
+}
+._first_by {
+  background: #2c3e50;
+}
+._first_bz {
+  background: #E87E04;
+}
+._first_ca {
+  background: #1abc9c;
+}
+._first_cb {
+  background: #663399;
+}
+._first_cc {
+  background: #2980b9;
+}
+._first_cd {
+  background: #2980b9;
+}
+._first_ce {
+  background: #7f8c8d;
+}
+._first_cf {
+  background: #1abc9c;
+}
+._first_cg {
+  background: #f1c40f;
+}
+._first_ch {
+  background: #1abc9c;
+}
+._first_ci {
+  background: #c0392b;
+}
+._first_cj {
+  background: #c0392b;
+}
+._first_ck {
+  background: #E87E04;
+}
+._first_cl {
+  background: #81CFE0;
+}
+._first_cm {
+  background: #2c3e50;
+}
+._first_cn {
+  background: #1abc9c;
+}
+._first_co {
+  background: #E87E04;
+}
+._first_cp {
+  background: #9b59b6;
+}
+._first_cq {
+  background: #2c3e50;
+}
+._first_cr {
+  background: #2980b9;
+}
+._first_cs {
+  background: #c0392b;
+}
+._first_ct {
+  background: #F62459;
+}
+._first_cu {
+  background: #1abc9c;
+}
+._first_cv {
+  background: #c0392b;
+}
+._first_cw {
+  background: #7f8c8d;
+}
+._first_cx {
+  background: #c0392b;
+}
+._first_cy {
+  background: #f1c40f;
+}
+._first_cz {
+  background: #2980b9;
+}
+._first_da {
+  background: #4ECDC4;
+}
+._first_db {
+  background: #1abc9c;
+}
+._first_dc {
+  background: #9b59b6;
+}
+._first_dd {
+  background: #f1c40f;
+}
+._first_de {
+  background: #4ECDC4;
+}
+._first_df {
+  background: #2c3e50;
+}
+._first_dg {
+  background: #E87E04;
+}
+._first_dh {
+  background: #f1c40f;
+}
+._first_di {
+  background: #F62459;
+}
+._first_dj {
+  background: #f1c40f;
+}
+._first_dk {
+  background: #7f8c8d;
+}
+._first_dl {
+  background: #2980b9;
+}
+._first_dm {
+  background: #d35400;
+}
+._first_dn {
+  background: #E87E04;
+}
+._first_do {
+  background: #9b59b6;
+}
+._first_dp {
+  background: #9b59b6;
+}
+._first_dq {
+  background: #f1c40f;
+}
+._first_dr {
+  background: #2c3e50;
+}
+._first_ds {
+  background: #663399;
+}
+._first_dt {
+  background: #c0392b;
+}
+._first_du {
+  background: #2c3e50;
+}
+._first_dv {
+  background: #f1c40f;
+}
+._first_dw {
+  background: #1abc9c;
+}
+._first_dx {
+  background: #9b59b6;
+}
+._first_dy {
+  background: #1abc9c;
+}
+._first_dz {
+  background: #E87E04;
+}
+._first_ea {
+  background: #d35400;
+}
+._first_eb {
+  background: #2980b9;
+}
+._first_ec {
+  background: #f1c40f;
+}
+._first_ed {
+  background: #d35400;
+}
+._first_ee {
+  background: #E87E04;
+}
+._first_ef {
+  background: #f1c40f;
+}
+._first_eg {
+  background: #F62459;
+}
+._first_eh {
+  background: #1abc9c;
+}
+._first_ei {
+  background: #f1c40f;
+}
+._first_ej {
+  background: #f1c40f;
+}
+._first_ek {
+  background: #81CFE0;
+}
+._first_el {
+  background: #1abc9c;
+}
+._first_em {
+  background: #c0392b;
+}
+._first_en {
+  background: #2980b9;
+}
+._first_eo {
+  background: #7f8c8d;
+}
+._first_ep {
+  background: #2c3e50;
+}
+._first_eq {
+  background: #2980b9;
+}
+._first_er {
+  background: #c0392b;
+}
+._first_es {
+  background: #1abc9c;
+}
+._first_et {
+  background: #663399;
+}
+._first_eu {
+  background: #F62459;
+}
+._first_ev {
+  background: #81CFE0;
+}
+._first_ew {
+  background: #663399;
+}
+._first_ex {
+  background: #E87E04;
+}
+._first_ey {
+  background: #663399;
+}
+._first_ez {
+  background: #663399;
+}
+._first_fa {
+  background: #f1c40f;
+}
+._first_fb {
+  background: #f1c40f;
+}
+._first_fc {
+  background: #2c3e50;
+}
+._first_fd {
+  background: #81CFE0;
+}
+._first_fe {
+  background: #E87E04;
+}
+._first_ff {
+  background: #7f8c8d;
+}
+._first_fg {
+  background: #7f8c8d;
+}
+._first_fh {
+  background: #81CFE0;
+}
+._first_fi {
+  background: #E87E04;
+}
+._first_fj {
+  background: #F62459;
+}
+._first_fk {
+  background: #1abc9c;
+}
+._first_fl {
+  background: #2980b9;
+}
+._first_fm {
+  background: #F62459;
+}
+._first_fn {
+  background: #d35400;
+}
+._first_fo {
+  background: #81CFE0;
+}
+._first_fp {
+  background: #2c3e50;
+}
+._first_fq {
+  background: #2c3e50;
+}
+._first_fr {
+  background: #1abc9c;
+}
+._first_fs {
+  background: #4ECDC4;
+}
+._first_ft {
+  background: #d35400;
+}
+._first_fu {
+  background: #4ECDC4;
+}
+._first_fv {
+  background: #E87E04;
+}
+._first_fw {
+  background: #2980b9;
+}
+._first_fx {
+  background: #2c3e50;
+}
+._first_fy {
+  background: #f1c40f;
+}
+._first_fz {
+  background: #E87E04;
+}
+._first_ga {
+  background: #F62459;
+}
+._first_gb {
+  background: #4ECDC4;
+}
+._first_gc {
+  background: #9b59b6;
+}
+._first_gd {
+  background: #9b59b6;
+}
+._first_ge {
+  background: #f1c40f;
+}
+._first_gf {
+  background: #7f8c8d;
+}
+._first_gg {
+  background: #1abc9c;
+}
+._first_gh {
+  background: #1abc9c;
+}
+._first_gi {
+  background: #1abc9c;
+}
+._first_gj {
+  background: #f1c40f;
+}
+._first_gk {
+  background: #2980b9;
+}
+._first_gl {
+  background: #2980b9;
+}
+._first_gm {
+  background: #c0392b;
+}
+._first_gn {
+  background: #f1c40f;
+}
+._first_go {
+  background: #f1c40f;
+}
+._first_gp {
+  background: #81CFE0;
+}
+._first_gq {
+  background: #c0392b;
+}
+._first_gr {
+  background: #7f8c8d;
+}
+._first_gs {
+  background: #d35400;
+}
+._first_gt {
+  background: #1abc9c;
+}
+._first_gu {
+  background: #1abc9c;
+}
+._first_gv {
+  background: #7f8c8d;
+}
+._first_gw {
+  background: #c0392b;
+}
+._first_gx {
+  background: #c0392b;
+}
+._first_gy {
+  background: #F62459;
+}
+._first_gz {
+  background: #2980b9;
+}
+._first_ha {
+  background: #2c3e50;
+}
+._first_hb {
+  background: #d35400;
+}
+._first_hc {
+  background: #663399;
+}
+._first_hd {
+  background: #d35400;
+}
+._first_he {
+  background: #2980b9;
+}
+._first_hf {
+  background: #F62459;
+}
+._first_hg {
+  background: #f1c40f;
+}
+._first_hh {
+  background: #663399;
+}
+._first_hi {
+  background: #E87E04;
+}
+._first_hj {
+  background: #7f8c8d;
+}
+._first_hk {
+  background: #4ECDC4;
+}
+._first_hl {
+  background: #1abc9c;
+}
+._first_hm {
+  background: #d35400;
+}
+._first_hn {
+  background: #f1c40f;
+}
+._first_ho {
+  background: #1abc9c;
+}
+._first_hp {
+  background: #f1c40f;
+}
+._first_hq {
+  background: #4ECDC4;
+}
+._first_hr {
+  background: #d35400;
+}
+._first_hs {
+  background: #9b59b6;
+}
+._first_ht {
+  background: #1abc9c;
+}
+._first_hu {
+  background: #c0392b;
+}
+._first_hv {
+  background: #E87E04;
+}
+._first_hw {
+  background: #1abc9c;
+}
+._first_hx {
+  background: #d35400;
+}
+._first_hy {
+  background: #E87E04;
+}
+._first_hz {
+  background: #7f8c8d;
+}
+._first_ia {
+  background: #c0392b;
+}
+._first_ib {
+  background: #d35400;
+}
+._first_ic {
+  background: #2980b9;
+}
+._first_id {
+  background: #7f8c8d;
+}
+._first_ie {
+  background: #1abc9c;
+}
+._first_if {
+  background: #4ECDC4;
+}
+._first_ig {
+  background: #f1c40f;
+}
+._first_ih {
+  background: #2c3e50;
+}
+._first_ii {
+  background: #663399;
+}
+._first_ij {
+  background: #E87E04;
+}
+._first_ik {
+  background: #4ECDC4;
+}
+._first_il {
+  background: #663399;
+}
+._first_im {
+  background: #4ECDC4;
+}
+._first_in {
+  background: #2c3e50;
+}
+._first_io {
+  background: #2980b9;
+}
+._first_ip {
+  background: #f1c40f;
+}
+._first_iq {
+  background: #c0392b;
+}
+._first_ir {
+  background: #4ECDC4;
+}
+._first_is {
+  background: #2980b9;
+}
+._first_it {
+  background: #9b59b6;
+}
+._first_iu {
+  background: #1abc9c;
+}
+._first_iv {
+  background: #2980b9;
+}
+._first_iw {
+  background: #1abc9c;
+}
+._first_ix {
+  background: #7f8c8d;
+}
+._first_iy {
+  background: #9b59b6;
+}
+._first_iz {
+  background: #81CFE0;
+}
+._first_ja {
+  background: #9b59b6;
+}
+._first_jb {
+  background: #c0392b;
+}
+._first_jc {
+  background: #c0392b;
+}
+._first_jd {
+  background: #E87E04;
+}
+._first_je {
+  background: #81CFE0;
+}
+._first_jf {
+  background: #9b59b6;
+}
+._first_jg {
+  background: #E87E04;
+}
+._first_jh {
+  background: #4ECDC4;
+}
+._first_ji {
+  background: #c0392b;
+}
+._first_jj {
+  background: #4ECDC4;
+}
+._first_jk {
+  background: #4ECDC4;
+}
+._first_jl {
+  background: #7f8c8d;
+}
+._first_jm {
+  background: #F62459;
+}
+._first_jn {
+  background: #2980b9;
+}
+._first_jo {
+  background: #E87E04;
+}
+._first_jp {
+  background: #E87E04;
+}
+._first_jq {
+  background: #81CFE0;
+}
+._first_jr {
+  background: #2980b9;
+}
+._first_js {
+  background: #4ECDC4;
+}
+._first_jt {
+  background: #2980b9;
+}
+._first_ju {
+  background: #1abc9c;
+}
+._first_jv {
+  background: #663399;
+}
+._first_jw {
+  background: #F62459;
+}
+._first_jx {
+  background: #2980b9;
+}
+._first_jy {
+  background: #E87E04;
+}
+._first_jz {
+  background: #F62459;
+}
+._first_ka {
+  background: #2980b9;
+}
+._first_kb {
+  background: #E87E04;
+}
+._first_kc {
+  background: #663399;
+}
+._first_kd {
+  background: #4ECDC4;
+}
+._first_ke {
+  background: #81CFE0;
+}
+._first_kf {
+  background: #E87E04;
+}
+._first_kg {
+  background: #1abc9c;
+}
+._first_kh {
+  background: #9b59b6;
+}
+._first_ki {
+  background: #663399;
+}
+._first_kj {
+  background: #9b59b6;
+}
+._first_kk {
+  background: #2980b9;
+}
+._first_kl {
+  background: #c0392b;
+}
+._first_km {
+  background: #c0392b;
+}
+._first_kn {
+  background: #663399;
+}
+._first_ko {
+  background: #c0392b;
+}
+._first_kp {
+  background: #f1c40f;
+}
+._first_kq {
+  background: #d35400;
+}
+._first_kr {
+  background: #F62459;
+}
+._first_ks {
+  background: #663399;
+}
+._first_kt {
+  background: #f1c40f;
+}
+._first_ku {
+  background: #663399;
+}
+._first_kv {
+  background: #d35400;
+}
+._first_kw {
+  background: #c0392b;
+}
+._first_kx {
+  background: #f1c40f;
+}
+._first_ky {
+  background: #1abc9c;
+}
+._first_kz {
+  background: #1abc9c;
+}
+._first_la {
+  background: #1abc9c;
+}
+._first_lb {
+  background: #d35400;
+}
+._first_lc {
+  background: #9b59b6;
+}
+._first_ld {
+  background: #663399;
+}
+._first_le {
+  background: #2980b9;
+}
+._first_lf {
+  background: #E87E04;
+}
+._first_lg {
+  background: #f1c40f;
+}
+._first_lh {
+  background: #9b59b6;
+}
+._first_li {
+  background: #4ECDC4;
+}
+._first_lj {
+  background: #9b59b6;
+}
+._first_lk {
+  background: #81CFE0;
+}
+._first_ll {
+  background: #4ECDC4;
+}
+._first_lm {
+  background: #1abc9c;
+}
+._first_ln {
+  background: #F62459;
+}
+._first_lo {
+  background: #663399;
+}
+._first_lp {
+  background: #F62459;
+}
+._first_lq {
+  background: #F62459;
+}
+._first_lr {
+  background: #2c3e50;
+}
+._first_ls {
+  background: #F62459;
+}
+._first_lt {
+  background: #c0392b;
+}
+._first_lu {
+  background: #2980b9;
+}
+._first_lv {
+  background: #2c3e50;
+}
+._first_lw {
+  background: #f1c40f;
+}
+._first_lx {
+  background: #f1c40f;
+}
+._first_ly {
+  background: #F62459;
+}
+._first_lz {
+  background: #9b59b6;
+}
+._first_ma {
+  background: #4ECDC4;
+}
+._first_mb {
+  background: #7f8c8d;
+}
+._first_mc {
+  background: #7f8c8d;
+}
+._first_md {
+  background: #2c3e50;
+}
+._first_me {
+  background: #d35400;
+}
+._first_mf {
+  background: #663399;
+}
+._first_mg {
+  background: #1abc9c;
+}
+._first_mh {
+  background: #9b59b6;
+}
+._first_mi {
+  background: #663399;
+}
+._first_mj {
+  background: #4ECDC4;
+}
+._first_mk {
+  background: #81CFE0;
+}
+._first_ml {
+  background: #2980b9;
+}
+._first_mm {
+  background: #d35400;
+}
+._first_mn {
+  background: #F62459;
+}
+._first_mo {
+  background: #81CFE0;
+}
+._first_mp {
+  background: #1abc9c;
+}
+._first_mq {
+  background: #81CFE0;
+}
+._first_mr {
+  background: #1abc9c;
+}
+._first_ms {
+  background: #1abc9c;
+}
+._first_mt {
+  background: #9b59b6;
+}
+._first_mu {
+  background: #2980b9;
+}
+._first_mv {
+  background: #1abc9c;
+}
+._first_mw {
+  background: #663399;
+}
+._first_mx {
+  background: #1abc9c;
+}
+._first_my {
+  background: #c0392b;
+}
+._first_mz {
+  background: #f1c40f;
+}
+._first_na {
+  background: #F62459;
+}
+._first_nb {
+  background: #d35400;
+}
+._first_nc {
+  background: #81CFE0;
+}
+._first_nd {
+  background: #4ECDC4;
+}
+._first_ne {
+  background: #4ECDC4;
+}
+._first_nf {
+  background: #1abc9c;
+}
+._first_ng {
+  background: #f1c40f;
+}
+._first_nh {
+  background: #4ECDC4;
+}
+._first_ni {
+  background: #F62459;
+}
+._first_nj {
+  background: #4ECDC4;
+}
+._first_nk {
+  background: #c0392b;
+}
+._first_nl {
+  background: #c0392b;
+}
+._first_nm {
+  background: #c0392b;
+}
+._first_nn {
+  background: #d35400;
+}
+._first_no {
+  background: #E87E04;
+}
+._first_np {
+  background: #E87E04;
+}
+._first_nq {
+  background: #2980b9;
+}
+._first_nr {
+  background: #F62459;
+}
+._first_ns {
+  background: #81CFE0;
+}
+._first_nt {
+  background: #7f8c8d;
+}
+._first_nu {
+  background: #2980b9;
+}
+._first_nv {
+  background: #F62459;
+}
+._first_nw {
+  background: #663399;
+}
+._first_nx {
+  background: #2c3e50;
+}
+._first_ny {
+  background: #E87E04;
+}
+._first_nz {
+  background: #E87E04;
+}
+._first_oa {
+  background: #663399;
+}
+._first_ob {
+  background: #663399;
+}
+._first_oc {
+  background: #4ECDC4;
+}
+._first_od {
+  background: #E87E04;
+}
+._first_oe {
+  background: #f1c40f;
+}
+._first_of {
+  background: #81CFE0;
+}
+._first_og {
+  background: #E87E04;
+}
+._first_oh {
+  background: #E87E04;
+}
+._first_oi {
+  background: #81CFE0;
+}
+._first_oj {
+  background: #1abc9c;
+}
+._first_ok {
+  background: #7f8c8d;
+}
+._first_ol {
+  background: #E87E04;
+}
+._first_om {
+  background: #F62459;
+}
+._first_on {
+  background: #d35400;
+}
+._first_oo {
+  background: #9b59b6;
+}
+._first_op {
+  background: #4ECDC4;
+}
+._first_oq {
+  background: #4ECDC4;
+}
+._first_or {
+  background: #f1c40f;
+}
+._first_os {
+  background: #81CFE0;
+}
+._first_ot {
+  background: #E87E04;
+}
+._first_ou {
+  background: #4ECDC4;
+}
+._first_ov {
+  background: #d35400;
+}
+._first_ow {
+  background: #d35400;
+}
+._first_ox {
+  background: #F62459;
+}
+._first_oy {
+  background: #f1c40f;
+}
+._first_oz {
+  background: #2980b9;
+}
+._first_pa {
+  background: #f1c40f;
+}
+._first_pb {
+  background: #81CFE0;
+}
+._first_pc {
+  background: #1abc9c;
+}
+._first_pd {
+  background: #81CFE0;
+}
+._first_pe {
+  background: #E87E04;
+}
+._first_pf {
+  background: #c0392b;
+}
+._first_pg {
+  background: #f1c40f;
+}
+._first_ph {
+  background: #E87E04;
+}
+._first_pi {
+  background: #f1c40f;
+}
+._first_pj {
+  background: #663399;
+}
+._first_pk {
+  background: #663399;
+}
+._first_pl {
+  background: #f1c40f;
+}
+._first_pm {
+  background: #663399;
+}
+._first_pn {
+  background: #1abc9c;
+}
+._first_po {
+  background: #c0392b;
+}
+._first_pp {
+  background: #1abc9c;
+}
+._first_pq {
+  background: #81CFE0;
+}
+._first_pr {
+  background: #663399;
+}
+._first_ps {
+  background: #d35400;
+}
+._first_pt {
+  background: #c0392b;
+}
+._first_pu {
+  background: #F62459;
+}
+._first_pv {
+  background: #F62459;
+}
+._first_pw {
+  background: #d35400;
+}
+._first_px {
+  background: #c0392b;
+}
+._first_py {
+  background: #9b59b6;
+}
+._first_pz {
+  background: #F62459;
+}
+._first_qa {
+  background: #E87E04;
+}
+._first_qb {
+  background: #f1c40f;
+}
+._first_qc {
+  background: #F62459;
+}
+._first_qd {
+  background: #81CFE0;
+}
+._first_qe {
+  background: #F62459;
+}
+._first_qf {
+  background: #d35400;
+}
+._first_qg {
+  background: #c0392b;
+}
+._first_qh {
+  background: #1abc9c;
+}
+._first_qi {
+  background: #c0392b;
+}
+._first_qj {
+  background: #f1c40f;
+}
+._first_qk {
+  background: #f1c40f;
+}
+._first_ql {
+  background: #81CFE0;
+}
+._first_qm {
+  background: #4ECDC4;
+}
+._first_qn {
+  background: #f1c40f;
+}
+._first_qo {
+  background: #F62459;
+}
+._first_qp {
+  background: #c0392b;
+}
+._first_qq {
+  background: #c0392b;
+}
+._first_qr {
+  background: #9b59b6;
+}
+._first_qs {
+  background: #9b59b6;
+}
+._first_qt {
+  background: #1abc9c;
+}
+._first_qu {
+  background: #81CFE0;
+}
+._first_qv {
+  background: #1abc9c;
+}
+._first_qw {
+  background: #F62459;
+}
+._first_qx {
+  background: #f1c40f;
+}
+._first_qy {
+  background: #81CFE0;
+}
+._first_qz {
+  background: #7f8c8d;
+}
+._first_ra {
+  background: #81CFE0;
+}
+._first_rb {
+  background: #1abc9c;
+}
+._first_rc {
+  background: #d35400;
+}
+._first_rd {
+  background: #c0392b;
+}
+._first_re {
+  background: #2980b9;
+}
+._first_rf {
+  background: #4ECDC4;
+}
+._first_rg {
+  background: #81CFE0;
+}
+._first_rh {
+  background: #9b59b6;
+}
+._first_ri {
+  background: #4ECDC4;
+}
+._first_rj {
+  background: #81CFE0;
+}
+._first_rk {
+  background: #F62459;
+}
+._first_rl {
+  background: #F62459;
+}
+._first_rm {
+  background: #663399;
+}
+._first_rn {
+  background: #E87E04;
+}
+._first_ro {
+  background: #81CFE0;
+}
+._first_rp {
+  background: #E87E04;
+}
+._first_rq {
+  background: #f1c40f;
+}
+._first_rr {
+  background: #7f8c8d;
+}
+._first_rs {
+  background: #d35400;
+}
+._first_rt {
+  background: #d35400;
+}
+._first_ru {
+  background: #2980b9;
+}
+._first_rv {
+  background: #F62459;
+}
+._first_rw {
+  background: #2980b9;
+}
+._first_rx {
+  background: #7f8c8d;
+}
+._first_ry {
+  background: #663399;
+}
+._first_rz {
+  background: #7f8c8d;
+}
+._first_sa {
+  background: #F62459;
+}
+._first_sb {
+  background: #d35400;
+}
+._first_sc {
+  background: #7f8c8d;
+}
+._first_sd {
+  background: #663399;
+}
+._first_se {
+  background: #E87E04;
+}
+._first_sf {
+  background: #663399;
+}
+._first_sg {
+  background: #2c3e50;
+}
+._first_sh {
+  background: #9b59b6;
+}
+._first_si {
+  background: #F62459;
+}
+._first_sj {
+  background: #81CFE0;
+}
+._first_sk {
+  background: #c0392b;
+}
+._first_sl {
+  background: #4ECDC4;
+}
+._first_sm {
+  background: #d35400;
+}
+._first_sn {
+  background: #4ECDC4;
+}
+._first_so {
+  background: #7f8c8d;
+}
+._first_sp {
+  background: #4ECDC4;
+}
+._first_sq {
+  background: #2980b9;
+}
+._first_sr {
+  background: #1abc9c;
+}
+._first_ss {
+  background: #d35400;
+}
+._first_st {
+  background: #F62459;
+}
+._first_su {
+  background: #F62459;
+}
+._first_sv {
+  background: #7f8c8d;
+}
+._first_sw {
+  background: #81CFE0;
+}
+._first_sx {
+  background: #F62459;
+}
+._first_sy {
+  background: #E87E04;
+}
+._first_sz {
+  background: #f1c40f;
+}
+._first_ta {
+  background: #663399;
+}
+._first_tb {
+  background: #81CFE0;
+}
+._first_tc {
+  background: #E87E04;
+}
+._first_td {
+  background: #E87E04;
+}
+._first_te {
+  background: #7f8c8d;
+}
+._first_tf {
+  background: #81CFE0;
+}
+._first_tg {
+  background: #1abc9c;
+}
+._first_th {
+  background: #E87E04;
+}
+._first_ti {
+  background: #c0392b;
+}
+._first_tj {
+  background: #4ECDC4;
+}
+._first_tk {
+  background: #E87E04;
+}
+._first_tl {
+  background: #663399;
+}
+._first_tm {
+  background: #81CFE0;
+}
+._first_tn {
+  background: #f1c40f;
+}
+._first_to {
+  background: #d35400;
+}
+._first_tp {
+  background: #7f8c8d;
+}
+._first_tq {
+  background: #1abc9c;
+}
+._first_tr {
+  background: #9b59b6;
+}
+._first_ts {
+  background: #F62459;
+}
+._first_tt {
+  background: #9b59b6;
+}
+._first_tu {
+  background: #d35400;
+}
+._first_tv {
+  background: #f1c40f;
+}
+._first_tw {
+  background: #d35400;
+}
+._first_tx {
+  background: #663399;
+}
+._first_ty {
+  background: #81CFE0;
+}
+._first_tz {
+  background: #c0392b;
+}
+._first_ua {
+  background: #7f8c8d;
+}
+._first_ub {
+  background: #F62459;
+}
+._first_uc {
+  background: #d35400;
+}
+._first_ud {
+  background: #1abc9c;
+}
+._first_ue {
+  background: #c0392b;
+}
+._first_uf {
+  background: #9b59b6;
+}
+._first_ug {
+  background: #F62459;
+}
+._first_uh {
+  background: #2c3e50;
+}
+._first_ui {
+  background: #1abc9c;
+}
+._first_uj {
+  background: #4ECDC4;
+}
+._first_uk {
+  background: #2980b9;
+}
+._first_ul {
+  background: #E87E04;
+}
+._first_um {
+  background: #f1c40f;
+}
+._first_un {
+  background: #9b59b6;
+}
+._first_uo {
+  background: #81CFE0;
+}
+._first_up {
+  background: #1abc9c;
+}
+._first_uq {
+  background: #f1c40f;
+}
+._first_ur {
+  background: #2c3e50;
+}
+._first_us {
+  background: #d35400;
+}
+._first_ut {
+  background: #663399;
+}
+._first_uu {
+  background: #7f8c8d;
+}
+._first_uv {
+  background: #E87E04;
+}
+._first_uw {
+  background: #1abc9c;
+}
+._first_ux {
+  background: #1abc9c;
+}
+._first_uy {
+  background: #663399;
+}
+._first_uz {
+  background: #81CFE0;
+}
+._first_va {
+  background: #9b59b6;
+}
+._first_vb {
+  background: #9b59b6;
+}
+._first_vc {
+  background: #1abc9c;
+}
+._first_vd {
+  background: #7f8c8d;
+}
+._first_ve {
+  background: #2980b9;
+}
+._first_vf {
+  background: #663399;
+}
+._first_vg {
+  background: #1abc9c;
+}
+._first_vh {
+  background: #2980b9;
+}
+._first_vi {
+  background: #f1c40f;
+}
+._first_vj {
+  background: #2980b9;
+}
+._first_vk {
+  background: #F62459;
+}
+._first_vl {
+  background: #9b59b6;
+}
+._first_vm {
+  background: #c0392b;
+}
+._first_vn {
+  background: #2980b9;
+}
+._first_vo {
+  background: #4ECDC4;
+}
+._first_vp {
+  background: #663399;
+}
+._first_vq {
+  background: #2980b9;
+}
+._first_vr {
+  background: #E87E04;
+}
+._first_vs {
+  background: #f1c40f;
+}
+._first_vt {
+  background: #1abc9c;
+}
+._first_vu {
+  background: #81CFE0;
+}
+._first_vv {
+  background: #2980b9;
+}
+._first_vw {
+  background: #c0392b;
+}
+._first_vx {
+  background: #E87E04;
+}
+._first_vy {
+  background: #2c3e50;
+}
+._first_vz {
+  background: #d35400;
+}
+._first_wa {
+  background: #9b59b6;
+}
+._first_wb {
+  background: #d35400;
+}
+._first_wc {
+  background: #f1c40f;
+}
+._first_wd {
+  background: #663399;
+}
+._first_we {
+  background: #d35400;
+}
+._first_wf {
+  background: #c0392b;
+}
+._first_wg {
+  background: #E87E04;
+}
+._first_wh {
+  background: #F62459;
+}
+._first_wi {
+  background: #9b59b6;
+}
+._first_wj {
+  background: #2c3e50;
+}
+._first_wk {
+  background: #f1c40f;
+}
+._first_wl {
+  background: #9b59b6;
+}
+._first_wm {
+  background: #9b59b6;
+}
+._first_wn {
+  background: #81CFE0;
+}
+._first_wo {
+  background: #7f8c8d;
+}
+._first_wp {
+  background: #1abc9c;
+}
+._first_wq {
+  background: #E87E04;
+}
+._first_wr {
+  background: #4ECDC4;
+}
+._first_ws {
+  background: #81CFE0;
+}
+._first_wt {
+  background: #c0392b;
+}
+._first_wu {
+  background: #2c3e50;
+}
+._first_wv {
+  background: #9b59b6;
+}
+._first_ww {
+  background: #1abc9c;
+}
+._first_wx {
+  background: #d35400;
+}
+._first_wy {
+  background: #2c3e50;
+}
+._first_wz {
+  background: #E87E04;
+}
+._first_xa {
+  background: #c0392b;
+}
+._first_xb {
+  background: #c0392b;
+}
+._first_xc {
+  background: #1abc9c;
+}
+._first_xd {
+  background: #d35400;
+}
+._first_xe {
+  background: #f1c40f;
+}
+._first_xf {
+  background: #d35400;
+}
+._first_xg {
+  background: #9b59b6;
+}
+._first_xh {
+  background: #F62459;
+}
+._first_xi {
+  background: #4ECDC4;
+}
+._first_xj {
+  background: #F62459;
+}
+._first_xk {
+  background: #c0392b;
+}
+._first_xl {
+  background: #f1c40f;
+}
+._first_xm {
+  background: #F62459;
+}
+._first_xn {
+  background: #7f8c8d;
+}
+._first_xo {
+  background: #f1c40f;
+}
+._first_xp {
+  background: #7f8c8d;
+}
+._first_xq {
+  background: #2980b9;
+}
+._first_xr {
+  background: #2980b9;
+}
+._first_xs {
+  background: #c0392b;
+}
+._first_xt {
+  background: #E87E04;
+}
+._first_xu {
+  background: #c0392b;
+}
+._first_xv {
+  background: #f1c40f;
+}
+._first_xw {
+  background: #E87E04;
+}
+._first_xx {
+  background: #d35400;
+}
+._first_xy {
+  background: #2c3e50;
+}
+._first_xz {
+  background: #4ECDC4;
+}
+._first_ya {
+  background: #c0392b;
+}
+._first_yb {
+  background: #f1c40f;
+}
+._first_yc {
+  background: #f1c40f;
+}
+._first_yd {
+  background: #81CFE0;
+}
+._first_ye {
+  background: #9b59b6;
+}
+._first_yf {
+  background: #9b59b6;
+}
+._first_yg {
+  background: #F62459;
+}
+._first_yh {
+  background: #F62459;
+}
+._first_yi {
+  background: #9b59b6;
+}
+._first_yj {
+  background: #E87E04;
+}
+._first_yk {
+  background: #7f8c8d;
+}
+._first_yl {
+  background: #F62459;
+}
+._first_ym {
+  background: #81CFE0;
+}
+._first_yn {
+  background: #c0392b;
+}
+._first_yo {
+  background: #2c3e50;
+}
+._first_yp {
+  background: #2980b9;
+}
+._first_yq {
+  background: #f1c40f;
+}
+._first_yr {
+  background: #f1c40f;
+}
+._first_ys {
+  background: #4ECDC4;
+}
+._first_yt {
+  background: #d35400;
+}
+._first_yu {
+  background: #1abc9c;
+}
+._first_yv {
+  background: #4ECDC4;
+}
+._first_yw {
+  background: #E87E04;
+}
+._first_yx {
+  background: #d35400;
+}
+._first_yy {
+  background: #E87E04;
+}
+._first_yz {
+  background: #2980b9;
+}
+._first_za {
+  background: #E87E04;
+}
+._first_zb {
+  background: #2980b9;
+}
+._first_zc {
+  background: #F62459;
+}
+._first_zd {
+  background: #81CFE0;
+}
+._first_ze {
+  background: #F62459;
+}
+._first_zf {
+  background: #9b59b6;
+}
+._first_zg {
+  background: #81CFE0;
+}
+._first_zh {
+  background: #d35400;
+}
+._first_zi {
+  background: #2980b9;
+}
+._first_zj {
+  background: #1abc9c;
+}
+._first_zk {
+  background: #81CFE0;
+}
+._first_zl {
+  background: #2c3e50;
+}
+._first_zm {
+  background: #1abc9c;
+}
+._first_zn {
+  background: #F62459;
+}
+._first_zo {
+  background: #c0392b;
+}
+._first_zp {
+  background: #1abc9c;
+}
+._first_zq {
+  background: #d35400;
+}
+._first_zr {
+  background: #81CFE0;
+}
+._first_zs {
+  background: #2c3e50;
+}
+._first_zt {
+  background: #f1c40f;
+}
+._first_zu {
+  background: #7f8c8d;
+}
+._first_zv {
+  background: #f1c40f;
+}
+._first_zw {
+  background: #663399;
+}
+._first_zx {
+  background: #2c3e50;
+}
+._first_zy {
+  background: #9b59b6;
+}
+._first_zz {
+  background: #f1c40f;
+}
 .js_box {
   padding: 0px;
   background: transparent;
@@ -3346,6 +5492,87 @@ i._zz {
   opacity: 0;
   cursor: pointer;
 }
+.js_box_full {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 100000;
+  display: block;
+}
+.js_box_full .js_box_close a,
+.js_box_full .js_box_close a:hover {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  top: auto;
+  z-index: 1000001;
+  width: 40px;
+  height: 40px;
+  background: #f24d47;
+}
+.js_box_full .js_box_close a i,
+.js_box_full .js_box_close a:hover i {
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  color: #fff;
+}
+.js_box_full .js_box_content {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: auto;
+  top: 0px;
+  padding: 0px;
+}
+.ace_editor {
+  width: 100%;
+  height: 100%;
+}
+.page_editor_content {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 20%;
+}
+.page_editor_data {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 20%;
+  background: #e6e6e6;
+  color: #999999;
+  overflow: auto;
+}
+.page_editor_data .table {
+  padding: 10px;
+}
+.page_editor_data > div {
+  padding: 10px;
+  padding-bottom: 70px;
+}
+.page_editor_button {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  width: 20%;
+  text-align: center;
+}
+.page_editor_button input.button {
+  height: 40px;
+  line-height: 40px;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  width: 100%;
+  background: #f4645f;
+  color: #ffffff;
+}
 /** initial setup **/
 .nano {
   position: relative;
@@ -3439,12 +5666,16 @@ i._zz {
   left: 2px;
 }
 ._size__32,
-._size__32:hover {
+._size__32:hover,
+._size__30,
+._size__30:hover {
   width: 32px;
   height: 32px;
 }
 ._size__32 > span,
-._size__32:hover > span {
+._size__32:hover > span,
+._size__30 > span,
+._size__30:hover > span {
   top: 7px;
   left: 0px;
   font-size: 12px;
@@ -3592,7 +5823,7 @@ i._zz {
   width: 40px;
   top: 0px;
   bottom: 0px;
-  border: 2px #cccccc solid;
+  border: 2px #dddddd solid;
 }
 ._colorpicker_holder:hover {
   border-color: #f4645f;

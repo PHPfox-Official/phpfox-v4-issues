@@ -140,7 +140,7 @@ class Ad_Component_Controller_Admincp_Index extends Phpfox_Component
 		
 		$iLimit = $oSearch->getDisplay();		 	    
 		
-		list($iCnt, $aAds) = Phpfox::getService('ad')->get($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);
+		list($iCnt, $aAds) = Ad_Service_Ad::instance()->get($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);
 		
 		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));
 		
@@ -148,7 +148,7 @@ class Ad_Component_Controller_Admincp_Index extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('ad.manage_ad_campaigns'), $this->url()->makeUrl('admincp.ad'))
 			->assign(array(
 					'aAds' => $aAds,
-					'iPendingCount' => (int) Phpfox::getService('ad')->getPendingCount(),
+					'iPendingCount' => (int) Ad_Service_Ad::instance()->getPendingCount(),
 					'sPendingLink' => Phpfox_Url::instance()->makeUrl('admincp.ad', array('view' => 'pending')),
 					'bIsSearch' => ($this->request()->get('search-id') ? true : false),
 					'sView' => $sView

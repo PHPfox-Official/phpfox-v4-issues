@@ -12,13 +12,6 @@
 	<settings>
 		<setting group="server_settings" module_id="log" is_hidden="0" type="integer" var_name="active_session" phrase_var_name="setting_active_session" ordering="2" version_id="2.0.0alpha1">15</setting>
 	</settings>
-	<blocks>
-		<block type_id="0" m_connection="core.index-member" module_id="log" component="login" location="1" is_active="1" ordering="3" disallow_access="" can_move="1">
-			<title><![CDATA[{phrase var=&#039;log.recent_logins&#039;}]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-	</blocks>
 	<hooks>
 		<hook module_id="log" hook_type="service" module="log" call_name="log.service_session___call" added="1231838390" version_id="2.0.0alpha1" />
 		<hook module_id="log" hook_type="service" module="log" call_name="log.service_staff___call" added="1231838390" version_id="2.0.0alpha1" />

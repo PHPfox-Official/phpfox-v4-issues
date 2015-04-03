@@ -132,7 +132,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 					$oSearch->setCondition('AND ft.time_stamp >= ' . (PHPFOX_TIME - ($aSearch['days_prune'] * 86400)));					
 				}		
 				
-				$aSearchResults = Phpfox::getService('forum.thread')->getSearch($oSearch->getConditions(), $oSearch->getSort());				
+				$aSearchResults = Forum_Service_Thread_Thread::instance()->getSearch($oSearch->getConditions(), $oSearch->getSort());
 			}
 			else 
 			{
@@ -285,7 +285,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				}
 			}
 
-			list($iCnt, $aThreads) = Phpfox::getService('forum.thread')->isSearch($bIsSearch)
+			list($iCnt, $aThreads) = Forum_Service_Thread_Thread::instance()->isSearch($bIsSearch)
 				->isTagSearch($bIsTagSearch)
 				->isNewSearch(($sView == 'new' ? true : false))
 				->isSubscribeSearch(($sView == 'subscribed' ? true : false))
@@ -421,7 +421,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 					->setBreadcrumb(Phpfox_Locale::instance()->convert($aForum['name']), $this->url()->permalink('forum', $aForum['forum_id'], $aForum['name']), true)
 					->assign(array(
 						'bDisplayThreads' => true,
-						'aAnnouncements' => Phpfox::getService('forum.thread')->getAnnoucements($iForumId),
+						'aAnnouncements' => Forum_Service_Thread_Thread::instance()->getAnnoucements($iForumId),
 						'aForums' => $aForums,
 						'aForumData' => $aForum,
 						'bHasCategory' => false,
@@ -442,7 +442,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 						'bIsSearch' => false,
 						'bIsTagSearch' => false,
 						// 'aForumData' => array(),
-						'aAnnouncements' => Phpfox::getService('forum.thread')->getAnnoucements(null, isset($aParentModule['item_id']) ? $aParentModule['item_id']: 1)
+						'aAnnouncements' => Forum_Service_Thread_Thread::instance()->getAnnoucements(null, isset($aParentModule['item_id']) ? $aParentModule['item_id']: 1)
 					)
 				);				
 			}

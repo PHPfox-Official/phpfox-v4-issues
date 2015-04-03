@@ -14,12 +14,12 @@
 		<menu module_id="mail" parent_var_name="" m_connection="mobile" var_name="menu_mail_mail_532c28d5412dd75bf975fb951c740a30" ordering="119" url_value="mail" version_id="3.1.0rc1" disallow_access="" module="mail" mobile_icon="small_mail.png" />
 	</menus>
 	<settings>
-		<setting group="time_stamps" module_id="mail" is_hidden="0" type="string" var_name="mail_time_stamp" phrase_var_name="setting_mail_time_stamp" ordering="9" version_id="2.0.0alpha1">M j, g:i a</setting>
+		<setting group="" module_id="mail" is_hidden="0" type="string" var_name="mail_time_stamp" phrase_var_name="setting_mail_time_stamp" ordering="9" version_id="2.0.0alpha1">M j, g:i a</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="show_core_mail_folders_item_count" phrase_var_name="setting_show_core_mail_folders_item_count" ordering="1" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="display_total_mail_count" phrase_var_name="setting_display_total_mail_count" ordering="1" version_id="2.0.0alpha2">0</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="enable_mail_box_warning" phrase_var_name="setting_enable_mail_box_warning" ordering="1" version_id="2.0.0beta5">1</setting>
-		<setting group="cron" module_id="mail" is_hidden="0" type="boolean" var_name="enable_cron_delete_old_mail" phrase_var_name="setting_enable_cron_delete_old_mail" ordering="1" version_id="2.0.0beta5">1</setting>
-		<setting group="cron" module_id="mail" is_hidden="0" type="integer" var_name="cron_delete_messages_delay" phrase_var_name="setting_cron_delete_messages_delay" ordering="2" version_id="2.0.0beta5">30</setting>
+		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="enable_cron_delete_old_mail" phrase_var_name="setting_enable_cron_delete_old_mail" ordering="1" version_id="2.0.0beta5">1</setting>
+		<setting group="" module_id="mail" is_hidden="0" type="integer" var_name="cron_delete_messages_delay" phrase_var_name="setting_cron_delete_messages_delay" ordering="2" version_id="2.0.0beta5">30</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="integer" var_name="message_age_to_delete" phrase_var_name="setting_message_age_to_delete" ordering="1" version_id="2.0.0beta5">20</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="delete_sent_when_account_cancel" phrase_var_name="setting_delete_sent_when_account_cancel" ordering="1" version_id="2.0.0beta5">1</setting>
 		<setting group="spam" module_id="mail" is_hidden="0" type="boolean" var_name="spam_check_messages" phrase_var_name="setting_spam_check_messages" ordering="7" version_id="2.0.0rc1">1</setting>
@@ -31,28 +31,6 @@
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="update_message_notification_preview" phrase_var_name="setting_update_message_notification_preview" ordering="1" version_id="3.1.0beta1">1</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="threaded_mail_conversation" phrase_var_name="setting_threaded_mail_conversation" ordering="1" version_id="3.2.0beta1">0</setting>
 	</settings>
-	<blocks>
-		<block type_id="0" m_connection="mail.index" module_id="mail" component="folder" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="mail.sentbox" module_id="mail" component="folder" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="mail.view" module_id="mail" component="folder" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="mail.compose" module_id="mail" component="folder" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-	</blocks>
 	<hooks>
 		<hook module_id="mail" hook_type="component" module="mail" call_name="mail.component_block_folder_process" added="1231838390" version_id="2.0.0alpha1" />
 		<hook module_id="mail" hook_type="component" module="mail" call_name="mail.component_block_folder_clean" added="1231838390" version_id="2.0.0alpha1" />

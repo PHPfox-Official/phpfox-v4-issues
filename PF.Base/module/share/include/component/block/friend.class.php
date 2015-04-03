@@ -22,8 +22,9 @@ class Share_Component_Block_Friend extends Phpfox_Component
 	{
 		Phpfox::isUser(true);
 		
-		$sMessage = Phpfox::getPhrase('share.hi_check_this_out_bbcode', array('url' => $this->request()->get('url')));
-		$sMessage = str_replace("\n", "",  $sMessage);
+		// $sMessage = Phpfox::getPhrase('share.hi_check_this_out_bbcode', array('url' => $this->request()->get('url')));
+		// $sMessage = str_replace("\n", "",  $sMessage);
+		$sMessage = $this->request()->get('url');
 		
 		$this->template()->assign(array(
 				'sTitle' => $this->request()->get('title'),

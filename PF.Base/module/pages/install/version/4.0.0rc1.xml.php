@@ -22,7 +22,7 @@
 			<module_id>pages</module_id>
 			<component>photo</component>
 			<location>12</location>
-			<is_active>1</is_active>
+			<is_active>0</is_active>
 			<ordering>11</ordering>
 			<disallow_access />
 			<can_move>0</can_move>

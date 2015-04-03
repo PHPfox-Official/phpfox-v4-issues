@@ -5,7 +5,18 @@
 <script>
 	$Ready(function() {
 		if ($('#header_sub_menu_search_input').length) {
-			$('#header_sub_menu_search_input').focus();
+			$('#header_sub_menu_search_input').each(function() {
+				$(this).focus();
+				$Core.searchFriendsInput.init({
+					'id': 'header_sub_menu_search',
+					'max_search': (getParam('bJsIsMobile') ? 5 : 10),
+					'no_build': true,
+					'global_search': true,
+					'allow_custom': true,
+					'panel_mode': true
+				});
+				$Core.searchFriendsInput.buildFriends(this);
+			});
 		}
 	});
 </script>

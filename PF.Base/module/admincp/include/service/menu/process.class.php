@@ -140,7 +140,7 @@ class Admincp_Service_Menu_Process extends Phpfox_Service
 		foreach ($aVals as $iId => $aValue)
 		{
 			$this->database()->update($this->_sTable, array(
-				'is_active' => (isset($aValue['is_active']) ? 1 : 0),
+				'is_active' => 1,
 				'ordering' => (int) $aValue['ordering'],				
 			), 'menu_id = ' . (int) $iId);
 		}

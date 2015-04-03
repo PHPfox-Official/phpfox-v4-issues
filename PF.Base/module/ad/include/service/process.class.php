@@ -293,7 +293,7 @@ class Ad_Service_Process extends Phpfox_Service
 				return false;
 			}		
 			
-			$aAd = Phpfox::getService('ad')->getForEdit($iId);
+			$aAd = Ad_Service_Ad::instance()->getForEdit($iId);
 
 			if (!empty($aAd['image_path']) && file_exists(Phpfox::getParam('ad.dir_image') . sprintf($aAd['image_path'], '')))
 			{
@@ -747,7 +747,7 @@ class Ad_Service_Process extends Phpfox_Service
 			);
 		}
 		//if ($sPlugin = Phpfox_Plugin::get('ad.service_process_addcustom_before_insert_invoice')){eval($sPlugin);}
-		$aPlan = Phpfox::getService('ad')->getPlan($aVals['location'], true);
+		$aPlan = Ad_Service_Ad::instance()->getPlan($aVals['location'], true);
 		
 		$this->database()->insert(Phpfox::getT('ad_invoice'), array(
 				'ad_id' => $iId,

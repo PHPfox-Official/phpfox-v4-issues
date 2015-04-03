@@ -9,19 +9,16 @@
 		<phrase_var_name>module_facebook</phrase_var_name>
 		<writable />
 	</data>
-	<setting_groups>
-		<name module_id="facebook" version_id="2.0.4" var_name="setting_group_facebook_connect">facebook_connect</name>
-	</setting_groups>
 	<settings>
-		<setting group="facebook_connect" module_id="facebook" is_hidden="0" type="string" var_name="facebook_app_id" phrase_var_name="setting_facebook_app_id" ordering="4" version_id="2.0.5" />
-		<setting group="facebook_connect" module_id="facebook" is_hidden="0" type="boolean" var_name="enable_facebook_connect" phrase_var_name="setting_enable_facebook_connect" ordering="1" version_id="2.0.4">0</setting>
-		<setting group="facebook_connect" module_id="facebook" is_hidden="0" type="string" var_name="facebook_secret" phrase_var_name="setting_facebook_secret" ordering="3" version_id="2.0.4" />
+		<setting group="" module_id="facebook" is_hidden="0" type="string" var_name="facebook_app_id" phrase_var_name="setting_facebook_app_id" ordering="4" version_id="2.0.5" />
+		<setting group="" module_id="facebook" is_hidden="0" type="boolean" var_name="enable_facebook_connect" phrase_var_name="setting_enable_facebook_connect" ordering="1" version_id="2.0.4">0</setting>
+		<setting group="" module_id="facebook" is_hidden="0" type="string" var_name="facebook_secret" phrase_var_name="setting_facebook_secret" ordering="3" version_id="2.0.4" />
 		<setting group="" module_id="facebook" is_hidden="1" type="boolean" var_name="facebook_like_event" phrase_var_name="setting_facebook_like_event" ordering="9" version_id="2.0.5dev1">1</setting>
 		<setting group="" module_id="facebook" is_hidden="1" type="boolean" var_name="facebook_like_group" phrase_var_name="setting_facebook_like_group" ordering="8" version_id="2.0.5dev1">1</setting>
 		<setting group="" module_id="facebook" is_hidden="1" type="boolean" var_name="facebook_like_video" phrase_var_name="setting_facebook_like_video" ordering="7" version_id="2.0.5dev1">1</setting>
 		<setting group="" module_id="facebook" is_hidden="1" type="boolean" var_name="facebook_like_photo" phrase_var_name="setting_facebook_like_photo" ordering="6" version_id="2.0.5dev1">1</setting>
 		<setting group="" module_id="facebook" is_hidden="1" type="boolean" var_name="facebook_like_blog" phrase_var_name="setting_facebook_like_blog" ordering="5" version_id="2.0.5dev1">1</setting>
-		<setting group="facebook_connect" module_id="facebook" is_hidden="1" type="string" var_name="facebook_api_key" phrase_var_name="setting_facebook_api_key" ordering="2" version_id="2.0.4" />
+		<setting group="" module_id="facebook" is_hidden="1" type="string" var_name="facebook_api_key" phrase_var_name="setting_facebook_api_key" ordering="2" version_id="2.0.4" />
 		<setting group="" module_id="facebook" is_hidden="1" type="boolean" var_name="facebook_like_marketplace" phrase_var_name="setting_facebook_like_marketplace" ordering="10" version_id="2.0.5dev1">1</setting>
 	</settings>
 	<hooks>

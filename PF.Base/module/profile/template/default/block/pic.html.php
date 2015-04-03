@@ -75,6 +75,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<li><a href="{url link=$aUser.user_name}">Profile</a></li>
 		<li><a href="{url link=''$aUser.user_name'.info'}">Info</a></li>
 		<li><a href="{url link=''$aUser.user_name'.friend'}">Friends</a></li>
+		{if $aProfileLinks}
 		<li>
 			<a href="#" class="explore"><i class="fa fa-ellipsis-h"></i></a>
 			<ul>
@@ -85,6 +86,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/foreach}
 			</ul>
 		</li>
+		{/if}
 	</ul>
 
 	<div class="profiles_action">

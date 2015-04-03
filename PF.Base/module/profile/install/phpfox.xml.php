@@ -27,8 +27,8 @@
 		<setting group="" module_id="profile" is_hidden="0" type="boolean" var_name="show_empty_tabs" phrase_var_name="setting_show_empty_tabs" ordering="1" version_id="2.0.8">0</setting>
 		<setting group="" module_id="profile" is_hidden="0" type="drop" var_name="profile_default_landing_page" phrase_var_name="setting_profile_default_landing_page" ordering="1" version_id="3.4.0beta1"><![CDATA[a:2:{s:7:"default";s:4:"wall";s:6:"values";a:2:{i:0;s:4:"wall";i:1;s:4:"info";}}]]></setting>
 		<setting group="" module_id="profile" is_hidden="0" type="boolean" var_name="allow_user_select_landing" phrase_var_name="setting_allow_user_select_landing" ordering="1" version_id="3.4.0beta1">0</setting>
-		<setting group="cache" module_id="profile" is_hidden="0" type="boolean" var_name="cache_blocks_design" phrase_var_name="setting_cache_blocks_design" ordering="1" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="profile" is_hidden="0" type="boolean" var_name="profile_caches" phrase_var_name="setting_profile_caches" ordering="2" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="profile" is_hidden="0" type="boolean" var_name="cache_blocks_design" phrase_var_name="setting_cache_blocks_design" ordering="1" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="profile" is_hidden="0" type="boolean" var_name="profile_caches" phrase_var_name="setting_profile_caches" ordering="2" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="profile" is_hidden="1" type="boolean" var_name="display_submenu_for_photo" phrase_var_name="setting_display_submenu_for_photo" ordering="1" version_id="3.5.0beta1">0</setting>
 		<setting group="" module_id="profile" is_hidden="1" type="boolean" var_name="ajax_profile_tab" phrase_var_name="setting_ajax_profile_tab" ordering="1" version_id="2.1.0Beta1">1</setting>
 	</settings>
@@ -38,52 +38,7 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="quiz.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="3" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="blog.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="video.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="poll.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="music.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="marketplace.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="event.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="2" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="photo.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="friend.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="3" disallow_access="" can_move="0">
-			<title><![CDATA[Profile Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="pages.profile" module_id="profile" component="pic" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
 			<title><![CDATA[Profile Photo &amp; Menu]]></title>
 			<source_code />
 			<source_parsed />

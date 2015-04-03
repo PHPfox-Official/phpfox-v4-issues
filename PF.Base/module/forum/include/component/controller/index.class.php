@@ -117,7 +117,7 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		Phpfox::getService('forum')->id(null);
 
 		/*
-		list($iCnt, $aThreads) = Phpfox::getService('forum.thread')
+		list($iCnt, $aThreads) = Forum_Service_Thread_Thread::instance()
 			->get('ft.forum_id IN(' . implode(',', $aIds) . ') AND ft.group_id = 0 AND ft.view_id >= 0 AND ft.is_announcement = 0', 'ft.order_id DESC', '', 0, 20);
 		*/
 

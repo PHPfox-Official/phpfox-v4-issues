@@ -20,7 +20,7 @@ class Admincp_Component_Block_Block_Setting extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aSubBlocks = Phpfox::getService('admincp.block')->get($this->request()->get('m_connection'), $this->request()->get('style_id', 0));	
+		$aSubBlocks = Admincp_Service_Block_Block::instance()->get($this->request()->get('m_connection'), $this->request()->get('style_id', 0));
 		$aModules = array();
 		foreach ($aSubBlocks as $iKey => $aRow)
 		{

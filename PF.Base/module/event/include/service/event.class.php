@@ -317,7 +317,7 @@ class Event_Service_Event extends Phpfox_Service
 		}
 
 		/*
-		$aEvents = Phpfox::getService('ad')->filterSponsor($aEvents);
+		$aEvents = Ad_Service_Ad::instance()->filterSponsor($aEvents);
 		if ($aEvents === true || (is_array($aEvents) && !count($aEvents)))
 		{
 			return false;

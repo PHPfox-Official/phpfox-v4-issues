@@ -47,7 +47,7 @@
 			{foreach from=$aPoll.answer item=answer}
 			{if !empty($answer.answer)}
 			<div class="p_bottom_15">
-				<label {if !isset($aPoll.poll_is_in_feed)}onclick="$('#js_submit_vote{if isset($iKey)}_{$iKey}{/if}').show(); $('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').attr('checked', false); $(this).find('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').attr('checked', true);"{/if}>
+				<label {if !isset($aPoll.poll_is_in_feed)}onclick="$('#js_submit_vote{if isset($iKey)}_{$iKey}{/if}').show(); $('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').prop('checked', false); $(this).find('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').prop('checked', true);"{/if}>
 				{if !isset($aPoll.poll_is_in_feed)}<input class="checkbox js_poll_answer{if isset($iKey)}_{$iKey}{/if}" type="radio" name="val[answer]" value="{$answer.answer_id}" style="vertical-align:middle;" />{/if}
 				<span title="{$answer.answer|clean}">{$answer.answer|clean|split:50|shorten:150:'...'}</span>
 				</label>

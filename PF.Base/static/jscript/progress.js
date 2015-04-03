@@ -38,16 +38,7 @@ function completeProgress()
 
     if (bIsHTML5ProgressUpload && iTotalUploadedFiles <= 0 && iTotalImagesToBeUploaded <= 0)
     {
-		if(sImages && 0 !== sImages.length)
-		{
-			// If the images are set, encode them using base64, and then URL encode the result.
-			window.location.href = sCurrentProgressLocation + '&photos=' + encodeURIComponent(base64_encode(sImages));
-		}
-		// original
-		else
-		{
-			window.location.href = sCurrentProgressLocation;
-		}
+	    window.location.href = sCurrentProgressLocation + sImages;
     }
 }
 
@@ -279,7 +270,7 @@ function ParseFile(file, iCnt) {
     if (file.type.indexOf("image") == 0) {
         var reader = new FileReader();
         reader.onload = function(e) {
-            $('#js_tmp_upload_' + iCnt).prepend('<div style="position:absolute; right:5px; top:2px; z-index:2;"><img src="' + e.target.result + '" style="max-width:25px; max-height:25px;" /></div>');
+            $('#js_tmp_upload_' + iCnt).prepend('<div class="js_temp_photo_holder"><img src="' + e.target.result + '" style="max-width:25px; max-height:25px;" /></div>');
         }
         reader.readAsDataURL(file);
     }
@@ -296,11 +287,11 @@ function UploadFile(file, iCnt) {
             $('#js_tmp_upload_' + iCnt + '').find('.js_tmp_upload_bar_upload').width(pc + '%').show();
             if (pc === 100 && iTotalImagesToBeUploaded === (iCnt + 1)){
 				
-                sCustomMessageString = oTranslations['photo.upload_complete_we_are_currently_processing_the_photos'];
+                // sCustomMessageString = oTranslations['photo.upload_complete_we_are_currently_processing_the_photos'];
                 
-                tb_show(oTranslations['photo.photo_uploads'], $.ajaxBox('core.message', 'height=100&width=400'));
-                console.log(oTranslations['photo.photo_uploads']);
-                console.log(oTranslations['photo.upload_complete_we_are_currently_processing_the_photos']);
+                // tb_show(oTranslations['photo.photo_uploads'], $.ajaxBox('core.message', 'height=100&width=400'));
+               //  console.log(oTranslations['photo.photo_uploads']);
+                // console.log(oTranslations['photo.upload_complete_we_are_currently_processing_the_photos']);
             }
         }, false);
 

@@ -161,7 +161,7 @@ $Core.searchFriendsInput =
 				
 				$Core.searchFriendsInput.storeUser($aUser['user_id'], $aUser);
 				
-				$sHtml += '<li><a rel="' + $aUser['user_id'] + '" class="js_friend_search_link ' + (($iFound === 1 && !$Core.searchFriendsInput._get('global_search')) ? 'js_temp_friend_search_form_holder_focus' : '') + '" href="#" onclick="return $Core.searchFriendsInput.processClick(this, \'' + $aUser['user_id'] + '\');"><img src="' + $aUser['user_image'] + '" alt="" style="width:25px; height:25px;" />' + $aUser['full_name'] + '<div class="clear"></div></a></li>';
+				$sHtml += '<li><div rel="' + $aUser['user_id'] + '" class="js_friend_search_link ' + (($iFound === 1 && !$Core.searchFriendsInput._get('global_search')) ? 'js_temp_friend_search_form_holder_focus' : '') + '" onclick="return $Core.searchFriendsInput.processClick(this, \'' + $aUser['user_id'] + '\');"><span class="image">' + $aUser['user_image'] + '</span><span class="user">' + $aUser['full_name'] + '</span></div></li>';
 				if ($iFound > $Core.searchFriendsInput._get('max_search'))
 				{					
 					return false;

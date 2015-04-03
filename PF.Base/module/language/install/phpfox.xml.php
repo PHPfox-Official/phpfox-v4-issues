@@ -9,15 +9,12 @@
 		<phrase_var_name>module_language</phrase_var_name>
 		<writable />
 	</data>
-	<setting_groups>
-		<name module_id="language" version_id="2.0.0alpha1" var_name="setting_group_language">language</name>
-	</setting_groups>
 	<settings>
-		<setting group="development" module_id="language" is_hidden="0" type="boolean" var_name="lang_pack_helper" phrase_var_name="setting_lang_pack_helper" ordering="0" version_id="2.0.0alpha1">0</setting>
+		<setting group="" module_id="language" is_hidden="0" type="boolean" var_name="lang_pack_helper" phrase_var_name="setting_lang_pack_helper" ordering="0" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="language" is_hidden="0" type="boolean" var_name="cache_phrases" phrase_var_name="setting_cache_phrases" ordering="1" version_id="2.0.0alpha1">0</setting>
-		<setting group="language" module_id="language" is_hidden="0" type="boolean" var_name="display_language_flag" phrase_var_name="setting_display_language_flag" ordering="1" version_id="2.0.0alpha1">0</setting>
-		<setting group="language" module_id="language" is_hidden="0" type="boolean" var_name="auto_detect_language_on_ip" phrase_var_name="setting_auto_detect_language_on_ip" ordering="2" version_id="3.1.0beta1">0</setting>
-		<setting group="language" module_id="language" is_hidden="0" type="boolean" var_name="no_string_restriction" phrase_var_name="setting_no_string_restriction" ordering="3" version_id="3.7.0beta2">0</setting>
+		<setting group="" module_id="language" is_hidden="0" type="boolean" var_name="display_language_flag" phrase_var_name="setting_display_language_flag" ordering="1" version_id="2.0.0alpha1">0</setting>
+		<setting group="" module_id="language" is_hidden="0" type="boolean" var_name="auto_detect_language_on_ip" phrase_var_name="setting_auto_detect_language_on_ip" ordering="2" version_id="3.1.0beta1">0</setting>
+		<setting group="" module_id="language" is_hidden="0" type="boolean" var_name="no_string_restriction" phrase_var_name="setting_no_string_restriction" ordering="3" version_id="3.7.0beta2">0</setting>
 	</settings>
 	<hooks>
 		<hook module_id="language" hook_type="controller" module="language" call_name="language.component_controller_admincp_file_process" added="1231838390" version_id="2.0.0alpha1" />

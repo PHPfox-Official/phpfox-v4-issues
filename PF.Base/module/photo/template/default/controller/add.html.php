@@ -19,7 +19,7 @@ defined('PHPFOX') or exit('NO DICE!');
 <div id="js_upload_error_message"></div>
 
 <div id="js_photo_form_holder">
-	<form method="post" action="{url link='photo.frame'}" id="js_photo_form" enctype="multipart/form-data" target="js_upload_frame" onsubmit="return startProcess(true, true);">
+	<form method="post" action="{url link='photo.frame'}" id="js_photo_form" enctype="multipart/form-data" onsubmit="return startProcess(true, true);">
 		
 	{if $sModuleContainer}
 		<div><input type="hidden" name="val[callback_module]" value="{$sModuleContainer}" /></div>

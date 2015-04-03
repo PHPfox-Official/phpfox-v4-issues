@@ -620,7 +620,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			// $this->setParam('aFeed', array_merge(array('feed_display' => 'view', 'total_like' => $aRows[0]['feed_total_like']), $aRows[0]));
 		}		
 
-		if ($oReq->getInt('page') == 0 && Phpfox::isModule('ad') && Phpfox::getParam('ad.multi_ad') && $iFeedId == null && ( ($iAd = Phpfox::getService('ad')->getSponsoredFeed()) != false))
+		if ($oReq->getInt('page') == 0 && Phpfox::isModule('ad') && Phpfox::getParam('ad.multi_ad') && $iFeedId == null && ( ($iAd = Ad_Service_Ad::instance()->getSponsoredFeed()) != false))
 		{
 			$aFeeds = array_splice($aFeeds, 0, count($aFeeds) - 1);
 			$aSponsored = $this->get(null, $iAd);

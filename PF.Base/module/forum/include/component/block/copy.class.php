@@ -20,7 +20,7 @@ class Forum_Component_Block_Copy extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aThread = Phpfox::getService('forum.thread')->getActualThread($this->request()->get('thread_id'));		
+		$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($this->request()->get('thread_id'));
 		
 		if (!isset($aThread['thread_id']))
 		{

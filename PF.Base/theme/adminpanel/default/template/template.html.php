@@ -89,7 +89,7 @@
 						{foreach from=$aActionMenu key=sPhrase item=sUrl}
 						<li>
 							{if is_array($sUrl)}
-							<a href="{$sUrl.url}" class="{$sUrl.class}">{$sPhrase}</a>
+							<a href="{$sUrl.url}" class="{$sUrl.class}"{if isset($sUrl.custom)} {$sUrl.custom}{/if}>{$sPhrase}</a>
 							{else}
 							<a href="{$sUrl}">{$sPhrase}</a>
 							{/if}
@@ -117,11 +117,10 @@
 						<div class="apps_content">
 						{/if}
 
-
-
 							{error}
-							{content}
-
+							<div class="_block_content">
+								{content}
+							</div>
 
 						{if isset($aSectionAppMenus)}
 						</div>

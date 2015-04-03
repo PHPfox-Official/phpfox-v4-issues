@@ -19,56 +19,44 @@
 	</menus>
 	<setting_groups>
 		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_cookie">cookie</name>
-		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_development">development</name>
 		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_content_formatting">formatting</name>
-		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_archive_handler">archive_handler</name>
-		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_cron">cron</name>
-		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_admin_control_panel">admin_control_panel</name>
 		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_general">general</name>
-		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_time_stamps">time_stamps</name>
 		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_server_settings">server_settings</name>
-		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_forms">group_forms</name>
 		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_mail">mail</name>
-		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_ftp">ftp</name>
-		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_cache">cache</name>
 		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_search_engine_optimization">search_engine_optimization</name>
 		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_debug">debug</name>
 		<name module_id="core" version_id="2.0.0beta4" var_name="setting_group_spam">spam</name>
 		<name module_id="core" version_id="2.0.0beta4" var_name="setting_group_site_offlineonline">site_offline_online</name>
-		<name module_id="core" version_id="2.0.0beta4" var_name="setting_group_site_statistics">site_statistics</name>
-		<name module_id="core" version_id="2.0.0rc1" var_name="setting_group_image_processing">image_processing</name>
 		<name module_id="core" version_id="2.0.0rc1" var_name="setting_group_registration">registration</name>
-		<name module_id="core" version_id="2.0.5" var_name="setting_group_currency">currency</name>
 		<name module_id="core" version_id="2.0.5" var_name="setting_group_cdn_content_delivery_network">cdn_content_delivery_network</name>
-		<name module_id="core" version_id="2.0.7" var_name="setting_group_ip_infodb">ip_infodb</name>
 		<name module_id="core" version_id="3.6.0rc1" var_name="setting_group_security">security</name>
 	</setting_groups>
 	<settings>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="use_gzip" phrase_var_name="setting_use_gzip" ordering="3" version_id="2.0.0alpha1">1</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="integer" var_name="gzip_level" phrase_var_name="setting_gzip_level" ordering="4" version_id="2.0.0alpha1">1</setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="string" var_name="global_update_time" phrase_var_name="setting_global_update_time" ordering="1" version_id="2.0.0alpha1">F j, Y</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="global_update_time" phrase_var_name="setting_global_update_time" ordering="1" version_id="2.0.0alpha1">F j, Y</setting>
 		<setting group="general" module_id="core" is_hidden="0" type="string" var_name="title_delim" phrase_var_name="setting_title_delim" ordering="4" version_id="2.0.0alpha1"><![CDATA[&raquo;]]></setting>
 		<setting group="general" module_id="core" is_hidden="0" type="string" var_name="site_title" phrase_var_name="setting_site_title" ordering="1" version_id="2.0.0alpha1">SiteName</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="integer" var_name="ip_check" phrase_var_name="setting_ip_check" ordering="5" version_id="2.0.0alpha1">1</setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="string" var_name="profile_time_stamps" phrase_var_name="setting_profile_time_stamps" ordering="8" version_id="2.0.0alpha1">F j, Y</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="profile_time_stamps" phrase_var_name="setting_profile_time_stamps" ordering="8" version_id="2.0.0alpha1">F j, Y</setting>
 		<setting group="cookie" module_id="core" is_hidden="0" type="string" var_name="session_prefix" phrase_var_name="setting_session_prefix" ordering="0" version_id="2.0.0alpha1">core</setting>
 		<setting group="general" module_id="core" is_hidden="0" type="large_string" var_name="keywords" phrase_var_name="setting_keywords" ordering="5" version_id="2.0.0alpha1">social networking</setting>
 		<setting group="general" module_id="core" is_hidden="0" type="large_string" var_name="description" phrase_var_name="setting_description" ordering="6" version_id="2.0.0alpha1">Some information about your site...</setting>
-		<setting group="development" module_id="core" is_hidden="0" type="boolean" var_name="log_missing_images" phrase_var_name="setting_log_missing_images" ordering="0" version_id="2.0.0alpha1">0</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="log_missing_images" phrase_var_name="setting_log_missing_images" ordering="0" version_id="2.0.0alpha1">0</setting>
 		<setting group="cookie" module_id="core" is_hidden="0" type="string" var_name="cookie_path" phrase_var_name="setting_cookie_path" ordering="0" version_id="2.0.0alpha1">/</setting>
 		<setting group="cookie" module_id="core" is_hidden="0" type="string" var_name="cookie_domain" phrase_var_name="setting_cookie_domain" ordering="0" version_id="2.0.0alpha1" />
 		<setting group="formatting" module_id="core" is_hidden="0" type="drop" var_name="wysiwyg" phrase_var_name="setting_wysiwyg" ordering="0" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:7:"default";s:6:"values";a:3:{i:0;s:7:"default";i:1;s:7:"tinymce";i:2;s:9:"fckeditor";}}]]></setting>
 		<setting group="formatting" module_id="core" is_hidden="0" type="boolean" var_name="allow_html" phrase_var_name="setting_allow_html" ordering="0" version_id="2.0.0alpha1">1</setting>
 		<setting group="formatting" module_id="core" is_hidden="0" type="large_string" var_name="allowed_html" phrase_var_name="setting_allowed_html" ordering="0" version_id="2.0.0alpha1"><![CDATA[<p><br><br /><strong><em><u><ul><li><font><ol><img><div><span><blockquote><strike><sub><sup><h1><h2><h3><h4><h5><h6><a><b><i><hr><tt><s><center><big><abbr><pre><small><object><embed><param><code>]]></setting>
-		<setting group="archive_handler" module_id="core" is_hidden="0" type="string" var_name="unzip_path" phrase_var_name="setting_unzip_path" ordering="0" version_id="2.0.0alpha1">/usr/bin/unzip</setting>
-		<setting group="cron" module_id="core" is_hidden="0" type="boolean" var_name="cron" phrase_var_name="setting_cron" ordering="0" version_id="2.0.0alpha1">1</setting>
-		<setting group="archive_handler" module_id="core" is_hidden="0" type="string" var_name="tar_path" phrase_var_name="setting_tar_path" ordering="0" version_id="2.0.0alpha1">/bin/tar</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="unzip_path" phrase_var_name="setting_unzip_path" ordering="0" version_id="2.0.0alpha1">/usr/bin/unzip</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="cron" phrase_var_name="setting_cron" ordering="0" version_id="2.0.0alpha1">1</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="tar_path" phrase_var_name="setting_tar_path" ordering="0" version_id="2.0.0alpha1">/bin/tar</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="drop" var_name="csrf_protection_level" phrase_var_name="setting_csrf_protection_level" ordering="4" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:6:"medium";s:6:"values";a:3:{i:0;s:6:"medium";i:1;s:4:"high";i:2;s:3:"low";}}]]></setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="build_file_dir" phrase_var_name="setting_build_file_dir" ordering="5" version_id="2.0.0alpha1">1</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="string" var_name="build_format" phrase_var_name="setting_build_format" ordering="6" version_id="2.0.0alpha1">Y/m</setting>
-		<setting group="archive_handler" module_id="core" is_hidden="0" type="string" var_name="zip_path" phrase_var_name="setting_zip_path" ordering="1" version_id="2.0.0alpha1">/usr/bin/zip</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="zip_path" phrase_var_name="setting_zip_path" ordering="1" version_id="2.0.0alpha1">/usr/bin/zip</setting>
 		<setting group="general" module_id="core" is_hidden="0" type="string" var_name="site_copyright" phrase_var_name="setting_site_copyright" ordering="3" version_id="2.0.0alpha1"><![CDATA[SiteName &copy;]]></setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="string" var_name="default_time_zone_offset" phrase_var_name="setting_default_time_zone_offset" ordering="0" version_id="2.0.0alpha1">0</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="default_time_zone_offset" phrase_var_name="setting_default_time_zone_offset" ordering="0" version_id="2.0.0alpha1">0</setting>
 		<setting group="mail" module_id="core" is_hidden="0" type="drop" var_name="method" phrase_var_name="setting_method" ordering="1" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:4:"mail";s:6:"values";a:2:{i:0;s:4:"mail";i:1;s:4:"smtp";}}]]></setting>
 		<setting group="mail" module_id="core" is_hidden="0" type="string" var_name="mailsmtphost" phrase_var_name="setting_mailsmtphost" ordering="5" version_id="2.0.0alpha1" />
 		<setting group="mail" module_id="core" is_hidden="0" type="boolean" var_name="mail_smtp_authentication" phrase_var_name="setting_mail_smtp_authentication" ordering="6" version_id="2.0.0alpha1">0</setting>
@@ -80,7 +68,7 @@
 Site Name</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="log_site_activity" phrase_var_name="setting_log_site_activity" ordering="7" version_id="2.0.0alpha1">0</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="cache_js_css" phrase_var_name="setting_cache_js_css" ordering="8" version_id="2.0.0alpha1">0</setting>
-		<setting group="development" module_id="core" is_hidden="0" type="boolean" var_name="cache_plugins" phrase_var_name="setting_cache_plugins" ordering="1" version_id="2.0.0alpha1">1</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="cache_plugins" phrase_var_name="setting_cache_plugins" ordering="1" version_id="2.0.0alpha1">1</setting>
 		<setting group="search_engine_optimization" module_id="core" is_hidden="0" type="integer" var_name="crop_seo_url" phrase_var_name="setting_crop_seo_url" ordering="6" version_id="2.0.0alpha1">75</setting>
 		<setting group="search_engine_optimization" module_id="core" is_hidden="0" type="integer" var_name="meta_description_limit" phrase_var_name="setting_meta_description_limit" ordering="1" version_id="2.0.0alpha1">500</setting>
 		<setting group="search_engine_optimization" module_id="core" is_hidden="0" type="integer" var_name="meta_keyword_limit" phrase_var_name="setting_meta_keyword_limit" ordering="2" version_id="2.0.0alpha1">900</setting>
@@ -93,14 +81,14 @@ Site Name</setting>
 		<setting group="site_offline_online" module_id="core" is_hidden="0" type="boolean" var_name="site_is_offline" phrase_var_name="setting_site_is_offline" ordering="1" version_id="2.0.0beta4">0</setting>
 		<setting group="site_offline_online" module_id="core" is_hidden="0" type="large_string" var_name="site_offline_message" phrase_var_name="setting_site_offline_message" ordering="2" version_id="2.0.0beta4" />
 		<setting group="site_offline_online" module_id="core" is_hidden="0" type="boolean" var_name="site_offline_no_template" phrase_var_name="setting_site_offline_no_template" ordering="3" version_id="2.0.0beta4">0</setting>
-		<setting group="site_statistics" module_id="core" is_hidden="0" type="boolean" var_name="cache_site_stats" phrase_var_name="setting_cache_site_stats" ordering="1" version_id="2.0.0beta4">1</setting>
-		<setting group="site_statistics" module_id="core" is_hidden="0" type="integer" var_name="site_stat_update_time" phrase_var_name="setting_site_stat_update_time" ordering="2" version_id="2.0.0beta4">60</setting>
-		<setting group="site_statistics" module_id="core" is_hidden="0" type="boolean" var_name="display_site_stats" phrase_var_name="setting_display_site_stats" ordering="3" version_id="2.0.0beta4">1</setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="boolean" var_name="identify_dst" phrase_var_name="setting_identify_dst" ordering="9" version_id="2.0.0beta5">1</setting>
-		<setting group="image_processing" module_id="core" is_hidden="0" type="drop" var_name="watermark_option" phrase_var_name="setting_watermark_option" ordering="1" version_id="2.0.0rc1"><![CDATA[a:2:{s:7:"default";s:4:"none";s:6:"values";a:3:{i:0;s:4:"none";i:1;s:5:"image";i:2;s:4:"text";}}]]></setting>
-		<setting group="image_processing" module_id="core" is_hidden="0" type="integer" var_name="watermark_opacity" phrase_var_name="setting_watermark_opacity" ordering="3" version_id="2.0.0rc1">100</setting>
-		<setting group="image_processing" module_id="core" is_hidden="0" type="drop" var_name="watermark_image_position" phrase_var_name="setting_watermark_image_position" ordering="4" version_id="2.0.0rc1"><![CDATA[a:2:{s:7:"default";s:12:"bottom_right";s:6:"values";a:4:{i:0;s:12:"bottom_right";i:1;s:11:"bottom_left";i:2;s:8:"top_left";i:3;s:9:"top_right";}}]]></setting>
-		<setting group="image_processing" module_id="core" is_hidden="0" type="string" var_name="image_text" phrase_var_name="setting_image_text" ordering="6" version_id="2.0.0rc1">www.yoursite.com</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="cache_site_stats" phrase_var_name="setting_cache_site_stats" ordering="1" version_id="2.0.0beta4">1</setting>
+		<setting group="" module_id="core" is_hidden="0" type="integer" var_name="site_stat_update_time" phrase_var_name="setting_site_stat_update_time" ordering="2" version_id="2.0.0beta4">60</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="display_site_stats" phrase_var_name="setting_display_site_stats" ordering="3" version_id="2.0.0beta4">1</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="identify_dst" phrase_var_name="setting_identify_dst" ordering="9" version_id="2.0.0beta5">1</setting>
+		<setting group="" module_id="core" is_hidden="0" type="drop" var_name="watermark_option" phrase_var_name="setting_watermark_option" ordering="1" version_id="2.0.0rc1"><![CDATA[a:2:{s:7:"default";s:4:"none";s:6:"values";a:3:{i:0;s:4:"none";i:1;s:5:"image";i:2;s:4:"text";}}]]></setting>
+		<setting group="" module_id="core" is_hidden="0" type="integer" var_name="watermark_opacity" phrase_var_name="setting_watermark_opacity" ordering="3" version_id="2.0.0rc1">100</setting>
+		<setting group="" module_id="core" is_hidden="0" type="drop" var_name="watermark_image_position" phrase_var_name="setting_watermark_image_position" ordering="4" version_id="2.0.0rc1"><![CDATA[a:2:{s:7:"default";s:12:"bottom_right";s:6:"values";a:4:{i:0;s:12:"bottom_right";i:1;s:11:"bottom_left";i:2;s:8:"top_left";i:3;s:9:"top_right";}}]]></setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="image_text" phrase_var_name="setting_image_text" ordering="6" version_id="2.0.0rc1">www.yoursite.com</setting>
 		<setting group="registration" module_id="core" is_hidden="0" type="boolean" var_name="registration_enable_dob" phrase_var_name="setting_registration_enable_dob" ordering="13" version_id="2.0.0rc1">1</setting>
 		<setting group="registration" module_id="core" is_hidden="0" type="boolean" var_name="registration_enable_gender" phrase_var_name="setting_registration_enable_gender" ordering="14" version_id="2.0.0rc1">1</setting>
 		<setting group="registration" module_id="core" is_hidden="0" type="boolean" var_name="registration_enable_location" phrase_var_name="setting_registration_enable_location" ordering="15" version_id="2.0.0rc1">0</setting>
@@ -119,18 +107,18 @@ Site Name</setting>
 		<setting group="general" module_id="core" is_hidden="0" type="large_string" var_name="meta_description_profile" phrase_var_name="setting_meta_description_profile" ordering="8" version_id="2.0.0rc1">Site Name gives people the power to share and makes the world more open and connected.</setting>
 		<setting group="search_engine_optimization" module_id="core" is_hidden="0" type="large_string" var_name="words_remove_in_keywords" phrase_var_name="setting_words_remove_in_keywords" ordering="4" version_id="2.0.0rc1">and, i, in</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="enable_getid3_check" phrase_var_name="setting_enable_getid3_check" ordering="9" version_id="2.0.0rc2">0</setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="string" var_name="extended_global_time_stamp" phrase_var_name="setting_extended_global_time_stamp" ordering="10" version_id="2.0.0rc2">M j, g:i a</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="extended_global_time_stamp" phrase_var_name="setting_extended_global_time_stamp" ordering="10" version_id="2.0.0rc2">M j, g:i a</setting>
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="can_move_on_a_y_and_x_axis" phrase_var_name="setting_can_move_on_a_y_and_x_axis" ordering="1" version_id="2.0.0rc4">0</setting>
 		<setting group="formatting" module_id="core" is_hidden="0" type="boolean" var_name="resize_images" phrase_var_name="setting_resize_images" ordering="3" version_id="2.0.0rc4">0</setting>
 		<setting group="mail" module_id="core" is_hidden="0" type="integer" var_name="mail_smtp_port" phrase_var_name="setting_mail_smtp_port" ordering="9" version_id="2.0.0rc9">25</setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="string" var_name="conver_time_to_string" phrase_var_name="setting_conver_time_to_string" ordering="11" version_id="2.0.0rc10">g:i a</setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="string" var_name="global_welcome_time_stamp" phrase_var_name="setting_global_welcome_time_stamp" ordering="12" version_id="2.0.0rc10">l, F j, Y g:i A</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="conver_time_to_string" phrase_var_name="setting_conver_time_to_string" ordering="11" version_id="2.0.0rc10">g:i a</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="global_welcome_time_stamp" phrase_var_name="setting_global_welcome_time_stamp" ordering="12" version_id="2.0.0rc10">l, F j, Y g:i A</setting>
 		<setting group="formatting" module_id="core" is_hidden="0" type="boolean" var_name="resize_embed_video" phrase_var_name="setting_resize_embed_video" ordering="4" version_id="2.0.0rc11">0</setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="string" var_name="footer_watch_time_stamp" phrase_var_name="setting_footer_watch_time_stamp" ordering="13" version_id="2.0.0rc12">g:i A</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="footer_watch_time_stamp" phrase_var_name="setting_footer_watch_time_stamp" ordering="13" version_id="2.0.0rc12">g:i A</setting>
 		<setting group="" module_id="core" is_hidden="0" type="integer" var_name="categories_to_show_at_first" phrase_var_name="setting_categories_to_show_at_first" ordering="1" version_id="2.0.0rc12">5</setting>
 		<setting group="general" module_id="core" is_hidden="0" type="string" var_name="global_site_title" phrase_var_name="setting_global_site_title" ordering="2" version_id="2.0.0">Social Networking Community</setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="string" var_name="footer_bar_tool_tip_time_stamp" phrase_var_name="setting_footer_bar_tool_tip_time_stamp" ordering="14" version_id="2.0.2">l, F j, Y g:i A</setting>
-		<setting group="currency" module_id="core" is_hidden="0" type="string" var_name="exchange_rate_api_key" phrase_var_name="setting_exchange_rate_api_key" ordering="1" version_id="2.0.5" />
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="footer_bar_tool_tip_time_stamp" phrase_var_name="setting_footer_bar_tool_tip_time_stamp" ordering="14" version_id="2.0.2">l, F j, Y g:i A</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="exchange_rate_api_key" phrase_var_name="setting_exchange_rate_api_key" ordering="1" version_id="2.0.5" />
 		<setting group="cdn_content_delivery_network" module_id="core" is_hidden="0" type="string" var_name="amazon_access_key" phrase_var_name="setting_amazon_access_key" ordering="2" version_id="2.0.5" />
 		<setting group="cdn_content_delivery_network" module_id="core" is_hidden="0" type="string" var_name="amazon_secret_key" phrase_var_name="setting_amazon_secret_key" ordering="3" version_id="2.0.5" />
 		<setting group="cdn_content_delivery_network" module_id="core" is_hidden="0" type="string" var_name="amazon_bucket" phrase_var_name="setting_amazon_bucket" ordering="4" version_id="2.0.5" />
@@ -142,12 +130,12 @@ Site Name</setting>
   0 => '1|core.his|profile.male|core.himself',
   1 => '2|core.her|profile.female|core.herself|female',
 );";]]></setting>
-		<setting group="ip_infodb" module_id="core" is_hidden="0" type="string" var_name="ip_infodb_api_key" phrase_var_name="setting_ip_infodb_api_key" ordering="1" version_id="2.0.7" />
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="ip_infodb_api_key" phrase_var_name="setting_ip_infodb_api_key" ordering="1" version_id="2.0.7" />
 		<setting group="general" module_id="core" is_hidden="0" type="boolean" var_name="friends_only_community" phrase_var_name="setting_friends_only_community" ordering="10" version_id="2.1.0Beta1">0</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="site_wide_ajax_browsing" phrase_var_name="setting_site_wide_ajax_browsing" ordering="1" version_id="2.1.0Beta1">0</setting>
 		<setting group="general" module_id="core" is_hidden="0" type="boolean" var_name="section_privacy_item_browsing" phrase_var_name="setting_section_privacy_item_browsing" ordering="9" version_id="3.0.0Beta1">0</setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="drop" var_name="date_field_order" phrase_var_name="setting_date_field_order" ordering="15" version_id="3.0.0Beta1"><![CDATA[a:2:{s:7:"default";s:3:"MDY";s:6:"values";a:3:{i:0;s:3:"MDY";i:1;s:3:"DMY";i:2;s:3:"YMD";}}]]></setting>
-		<setting group="time_stamps" module_id="core" is_hidden="0" type="boolean" var_name="use_jquery_datepicker" phrase_var_name="setting_use_jquery_datepicker" ordering="16" version_id="3.0.0Beta1">1</setting>
+		<setting group="" module_id="core" is_hidden="0" type="drop" var_name="date_field_order" phrase_var_name="setting_date_field_order" ordering="15" version_id="3.0.0Beta1"><![CDATA[a:2:{s:7:"default";s:3:"MDY";s:6:"values";a:3:{i:0;s:3:"MDY";i:1;s:3:"DMY";i:2;s:3:"YMD";}}]]></setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="use_jquery_datepicker" phrase_var_name="setting_use_jquery_datepicker" ordering="16" version_id="3.0.0Beta1">1</setting>
 		<setting group="cdn_content_delivery_network" module_id="core" is_hidden="0" type="boolean" var_name="cdn_amazon_https" phrase_var_name="setting_cdn_amazon_https" ordering="7" version_id="2.1.0beta2">0</setting>
 		<setting group="formatting" module_id="core" is_hidden="0" type="boolean" var_name="allow_html_in_activity_feed" phrase_var_name="setting_allow_html_in_activity_feed" ordering="6" version_id="3.0.0beta3">0</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="disable_hash_bang_support" phrase_var_name="setting_disable_hash_bang_support" ordering="14" version_id="3.0.0beta3">0</setting>
@@ -165,22 +153,22 @@ Site Name</setting>
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="keep_files_in_server" phrase_var_name="setting_keep_files_in_server" ordering="15" version_id="3.5.0beta1">0</setting>
 		<setting group="" module_id="core" is_hidden="0" type="string" var_name="google_api_key" phrase_var_name="setting_google_api_key" ordering="1" version_id="3.5.0beta1" />
 		<setting group="formatting" module_id="core" is_hidden="0" type="integer" var_name="activity_feed_line_breaks" phrase_var_name="setting_activity_feed_line_breaks" ordering="7" version_id="3.5.0">0</setting>
-		<setting group="cache" module_id="core" is_hidden="0" type="boolean" var_name="defer_loading_user_images" phrase_var_name="setting_defer_loading_user_images" ordering="1" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="core" is_hidden="0" type="boolean" var_name="defer_loading_images" phrase_var_name="setting_defer_loading_images" ordering="2" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="core" is_hidden="0" type="boolean" var_name="keep_non_square_images" phrase_var_name="setting_keep_non_square_images" ordering="3" version_id="3.6.0rc1">1</setting>
-		<setting group="cache" module_id="core" is_hidden="0" type="array" var_name="controllers_to_load_delayed" phrase_var_name="setting_controllers_to_load_delayed" ordering="4" version_id="3.6.0rc1"><![CDATA[s:8:"array();";]]></setting>
-		<setting group="cache" module_id="core" is_hidden="0" type="boolean" var_name="super_cache_system" phrase_var_name="setting_super_cache_system" ordering="5" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="core" is_hidden="0" type="boolean" var_name="store_only_users_in_session" phrase_var_name="setting_store_only_users_in_session" ordering="6" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="defer_loading_user_images" phrase_var_name="setting_defer_loading_user_images" ordering="1" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="defer_loading_images" phrase_var_name="setting_defer_loading_images" ordering="2" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="keep_non_square_images" phrase_var_name="setting_keep_non_square_images" ordering="3" version_id="3.6.0rc1">1</setting>
+		<setting group="" module_id="core" is_hidden="0" type="array" var_name="controllers_to_load_delayed" phrase_var_name="setting_controllers_to_load_delayed" ordering="4" version_id="3.6.0rc1"><![CDATA[s:8:"array();";]]></setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="super_cache_system" phrase_var_name="setting_super_cache_system" ordering="5" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="store_only_users_in_session" phrase_var_name="setting_store_only_users_in_session" ordering="6" version_id="3.6.0rc1">0</setting>
 		<setting group="cdn_content_delivery_network" module_id="core" is_hidden="0" type="boolean" var_name="push_jscss_to_cdn" phrase_var_name="setting_push_jscss_to_cdn" ordering="16" version_id="3.6.0rc1">0</setting>
 		<setting group="search_engine_optimization" module_id="core" is_hidden="0" type="boolean" var_name="include_site_title_all_pages" phrase_var_name="setting_include_site_title_all_pages" ordering="8" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="core" is_hidden="0" type="boolean" var_name="force_404_check" phrase_var_name="setting_force_404_check" ordering="7" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="force_404_check" phrase_var_name="setting_force_404_check" ordering="7" version_id="3.6.0rc1">0</setting>
 		<setting group="formatting" module_id="core" is_hidden="0" type="boolean" var_name="enable_html_purifier" phrase_var_name="setting_enable_html_purifier" ordering="8" version_id="3.6.0rc1">1</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="boolean" var_name="force_secure_site" phrase_var_name="setting_force_secure_site" ordering="1" version_id="3.6.0rc1">0</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="boolean" var_name="use_custom_cookie_names" phrase_var_name="setting_use_custom_cookie_names" ordering="2" version_id="3.6.0rc1">0</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="string" var_name="custom_cookie_names_hash" phrase_var_name="setting_custom_cookie_names_hash" ordering="3" version_id="3.6.0rc1">s6ks763s5h3)s</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="string" var_name="protect_admincp_with_ips" phrase_var_name="setting_protect_admincp_with_ips" ordering="4" version_id="3.6.0rc1" />
 		<setting group="security" module_id="core" is_hidden="0" type="boolean" var_name="auth_user_via_session" phrase_var_name="setting_auth_user_via_session" ordering="5" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="core" is_hidden="0" type="boolean" var_name="include_ip_sub_id_hash" phrase_var_name="setting_include_ip_sub_id_hash" ordering="8" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="include_ip_sub_id_hash" phrase_var_name="setting_include_ip_sub_id_hash" ordering="8" version_id="3.6.0rc1">0</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="string" var_name="id_hash_salt" phrase_var_name="setting_id_hash_salt" ordering="6" version_id="3.6.0rc1">iysduyt623rts</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="boolean" var_name="check_body_for_text" phrase_var_name="setting_check_body_for_text" ordering="7" version_id="3.6.0rc1">0</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="string" var_name="check_body_regex" phrase_var_name="setting_check_body_regex" ordering="8" version_id="3.6.0rc1">/oParams/i</setting>
@@ -189,15 +177,15 @@ Site Name</setting>
 		<setting group="formatting" module_id="core" is_hidden="0" type="large_string" var_name="html_purifier_allowed_html" phrase_var_name="setting_html_purifier_allowed_html" ordering="9" version_id="3.6.0rc1"><![CDATA[br,p,i,em,u,ul,li,font,ol,div[class|style],span[id|class|style],blockquote,strike,b,strong,img[src|alt|class|height|width],a[class|href|rel|target],iframe[src|width|height|frameborder],object[width|height|data],param[name|value],embed[src|type|allowscriptaccess|allowfullscreen|width|height]]]></setting>
 		<setting group="formatting" module_id="core" is_hidden="0" type="large_string" var_name="html_purifier_allowed_iframes" phrase_var_name="setting_html_purifier_allowed_iframes" ordering="10" version_id="3.6.0rc1">%^http://(www.youtube.com/embed/|player.vimeo.com/video/)%</setting>
 		<setting group="registration" module_id="core" is_hidden="0" type="boolean" var_name="city_in_registration" phrase_var_name="setting_city_in_registration" ordering="17" version_id="3.7.0beta1">0</setting>
-		<setting group="image_processing" module_id="core" is_hidden="0" type="string" var_name="watermark_image" phrase_var_name="setting_watermark_image" ordering="2" version_id="2.0.0rc1">watermark%s.png</setting>
+		<setting group="" module_id="core" is_hidden="0" type="string" var_name="watermark_image" phrase_var_name="setting_watermark_image" ordering="2" version_id="2.0.0rc1">watermark%s.png</setting>
 		<setting group="formatting" module_id="core" is_hidden="1" type="boolean" var_name="xhtml_valid" phrase_var_name="setting_xhtml_valid" ordering="0" version_id="2.0.0alpha1">0</setting>
-		<setting group="ftp" module_id="core" is_hidden="1" type="string" var_name="ftp_host" phrase_var_name="setting_host" ordering="2" version_id="2.0.0alpha1" />
-		<setting group="ftp" module_id="core" is_hidden="1" type="string" var_name="ftp_username" phrase_var_name="setting_username" ordering="3" version_id="2.0.0alpha1" />
-		<setting group="ftp" module_id="core" is_hidden="1" type="password" var_name="ftp_password" phrase_var_name="setting_password" ordering="4" version_id="2.0.0alpha1" />
-		<setting group="ftp" module_id="core" is_hidden="1" type="boolean" var_name="ftp_enabled" phrase_var_name="setting_ftp_enabled" ordering="1" version_id="2.0.0alpha1">0</setting>
-		<setting group="ftp" module_id="core" is_hidden="1" type="string" var_name="ftp_dir_path" phrase_var_name="setting_ftp_dir_path" ordering="5" version_id="2.0.0rc1" />
+		<setting group="" module_id="core" is_hidden="1" type="string" var_name="ftp_host" phrase_var_name="setting_host" ordering="2" version_id="2.0.0alpha1" />
+		<setting group="" module_id="core" is_hidden="1" type="string" var_name="ftp_username" phrase_var_name="setting_username" ordering="3" version_id="2.0.0alpha1" />
+		<setting group="" module_id="core" is_hidden="1" type="password" var_name="ftp_password" phrase_var_name="setting_password" ordering="4" version_id="2.0.0alpha1" />
+		<setting group="" module_id="core" is_hidden="1" type="boolean" var_name="ftp_enabled" phrase_var_name="setting_ftp_enabled" ordering="1" version_id="2.0.0alpha1">0</setting>
+		<setting group="" module_id="core" is_hidden="1" type="string" var_name="ftp_dir_path" phrase_var_name="setting_ftp_dir_path" ordering="5" version_id="2.0.0rc1" />
 		<setting group="" module_id="core" is_hidden="1" type="integer" var_name="banned_user_group_id" phrase_var_name="setting_banned_user_group_id" ordering="1" version_id="2.0.0rc1">0</setting>
-		<setting group="image_processing" module_id="core" is_hidden="1" type="string" var_name="image_text_hex" phrase_var_name="setting_image_text_hex" ordering="5" version_id="2.0.0rc1">000000</setting>
+		<setting group="" module_id="core" is_hidden="1" type="string" var_name="image_text_hex" phrase_var_name="setting_image_text_hex" ordering="5" version_id="2.0.0rc1">000000</setting>
 		<setting group="server_settings" module_id="core" is_hidden="1" type="boolean" var_name="include_master_files" phrase_var_name="setting_include_master_files" ordering="15" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="core" is_hidden="1" type="boolean" var_name="use_md5_for_file_names" phrase_var_name="setting_use_md5_for_file_names" ordering="1" version_id="3.2.0rc1">1</setting>
 		<setting group="formatting" module_id="core" is_hidden="1" type="boolean" var_name="enabled_edit_area" phrase_var_name="setting_enabled_edit_area" ordering="5" version_id="2.0.7">0</setting>

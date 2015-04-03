@@ -59,21 +59,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			
 			$this->url()->send('admincp');
 		}
-		
-		/*
-		if (Phpfox::getParam('core.phpfox_is_hosted'))
-		{
-			$sMaxHistory = Phpfox::getParam('core.phpfox_total_users_online_history');
-			if (!empty($sMaxHistory) && Phpfox::getLib('parse.format')->isSerialized($sMaxHistory))
-			{
-				$aMaxHistory = unserialize($sMaxHistory);
-				$this->template()->assign(array(
-						'aMaxHistory' => $aMaxHistory
-					)
-				);				
-			}
-		}
-		*/
+
 		$this->_sModule = (($sReq2 = $this->request()->get('req2')) ? strtolower($sReq2) : Phpfox::getParam('admincp.admin_cp'));
 		if ($this->_sModule == 'logout')
 		{
@@ -281,25 +267,26 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 			'Tools',
 			'Settings' => [
-				'core.admincp_menu_country' => 'admincp.core.country',
-				'core.currency_manager' => 'admincp.core.currency',
-				'attachment.admincp_menu_attachment_types' => 'admincp.attachment',
-				'admincp.payment_gateways_menu' => 'admincp.api.gateway',
-				'admincp.menu_tools_emoticon_package' => 'admincp.emoticon.package',
+				'Countries' => 'admincp.core.country',
+				'Currencies' => 'admincp.core.currency',
+				'Attachments' => 'admincp.attachment',
+				'Payment Gateways' => 'admincp.api.gateway',
+				// 'admincp.menu_tools_emoticon_package' => 'admincp.emoticon.package',
 
 				'User',
-				'custom.admin_menu_manage_relationships' => 'admincp.custom.relationships',
-				'admincp.user_cancellation_options_manage' => 'admincp.user.cancellations.manage',
-
+				'Relationship Statues' => 'admincp.custom.relationships',
+				'Cancellation Options' => 'admincp.user.cancellations.manage',
+				/*
 				'SEO',
 				'admincp.custom_elements' => 'admincp.seo.meta',
 				'admincp.nofollow_urls' => 'admincp.seo.nofollow',
 				'admincp.rewrite_url' => 'admincp.seo.rewrite'
+				*/
 			],
 			'<i class="fa fa-info"></i>Status' => array(
-				'core.site_statistics' => 'admincp.core.stat',
-				'core.admincp_menu_system_overview' => 'admincp.core.system',
-				'admincp.inactive_members' => 'admincp.user.inactivereminder'
+				Phpfox::getPhrase('core.site_statistics') => 'admincp.core.stat',
+				Phpfox::getPhrase('core.admincp_menu_system_overview') => 'admincp.core.system',
+				Phpfox::getPhrase('admincp.inactive_members') => 'admincp.user.inactivereminder'
 				// 'admincp.ip_address' => 'admincp.core.ip',
 				// 'admincp.admincp_privacy' => 'admincp.privacy'
 			),
@@ -310,20 +297,20 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			),
 			*/
 			'<i class="fa fa-server"></i>Maintenance' => array(
-				'admincp.menu_cache_manager' => 'admincp.maintain.cache',
-				'admincp.admincp_menu_reparser' => 'admincp.maintain.reparser',
-				'admincp.remove_duplicates' => 'admincp.maintain.duplicate',
-				'admincp.counters' => 'admincp.maintain.counter',
-				'admincp.check_modified_files' => 'admincp.checksum.modified',
-				'admincp.check_unknown_files' => 'admincp.checksum.unknown',
-				'admincp.find_missing_settings' => 'admincp.setting.missing'
+				Phpfox::getPhrase('admincp.menu_cache_manager') => 'admincp.maintain.cache',
+				Phpfox::getPhrase('admincp.admincp_menu_reparser') => 'admincp.maintain.reparser',
+				Phpfox::getPhrase('admincp.remove_duplicates') => 'admincp.maintain.duplicate',
+				Phpfox::getPhrase('admincp.counters') => 'admincp.maintain.counter',
+				Phpfox::getPhrase('admincp.check_modified_files') => 'admincp.checksum.modified',
+				Phpfox::getPhrase('admincp.check_unknown_files') => 'admincp.checksum.unknown',
+				Phpfox::getPhrase('admincp.find_missing_settings') => 'admincp.setting.missing'
 			),
 			'<i class="fa fa-ban"></i>Ban Filters' => array(
-				'ban.ban_filter_username' => 'admincp.ban.username',
-				'ban.ban_filter_email' => 'admincp.ban.email',
-				'ban.ban_filter_display_name' => 'admincp.ban.display',
-				'ban.ban_filter_ip' => 'admincp.ban.ip',
-				'ban.ban_filter_word' => 'admincp.ban.word'
+				Phpfox::getPhrase('ban.ban_filter_username') => 'admincp.ban.username',
+				Phpfox::getPhrase('ban.ban_filter_email') => 'admincp.ban.email',
+				Phpfox::getPhrase('ban.ban_filter_display_name') => 'admincp.ban.display',
+				Phpfox::getPhrase('ban.ban_filter_ip') => 'admincp.ban.ip',
+				Phpfox::getPhrase('ban.ban_filter_word') => 'admincp.ban.word'
 			),
 			/*
 			'admincp.mail_messages' => array(
@@ -345,9 +332,9 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			),
 			*/
 			'<i class="fa fa-database"></i>SQL' => array(
-				'admincp.sql_maintenance' => 'admincp.sql',
-				'admincp.sql_backup' => 'admincp.sql.backup',
-				'admincp.alter_title_fields' => 'admincp.sql.title'
+				Phpfox::getPhrase('admincp.sql_maintenance') => 'admincp.sql',
+				Phpfox::getPhrase('admincp.sql_backup') => 'admincp.sql.backup',
+				Phpfox::getPhrase('admincp.alter_title_fields') => 'admincp.sql.title'
 			),
 			/*
 			'core.currency' => array(
@@ -399,7 +386,15 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		}
 		*/
 
-		foreach ($aMenus as $sKey => $mValue) {
+
+		$aSettings = [];
+		foreach ($aGroups as $sGroupName => $aGroupValues) {
+			$aSettings[$sGroupName] = $this->url()->makeUrl('admincp.setting.edit', ['group-id' => $aGroupValues['group_id']]);
+			// $aMenus['Settings'][$sGroupName] = '#';
+		}
+		$aCache = $aMenus;
+		$aMenus = [];
+		foreach ($aCache as $sKey => $mValue) {
 
 			/*
 			if ($mValue == '#modules') {
@@ -414,16 +409,29 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			}
 			*/
 
+			if ($sKey === 'Settings') {
+				$sKey = '<i class="fa fa-cog"></i>Settings';
+				/*
+				$aMerge = [];
+				foreach ($mValue as $sSubKey => $sSubValue) {
+					if (strpos($sSubValue, '.')) {
+						$aMerge[Phpfox::getPhrase($sSubKey)] = $sSubValue;
+					}
+					else {
+						$aMerge[] = $sSubValue;
+					}
+				}
+				$mValue = array_merge($aSettings, $aMerge);
+				*/
+
+				$mValue = array_merge($aSettings, $mValue);
+			}
+
 			$aMenus[$sKey] = $mValue;
 		}
 
-		$aSettings = [];
-		foreach ($aGroups as $sGroupName => $aGroupValues) {
-			$aSettings[$sGroupName] = $this->url()->makeUrl('admincp.setting.edit', ['group-id' => $aGroupValues['group_id']]);
-			// $aMenus['Settings'][$sGroupName] = '#';
-		}
-		$aMenus['<i class="fa fa-cog"></i>Settings'] = array_merge($aSettings, $aMenus['Settings']);
-		unset($aMenus['Settings']);
+		// $aMenus['<i class="fa fa-cog"></i>Settings'] = array_merge($aSettings, $aMenus['Settings']);
+		// unset($aMenus['Settings']);
 
 		// d($aMenus); exit;
 		

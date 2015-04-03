@@ -273,8 +273,8 @@ class Ad_Service_Ad extends Phpfox_Service
 	    if (isset($aCacheAd[$iId]))
 	    {			
 			return $aCacheAd[$iId];	
-	    }	    
-		
+	    }
+
 		if (Profile_Service_Profile::instance()->timeline() && $iId == '1')
 		{
 			$aCacheAd[$iId] = array();
@@ -292,7 +292,7 @@ class Ad_Service_Ad extends Phpfox_Service
 			
 			return array();
 		}
-		
+
 		if (!($aAds = $this->cache()->get($sCacheId, Phpfox::getParam('ad.ad_cache_limit'))))
 		{
 			$aRows = $this->database()->select('a.*, ac.child_id, ac.country_id')
@@ -351,14 +351,14 @@ class Ad_Service_Ad extends Phpfox_Service
 		}		
 
         if ($sPlugin = Phpfox_Plugin::get('ad.service_ad_getforblock__1')){eval($sPlugin);}
-        
+
 		if (!is_array($aAds) || (is_array($aAds) && !count($aAds)))
 		{
 			$aCacheAd[$iId] = array();
 			
 			return array();
 		}
-		
+
 		foreach ($aAds as $iKey => $aAd)
 		{
 			// Check for Postal Code and for City

@@ -20,7 +20,7 @@ class Ad_Component_Block_Sample extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aPlans = Phpfox::getService('ad')->getPlans();//($this->getParam('block_id'));
+		$aPlans = Ad_Service_Ad::instance()->getPlans();//($this->getParam('block_id'));
 		$iBlockId = $this->getParam('block_id');
 		
 		foreach ($aPlans as $iKey => $aPlan)

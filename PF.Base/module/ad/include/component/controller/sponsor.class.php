@@ -27,7 +27,7 @@ class Ad_Component_Controller_Sponsor extends Phpfox_Component
 		// Updating clicks and redirecting. No page is shown because its a redirect
 		if (($iView = $this->request()->getInt('view')) != 0)
 		{
-		    $aUrl = Phpfox::getService('ad')->getSponsor($iView);
+		    $aUrl = Ad_Service_Ad::instance()->getSponsor($iView);
 		    // split the module if theres a subsection
 		    $sModule = $aUrl['module_id'];
 		    $sSection = '';
@@ -71,7 +71,7 @@ class Ad_Component_Controller_Sponsor extends Phpfox_Component
 		// is the user trying to view a campaign?
 		if ($iId = $this->request()->get('add'))
 		{
-		    $aVals = Phpfox::getService('ad')->getSponsor($iId);
+		    $aVals = Ad_Service_Ad::instance()->getSponsor($iId);
 		    $sModule = $aVals['module_id'];
 	
 		    $iSponsorId = $iId;
@@ -202,7 +202,7 @@ class Ad_Component_Controller_Sponsor extends Phpfox_Component
 		{		    
 		    if ($iSponsorId > 0)
 		    {
-				$aVals = Phpfox::getService('ad')->getSponsor($iSponsorId, Phpfox::getUserId());
+				$aVals = Ad_Service_Ad::instance()->getSponsor($iSponsorId, Phpfox::getUserId());
 				$fTotalCost = $aVals['price'];
 				$aVals['name'] = $aVals['campaign_name'];
 				$aItem = array('item_id' => $aVals['item_id'],'paypal_msg' => $aVals['paypal_msg']);

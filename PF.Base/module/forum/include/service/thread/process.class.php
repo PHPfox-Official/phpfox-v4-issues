@@ -247,7 +247,7 @@ class Forum_Service_Thread_Process extends Phpfox_Service
 		{
 			// Phpfox::getService('feed.process')->update('forum', $iId, $oParseInput->clean($aVals['title'], 255));
 			
-			$aThread = Phpfox::getService('forum.thread')->getForEdit($iId);
+			$aThread = Forum_Service_Thread_Thread::instance()->getForEdit($iId);
 			$aPosts = $this->database()->select('post_id')
 				->from(Phpfox::getT('forum_post'))
 				->where('thread_id = ' . (int) $iId)
@@ -598,7 +598,7 @@ class Forum_Service_Thread_Process extends Phpfox_Service
 	
 	public function markRead($iForumId, $iGroupId = 0)
 	{
-		list($iCnt, $aThreads) = Phpfox::getService('forum.thread')->get(array('ft.forum_id = ' . (int) $iForumId .' AND ft.group_id = ' . (int) $iGroupId . ' AND ft.view_id = 0'));
+		list($iCnt, $aThreads) = Forum_Service_Thread_Thread::instance()->get(array('ft.forum_id = ' . (int) $iForumId .' AND ft.group_id = ' . (int) $iGroupId . ' AND ft.view_id = 0'));
 		
 		foreach ($aThreads as $aThread)
 		{

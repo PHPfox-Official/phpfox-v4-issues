@@ -1,4 +1,39 @@
 <upgrade>
+	<phpfox_update_settings>
+		<setting>
+			<group />
+			<module_id>forum</module_id>
+			<is_hidden>0</is_hidden>
+			<type>string</type>
+			<var_name>forum_time_stamp</var_name>
+			<phrase_var_name>setting_forum_time_stamp</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.0alpha1</version_id>
+			<value>M j, g:i a</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>forum</module_id>
+			<is_hidden>0</is_hidden>
+			<type>string</type>
+			<var_name>forum_user_time_stamp</var_name>
+			<phrase_var_name>setting_forum_user_time_stamp</phrase_var_name>
+			<ordering>2</ordering>
+			<version_id>2.0.0alpha1</version_id>
+			<value>F j, Y</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>forum</module_id>
+			<is_hidden>0</is_hidden>
+			<type>string</type>
+			<var_name>global_forum_timezone</var_name>
+			<phrase_var_name>setting_global_forum_timezone</phrase_var_name>
+			<ordering>3</ordering>
+			<version_id>2.0.5</version_id>
+			<value>g:i a</value>
+		</setting>
+	</phpfox_update_settings>
 	<phpfox_update_menus>
 		<menu>
 			<module_id>forum</module_id>

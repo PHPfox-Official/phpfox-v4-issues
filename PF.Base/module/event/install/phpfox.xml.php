@@ -15,12 +15,12 @@
 		<menu module_id="event" parent_var_name="" m_connection="mobile" var_name="menu_event_events_532c28d5412dd75bf975fb951c740a30" ordering="115" url_value="event" version_id="3.1.0rc1" disallow_access="" module="event" mobile_icon="small_events.png" />
 	</menus>
 	<settings>
-		<setting group="time_stamps" module_id="event" is_hidden="0" type="string" var_name="event_view_time_stamp_profile" phrase_var_name="setting_event_view_time_stamp_profile" ordering="1" version_id="2.0.0alpha4">F j, Y</setting>
-		<setting group="time_stamps" module_id="event" is_hidden="0" type="string" var_name="event_browse_time_stamp" phrase_var_name="setting_event_browse_time_stamp" ordering="2" version_id="2.0.0alpha4">l, F j</setting>
-		<setting group="time_stamps" module_id="event" is_hidden="0" type="string" var_name="event_basic_information_time" phrase_var_name="setting_event_basic_information_time" ordering="3" version_id="2.0.5">l, F j, Y g:i a</setting>
-		<setting group="time_stamps" module_id="event" is_hidden="0" type="string" var_name="event_basic_information_time_short" phrase_var_name="setting_event_basic_information_time_short" ordering="4" version_id="2.0.5">g:i a</setting>
-		<setting group="cache" module_id="event" is_hidden="0" type="boolean" var_name="cache_events_per_user" phrase_var_name="setting_cache_events_per_user" ordering="1" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="event" is_hidden="0" type="integer" var_name="cache_upcoming_events_info" phrase_var_name="setting_cache_upcoming_events_info" ordering="2" version_id="3.6.0rc1">8</setting>
+		<setting group="" module_id="event" is_hidden="0" type="string" var_name="event_view_time_stamp_profile" phrase_var_name="setting_event_view_time_stamp_profile" ordering="1" version_id="2.0.0alpha4">F j, Y</setting>
+		<setting group="" module_id="event" is_hidden="0" type="string" var_name="event_browse_time_stamp" phrase_var_name="setting_event_browse_time_stamp" ordering="2" version_id="2.0.0alpha4">l, F j</setting>
+		<setting group="" module_id="event" is_hidden="0" type="string" var_name="event_basic_information_time" phrase_var_name="setting_event_basic_information_time" ordering="3" version_id="2.0.5">l, F j, Y g:i a</setting>
+		<setting group="" module_id="event" is_hidden="0" type="string" var_name="event_basic_information_time_short" phrase_var_name="setting_event_basic_information_time_short" ordering="4" version_id="2.0.5">g:i a</setting>
+		<setting group="" module_id="event" is_hidden="0" type="boolean" var_name="cache_events_per_user" phrase_var_name="setting_cache_events_per_user" ordering="1" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="event" is_hidden="0" type="integer" var_name="cache_upcoming_events_info" phrase_var_name="setting_cache_upcoming_events_info" ordering="2" version_id="3.6.0rc1">8</setting>
 	</settings>
 	<blocks>
 		<block type_id="0" m_connection="event.view" module_id="event" component="info" location="4" is_active="1" ordering="3" disallow_access="" can_move="0">

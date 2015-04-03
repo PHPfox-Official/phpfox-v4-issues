@@ -48,9 +48,9 @@ class Ad_Component_Controller_Manage extends Phpfox_Component
 		{
 			$aCond[] = ' AND a.location = 50';
 		}
-		$aAds = Phpfox::getService('ad')->getForUser($aCond);
+		$aAds = Ad_Service_Ad::instance()->getForUser($aCond);
 		
-		Phpfox::getService('ad')->getSectionMenu();
+		Ad_Service_Ad::instance()->getSectionMenu();
 		
 		$this->template()->setTitle(Phpfox::getPhrase('ad.ad_management'))	
 			->setFullSite()

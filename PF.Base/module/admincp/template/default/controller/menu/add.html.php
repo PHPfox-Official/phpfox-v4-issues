@@ -22,9 +22,6 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div><input type="hidden" name="val[url_value]" value="{$aPage.title_url}" /></div>
 	<div><input type="hidden" name="val[is_page]" value="true" /></div>
 	{/if}
-	<div class="table_header">
-		{phrase var='admincp.menu_details'}
-	</div>
 	{if !$bIsPage}
 	<div class="table">
 		<div class="table_left">
@@ -58,7 +55,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	{/if}
 	<div class="table">
 		<div class="table_left">
-			{phrase var='admincp.connection'}:
+			Placement:
 		</div>
 		<div class="table_right">
 			<select name="val[m_connection]">
@@ -68,11 +65,14 @@ defined('PHPFOX') or exit('NO DICE!');
 				<option value="{$sType}"{value type='select' id='m_connection' default=$sType}>{$sType}</option>
 			{/foreach}
 			</optgroup>
+			{*
 			<optgroup label="{phrase var='admincp.parent_menu'}">
 			{foreach from=$aParents item=aParent}
 				<option value="child|{$aParent.menu_id}"{value type='select' id='m_connection' default=$aParent.menu_id}>{phrase var=''$aParent.module_id'.'$aParent.var_name''}</option>
 			{/foreach}
 			</optgroup>
+			*}
+			{*
 			{if !$bIsPage}
 			<optgroup label="{phrase var='admincp.modules'}">
 			{foreach from=$aControllers key=sModule item=aModules}
@@ -82,7 +82,8 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/foreach}			
 			{/foreach}
 			</optgroup>
-			{/if}		
+			{/if}
+			*}
 			</select>
 			{help var='admincp.menu_add_connection'}
 		</div>
@@ -96,7 +97,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_right">
 			<input type="text" name="val[url_value]" id="url_value" value="{value type='input' id='url_value'}" size="40" maxlength="250" />
 			{if !$bIsEdit && count($aPages)}
-			<div class="p_4">
+			<div class="p_4" style="display:none;">
 			{phrase var='admincp.or_select_a_page'}
 			<select name="val[url_value_page]" onchange="$('#url_value').val(this.value);">
 				<option value="">{phrase var='admincp.select'}:</option>
@@ -111,21 +112,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="clear"></div>
 	</div>
 	{/if}
-	
-	{if Phpfox::isModule('mobile')}
-	<div class="table">
-		<div class="table_left">
-			{phrase var='mobile.mobile_icon'}:
-		</div>
-		<div class="table_right">
-			<input type="text" name="val[mobile_icon]" value="{value type='input' id='mobile_icon'}" />
-		</div>
-	</div>
-	{/if}
-	
-	<div class="table_header">
-		{phrase var='admincp.language_package_details'}
-	</div>
+
 	<div class="table">
 		<div class="table_left">
 			{phrase var='admincp.menu'}:
@@ -133,7 +120,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_right_text">
 		{foreach from=$aLanguages item=aLanguage}
 			<b>{$aLanguage.title}</b>
-			<div class="p_4">
+			<div class="p_top_4">
 				<textarea cols="50" rows="5" name="val[text][{if isset($aLanguage.phrase_id)}{$aLanguage.phrase_id}{else}{$aLanguage.language_id}{/if}]">{if isset($aLanguage.text)}{$aLanguage.text|htmlspecialchars}{/if}</textarea>
 			</div>
 		{/foreach}
@@ -141,23 +128,26 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="table_header">
-		{phrase var='admincp.user_group_access'}
-	</div>
-	<div class="table">
-		<div class="table_left">
-			{phrase var='admincp.allow_access'}:
+	<div style="display:none;">
+		<div class="table_header">
+			{phrase var='admincp.user_group_access'}
 		</div>
-		<div class="table_right">
-		{foreach from=$aUserGroups item=aUserGroup}
-			<div class="p_4">
-				<label><input type="checkbox" name="val[allow_access][]" value="{$aUserGroup.user_group_id}"{if isset($aAccess) && is_array($aAccess)}{if !in_array($aUserGroup.user_group_id, $aAccess)} checked="checked" {/if}{else} checked="checked" {/if}/> {$aUserGroup.title|convert|clean}</label>
+		<div class="table">
+			<div class="table_left">
+				{phrase var='admincp.allow_access'}:
 			</div>
-		{/foreach}
-			{help var='admincp.menu_add_access'}
+			<div class="table_right">
+			{foreach from=$aUserGroups item=aUserGroup}
+				<div class="p_4">
+					<label><input type="checkbox" name="val[allow_access][]" value="{$aUserGroup.user_group_id}"{if isset($aAccess) && is_array($aAccess)}{if !in_array($aUserGroup.user_group_id, $aAccess)} checked="checked" {/if}{else} checked="checked" {/if}/> {$aUserGroup.title|convert|clean}</label>
+				</div>
+			{/foreach}
+				{help var='admincp.menu_add_access'}
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="clear"></div>
 	</div>
+
 	<div class="table_clear">
 		<div><input type="hidden" name="send_path" value="{url link='admincp.menu'}" /></div>
 		{if $bIsEdit}

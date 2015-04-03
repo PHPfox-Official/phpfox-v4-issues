@@ -13,13 +13,6 @@
 		<setting group="" module_id="rss" is_hidden="0" type="integer" var_name="total_rss_display" phrase_var_name="setting_total_rss_display" ordering="1" version_id="2.0.0beta5">15</setting>
 		<setting group="" module_id="rss" is_hidden="0" type="boolean" var_name="display_rss_count_on_profile" phrase_var_name="setting_display_rss_count_on_profile" ordering="1" version_id="2.0.0beta5">1</setting>
 	</settings>
-	<blocks>
-		<block type_id="0" m_connection="rss" module_id="rss" component="info" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-	</blocks>
 	<hooks>
 		<hook module_id="rss" hook_type="controller" module="rss" call_name="rss.component_controller_index_clean" added="1240687633" version_id="2.0.0beta1" />
 		<hook module_id="rss" hook_type="service" module="rss" call_name="rss.service_rss__call" added="1240687633" version_id="2.0.0beta1" />

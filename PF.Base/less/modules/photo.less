@@ -80,12 +80,20 @@
 ._app_photo {
 	.activity_feed_content_image img {
 		max-width:@contentWidth;
-		margin-left:-(@blockContentPadding * 2);
+		/*margin-left:-(@blockContentPadding * 2);*/
+		margin:auto;
 	}
 
 	.activity_feed_content_image {
 		width:auto;
 		max-width:none;
+		padding:0px;
+		text-align:center;
+		float:none;
+	}
+
+	.feed_info {
+		display:none;
 	}
 }
 

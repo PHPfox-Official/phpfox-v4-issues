@@ -127,7 +127,8 @@ class Phpfox_Template_Cache extends Phpfox_Template
 	 * @return mixed We only return the templates content if the installer does not have a writable directory.
 	 */
 	public function compile($sName, $sData = null, $bRemoveHeader = false, $bSkipDbCheck = false)
-	{		
+	{
+		/*
 		if (!defined('PHPFOX_INSTALLER') && !defined('PHPFOX_LIVE_TEMPLATES'))
 		{						
 			$sNewName = str_replace('_ajax.php', '.php', $sName);
@@ -149,6 +150,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 					->execute('getSlaveRow');				
 			}
 		}
+		*/
 		
 		$this->_sCurrentFile = $sName;
 

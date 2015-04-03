@@ -12,13 +12,6 @@
 	<settings>
 		<setting group="" module_id="request" is_hidden="1" type="boolean" var_name="display_request_box_on_empty" phrase_var_name="setting_display_request_box_on_empty" ordering="1" version_id="2.0.0alpha3">0</setting>
 	</settings>
-	<blocks>
-		<block type_id="0" m_connection="request.index" module_id="request" component="feed" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-	</blocks>
 	<hooks>
 		<hook module_id="request" hook_type="component" module="request" call_name="request.component_block_feed_process" added="1231838390" version_id="2.0.0alpha1" />
 		<hook module_id="request" hook_type="component" module="request" call_name="request.component_block_feed_clean" added="1231838390" version_id="2.0.0alpha1" />

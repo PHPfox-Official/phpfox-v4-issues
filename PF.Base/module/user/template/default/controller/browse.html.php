@@ -15,9 +15,6 @@ defined('PHPFOX') or exit('NO DICE!');
 {if defined('PHPFOX_IS_ADMIN_SEARCH')}
 <div class="block_search">
 	<form method="post" action="{url link='admincp.user.browse'}">
-		<div class="table_header">
-			{phrase var='user.member_search'}
-		</div>
 		<div class="table">
 			<div class="table_left">
 				{phrase var='user.search'}:
@@ -135,9 +132,6 @@ defined('PHPFOX') or exit('NO DICE!');
 
 <div class="block_content">
 
-	<div class="table_header">
-		{phrase var='user.members'}
-	</div>
 	<form method="post" action="{url link='current'}">
 		<table cellpadding="0" cellspacing="0" {if !Phpfox::getParam('user.randomize_featured_members') && isset($bShowFeatured) && $bShowFeatured == 1} id="js_drag_drop"{/if}>
 		<tr>

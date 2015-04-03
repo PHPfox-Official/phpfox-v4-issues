@@ -33,6 +33,7 @@
 }
 
 .next_page, .next_page:hover {
+	visibility:hidden;
 	display:inline-block;
 	background:@brandPrimaryColor;
 	text-align:center;
@@ -55,4 +56,8 @@
 	span {
 		display:none;
 	}
+}
+
+.next_page.focus {
+	visibility:visible;
 }

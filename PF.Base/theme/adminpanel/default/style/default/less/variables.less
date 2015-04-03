@@ -18,8 +18,8 @@
 @boxShadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
 
 //== Links
-@linkColor:                #222;
-@linkHoverColor:          @brandPrimary;
+@linkColor:                @brandPrimary;
+@linkHoverColor:          lighten(@brandPrimary, 20%);
 @linkHoverDecoration:     none;
 
 @linkFocus: #222;
@@ -68,6 +68,6 @@
 @blockContentSize: @fontSizeBase - 1;
 
 //== Forms
-@formBg: #e5e5e5;
+@formBg: #f6f6f6;
 @formColor: #808080;
-@formBorder: 1px #dfdfdf solid;
+@formBorder: 1px lighten(#dfdfdf, 2%) solid;

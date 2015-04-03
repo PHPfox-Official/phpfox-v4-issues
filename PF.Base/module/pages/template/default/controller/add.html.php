@@ -358,32 +358,29 @@ defined('PHPFOX') or exit('NO DICE!');
 			<span>{$aType.name|convert}</span>
 		</a>
 		<div class="pages_type_add_form">
-			<div class="pages_type_add_form_title">{$aType.name|convert}</div>
 			<div class="pages_type_add_form_holder">
 				<form method="post" action="#">
 					<div><input type="hidden" name="val[type_id]" value="{$aType.type_id}" /></div>
 					{if isset($aType.categories) && is_array($aType.categories) && count($aType.categories)}					
-					<div class="pages_type_add_form_input">
-						<select name="val[category_id]">
-							<option value="">{phrase var='pages.choose_a_category'}</option>
-							{foreach from=$aType.categories item=aCategory}
-							<option value="{$aCategory.category_id}">{$aCategory.name|convert}</option>
-							{/foreach}
-						</select>
-					</div>					
-					{/if}
-					<div class="pages_type_add_form_input">
-						{phrase var='pages.name'}:
-						<div>							
-							<input type="text" name="val[title]" value="" class="pages_type_add_input" />
+					<div class="table">
+						<div class="table_right">
+							<select name="val[category_id]">
+								<option value="">{phrase var='pages.choose_a_category'}</option>
+								{foreach from=$aType.categories item=aCategory}
+								<option value="{$aCategory.category_id}">{$aCategory.name|convert}</option>
+								{/foreach}
+							</select>
 						</div>
 					</div>					
-					<div class="pages_type_add_form_input" id="js_pages_add_submit_button">						
-						<ul class="table_clear_button">
-							<li><input type="submit" value="{phrase var='pages.get_started'}" class="button" /></li>
-							<li class="table_clear_ajax"></li>
-						</ul>
-						<div class="clear"></div>						
+					{/if}
+					<div class="table">
+						<div class="table_right">
+							<input type="text" name="val[title]" value="" class="pages_type_add_input" placeholder="Name" />
+						</div>
+					</div>
+
+					<div class="table_clear" id="js_pages_add_submit_button">
+						<input type="submit" value="{phrase var='pages.get_started'}" class="button" />
 					</div>
 
 				</form>

@@ -41,7 +41,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="nav_pages">
 			{foreach from=$pages item=page}
-			<a href="#" data-src="{img server_id=$page.user_server_id path='core.url_user' file=$page.user_image suffix='_120_square' return_url=true}" class="image_load js_hover_title">
+			<a href="{$page.link}" data-src="{img server_id=$page.user_server_id path='core.url_user' file=$page.user_image suffix='_120_square' return_url=true}" class="image_load js_hover_title">
 				<span class="js_hover_info">{$page.title|clean}</span>
 			</a>
 			{/foreach}

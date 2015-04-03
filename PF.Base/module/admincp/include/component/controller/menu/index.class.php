@@ -22,7 +22,7 @@ class Admincp_Component_Controller_Menu_Index extends Phpfox_Component
 	{	
 		if ($iDeleteId = $this->request()->getInt('delete'))
 		{
-			if (Phpfox::getService('admincp.menu.process')->delete($iDeleteId))
+			if (Admincp_Service_Menu_Process::instance()->delete($iDeleteId))
 			{
 				$this->url()->send('admincp.menu', null, Phpfox::getPhrase('admincp.menu_successfully_deleted'));	
 			}
@@ -30,16 +30,19 @@ class Admincp_Component_Controller_Menu_Index extends Phpfox_Component
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{
-			if (Phpfox::getService('admincp.menu.process')->updateOrder($aVals))
+			if (Admincp_Service_Menu_Process::instance()->updateOrder($aVals))
 			{
-				$this->url()->send('admincp.menu', array('parent' => $this->request()->getInt('parent')), Phpfox::getPhrase('admincp.menu_order_successfully_updated'));	
+				// $this->url()->send('admincp.menu', array('parent' => $this->request()->getInt('parent')), Phpfox::getPhrase('admincp.menu_order_successfully_updated'));
+				return [
+					'updated' => true
+				];
 			}			
 		}
 		
 		$iParentId = $this->request()->getInt('parent');		
 		if ($iParentId > 0)
 		{
-			$aMenu = Phpfox::getService('admincp.menu')->getForEdit($iParentId);
+			$aMenu = Admincp_Service_Menu_Menu::instance()->getForEdit($iParentId);
 			if (isset($aMenu['menu_id']))
 			{
 				$this->template()->assign('aParentMenu', $aMenu);
@@ -50,8 +53,8 @@ class Admincp_Component_Controller_Menu_Index extends Phpfox_Component
 			}
 		}
 		
-		$aTypes = Phpfox::getService('admincp.menu')->getTypes();
-		$aRows = Phpfox::getService('admincp.menu')->get(($iParentId > 0 ? array('menu.parent_id = ' . (int) $iParentId) : array('menu.parent_id = 0')));
+		$aTypes = Admincp_Service_Menu_Menu::instance()->getTypes();
+		$aRows = Admincp_Service_Menu_Menu::instance()->get(($iParentId > 0 ? array('menu.parent_id = ' . (int) $iParentId) : array('menu.parent_id = 0 AND menu.m_connection IN(\'main\', \'footer\')')));
 		$aMenus = array();
 		$aModules = array();
 		
@@ -73,6 +76,18 @@ class Admincp_Component_Controller_Menu_Index extends Phpfox_Component
 	
 		$this->template()->setBreadcrumb(Phpfox::getPhrase('admincp.menu_manager'), $this->url()->makeUrl('admincp.menu'))
 			->setTitle(Phpfox::getPhrase('admincp.menu_manager'))
+			->setSectionTitle('Menus')
+			->setActionMenu([
+				'Add Menu' => [
+					'class' => 'popup',
+					'url' => $this->url()->makeUrl('admincp.menu.add')
+				]
+			])
+			->setHeader(array(
+					'drag.js' => 'static_script',
+					'<script type="text/javascript">$Behavior.coreDragInit = function() { Core_drag.init({table: \'#js_drag_drop\', ajax: \'' . $this->url()->makeUrl('admincp.menu') . '\'}); }</script>'
+				)
+			)
 			->assign(array(
 				'aMenus' => $aMenus,
 				'aModules' => $aModules,

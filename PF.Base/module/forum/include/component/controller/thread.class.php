@@ -21,7 +21,7 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 	public function process()
 	{		
 		define('PHPFOX_PAGER_FORCE_COUNT', true);
-		
+
 		Phpfox::getUserParam('forum.can_view_forum', true);		
 		
 		$iPage = $this->request()->getInt('page');
@@ -32,15 +32,15 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 		if (($iPostRedirect = $this->request()->getInt('permalink')) && ($sUrl = Phpfox::getService('forum.callback')->getFeedRedirectPost($iPostRedirect)))
 		{			
 			$this->url()->forward(preg_replace('/\/post_(.*)\//i', '/view_\\1/', $sUrl));			
-		}		
-		
+		}
+
 		if (Phpfox::isUser() && ($iView = $this->request()->getInt('view')) && Phpfox::isModule('notification'))
 		{
 			Phpfox::getService('notification.process')->delete('forum_subscribed_post', $iView, Phpfox::getUserId());
 			Phpfox::getService('notification.process')->delete('forum_post_like', $iView, Phpfox::getUserId());	
 		}
 		
-		if (($iRedirect = $this->request()->getInt('redirect')) && ($aThread = Phpfox::getService('forum.thread')->getForRedirect($iRedirect)))
+		if (($iRedirect = $this->request()->getInt('redirect')) && ($aThread = Forum_Service_Thread_Thread::instance()->getForRedirect($iRedirect)))
 		{
 			if ($aThread['group_id'] > 0)
 			{
@@ -60,8 +60,8 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 		{
 			$sPermaView = null;
 		}
-		
-		list($iCnt, $aThread) = Phpfox::getService('forum.thread')->getThread($aThreadCondition, array(), 'fp.time_stamp ASC', $iPage, $iPageSize, $sPermaView);
+
+		list($iCnt, $aThread) = Forum_Service_Thread_Thread::instance()->getThread($aThreadCondition, array(), 'fp.time_stamp ASC', $iPage, $iPageSize, $sPermaView);
 		
 		if (!isset($aThread['thread_id']))
 		{

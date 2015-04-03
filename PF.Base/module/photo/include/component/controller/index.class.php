@@ -371,10 +371,10 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 					list($iAlbumCnt, $aAlbums) = Phpfox::getService('photo.album')->get('pa.user_id = ' . Phpfox::getUserId());
 					$this->template()->assign('bIsEditMode', true);
 					$this->template()->assign('aAlbums', $aAlbums);
-					if (($sEditPhotos = $this->request()->get('photos')))
+					if (($aEditPhotos = $this->request()->get('photos')))
 					{
-						$sEditPhotos = base64_decode(urldecode($sEditPhotos));
-						$aEditPhotos = explode(',', $sEditPhotos);
+						// $sEditPhotos = base64_decode(urldecode($sEditPhotos));
+						// $aEditPhotos = explode(',', $sEditPhotos);
 						$sPhotoList = '';
 						foreach ($aEditPhotos as $iPhotoId)
 						{

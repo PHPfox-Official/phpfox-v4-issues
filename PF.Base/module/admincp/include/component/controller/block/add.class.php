@@ -25,7 +25,7 @@ class Admincp_Component_Controller_Block_Add extends Phpfox_Component
 				
 		if (($iEditId = $this->request()->getInt('id')) || ($iEditId = $this->request()->getInt('block_id')))
 		{
-			$aRow = Phpfox::getService('admincp.block')->getForEdit($iEditId);			
+			$aRow = Admincp_Service_Block_Block::instance()->getForEdit($iEditId);
 			$bIsEdit = true;
 			
 			$this->template()->assign(array(

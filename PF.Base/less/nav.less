@@ -324,7 +324,7 @@ div#content div.menu, div#left div.menu, div#right div.menu {
 		padding:8px 0px;
 		text-indent:37px;
 		color:@navColor;
-		font-weight:500;
+		/*font-weight:300;*/
 
 		i {
 			text-indent:0px;
@@ -350,7 +350,7 @@ div#content div.menu, div#left div.menu, div#right div.menu {
 		display:block;
 		position:absolute;
 		right:10px;
-		top:9px;
+		top:11px;
 		font-size:@fontSizeBase - 6;
 		font-weight:500;
 		background:@brandPrimary;
@@ -377,6 +377,97 @@ div#content div.menu, div#left div.menu, div#right div.menu {
 
 		span {
 			display:none;
+		}
+	}
+}
+
+#content a.drop_down_link {
+	background:transparent;
+	padding:4px 10px;
+}
+
+.sub_menu_bar a, .sub_menu_bar a:hover {
+	color:@linkColor;
+	height:auto;
+	line-height:normal;
+	padding:4px 10px;
+	text-transform:uppercase;
+	font-size:@fontSizeBase - 2;
+}
+
+.sub_menu_bar li {
+	position:relative;
+}
+
+#content .sub_menu_bar li a.is_already_open, #content .sub_menu_bar li a.is_already_open:hover {
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+}
+
+.link_menu {
+	.reset();
+
+	display:none;
+	position:absolute;
+	right:0px;
+	width:250px;
+	z-index:20;
+	background:@bodyBg;
+	color:@textColor;
+	box-shadow:@blockBoxShadowLight;
+}
+
+.link_menu li a, .sub_menu_bar .dropContent li a, .link_menu li a, .sub_menu_bar .dropContent li a:hover {
+	border:0px;
+	display:block;
+	color:@textColor;
+	padding:8px 12px;
+	width:auto;
+}
+
+.link_menu li a:hover, .sub_menu_bar .dropContent li a:hover, .link_menu li a:hover, .sub_menu_bar .dropContent li a:hover {
+	background:darken(@blockBg, 6%);
+	color:@linkColor;
+	transition:@transition;
+}
+
+#pf_admin {
+	position:fixed;
+	bottom:0px;
+	right:10px;
+	background:#0c0c0c;
+	color:#808080;
+	z-index:10000;
+	display:table;
+
+	> a, > a:hover {
+		width:30px;
+		padding:0px 5px;
+		height:30px;
+		display:table-cell;
+		float:left;
+		position:relative;
+
+		i {
+			font-size:18px;
+			position:absolute;
+			left:10px;
+			top:5px;
+			color:#808080;
+		}
+
+		span {
+			display:none;
+		}
+	}
+
+	> a:hover {
+		transition:@transition;
+		background:#f4645f;
+
+		i {
+			transition:@transition;
+			color:#fff;
 		}
 	}
 }

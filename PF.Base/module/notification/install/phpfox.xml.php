@@ -13,7 +13,7 @@
 		<setting group="" module_id="notification" is_hidden="0" type="boolean" var_name="notify_on_new_request" phrase_var_name="setting_notify_on_new_request" ordering="1" version_id="2.0.0alpha4">1</setting>
 		<setting group="" module_id="notification" is_hidden="0" type="integer" var_name="notify_ajax_refresh" phrase_var_name="setting_notify_ajax_refresh" ordering="1" version_id="2.0.0alpha4">2</setting>
 		<setting group="" module_id="notification" is_hidden="0" type="integer" var_name="total_notification_title_length" phrase_var_name="setting_total_notification_title_length" ordering="1" version_id="3.0.0Beta1">100</setting>
-		<setting group="time_stamps" module_id="notification" is_hidden="0" type="string" var_name="notification_browse_messages" phrase_var_name="setting_notification_browse_messages" ordering="1" version_id="3.3.0beta2">F d</setting>
+		<setting group="" module_id="notification" is_hidden="0" type="string" var_name="notification_browse_messages" phrase_var_name="setting_notification_browse_messages" ordering="1" version_id="3.3.0beta2">F d</setting>
 	</settings>
 	<hooks>
 		<hook module_id="notification" hook_type="controller" module="notification" call_name="notification.component_controller_index_clean" added="1240687633" version_id="2.0.0beta1" />

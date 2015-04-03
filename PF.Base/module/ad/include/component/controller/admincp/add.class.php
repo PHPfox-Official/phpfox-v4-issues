@@ -32,7 +32,7 @@ class Ad_Component_Controller_Admincp_Add extends Phpfox_Component
 				
 		if (($iId = $this->request()->getInt('id')))
 		{
-			if (($aAd = Phpfox::getService('ad')->getForEdit($iId)))
+			if (($aAd = Ad_Service_Ad::instance()->getForEdit($iId)))
 			{
 				$bIsEdit = true;
 				if ($aAd['location'] == 50)

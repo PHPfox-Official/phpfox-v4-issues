@@ -8,8 +8,8 @@
 		}
 	}
 
-	.pages_type_add_form_input input.button {
-		margin-top:40px;
+	.pages_type_add_form_holder {
+		padding-top:0px;
 	}
 
 	input.pages_type_add_input {
@@ -19,7 +19,7 @@
 	.pages_type_add_holder {
 		text-align:left;
 		background:@blockBg;
-		color:@blockColor;
+		/*color:@blockColor;*/
 		border-bottom:1px darken(@blockBg, 5%) solid;
 	}
 
@@ -36,10 +36,24 @@
 		color:darken(@blockColor, 5%);
 	}
 
+	a.pages_type_add_inner_link.focus {
+		background:@brandPrimary;
+		color:@brandPrimaryColor;
+	}
+
+	a.pages_type_add_inner_link.unfocus {
+		opacity:0.4;
+	}
+
 	.pages_type_add_form {
 		padding:10px;
-		background:#0c0c0c;
-		color:#808080 !important;
+		background:darken(@blockBg, 6%);
+		display:none;
+
+		.table {
+			background:transparent;
+			padding:0px;
+		}
 	}
 
 	#js_pages_block_info {
@@ -53,6 +67,11 @@
 }
 
 #page_pages_index {
+	#container > ._block_h1 > h1 {
+		width:auto;
+		margin-bottom:20px;
+	}
+
 	#left, #right {
 		display:none;
 	}

@@ -364,13 +364,15 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      */		
 	public function limit($iPage, $sLimit = null, $iCnt = null, $bReturn = false, $bCorrectMax = true)
 	{
+		$bCorrectMax = false;
+
 		if ($sLimit === null && $iCnt === null && $iPage !== null)
 		{
 			$this->_aQuery['limit'] = 'LIMIT ' . $iPage;	
 			
 			return $this;
 		}
-		
+
 		if ($bCorrectMax == true)
 		{
 			$iOffset = ($iCnt === null ? $iPage : Phpfox_Pager::instance()->getOffset($iPage, $sLimit, $iCnt));

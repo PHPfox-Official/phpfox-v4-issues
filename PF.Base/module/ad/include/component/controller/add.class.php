@@ -27,7 +27,7 @@ class Ad_Component_Controller_Add extends Phpfox_Component
 		
 		$bIsEdit = false;
 		$bCompleted = ($this->request()->get('req3') == 'completed' ? true : false);		
-		if (($iId = $this->request()->getInt('id')) && ($aAd = Phpfox::getService('ad')->getForEdit($iId)))
+		if (($iId = $this->request()->getInt('id')) && ($aAd = Ad_Service_Ad::instance()->getForEdit($iId)))
 		{
 			if ($aAd['user_id'] != Phpfox::getUserId())
 			{
@@ -82,11 +82,11 @@ class Ad_Component_Controller_Add extends Phpfox_Component
 				{
 					if (Phpfox::getParam('ad.multi_ad'))
 					{
-						$aPlan = Phpfox::getService('ad')->getPlan( 50 , true );
+						$aPlan = Ad_Service_Ad::instance()->getPlan( 50 , true );
 					}
 					else
 					{
-						$aPlan = Phpfox::getService('ad')->getPlan($aVals['block_id'], false);
+						$aPlan = Ad_Service_Ad::instance()->getPlan($aVals['block_id'], false);
 					}
 
 					$aVals = array_merge($aPlan, $aVals);
@@ -116,7 +116,7 @@ class Ad_Component_Controller_Add extends Phpfox_Component
 			$aAge[$iAgeStart] = $iAgeStart;
 		}	
 		
-		$iPlacementCount = count((array) Phpfox::getService('ad')->getPlacements());
+		$iPlacementCount = count((array) Ad_Service_Ad::instance()->getPlacements());
 		
 		if (!$bCompleted && !$bIsEdit)
 		{
@@ -131,7 +131,7 @@ class Ad_Component_Controller_Add extends Phpfox_Component
 		}
 		else 
 		{			
-			$aPlan = Phpfox::getService('ad')->getPlan($aAd['location'], true);
+			$aPlan = Ad_Service_Ad::instance()->getPlan($aAd['location'], true);
 
 			if (!isset($aPlan['plan_id']))
 			{

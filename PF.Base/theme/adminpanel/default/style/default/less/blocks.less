@@ -85,11 +85,16 @@ div#main div.block {
 		margin-bottom:0px;
 
 		input.button, a.button_off_link {
+			opacity:0.4;
 			background:darken(@blockBg, 4%);
 			color:@brandPrimary;
 			width:100%;
 			padding-left:0px;
 			padding-right:0px;
+		}
+
+		input.button:hover, a.button_off_link:hover {
+			opacity:1;
 		}
 	}
 }

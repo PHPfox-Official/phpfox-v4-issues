@@ -19,7 +19,11 @@ class Core_Component_Block_Moderation extends Phpfox_Component
 	 * Controller
 	 */
 	public function process()
-	{		
+	{
+		if (PHPFOX_IS_AJAX) {
+			return false;
+		}
+
 		$aParams = $this->getParam('global_moderation');
 		
 		$iTotalInputFields = 0;

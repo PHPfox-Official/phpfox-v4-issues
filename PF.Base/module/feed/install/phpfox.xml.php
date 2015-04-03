@@ -15,7 +15,7 @@
 	<settings>
 		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="feed_only_friends" phrase_var_name="setting_feed_only_friends" ordering="0" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="feed_display_limit" phrase_var_name="setting_feed_display_limit" ordering="0" version_id="2.0.0alpha1">10</setting>
-		<setting group="time_stamps" module_id="feed" is_hidden="0" type="string" var_name="feed_display_time_stamp" phrase_var_name="setting_feed_display_time_stamp" ordering="1" version_id="2.0.0alpha3">F j, Y g:i a</setting>
+		<setting group="" module_id="feed" is_hidden="0" type="string" var_name="feed_display_time_stamp" phrase_var_name="setting_feed_display_time_stamp" ordering="1" version_id="2.0.0alpha3">F j, Y g:i a</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="comment_feed_cutoff" phrase_var_name="setting_comment_feed_cutoff" ordering="1" version_id="2.0.0alpha3">4</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="cache_timeout" phrase_var_name="setting_feedcache_timeout" ordering="1" version_id="2.0.6">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="total_likes_to_display" phrase_var_name="setting_total_likes_to_display" ordering="1" version_id="3.0.0Beta1">3</setting>
@@ -28,8 +28,8 @@
 		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="timeline_optional" phrase_var_name="setting_timeline_optional" ordering="1" version_id="3.3.0beta1">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="add_feed_for_comments" phrase_var_name="setting_add_feed_for_comments" ordering="1" version_id="3.4.0beta1">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="enable_check_in" phrase_var_name="setting_enable_check_in" ordering="1" version_id="3.5.0beta1">0</setting>
-		<setting group="cache" module_id="feed" is_hidden="0" type="boolean" var_name="force_ajax_on_load" phrase_var_name="setting_force_ajax_on_load" ordering="1" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="feed" is_hidden="0" type="boolean" var_name="cache_each_feed_entry" phrase_var_name="setting_cache_each_feed_entry" ordering="2" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="force_ajax_on_load" phrase_var_name="setting_force_ajax_on_load" ordering="1" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="cache_each_feed_entry" phrase_var_name="setting_cache_each_feed_entry" ordering="2" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="feed" is_hidden="1" type="drop" var_name="feed_time_layout" phrase_var_name="setting_feed_time_layout" ordering="0" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:4:"days";s:6:"values";a:4:{i:0;s:4:"days";i:1;s:7:"minutes";i:2;s:5:"hours";i:3;s:6:"months";}}]]></setting>
 		<setting group="" module_id="feed" is_hidden="1" type="boolean" var_name="integrate_comments_into_feeds" phrase_var_name="setting_integrate_comments_into_feeds" ordering="1" version_id="2.0.0rc2">0</setting>
 		<setting group="" module_id="feed" is_hidden="1" type="boolean" var_name="allow_comments_on_feeds" phrase_var_name="setting_allow_comments_on_feeds" ordering="1" version_id="2.0.0alpha3">1</setting>
@@ -73,11 +73,6 @@
 		</block>
 		<block type_id="0" m_connection="pages.view" module_id="feed" component="time" location="2" is_active="0" ordering="9" disallow_access="" can_move="0">
 			<title>Display Timeline</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="core.index-member" module_id="feed" component="form2" location="1" is_active="0" ordering="1" disallow_access="" can_move="0">
-			<title>Feed Form</title>
 			<source_code />
 			<source_parsed />
 		</block>

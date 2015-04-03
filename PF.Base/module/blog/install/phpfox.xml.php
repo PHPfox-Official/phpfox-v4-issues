@@ -16,7 +16,7 @@
 		<menu module_id="blog" parent_var_name="" m_connection="mobile" var_name="menu_blog_blogs_532c28d5412dd75bf975fb951c740a30" ordering="114" url_value="blog" version_id="3.1.0rc1" disallow_access="" module="blog" mobile_icon="small_blogs.png" />
 	</menus>
 	<settings>
-		<setting group="time_stamps" module_id="blog" is_hidden="0" type="string" var_name="blog_time_stamp" phrase_var_name="setting_blog_time_stamp" ordering="2" version_id="2.0.0alpha1">F j, Y</setting>
+		<setting group="" module_id="blog" is_hidden="0" type="string" var_name="blog_time_stamp" phrase_var_name="setting_blog_time_stamp" ordering="2" version_id="2.0.0alpha1">F j, Y</setting>
 		<setting group="" module_id="blog" is_hidden="0" type="integer" var_name="top_bloggers_display_limit" phrase_var_name="setting_top_bloggers_display_limit" ordering="0" version_id="2.0.0alpha1">8</setting>
 		<setting group="" module_id="blog" is_hidden="0" type="integer" var_name="top_bloggers_min_post" phrase_var_name="setting_top_bloggers_min_post" ordering="0" version_id="2.0.0alpha1">10</setting>
 		<setting group="" module_id="blog" is_hidden="0" type="boolean" var_name="cache_top_bloggers" phrase_var_name="setting_cache_top_bloggers" ordering="0" version_id="2.0.0alpha1">1</setting>
@@ -36,16 +36,6 @@
 	<blocks>
 		<block type_id="0" m_connection="blog.index" module_id="blog" component="categories" location="1" is_active="1" ordering="3" disallow_access="" can_move="0">
 			<title>Categories</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="blog.index" module_id="blog" component="top" location="3" is_active="1" ordering="5" disallow_access="" can_move="0">
-			<title>Top Bloggers</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="blog.profile" module_id="blog" component="categories" location="3" is_active="1" ordering="2" disallow_access="" can_move="0">
-			<title>User Profile Blog Categories</title>
 			<source_code />
 			<source_parsed />
 		</block>

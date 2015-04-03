@@ -62,7 +62,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 			return false;
 		}
 		
-		$aThread = Phpfox::getService('forum.thread')->getActualThread($aVals['thread_id'], $aCallback);
+		$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($aVals['thread_id'], $aCallback);
 		
 		if ($aThread['is_closed'])
 		{
@@ -143,7 +143,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 			$aPost['count'] = ($aVals['total_post'] + 1);
 			$this->template()->assign(array(
 					'aPost' => $aPost,
-					'aThread' => Phpfox::getService('forum.thread')->getActualThread($aPost['thread_id']),
+					'aThread' => Forum_Service_Thread_Thread::instance()->getActualThread($aPost['thread_id']),
 					'aCallback' => $aCallback
 				)
 			)->getTemplate('forum.block.post');
@@ -335,7 +335,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if (!Phpfox::getUserParam('forum.can_move_forum_thread'))
 		{
-			$aThread = Phpfox::getService('forum.thread')->getActualThread($this->get('thread_id'));
+			$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($this->get('thread_id'));
 			
 			if (!Phpfox::getService('forum.moderate')->hasAccess($aThread['forum_id'], 'move_thread'))
 			{
@@ -358,7 +358,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 				->id($this->get('forum_id'))
 				->getForum();	
 				
-			$aThread = Phpfox::getService('forum.thread')->getActualThread($this->get('thread_id'));	
+			$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($this->get('thread_id'));
 			
 			/*
 			$aForum = Phpfox::getService('forum')
@@ -429,7 +429,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		Phpfox::isUser(true);
 		
-		$aThread = Phpfox::getService('forum.thread')->getActualThread($this->get('thread_id'));
+		$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($this->get('thread_id'));
 		
 		$bHasAccess = false;
 		if ((int) $aThread['group_id'] > 0)
@@ -473,7 +473,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		Phpfox::isUser(true);
 		
-		$aThread = Phpfox::getService('forum.thread')->getActualThread($this->get('thread_id'));
+		$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($this->get('thread_id'));
 		
 		$bHasAccess = false;
 		if ((int) $aThread['group_id'] > 0)
@@ -511,7 +511,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		Phpfox::isUser(true);
 		
-		$aThread = Phpfox::getService('forum.thread')->getActualThread($this->get('thread_id'));
+		$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($this->get('thread_id'));
 		
 		$bHasAccess = false;
 		if ((int) $aThread['group_id'] > 0)
@@ -554,7 +554,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 		Phpfox::isUser(true);
 		$this->error(false);
 		
-		$aThread = Phpfox::getService('forum.thread')->getActualThread($this->get('thread_id'));
+		$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($this->get('thread_id'));
 		
 		$bHasAccess = false;
 		$mReturn = false;

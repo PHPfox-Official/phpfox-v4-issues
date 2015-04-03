@@ -18,7 +18,7 @@
 			<is_active>1</is_active>
 			<is_site_wide>1</is_site_wide>
 			<php_group_code />
-			<php_view_code><![CDATA[$aRows = Phpfox::getService('forum.thread')->getForRss(Phpfox::getParam('rss.total_rss_display'));]]></php_view_code>
+			<php_view_code><![CDATA[$aRows = Forum_Service_Thread_Thread::instance()->getForRss(Phpfox::getParam('rss.total_rss_display'));]]></php_view_code>
 		</feed>
 	</rss>
 	<update_templates>

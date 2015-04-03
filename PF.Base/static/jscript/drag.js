@@ -27,9 +27,22 @@ Core_drag =
     				{
     					sParams += '&' + $(this).attr('name') + '=' + $(this).attr('value');
     				});
-    				
-    				$Core.ajaxMessage();
-    				$.ajaxCall(aParams['ajax'], sParams + '&global_ajax_message=true');
+
+				    if (aParams['ajax'].substr(0, 7) == 'http://') {
+					    $Core.processing();
+					    $.ajax({
+						    url: aParams['ajax'],
+						    type: 'POST',
+						    data: sParams,
+						    success: function() {
+							    $('.ajax_processing').remove();
+						    }
+					    });
+				    }
+				    else {
+					    $Core.ajaxMessage();
+    				    $.ajaxCall(aParams['ajax'], sParams + '&global_ajax_message=true');
+				    }
     			}    			
     		});
 		

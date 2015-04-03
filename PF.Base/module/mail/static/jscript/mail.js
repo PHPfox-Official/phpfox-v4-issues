@@ -1,11 +1,11 @@
 
 $Behavior.mailView = function()
 {
-	if ($Core.exists('#js_mail_textarea')){
+	if ($Core.exists('#js_mail_textarea')) {
 		$('#js_mail_textarea #message').keydown(function(){$Core.resizeTextarea($(this));});
 	}	
 	
-	if ($Core.exists('.mail_thread_form_holder')){
+	if ($Core.exists('.mail_thread_form_holder')) {
 		$('.mail_thread_form_holder').width($('#site_content').width());
 	}		
 
@@ -29,7 +29,7 @@ $Behavior.mailView = function()
 		$.ajaxCall('mail.viewMoreThreadMail', 'page=' + $('#js_mail_thread_current_cnt').html() + '&thread_id=' + $(this).attr('rel'), 'GET');
 		return false;
 	});
-}
+};
 
 $Core.addThreadMail = function(oObj){
 	var sContent = Editor.getContent();
@@ -37,7 +37,7 @@ $Core.addThreadMail = function(oObj){
 	$(oObj).ajaxCall('mail.addThreadMail', 'val[message]=' + encodeURIComponent(sContent));
 	$(oObj).find('.js_attachment_list').hide();
 	$(oObj).find('.js_attachment:first').val('');	
-}
+};
 
 $Core.mailThreadReset = function(){	
 	$('#feed_view_more_loader').hide();
@@ -45,4 +45,4 @@ $Core.mailThreadReset = function(){
 	var iTotal = parseInt($('#js_mail_thread_current_cnt').html());
 	$('#js_mail_thread_current_cnt').html(iTotal + 1);
 	$.scrollTo('.is_last_message:first');
-}
+};

@@ -1,8 +1,35 @@
 
+#panel {
+	.js_friend_search_link {
+		border-bottom:1px darken(@blockBg, 6%) solid;
+		padding:4px 0px;
+		cursor:pointer;
+	}
+}
+
 .js_temp_friend_search_form_holder {
 	background:@blockBg;
 	color:@blockColor;
 	border:1px @blockBg solid;
+
+	.js_friend_search_link {
+		> span {
+			img, .no_image_user {
+				max-width:32px;
+				max-height:32px;
+				padding:0px;
+			}
+
+			display:inline-block;
+			vertical-align:middle;
+			margin-right:6px;
+		}
+	}
+}
+
+.js_friend_search_link:hover {
+	background:darken(@blockBg, 6%);
+	transition:@transition;
 }
 
 .js_custom_search_friend_holder {
@@ -40,7 +67,13 @@
 	}
 }
 
-#js_friend_loader > input {
+#js_friend_search_content {
+	.friend_search_holder {
+		font-size:@fontSizeBase - 2;
+	}
+}
+
+#js_friend_loader input {
 	.full_input();
 }
 
@@ -51,6 +84,11 @@
 	width:31%;
 	margin:0px 6px 10px 0px;
 	vertical-align:top;
+
+	> span {
+		display:inline-block;
+		vertical-align:middle;
+	}
 }
 
 .friend_search_holder:hover {

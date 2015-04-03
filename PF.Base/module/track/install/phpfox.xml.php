@@ -10,26 +10,9 @@
 		<writable />
 	</data>
 	<settings>
-		<setting group="cache" module_id="track" is_hidden="0" type="integer" var_name="cache_recently_viewed_by_timeout" phrase_var_name="setting_cache_recently_viewed_by_timeout" ordering="1" version_id="3.6.0rc1">0</setting>
-		<setting group="cache" module_id="track" is_hidden="0" type="integer" var_name="cache_allow_recurrent_visit" phrase_var_name="setting_cache_allow_recurrent_visit" ordering="2" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="track" is_hidden="0" type="integer" var_name="cache_recently_viewed_by_timeout" phrase_var_name="setting_cache_recently_viewed_by_timeout" ordering="1" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="track" is_hidden="0" type="integer" var_name="cache_allow_recurrent_visit" phrase_var_name="setting_cache_allow_recurrent_visit" ordering="2" version_id="3.6.0rc1">0</setting>
 	</settings>
-	<blocks>
-		<block type_id="0" m_connection="blog.view" module_id="track" component="recent-views" location="3" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title>Recently Viewed By</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="blog.index" module_id="track" component="recent-views" location="3" is_active="1" ordering="6" disallow_access="" can_move="0">
-			<title>Recent Visitors</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="quiz.profile" module_id="track" component="recent-views" location="1" is_active="1" ordering="2" disallow_access="" can_move="0">
-			<title></title>
-			<source_code />
-			<source_parsed />
-		</block>
-	</blocks>
 	<hooks>
 		<hook module_id="track" hook_type="component" module="track" call_name="track.component_block_recent_views_process" added="1231838390" version_id="2.0.0alpha1" />
 		<hook module_id="track" hook_type="component" module="track" call_name="track.component_block_recent_views_clean" added="1231838390" version_id="2.0.0alpha1" />

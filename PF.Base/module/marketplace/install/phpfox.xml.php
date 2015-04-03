@@ -15,7 +15,7 @@
 		<menu module_id="marketplace" parent_var_name="" m_connection="mobile" var_name="menu_marketplace_marketplace_532c28d5412dd75bf975fb951c740a30" ordering="120" url_value="marketplace" version_id="3.1.0rc1" disallow_access="" module="marketplace" mobile_icon="small_marketplace.png" />
 	</menus>
 	<settings>
-		<setting group="time_stamps" module_id="marketplace" is_hidden="0" type="string" var_name="marketplace_view_time_stamp" phrase_var_name="setting_marketplace_view_time_stamp" ordering="1" version_id="2.0.0alpha4">F j, Y</setting>
+		<setting group="" module_id="marketplace" is_hidden="0" type="string" var_name="marketplace_view_time_stamp" phrase_var_name="setting_marketplace_view_time_stamp" ordering="1" version_id="2.0.0alpha4">F j, Y</setting>
 		<setting group="" module_id="marketplace" is_hidden="0" type="integer" var_name="total_listing_more_from" phrase_var_name="setting_total_listing_more_from" ordering="1" version_id="2.0.0rc1">10</setting>
 		<setting group="" module_id="marketplace" is_hidden="0" type="integer" var_name="how_many_sponsored_listings" phrase_var_name="setting_how_many_sponsored_listings" ordering="1" version_id="2.0.5">5</setting>
 		<setting group="" module_id="marketplace" is_hidden="0" type="integer" var_name="days_to_expire_listing" phrase_var_name="setting_days_to_expire_listing" ordering="1" version_id="3.5.0beta1">0</setting>

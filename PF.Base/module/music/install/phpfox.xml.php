@@ -15,7 +15,7 @@
 	</menus>
 	<settings>
 		<setting group="" module_id="music" is_hidden="0" type="integer" var_name="music_user_group_id" phrase_var_name="setting_music_user_group_id" ordering="1" version_id="2.0.0beta1">0</setting>
-		<setting group="time_stamps" module_id="music" is_hidden="0" type="string" var_name="music_release_date_time_stamp" phrase_var_name="setting_music_release_date_time_stamp" ordering="1" version_id="2.0.0beta1">F j, Y</setting>
+		<setting group="" module_id="music" is_hidden="0" type="string" var_name="music_release_date_time_stamp" phrase_var_name="setting_music_release_date_time_stamp" ordering="1" version_id="2.0.0beta1">F j, Y</setting>
 		<setting group="" module_id="music" is_hidden="0" type="integer" var_name="sponsored_songs_to_show" phrase_var_name="setting_sponsored_songs_to_show" ordering="1" version_id="2.0.5">5</setting>
 		<setting group="" module_id="music" is_hidden="1" type="boolean" var_name="music_enable_mass_uploader" phrase_var_name="setting_music_enable_mass_uploader" ordering="1" version_id="2.0.8">0</setting>
 		<setting group="" module_id="music" is_hidden="1" type="drop" var_name="music_index_controller" phrase_var_name="setting_music_index_controller" ordering="1" version_id="2.0.0rc6"><![CDATA[a:2:{s:7:"default";s:4:"song";s:6:"values";a:3:{i:0;s:4:"song";i:1;s:5:"album";i:2;s:6:"artist";}}]]></setting>
@@ -63,11 +63,6 @@
 		</block>
 		<block type_id="0" m_connection="music.index" module_id="music" component="featured" location="3" is_active="1" ordering="5" disallow_access="" can_move="0">
 			<title>Featured Songs</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="music.browse.album" module_id="music" component="featured-album" location="3" is_active="1" ordering="4" disallow_access="" can_move="0">
-			<title>Featured Albums</title>
 			<source_code />
 			<source_parsed />
 		</block>

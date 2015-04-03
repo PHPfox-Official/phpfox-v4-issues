@@ -56,7 +56,7 @@ class Forum_Service_Api extends Phpfox_Service
 		
 		$aCond = array();
 		$aCond[] = 'ft.forum_id = ' . $iId . ' AND ft.group_id = 0 AND ft.view_id = 0 AND ft.is_announcement = 0';
-		list($iCnt, $aThreads) = Phpfox::getService('forum.thread')->get($aCond, 'ft.time_update DESC', $this->_oApi->get('page'), 10);
+		list($iCnt, $aThreads) = Forum_Service_Thread_Thread::instance()->get($aCond, 'ft.time_update DESC', $this->_oApi->get('page'), 10);
 		$aReturn = array();
 		foreach ($aThreads as $iKey => $aThread)
 		{
@@ -100,7 +100,7 @@ class Forum_Service_Api extends Phpfox_Service
 		
 		$aCond = array();
 		$aCond[] = 'ft.thread_id = ' . $iId;
-		list($iCnt, $aThread) = Phpfox::getService('forum.thread')->getThread($aCond, array(), 'fp.time_stamp ASC', $this->_oApi->get('page'), 20);
+		list($iCnt, $aThread) = Forum_Service_Thread_Thread::instance()->getThread($aCond, array(), 'fp.time_stamp ASC', $this->_oApi->get('page'), 20);
 
 		$aReturn = array(
 				'thread_id' => $aThread['thread_id'],

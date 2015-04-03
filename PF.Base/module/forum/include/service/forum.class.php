@@ -303,7 +303,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			return false;
 		}		
 		
-		$aItems = Phpfox::getService('forum.thread')->getForRss(Phpfox::getParam('rss.total_rss_display'), ($aForum['forum_id'] . (is_array($this->getChildren()) ? ',' . implode(',', $this->getChildren()) : '')));
+		$aItems = Forum_Service_Thread_Thread::instance()->getForRss(Phpfox::getParam('rss.total_rss_display'), ($aForum['forum_id'] . (is_array($this->getChildren()) ? ',' . implode(',', $this->getChildren()) : '')));
 		
 		$aRss = array(
 			'href' => Phpfox_Url::instance()->makeUrl('forum', array($aForum['name_url'])),
@@ -486,7 +486,7 @@ class Forum_Service_Forum extends Phpfox_Service
 		{
 			$aFilterMenu[] = true;
 			
-			$iPendingThreads = Phpfox::getService('forum.thread')->getPendingThread();
+			$iPendingThreads = Forum_Service_Thread_Thread::instance()->getPendingThread();
 			if ($iPendingThreads)
 			{
 				$aFilterMenu[Phpfox::getPhrase('forum.pending_threads') . ' <span class="pending">' . $iPendingThreads . '</span>'] = 'forum.search.view_pending-thread';

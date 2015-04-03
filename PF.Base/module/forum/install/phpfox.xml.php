@@ -15,14 +15,14 @@
 	</menus>
 	<settings>
 		<setting group="" module_id="forum" is_hidden="0" type="integer" var_name="keep_active_posts" phrase_var_name="setting_keep_active_posts" ordering="1" version_id="2.0.0alpha1">60</setting>
-		<setting group="time_stamps" module_id="forum" is_hidden="0" type="string" var_name="forum_time_stamp" phrase_var_name="setting_forum_time_stamp" ordering="1" version_id="2.0.0alpha1">M j, g:i a</setting>
-		<setting group="time_stamps" module_id="forum" is_hidden="0" type="string" var_name="forum_user_time_stamp" phrase_var_name="setting_forum_user_time_stamp" ordering="2" version_id="2.0.0alpha1">F j, Y</setting>
+		<setting group="" module_id="forum" is_hidden="0" type="string" var_name="forum_time_stamp" phrase_var_name="setting_forum_time_stamp" ordering="1" version_id="2.0.0alpha1">M j, g:i a</setting>
+		<setting group="" module_id="forum" is_hidden="0" type="string" var_name="forum_user_time_stamp" phrase_var_name="setting_forum_user_time_stamp" ordering="2" version_id="2.0.0alpha1">F j, Y</setting>
 		<setting group="" module_id="forum" is_hidden="0" type="integer" var_name="total_posts_per_thread" phrase_var_name="setting_total_posts_per_thread" ordering="1" version_id="2.0.0alpha1">15</setting>
 		<setting group="" module_id="forum" is_hidden="0" type="integer" var_name="total_forum_tags_display" phrase_var_name="setting_total_forum_tags_display" ordering="1" version_id="2.0.0alpha1">100</setting>
 		<setting group="" module_id="forum" is_hidden="0" type="integer" var_name="total_forum_post_preview" phrase_var_name="setting_total_forum_post_preview" ordering="1" version_id="2.0.0alpha1">10</setting>
 		<setting group="" module_id="forum" is_hidden="0" type="boolean" var_name="rss_feed_on_each_forum" phrase_var_name="setting_rss_feed_on_each_forum" ordering="1" version_id="2.0.0beta5">1</setting>
 		<setting group="" module_id="forum" is_hidden="0" type="boolean" var_name="enable_rss_on_threads" phrase_var_name="setting_enable_rss_on_threads" ordering="1" version_id="2.0.0beta5">1</setting>
-		<setting group="time_stamps" module_id="forum" is_hidden="0" type="string" var_name="global_forum_timezone" phrase_var_name="setting_global_forum_timezone" ordering="3" version_id="2.0.5">g:i a</setting>
+		<setting group="" module_id="forum" is_hidden="0" type="string" var_name="global_forum_timezone" phrase_var_name="setting_global_forum_timezone" ordering="3" version_id="2.0.5">g:i a</setting>
 		<setting group="" module_id="forum" is_hidden="0" type="boolean" var_name="forum_database_tracking" phrase_var_name="setting_forum_database_tracking" ordering="1" version_id="2.0.5dev2">1</setting>
 	</settings>
 	<blocks>

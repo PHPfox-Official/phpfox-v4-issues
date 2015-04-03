@@ -21,7 +21,7 @@ class Ad_Component_Controller_Admincp_Placement_Add extends Phpfox_Component
 	public function process()
 	{
 		$bIsEdit = false;
-		if (($iId = $this->request()->getInt('id')) && ($aPlacement = Phpfox::getService('ad')->getPlacement($iId)))
+		if (($iId = $this->request()->getInt('id')) && ($aPlacement = Ad_Service_Ad::instance()->getPlacement($iId)))
 		{
 			$bIsEdit = true;
 			$this->setParam('currency_value_val[cost]', unserialize($aPlacement['cost']));	
@@ -49,7 +49,7 @@ class Ad_Component_Controller_Admincp_Placement_Add extends Phpfox_Component
 			}
 		}
 		
-		$aPlans = Phpfox::getService('ad')->getPlans(true);
+		$aPlans = Ad_Service_Ad::instance()->getPlans(true);
 		
 		$aCount = array();
 		for ($i = 1; $i <= 12; $i++)

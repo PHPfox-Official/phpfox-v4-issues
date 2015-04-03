@@ -3,11 +3,11 @@ input[type="text"], input[type="email"], input[type="password"], textarea, input
 	background:@formBg;
 	color:@formColor;
 	border:@formBorder;
-	padding:20px 0px;
+	padding:12px 0px;
 	text-indent:10px;
 	outline:0px;
 	font-family:@fontFamilyBase;
-	font-size:@fontSizeBase + 1;
+	font-size:@fontSizeBase;
 	box-shadow:none;
 	resize:none;
 }
@@ -20,6 +20,7 @@ select, select:focus {
 	.table {
 		padding:0px;
 		margin-bottom:10px;
+		border:0px;
 	}
 
 	.table_clear {
@@ -27,7 +28,7 @@ select, select:focus {
 	}
 }
 
-.table {
+.table, .table3 {
 	background:@blockBg;
 	padding:10px;
 	margin-bottom:20px;
@@ -42,14 +43,14 @@ select, select:focus {
 		padding-bottom:10px;
 	}
 
-    .table_right {
+    .table_right, .table_right_text, .row_right {
 	    .reset();
 	    position:relative;
 
 		input[type="text"], input[type="password"], textarea, textarea:focus {
 			.full_input();
 
-			padding:20px 0px;
+			/*padding:10px 0px;*/
 		}
 
 	    select {
@@ -127,8 +128,11 @@ input.button_off {
 
 table {
 	th {
-		background:lighten(@topBg, 10%);
-		color:darken(@topColor, 20%);
+		background:darken(@brandPrimaryColor, 4%);
+		border:0px;
+		border-top:1px darken(@brandPrimaryColor, 8%) solid;
+		border-bottom:1px darken(@brandPrimaryColor, 8%) solid;
+		color:@brandPrimary;
 		font-weight:300;
 		text-transform:uppercase;
 		letter-spacing:1px;
@@ -189,6 +193,7 @@ ul.action {
 
 .table_clear_more_options {
 	text-align:center;
+	margin-bottom:10px;
 
 	a, a:hover {
 		display:block;
@@ -298,5 +303,77 @@ a.delete_link, a.delete_link:hover {
 				margin-bottom:10px;
 			}
 		}
+	}
+}
+
+.item_is_active, .item_is_not_active {
+	background:darken(@blockBg, 8%);
+	color:@blockColor;
+	border:0px;
+	padding:0px 8px;
+	text-align:center;
+	cursor:pointer;
+
+	> input, > label > input {
+		display:none;
+	}
+}
+
+.item_is_active:hover, .item_is_not_active:hover {
+	background:darken(@blockBg, 15%);
+	transition:@transition;
+}
+
+.item_is_active_holder {
+	height:40px;
+	line-height:40px;
+}
+
+.item_selection_not_active .item_is_not_active, .item_selection_active .item_is_active {
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+}
+
+.settings {
+	.go_left {
+		font-weight:500;
+	}
+	.extra_info {
+		padding-top:10px;
+	}
+}
+
+.lang_table {
+	display:table;
+	width:100%;
+
+	.lang_title {
+		width:20%;
+		padding-left:10px;
+	}
+
+	.lang_value, .lang_title {
+		display:table-cell;
+		vertical-align:middle;
+	}
+}
+
+.ajax_processing {
+	position:fixed;
+	top:0px;
+	right:0px;
+	z-index:100000000;
+	min-width:200px;
+	height:@headerHeight;
+	line-height:@headerHeight;
+	text-align:right;
+	background:#3f3f3f;
+
+	i {
+		display:inline-block;
+		font-size:18px;
+		color:@headerColor;
+		margin-right:10px;
+		vertical-align:middle;
 	}
 }

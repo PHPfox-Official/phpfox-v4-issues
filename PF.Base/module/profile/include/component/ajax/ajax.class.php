@@ -72,8 +72,8 @@ class Profile_Component_Ajax_Ajax extends Phpfox_Ajax
 				$oTpl->assign(array(
 						'aBlocks1' => ($oTpl->bIsSample ? true : Phpfox_Module::instance()->getModuleBlocks(1)),
 						'aBlocks3' => ($oTpl->bIsSample ? true : Phpfox_Module::instance()->getModuleBlocks(3)),
-						'aAdBlocks1' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Phpfox::getService('ad')->getForBlock(1) : null)),
-						'aAdBlocks3' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Phpfox::getService('ad')->getForBlock(3) : null))
+						'aAdBlocks1' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Ad_Service_Ad::instance()->getForBlock(1) : null)),
+						'aAdBlocks3' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Ad_Service_Ad::instance()->getForBlock(3) : null))
 					)
 				);
 			}

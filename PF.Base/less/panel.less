@@ -37,7 +37,6 @@
 
 .panel_rows {
 	background:@blockBg;
-	border-bottom:1px darken(@blockBg, 8%) solid;
 	color:@blockColor;
 	position:relative;
 	font-size:@fontSizeBase - 2;
@@ -46,6 +45,7 @@
 		> a, > a:hover {
 			display:block;
 			color:@blockColor;
+			border-bottom:1px darken(@blockBg, 8%) solid;
 		}
 
 		.panel_focus {
@@ -77,6 +77,10 @@
 	}
 }
 
-.panel_rows:hover {
-	background:darken(@blockBg, 4%);
+.panel_rows {
+	li {
+		> a:hover {
+			background:darken(@blockBg, 4%);
+		}
+	}
 }

@@ -132,7 +132,7 @@ class Ad_Component_Controller_Admincp_Sponsor extends Phpfox_Component
 		
 		$iLimit = $oSearch->getDisplay();		 	    
 		
-		list($iCnt, $aAds) = Phpfox::getService('ad')->getAdSponsor($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);
+		list($iCnt, $aAds) = Ad_Service_Ad::instance()->getAdSponsor($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);
 		
 		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iLimit, 'count' => $oSearch->getSearchTotal($iCnt)));
 		
@@ -140,7 +140,7 @@ class Ad_Component_Controller_Admincp_Sponsor extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('ad.manage_sponsor_campaigns'), $this->url()->makeUrl('admincp.ad.sponsor'))
 			->assign(array(
 					'aAds' => $aAds,
-					'iPendingCount' => (int) Phpfox::getService('ad')->getPendingCount(),
+					'iPendingCount' => (int) Ad_Service_Ad::instance()->getPendingCount(),
 					'sPendingLink' => Phpfox_Url::instance()->makeUrl('admincp.ad', array('view' => 'pending')),
 					'bIsSearch' => ($this->request()->get('search-id') ? true : false),
 					'sView' => $sView

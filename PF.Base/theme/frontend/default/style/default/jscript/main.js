@@ -258,8 +258,8 @@ $Behavior.globalThemeInit = function()
 		$(this).parent().find('#header_sub_menu_search_input').addClass('focus');
 		// if ($(this).val() == $('#header_sub_menu_search_input_value').html()){
 			$(this).val('');
-			if ((isset(oModules['friend']) ))
-			{
+			// if ((isset(oModules['friend']) ))
+		// {
 				$Core.searchFriendsInput.init({
 					'id': 'header_sub_menu_search',
 					'max_search': (getParam('bJsIsMobile') ? 5 : 10),
@@ -269,7 +269,7 @@ $Behavior.globalThemeInit = function()
 					'panel_mode': true
 				});
 				$Core.searchFriendsInput.buildFriends(this);			
-			}			
+			// }
 		// }
 	});	
 	

@@ -20,7 +20,7 @@ class Admincp_Component_Controller_Menu_Add extends Phpfox_Component
 	 */
 	public function process()
 	{	
-		$oAdmincpMenu =  Phpfox::getService('admincp.menu');
+		$oAdmincpMenu =  Admincp_Service_Menu_Menu::instance();
 		$bIsEdit = false;
 		$bIsPage = false;
 		
@@ -44,7 +44,7 @@ class Admincp_Component_Controller_Menu_Add extends Phpfox_Component
 			$aRow = $oAdmincpMenu->getForEdit($iEditId);			
 			$aLanguages = Phpfox::getService('language')->getWithPhrase($aRow['var_name']);
 			$bIsEdit = true;
-			$aTypes = Phpfox::getService('admincp.menu')->getTypes();
+			$aTypes = Admincp_Service_Menu_Menu::instance()->getTypes();
 			if (!in_array($aRow['m_connection'], $aTypes))
 			{
 				$aRow['m_connection'] = $aRow['m_connection'];
@@ -65,12 +65,12 @@ class Admincp_Component_Controller_Menu_Add extends Phpfox_Component
 			if ($bIsEdit)
 			{
 				$sMessage = Phpfox::getPhrase('admincp.menu_successfully_updated');
-				Phpfox::getService('admincp.menu.process')->update($aRow['menu_id'], $aVals);
+				Admincp_Service_Menu_Process::instance()->update($aRow['menu_id'], $aVals);
 			}
 			else 
 			{
 				$sMessage = Phpfox::getPhrase('admincp.menu_successfully_added');
-				Phpfox::getService('admincp.menu.process')->add($aVals);
+				Admincp_Service_Menu_Process::instance()->add($aVals);
 			}
 			
 			if (isset($aVals['is_page']))
@@ -91,7 +91,7 @@ class Admincp_Component_Controller_Menu_Add extends Phpfox_Component
 		$this->template()->assign(array(
 				'aProducts' => Admincp_Service_Product_Product::instance()->get(),
 				'aModules' => Phpfox::getService('admincp.module')->getModules(),
-				'aParents' => Phpfox::getService('admincp.menu')->get(array('menu.parent_id = 0 AND menu.m_connection IN(\'main\', \'main_right\')'), false),
+				'aParents' => Admincp_Service_Menu_Menu::instance()->get(array('menu.parent_id = 0 AND menu.m_connection IN(\'main\', \'main_right\')'), false),
 				'aControllers' => Phpfox::getService('admincp.component')->get(true),
 				'aPages' => Phpfox::getService('page')->getCache(),
 				'aLanguages' => $aLanguages,
@@ -101,7 +101,7 @@ class Admincp_Component_Controller_Menu_Add extends Phpfox_Component
 				'bIsPage' => $bIsPage
 			)
 		)
-		->setBreadcrumb(Phpfox::getPhrase('admincp.add_new_menu'))
+		->setBreadcrumb(Phpfox::getPhrase('admincp.add_new_menu'), $this->url()->makeUrl('current'), true)
 		->setTitle(Phpfox::getPhrase('admincp.add_new_menu'));
 	}
 }

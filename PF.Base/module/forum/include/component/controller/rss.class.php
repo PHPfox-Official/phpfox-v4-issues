@@ -70,7 +70,7 @@ class Forum_Component_Controller_Rss extends Phpfox_Component
 				return Phpfox_Error::set(Phpfox::getPhrase('forum.not_a_valid_group'));
 			}
 
-			$aItems = Phpfox::getService('forum.thread')->getForRss(Phpfox::getParam('rss.total_rss_display'), null, $aGroup['page_id']);
+			$aItems = Forum_Service_Thread_Thread::instance()->getForRss(Phpfox::getParam('rss.total_rss_display'), null, $aGroup['page_id']);
 			
 			$aRss = array(
 				'href' => '', // Phpfox_Url::instance()->makeUrl('forum', array($aGroup['title_url'])),

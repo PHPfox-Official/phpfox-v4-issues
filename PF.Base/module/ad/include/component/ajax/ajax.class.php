@@ -42,11 +42,11 @@ class Ad_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if (Phpfox::getParam('ad.multi_ad'))
 		{
-			$aPlan = Phpfox::getService('ad')->getPlan( 50, true );
+			$aPlan = Ad_Service_Ad::instance()->getPlan( 50, true );
 		}
 		else
 		{
-			$aPlan = Phpfox::getService('ad')->getPlan($this->get('block_id'), false);
+			$aPlan = Ad_Service_Ad::instance()->getPlan($this->get('block_id'), false);
 		}
 		
 		if ($aPlan)
@@ -96,7 +96,7 @@ class Ad_Component_Ajax_Ajax extends Phpfox_Ajax
 			$iBlockId = $this->get('block_id');
 			// http://www.phpfox.com/tracker/view/15439/
 			// solves conflict with http://www.phpfox.com/tracker/view/14192/
-			if ($aPlan = Phpfox::getService('ad')->getPlan($iBlockId, ($iBlockId == 50) ? true : false))
+			if ($aPlan = Ad_Service_Ad::instance()->getPlan($iBlockId, ($iBlockId == 50) ? true : false))
 			{
 				$iTotal = ($this->get('isCPM') ? (($this->get('total') / 1000) * $aPlan['default_cost']) : ($this->get('total')*$aPlan['default_cost']));
 				$this->html('#js_ad_cost', Phpfox::getService('core.currency')->getCurrency($iTotal))

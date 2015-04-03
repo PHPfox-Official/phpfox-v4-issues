@@ -48,7 +48,7 @@ class Core_Service_Callback extends Phpfox_Service
 	public function exportModule($sProduct, $sModule, $bCore)
 	{
 		$iCnt = 0;
-		(Phpfox::getService('admincp.menu')->export($sProduct, $sModule) ? $iCnt++ : null);
+		(Admincp_Service_Menu_Menu::instance()->export($sProduct, $sModule) ? $iCnt++ : null);
 		(Phpfox::getService('admincp.setting')->exportGroup($sProduct, $sModule) ? $iCnt++ : null);
 		(Phpfox::getService('admincp.setting')->export($sProduct, $sModule, $bCore) ? $iCnt++ : null);
 		(Phpfox::getService('admincp.module.block')->export($sProduct, $sModule) ? $iCnt++ : null);

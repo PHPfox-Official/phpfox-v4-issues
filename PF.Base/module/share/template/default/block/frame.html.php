@@ -11,6 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{*
 <div class="label_flow_menu">	
 	<ul>
 		{if Phpfox::isUser() && $iFeedId > 0}
@@ -32,7 +33,7 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 	</ul>
 	<br class="clear" />
-</div>	
+</div>
 <div class="labelFlowContent" id="js_share_content">
 	{if Phpfox::isUser() && $iFeedId > 0}
 	{module name='feed.share' type=$sBookmarkType url=$sBookmarkUrl}
@@ -43,3 +44,9 @@ defined('PHPFOX') or exit('NO DICE!');
 <script type="text/javascript">$Core.loadStaticFile('{jscript file='switch_legend.js'}');</script>
 <script type="text/javascript">$Core.loadStaticFile('{jscript file='switch_menu.js'}');</script>
 <script type="text/javascript">$Core.loadInit();</script>
+*}
+{if Phpfox::isUser() && $iFeedId > 0}
+{module name='feed.share' type=$sBookmarkType url=$sBookmarkUrl}
+{else}
+{module name='share.friend' type=$sBookmarkType url=$sBookmarkUrl title=$sBookmarkTitle}
+{/if}

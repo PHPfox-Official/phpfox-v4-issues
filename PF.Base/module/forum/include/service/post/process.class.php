@@ -111,7 +111,7 @@ class Forum_Service_Post_Process extends Phpfox_Service
 		{		
 			Phpfox::getService('forum.subscribe')->sendEmails($aVals['thread_id'], $iId);
 			
-			$aThread = Phpfox::getService('forum.thread')->getActualThread($aVals['thread_id']);
+			$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($aVals['thread_id']);
 			
 			if (!Phpfox::getService('forum')->isPrivateForum($aThread['forum_id']))
 			{
@@ -143,7 +143,7 @@ class Forum_Service_Post_Process extends Phpfox_Service
 			return false;
 		}
 		
-		$aThread = Phpfox::getService('forum.thread')->getActualThread($aPost['thread_id']);
+		$aThread = Forum_Service_Thread_Thread::instance()->getActualThread($aPost['thread_id']);
 		
 		$this->database()->update(Phpfox::getT('forum_post'), array('view_id' => '0'), 'post_id = ' . (int) $iPostId);		
 

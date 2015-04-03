@@ -626,6 +626,7 @@ $Behavior.globalInit = function()
 		$(window).scroll(function() {
 			if ($Core.isInView(t, 100) && !isInView) {
 				if (t.find('.next_page').length) {
+					t.find('.next_page').addClass('focus');
 					$.ajax({
 						url: t.find('.next_page').attr('href'),
 						contentType: 'application/json',
@@ -743,7 +744,7 @@ $Behavior.globalInit = function()
 				// $('.mosaicflow_load').addClass('mosaicflow');
 
 				$('.mosaicflow_load').mosaicflow({
-					minItemWidth: 200,
+					minItemWidth: $('.mosaicflow_load').data('width'),
 					itemHeightCalculation: 'attribute'
 				});
 				clearInterval(mLoad);
@@ -1518,6 +1519,12 @@ $Core.popup = function(sUrl, aParams)
 	window.open(sUrl, iId, sParams);
 };
 
+$Core.processing = function()
+{
+	$('.ajax_processing').remove();
+	$('body').prepend('<div class="ajax_processing"><i class="fa fa-spin fa-circle-o-notch"></i></div>');
+};
+
 $Core.ajaxMessage = function()
 {
 	$('#global_ajax_message').html(getPhrase('core.saving')).animate({opacity: 0.9}).slideDown();
@@ -1565,6 +1572,9 @@ $Core.page = function(url) {
 	});
 };
 
+if (!isset(page_editor_meta)) {
+	var page_editor_meta;
+}
 $Core.show_page = function($aParams)
 {
 	if (typeof CorePageAjaxBrowsingStart == 'function')
@@ -1609,6 +1619,12 @@ $Core.show_page = function($aParams)
 	$('._block_breadcrumb').html($aParams['breadcrumb']);
 	$('._block_h1').html($aParams['h1']);
 	$('._block_error').html($aParams['error']);
+
+	// controller_e
+	if ($('#page_editor_popup').length) {
+		page_editor_meta = $aParams['meta'];
+		$('#page_editor_popup').attr('href', $aParams['controller_e']);
+	}
 
 	$('body').attr('id', 'page_' + $aParams['id']);
 	$('body').attr('class', $aParams['class']);
@@ -1725,15 +1741,6 @@ $Behavior.linkClickAll = function()
 		if (isset($aUrlParts['query']))
 		{
 			var aUrlParts = explode('/', $aUrlParts['query']);
-			var sAdminPath = 'admincp';
-			if (getParam('sAdminCPLocation') != ''){
-				sAdminPath = getParam('sAdminCPLocation');
-			}
-			if (aUrlParts[1] == sAdminPath)
-			{
-				return;
-			}
-			
 			if (aUrlParts[1] == 'user' && aUrlParts[2] == 'logout')
 			{
 				return;

@@ -37,7 +37,7 @@ class Admincp_Component_Controller_Block_Index extends Phpfox_Component
 		}
 		
 		$aBlocks = array();
-		$aRows = Phpfox::getService('admincp.block')->get();
+		$aRows = Admincp_Service_Block_Block::instance()->get();
 		
 		foreach ($aRows as $iKey => $aRow)
 		{
@@ -45,13 +45,20 @@ class Admincp_Component_Controller_Block_Index extends Phpfox_Component
 			{
 				continue;
 			}
+
+			if ($aRow['m_connection'] == 'admincp.index') {
+				continue;
+			}
+
 			$aBlocks[$aRow['m_connection']][$aRow['location']][] = $aRow;
 		}
+
+		// d($aBlocks); exit;
 		
 		ksort($aBlocks);
 				
 		$this->template()
-			->setSectionTitle('<a href="' . $this->url()->makeUrl('admincp.block') . '">Site Blocks</a>')
+			->setSectionTitle('Blocks')
 			->setActionMenu([
 				'Add Block' => [
 					'class' => 'popup',

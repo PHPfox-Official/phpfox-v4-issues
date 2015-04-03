@@ -57,36 +57,33 @@ $.fn.ajaxCall = function(sCall, sExtra, bNoForm, sType)
 			break;
 	}	
 	
-	var sUrl = getParam('sJsAjax');
-	
-	if (typeof oParams['im_server'] != 'undefined' && sCall.indexOf('im.') > (-1))
-	{
-		sUrl = getParam('sJsAjax').replace(getParam('sJsHome'),getParam('im_server'));
+	var sUrl = getParam('sJsAjax'),
+		sParams;
+	if (sCall.substr(0, 7) == 'http://') {
+		sUrl = sCall;
+		sParams = this.getForm();
 	}
-	
-	var sParams = '&' + getParam('sGlobalTokenName') + '[ajax]=true&' + getParam('sGlobalTokenName') + '[call]=' + sCall + '' + (bNoForm ? '' : this.getForm());
-	if (sExtra)
-	{
-		sParams += '&' + ltrim(sExtra, '&');
-	}
-	
-	if (!sParams.match(/\[security_token\]/i))
-	{
-		sParams += '&' + getParam('sGlobalTokenName') + '[security_token]=' + oCore['log.security_token'];
-	}
-	
-	sParams += '&' + getParam('sGlobalTokenName') + '[is_admincp]=' + (oCore['core.is_admincp'] ? '1' : '0');
-	sParams += '&' + getParam('sGlobalTokenName') + '[is_user_profile]=' + (oCore['profile.is_user_profile'] ? '1' : '0');
-	sParams += '&' + getParam('sGlobalTokenName') + '[profile_user_id]=' + (oCore['profile.user_id'] ? oCore['profile.user_id'] : '0');	
+	else {
+		sParams = '&' + getParam('sGlobalTokenName') + '[ajax]=true&' + getParam('sGlobalTokenName') + '[call]=' + sCall + '' + (bNoForm ? '' : this.getForm());
+		if (sExtra)
+		{
+			sParams += '&' + ltrim(sExtra, '&');
+		}
 
-	if (getParam('bJsIsMobile')){
-		sParams += '&js_mobile_version=true';
+		if (!sParams.match(/\[security_token\]/i))
+		{
+			sParams += '&' + getParam('sGlobalTokenName') + '[security_token]=' + oCore['log.security_token'];
+		}
+
+		sParams += '&' + getParam('sGlobalTokenName') + '[is_admincp]=' + (oCore['core.is_admincp'] ? '1' : '0');
+		sParams += '&' + getParam('sGlobalTokenName') + '[is_user_profile]=' + (oCore['profile.is_user_profile'] ? '1' : '0');
+		sParams += '&' + getParam('sGlobalTokenName') + '[profile_user_id]=' + (oCore['profile.user_id'] ? oCore['profile.user_id'] : '0');
 	}
-	
+
 	oCacheAjaxRequest = $.ajax(
 	{
 			type: sType,
-		  	url: sUrl,//getParam('sJsStatic') + "ajax.php",
+		  	url: sUrl,
 		  	dataType: "script",	
 			data: sParams			
 		}
@@ -322,9 +319,11 @@ $Ready(function() {
 	}
 });
 
-$Event(function() {
-	if ($('.ace_editor').length) {
+$Ready(function() {
+	$('.ace_editor:not(.built)').each(function() {
 		var t = $('.ace_editor');
+
+		t.addClass('built');
 		$.getScript('//cdn.jsdelivr.net/ace/1.1.8/min/ace.js', function() {
 			$AceEditor.obj = ace.edit(t.get(0));
 			$AceEditor.obj.setTheme('ace/theme/github');
@@ -339,10 +338,15 @@ $Event(function() {
 						sender: 'editor|cli'
 					},
 					exec: function(env, args, request) {
+						var data = '';
+						if (t.data('form-data')) {
+							data = $(t.data('form-data')).serialize() + '&';
+						}
+
 						$.ajax({
 							url: t.data('ace-save'),
 							type: 'POST',
-							data: 'is_ajax_post=1&content=' + encodeURIComponent($AceEditor.obj.getSession().getValue()),
+							data: data + 'is_ajax_post=1&content=' + encodeURIComponent($AceEditor.obj.getSession().getValue()),
 							success: function(e) {
 								p(e);
 							}
@@ -351,5 +355,5 @@ $Event(function() {
 				});
 			}
 		});
-	}
+	});
 });

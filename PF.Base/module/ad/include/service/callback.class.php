@@ -47,12 +47,12 @@ class Ad_Service_Callback extends Phpfox_Service
 			    ->where('invoice_id = ' . $iId . ' AND is_sponsor = 1')
 			    ->execute('getSlaveRow');		    
 
-		    $aAd = Phpfox::getService('ad')->getSponsor($aInvoice['ad_id']);
+		    $aAd = Ad_Service_Ad::instance()->getSponsor($aInvoice['ad_id']);
 		}
 		else
 		{
-		    $aAd = Phpfox::getService('ad')->getForEdit($aParams['item_number']);	   
-		    $aInvoice = Phpfox::getService('ad')->getInvoice($aAd['ad_id']);	    
+		    $aAd = Ad_Service_Ad::instance()->getForEdit($aParams['item_number']);
+		    $aInvoice = Ad_Service_Ad::instance()->getInvoice($aAd['ad_id']);
 		}
 
 		if (empty($aAd) || $aAd === false)

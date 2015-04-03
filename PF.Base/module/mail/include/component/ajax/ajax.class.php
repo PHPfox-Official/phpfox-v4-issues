@@ -225,7 +225,7 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		$oObject = Phpfox::getComponent('mail.compose', null, 'controller');
 		
-		if ($oObject->getReturn())
+		// if ($oObject->getReturn())
 		{
 			$this->call('$(\'#\' + tb_get_active()).find(\'.js_box_content:first\').html(\'<div class="message">' . str_replace("'", "\\'", Phpfox::getPhrase('mail.your_message_was_successfully_sent')) . '</div>\'); setTimeout(\'tb_remove();\', 2000);');
 		}

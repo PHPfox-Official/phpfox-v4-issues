@@ -42,9 +42,9 @@ class Ad_Component_Controller_Manage_Sponsor extends Phpfox_Component
 		}		
 		$aCond[] = 'AND s.user_id = ' . Phpfox::getUserId();
 		
-		Phpfox::getService('ad')->getSectionMenu();
+		Ad_Service_Ad::instance()->getSectionMenu();
 		
-		$aAds = Phpfox::getService('ad')->getSponsorForUser($aCond);
+		$aAds = Ad_Service_Ad::instance()->getSponsorForUser($aCond);
 		
 		$this->template()->setTitle(Phpfox::getPhrase('ad.ad_management'))	
 			->setFullSite()

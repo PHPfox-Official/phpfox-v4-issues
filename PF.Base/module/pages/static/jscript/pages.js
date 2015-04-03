@@ -38,9 +38,12 @@ $Behavior.pagesBuilder = function(){
 		$('.pages_type_add_inner_link').click(function(){
 			
 			$('.pages_type_add_form').hide();
-			$('.pages_type_add_inner_link').show();
-			
-			$(this).hide();
+			$('.pages_type_add_inner_link').show().addClass('unfocus');
+
+			$('.pages_type_add_inner_link.focus').removeClass('focus');
+
+			$(this).addClass('focus').removeClass('unfocus');
+
 			$(this).parent().find('.pages_type_add_form').show();
 			$(this).parent().find('.pages_type_add_input:first').focus();
 			

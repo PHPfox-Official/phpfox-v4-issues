@@ -96,7 +96,7 @@ class Ad_Component_Controller_Admincp_Invoice extends Phpfox_Component
 		
 		$iLimit = $oSearch->getDisplay();
 		
-		list($iCnt, $aInvoices) = Phpfox::getService('ad')->getInvoices($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);		
+		list($iCnt, $aInvoices) = Ad_Service_Ad::instance()->getInvoices($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iLimit);
 		
 		$this->template()->setTitle(Phpfox::getPhrase('ad.ad_invoices'))
 			->setBreadcrumb(Phpfox::getPhrase('ad.invoices'))

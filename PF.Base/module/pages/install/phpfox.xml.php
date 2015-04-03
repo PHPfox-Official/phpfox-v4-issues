@@ -42,17 +42,12 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="error.display" module_id="pages" component="photo" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">
-			<title><![CDATA[Pages Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="pages.view" module_id="pages" component="admin" location="3" is_active="0" ordering="6" disallow_access="" can_move="1">
 			<title>Page Admins</title>
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="pages.view" module_id="pages" component="photo" location="12" is_active="1" ordering="11" disallow_access="" can_move="0">
+		<block type_id="0" m_connection="pages.view" module_id="pages" component="photo" location="12" is_active="0" ordering="11" disallow_access="" can_move="0">
 			<title></title>
 			<source_code />
 			<source_parsed />

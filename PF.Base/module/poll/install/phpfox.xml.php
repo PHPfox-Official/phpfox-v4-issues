@@ -18,7 +18,7 @@
 	<settings>
 		<setting group="" module_id="poll" is_hidden="0" type="boolean" var_name="is_image_required" phrase_var_name="setting_is_image_required" ordering="1" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="poll" is_hidden="0" type="integer" var_name="poll_max_image_pic_size" phrase_var_name="setting_poll_max_image_pic_size" ordering="1" version_id="2.0.0alpha1">75</setting>
-		<setting group="time_stamps" module_id="poll" is_hidden="0" type="string" var_name="poll_view_time_stamp" phrase_var_name="setting_poll_view_time_stamp" ordering="1" version_id="2.0.0alpha1">F j, Y</setting>
+		<setting group="" module_id="poll" is_hidden="0" type="string" var_name="poll_view_time_stamp" phrase_var_name="setting_poll_view_time_stamp" ordering="1" version_id="2.0.0alpha1">F j, Y</setting>
 		<setting group="" module_id="poll" is_hidden="0" type="integer" var_name="polls_to_show" phrase_var_name="setting_polls_to_show" ordering="1" version_id="2.0.0alpha1">10</setting>
 		<setting group="" module_id="poll" is_hidden="0" type="integer" var_name="show_x_users_who_took_poll" phrase_var_name="setting_show_x_users_who_took_poll" ordering="1" version_id="2.0.0beta3">10</setting>
 		<setting group="search_engine_optimization" module_id="poll" is_hidden="0" type="large_string" var_name="poll_meta_description" phrase_var_name="setting_poll_meta_description" ordering="9" version_id="2.0.0rc1">New polls on Site Name daily.</setting>

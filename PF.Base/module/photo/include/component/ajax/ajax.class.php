@@ -660,22 +660,36 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 		    }
 		    else 
 		    {
+			    // $sImages = '';
+			    foreach ($aImages as $aImage)
+			    {
+				    // use the JS var set at progress.js
+				    $this->call('sImages += "&photos[]=' . $aImage['photo_id'] . '";');
+				    // $sImages .= '&photos[]=' . $aImage['photo_id'];
+			    }
+
 			    if (Phpfox::getParam('photo.html5_upload_photo'))
 			    {
-					// http://www.phpfox.com/tracker/view/14571/
-					if (Phpfox::getParam('photo.photo_upload_process'))
-					{
-						foreach ($aImages as $aImage)
+				    if ($aCallback !== null) {
+
+					    $this->call('var sCurrentProgressLocation = \'' . Phpfox_Url::instance()->makeUrl('pages.' . $aCallback['item_id'] . '.photo', ['view' => 'my', 'mode' => 'edit']) . '\';');
+				    }
+					else {
+						// http://www.phpfox.com/tracker/view/14571/
+						if (Phpfox::getParam('photo.photo_upload_process'))
 						{
-							// use the JS var set at progress.js
-							$this->call('sImages = sImages + ' . $aImage['photo_id'] . ' + ",";');
+							foreach ($aImages as $aImage)
+							{
+								// use the JS var set at progress.js
+								$this->call('sImages = sImages + ' . $aImage['photo_id'] . ' + ",";');
+							}
+							// Make a call similar to the non HTML5 uploads.
+							$this->call('var sCurrentProgressLocation = \'' . Phpfox_Url::instance()->makeUrl('photo', array('view' => 'my', 'mode' => 'edit')) . '\';');
 						}
-						// Make a call similar to the non HTML5 uploads.
-						$this->call('var sCurrentProgressLocation = \'' . Phpfox_Url::instance()->makeUrl('photo', array('view' => 'my', 'mode' => 'edit')) . '\';');
-					}
-					else
-					{
-						$this->call('var sCurrentProgressLocation = \'' . Phpfox_Url::instance()->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
+						else
+						{
+							$this->call('var sCurrentProgressLocation = \'' . Phpfox_Url::instance()->permalink('photo', $aPhoto['photo_id'], $aPhoto['title']) . 'userid_' . Phpfox::getUserId() . '/\';');
+						}
 					}
 			    }
 			    else

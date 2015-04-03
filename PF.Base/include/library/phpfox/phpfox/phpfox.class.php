@@ -1248,8 +1248,8 @@ class Phpfox
 					/*
 					'aBlocks1' => ($oTpl->bIsSample ? true : Phpfox_Module::instance()->getModuleBlocks(1)),
 					'aBlocks3' => ($oTpl->bIsSample ? true : Phpfox_Module::instance()->getModuleBlocks(3)),
-					'aAdBlocks1' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Phpfox::getService('ad')->getForBlock(1, false, false) : null)),
-					'aAdBlocks3' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Phpfox::getService('ad')->getForBlock(3, false, false) : null)),
+					'aAdBlocks1' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Ad_Service_Ad::instance()->getForBlock(1, false, false) : null)),
+					'aAdBlocks3' => ($oTpl->bIsSample ? true : (Phpfox::isModule('ad') ? Ad_Service_Ad::instance()->getForBlock(3, false, false) : null)),
 					*/
 					'bIsUsersProfilePage' => (defined('PHPFOX_IS_USER_PROFILE') ? true : false),
 					// 'sStyleLogo' => $oTpl->getStyleLogo(),
@@ -1390,9 +1390,10 @@ class Phpfox
 			$oTpl->getLayout('error');
 			$error = ob_get_contents(); ob_clean();
 
+			$controller = Phpfox_Module::instance()->getFullControllerName();
 			$data = json_encode([
 				'content' => $content,
-				'title' => $oTpl->instance()->getTitle(),
+				'title' => html_entity_decode($oTpl->instance()->getTitle()),
 				'phrases' => Phpfox_Template::instance()->getPhrases(),
 				'files' => $aLoadFiles,
 				'css' => $aCss,
@@ -1403,7 +1404,10 @@ class Phpfox
 				'id' => Phpfox_Module::instance()->getPageId(),
 				'class' => Phpfox_Module::instance()->getPageClass(),
 				'h1' => $h1,
-				'error' => $error
+				'h1_clean' => strip_tags($h1),
+				'error' => $error,
+				'controller_e' => (Phpfox::isAdmin() ? Phpfox_Url::instance()->makeUrl('admincp.element.edit', ['controller' => base64_encode(Phpfox_Module::instance()->getFullControllerName())]) : null),
+				'meta' => Phpfox_Template::instance()->getPageMeta()
 			]);
 
 			// header("Content-length: " . strlen($data));

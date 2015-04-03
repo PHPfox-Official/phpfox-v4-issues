@@ -51,7 +51,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div id="js_friend_search">
 		{module name='friend.search' friend_share=true input='to'}
 		<div class="main_break t_right">
-			<input type="button" value="{phrase var='share.continue'}" class="button" onclick="return shareFriendContinue();" />
+			<input type="button" value="{phrase var='share.continue'}" class="button_link" onclick="return shareFriendContinue();" />
 		</div>		
 	</div>
 	<div id="js_friend_mail" style="display:none;">
@@ -71,7 +71,7 @@ defined('PHPFOX') or exit('NO DICE!');
 						{phrase var='share.message'}:
 					</div>
 					<div class="table_right">
-						<textarea cols="30" rows="10" name="val[message]" style="width:95%;">{$sMessage}</textarea>
+						<textarea cols="30" rows="10" name="val[message]">{$sMessage}</textarea>
 					</div>
 				</div>
 				<div class="table_clear">

@@ -327,7 +327,7 @@ class Photo_Service_Photo extends Phpfox_Service
 
 		if (Phpfox::isModule('ad'))
 		{
-			$aPhotos = Phpfox::getService('ad')->filterSponsor($aPhotos);
+			$aPhotos = Ad_Service_Ad::instance()->filterSponsor($aPhotos);
 		}
 		
 		if ($aPhotos === true || (is_array($aPhotos) && !count($aPhotos)))

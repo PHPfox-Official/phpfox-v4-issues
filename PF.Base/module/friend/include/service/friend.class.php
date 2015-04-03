@@ -234,8 +234,8 @@ class Friend_Service_Friend extends Phpfox_Service
 			$aRows[$iKey]['user_image'] = Phpfox::getLib('image.helper')->display(array(
 					'user' => $aRow,
 					'suffix' => '_50_square',
-					'max_height' => 50,
-					'max_width' => 50,
+					'max_height' => 32,
+					'max_width' => 32,
 					'return_url' => true
 				)
 			);

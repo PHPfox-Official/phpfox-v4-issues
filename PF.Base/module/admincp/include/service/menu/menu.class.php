@@ -17,10 +17,10 @@ class Admincp_Service_Menu_Menu extends Phpfox_Service
 {
 	private $_aTypes = array(
 		'main',
-		'main_right',
+		// 'main_right',
 		'footer',
-		'explore',
-		'mobile'
+		// 'explore',
+		// 'mobile'
 		// 'profile'
 	);	
 	

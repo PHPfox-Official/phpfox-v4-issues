@@ -10,7 +10,7 @@
 		<writable><![CDATA[a:2:{i:0;s:11:"file/music/";i:1;s:15:"file/pic/music/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="music" parent_var_name="" m_connection="main" var_name="menu_music" ordering="31" url_value="music" version_id="2.0.0alpha1" disallow_access="" module="music" mobile_icon="music" />
+		<menu module_id="music" parent_var_name="" m_connection="main" var_name="menu_music" ordering="9" url_value="music" version_id="2.0.0alpha1" disallow_access="" module="music" mobile_icon="music" />
 		<menu module_id="music" parent_var_name="" m_connection="music.index" var_name="menu_upload_a_song" ordering="74" url_value="music.upload" version_id="2.0.0beta1" disallow_access="" module="music" />
 	</menus>
 	<settings>

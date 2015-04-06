@@ -47,7 +47,7 @@
 		background:transparent;
 
 		> .title {
-			background:transparent;
+			background:@bodyBg;
 			font-size:@fontSizeBase - 2;
 			text-transform:uppercase;
 			color:lighten(@textColor, 5%);
@@ -69,5 +69,12 @@
 #page_ad_add, #page_music_upload {
 	#panels {
 		display:none;
+	}
+}
+
+.ad_is_fixed {
+	#js_block_border_ad_display {
+		position:fixed;
+		top:@headerHeight + 5;
 	}
 }

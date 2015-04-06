@@ -21,7 +21,6 @@
 		<setting group="" module_id="friend" is_hidden="0" type="integer" var_name="days_to_check_for_birthday" phrase_var_name="setting_days_to_check_for_birthday" ordering="1" version_id="2.0.0beta4">7</setting>
 		<setting group="" module_id="friend" is_hidden="0" type="integer" var_name="birthdays_cache_time_out" phrase_var_name="setting_birthdays_cache_time_out" ordering="1" version_id="2.0.0beta4">5</setting>
 		<setting group="" module_id="friend" is_hidden="0" type="boolean" var_name="show_empty_birthdays" phrase_var_name="setting_show_empty_birthdays" ordering="1" version_id="2.0.0beta4">0</setting>
-		<setting group="search_engine_optimization" module_id="friend" is_hidden="0" type="large_string" var_name="friend_meta_keywords" phrase_var_name="setting_friend_meta_keywords" ordering="7" version_id="2.0.0rc1">friends, buddies</setting>
 		<setting group="" module_id="friend" is_hidden="0" type="integer" var_name="friend_suggestion_search_total" phrase_var_name="setting_friend_suggestion_search_total" ordering="1" version_id="2.0.0rc12">50</setting>
 		<setting group="" module_id="friend" is_hidden="0" type="boolean" var_name="enable_friend_suggestion" phrase_var_name="setting_enable_friend_suggestion" ordering="1" version_id="2.0.0rc12">0</setting>
 		<setting group="" module_id="friend" is_hidden="0" type="integer" var_name="friend_suggestion_timeout" phrase_var_name="setting_friend_suggestion_timeout" ordering="1" version_id="2.0.0rc12">1440</setting>
@@ -35,6 +34,7 @@
 		<setting group="" module_id="friend" is_hidden="0" type="boolean" var_name="cache_is_friend" phrase_var_name="setting_cache_is_friend" ordering="4" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="friend" is_hidden="0" type="boolean" var_name="cache_friend_list" phrase_var_name="setting_cache_friend_list" ordering="5" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="friend" is_hidden="0" type="boolean" var_name="load_friends_online_ajax" phrase_var_name="setting_load_friends_online_ajax" ordering="6" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="friend" is_hidden="1" type="large_string" var_name="friend_meta_keywords" phrase_var_name="setting_friend_meta_keywords" ordering="7" version_id="2.0.0rc1">friends, buddies</setting>
 	</settings>
 	<blocks>
 		<block type_id="0" m_connection="core.index-member" module_id="friend" component="mini" location="1" is_active="1" ordering="2" disallow_access="" can_move="1">

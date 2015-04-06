@@ -1346,6 +1346,10 @@ class Phpfox
 			$aLoadFiles = [];
 			foreach ($aHeaderFiles as $sHeaderFile)
 			{
+				if (!is_string($sHeaderFile)) {
+					continue;
+				}
+
 				if (preg_match('/<style(.*)>(.*)<\/style>/i', $sHeaderFile))
 				{
 					$aCss[] = strip_tags($sHeaderFile);

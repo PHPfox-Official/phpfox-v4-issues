@@ -24,23 +24,6 @@ class Ad_Component_Block_Display extends Phpfox_Component
 		if (!Phpfox::getParam('ad.enable_ads'))
 		{
 			return false;
-		}	
-		
-		if (Phpfox_Module::instance()->getFullControllerName() == 'core.index-visitor' && Phpfox::getParam('ad.multi_ad'))
-		{
-			return false;
-		}
-		
-		if ($this->getParam('block_id') == '1' || $this->getParam('block_id') == '3')
-		{
-			$aDeny = array(
-				'forum'				
-			);			
-			
-			if (in_array(Phpfox_Module::instance()->getModuleName(), $aDeny))
-			{
-				return false;
-			}		
 		}
 
 		if (Phpfox::getParam('ad.multi_ad') && $this->getParam('block_id') != 3 && $this->getParam('block_id') != 50 && $this->getParam('bIsIframe') != true)

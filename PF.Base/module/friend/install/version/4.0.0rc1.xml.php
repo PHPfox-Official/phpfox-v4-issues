@@ -66,6 +66,17 @@
 			<version_id>3.6.0rc1</version_id>
 			<value>0</value>
 		</setting>
+		<setting>
+			<group />
+			<module_id>friend</module_id>
+			<is_hidden>1</is_hidden>
+			<type>large_string</type>
+			<var_name>friend_meta_keywords</var_name>
+			<phrase_var_name>setting_friend_meta_keywords</phrase_var_name>
+			<ordering>7</ordering>
+			<version_id>2.0.0rc1</version_id>
+			<value>friends, buddies</value>
+		</setting>
 	</phpfox_update_settings>
 	<phpfox_update_blocks>
 		<block>

@@ -10,7 +10,7 @@
 		<writable />
 	</data>
 	<menus>
-		<menu module_id="contact" parent_var_name="" m_connection="footer" var_name="menu_contact" ordering="33" url_value="contact" version_id="2.0.0alpha1" disallow_access="" module="contact" />
+		<menu module_id="contact" parent_var_name="" m_connection="footer" var_name="menu_contact" ordering="15" url_value="contact" version_id="2.0.0alpha1" disallow_access="" module="contact" />
 	</menus>
 	<settings>
 		<setting group="" module_id="contact" is_hidden="0" type="boolean" var_name="contact_enable_captcha" phrase_var_name="setting_contact_enable_captcha" ordering="1" version_id="2.0.0alpha1">1</setting>

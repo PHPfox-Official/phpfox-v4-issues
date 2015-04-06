@@ -10,7 +10,7 @@
 		<writable />
 	</data>
 	<menus>
-		<menu module_id="forum" parent_var_name="" m_connection="main" var_name="menu_forum" ordering="23" url_value="forum" version_id="2.0.0alpha1" disallow_access="" module="forum" mobile_icon="comments" />
+		<menu module_id="forum" parent_var_name="" m_connection="main" var_name="menu_forum" ordering="5" url_value="forum" version_id="2.0.0alpha1" disallow_access="" module="forum" mobile_icon="comments" />
 		<menu module_id="forum" parent_var_name="" m_connection="mobile" var_name="menu_forum_forum_532c28d5412dd75bf975fb951c740a30" ordering="117" url_value="forum" version_id="3.1.0rc1" disallow_access="" module="forum" mobile_icon="small_forum.png" />
 	</menus>
 	<settings>

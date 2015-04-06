@@ -10,7 +10,7 @@
 		<writable><![CDATA[a:1:{i:0;s:15:"file/pic/photo/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="photo" parent_var_name="" m_connection="main" var_name="menu_photo" ordering="22" url_value="photo" version_id="2.0.0alpha1" disallow_access="" module="photo" mobile_icon="photo" />
+		<menu module_id="photo" parent_var_name="" m_connection="main" var_name="menu_photo" ordering="4" url_value="photo" version_id="2.0.0alpha1" disallow_access="" module="photo" mobile_icon="photo" />
 		<menu module_id="photo" parent_var_name="" m_connection="profile" var_name="menu_photos" ordering="38" url_value="profile.photo" version_id="2.0.0alpha1" disallow_access="" module="photo" />
 		<menu module_id="photo" parent_var_name="" m_connection="photo.index" var_name="menu_photo_upload_a_new_image_714586c73197300f65ba08f7dee8cb4a" ordering="128" url_value="photo.add" version_id="3.3.0beta2" disallow_access="" module="photo" />
 		<menu module_id="photo" parent_var_name="" m_connection="mobile" var_name="menu_photo_photos_532c28d5412dd75bf975fb951c740a30" ordering="122" url_value="photo" version_id="3.1.0rc1" disallow_access="" module="photo" mobile_icon="small_photos.png" />
@@ -27,27 +27,27 @@
 );";]]></setting>
 		<setting group="" module_id="photo" is_hidden="0" type="integer" var_name="total_photo_input_bars" phrase_var_name="setting_total_photo_input_bars" ordering="1" version_id="2.0.0alpha1">5</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="string" var_name="photo_image_details_time_stamp" phrase_var_name="setting_photo_image_details_time_stamp" ordering="1" version_id="2.0.0alpha1">F j, Y</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="protect_photos_from_public" phrase_var_name="setting_protect_photos_from_public" ordering="1" version_id="2.0.0alpha1">0</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="can_rate_on_photos" phrase_var_name="setting_can_rate_on_photos" ordering="1" version_id="2.0.0alpha1">1</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="integer" var_name="rating_total_photos_cache" phrase_var_name="setting_rating_total_photos_cache" ordering="1" version_id="2.0.0alpha1">10</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="integer" var_name="photo_battle_image_cache" phrase_var_name="setting_photo_battle_image_cache" ordering="1" version_id="2.0.0alpha1">10</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="integer" var_name="total_tags_on_photos" phrase_var_name="setting_total_tags_on_photos" ordering="1" version_id="2.0.0beta4">40</setting>
-		<setting group="search_engine_optimization" module_id="photo" is_hidden="0" type="large_string" var_name="photo_meta_description" phrase_var_name="setting_photo_meta_description" ordering="8" version_id="2.0.0rc1">Check out our photo gallery.</setting>
-		<setting group="search_engine_optimization" module_id="photo" is_hidden="0" type="large_string" var_name="photo_meta_keywords" phrase_var_name="setting_photo_meta_keywords" ordering="14" version_id="2.0.0rc1">photo, photos, albums, gallery</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="ajax_refresh_on_featured_photos" phrase_var_name="setting_ajax_refresh_on_featured_photos" ordering="1" version_id="2.0.0">1</setting>
-		<setting group="search_engine_optimization" module_id="photo" is_hidden="0" type="integer" var_name="how_many_categories_to_show_in_title" phrase_var_name="setting_how_many_categories_to_show_in_title" ordering="15" version_id="2.0.4">0</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="auto_crop_photo" phrase_var_name="setting_auto_crop_photo" ordering="1" version_id="3.0.0beta1">0</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="view_photos_in_theater_mode" phrase_var_name="setting_view_photos_in_theater_mode" ordering="1" version_id="3.0.0beta3">1</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="enable_photo_battle" phrase_var_name="setting_enable_photo_battle" ordering="1" version_id="3.0.0">1</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="display_profile_photo_within_gallery" phrase_var_name="setting_display_profile_photo_within_gallery" ordering="1" version_id="3.1.0beta1">1</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="allow_photo_category_selection" phrase_var_name="setting_allow_photo_category_selection" ordering="1" version_id="3.1.0rc1">0</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="rename_uploaded_photo_names" phrase_var_name="setting_rename_uploaded_photo_names" ordering="1" version_id="2.0.0alpha3">0</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="photo_upload_process" phrase_var_name="setting_photo_upload_process" ordering="1" version_id="3.3.0beta1">0</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="delete_original_after_resize" phrase_var_name="setting_delete_original_after_resize" ordering="1" version_id="3.5.0beta1">0</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="drop" var_name="in_main_photo_section_show" phrase_var_name="setting_in_main_photo_section_show" ordering="1" version_id="3.5.0beta1"><![CDATA[a:2:{s:7:"default";s:6:"photos";s:6:"values";a:2:{i:0;s:6:"photos";i:1;s:6:"albums";}}]]></setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="show_info_on_mouseover" phrase_var_name="setting_show_info_on_mouseover" ordering="1" version_id="3.5.0beta1">0</setting>
-		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="html5_upload_photo" phrase_var_name="setting_html5_upload_photo" ordering="1" version_id="3.7.0rc1">0</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="enabled_watermark_on_photos" phrase_var_name="setting_enabled_watermark_on_photos" ordering="1" version_id="2.0.0rc1">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="protect_photos_from_public" phrase_var_name="setting_protect_photos_from_public" ordering="1" version_id="2.0.0alpha1">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="can_rate_on_photos" phrase_var_name="setting_can_rate_on_photos" ordering="1" version_id="2.0.0alpha1">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="integer" var_name="rating_total_photos_cache" phrase_var_name="setting_rating_total_photos_cache" ordering="1" version_id="2.0.0alpha1">10</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="integer" var_name="photo_battle_image_cache" phrase_var_name="setting_photo_battle_image_cache" ordering="1" version_id="2.0.0alpha1">10</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="large_string" var_name="photo_meta_description" phrase_var_name="setting_photo_meta_description" ordering="8" version_id="2.0.0rc1" />
+		<setting group="" module_id="photo" is_hidden="1" type="large_string" var_name="photo_meta_keywords" phrase_var_name="setting_photo_meta_keywords" ordering="14" version_id="2.0.0rc1" />
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="ajax_refresh_on_featured_photos" phrase_var_name="setting_ajax_refresh_on_featured_photos" ordering="1" version_id="2.0.0">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="integer" var_name="how_many_categories_to_show_in_title" phrase_var_name="setting_how_many_categories_to_show_in_title" ordering="15" version_id="2.0.4">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="auto_crop_photo" phrase_var_name="setting_auto_crop_photo" ordering="1" version_id="3.0.0beta1">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="view_photos_in_theater_mode" phrase_var_name="setting_view_photos_in_theater_mode" ordering="1" version_id="3.0.0beta3">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="enable_photo_battle" phrase_var_name="setting_enable_photo_battle" ordering="1" version_id="3.0.0">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="display_profile_photo_within_gallery" phrase_var_name="setting_display_profile_photo_within_gallery" ordering="1" version_id="3.1.0beta1">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="rename_uploaded_photo_names" phrase_var_name="setting_rename_uploaded_photo_names" ordering="1" version_id="2.0.0alpha3">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="photo_upload_process" phrase_var_name="setting_photo_upload_process" ordering="1" version_id="3.3.0beta1">1</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="drop" var_name="in_main_photo_section_show" phrase_var_name="setting_in_main_photo_section_show" ordering="1" version_id="3.5.0beta1"><![CDATA[a:2:{s:7:"default";s:6:"photos";s:6:"values";a:2:{i:0;s:6:"photos";i:1;s:6:"albums";}}]]></setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="show_info_on_mouseover" phrase_var_name="setting_show_info_on_mouseover" ordering="1" version_id="3.5.0beta1">0</setting>
+		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="html5_upload_photo" phrase_var_name="setting_html5_upload_photo" ordering="1" version_id="3.7.0rc1">1</setting>
 		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="enable_mass_uploader" phrase_var_name="setting_enable_mass_uploader" ordering="1" version_id="2.0.8">0</setting>
 		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="pre_load_header_view" phrase_var_name="setting_pre_load_header_view" ordering="1" version_id="3.6.0rc1">1</setting>
 		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="rating_randomize_photos" phrase_var_name="setting_rating_randomize_photos" ordering="1" version_id="2.0.0alpha1">0</setting>

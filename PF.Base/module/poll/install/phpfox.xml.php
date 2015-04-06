@@ -10,7 +10,7 @@
 		<writable><![CDATA[a:1:{i:0;s:14:"file/pic/poll/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="poll" parent_var_name="" m_connection="main" var_name="menu_poll" ordering="24" url_value="poll" version_id="2.0.0alpha1" disallow_access="" module="poll" mobile_icon="bar-chart" />
+		<menu module_id="poll" parent_var_name="" m_connection="main" var_name="menu_poll" ordering="6" url_value="poll" version_id="2.0.0alpha1" disallow_access="" module="poll" mobile_icon="bar-chart" />
 		<menu module_id="poll" parent_var_name="" m_connection="poll.index" var_name="menu_add_new_poll" ordering="39" url_value="poll.add" version_id="2.0.0alpha1" disallow_access="" module="poll" />
 		<menu module_id="poll" parent_var_name="" m_connection="profile" var_name="menu_polls" ordering="41" url_value="profile.poll" version_id="2.0.0alpha1" disallow_access="" module="poll" />
 		<menu module_id="poll" parent_var_name="" m_connection="mobile" var_name="menu_poll_polls_532c28d5412dd75bf975fb951c740a30" ordering="123" url_value="poll" version_id="3.1.0rc1" disallow_access="" module="poll" mobile_icon="small_polls.png" />
@@ -21,8 +21,8 @@
 		<setting group="" module_id="poll" is_hidden="0" type="string" var_name="poll_view_time_stamp" phrase_var_name="setting_poll_view_time_stamp" ordering="1" version_id="2.0.0alpha1">F j, Y</setting>
 		<setting group="" module_id="poll" is_hidden="0" type="integer" var_name="polls_to_show" phrase_var_name="setting_polls_to_show" ordering="1" version_id="2.0.0alpha1">10</setting>
 		<setting group="" module_id="poll" is_hidden="0" type="integer" var_name="show_x_users_who_took_poll" phrase_var_name="setting_show_x_users_who_took_poll" ordering="1" version_id="2.0.0beta3">10</setting>
-		<setting group="search_engine_optimization" module_id="poll" is_hidden="0" type="large_string" var_name="poll_meta_description" phrase_var_name="setting_poll_meta_description" ordering="9" version_id="2.0.0rc1">New polls on Site Name daily.</setting>
-		<setting group="search_engine_optimization" module_id="poll" is_hidden="0" type="large_string" var_name="poll_meta_keywords" phrase_var_name="setting_poll_meta_keywords" ordering="15" version_id="2.0.0rc1">poll, polls</setting>
+		<setting group="" module_id="poll" is_hidden="1" type="large_string" var_name="poll_meta_description" phrase_var_name="setting_poll_meta_description" ordering="9" version_id="2.0.0rc1">New polls on Site Name daily.</setting>
+		<setting group="" module_id="poll" is_hidden="1" type="large_string" var_name="poll_meta_keywords" phrase_var_name="setting_poll_meta_keywords" ordering="15" version_id="2.0.0rc1">poll, polls</setting>
 	</settings>
 	<hooks>
 		<hook module_id="poll" hook_type="controller" module="poll" call_name="poll.component_controller_index_process_start" added="1240687633" version_id="2.0.0beta1" />

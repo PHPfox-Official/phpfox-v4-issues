@@ -19,11 +19,7 @@ class User_Component_Block_Login_Block extends Phpfox_Component
 	 * Controller
 	 */
 	public function process()
-	{		
-		$aDeny = array(
-			'forum',
-			'profile'
-		);
+	{
 		//Plugin call
 		if ($sPlugin = Phpfox_Plugin::get('user.block_login-block_process__start'))
 		{eval($sPlugin);}
@@ -32,18 +28,8 @@ class User_Component_Block_Login_Block extends Phpfox_Component
 		if (Phpfox::isUser())
 		{
 			return false;
-		}		
-		
-		if (in_array(Phpfox_Module::instance()->getModuleName(), $aDeny))
-		{
-			return false;
 		}
-		
-		if (Phpfox_Url::instance()->isUrl(array('user/login', 'user/register', 'profile', 'user/password/request', 'forum')))
-		{
-			return false;
-		}
-		
+
 		$aFooter = array();
 		if (Phpfox::getParam('user.allow_user_registration'))
 		{

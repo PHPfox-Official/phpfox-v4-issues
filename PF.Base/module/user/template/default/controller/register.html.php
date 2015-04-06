@@ -35,13 +35,8 @@ $Behavior.termsAndPrivacy = function()
 {/literal}
 
 {if Phpfox_Module::instance()->getFullControllerName() == 'user.register' && Phpfox::isModule('invite')}
-<div id="main_registration_form">
-
-	<h1>{phrase var='user.sign_up_for_ssitetitle' sSiteTitle=$sSiteTitle}</h1>
-	<div class="extra_info">
-		{phrase var='user.join_ssitetitle_to_connect_with_friends_share_photos_and_create_your_own_profile' sSiteTitle=$sSiteTitle}
-	</div>
-	<div id="main_registration_form_holder">
+<div class="block">
+	<div class="content">
 		{if ((Phpfox::isModule('facebook') && Phpfox::getParam('facebook.enable_facebook_connect')) || (Phpfox::isModule('janrain') && Phpfox::getParam('janrain.enable_janrain_login'))) && !Phpfox::getService('invite')->isInviteOnly()}
 		<div id="main_registration_custom">
 			{phrase var='user.or_sign_up_with'}:

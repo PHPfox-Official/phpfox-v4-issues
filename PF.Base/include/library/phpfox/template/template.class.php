@@ -2659,24 +2659,7 @@ class Phpfox_Template
 		}
 		
 		foreach ($aMenus as $iKey => $aMenu)
-		{	
-			if (Phpfox::getParam('core.phpfox_is_hosted') && isset($aMenu['module']) && !Phpfox::isModule($aMenu['module']))
-			{
-				unset($aMenus[$iKey]);
-				
-				continue;
-			}
-			
-			if (Phpfox::getParam('core.phpfox_is_hosted') 
-				&& $sConnection == 'main'
-				&& $aMenu['url'] == 'forum'
-			)
-			{
-				unset($aMenus[$iKey]);
-				
-				continue;
-			}
-			
+		{
 			if (substr($aMenu['url'], 0, 1) == '#')
 			{
 				$aMenus[$iKey]['css_name'] = 'js_core_menu_' . str_replace('#', '', str_replace('-', '_', $aMenu['url']));

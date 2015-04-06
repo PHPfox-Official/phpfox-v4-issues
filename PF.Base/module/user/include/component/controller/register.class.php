@@ -162,8 +162,8 @@ class User_Component_Controller_Register extends Phpfox_Component
 		(($sPlugin = Phpfox_Plugin::get('user.component_controller_register_8')) ? eval($sPlugin) : false);
 
 		$this->template()->setTitle($sTitle)			
-			// ->setBreadcrumb($sTitle)
-			->setFullSite()
+			->setBreadcrumb('Register')
+			// ->setFullSite()
 			->setPhrase(array(
 					'user.continue'
 				)

@@ -16,7 +16,7 @@
 		<setting group="" module_id="tag" is_hidden="0" type="integer" var_name="tag_cache_tag_cloud" phrase_var_name="setting_tag_cache_tag_cloud" ordering="0" version_id="2.0.0alpha1">180</setting>
 		<setting group="" module_id="tag" is_hidden="0" type="integer" var_name="tag_min_display" phrase_var_name="setting_tag_min_display" ordering="0" version_id="2.0.0alpha1">1</setting>
 		<setting group="" module_id="tag" is_hidden="0" type="integer" var_name="tag_days_treading" phrase_var_name="setting_tag_days_treading" ordering="1" version_id="2.1.0Beta1">7</setting>
-		<setting group="" module_id="tag" is_hidden="0" type="boolean" var_name="enable_hashtag_support" phrase_var_name="setting_enable_hashtag_support" ordering="1" version_id="3.7.0beta1">0</setting>
+		<setting group="" module_id="tag" is_hidden="1" type="boolean" var_name="enable_hashtag_support" phrase_var_name="setting_enable_hashtag_support" ordering="1" version_id="3.7.0beta1">1</setting>
 	</settings>
 	<blocks>
 		<block type_id="0" m_connection="video.index" module_id="tag" component="cloud" location="3" is_active="1" ordering="5" disallow_access="" can_move="0">

@@ -22,14 +22,14 @@
 		<setting group="" module_id="mail" is_hidden="0" type="integer" var_name="cron_delete_messages_delay" phrase_var_name="setting_cron_delete_messages_delay" ordering="2" version_id="2.0.0beta5">30</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="integer" var_name="message_age_to_delete" phrase_var_name="setting_message_age_to_delete" ordering="1" version_id="2.0.0beta5">20</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="delete_sent_when_account_cancel" phrase_var_name="setting_delete_sent_when_account_cancel" ordering="1" version_id="2.0.0beta5">1</setting>
-		<setting group="spam" module_id="mail" is_hidden="0" type="boolean" var_name="spam_check_messages" phrase_var_name="setting_spam_check_messages" ordering="7" version_id="2.0.0rc1">1</setting>
 		<setting group="spam" module_id="mail" is_hidden="0" type="boolean" var_name="mail_hash_check" phrase_var_name="setting_mail_hash_check" ordering="2" version_id="2.0.0rc1">0</setting>
 		<setting group="spam" module_id="mail" is_hidden="0" type="integer" var_name="total_mail_messages_to_check" phrase_var_name="setting_total_mail_messages_to_check" ordering="10" version_id="2.0.0rc1">10</setting>
 		<setting group="spam" module_id="mail" is_hidden="0" type="integer" var_name="total_minutes_to_wait_for_pm" phrase_var_name="setting_total_minutes_to_wait_for_pm" ordering="14" version_id="2.0.0rc1">2</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="show_preview_message" phrase_var_name="setting_show_preview_message" ordering="1" version_id="2.0.0rc3">1</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="disallow_select_of_recipients" phrase_var_name="setting_disallow_select_of_recipients" ordering="1" version_id="2.0.7">0</setting>
 		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="update_message_notification_preview" phrase_var_name="setting_update_message_notification_preview" ordering="1" version_id="3.1.0beta1">1</setting>
-		<setting group="" module_id="mail" is_hidden="0" type="boolean" var_name="threaded_mail_conversation" phrase_var_name="setting_threaded_mail_conversation" ordering="1" version_id="3.2.0beta1">0</setting>
+		<setting group="spam" module_id="mail" is_hidden="1" type="boolean" var_name="spam_check_messages" phrase_var_name="setting_spam_check_messages" ordering="7" version_id="2.0.0rc1">1</setting>
+		<setting group="" module_id="mail" is_hidden="1" type="boolean" var_name="threaded_mail_conversation" phrase_var_name="setting_threaded_mail_conversation" ordering="1" version_id="3.2.0beta1">1</setting>
 	</settings>
 	<hooks>
 		<hook module_id="mail" hook_type="component" module="mail" call_name="mail.component_block_folder_process" added="1231838390" version_id="2.0.0alpha1" />

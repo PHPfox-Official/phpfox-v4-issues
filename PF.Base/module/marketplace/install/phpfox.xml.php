@@ -10,7 +10,7 @@
 		<writable><![CDATA[a:1:{i:0;s:21:"file/pic/marketplace/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="marketplace" parent_var_name="" m_connection="main" var_name="menu_marketplace" ordering="59" url_value="marketplace" version_id="2.0.0alpha4" disallow_access="" module="marketplace" mobile_icon="usd" />
+		<menu module_id="marketplace" parent_var_name="" m_connection="main" var_name="menu_marketplace" ordering="10" url_value="marketplace" version_id="2.0.0alpha4" disallow_access="" module="marketplace" mobile_icon="usd" />
 		<menu module_id="marketplace" parent_var_name="" m_connection="marketplace.index" var_name="menu_add_new_listing" ordering="60" url_value="marketplace.add" version_id="2.0.0alpha4" disallow_access="" module="marketplace" />
 		<menu module_id="marketplace" parent_var_name="" m_connection="mobile" var_name="menu_marketplace_marketplace_532c28d5412dd75bf975fb951c740a30" ordering="120" url_value="marketplace" version_id="3.1.0rc1" disallow_access="" module="marketplace" mobile_icon="small_marketplace.png" />
 	</menus>

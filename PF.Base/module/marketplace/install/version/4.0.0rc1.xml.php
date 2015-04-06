@@ -18,7 +18,7 @@
 			<parent_var_name />
 			<m_connection>main</m_connection>
 			<var_name>menu_marketplace</var_name>
-			<ordering>59</ordering>
+			<ordering>10</ordering>
 			<url_value>marketplace</url_value>
 			<version_id>2.0.0alpha4</version_id>
 			<disallow_access />

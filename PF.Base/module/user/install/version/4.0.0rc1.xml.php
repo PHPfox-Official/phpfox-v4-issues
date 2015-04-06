@@ -1,6 +1,17 @@
 <upgrade>
 	<phpfox_update_settings>
 		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>disable_username_on_sign_up</var_name>
+			<phrase_var_name>setting_disable_username_on_sign_up</phrase_var_name>
+			<ordering>14</ordering>
+			<version_id>2.0.5dev1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
 			<group />
 			<module_id>user</module_id>
 			<is_hidden>0</is_hidden>
@@ -64,6 +75,94 @@
 			<phrase_var_name>setting_disable_store_last_user</phrase_var_name>
 			<ordering>4</ordering>
 			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>1</is_hidden>
+			<type>array</type>
+			<var_name>usernames_to_suggest</var_name>
+			<phrase_var_name>setting_usernames_to_suggest</phrase_var_name>
+			<ordering>6</ordering>
+			<version_id>2.0.0beta3</version_id>
+			<value><![CDATA[s:34:"array('user', 'member', 'friend');";]]></value>
+		</setting>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>1</is_hidden>
+			<type>integer</type>
+			<var_name>how_many_usernames_to_suggest</var_name>
+			<phrase_var_name>setting_how_many_usernames_to_suggest</phrase_var_name>
+			<ordering>8</ordering>
+			<version_id>2.0.0beta3</version_id>
+			<value>4</value>
+		</setting>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>1</is_hidden>
+			<type>array</type>
+			<var_name>registration_steps</var_name>
+			<phrase_var_name>setting_registration_steps</phrase_var_name>
+			<ordering>2</ordering>
+			<version_id>2.0.0alpha2</version_id>
+			<value />
+		</setting>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>multi_step_registration_form</var_name>
+			<phrase_var_name>setting_multi_step_registration_form</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.0alpha2</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>user</module_id>
+			<is_hidden>1</is_hidden>
+			<type>drop</type>
+			<var_name>user_browse_display_results_default</var_name>
+			<phrase_var_name>setting_user_browse_display_results_default</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.0alpha3</version_id>
+			<value><![CDATA[a:2:{s:7:"default";s:17:"name_photo_detail";s:6:"values";a:2:{i:0;s:17:"name_photo_detail";i:1;s:10:"name_photo";}}]]></value>
+		</setting>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>suggest_usernames_on_registration</var_name>
+			<phrase_var_name>setting_suggest_usernames_on_registration</phrase_var_name>
+			<ordering>7</ordering>
+			<version_id>2.0.0rc10</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>hide_main_menu</var_name>
+			<phrase_var_name>setting_hide_main_menu</phrase_var_name>
+			<ordering>16</ordering>
+			<version_id>3.0.0beta1</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group>registration</group>
+			<module_id>user</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>new_user_terms_confirmation</var_name>
+			<phrase_var_name>setting_new_user_terms_confirmation</phrase_var_name>
+			<ordering>18</ordering>
+			<version_id>3.0.0beta3</version_id>
 			<value>0</value>
 		</setting>
 	</phpfox_update_settings>

@@ -10,7 +10,7 @@
 		<writable />
 	</data>
 	<menus>
-		<menu module_id="invite" parent_var_name="" m_connection="footer" var_name="menu_invite" ordering="30" url_value="invite" version_id="2.0.0alpha1" disallow_access="" module="invite" />
+		<menu module_id="invite" parent_var_name="" m_connection="footer" var_name="menu_invite" ordering="13" url_value="invite" version_id="2.0.0alpha1" disallow_access="" module="invite" />
 		<menu module_id="invite" parent_var_name="" m_connection="invite" var_name="menu_pending_invitations" ordering="45" url_value="invite.invitations" version_id="2.0.0alpha1" disallow_access="" module="invite" />
 		<menu module_id="invite" parent_var_name="" m_connection="invite" var_name="menu_invite_friends" ordering="44" url_value="invite" version_id="2.0.0alpha1" disallow_access="" module="invite" />
 	</menus>

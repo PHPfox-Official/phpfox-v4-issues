@@ -2118,6 +2118,7 @@ li {
   left: 0px;
   top: 0px;
   z-index: 401;
+  overflow: hidden;
 }
 #logo > i,
 #logo:hover > i {
@@ -2210,6 +2211,13 @@ li {
 #panels #right,
 #panels #left {
   border: 0px;
+}
+.right_is_fixed #panels {
+  position: fixed;
+  bottom: 5px;
+  top: auto;
+  right: auto;
+  z-index: 100;
 }
 a.activity_feed_content_link_title,
 a.activity_feed_content_link_title:hover,
@@ -2319,6 +2327,7 @@ select {
 .table .table_right {
   position: relative;
 }
+.table .table_right input[type="email"],
 .table .table_right input[type="text"],
 .table .table_right input[type="password"],
 .table .table_right textarea,
@@ -2385,6 +2394,9 @@ ul.table_clear_button li {
   float: none;
   display: block;
   margin: 0px;
+}
+div.table_clear {
+  padding: 0px;
 }
 .table_clear input.button {
   padding-left: 0px;
@@ -3285,6 +3297,10 @@ div#right div.menu ul li.active {
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
+#header_menu .guest_login .block {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
 #left .block,
 #right .block,
 #content .block,
@@ -3305,6 +3321,7 @@ div#right div.menu ul li.active {
 #right .block_clear .bottom,
 #content .block_clear .bottom,
 #header_menu .block_clear .bottom {
+  background: #f5f5f5;
   font-size: 13px;
 }
 #left .block .bottom > ul > li,
@@ -8159,7 +8176,7 @@ a.marketplace_contact_seller:hover {
 }
 #left #js_block_border_ad_display.block > .title,
 #right #js_block_border_ad_display.block > .title {
-  background: transparent;
+  background: #e5e5e5;
   font-size: 12px;
   text-transform: uppercase;
   color: #8d8d8d;
@@ -8178,6 +8195,10 @@ a.marketplace_contact_seller:hover {
 #page_ad_add #panels,
 #page_music_upload #panels {
   display: none;
+}
+.ad_is_fixed #js_block_border_ad_display {
+  position: fixed;
+  top: 45px;
 }
 @media (max-device-width: 1430px), (max-width: 1430px) {
   .holder {

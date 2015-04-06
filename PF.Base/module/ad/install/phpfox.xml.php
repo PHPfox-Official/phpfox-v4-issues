@@ -11,7 +11,7 @@
 	</data>
 	<menus>
 		<menu module_id="ad" parent_var_name="" m_connection="ad" var_name="menu_ad_create_an_ad_523af537946b79c4f8369ed39ba78605" ordering="95" url_value="ad.add" version_id="2.0.5" disallow_access="" module="ad" />
-		<menu module_id="ad" parent_var_name="" m_connection="footer" var_name="menu_ad_advertise_251d164643533a527361dbe1a7b9235d" ordering="98" url_value="ad" version_id="2.0.5" disallow_access="" module="ad" />
+		<menu module_id="ad" parent_var_name="" m_connection="footer" var_name="menu_ad_advertise_251d164643533a527361dbe1a7b9235d" ordering="16" url_value="ad" version_id="2.0.5" disallow_access="" module="ad" />
 	</menus>
 	<settings>
 		<setting group="" module_id="ad" is_hidden="0" type="integer" var_name="ad_cache_limit" phrase_var_name="setting_ad_cache_limit" ordering="1" version_id="2.0.0beta3">60</setting>
@@ -20,8 +20,8 @@
 		<setting group="" module_id="ad" is_hidden="0" type="boolean" var_name="enable_ads" phrase_var_name="setting_enable_ads" ordering="1" version_id="2.0.0beta3">1</setting>
 		<setting group="" module_id="ad" is_hidden="0" type="integer" var_name="how_many_ads_per_location" phrase_var_name="setting_how_many_ads_per_location" ordering="1" version_id="3.2.0beta1">1</setting>
 		<setting group="" module_id="ad" is_hidden="0" type="boolean" var_name="advanced_ad_filters" phrase_var_name="setting_advanced_ad_filters" ordering="1" version_id="3.4.0beta1">0</setting>
-		<setting group="" module_id="ad" is_hidden="0" type="boolean" var_name="multi_ad" phrase_var_name="setting_multi_ad" ordering="1" version_id="3.7.0beta1">0</setting>
 		<setting group="" module_id="ad" is_hidden="0" type="integer" var_name="ad_multi_ad_count" phrase_var_name="setting_ad_multi_ad_count" ordering="1" version_id="3.7.0beta1">5</setting>
+		<setting group="" module_id="ad" is_hidden="1" type="boolean" var_name="multi_ad" phrase_var_name="setting_multi_ad" ordering="1" version_id="3.7.0beta1">1</setting>
 	</settings>
 	<hooks>
 		<hook module_id="ad" hook_type="controller" module="ad" call_name="ad.component_controller_index_clean" added="1244973584" version_id="2.0.0beta4" />

@@ -10,7 +10,7 @@
 		<writable />
 	</data>
 	<menus>
-		<menu module_id="blog" parent_var_name="" m_connection="main" var_name="menu_blogs" ordering="5" url_value="blog" version_id="2.0.0alpha1" disallow_access="" module="blog" mobile_icon="pencil-square" />
+		<menu module_id="blog" parent_var_name="" m_connection="main" var_name="menu_blogs" ordering="2" url_value="blog" version_id="2.0.0alpha1" disallow_access="" module="blog" mobile_icon="pencil-square" />
 		<menu module_id="blog" parent_var_name="" m_connection="blog.index" var_name="menu_add_new_blog" ordering="3" url_value="blog.add" version_id="2.0.0alpha1" disallow_access="" module="blog" />
 		<menu module_id="blog" parent_var_name="" m_connection="profile" var_name="menu_blogs" ordering="2" url_value="profile.blog" version_id="2.0.0alpha1" disallow_access="" module="blog" />
 		<menu module_id="blog" parent_var_name="" m_connection="mobile" var_name="menu_blog_blogs_532c28d5412dd75bf975fb951c740a30" ordering="114" url_value="blog" version_id="3.1.0rc1" disallow_access="" module="blog" mobile_icon="small_blogs.png" />
@@ -24,10 +24,10 @@
 		<setting group="" module_id="blog" is_hidden="0" type="boolean" var_name="display_post_count_in_top_bloggers" phrase_var_name="setting_display_post_count_in_top_bloggers" ordering="0" version_id="2.0.0alpha1">1</setting>
 		<setting group="" module_id="blog" is_hidden="0" type="boolean" var_name="show_drafts_count" phrase_var_name="setting_show_drafts_count" ordering="1" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="blog" is_hidden="0" type="integer" var_name="length_in_index" phrase_var_name="setting_length_in_index" ordering="1" version_id="30">200</setting>
-		<setting group="spam" module_id="blog" is_hidden="0" type="boolean" var_name="spam_check_blogs" phrase_var_name="setting_spam_check_blogs" ordering="5" version_id="2.0.0rc1">1</setting>
-		<setting group="spam" module_id="blog" is_hidden="0" type="boolean" var_name="allow_links_in_blog_title" phrase_var_name="setting_allow_links_in_blog_title" ordering="2" version_id="2.0.0rc1">1</setting>
-		<setting group="search_engine_optimization" module_id="blog" is_hidden="0" type="large_string" var_name="blog_meta_description" phrase_var_name="setting_blog_meta_description" ordering="6" version_id="2.0.0rc1">Read up on the latest blogs on Site Name.</setting>
-		<setting group="search_engine_optimization" module_id="blog" is_hidden="0" type="large_string" var_name="blog_meta_keywords" phrase_var_name="setting_blog_meta_keywords" ordering="13" version_id="2.0.0rc1">blog, blogs, journals</setting>
+		<setting group="spam" module_id="blog" is_hidden="1" type="boolean" var_name="spam_check_blogs" phrase_var_name="setting_spam_check_blogs" ordering="5" version_id="2.0.0rc1">1</setting>
+		<setting group="spam" module_id="blog" is_hidden="1" type="boolean" var_name="allow_links_in_blog_title" phrase_var_name="setting_allow_links_in_blog_title" ordering="2" version_id="2.0.0rc1">1</setting>
+		<setting group="" module_id="blog" is_hidden="1" type="large_string" var_name="blog_meta_description" phrase_var_name="setting_blog_meta_description" ordering="6" version_id="2.0.0rc1">Read up on the latest blogs on Site Name.</setting>
+		<setting group="" module_id="blog" is_hidden="1" type="large_string" var_name="blog_meta_keywords" phrase_var_name="setting_blog_meta_keywords" ordering="13" version_id="2.0.0rc1">blog, blogs, journals</setting>
 		<setting group="" module_id="blog" is_hidden="1" type="boolean" var_name="blog_display_user_post_count" phrase_var_name="setting_blog_display_user_post_count" ordering="1" version_id="2.0.0alpha1">1</setting>
 		<setting group="" module_id="blog" is_hidden="1" type="integer" var_name="blog_cache_minutes" phrase_var_name="setting_blog_cache_minutes" ordering="1" version_id="3.0.0Beta1">0</setting>
 		<setting group="" module_id="blog" is_hidden="1" type="integer" var_name="total_pages_to_cache_blog" phrase_var_name="setting_total_pages_to_cache_blog" ordering="1" version_id="3.0.0Beta1">4</setting>

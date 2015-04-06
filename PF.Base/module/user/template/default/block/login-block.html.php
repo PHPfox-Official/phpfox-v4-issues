@@ -22,14 +22,14 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="table">
 		<div class="table_right">
 			<input placeholder="{phrase var='user.password'}" type="password" name="val[password]" id="js_password" value="" size="30" />
-			<div class="p_top_8 user_rem_me">
-				<label><input type="checkbox" name="val[remember_me]" value="" class="checkbox" /> {phrase var='user.remember'}</label>
-			</div>
 		</div>
 	</div>
 	
 	<div class="table_clear">
 		<input type="submit" value="{phrase var='user.login_button'}" class="button" />
+		<div class="p_top_8 user_rem_me">
+			<label><input type="checkbox" name="val[remember_me]" value="" class="checkbox" /> {phrase var='user.remember'}</label>
+		</div>
 	</div>
 </form>
 {if (Phpfox::isModule('facebook') && Phpfox::getParam('facebook.enable_facebook_connect')) || (Phpfox::isModule('janrain') && Phpfox::getParam('janrain.enable_janrain_login'))}

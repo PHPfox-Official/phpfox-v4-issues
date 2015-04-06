@@ -624,30 +624,6 @@ class Phpfox_Module
 					{
 						continue;
 					}
-				}	
-				
-				if ($sKey == 'user.login-block')
-				{
-					$aDeny = array(
-						'forum',
-						'profile'
-					);
-					
-					// If we are logged in lets not display the login block
-					if (Phpfox::isUser())
-					{
-						continue;
-					}		
-					
-					if (in_array(Phpfox_Module::instance()->getModuleName(), $aDeny))
-					{
-						continue;
-					}
-					
-					if (Phpfox_Url::instance()->isUrl(array('user/login', 'user/register', 'profile', 'user/password/request', 'forum')))
-					{
-						continue;
-					}					
 				}
 				
 				$aControllerParts = array();

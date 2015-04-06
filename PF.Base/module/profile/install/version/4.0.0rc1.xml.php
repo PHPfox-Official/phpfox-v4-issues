@@ -22,6 +22,17 @@
 			<version_id>3.6.0rc1</version_id>
 			<value>0</value>
 		</setting>
+		<setting>
+			<group />
+			<module_id>profile</module_id>
+			<is_hidden>1</is_hidden>
+			<type>string</type>
+			<var_name>profile_seo_for_meta_title</var_name>
+			<phrase_var_name>setting_profile_seo_for_meta_title</phrase_var_name>
+			<ordering>5</ordering>
+			<version_id>2.0.0rc4</version_id>
+			<value>{full_name} - {gender_name} - {location}</value>
+		</setting>
 	</phpfox_update_settings>
 	<phpfox_update_blocks>
 		<block>

@@ -61,6 +61,7 @@ li {
 	left:0px;
 	top:0px;
 	z-index:401;
+	overflow:hidden;
 
 	> i {
 		position:absolute;
@@ -160,6 +161,16 @@ li {
 
 	#right, #left {
 		border:0px;
+	}
+}
+
+.right_is_fixed {
+	#panels {
+		position:fixed;
+		bottom:5px;
+		top:auto;
+		right:auto;
+		z-index:100;
 	}
 }
 

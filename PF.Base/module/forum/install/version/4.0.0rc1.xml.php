@@ -40,7 +40,7 @@
 			<parent_var_name />
 			<m_connection>main</m_connection>
 			<var_name>menu_forum</var_name>
-			<ordering>23</ordering>
+			<ordering>5</ordering>
 			<url_value>forum</url_value>
 			<version_id>2.0.0alpha1</version_id>
 			<disallow_access />

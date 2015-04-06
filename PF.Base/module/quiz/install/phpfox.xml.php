@@ -10,7 +10,7 @@
 		<writable><![CDATA[a:1:{i:0;s:14:"file/pic/quiz/";}]]></writable>
 	</data>
 	<menus>
-		<menu module_id="quiz" parent_var_name="" m_connection="main" var_name="menu_quiz" ordering="28" url_value="quiz" version_id="2.0.0alpha1" disallow_access="" module="quiz" mobile_icon="puzzle-piece" />
+		<menu module_id="quiz" parent_var_name="" m_connection="main" var_name="menu_quiz" ordering="7" url_value="quiz" version_id="2.0.0alpha1" disallow_access="" module="quiz" mobile_icon="puzzle-piece" />
 		<menu module_id="quiz" parent_var_name="" m_connection="profile" var_name="menu_profile_quiz" ordering="48" url_value="profile.quiz" version_id="2.0.0alpha1" disallow_access="" module="quiz" />
 		<menu module_id="quiz" parent_var_name="" m_connection="quiz" var_name="menu_add_new_quiz" ordering="49" url_value="quiz.add" version_id="2.0.0alpha1" disallow_access="" module="quiz" />
 		<menu module_id="quiz" parent_var_name="" m_connection="mobile" var_name="menu_quiz_quizzes_532c28d5412dd75bf975fb951c740a30" ordering="125" url_value="quiz" version_id="3.1.0rc1" disallow_access="" module="quiz" mobile_icon="small_quizzes.png" />
@@ -23,8 +23,8 @@
 		<setting group="" module_id="quiz" is_hidden="0" type="boolean" var_name="show_percentage_in_results" phrase_var_name="setting_show_percentage_in_results" ordering="1" version_id="2.0.0alpha3">1</setting>
 		<setting group="" module_id="quiz" is_hidden="0" type="integer" var_name="takers_to_show" phrase_var_name="setting_takers_to_show" ordering="1" version_id="2.0.0beta2">5</setting>
 		<setting group="" module_id="quiz" is_hidden="0" type="integer" var_name="quiz_max_image_pic_size" phrase_var_name="setting_quiz_max_image_pic_size" ordering="1" version_id="2.0.0beta3">75</setting>
-		<setting group="search_engine_optimization" module_id="quiz" is_hidden="0" type="large_string" var_name="quiz_meta_keywords" phrase_var_name="setting_quiz_meta_keywords" ordering="10" version_id="2.0.0rc1">quiz, test, online, quizzes, tests, free, cool, fun</setting>
-		<setting group="search_engine_optimization" module_id="quiz" is_hidden="0" type="large_string" var_name="quiz_meta_description" phrase_var_name="setting_quiz_meta_description" ordering="16" version_id="2.0.0rc1"><![CDATA[Take Free Fun Quizzes & Tests. Cool Online Fun Quiz & Test. Fun Quizzes and Fun Tests by Site Name.]]></setting>
+		<setting group="" module_id="quiz" is_hidden="1" type="large_string" var_name="quiz_meta_keywords" phrase_var_name="setting_quiz_meta_keywords" ordering="10" version_id="2.0.0rc1">quiz, test, online, quizzes, tests, free, cool, fun</setting>
+		<setting group="" module_id="quiz" is_hidden="1" type="large_string" var_name="quiz_meta_description" phrase_var_name="setting_quiz_meta_description" ordering="16" version_id="2.0.0rc1"><![CDATA[Take Free Fun Quizzes & Tests. Cool Online Fun Quiz & Test. Fun Quizzes and Fun Tests by Site Name.]]></setting>
 	</settings>
 	<blocks>
 		<block type_id="0" m_connection="quiz.view" module_id="quiz" component="stat" location="1" is_active="1" ordering="1" disallow_access="" can_move="0">

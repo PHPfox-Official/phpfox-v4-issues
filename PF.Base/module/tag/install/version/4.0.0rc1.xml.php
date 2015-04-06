@@ -11,6 +11,17 @@
 			<version_id>3.0.1</version_id>
 			<value>F j, Y</value>
 		</setting>
+		<setting>
+			<group />
+			<module_id>tag</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>enable_hashtag_support</var_name>
+			<phrase_var_name>setting_enable_hashtag_support</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>3.7.0beta1</version_id>
+			<value>1</value>
+		</setting>
 	</phpfox_update_settings>
 	<phpfox_update_blocks>
 		<block>

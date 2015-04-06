@@ -33,5 +33,27 @@
 			<version_id>2.0.0beta5</version_id>
 			<value>30</value>
 		</setting>
+		<setting>
+			<group>spam</group>
+			<module_id>mail</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>spam_check_messages</var_name>
+			<phrase_var_name>setting_spam_check_messages</phrase_var_name>
+			<ordering>7</ordering>
+			<version_id>2.0.0rc1</version_id>
+			<value>1</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>mail</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>threaded_mail_conversation</var_name>
+			<phrase_var_name>setting_threaded_mail_conversation</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>3.2.0beta1</version_id>
+			<value>1</value>
+		</setting>
 	</phpfox_update_settings>
 </upgrade>

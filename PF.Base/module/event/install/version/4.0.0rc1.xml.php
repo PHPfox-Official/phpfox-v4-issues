@@ -73,7 +73,7 @@
 			<parent_var_name />
 			<m_connection>main</m_connection>
 			<var_name>menu_event</var_name>
-			<ordering>29</ordering>
+			<ordering>8</ordering>
 			<url_value>event</url_value>
 			<version_id>2.0.0alpha1</version_id>
 			<disallow_access />

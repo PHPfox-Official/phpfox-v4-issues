@@ -24,8 +24,6 @@
 		<menu module_id="user" parent_var_name="menu_settings" m_connection="" var_name="menu_user_privacy_settings_73c8da87d666df89aabd61620c81c24c" ordering="108" url_value="user.privacy" version_id="3.0.0beta4" disallow_access="" module="user" />
 	</menus>
 	<settings>
-		<setting group="registration" module_id="user" is_hidden="0" type="array" var_name="usernames_to_suggest" phrase_var_name="setting_usernames_to_suggest" ordering="6" version_id="2.0.0beta3"><![CDATA[s:34:"array('user', 'member', 'friend');";]]></setting>
-		<setting group="registration" module_id="user" is_hidden="0" type="integer" var_name="how_many_usernames_to_suggest" phrase_var_name="setting_how_many_usernames_to_suggest" ordering="8" version_id="2.0.0beta3">4</setting>
 		<setting group="" module_id="user" is_hidden="0" type="string" var_name="redirect_after_login" phrase_var_name="setting_redirect_after_login" ordering="2" version_id="2.0.0alpha1" />
 		<setting group="" module_id="user" is_hidden="0" type="array" var_name="user_pic_sizes" phrase_var_name="setting_user_pic_sizes" ordering="1" version_id="2.0.0alpha1"><![CDATA[s:103:"array(
   0 => '20',
@@ -39,9 +37,6 @@
 		<setting group="" module_id="user" is_hidden="0" type="drop" var_name="login_type" phrase_var_name="setting_login_type" ordering="1" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:5:"email";s:6:"values";a:3:{i:0;s:5:"email";i:1;s:9:"user_name";i:2;s:4:"both";}}]]></setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="profile_use_id" phrase_var_name="setting_profile_use_id" ordering="1" version_id="2.0.0alpha1">0</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="captcha_on_signup" phrase_var_name="setting_captcha_on_signup" ordering="9" version_id="2.0.0alpha1">0</setting>
-		<setting group="registration" module_id="user" is_hidden="0" type="array" var_name="registration_steps" phrase_var_name="setting_registration_steps" ordering="2" version_id="2.0.0alpha2" />
-		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="multi_step_registration_form" phrase_var_name="setting_multi_step_registration_form" ordering="1" version_id="2.0.0alpha2">0</setting>
-		<setting group="" module_id="user" is_hidden="0" type="drop" var_name="user_browse_display_results_default" phrase_var_name="setting_user_browse_display_results_default" ordering="1" version_id="2.0.0alpha3"><![CDATA[a:2:{s:7:"default";s:17:"name_photo_detail";s:6:"values";a:2:{i:0;s:17:"name_photo_detail";i:1;s:10:"name_photo";}}]]></setting>
 		<setting group="" module_id="user" is_hidden="0" type="integer" var_name="user_profile_private_age" phrase_var_name="setting_user_profile_private_age" ordering="1" version_id="2.0.0beta4">0</setting>
 		<setting group="spam" module_id="user" is_hidden="0" type="boolean" var_name="validate_full_name" phrase_var_name="setting_validate_full_name" ordering="12" version_id="2.0.0beta4">1</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="randomize_featured_members" phrase_var_name="setting_randomize_featured_members" ordering="1" version_id="2.0.0beta5">1</setting>
@@ -55,7 +50,6 @@
 		<setting group="registration" module_id="user" is_hidden="0" type="integer" var_name="on_signup_new_friend" phrase_var_name="setting_on_signup_new_friend" ordering="10" version_id="2.0.0rc4">0</setting>
 		<setting group="spam" module_id="user" is_hidden="0" type="integer" var_name="check_status_updates" phrase_var_name="setting_check_status_updates" ordering="13" version_id="2.0.0rc5">1</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="string" var_name="redirect_after_signup" phrase_var_name="setting_redirect_after_signup" ordering="12" version_id="2.0.0rc10" />
-		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="suggest_usernames_on_registration" phrase_var_name="setting_suggest_usernames_on_registration" ordering="7" version_id="2.0.0rc10">1</setting>
 		<setting group="" module_id="user" is_hidden="0" type="integer" var_name="date_of_birth_start" phrase_var_name="setting_date_of_birth_start" ordering="1" version_id="2.0.0rc11">1900</setting>
 		<setting group="" module_id="user" is_hidden="0" type="integer" var_name="date_of_birth_end" phrase_var_name="setting_date_of_birth_end" ordering="1" version_id="2.0.0rc11">1997</setting>
 		<setting group="" module_id="user" is_hidden="0" type="drop" var_name="user_browse_default_result" phrase_var_name="setting_user_browse_default_result" ordering="1" version_id="2.0.0rc12"><![CDATA[a:2:{s:7:"default";s:9:"full_name";s:6:"values";a:2:{i:0;s:9:"full_name";i:1;s:10:"last_login";}}]]></setting>
@@ -64,7 +58,7 @@
 		<setting group="" module_id="user" is_hidden="0" type="integer" var_name="min_count_for_top_rating" phrase_var_name="setting_min_count_for_top_rating" ordering="1" version_id="2.0.0">0</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="approve_users" phrase_var_name="setting_approve_users" ordering="13" version_id="2.0.5">0</setting>
 		<setting group="" module_id="user" is_hidden="0" type="drop" var_name="display_or_full_name" phrase_var_name="setting_display_or_full_name" ordering="1" version_id="2.0.5"><![CDATA[a:2:{s:7:"default";s:9:"full_name";s:6:"values";a:2:{i:0;s:9:"full_name";i:1;s:12:"display_name";}}]]></setting>
-		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="disable_username_on_sign_up" phrase_var_name="setting_disable_username_on_sign_up" ordering="14" version_id="2.0.5dev1">1</setting>
+		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="disable_username_on_sign_up" phrase_var_name="setting_disable_username_on_sign_up" ordering="14" version_id="2.0.5dev1">0</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="check_promotion_system" phrase_var_name="setting_check_promotion_system" ordering="1" version_id="2.0.5dev2">0</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="allow_user_registration" phrase_var_name="setting_allow_user_registration" ordering="0" version_id="2.0.7">1</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="enable_user_tooltip" phrase_var_name="setting_enable_user_tooltip" ordering="1" version_id="2.1.0Beta1">1</setting>
@@ -72,9 +66,7 @@
 		<setting group="" module_id="user" is_hidden="0" type="integer" var_name="brute_force_time_check" phrase_var_name="setting_brute_force_time_check" ordering="1" version_id="2.0.8">0</setting>
 		<setting group="" module_id="user" is_hidden="0" type="integer" var_name="brute_force_cool_down" phrase_var_name="setting_brute_force_cool_down" ordering="1" version_id="2.0.8">15</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="force_user_to_upload_on_sign_up" phrase_var_name="setting_force_user_to_upload_on_sign_up" ordering="15" version_id="2.1.0rc1">0</setting>
-		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="hide_main_menu" phrase_var_name="setting_hide_main_menu" ordering="16" version_id="3.0.0beta1">0</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="invite_only_community" phrase_var_name="setting_invite_only_community" ordering="17" version_id="3.0.0beta1">0</setting>
-		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="new_user_terms_confirmation" phrase_var_name="setting_new_user_terms_confirmation" ordering="18" version_id="3.0.0beta3">0</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="enable_relationship_status" phrase_var_name="setting_enable_relationship_status" ordering="1" version_id="3.0.0beta4">1</setting>
 		<setting group="" module_id="user" is_hidden="0" type="string" var_name="user_dob_month_day_year" phrase_var_name="setting_user_dob_month_day_year" ordering="1" version_id="3.0.0">F j, Y</setting>
 		<setting group="" module_id="user" is_hidden="0" type="string" var_name="user_dob_month_day" phrase_var_name="setting_user_dob_month_day" ordering="2" version_id="3.0.0">F j</setting>
@@ -93,6 +85,14 @@
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="cache_user_inner_joins" phrase_var_name="setting_cache_user_inner_joins" ordering="2" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="user" is_hidden="0" type="integer" var_name="cache_recent_logged_in" phrase_var_name="setting_cache_recent_logged_in" ordering="3" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="disable_store_last_user" phrase_var_name="setting_disable_store_last_user" ordering="4" version_id="3.6.0rc1">0</setting>
+		<setting group="registration" module_id="user" is_hidden="1" type="array" var_name="usernames_to_suggest" phrase_var_name="setting_usernames_to_suggest" ordering="6" version_id="2.0.0beta3"><![CDATA[s:34:"array('user', 'member', 'friend');";]]></setting>
+		<setting group="registration" module_id="user" is_hidden="1" type="integer" var_name="how_many_usernames_to_suggest" phrase_var_name="setting_how_many_usernames_to_suggest" ordering="8" version_id="2.0.0beta3">4</setting>
+		<setting group="registration" module_id="user" is_hidden="1" type="array" var_name="registration_steps" phrase_var_name="setting_registration_steps" ordering="2" version_id="2.0.0alpha2" />
+		<setting group="registration" module_id="user" is_hidden="1" type="boolean" var_name="multi_step_registration_form" phrase_var_name="setting_multi_step_registration_form" ordering="1" version_id="2.0.0alpha2">0</setting>
+		<setting group="" module_id="user" is_hidden="1" type="drop" var_name="user_browse_display_results_default" phrase_var_name="setting_user_browse_display_results_default" ordering="1" version_id="2.0.0alpha3"><![CDATA[a:2:{s:7:"default";s:17:"name_photo_detail";s:6:"values";a:2:{i:0;s:17:"name_photo_detail";i:1;s:10:"name_photo";}}]]></setting>
+		<setting group="registration" module_id="user" is_hidden="1" type="boolean" var_name="suggest_usernames_on_registration" phrase_var_name="setting_suggest_usernames_on_registration" ordering="7" version_id="2.0.0rc10">0</setting>
+		<setting group="registration" module_id="user" is_hidden="1" type="boolean" var_name="hide_main_menu" phrase_var_name="setting_hide_main_menu" ordering="16" version_id="3.0.0beta1">0</setting>
+		<setting group="registration" module_id="user" is_hidden="1" type="boolean" var_name="new_user_terms_confirmation" phrase_var_name="setting_new_user_terms_confirmation" ordering="18" version_id="3.0.0beta3">0</setting>
 		<setting group="" module_id="user" is_hidden="1" type="drop" var_name="login_module" phrase_var_name="setting_login_module" ordering="0" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:6:"cookie";s:6:"values";a:2:{i:0;s:6:"cookie";i:1;s:7:"session";}}]]></setting>
 	</settings>
 	<blocks>

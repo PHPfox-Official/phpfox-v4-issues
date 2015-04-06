@@ -94,7 +94,7 @@ class Admincp_Component_Controller_Maintain_Reparser extends Phpfox_Component
 		}		
 		
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.text_reparser'))
-			->setBreadcrumb(Phpfox::getPhrase('admincp.reparser'))
+			->setSectionTitle('Content Re-Parser')
 			->assign(array(
 				'aReparserLists' => $aModules
 			)

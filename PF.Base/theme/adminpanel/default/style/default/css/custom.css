@@ -163,7 +163,7 @@ ul#breadcrumb_menu li.active a:hover {
   height: 40px;
   line-height: 40px;
   color: #f2f2f2;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 200;
   letter-spacing: 1px;
   /*
@@ -232,12 +232,16 @@ ul#breadcrumb_menu li.active a:hover {
   border: 0px;
   box-shadow: none;
   border-right: 2px #e6e6e6 solid;
-  background: #f2f2f2;
+  background: #ffffff;
   color: #999999;
   font-size: 13px;
 }
 .main_menu li .main_sub_menu .main_sub_menu_holder:first-of-type {
   margin-top: 10px;
+}
+.main_menu li .main_sub_menu > ul li.separator {
+  color: #666666;
+  border-color: #ebebeb;
 }
 .main_menu li .main_sub_menu > ul > li.focus > a,
 .main_menu li .main_sub_menu > ul > li.focus > a:hover {
@@ -268,7 +272,7 @@ ul#breadcrumb_menu li.active a:hover {
   display: block;
   font-weight: normal;
   padding: 6px 0px;
-  text-indent: 6px;
+  text-indent: 12px;
   color: #999999;
 }
 .main_menu li .main_sub_menu > ul > li > a:hover {
@@ -1083,16 +1087,26 @@ ul.action {
 .table_actions li a,
 .table_actions li a:hover {
   display: block;
-  padding: 4px 10px;
+  padding: 6px 10px;
+  border-radius: 3px;
+  border: 1px #e6e6e6 solid;
   text-transform: uppercase;
   font-weight: normal;
   background: #f5f5f5;
   color: #b3b3b3;
 }
+.table_actions li a i,
+.table_actions li a:hover i {
+  color: #999999;
+}
 .table_actions li a:hover {
+  border-color: #f1362f;
   background: #f4645f;
   color: #ffffff;
   transition: all 0.5s ease;
+}
+.table_actions li a:hover i {
+  color: #ffffff;
 }
 a.delete_link,
 a.delete_link:hover {
@@ -1158,23 +1172,91 @@ a.delete_link:hover {
   display: table-cell;
   vertical-align: middle;
 }
-.ajax_processing {
+#global_ajax_message {
+  text-align: left;
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+}
+.ajax_processing,
+#global_ajax_message {
   position: fixed;
   top: 0px;
   right: 0px;
   z-index: 100000000;
   min-width: 200px;
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 40px;
   text-align: right;
   background: #3f3f3f;
+  left: auto;
 }
-.ajax_processing i {
+.ajax_processing i,
+#global_ajax_message i {
   display: inline-block;
   font-size: 18px;
-  color: #808080;
-  margin-right: 10px;
+  color: #f2f2f2;
+  margin-right: 20px;
   vertical-align: middle;
+}
+.js_item_is_active,
+.js_item_is_not_active {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  position: relative;
+  margin: auto;
+  text-align: center;
+}
+.js_item_is_active .js_item_active_link:before,
+.js_item_is_not_active .js_item_active_link:before,
+.js_item_is_active .js_item_active_link:hover:before,
+.js_item_is_not_active .js_item_active_link:hover:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  text-indent: 0px !important;
+  content: '\f205';
+  display: block;
+  font-size: 35px;
+  opacity: 1;
+}
+.js_item_is_active img,
+.js_item_is_not_active img {
+  display: none;
+}
+.js_item_is_not_active .js_item_active_link:before,
+.js_item_is_not_active .js_item_active_link:hover:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  text-indent: 0px !important;
+  content: '\f204';
+  display: block;
+  font-size: 35px;
+  color: #999999;
+  opacity: 1;
 }
 #js_block_border_core_site-stat .p_4,
 #js_block_border_core_site-stat div.info_right,
@@ -5389,6 +5471,7 @@ i._zz {
   font-size: 18px;
   font-weight: 300;
   cursor: default;
+  min-height: 25px;
 }
 .js_box_content {
   background: #ffffff;

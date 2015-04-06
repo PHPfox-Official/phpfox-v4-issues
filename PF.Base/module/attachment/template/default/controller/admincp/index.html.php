@@ -11,9 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="table_header">
-	{phrase var='announcement.attachments_title'}
-</div>
 <table cellpadding="0" cellspacing="0">
 	<tr>
 		<th style="width:20px;"></th>
@@ -28,7 +25,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<a href="#" class="js_drop_down_link" title="Manage">{img theme='misc/bullet_arrow_down.png' alt=''}</a>
 			<div class="link_menu">
 				<ul>
-					<li><a href="{url link='admincp.attachment.add' id=$aRow.extension}">{phrase var='admincp.edit'}</a></li>		
+					<li><a href="{url link='admincp.attachment.add' id=$aRow.extension}" class="popup">{phrase var='admincp.edit'}</a></li>
 					<li><a href="{url link='admincp.attachment' delete=$aRow.extension}" onclick="return confirm('{phrase var='admincp.are_you_sure' phpfox_squote=true}');">{phrase var='admincp.delete'}</a></li>					
 				</ul>
 			</div>		

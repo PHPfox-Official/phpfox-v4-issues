@@ -269,17 +269,28 @@ ul.action {
 
 		a, a:hover {
 			display:block;
-			padding:4px 10px;
+			padding:6px 10px;
+			border-radius:3px;
+			border:1px darken(@blockBg, 10%) solid;
 			text-transform:uppercase;
 			font-weight:normal;
 			background:darken(@blockBg, 4%);
 			color:lighten(@blockColor, 10%);
+
+			i {
+				color:@blockColor;
+			}
 		}
 
 		a:hover {
+			border-color:darken(@brandPrimary, 10%);
 			background:@brandPrimary;
 			color:@brandPrimaryColor;
 			transition:@transition;
+
+			i {
+				color:@brandPrimaryColor;
+			}
 		}
 	}
 }
@@ -358,22 +369,58 @@ a.delete_link, a.delete_link:hover {
 	}
 }
 
-.ajax_processing {
+#global_ajax_message {
+	.reset();
+}
+
+.ajax_processing, #global_ajax_message {
 	position:fixed;
 	top:0px;
 	right:0px;
 	z-index:100000000;
 	min-width:200px;
-	height:@headerHeight;
-	line-height:@headerHeight;
+	height:@topHeight;
+	line-height:@topHeight;
 	text-align:right;
-	background:#3f3f3f;
+	background:@topBg;
+	left:auto;
+
 
 	i {
 		display:inline-block;
 		font-size:18px;
-		color:@headerColor;
-		margin-right:10px;
+		color:@topColor;
+		margin-right:20px;
 		vertical-align:middle;
+	}
+}
+
+.js_item_is_active, .js_item_is_not_active {
+	display:inline-block;
+	width:60px;
+	height:30px;
+	position:relative;
+	margin:auto;
+	text-align:center;
+
+	.js_item_active_link:before, .js_item_active_link:hover:before {
+		.fa('\f205');
+		display:block;
+		font-size:35px;
+		opacity:1;
+	}
+
+	img {
+		display:none;
+	}
+}
+
+.js_item_is_not_active {
+	.js_item_active_link:before, .js_item_active_link:hover:before {
+		.fa('\f204');
+		display:block;
+		font-size:35px;
+		color:@blockColor;
+		opacity:1;
 	}
 }

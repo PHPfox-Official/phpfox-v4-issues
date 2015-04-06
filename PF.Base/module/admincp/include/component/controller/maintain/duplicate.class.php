@@ -50,7 +50,7 @@ class Admincp_Component_Controller_Maintain_Duplicate extends Phpfox_Component
 		}
 		
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.remove_duplicates'))
-			->setBreadcrumb(Phpfox::getPhrase('admincp.remove_duplicates'))
+			->setSectionTitle(Phpfox::getPhrase('admincp.remove_duplicates'))
 			->assign(array(
 					'aLists' => $aLists
 				)

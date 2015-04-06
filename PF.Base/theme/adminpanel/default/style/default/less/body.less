@@ -124,7 +124,7 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	height:@topHeight;
 	line-height:@topHeight;
 	color:@topColor;
-	font-size:@fontSizeBase + 6;
+	font-size:@fontSizeBase + 1;
 	font-weight:200;
 	letter-spacing:1px;
 
@@ -200,7 +200,7 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	border:0px;
 	box-shadow:none;
 	border-right:2px darken(@blockBg, 10%) solid;
-	background:darken(@blockBg, 5%);
+	background:darken(@blockBg, 0%);
 	color:@blockColor;
 	font-size:@fontSizeBase - 1;
 
@@ -209,6 +209,11 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	}
 
 	> ul {
+		li.separator {
+			color:darken(@blockBg, 60%);
+			border-color:darken(@blockBg, 8%);
+		}
+
 		> li.focus {
 			> a, > a:hover {
 				background:#298ADA;
@@ -239,7 +244,7 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 				display:block;
 				font-weight:normal;
 				padding:6px 0px;
-				text-indent:6px;
+				text-indent:12px;
 				color:@blockColor;
 			}
 

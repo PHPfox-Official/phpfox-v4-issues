@@ -22,6 +22,7 @@ class Api_Component_Controller_Admincp_Gateway_Index extends Phpfox_Component
 	{
 		$this->template()->setTitle(Phpfox::getPhrase('api.payment_gateways'))	
 			->setBreadcrumb(Phpfox::getPhrase('api.payment_gateways'), $this->url()->makeUrl('admincp.api.gateway'))
+			->setSectionTitle('Payment Gateways')
 			->assign(array(
 					'aGateways' => Phpfox::getService('api.gateway')->getForAdmin()
 				)

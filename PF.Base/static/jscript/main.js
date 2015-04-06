@@ -863,6 +863,8 @@ $Behavior.globalInit = function()
     		$(this).parent().find('.item_is_not_active input').prop('checked', true);
 		    p.addClass('item_selection_not_active');
     	}
+
+	    $(this).parent().find('.item_is_active input').trigger('change');
     }); 
     
     if ($('.moderate_link').length > 0)
@@ -1527,7 +1529,7 @@ $Core.processing = function()
 
 $Core.ajaxMessage = function()
 {
-	$('#global_ajax_message').html(getPhrase('core.saving')).animate({opacity: 0.9}).slideDown();
+	$('#global_ajax_message').html('<i class="fa fa-spin fa-circle-o-notch"></i>').show();
 };
 
 /**
@@ -1794,9 +1796,9 @@ $Behavior.linkClickAll = function()
 	});
 };
 
-$Core.loadInit = function()
+$Core.loadInit = function(forceIt)
 {
-	if ($Core.dynamic_js_files > 0)
+	if ($Core.dynamic_js_files > 0 && forceIt !== true)
 	{
 		setTimeout(function(){ 
 			$Core.loadInit();

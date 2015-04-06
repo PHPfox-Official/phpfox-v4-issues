@@ -449,10 +449,10 @@ div#content div.menu, div#left div.menu, div#right div.menu {
 		position:relative;
 
 		i {
-			font-size:18px;
+			font-size:16px;
 			position:absolute;
-			left:10px;
-			top:5px;
+			left:12px;
+			top:7px;
 			color:#808080;
 		}
 
@@ -467,6 +467,18 @@ div#content div.menu, div#left div.menu, div#right div.menu {
 
 		i {
 			transition:@transition;
+			color:#fff;
+		}
+	}
+
+	> a.site_is_offline, a.site_is_offline:hover {
+		i {
+			color:#f4645f;
+		}
+	}
+
+	> a.site_is_offline:hover {
+		i {
 			color:#fff;
 		}
 	}

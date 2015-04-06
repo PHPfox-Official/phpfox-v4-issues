@@ -21,12 +21,9 @@ defined('PHPFOX') or exit('NO DICE!');
 {else}
 {if $iCacheCnt > 0}
 {if !defined('PHPFOX_IS_HOSTED_SCRIPT')}
-<div class="table_header">
-	{phrase var='admincp.cache_stats'}
-</div>
 <div class="table">
 	<div class="table_left">
-		{phrase var='admincp.total_files'}:
+		Total Objects:
 	</div>
 	<div class="table_right">
 		{$aStats.total}
@@ -42,21 +39,12 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	<div class="clear"></div>
 </div>
-{if isset($aStats.last)}
-<div class="table">
-	<div class="table_left">
-		{phrase var='admincp.last_cached_file'}:
-	</div>
-	<div class="table_right">
-		{$aStats.last|date:'admincp.cache_time_stamp'}
-	</div>
-	<div class="clear"></div>
-</div>
 {/if}
-{/if}
+{*
 <div class="{if !defined('PHPFOX_IS_HOSTED_SCRIPT')}table_clear{else}t_center{/if}">
 	<input type="button" value="{phrase var='admincp.clear_all'}" class="button" onclick="window.location.href = '{url link='admincp.maintain.cache' all=true}';" />
 </div>
+*}
 {else}
 <div class="message">
 	{phrase var='admincp.no_cache_date_found'}

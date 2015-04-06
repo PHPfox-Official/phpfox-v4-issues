@@ -764,7 +764,11 @@ class Phpfox_Url
 		}
 		
 		return $sUrl;
-	}	
+	}
+
+	public function current() {
+		return $this->makeUrl('current');
+	}
 	
 	/**
 	 * Clean a items title for the sites URL.

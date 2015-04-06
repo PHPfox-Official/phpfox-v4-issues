@@ -56,7 +56,7 @@ function addInput(oObj, sVarName)
 -->
 </script>
 {/literal}
-<form method="post" action="{url link='current'}" enctype="multipart/form-data">
+<form method="post" action="{url link='current'}" enctype="multipart/form-data" class="on_change_submit">
 {foreach from=$aSettings item=aSetting}
 <div id="{$aSetting.var_name}"></div>
 <div class="table_header2 settings">
@@ -160,9 +160,6 @@ function addInput(oObj, sVarName)
 </div>
 {/if}
 {/foreach}
-<div class="table_clear table_hover_action">
-	<input type="submit" value="{phrase var='admincp.submit'}" class="button" />
-</div>
 </form>
 {else}
 <p>{phrase var='admincp.setting_group_avaliable_settings'}</p>

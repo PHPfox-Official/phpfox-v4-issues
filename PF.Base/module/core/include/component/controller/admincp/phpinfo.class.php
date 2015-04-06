@@ -36,7 +36,7 @@ class Core_Component_Controller_Admincp_Phpinfo extends Phpfox_Component
 		
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.php_info'))
 			->setBreadcrumb(Phpfox::getPhrase('admincp.system'), $this->url()->makeUrl('admincp.core.system'))
-			->setBreadcrumb(Phpfox::getPhrase('admincp.php_info'), null, true)
+			->setSectionTitle(Phpfox::getPhrase('admincp.php_info'), null, true)
 			->assign(array(
 				'sPhpInfo' => $sPhpInfo
 			)

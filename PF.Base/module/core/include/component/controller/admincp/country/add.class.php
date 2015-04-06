@@ -50,7 +50,7 @@ class Core_Component_Controller_Admincp_Country_Add extends Phpfox_Component
 		
 		$this->template()->setTitle(($bIsEdit ? Phpfox::getPhrase('admincp.editing_country') . ': ' : Phpfox::getPhrase('admincp.add_a_country')))
 			->setBreadcrumb(Phpfox::getPhrase('admincp.country_manager'), $this->url()->makeUrl('admincp.core.country'))
-			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('admincp.editing_country') . ': ' : Phpfox::getPhrase('admincp.add_a_country')), null, true)
+			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('admincp.editing_country') . ': ' : Phpfox::getPhrase('admincp.add_a_country')), $this->url()->current(), true)
 			->assign(array(
 					'bIsEdit' => $bIsEdit
 				)

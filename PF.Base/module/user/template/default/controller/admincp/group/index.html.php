@@ -31,9 +31,9 @@ defined('PHPFOX') or exit('NO DICE!');
 				<li><a href="{url link='admincp.user.group.add' id=$aGroup.user_group_id setting='true'}">{phrase var='user.manage_user_settings'}</a></li>
 				{/if}
 				{if Phpfox::getUserParam('user.can_edit_user_group')}
-				<li><a href="{url link='admincp.user.group.add' id=$aGroup.user_group_id}">{phrase var='user.edit_user_group'}</a></li>				
+				<li><a href="{url link='admincp.user.group.add' id=$aGroup.user_group_id}" class="popup">{phrase var='user.edit_user_group'}</a></li>
 				{/if}
-				<li><a href="{url link='admincp.user.group.activitypoints' id=$aGroup.user_group_id}">{phrase var='core.manage_activity_points'}</a></li>
+				<li><a href="{url link='admincp.user.group.activitypoints' id=$aGroup.user_group_id}" class="popup">{phrase var='core.manage_activity_points'}</a></li>
 			</ul>
 		</div>		
 		{/if}
@@ -64,12 +64,12 @@ defined('PHPFOX') or exit('NO DICE!');
 				<li><a href="{url link='admincp.user.group.add' id=$aGroup.user_group_id setting='true'}">{phrase var='user.manage_user_settings'}</a></li>
 				{/if}
 				{if Phpfox::getUserParam('user.can_edit_user_group')}
-				<li><a href="{url link='admincp.user.group.add' id=$aGroup.user_group_id}">{phrase var='user.edit_user_group'}</a></li>
+				<li><a href="{url link='admincp.user.group.add' id=$aGroup.user_group_id}" class="popup">{phrase var='user.edit_user_group'}</a></li>
 				{/if}
 				{if !$aGroup.is_special && Phpfox::getUserParam('user.can_delete_user_group')}
 				<li><a href="{url link='admincp.user.group.delete' id=$aGroup.user_group_id}" onclick="return confirm('{phrase var='user.are_you_sure' phpfox_squote=true}');">{phrase var='user.delete'}</a></li>					
 				{/if}
-				<li><a href="{url link='admincp.user.group.activitypoints' id=$aGroup.user_group_id}">{phrase var='core.manage_activity_points'}</a></li>
+				<li><a href="{url link='admincp.user.group.activitypoints' id=$aGroup.user_group_id}" class="popup">{phrase var='core.manage_activity_points'}</a></li>
 			</ul>
 		</div>	
 		{/if}	

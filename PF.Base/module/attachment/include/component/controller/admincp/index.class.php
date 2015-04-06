@@ -30,6 +30,13 @@ class Attachment_Component_Controller_Admincp_Index extends Phpfox_Component
 		
 		$this->template()->settitle(Phpfox::getPhrase('attachment.attachments_title'))
 			->setBreadcrumb(Phpfox::getPhrase('attachment.attachments_title'), $this->url()->makeUrl('admincp.attachment'))
+			->setSectionTitle('Attachment File Types')
+			->setActionMenu([
+				'New Type' => [
+					'url' => $this->url()->makeUrl('admincp.attachment.add'),
+					'class' => 'popup'
+				]
+			])
 			->assign(array(
 					'aRows' => Phpfox::getService('attachment.type')->get()
 				)

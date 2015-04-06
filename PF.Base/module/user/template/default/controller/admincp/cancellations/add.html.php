@@ -16,9 +16,6 @@ defined('PHPFOX') or exit('NO DICE!');
 {if isset($aForms.delete_id)}
 <input type="hidden" name="val[iDeleteId]" value="{$aForms.delete_id}">
 {/if}
-	<div class="table_header">
-		{phrase var='user.add_new_option'}
-	</div>
 	{if !isset($aForms.delete_id)}
 		{module name='admincp.product.form'}
 		{module name='admincp.module.form'}

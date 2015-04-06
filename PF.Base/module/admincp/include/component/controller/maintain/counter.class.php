@@ -71,7 +71,7 @@ class Admincp_Component_Controller_Maintain_Counter extends Phpfox_Component
 		}				
 		
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.update_counters'))
-			->setBreadcrumb(Phpfox::getPhrase('admincp.update_counters'))
+			->setSectionTitle(Phpfox::getPhrase('admincp.update_counters'))
 			->assign(array(
 					'aLists' => $aLists,
 					'bRefresh' => $bRefresh,

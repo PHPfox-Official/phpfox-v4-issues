@@ -30,7 +30,7 @@ class User_Component_Controller_Admincp_Inactivereminder extends Phpfox_Componen
 				'user.enter_a_number_to_size_each_batch',
 				'user.not_enough_users_to_mail'
 			))
-			->setBreadCrumb(Phpfox::getPhrase('admincp.inactive_member_reminder'));
+			->setSectionTitle(Phpfox::getPhrase('admincp.inactive_member_reminder'));
 	}
 	
 	/**

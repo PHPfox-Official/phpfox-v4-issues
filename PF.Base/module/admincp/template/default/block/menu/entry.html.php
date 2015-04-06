@@ -18,7 +18,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<td>{$aMenu.url_value}</td>
 	<td>
 		<ul class="table_actions">
-			<li><a href="{url link='admincp.menu.add.' id=$aMenu.menu_id}"><i class="fa fa-edit"></i></a></li>
+			<li><a href="{url link='admincp.menu.add.' id=$aMenu.menu_id}" class="popup"><i class="fa fa-edit"></i></a></li>
 			<li><a href="{url link='admincp.menu.' delete=$aMenu.menu_id}" class="sJsConfirm"><i class="fa fa-remove"></i></a></li>
 		</ul>
 	</td>

@@ -44,7 +44,7 @@ class Core_Component_Controller_Admincp_Stat extends Phpfox_Component
 		}
 		
 		$this->template()->setTitle(Phpfox::getPhrase('core.site_statistics'))
-			->setBreadcrumb(Phpfox::getPhrase('core.site_statistics'))
+			->setSectionTitle(Phpfox::getPhrase('core.site_statistics'))
 			->assign(array(
 					'aStats' => $aStats,
 					'sStartTime' => $sStartTime,

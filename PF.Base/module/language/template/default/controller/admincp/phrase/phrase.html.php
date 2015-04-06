@@ -15,7 +15,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<form method="post" action="{url link="admincp.language.phrase"}">
 		{token}
 		<div class="table_header">
-			{phrase var='language.search_filter'}
+			Filter
 		</div>
 		<div class="table">
 			<div class="table_left">
@@ -90,9 +90,6 @@ defined('PHPFOX') or exit('NO DICE!');
 
 <div class="block_content">
 	{if count($aRows)}
-	<div class="table_header">
-		{phrase var='language.phrases'}
-	</div>
 	<form method="post" action="{if $bIsForceLanguagePackage}{url link='admincp.language.phrase' search-id=$sSearchIdNormal search-rid=$sSearchId page=$iPage lang-id=$iLangId}{else}{url link='admincp.language.phrase' search-id=$sSearchIdNormal search-rid=$sSearchId page=$iPage}{/if}">
 		<table cellpadding="0" cellspacing="0">
 		<tr>

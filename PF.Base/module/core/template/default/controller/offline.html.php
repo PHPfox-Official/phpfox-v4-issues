@@ -11,4 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-{$sOfflineMessage}
+<div class="offline_message">
+	{$sOfflineMessage}
+</div>

@@ -62,9 +62,7 @@ class User_Component_Controller_Admincp_Group_Activitypoints extends Phpfox_Comp
 			$this->url()->send('admincp.user.group', null, $sMessage);
 		}
 		$this->template()
-				->setBreadcrumb(Phpfox::getPhrase('user.user_groups'), $this->url()->makeUrl('admincp.user.group'))
-				->setBreadcrumb(Phpfox::getPhrase('user.manage_user_groups'), $this->url()->makeUrl('admincp.user.group'))
-				->setBreadcrumb('Manage Activity Points', null, true)
+				->setBreadcrumb('Manage Activity Points', $this->url()->makeUrl('current'), true)
 				->setTitle('Manage Activity Points')
 				->assign(array(
 					'aPoints' => $aPoints,

@@ -309,6 +309,28 @@ $Core.upload = {
 };
 
 $Ready(function() {
+	$('.on_change_submit').each(function() {
+		var t = $(this);
+		t.find('input, input:radio, textarea, select').change(function() {
+			var t = $(this).parents('form:first');
+			if (t.attr('action') == '#') {
+				$(this).parents('form:first').trigger('submit');
+			}
+			else {
+				$Core.processing();
+				$.ajax({
+					url: t.attr('action'),
+					type: 'POST',
+					data: t.serialize(),
+					success: function(e) {
+						$('.ajax_processing').fadeOut();
+					}
+				});
+			}
+		});
+
+	});
+
 	if ($('.ajax_upload').length) {
 
 		$('.ajax_upload:not(.built)').each(function() {

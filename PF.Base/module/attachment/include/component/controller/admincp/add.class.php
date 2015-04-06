@@ -46,7 +46,7 @@ class Attachment_Component_Controller_Admincp_Add extends Phpfox_Component
 		}
 		
 		$this->template()->setBreadcrumb(Phpfox::getPhrase('attachment.attachments_title'), $this->url()->makeUrl('admincp.attachment'))
-			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('attachment.editing_an_attachment_type') . ': ' : Phpfox::getPhrase('attachment.add_an_attachment_type')), null, true)
+			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('attachment.editing_an_attachment_type') . ': ' : Phpfox::getPhrase('attachment.add_an_attachment_type')), $this->url()->current(), true)
 			->assign(array(
 					'bIsEdit' => $bIsEdit
 				)

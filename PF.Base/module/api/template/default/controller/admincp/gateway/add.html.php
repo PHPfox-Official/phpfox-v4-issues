@@ -12,10 +12,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 <form method="post" action="{url link='admincp.api.gateway.add'}">
-	<div><input type="hidden" name="id" value="{$aForms.gateway_id}" /></div>	
-	<div class="table_header">
-		{phrase var='api.gateway_details'}
-	</div>	
+	<div><input type="hidden" name="id" value="{$aForms.gateway_id}" /></div>
 	<div class="table">
 		<div class="table_left">
 			{phrase var='api.title'}:

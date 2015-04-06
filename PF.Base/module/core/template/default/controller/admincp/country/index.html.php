@@ -11,9 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="table_header">
-	{phrase var='admincp.countries'}
-</div>
 <table id="js_drag_drop" cellpadding="0" cellspacing="0">
 	<tr>
 		<th></th>

@@ -19,41 +19,46 @@ class Admincp_Component_Controller_Checksum_Modified extends Phpfox_Component {
 
 		$check = array();
 		$failed = 0;
-		$lines = file(PHPFOX_DIR_INCLUDE . 'checksum/md5');
-		foreach ($lines as $line) {
-			$line = trim($line);
-			$parts = explode(' ', $line);
-			$file = PHPFOX_DIR . trim($parts[1]);
-			$file_name = trim($parts[1]);
 
-			if ($file_name == 'include/checksum/md5') {
-				continue;
-			}
+		if ($this->request()->get('check')) {
+			$this->template()->assign('check', true);
+			$lines = file(PHPFOX_DIR_INCLUDE . 'checksum/md5');
+			foreach ($lines as $line) {
+				$line = trim($line);
+				$parts = explode(' ', $line);
+				$file = PHPFOX_DIR . trim($parts[1]);
+				$file_name = trim($parts[1]);
 
-			$message = '';
-			$has_failed = false;
-			if (!file_exists($file)) {
-				$message = 'MISSING';
-				$failed++;
-				$has_failed = true;
-			} else {
-				if (md5(file_get_contents($file)) == $parts[0]) {
+				if ($file_name == 'include/checksum/md5') {
+					continue;
+				}
 
-				} else {
-					$message = 'MODIFIED';
+				$message = '';
+				$has_failed = false;
+				if (!file_exists($file)) {
+					$message = 'MISSING';
 					$failed++;
 					$has_failed = true;
-				}
-			}
+				} else {
+					if (md5(file_get_contents($file)) == $parts[0]) {
 
-			if ($has_failed) {
-				$check[$file_name] = $message;
+					} else {
+						$message = 'MODIFIED';
+						$failed++;
+						$has_failed = true;
+					}
+				}
+
+				if ($has_failed) {
+					$check[$file_name] = $message;
+				}
 			}
 		}
 
 		$this->template()->setTitle('Checking Modified Files')
-			->setBreadcrumb('Checking Modified Files')
+			->setSectionTitle('Modified Files')
 			->assign(array(
+				'url' => $this->url()->makeUrl('admincp.checksum.modified', ['check' => true]),
 				'files' => $check,
 				'failed' => $failed
 			));

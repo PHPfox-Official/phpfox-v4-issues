@@ -23,7 +23,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div><input type="hidden" name="val[is_page]" value="true" /></div>
 	{/if}
 	{if !$bIsPage}
-	<div class="table">
+	<div class="table" style="display:none;">
 		<div class="table_left">
 			{phrase var='admincp.product'}:
 		</div>
@@ -37,7 +37,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="table">
+	<div class="table" style="display:none;">
 		<div class="table_left">
 			{phrase var='admincp.module'}:
 		</div>
@@ -115,6 +115,15 @@ defined('PHPFOX') or exit('NO DICE!');
 
 	<div class="table">
 		<div class="table_left">
+			Font Awesome Icon:
+		</div>
+		<div class="table_right">
+			<input type="text" name="val[mobile_icon]" value="{value type='input' id='mobile_icon'}" />
+		</div>
+	</div>
+
+	<div class="table">
+		<div class="table_left">
 			{phrase var='admincp.menu'}:
 		</div>
 		<div class="table_right_text">
@@ -128,6 +137,8 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="clear"></div>
 	</div>
+
+
 	<div style="display:none;">
 		<div class="table_header">
 			{phrase var='admincp.user_group_access'}

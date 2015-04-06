@@ -218,7 +218,7 @@ class Language_Component_Controller_Admincp_Phrase_Phrase extends Phpfox_Compone
 			'sSearchIdNormal' => $this->request()->get('search-id'),
 			'iLangId' => $iLangId,
 			'bIsForceLanguagePackage' => $bIsForceLanguagePackage
-		))->setBreadCrumb(Phpfox::getPhrase('language.phrase_manager'))
+		))->setSectionTitle('Phrases')
 			->setTitle(Phpfox::getPhrase('language.phrase_manager'));
 	}
 }

@@ -212,7 +212,7 @@ $Behavior.tableHover = function()
     	$('#js_drop_down_cache_menu').remove();
     	
     	$('body').prepend('<div id="js_drop_down_cache_menu" style="position:absolute; left:' + eleOffset.left + 'px; top:' + (eleOffset.top + 15) + 'px; z-index:9999;"><div class="link_menu" style="display:block;">' + $(this).parent().find('.link_menu:first').html() + '</div></div>');
-    	
+
 		$('#js_drop_down_cache_menu .link_menu').hover(function()
 		{
 

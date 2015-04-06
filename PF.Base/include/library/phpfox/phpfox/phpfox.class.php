@@ -1280,7 +1280,6 @@ class Phpfox
 			}
 		}
 
-
 		if (!PHPFOX_IS_AJAX_PAGE && ($sHeaderFile = $oTpl->getHeaderFile()))
 		{
 			(($sPlugin = Phpfox_Plugin::get('run_get_header_file_1')) ? eval($sPlugin) : false);
@@ -1319,6 +1318,11 @@ class Phpfox
 		if ($oReq->get('is_ajax_get')) {
 			header('X-Is-Get: true');
 			exit;
+		}
+
+		if (defined('PHPFOX_SITE_IS_OFFLINE')) {
+			$oTpl->sDisplayLayout = 'blank';
+			unset($View);
 		}
 
 		if ((!PHPFOX_IS_AJAX_PAGE && $oTpl->sDisplayLayout && !isset($View))

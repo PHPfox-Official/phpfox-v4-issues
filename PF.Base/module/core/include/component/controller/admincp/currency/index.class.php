@@ -29,7 +29,14 @@ class Core_Component_Controller_Admincp_Currency_Index extends Phpfox_Component
 		}
 		
 		$this->template()->setTitle(Phpfox::getPhrase('core.currency_manager'))
-			->setBreadcrumb(Phpfox::getPhrase('core.currency_manager'), $this->url()->makeUrl('admincp.core.currency'))		
+			->setBreadcrumb(Phpfox::getPhrase('core.currency_manager'), $this->url()->makeUrl('admincp.core.currency'))
+			->setSectionTitle('Currencies')
+			->setActionMenu([
+				'New Currency' => [
+					'url' => $this->url()->makeUrl('admincp.core.currency.add'),
+					'class' => 'popup'
+				]
+			])
 			->setHeader('cache', array(
 					'drag.js' => 'static_script',
 					'<script type="text/javascript">$Behavior.coreDragInit = function() { Core_drag.init({table: \'#js_drag_drop\', ajax: \'core.currencyOrdering\'}); }</script>'

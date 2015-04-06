@@ -9,10 +9,6 @@
  */
 defined('PHPFOX') or exit('NO DICE!');
 ?>
-<div class="table_header">
-	{phrase var='user.user_group_details'} ({$aUserGroup.title})
-</div>
-
 <form action="{url link='admincp.user.group.activitypoints' id=$aUserGroup.user_group_id}" method="post">
 	<input type="hidden" name="val[igroup]" value="{$aUserGroup.user_group_id}">
 	{foreach from=$aPoints key=sModule item=aPoint}

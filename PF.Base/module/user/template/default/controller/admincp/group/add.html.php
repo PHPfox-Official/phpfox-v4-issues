@@ -12,9 +12,6 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if !isset($aForms)}
-<div class="table_header">
-	{phrase var='user.user_group_details'}
-</div>
 <form method="post" action="{url link='admincp.user.group.add'}" enctype="multipart/form-data">
 	{template file='user.block.admincp.entry'}
 	<div class="table">
@@ -40,17 +37,14 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 {if !$bEditSettings}
 <form method="post" action="{url link='admincp.user.group.add'}" enctype="multipart/form-data">
-	<div><input type="hidden" name="id" value="{$aForms.user_group_id}" /></div>	
-	<div class="table_header">
-		{phrase var='user.user_group_details'}
-	</div>
+	<div><input type="hidden" name="id" value="{$aForms.user_group_id}" /></div>
 	{template file='user.block.admincp.entry'}
 	<div class="table_clear">
 		<input type="submit" value="{phrase var='core.submit'}" class="button" />
 	</div>
 </form>
 {else}
-<form method="post" action="#" onsubmit="$Core.ajaxMessage(); $(this).ajaxCall('user.updateSettings'); return false;">	
+<form method="post" action="#" class="on_change_submit" onsubmit="$Core.ajaxMessage(); $(this).ajaxCall('user.updateSettings'); return false;">
 	<div><input type="hidden" name="id" value="{$aForms.user_group_id}" /></div>	
 
 	<div id="content_editor_holder">
@@ -62,11 +56,13 @@ defined('PHPFOX') or exit('NO DICE!');
 			</ul>
 		</div>
 		<div id="content_editor_text" style="display:none;">
-			<div class="table_header2" id="js_module_title"></div>
-			<div id="js_setting_block" style="position:relative;"></div>			
+			<div class="table_header2" id="js_module_title" style="display:none;"></div>
+			<div id="js_setting_block" style="position:relative;"></div>
+			{*
 			<div class="table_clear table_hover_action_custom">
 				<span id="js_setting_saved"></span> <input type="submit" value="{phrase var='user.save'}" class="button" />
-			</div>			
+			</div>
+			*}
 		</div>
 		<div class="clear"></div>
 	</div>

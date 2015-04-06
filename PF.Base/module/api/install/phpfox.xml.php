@@ -82,19 +82,7 @@
 					'paypal_email' => ''
 				)
 			)
-		),
-		array(
-			'gateway_id' => '2checkout',
-			'title' => '2checkout',
-			'description' => 'Some information about 2checkout...',
-			'is_active' => '0',
-			'is_test' => '0',
-			'setting' => serialize(array(
-					'2co_id' => '',
-					'2co_secret' => ''
-				)
-			)
-		)	
+		)
 	);	
 	foreach ($aGateways as $aGateways)
 	{

@@ -331,11 +331,13 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'core.admincp_menu_online_guests' => 'admincp.core.online-guest'
 			),
 			*/
+			/*
 			'<i class="fa fa-database"></i>SQL' => array(
 				Phpfox::getPhrase('admincp.sql_maintenance') => 'admincp.sql',
 				Phpfox::getPhrase('admincp.sql_backup') => 'admincp.sql.backup',
 				Phpfox::getPhrase('admincp.alter_title_fields') => 'admincp.sql.title'
 			),
+			*/
 			/*
 			'core.currency' => array(
 				'core.currency_manager' => 'admincp.core.currency',
@@ -454,7 +456,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			$is_settings = true;
 		}
 
-		$aSkipModules = ['apps', 'ban', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment', 'theme'];
+		$aSkipModules = ['api', 'apps', 'ban', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment', 'theme'];
 
 		if ($app && Phpfox::isModule($app) && !in_array($app, $aSkipModules)) {
 			$app = Phpfox_Module::instance()->get($app);

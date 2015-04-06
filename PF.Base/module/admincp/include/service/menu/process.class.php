@@ -29,6 +29,10 @@ class Admincp_Service_Menu_Process extends Phpfox_Service
 		{
 			$aVals['module_id'] = 'core|core';
 		}
+
+		if (empty($aVals['m_connection'])) {
+			return Phpfox_Error::set('Select where to place this menu.');
+		}
 		
 		$aModule = explode('|', $aVals['module_id']);
 		

@@ -25,7 +25,10 @@ class User_Component_Controller_Admincp_Group_Index extends Phpfox_Component
 			->setTitle(Phpfox::getPhrase('user.manage_user_groups'))
 			->setSectionTitle(Phpfox::getPhrase('user.manage_user_groups'))
 			->setActionMenu([
-				'Create User Group' => $this->url()->makeUrl('admincp.user.group.add')
+				'Create User Group' => [
+					'class' => 'popup',
+					'url' => $this->url()->makeUrl('admincp.user.group.add')
+				]
 			])
 			->assign(array(
 				'aGroups' => Phpfox::getService('user.group')->getForEdit(),

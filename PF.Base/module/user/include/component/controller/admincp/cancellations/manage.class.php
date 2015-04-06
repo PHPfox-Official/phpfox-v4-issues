@@ -33,6 +33,13 @@ class User_Component_Controller_Admincp_Cancellations_Manage extends Phpfox_Comp
 		$this->template()->setTitle(Phpfox::getPhrase('user.manage_cancellation_options'))
 			->setBreadcrumb(Phpfox::getPhrase('user.manage_cancellation_options'), $this->url()->makeUrl('admincp.user.cancellations.manage'))
 			->assign(array('aReasons' => $aReasons))
+			->setActionMenu([
+				'New Option' => [
+					'url' => $this->url()->makeUrl('admincp.user.cancellations.add'),
+					'class' => 'popup'
+				]
+			])
+			->setSectionTitle('Cancellation Options')
 			->setHeader(array(
 					'drag.js' => 'static_script',
 					'<script type="text/javascript">$Behavior.coreDragInit = function() { Core_drag.init({table: \'#js_drag_drop\', ajax: \'core.cancellationsOrdering\'}); }</script>'

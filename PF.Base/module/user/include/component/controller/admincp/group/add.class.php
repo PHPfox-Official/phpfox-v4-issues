@@ -45,17 +45,7 @@ class User_Component_Controller_Admincp_Group_Add extends Phpfox_Component
 			{
 				if (Phpfox::getService('user.group.process')->update($iGroupId, $aVals))
 				{
-					$aUrl = array(
-						'user', 
-						'group', 
-						'add', 
-						'id' => $iGroupId
-					);
-					if ($sModule)
-					{
-						$aUrl['module'] = $sModule;
-					}
-					$this->url()->send('admincp', $aUrl, Phpfox::getPhrase('user.user_group_updated'));				
+					$this->url()->send('admincp.user.group', null, Phpfox::getPhrase('user.user_group_updated'));
 				}
 			}	
 			
@@ -84,9 +74,7 @@ class User_Component_Controller_Admincp_Group_Add extends Phpfox_Component
 					'bEditSettings' => ($this->request()->get('setting') ? true : false)
 				)
 			)
-			->setBreadcrumb(Phpfox::getPhrase('user.user_groups'), $this->url()->makeUrl('admincp.user.group'))
-			->setBreadcrumb(Phpfox::getPhrase('user.manage_user_groups'), $this->url()->makeUrl('admincp.user.group'))
-			->setBreadcrumb(Phpfox::getPhrase('user.manage_settings') . ': ' . Phpfox_Locale::instance()->convert($aGroup['title']) . ' (ID#' . $aGroup['user_group_id'] . ')', null, true)
+			->setBreadcrumb(Phpfox::getPhrase('user.manage_settings') . ': ' . Phpfox_Locale::instance()->convert($aGroup['title']) . ' (ID#' . $aGroup['user_group_id'] . ')', $this->url()->makeUrl('current'), true)
 			->setHeader('cache', array(
 					'template.css' => 'style_css'
 				)
@@ -98,14 +86,12 @@ class User_Component_Controller_Admincp_Group_Add extends Phpfox_Component
 			{
 				if ($iId = Phpfox::getService('user.group.process')->add($aVals))
 				{
-					$this->url()->send('admincp.user.group.add', array('id' => $iId, 'setting' => 'true'), Phpfox::getPhrase('user.user_group_successfully_added'));
+					$this->url()->send('admincp.user.group', null, Phpfox::getPhrase('user.user_group_successfully_added'));
 				}
 			}
 			
 			$this->template()
-				->setBreadcrumb(Phpfox::getPhrase('user.user_groups'), $this->url()->makeUrl('admincp.user.group'))
-				->setBreadcrumb(Phpfox::getPhrase('user.manage_user_groups'), $this->url()->makeUrl('admincp.user.group'))			
-				->setBreadcrumb(Phpfox::getPhrase('user.create_new_user_group'), null, true)
+				->setBreadcrumb(Phpfox::getPhrase('user.create_new_user_group'), $this->url()->makeUrl('current'), true)
 				->setTitle(Phpfox::getPhrase('user.create_new_user_group'))
 				->assign(array(
 						'aGroups' => Phpfox::getService('user.group')->get()

@@ -79,7 +79,10 @@ class Admincp_Component_Controller_Setting_Edit extends Phpfox_Component
 		{
 			if (Phpfox::getService('admincp.setting.process')->update($aVals))
 			{
-				$this->url()->send('admincp', $aUrl, Phpfox::getPhrase('admincp.updated'));
+				// $this->url()->send('admincp', $aUrl, Phpfox::getPhrase('admincp.updated'));
+				return [
+					'updated' => true
+				];
 			}
 		}
 
@@ -88,6 +91,8 @@ class Admincp_Component_Controller_Setting_Edit extends Phpfox_Component
 		{
 			$sWatermarkImage = Phpfox::getLib('cdn')->getUrl(str_replace(PHPFOX_DIR, '', $sWatermarkImage));
 		}
+
+		$this->template()->setSectionTitle($sSettingTitle);
 		
 		$this->template()->setBreadCrumb(Phpfox::getPhrase('admincp.manage_settings'), $this->url()->makeUrl('admincp.setting'))
 			->setBreadCrumb(Phpfox::getPhraseT($sSettingTitle, 'module'), null, true)

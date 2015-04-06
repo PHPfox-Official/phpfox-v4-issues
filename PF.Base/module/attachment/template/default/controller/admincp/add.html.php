@@ -11,9 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="table_header">
-	{phrase var='attachment.attachment_type_info'}
-</div>
 <form method="post" action="{url link='admincp.attachment.add'}">
 {if $bIsEdit}
 	<div><input type="hidden" name="id" value="{$aForms.extension}" /></div>

@@ -80,11 +80,11 @@ class Admincp_Component_Controller_Menu_Add extends Phpfox_Component
 			
 			if ($bIsEdit)
 			{
-				$this->url()->forward($this->request()->get('send_path'), $sMessage);
+				$this->url()->send('admincp.menu', null, $sMessage);
 			}
 			else 
 			{
-				$this->url()->send('admincp.menu.add', null, $sMessage);
+				$this->url()->send('admincp.menu', null, $sMessage);
 			}
 		}
 		

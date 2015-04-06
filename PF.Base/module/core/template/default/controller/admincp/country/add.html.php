@@ -15,9 +15,6 @@ defined('PHPFOX') or exit('NO DICE!');
 {if $bIsEdit}
 	<div><input type="hidden" name="id" value="{$aForms.country_iso}" /></div>
 {/if}
-	<div class="table_header">
-		{phrase var='admincp.country_details'}
-	</div>
 	<div class="table">
 		<div class="table_left">
 			{required}{phrase var='admincp.iso'}:

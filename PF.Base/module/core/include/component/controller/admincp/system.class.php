@@ -22,7 +22,7 @@ class Core_Component_Controller_Admincp_System extends Phpfox_Component
 	{
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.system_overview'))
 			->setBreadcrumb(Phpfox::getPhrase('admincp.tools'))
-			->setBreadcrumb(Phpfox::getPhrase('admincp.system_overview'), $this->url()->makeUrl('admincp.core.system'), true)
+			->setSectionTitle(Phpfox::getPhrase('admincp.system_overview'), $this->url()->makeUrl('admincp.core.system'), true)
 			->assign(array(
 					'aStats' => Phpfox::getService('core.system')->get()
 				)

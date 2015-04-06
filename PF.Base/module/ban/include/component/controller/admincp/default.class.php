@@ -59,7 +59,7 @@ class Ban_Component_Controller_Admincp_Default extends Phpfox_Component
 		}
 		$this->template()->setTitle(Phpfox::getPhrase('ban.ban') . ': ' . $aBanFilter['title'])
 			->setBreadcrumb(Phpfox::getPhrase('ban.ban_filters'))
-			->setBreadcrumb($aBanFilter['title'], null, true)
+			->setSectionTitle('Ban: ' . $aBanFilter['title'])
 			->assign(array(
 					'aFilters' => $aFilters,
 					'aBanFilter' => $aBanFilter

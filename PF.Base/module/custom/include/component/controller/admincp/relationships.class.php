@@ -60,6 +60,7 @@ class Custom_Component_Controller_Admincp_Relationships extends Phpfox_Component
 
 		$this->template()->setTitle(Phpfox::getPhrase('custom.admin_menu_manage_relationships'))
 				->setBreadcrumb(Phpfox::getPhrase('custom.admin_menu_manage_relationships'))
+				->setSectionTitle('Custom Relationship Statues')
 				->setPhrase(array(
 				))
 				->assign(array(

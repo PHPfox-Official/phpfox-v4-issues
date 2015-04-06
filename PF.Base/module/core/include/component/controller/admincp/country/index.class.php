@@ -38,6 +38,13 @@ class Core_Component_Controller_Admincp_Country_Index extends Phpfox_Component
 		}
 		
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.country_manager'))
+			->setSectionTitle('Countries')
+			->setActionMenu([
+				'New Country' => [
+					'url' => $this->url()->makeUrl('admincp.core.country.add'),
+					'class' => 'popup'
+				]
+			])
 			->setBreadcrumb(Phpfox::getPhrase('admincp.country_manager'), $this->url()->makeUrl('admincp.core.country'))
 			->setHeader('cache', array(
 					'drag.js' => 'static_script',

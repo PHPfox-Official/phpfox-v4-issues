@@ -11,9 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="table_header">
-	{phrase var='api.gateways'}
-</div>
 <table cellpadding="0" cellspacing="0">
 <tr>
 	<th style="width:20px;"></th>
@@ -27,7 +24,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<a href="#" class="js_drop_down_link" title="Manage">{img theme='misc/bullet_arrow_down.png' alt=''}</a>
 		<div class="link_menu">
 			<ul>
-				<li><a href="{url link='admincp.api.gateway.add' id={$aGateway.gateway_id}">{phrase var='api.edit_gateway_settings'}</a></li>				
+				<li><a href="{url link='admincp.api.gateway.add' id={$aGateway.gateway_id}" class="popup">{phrase var='api.edit_gateway_settings'}</a></li>
 			</ul>
 		</div>		
 	</td>	

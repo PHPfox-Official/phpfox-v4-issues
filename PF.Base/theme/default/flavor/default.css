@@ -2276,6 +2276,12 @@ h3 {
   font-weight: 300;
   font-size: 16px !important;
 }
+.offline_message {
+  background: #ffffff;
+  padding: 10px;
+  max-width: 600px;
+  margin: 50px auto;
+}
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -3093,10 +3099,10 @@ div#right div.menu ul li.active {
 }
 #pf_admin > a i,
 #pf_admin > a:hover i {
-  font-size: 18px;
+  font-size: 16px;
   position: absolute;
-  left: 10px;
-  top: 5px;
+  left: 12px;
+  top: 7px;
   color: #808080;
 }
 #pf_admin > a span,
@@ -3109,6 +3115,13 @@ div#right div.menu ul li.active {
 }
 #pf_admin > a:hover i {
   transition: all 0.5s ease;
+  color: #fff;
+}
+#pf_admin > a.site_is_offline i,
+#pf_admin a.site_is_offline:hover i {
+  color: #f4645f;
+}
+#pf_admin > a.site_is_offline:hover i {
   color: #fff;
 }
 .notifications {

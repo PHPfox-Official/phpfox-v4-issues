@@ -47,7 +47,7 @@ class Core_Component_Controller_Admincp_Currency_Add extends Phpfox_Component
 		
 		$this->template()->setTitle(Phpfox::getPhrase('core.currency_manager'))
 			->setBreadcrumb(Phpfox::getPhrase('core.currency_manager'), $this->url()->makeUrl('admincp.core.currency'))		
-			->setBreadcrumb(Phpfox::getPhrase('admincp.add_currency'), null, true)
+			->setBreadcrumb(Phpfox::getPhrase('admincp.add_currency'), $this->url()->current(), true)
 			->assign(array(
 					'bIsEdit' => $bIsEdit
 				)

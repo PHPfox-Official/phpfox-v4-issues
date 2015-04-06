@@ -125,24 +125,16 @@ if (PHPFOX_DEBUG)
 
 (PHPFOX_DEBUG ? Phpfox_Debug::start('init') : false);
 
-// Default time to GMT
-if (function_exists('date_default_timezone_set'))
-{
-	date_default_timezone_set('GMT');
-	
-	define('PHPFOX_TIME', time());
-}
-else 
-{
-	define('PHPFOX_TIME', strtotime(gmdate("M d Y H:i:s", time())));
-}
+date_default_timezone_set('GMT');
+
+define('PHPFOX_TIME', time());
 
 Phpfox::getLib('setting')->set();
 
 // Start a session if needed
 if (!defined('PHPFOX_NO_SESSION'))
 {
-	// Phpfox_Session_Handler::instance()->init();
+	Phpfox_Session_Handler::instance()->init();
 }
 
 if (!defined('PHPFOX_NO_USER_SESSION'))

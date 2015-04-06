@@ -41,7 +41,11 @@ class Admincp_Component_Controller_Maintain_Cache extends Phpfox_Component
 				eval($sPlugin);
 			}
 			
-			$this->url()->send('admincp', $aParams, Phpfox::getPhrase('admincp.cached_cleared'));
+			// $this->url()->send('admincp', $aParams, Phpfox::getPhrase('admincp.cached_cleared'));
+
+			return [
+				'content' => Phpfox::getPhrase('admincp.cached_cleared')
+			];
 		}
 		
 		if ($aIds = $this->request()->getArray('id'))
@@ -116,12 +120,15 @@ class Admincp_Component_Controller_Maintain_Cache extends Phpfox_Component
 			$iCnt = 0;	
 		}	
 
-		if (Phpfox::isModule('Ad'))
-		{
-		    $this->template()->setTitle(Phpfox::getPhrase('ad.cache_manager'))
-				->setBreadCrumb(Phpfox::getPhrase('ad.cache_manager'));
-		}
 		$this->template()
+			->setTitle('Cache Manager')
+			->setSectionTitle('Cache Manager')
+			->setActionMenu([
+				'Clear Cache' => [
+					'url' => $this->url()->makeUrl('admincp.maintain.cache', ['all' => true]),
+					'class' => 'popup'
+				]
+			])
 			->assign(array(
 				'iCacheCnt' => $iCnt,
 				'aCaches' => $aCaches,

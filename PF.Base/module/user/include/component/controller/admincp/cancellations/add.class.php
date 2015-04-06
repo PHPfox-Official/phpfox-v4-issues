@@ -53,7 +53,7 @@ class User_Component_Controller_Admincp_Cancellations_Add extends Phpfox_Compone
 		
 		
 		$this->template()->setTitle(Phpfox::getPhrase('user.add_cancellation_options'))
-			->setBreadcrumb(Phpfox::getPhrase('user.add_cancellation_options'), $this->url()->makeUrl('admincp.user.cancellations.add'))			
+			->setBreadcrumb(Phpfox::getPhrase('user.add_cancellation_options'), $this->url()->makeUrl('admincp.user.cancellations.add'), true)
 			->assign(array(
 					// used when editing
 				)

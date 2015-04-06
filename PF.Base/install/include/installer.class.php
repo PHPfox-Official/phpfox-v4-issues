@@ -240,7 +240,8 @@ class Phpfox_Installer
 				'core.url_rewrite' => '2'
 			)
 		);
-		
+
+		/*
 		$sLanguageFile = PHPFOX_DIR_XML . 'installer' . PHPFOX_XML_SUFFIX;
 		
 		if (!file_exists($sLanguageFile))
@@ -277,6 +278,7 @@ class Phpfox_Installer
 		{
 			require_once($sCacheFile);
 		}
+		*/
 	}
 	
 	public static function getSessionId()
@@ -620,9 +622,7 @@ class Phpfox_Installer
 			}
 		}		
 		
-		$this->_oTpl->setTitle('Client Verification')
-			->setBreadcrumb('Client Verification')
-			->assign(array(
+		$this->_oTpl->assign(array(
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),
 				'bHasCurl' => (function_exists('curl_init') ? true : false)		
@@ -1045,7 +1045,7 @@ class Phpfox_Installer
 				'is_master' => '1'
 			)
 		);	
-		Phpfox::getService('language.process')->import(Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_XML . 'installer' . PHPFOX_XML_SUFFIX), 'phpfox_installer', true, true);
+		// Phpfox::getService('language.process')->import(Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_XML . 'installer' . PHPFOX_XML_SUFFIX), 'phpfox_installer', true, true);
 
 		$themeId = $this->_db()->insert(Phpfox::getT('theme'), [
 			'name' => 'Default',
@@ -1064,6 +1064,11 @@ class Phpfox_Installer
 			'created' => PHPFOX_TIME
 		]);
 
+		$Theme = new Core\Theme();
+		$Theme->make([
+			'name' => 'Neutron'
+		]);
+
 		/*
 		$this->_pass();
 		$this->_oTpl->assign(array(
@@ -1072,6 +1077,7 @@ class Phpfox_Installer
 			)
 		);
 		*/
+
 		return [
 			'message' => 'Setting up apps',
 			'next' => 'module'
@@ -1227,12 +1233,14 @@ class Phpfox_Installer
 			'password' => array(
 				'def' => 'password',
 				'title' => 'Provide a valid password.'
-			),			
+			),
+			/*
 			'month' => 'Select month of birth.',
 			'day' => 'Select day of birth.',
 			'year' => 'Select year of birth.',
 			'country_iso' => 'Select current location.',
 			'gender' => 'Select your gender.',
+			*/
 			'user_name' => array(
 				'def' => 'username',
 				'title' => 'Provide a valid user name.'

@@ -197,3 +197,12 @@ body {
   font-weight: 300;
   letter-spacing: 1px;
 }
+.error {
+  background: #d9534f;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 15px;
+  border: 0px;
+  text-align: left;
+}

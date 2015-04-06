@@ -2,7 +2,7 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="{$sLocaleDirection}" lang="{$sLocaleCode}">
 	<head>
-		<title>{title}</title>	
+		<title>PHPfox Installer</title>
 		{header}
 		{loadjs}
 	</head>

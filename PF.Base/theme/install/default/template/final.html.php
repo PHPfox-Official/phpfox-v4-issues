@@ -35,36 +35,6 @@
 		</div>
 	</div>
 	
-	<div class="table">
-		<div class="table_left">
-			Date of Birth:	
-		</div>
-		<div class="table_right">
-			{select_date start_year='1900' end_year='2008' field_separator=' / ' field_order='MDY'}
-		</div>
-		<div class="clear"></div>
-	</div>
-	
-	<div class="table">
-		<div class="table_left">
-			<label for="country_iso">Location:</label>
-		</div>
-		<div class="table_right">
-			{select_location}
-		</div>
-		<div class="clear"></div>
-	</div>
-	
-	<div class="table">
-		<div class="table_left">
-			<label for="gender">Gender:</label>
-		</div>
-		<div class="table_right">
-			{select_gender}
-		</div>
-		<div class="clear"></div>
-	</div>
-	
 	<div class="table_clear">
 		<input type="submit" value="Submit" class="button" />
 	</div>

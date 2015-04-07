@@ -6,6 +6,7 @@
 			var t = $(this);
 
 			t.addClass('built');
+			$('.table_clear').fadeOut();
 			runStep(t.attr('action').replace('#', ''), 'POST', 1, t.serialize());
 
 			return false;
@@ -25,7 +26,7 @@
 
 					if (typeof(e.next) == 'string') {
 						if (typeof(e.message) == 'string') {
-							$('#installer').html('<div class="process">' + e.message + '</div>');
+							$('#installer').html('<div class="process">' + e.message + '<i class="fa fa-spin fa-circle-o-notch"></i></div>');
 						}
 						runStep(e.next);
 					}
@@ -34,8 +35,9 @@
 						boot();
 					}
 					else if (typeof(e.errors) == 'object') {
+						$('.table_clear').fadeIn();
 						for (var i in e.errors) {
-							$('#installer').prepend('<div class="error">' + e.errors[i] + '</div>');
+							$('#installer form').prepend('<div class="error">' + e.errors[i] + '</div>');
 						}
 					}
 				}
@@ -44,8 +46,11 @@
 	};
 
 	$(document).ready(function() {
-
+		if (!$('.process').length) {
+			console.log('Requirements did not pass...');
+			boot();
+			return;
+		}
 		runStep('key');
-
 	});
 })(jQuery);

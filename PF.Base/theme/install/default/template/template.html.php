@@ -4,11 +4,29 @@
 	<head>
 		<title>PHPfox Installer</title>
 		{header}
-		{loadjs}
 	</head>
 	<body>
-		<div id="installer">
-			<div class="process">Loading installer</div>
+		<div id="header">
+			PHPfox
 		</div>
+		<div id="installer">
+			{if isset($requirementErrors)}
+			<form method="post" action="#start">
+				<div id="errors">
+					{foreach from=$requirementErrors item=error}
+					<div class="error">
+						{$error}
+					</div>
+					{/foreach}
+				</div>
+				<div class="table_clear">
+					<input type="submit" value="Try Again" class="button" />
+				</div>
+			</form>
+			{else}
+			<div class="process">Loading installer<i class="fa fa-spin fa-circle-o-notch"></i></div>
+			{/if}
+		</div>
+		{loadjs}
 	</body>
 </html>

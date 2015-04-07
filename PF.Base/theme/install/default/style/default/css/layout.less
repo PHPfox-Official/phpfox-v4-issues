@@ -53,9 +53,22 @@ body {
 	line-height:@installLineHeightBase;
 }
 
+#header {
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	height:50px;
+	line-height:50px;
+	text-indent:20px;
+	color:darken(#fff, 20%);
+	font-weight:300;
+	font-size:24px;
+	background:lighten(#0c0c0c, 20%);
+}
+
 #installer {
-	width:400px;
-	margin:50px auto 50px auto;
+	margin:50px auto 100px auto;
 	text-align:center;
 
 	.process {
@@ -70,24 +83,34 @@ body {
 		margin-left:-150px;
 		margin-top:-150px;
 		letter-spacing:1px;
+
+		i {
+			position:absolute;
+			bottom:80px;
+			left:0px;
+			right:0px;
+			font-size:26px;
+			color:lighten(#808080, 20%);
+		}
 	}
+}
+
+.table_header {
+	background:lighten(#0c0c0c, 30%);
+	color:lighten(@installTextColor, 30%);
+	font-size:@installFontSizeBase + 6;
+	height:50px;
+	line-height:50px;
+	font-weight:300;
+	text-indent:20px;
+	text-align:left;
 }
 
 #installer > form {
 	text-align:left;
 
-	.table_header {
-		text-align:center;
-		border-bottom:3px lighten(@installBodyBg, 40%) solid;
-		color:@installTextColor;
-		font-size:@installFontSizeBase + 6;
-		margin-bottom:15px;
-		padding-bottom:15px;
-		font-weight:300;
-	}
-
 	.table {
-		padding-bottom:20px;
+		padding:20px 20px 0px 20px;
 
 		.table_left {
 			font-size:@installFontSizeBase + 2;
@@ -101,8 +124,8 @@ body {
 				width:100%;
 				margin:0px;
 				border:0px;
-				background:lighten(@installBodyBg, 30%);
-				color:@installBodyBg;
+				background:#fff;
+				color:#808080;
 				font-size:@installFontSizeBase + 2;
 				padding:15px 0px;
 				text-indent:10px;
@@ -113,31 +136,52 @@ body {
 			}
 		}
 	}
+}
 
-	.table_clear {
-		.button {
-			background:@installBrand;
-			color:@installBrandColor;
-			padding:15px 0px;
-			text-align:center;
-			border:0px;
-			outline:none;
-			width:100%;
-			cursor:pointer;
-			font-size:@installFontSizeBase + 3;
-			text-transform:uppercase;
-			font-weight:300;
-			letter-spacing:1px;
-		}
+.table_clear {
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	right:0px;
+
+	.button {
+		background:@installBrand;
+		color:@installBrandColor;
+		padding:15px 0px;
+		text-align:center;
+		border:0px;
+		outline:none;
+		width:100%;
+		cursor:pointer;
+		font-size:@installFontSizeBase + 3;
+		text-transform:uppercase;
+		font-weight:300;
+		letter-spacing:1px;
+	}
+
+	.button:hover {
+		background:lighten(@installBrand, 10%);
+		color:@installBrandColor;
+		transition:@installTransition;
 	}
 }
 
 .error {
-	background:#d9534f;
-	color:#fff;
+	background:#fff;
+	color:#f4645f;
 	font-size:16px;
 	font-weight:300;
 	padding:15px;
 	border:0px;
 	text-align:left;
+	border-left:10px #f4645f solid;
+}
+
+.completed_message {
+	background:#fff;
+	color:#808080;
+	font-size:20px;
+	font-weight:300;
+	padding:60px 0px;
+	text-align:center;
 }

@@ -18,5 +18,6 @@ defined('PHPFOX') or exit('NO DICE!');
 	Successfully installed PHPfox {$sUpgradeVersion}.
 	{/if}
 </div>
-
-<a href="./" class="installed_link">View Your Site</a>
+<div class="table_clear">
+	<input type="button" value="View Your Site" class="button" onclick="window.location.reload();" />
+</div>

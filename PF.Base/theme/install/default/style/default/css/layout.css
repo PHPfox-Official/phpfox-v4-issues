@@ -123,15 +123,27 @@ table {
   border-spacing: 0;
 }
 body {
-  background: #595959;
-  color: #ffffff;
+  background: #e5e5e5;
+  color: #808080;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
 }
+#header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  line-height: 50px;
+  text-indent: 20px;
+  color: #cccccc;
+  font-weight: 300;
+  font-size: 24px;
+  background: #3f3f3f;
+}
 #installer {
-  width: 400px;
-  margin: 50px auto 50px auto;
+  margin: 50px auto 100px auto;
   text-align: center;
 }
 #installer .process {
@@ -147,20 +159,29 @@ body {
   margin-top: -150px;
   letter-spacing: 1px;
 }
+#installer .process i {
+  position: absolute;
+  bottom: 80px;
+  left: 0px;
+  right: 0px;
+  font-size: 26px;
+  color: #b3b3b3;
+}
+.table_header {
+  background: #595959;
+  color: #cdcdcd;
+  font-size: 20px;
+  height: 50px;
+  line-height: 50px;
+  font-weight: 300;
+  text-indent: 20px;
+  text-align: left;
+}
 #installer > form {
   text-align: left;
 }
-#installer > form .table_header {
-  text-align: center;
-  border-bottom: 3px #bfbfbf solid;
-  color: #ffffff;
-  font-size: 20px;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  font-weight: 300;
-}
 #installer > form .table {
-  padding-bottom: 20px;
+  padding: 20px 20px 0px 20px;
 }
 #installer > form .table .table_left {
   font-size: 16px;
@@ -173,8 +194,8 @@ body {
   width: 100%;
   margin: 0px;
   border: 0px;
-  background: #a5a5a5;
-  color: #595959;
+  background: #fff;
+  color: #808080;
   font-size: 16px;
   padding: 15px 0px;
   text-indent: 10px;
@@ -183,8 +204,14 @@ body {
 #installer > form .table .table_right input[type="password"]:focus {
   background: #ffffff;
 }
-#installer > form .table_clear .button {
-  background: #298ada;
+.table_clear {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+.table_clear .button {
+  background: #f4645f;
   color: #ffffff;
   padding: 15px 0px;
   text-align: center;
@@ -197,12 +224,26 @@ body {
   font-weight: 300;
   letter-spacing: 1px;
 }
+.table_clear .button:hover {
+  background: #f7928f;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
 .error {
-  background: #d9534f;
-  color: #fff;
+  background: #fff;
+  color: #f4645f;
   font-size: 16px;
   font-weight: 300;
   padding: 15px;
   border: 0px;
   text-align: left;
+  border-left: 10px #f4645f solid;
+}
+.completed_message {
+  background: #fff;
+  color: #808080;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 60px 0px;
+  text-align: center;
 }

@@ -1,8 +1,4 @@
 
-$Event(function() {
-	p('loading once...');
-});
-
 $Ready(function() {
-	p('test...ing');
+	// add JS here... jQuery is supported!
 });

@@ -12,8 +12,7 @@
 	</div>
 	<div class="am_content">
 		<div class="admincp_design_info">
-			<div>
-				<div><a href="{url link='admincp.theme.flavor' theme=$theme.theme_id}" class="popup">New Flavor</a></div>
+			<div class="theme_flavors">
 				<select name="flavors" class="goJump">
 					<option value="">Flavor:</option>
 				{foreach from=$flavors item=flavor}
@@ -24,8 +23,9 @@
 			<div class="theme_actions">
 				<ul>
 					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id default=$theme.flavor_id}" class="ajax">Set as default</a></li>
+					<li><a href="{url link='admincp.theme.flavor' theme=$theme.theme_id}" class="popup">New Flavor</a></li>
 					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id export=1}" target="_blank" class="no_ajax">Export theme</a></li>
-					<li><a href="{url link='admincp.theme.delete' id=$theme.theme_id}" class="popup">Remove theme</a></li>
+					<li><a href="{url link='admincp.theme.delete' id=$theme.theme_id}" class="popup is_delete">Remove theme</a></li>
 				</ul>
 			</div>
 		</div>
@@ -81,12 +81,15 @@
 
 		$('.admincp_design input').change(function() {
 			var t = $(this);
+
+			$Core.processing();
 			$.ajax({
 				url: t.parents('form:first').attr('action'),
 				type: 'POST',
 				data: '' + t.attr('name') + '=' + encodeURIComponent(t.val()),
 				success: function(e) {
 					// p(e);
+					$Core.processingEnd();
 				}
 			});
 		});

@@ -8,6 +8,9 @@ class Object extends \Core\Objectify {
 	public $path;
 	public $is_module = false;
 	public $icon;
+	public $version;
+	public $currentVersion;
+	public $unityId;
 
 	public function __construct($keys) {
 		parent::__construct($keys);

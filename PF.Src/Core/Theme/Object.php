@@ -11,6 +11,7 @@ class Object extends \Core\Objectify {
 	public $is_active;
 	public $is_default;
 	public $created;
+	public $image;
 
 	/**
 	 * @var \Core\Db

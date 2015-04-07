@@ -38,43 +38,29 @@ Your server is missing the CURL library for PHP. In order for our product to run
 </div>
 {/if}
 {$sCreateJs}
-	<form method="post" action="{url link=''$sUrl'.key'}" id="js_form" onsubmit="{$sGetJsForm}">
+	<form method="post" action="#key" id="js_form">
 		<div class="table_header">
 			phpFox Client Details
 		</div>
 		<div class="table">
 			<div class="table_left">
-				Client Email:
+				License ID:
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[email]" id="email" value="{value type='input' id='email'}" size="30" />
+				<input type="text" name="val[license_id]" id="license_id" value="{value type='input' id='license_id'}" size="30" />
 			</div>
 		</div>
 		<div class="table">
 			<div class="table_left">
-				Client Password:
+				License Key:
 			</div>
 			<div class="table_right">
-				<input type="password" name="val[password]" id="password" value="" size="30" />
+				<input type="text" name="val[license_key]" id="license_key" value="" size="30" />
 			</div>
 		</div>
 		<div class="table_clear">
 			<input type="submit" value="Submit" class="button" />
 		</div>
 	</form>
-	<br />
-	<div class="message">
-		<strong>Notice:</strong>
-		<div class="p_4">
-			To install your branding removal you will need to enter your phpFox login details. This is the same login details used to log into our clients area at <a href="http://www.phpfox.com/" target="_blank">http://www.phpfox.com/</a>.
-			Alternatively, you can skip this step and continue with your install and optionally install your branding removal at a later time. 
-			<div class="p_4 t_right">
-				<form method="post" action="{url link=''$sUrl'.key'}">
-					{token}
-					<input type="submit" value="Skip This Step" class="button" name="skip" />
-				</form>
-			</div>
-		</div>
-	</div>
 {/if}
 {/if}

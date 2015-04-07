@@ -1653,7 +1653,6 @@ class Phpfox_Template
 		}
 		$aCacheJs = array_unique($aCacheJs);
 
-
 		$aSubCacheCheck = array();
 		foreach ($aCacheCSS as $sFile)
 		{
@@ -1672,34 +1671,18 @@ class Phpfox_Template
 			}
 		}
 
-
-
-		if (!empty($aCustomCssFile))
+		foreach ($aCacheJs as $sFile)
 		{
-			foreach ($aCustomCssFile as $sCustomCssFile)
+			if (defined('PHPFOX_INSTALLER'))
 			{
-				$sData .= "\n\t\t".'<!-- Custom --> <link rel="stylesheet" type="text/css" href="' . $sCustomCssFile . '" />' . "";
+				$this->_sFooter .= "\t\t" . '<script type="text/javascript" src="../' . $sFile . $sQmark .'v=' . $iVersion . '"></script>' . "\n";
+			}
+			else
+			{
+				$this->_sFooter .= "\t\t" . '<script type="text/javascript" src="' . Phpfox::getParam('core.path') . $sFile . $sQmark .'v=' . $iVersion . '"></script>' . "\n";
 			}
 		}
 
-		if (Phpfox::getParam('core.defer_loading_js'))
-		{
-
-		}
-		else
-		{
-			foreach ($aCacheJs as $sFile)
-			{
-				if (defined('PHPFOX_INSTALLER'))
-				{
-					$this->_sFooter .= "\t\t" . '<script type="text/javascript" src="../' . $sFile . $sQmark .'v=' . $iVersion . '"></script>' . "\n";
-				}
-				else
-				{
-					$this->_sFooter .= "\t\t" . '<script type="text/javascript" src="' . Phpfox::getParam('core.path') . $sFile . $sQmark .'v=' . $iVersion . '"></script>' . "\n";
-				}
-			}
-		}
 		if (!defined('PHPFOX_INSTALLER'))
 		{
 			$this->_sFooter .= "\t\t" . '<script type="text/javascript"> $Core.init(); </script>' . "\n";
@@ -1924,11 +1907,13 @@ class Phpfox_Template
 	public function getFooter() {
 		if (Phpfox::isAdmin() && !Phpfox::isAdminPanel()) {
 			$Url = Phpfox_Url::instance();
-			$this->_sFooter .= '<div id="pf_admin"><a href="' . Phpfox_Url::instance()->makeUrl('admincp') . '" class="js_hover_title no_ajax"><i class="fa fa-diamond"></i><span class="js_hover_info">AdminCP</span></a>';
+			$this->_sFooter .= '<div id="pf_admin">';
 			$this->_sFooter .= '<a id="page_editor_popup" href="' . Phpfox_Url::instance()->makeUrl('admincp.element.edit', ['controller' => base64_encode(Phpfox_Module::instance()->getFullControllerName())]) . '" class="popup js_hover_title" data-custom-class="js_box_full"><i class="fa fa-code"></i><span class="js_hover_info">Edit this page</span></a>';
 			if (Phpfox::getParam('core.site_is_offline')) {
 				$this->_sFooter .= '<a href="' . $Url->makeUrl('admincp.setting.edit', ['group-id' => 'site_offline_online']) . '" class="no_ajax site_is_offline js_hover_title"><i class="fa fa-power-off"></i><span class="js_hover_info">Site is Offline</span></a>';
 			}
+
+			$this->_sFooter .= '<a href="' . Phpfox_Url::instance()->makeUrl('admincp') . '" class="js_hover_title no_ajax"><i class="fa fa-diamond"></i><span class="js_hover_info">AdminCP</span></a>';
 			$this->_sFooter .= '</div>';
 		}
 

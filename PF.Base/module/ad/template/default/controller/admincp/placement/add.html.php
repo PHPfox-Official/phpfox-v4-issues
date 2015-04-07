@@ -15,9 +15,6 @@ defined('PHPFOX') or exit('NO DICE!');
 {if $bIsEdit}
 	<div><input type="hidden" name="id" value="{$aForms.plan_id}" /></div>
 {/if}
-	<div class="table_header">
-		{phrase var='ad.ad_placement_details'}
-	</div>
 	<div class="table">
 		<div class="table_left">
 			{phrase var='ad.title'}:

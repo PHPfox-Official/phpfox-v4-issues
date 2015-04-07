@@ -1,5 +1,20 @@
 
 .admincp_apps {
+	display:table;
+	table-layout:fixed;
+
+	> div {
+		display:table-cell;
+		width:33%;
+		overflow:auto;
+		border-right:2px darken(@bodyBg, 4%) solid;
+		text-align:center;
+	}
+
+	> div:last-of-type {
+		border:0px;
+	}
+
 	article {
 		width:100px;
 		height:120px;

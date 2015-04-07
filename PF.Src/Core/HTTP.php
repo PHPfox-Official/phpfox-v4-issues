@@ -37,7 +37,7 @@ class HTTP {
 	}
 
 	public function using($params) {
-		$this->_params = $params;
+		$this->_params = array_merge($params, $this->_params);
 
 		return $this;
 	}

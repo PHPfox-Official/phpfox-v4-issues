@@ -18,12 +18,13 @@ class Phpfox_Installer
 	private $_oTpl = null;
 	private $_oReq = null;
 	private $_sUrl = 'install';
-	private $_sStep = 'key';
+	private $_sStep = 'start';
 	private $_bUpgrade = false;
 	
 	private static $_aPhrases = array();
 	
 	private $_aSteps = array(
+		'start',
 		'key',
 		'license',
 		'requirement',
@@ -295,7 +296,7 @@ class Phpfox_Installer
 	{		
 		return (isset(self::$_aPhrases[$sVar]) ? self::$_aPhrases[$sVar] : '');
 	}
-	
+
 	public function run()
 	{		
 		if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
@@ -316,7 +317,7 @@ class Phpfox_Installer
 			}
 		}		
 		
-		$sStep = ($this->_oReq->get('step') ? strtolower($this->_oReq->get('step')) : 'key');
+		$sStep = ($this->_oReq->get('step') ? strtolower($this->_oReq->get('step')) : 'start');
 
 		$this->_oTpl->setTitle(self::getPhrase('phpfox_installer'))->setBreadcrumb(self::getPhrase('phpfox_installer'));		
 		
@@ -365,7 +366,7 @@ class Phpfox_Installer
 				];
 			}
 
-			if ($sStep != 'key' && !is_array($data)) {
+			if ($sStep != 'start' && !is_array($data)) {
 				$content = $this->_oTpl->getLayout($sStep, true);
 				$data = [
 					'content' => $content
@@ -380,7 +381,7 @@ class Phpfox_Installer
 		}	
 		else 
 		{
-			$sStep = 'key';
+			$sStep = 'start';
 		}
 		
 		if (!file_exists($this->_oTpl->getLayoutFile($sStep)))
@@ -557,10 +558,15 @@ class Phpfox_Installer
 	
 	########################
 	# Install/Upgrade Steps
-	########################		
+	########################
+	private function _start()
+	{
+
+	}
 	
 	private function _key()
-	{		
+	{
+		/*
 		if (file_exists($this->_sSessionFile))
 		{
 			fclose($this->_hFile);
@@ -576,51 +582,46 @@ class Phpfox_Installer
 		{
 			$this->_pass('license');	
 		}
-		
-		$oApi = Phpfox::getLib('phpfox.api');
+		*/
+
 		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => array(
-					'email' => array(			
-						'def' => 'email',
-						'title' => 'Enter a valid email.'
-					),
-					'password' => 'Enter your password.'
+					'license_id' => 'Provide a license ID.',
+					'license_key' => 'Provide a license key.'
 				)
 			)
-		);		
-		
-		if ($this->_oReq->get('skip'))
-		{
-			$this->_pass('license');	
-		}
-		
+		);
+
 		if ($aVals = $this->_oReq->getArray('val'))
 		{
 			if ($oValid->isValid($aVals))
 			{
+
+				$Home = new Core\Home($aVals['license_id'], $aVals['license_key']);
+				$response = $Home->verify([
+					'url' => $this->getHostPath()
+				]);
+
 				// Connect to phpFox and verify the license				
-				if ($oApi->send('clientVerification', $aVals))
+				if (isset($response->valid))
 				{
-					$this->_pass('license');
+					// $this->_pass('license');
+					$data = "<?php define('PHPFOX_LICENSE_ID', '{$aVals['license_id']}'); define('PHPFOX_LICENSE_KEY', '{$aVals['license_key']}');";
+					file_put_contents(PHPFOX_DIR_SETTINGS . 'license.php', $data);
+
+					return [
+						'message' => 'Verifying license',
+						'next' => 'requirement'
+					];
 				}
 				else 
 				{
 					$this->_oTpl->assign(array(
-							'sError' => $oApi->getError()
+							'sError' => $response->error
 						)
 					);					
 				}
 			}
 		}
-		else 
-		{
-			if (!$oApi->send('domainVerification'))
-			{	
-				$this->_oTpl->assign(array(
-						'bFailed' => true
-					)
-				);
-			}
-		}		
 		
 		$this->_oTpl->assign(array(
 				'sCreateJs' => $oValid->createJS(),
@@ -1052,7 +1053,7 @@ class Phpfox_Installer
 			'folder' => 'default',
 			'created' => PHPFOX_TIME,
 			'is_active' => 1,
-			'is_default' => 1
+			'is_default' => 0
 		]);
 
 		$this->_db()->insert(Phpfox::getT('theme_style'), [
@@ -1065,9 +1066,10 @@ class Phpfox_Installer
 		]);
 
 		$Theme = new Core\Theme();
-		$Theme->make([
+		$themeId = $Theme->make([
 			'name' => 'Neutron'
 		]);
+		$this->_db()->update(Phpfox::getT('theme'), ['is_default' => 1], ['theme_id' => $themeId]);
 
 		/*
 		$this->_pass();
@@ -1441,8 +1443,8 @@ class Phpfox_Installer
 		}
 		else 
 		{
-			$this->_db()->update(Phpfox::getT('theme_style'), array('is_default' => '0'), 'style_id > 0');
-			$this->_db()->update(Phpfox::getT('theme_style'), array('is_default' => '1'), 'folder = \'nebula\'');
+			// $this->_db()->update(Phpfox::getT('theme_style'), array('is_default' => '0'), 'style_id > 0');
+			// $this->_db()->update(Phpfox::getT('theme_style'), array('is_default' => '1'), 'folder = \'nebula\'');
 
 			if (!$this->_db()->select('COUNT(*)')
 				->from(Phpfox::getT('install_log'))

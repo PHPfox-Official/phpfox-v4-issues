@@ -50,8 +50,5 @@ defined('PHPFOX') or exit('NO DICE!');
 {else}
 <div class="extra_info">
 	{phrase var='ad.no_placements_found'}
-	<ul class="action">
-		<li><a href="{url link='admincp.ad.placement.add'}">{phrase var='ad.add_a_placement'}</a></li>
-	</ul>	
 </div>
 {/if}

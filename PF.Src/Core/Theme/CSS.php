@@ -25,6 +25,9 @@ class CSS extends \Core\Model {
 		file_put_contents($path . '.less', $newContent);
 		file_put_contents($path . '.css', $parsed);
 
+		$this->db->update(':setting', array('value_actual' => ((int) \Phpfox::getParam('core.css_edit_id') + 1)), 'var_name = \'css_edit_id\'');
+		$this->cache->remove('setting');
+
 		return true;
 
 		// file_put_contents($this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder . '.min.css', $parsed);

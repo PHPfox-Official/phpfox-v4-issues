@@ -595,8 +595,9 @@ $Core.openPanel = function(obj) {
 
 		if (obj.data('class')) {
 			lastClassName = obj.data('class');
-			$('#panel').addClass(obj.data('class')).css({
-				top: obj.offset().top
+			var panel = $('#panel').addClass(obj.data('class'));
+			panel.css({
+				top: (obj.offset().top - $(window).scrollTop())
 			});
 		}
 
@@ -1555,6 +1556,10 @@ $Core.processing = function()
 {
 	$('.ajax_processing').remove();
 	$('body').prepend('<div class="ajax_processing"><i class="fa fa-spin fa-circle-o-notch"></i></div>');
+};
+
+$Core.processingEnd = function() {
+	$('.ajax_processing').fadeOut();
 };
 
 $Core.ajaxMessage = function()

@@ -69,7 +69,7 @@ class Ad_Component_Controller_Admincp_Placement_Add extends Phpfox_Component
 		
 		$this->template()->setTitle(Phpfox::getPhrase('ad.add_ad_placement'))	
 			->setBreadcrumb(Phpfox::getPhrase('ad.manage_placements'), $this->url()->makeUrl('admincp.ad.placement'))
-			->setBreadcrumb(($bIsEdit ? 'Edit Ad Placement' : Phpfox::getPhrase('ad.add_ad_placement')), null, true)
+			->setBreadcrumb(($bIsEdit ? 'Edit Ad Placement' : Phpfox::getPhrase('ad.add_ad_placement')), $this->url()->current(), true)
 			->assign(array(
 					'bIsEdit' => $bIsEdit,
 					'aPlanBlocks' => $aCount

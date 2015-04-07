@@ -12,7 +12,8 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {foreach from=$aCurrencies key=sName item=aCurrency}
-<div class="p_4">
-	{$aCurrency.symbol} <input type="text" name="{$sCurrencyFieldName}[{$sName}]" value="{if isset($aCurrency.value)}{$aCurrency.value|clean}{else}0{/if}" size="10" /> {phrase var=$aCurrency.name}
+<div class="currency">
+	<span class="js_hover_title"><span class="js_hover_info">{phrase var=$aCurrency.name}</span>{$aCurrency.symbol}</span>
+	<input type="text" name="{$sCurrencyFieldName}[{$sName}]" value="{if isset($aCurrency.value)}{$aCurrency.value|clean}{else}0{/if}" size="10" />
 </div>
 {/foreach}

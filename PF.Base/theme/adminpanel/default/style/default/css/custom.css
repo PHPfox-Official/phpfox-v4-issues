@@ -960,18 +960,23 @@ input.admincp_search_input {
 ul.action {
   margin: 10px 0px;
 }
-#site_content > .extra_info {
+#site_content > .extra_info,
+#site_content > .block_content > .extra_info {
   text-align: center;
   font-size: 14px;
 }
-#site_content > .extra_info > ul.action {
+#site_content > .extra_info > ul.action,
+#site_content > .block_content > .extra_info > ul.action {
   margin: 20px 0px;
 }
-#site_content > .extra_info > ul.action li {
+#site_content > .extra_info > ul.action li,
+#site_content > .block_content > .extra_info > ul.action li {
   display: inline-block;
 }
 #site_content > .extra_info > ul.action li a,
-#site_content > .extra_info > ul.action li a:hover {
+#site_content > .block_content > .extra_info > ul.action li a,
+#site_content > .extra_info > ul.action li a:hover,
+#site_content > .block_content > .extra_info > ul.action li a:hover {
   text-align: left;
   background: transparent;
   border-radius: 0px;
@@ -1001,7 +1006,8 @@ ul.action {
   display: block;
   width: auto;
 }
-#site_content > .extra_info > ul.action li a:hover {
+#site_content > .extra_info > ul.action li a:hover,
+#site_content > .block_content > .extra_info > ul.action li a:hover {
   border-color: #f1362f;
   background: #f4645f;
   color: #ffffff;
@@ -5874,6 +5880,28 @@ i._zz {
   background: #ffffff;
   padding: 10px;
 }
+.admincp_manager .am_content .admincp_design_info .theme_flavors select {
+  width: 100%;
+}
+.admincp_manager .am_content .admincp_design_info .theme_actions {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+.admincp_manager .am_content .admincp_design_info .theme_actions ul li a,
+.admincp_manager .am_content .admincp_design_info .theme_actions ul li a:hover {
+  display: block;
+  padding: 10px;
+  color: #999999;
+  font-weight: normal;
+  border-top: 1px #f0f0f0 solid;
+  font-size: 12px;
+}
+.admincp_manager .am_content .admincp_design_info .theme_actions ul li a:hover {
+  background: #f5f5f5;
+  transition: all 0.5s ease;
+}
 .admincp_manager .am_content .admincp_design {
   margin-left: 330px;
 }
@@ -5954,7 +5982,7 @@ i._zz {
   left: 0px;
   top: 0px;
   right: 0px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.8);
   color: #fff;
   font-weight: 200;
   font-size: 18px;
@@ -5969,6 +5997,20 @@ i._zz {
 }
 .themes article h1 a:hover em {
   display: block;
+}
+.admincp_apps {
+  display: table;
+  table-layout: fixed;
+}
+.admincp_apps > div {
+  display: table-cell;
+  width: 33%;
+  overflow: auto;
+  border-right: 2px #dbdbdb solid;
+  text-align: center;
+}
+.admincp_apps > div:last-of-type {
+  border: 0px;
 }
 .admincp_apps article {
   width: 100px;

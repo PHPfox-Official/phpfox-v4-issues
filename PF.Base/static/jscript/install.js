@@ -45,7 +45,7 @@
 
 	$(document).ready(function() {
 
-		runStep('requirement');
+		runStep('key');
 
 	});
 })(jQuery);

@@ -502,7 +502,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 			$this->template()->assign([
 				'aSectionAppMenus' => $menus,
-				'ActiveApp' => (new Core\App())->get($this->request()->get('id'))
+				'ActiveApp' => (new Core\App())->get('__module_' . $app['module_id'])
 			]);
 		}
 		

@@ -29,11 +29,22 @@ class App {
 		$app = [];
 		if (substr($id, 0, 9) == '__module_') {
 			$id = substr_replace($id, '', 0, 9);
+			$db = new \Core\Db();
+			$module = $db->select('m.*, p.*')
+				->from(':module', 'm')
+				->join(':product' , 'p', 'p.product_id = m.product_id')
+				->where(['m.module_id' => $id])
+				->get();
+
+			if ($module['product_id'] == 'phpfox') {
+				$module['version'] = \Phpfox::getVersion();
+			}
 			$app = [
 				'id' => '__module_' . $id,
 				'name' => \Phpfox_Locale::instance()->translate($id, 'module'),
 				'path' => null,
-				'is_module' => true
+				'is_module' => true,
+				'version' => $module['version']
 			];
 		}
 
@@ -61,6 +72,10 @@ class App {
 				];
 
 				$apps[] = new App\Object($app);
+			}
+
+			if ($includeModules == '__modules') {
+				return $apps;
 			}
 		}
 

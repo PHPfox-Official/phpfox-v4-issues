@@ -6,7 +6,8 @@ class Admincp_Component_Controller_Apps_index extends Phpfox_Component {
 
 		$this->template()->setSectionTitle('Apps');
 		$this->template()->assign([
-			'apps' => $Apps->all(true)
+			'modules' => $Apps->all('__modules'),
+			'apps' => $Apps->all()
 		]);
 	}
 }

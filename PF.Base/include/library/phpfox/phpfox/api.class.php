@@ -31,7 +31,7 @@ class Phpfox_Api
 	 * @return string Returns what our API server has returned for us.
 	 */
 	public function send($sCmd, $aVals = array())
-	{		
+	{
 		$aVals['domain'] = $this->_getDomain();
 		$mReturn = Phpfox_Request::instance()->send(PHPFOX::PHPFOX_API, array('request' => base64_encode(serialize(array_merge(array('cmd' => $sCmd), $aVals)))), 'POST');
 

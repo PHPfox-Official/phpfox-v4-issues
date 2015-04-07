@@ -304,6 +304,10 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 				if (!empty($aRow['value_actual']))
 				{
 					// $aRow['value_actual'] = preg_replace("/s:(.*):\"(.*?)\";/ise", "'s:'.strlen('$2').':\"$2\";'", $aRow['value_actual']);
+					$aRow['value_actual'] = preg_replace_callback("/s:(.*):\"(.*?)\";/is", function($matches) {
+						return "s:".strlen($matches[2]).":\"{$matches[2]}\";";
+
+					}, $aRow['value_actual']);
 					
 					eval("\$aRows[\$iKey]['value_actual'] = " . unserialize($aRow['value_actual']) . "");
 				}

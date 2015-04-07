@@ -325,7 +325,7 @@ class Phpfox_Setting
 						if (!empty($aRow['value_actual']))
 						{
 							// Fix unserialize sting length depending on the database driver					
-							$aRow['value_actual'] = preg_replace("/s:(.*):\"(.*?)\";/ise", "'s:'.strlen('$2').':\"$2\";'", $aRow['value_actual']);			
+							// $aRow['value_actual'] = preg_replace("/s:(.*):\"(.*?)\";/is", "'s:'.strlen('$2').':\"$2\";'", $aRow['value_actual']);
 						
 							eval("\$aRows[\$iKey]['value_actual'] = ". unserialize(trim($aRow['value_actual'])) . "");
 						}

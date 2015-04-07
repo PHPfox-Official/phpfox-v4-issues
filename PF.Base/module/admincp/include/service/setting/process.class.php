@@ -493,10 +493,11 @@ class Admincp_Service_Setting_Process extends Phpfox_Service
 		$aCache = array();
 		if (!empty($aSetting['value_actual']))
 		{
-			$aSetting['value_actual'] = preg_replace("/s:(.*):\"(.*?)\";/ise", "'s:'.strlen('$2').':\"$2\";'", $aSetting['value_actual']);			
+			// $aSetting['value_actual'] = preg_replace("/s:(.*):\"(.*?)\";/ise", "'s:'.strlen('$2').':\"$2\";'", $aSetting['value_actual']);
 			
 			$sValues = unserialize($aSetting['value_actual']);
-			
+
+			$aValues = null;
 			eval('$aValues = ' . $sValues . '');			
 			
 			foreach ($aValues as $mValue)

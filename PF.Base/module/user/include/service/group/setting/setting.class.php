@@ -285,7 +285,7 @@ class User_Service_Group_Setting_Setting extends Phpfox_Service
 					case 'array':
 						// Fix unserialize sting length depending on the database driver
 						// $aRow['value_actual'] = preg_replace("/s:(.*):\"(.*?)\";/ise", "'s:'.strlen('$2').':\"$2\";'", (isset($aRow['user_group_id']) && isset($aRow[$aRow['user_group_id']])) ? $aRow[$aRow['user_group_id']] : $aRow['value_actual']);
-						$aRow['value_actual'] = preg_replace("/s:(.*):\"(.*?)\";/ise", "'s:'.strlen('$2').':\"$2\";'", (isset($aRow['user_group_id2']) && isset($aRow[$aRow['user_group_id']])) ? $aRow[$aRow['user_group_id']] : $aRow['value_actual']);
+						// $aRow['value_actual'] = preg_replace("/s:(.*):\"(.*?)\";/ise", "'s:'.strlen('$2').':\"$2\";'", (isset($aRow['user_group_id2']) && isset($aRow[$aRow['user_group_id']])) ? $aRow[$aRow['user_group_id']] : $aRow['value_actual']);
 						if (!empty($aRow['value_actual']))
 						{
 							//eval("\$aRow['value_actual'] = ". unserialize(trim($aRow['value_actual'])) . "");

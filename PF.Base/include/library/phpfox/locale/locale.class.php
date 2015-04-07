@@ -615,7 +615,7 @@ class Phpfox_Locale
 	 */
 	public function parse($sTxt)
 	{		
-		$sTxt = preg_replace("/&\#(.*?)\;/ise", "'' . \$this->_parse('$1') . ''", $sTxt);
+		// $sTxt = preg_replace("/&\#(.*?)\;/ise", "'' . \$this->_parse('$1') . ''", $sTxt);
 
 		return $sTxt;
 	}

@@ -67,7 +67,7 @@ if (!file_exists(PHPFOX_DIR_SETTINGS . 'license.sett.php')) {
 error_reporting((PHPFOX_DEBUG ? E_ALL | E_STRICT : 0));
 
 spl_autoload_register(function($class) {
-	$class = strtolower($class);
+	// $class = strtolower($class);
 
 	$name = strtolower($class);
 	$name = str_replace("\\", '/', $name);
@@ -85,9 +85,11 @@ spl_autoload_register(function($class) {
 		$path = $dir . $class . '.php';
 
 		require($path);
+		return;
 	}
 
-	if (preg_match('/([a-zA-Z0-9]+)_service_([a-zA-Z0-9_]+)/', $class, $matches)) {
+	$class = strtolower($class);
+	if (preg_match('/([a-zA-Z0-9]+)_service_([a-zA-Z0-9_]+)/', $name, $matches)) {
 		$parts = explode('_', $matches[2]);
 		if (count($parts) > 1) {
 			if ($parts[0] == $parts[1]) {
@@ -98,7 +100,7 @@ spl_autoload_register(function($class) {
 
 		Phpfox::getService($className);
 	}
-	else if (substr($class, 0, 7) == 'phpfox_') {
+	else if (substr($name, 0, 7) == 'phpfox_') {
 		$class = str_replace('_', '.', $class);
 		Phpfox::getLibClass($class);
 	}

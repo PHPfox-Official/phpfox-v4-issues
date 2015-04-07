@@ -289,7 +289,10 @@ class Phpfox_Installer
 	
 	public static function getHostPath()
 	{
-		return 'http://' . $_SERVER['HTTP_HOST'] . str_replace(['index.php/', 'index.php'], '', $_SERVER['PHP_SELF']);
+		$parts = explode('index.php', $_SERVER['PHP_SELF']);
+		$url = 'http://' . $_SERVER['HTTP_HOST'] . $parts[0];
+
+		return $url;
 	}
 	
 	public static function getPhrase($sVar)
@@ -702,9 +705,9 @@ class Phpfox_Installer
 			$errors[] = 'No database driver found.';
 		}
 
-		$dirs = [PHPFOX_DIR_FILE, PHPFOX_DIR_SITE . 'apps/', PHPFOX_DIR_SITE . 'themes/'];
+		$dirs = [PHPFOX_DIR_FILE, PHPFOX_DIR_SITE];
 		foreach ($dirs as $dir) {
-			if (!@is_writable($dir)) {
+			if (@!is_writable($dir)) {
 				$dir = str_replace(PHPFOX_DIR, '', $dir);
 				$dir = str_replace('../', '', $dir);
 				if (substr($dir, 0, 4) == 'file') {
@@ -732,6 +735,13 @@ class Phpfox_Installer
 					}
 				}
 			}
+		}
+
+		if (!is_dir(PHPFOX_DIR_SITE . 'apps/')) {
+			mkdir(PHPFOX_DIR_SITE . 'apps/');
+		}
+		if (!is_dir(PHPFOX_DIR_SITE . 'themes/')) {
+			mkdir(PHPFOX_DIR_SITE . 'themes/');
 		}
 
 		/*

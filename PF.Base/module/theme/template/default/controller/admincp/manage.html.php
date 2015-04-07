@@ -1,6 +1,6 @@
 <div class="admincp_manager">
 	<div class="am_top">
-		<a href="{url link='admincp.theme'}" class="title">
+		<a href="{url link='admincp.theme'}" class="title no_ajax">
 			{$theme.name|clean}
 		</a>
 		<ul>

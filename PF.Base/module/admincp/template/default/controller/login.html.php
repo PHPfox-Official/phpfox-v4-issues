@@ -32,7 +32,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="table_clear">
 				<input id="admincp_btn_login" type="submit" value="{phrase var='admincp.login'}" class="button" />
 				<div id="admincp_site_link">
-					<a href="{url link=''}">{phrase var='admincp.back_to_site'}</a>
+					<a href="{url link=''}" class="no_ajax">{phrase var='admincp.back_to_site'}</a>
 				</div>                                                                                            				
 			</div>			
 		</div>

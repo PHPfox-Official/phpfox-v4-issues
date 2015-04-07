@@ -2,23 +2,46 @@
 div#admincp_site_link {
 	.reset();
 
-	padding-top:50px;
-	text-align:center;
+	position:fixed;
+	right:20px;
+	top:20px;
+	z-index:200;
+	text-align:right;
 	a, a:hover {
 		font-weight:300;
+		color:#808080;
+	}
+
+	a:hover {
+		color:#fff;
+		transition:@transition;
 	}
 }
 
 #admincp_login {
 	.reset();
 
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	top:auto;
 	background:transparent;
-	width:400px;
-	margin-left:-200px;
-	margin-top:-200px;
-	position:absolute;
-	left:50%;
-	top:50%;
+	width:auto;
+
+	.table_header {
+		background:lighten(#0c0c0c, 20%);
+		color:#f2f2f2;
+		padding:0px;
+		height:60px;
+		line-height:60px;
+		position:fixed;
+		top:0px;
+		left:0px;
+		right:0px;
+		z-index:100;
+		text-indent:10px;
+	}
 
 	.table, .table_clear {
 		margin:0px;
@@ -28,9 +51,16 @@ div#admincp_site_link {
 		padding-top:20px;
 		padding-bottom:20px;
 	}
-
+	/*
+	.table_clear {
+		position:fixed;
+		bottom:0px;
+		left:0px;
+		right:0px;
+	}
+	*/
 	.table_clear input.button {
-		padding:10px 0px;
+		padding:15px 0px;
 		width:100%;
 		background:@brandPrimary;
 		color:@brandPrimaryColor;

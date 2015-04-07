@@ -661,12 +661,20 @@ div#admincp_site_link {
   width: auto;
   float: none;
   text-indent: 0px;
-  padding-top: 50px;
-  text-align: center;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 200;
+  text-align: right;
 }
 div#admincp_site_link a,
 div#admincp_site_link a:hover {
   font-weight: 300;
+  color: #808080;
+}
+div#admincp_site_link a:hover {
+  color: #fff;
+  transition: all 0.5s ease;
 }
 #admincp_login {
   text-align: left;
@@ -682,16 +690,36 @@ div#admincp_site_link a:hover {
   font: inherit;
   font-size: 100%;
   vertical-align: baseline;
-  width: auto;
   float: none;
   text-indent: 0px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  top: auto;
   background: transparent;
-  width: 400px;
-  margin-left: -200px;
-  margin-top: -200px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  width: auto;
+  /*
+	.table_clear {
+		position:fixed;
+		bottom:0px;
+		left:0px;
+		right:0px;
+	}
+	*/
+}
+#admincp_login .table_header {
+  background: #3f3f3f;
+  color: #f2f2f2;
+  padding: 0px;
+  height: 60px;
+  line-height: 60px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 100;
+  text-indent: 10px;
 }
 #admincp_login .table,
 #admincp_login .table_clear {
@@ -702,7 +730,7 @@ div#admincp_site_link a:hover {
   padding-bottom: 20px;
 }
 #admincp_login .table_clear input.button {
-  padding: 10px 0px;
+  padding: 15px 0px;
   width: 100%;
   background: #f4645f;
   color: #ffffff;

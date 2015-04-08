@@ -7,6 +7,7 @@
 
 ## Install Instructions
 
+From your server run the following commands...
 ```
 git clone https://github.com/moxi9/phpfox.git .
 ```

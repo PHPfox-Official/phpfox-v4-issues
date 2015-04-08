@@ -1,6 +1,6 @@
 # PHPfox Developers Build
 
-** Version: 4.0.0rc1 **
+**Version: 4.0.0rc1**
 
 ## License
 This build is intended for developers working with creating apps, modules, themes and language packages for [PHPfox](http://moxi9.com/phpfox).

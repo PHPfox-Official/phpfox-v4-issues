@@ -1,6 +1,6 @@
 # PHPfox Developers Build
 
-**Version: 4.0.0rc1**
+Version: **4.0.0rc1**
 
 ## License
 This build is intended for developers working with creating apps, modules, themes and language packages for [PHPfox](http://moxi9.com/phpfox).
@@ -16,27 +16,29 @@ For a commercial license, visit [PHPfox](http://moxi9.com/phpfox).
 
 ## Install Instructions
 
-From your server run the following commands...
+Access your web server via SSH and clone it from Git (if you do not have git, skip this step and just download the ZIP).
 ```
 git clone https://github.com/moxi9/phpfox.git .
 ```
 
+Give **write** access to the following 2 folders.
 ```
 chmod 0777 PF.Base/file/
 ```
-
 ```
 chmod 0777 PF.Site/
 ```
 
+Go into the directory...
 ```
 cd PF.Base
 ```
-
+then run
 ```
 curl -sS https://getcomposer.org/installer | php
 ```
 
+Now, that you have composer installed, install the products dependencies.
 ```
 php composer.phar install
 ```
@@ -59,7 +61,7 @@ Your final step will be to setup your Admin account.
 
 ![phpfox_installer_-_2015-04-08_16 36 00](https://cloud.githubusercontent.com/assets/6339284/7047535/6863fefe-de0d-11e4-832f-0b1f4782e5b7.png)
 
-## Install Issues
+## Installation Issues
 If you are running into issues with the web installer. The first thing you want to do is enable our internal debug mode. To do this create the file **include/setting/dev.sett.php**. 
 
 In that file add
@@ -69,3 +71,5 @@ define('PHPFOX_DEBUG', true);
 ```
 
 Once that has been added, try the install again and enable your browsers developers console (e.g. Firebug). Watch the AJAX requests to view the console log and error reports provided during the install process.
+
+

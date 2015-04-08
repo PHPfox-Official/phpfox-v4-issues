@@ -1030,10 +1030,10 @@ class Phpfox_Installer
 		]);
 
 		$Theme = new Core\Theme();
-		$themeId = $Theme->make([
+		$newTheme = $Theme->make([
 			'name' => 'Neutron'
 		]);
-		$this->_db()->update(Phpfox::getT('theme'), ['is_default' => 1], ['theme_id' => $themeId]);
+		$this->_db()->update(Phpfox::getT('theme'), ['is_default' => 1], ['theme_id' => $newTheme->theme_id]);
 
 		/*
 		$this->_pass();

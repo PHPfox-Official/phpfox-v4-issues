@@ -64,6 +64,11 @@ class Theme extends Model {
 		return $themeId;
 	}
 
+	/**
+	 * @param $val
+	 * @param null $files
+	 * @return Theme\Object
+	 */
 	public function make($val, $files = null) {
 		/*
 		$check = $this->db->select('COUNT(*) AS total')
@@ -95,7 +100,7 @@ class Theme extends Model {
 				file_put_contents($path, $content);
 			}
 
-			return $id;
+			return $this->get($id);
 		}
 
 		$flavorId = $this->db->insert(':theme_style', [
@@ -144,6 +149,8 @@ class Theme extends Model {
 				file_put_contents($newFile, $content);
 			}
 		}
+
+		return $this->get($id);
 	}
 
 	/**

@@ -1,5 +1,14 @@
 # PHPfox Developers Build
 
+** Version: 4.0.0rc1 **
+
+## License
+This build is intended for developers working with creating apps, modules, themes and language packages for [PHPfox](http://moxi9.com/phpfox).
+
+We permit the usage of our developers build on a localhost web server without public access to the server.
+
+For a commercial license, visit [PHPfox](http://moxi9.com/phpfox).
+
 ## Requirements
 * PHP >= 5.4
 * PHP GD

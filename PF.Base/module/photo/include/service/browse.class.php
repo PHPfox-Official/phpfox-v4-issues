@@ -98,7 +98,7 @@ class Photo_Service_Browse extends Phpfox_Service
 		}		
 
 		if ($this->_sCategory !== null || (isset($_SESSION['photo_category']) && $_SESSION['photo_category'] != ''))
-		{		
+		{
 			$this->database()->innerJoin(Phpfox::getT('photo_category_data'), 'pcd', 'pcd.photo_id = photo.photo_id');
 			if (!$bIsCount)
 			{

@@ -1324,6 +1324,7 @@ div.info,
   display: table;
   table-layout: fixed;
   width: 100%;
+  margin-bottom: 10px;
 }
 div.info div.info_left,
 #js_block_border_core_site-stat div.info div.info_left,
@@ -1351,6 +1352,30 @@ div.info_header {
   color: #ffffff;
   padding: 0px 2px;
 }
+div#main div.block.product_install div.title {
+  background: #3498db;
+  color: #fff;
+  border: 0px;
+}
+div#main div.block.product_install div.bottom {
+  padding: 20px 10px;
+  background: #1d6fa5;
+}
+div#main div.block.product_install div.bottom ul li a,
+div#main div.block.product_install div.bottom ul li a:hover {
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  background: transparent;
+  border: 2px #fff solid;
+  color: #fff;
+  font-size: 12px;
+}
+div#main div.block.product_install div.bottom ul li a:hover {
+  background: #fff;
+  color: #3498db;
+  transition: all 0.5s ease;
+}
 div#main div.block {
   background: #ffffff;
   border-radius: 0px;
@@ -1362,11 +1387,82 @@ div#main div.block div.title {
   padding: 10px;
   font-weight: 300;
   font-size: 18px;
+  text-align: left;
 }
 div#main div.block div.content {
   padding: 10px;
   font-size: 13px;
   color: #999999;
+}
+div#main div.block div.content a,
+div#main div.block div.content a:hover {
+  color: #595959;
+}
+div#main div.block div.content a:hover {
+  color: #f4645f;
+}
+div#main div.block div.bottom {
+  text-align: left;
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+}
+div#main div.block div.bottom ul li {
+  text-align: left;
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+}
+div#main div.block div.bottom ul li a,
+div#main div.block div.bottom ul li a:hover {
+  text-align: left;
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+  display: block;
+  padding: 10px;
+  background: #f5f5f5;
+  color: #999999;
+  font-weight: normal;
 }
 .dashboard {
   visibility: hidden;
@@ -5578,8 +5674,7 @@ i._zz {
   z-index: 10;
   text-transform: uppercase;
 }
-.js_box_actions a,
-.js_box_actions a:hover {
+.js_box_actions > div {
   display: inline-block;
   font-weight: 300;
   font-size: 12px;
@@ -5600,8 +5695,7 @@ i._zz {
 		}
 		*/
 }
-.js_box_actions a span,
-.js_box_actions a:hover span {
+.js_box_actions > div span {
   position: absolute;
   z-index: 1000;
   left: 0px;
@@ -6036,6 +6130,8 @@ i._zz {
   overflow: auto;
   border-right: 2px #dbdbdb solid;
   text-align: center;
+  vertical-align: top;
+  padding: 0px 20px;
 }
 .admincp_apps > div:last-of-type {
   border: 0px;

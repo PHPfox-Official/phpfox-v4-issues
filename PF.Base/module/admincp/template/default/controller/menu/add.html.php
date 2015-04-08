@@ -23,7 +23,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div><input type="hidden" name="val[is_page]" value="true" /></div>
 	{/if}
 	{if !$bIsPage}
-	<div class="table" style="display:none;">
+	<div class="table"{if !PHPFOX_IS_TECHIE} style="display:none;"{/if}>
 		<div class="table_left">
 			{phrase var='admincp.product'}:
 		</div>
@@ -37,7 +37,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="table" style="display:none;">
+	<div class="table"{if !PHPFOX_IS_TECHIE} style="display:none;"{/if}>
 		<div class="table_left">
 			{phrase var='admincp.module'}:
 		</div>
@@ -127,13 +127,14 @@ defined('PHPFOX') or exit('NO DICE!');
 			{phrase var='admincp.menu'}:
 		</div>
 		<div class="table_right_text">
-		{foreach from=$aLanguages item=aLanguage}
-			<b>{$aLanguage.title}</b>
-			<div class="p_top_4">
-				<textarea cols="50" rows="5" name="val[text][{if isset($aLanguage.phrase_id)}{$aLanguage.phrase_id}{else}{$aLanguage.language_id}{/if}]">{if isset($aLanguage.text)}{$aLanguage.text|htmlspecialchars}{/if}</textarea>
+			<div class="lang_table">
+			{foreach from=$aLanguages item=aLanguage}
+				<div class="lang_value">
+					<textarea cols="50" rows="5" name="val[text][{if isset($aLanguage.phrase_id)}{$aLanguage.phrase_id}{else}{$aLanguage.language_id}{/if}]">{if isset($aLanguage.text)}{$aLanguage.text|htmlspecialchars}{/if}</textarea>
+				</div>
+				<div class="lang_title">{$aLanguage.title}</div>
+			{/foreach}
 			</div>
-		{/foreach}
-			{help var='admincp.menu_add_menu'}
 		</div>
 		<div class="clear"></div>
 	</div>

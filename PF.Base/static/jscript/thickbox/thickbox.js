@@ -529,6 +529,11 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 				url: thisObject.attr('href'),
 				contentType: 'application/json',
 				success: function(e) {
+					if (typeof(e.goto) == 'string') {
+						window.location.href = e.goto;
+						return;
+					}
+
 					$oNew.find('.js_box_title:first').html(e.h1_clean);
 					$oNew.find('.js_box_content').html('');
 					$oNew.find('.js_box_content').html(e.content);

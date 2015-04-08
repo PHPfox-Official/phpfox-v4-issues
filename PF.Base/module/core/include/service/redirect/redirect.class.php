@@ -69,6 +69,8 @@ class Core_Service_Redirect_Redirect extends Phpfox_Service
 
 	public function check($sActualTitle, $sReq = 'req3')
 	{
+		return;
+
 		if (PHPFOX_IS_AJAX)
 		{
 			return;

@@ -485,7 +485,11 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				return '<?php ' . $aArgs['int'] . '++; ?>';
 				break;
 			case 'for':
-				$sArguments = preg_replace("/\\$([A-Za-z0-9]+)/is", "'' . \$this->_parseVariable('\$$1') . ''", $sArguments);
+				// $sArguments = preg_replace("/\\$([A-Za-z0-9]+)/is", "'' . \$this->_parseVariable('\$$1') . ''", $sArguments);
+				$sArguments = preg_replace_callback("/\\$([A-Za-z0-9]+)/is", function($matches) {
+					return $this->_parseVariable($matches[0]);
+				}, $sArguments);
+
 				return '<?php for (' . $sArguments . '): ?>';
 				break;
 			case '/for':

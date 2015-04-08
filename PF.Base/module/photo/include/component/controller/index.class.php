@@ -378,6 +378,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 						$sPhotoList = '';
 						foreach ($aEditPhotos as $iPhotoId)
 						{
+							$iPhotoId = rtrim($iPhotoId, ',');
 							if (empty($iPhotoId))
 							{
 								continue;
@@ -465,7 +466,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 		{
 			$this->search()->setCondition('AND photo.is_profile_photo = 0');
 		}
-		
+
 		$this->search()->browse()->params($aBrowseParams)->execute();
 		
 		if ($bNoAccess == false)

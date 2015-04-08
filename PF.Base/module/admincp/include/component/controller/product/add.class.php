@@ -111,7 +111,7 @@ class Admincp_Component_Controller_Product_Add extends Phpfox_Component
 					{
 						if (($sName = Phpfox::getService('admincp.product.process')->add($aVals)))
 						{							
-							$this->url()->send('admincp', array('product', 'add', 'id' => $sName), Phpfox::getPhrase('admincp.product_successfully_created'));
+							$this->url()->send('admincp', array('product'), Phpfox::getPhrase('admincp.product_successfully_created'));
 						}
 					}
 				}
@@ -120,7 +120,7 @@ class Admincp_Component_Controller_Product_Add extends Phpfox_Component
 		
 		$this->template()->setTitle(($bIsEdit ? Phpfox::getPhrase('admincp.editing_product') . ': ' . $aProduct['title'] : Phpfox::getPhrase('admincp.create_new_product')))
 			->setBreadcrumb(Phpfox::getPhrase('admincp.products'), $this->url()->makeUrl('admincp.product'))
-			->setBreadCrumb(($bIsEdit ? Phpfox::getPhrase('admincp.editing_product') . ': ' . $aProduct['title'] : Phpfox::getPhrase('admincp.create_new_product')), null, true)
+			->setBreadCrumb(($bIsEdit ? Phpfox::getPhrase('admincp.editing_product') . ': ' . $aProduct['title'] : Phpfox::getPhrase('admincp.create_new_product')), $this->url()->current(), true)
 			->assign(array(
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),

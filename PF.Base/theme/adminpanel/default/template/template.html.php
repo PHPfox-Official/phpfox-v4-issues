@@ -54,7 +54,7 @@
 								<ul>
 								{foreach from=$sLink key=sPhrase2 item=sLink2}
 									{if is_array($sLink2)}
-									<li class="{if $sLink2.highlight} focus{/if}">
+									<li class="{if isset($sLink2.highlight) && $sLink2.highlight} focus{/if}">
 										<a href="{$sLink2.url}" class="popup">
 											{$sPhrase2}{if isset($sLink2.message)}<span>{$sLink2.message}</span>{/if}
 										</a>

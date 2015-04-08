@@ -210,7 +210,15 @@ class Language_Component_Controller_Admincp_Phrase_Phrase extends Phpfox_Compone
 		}
 		$aRows = $aOut;
 		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $oSearch->getSearchTotal($iCnt)));
-			
+
+		if (PHPFOX_IS_TECHIE) {
+			$this->template()->setActionMenu([
+				'New Phrase' => [
+					'url' => $this->url()->makeUrl('admincp.language.phrase.add'),
+					'class' => 'popup'
+				]
+			]);
+		}
 		$this->template()->assign(array(
 			'aRows' => $aRows,
 			'iPage' => $iPage,

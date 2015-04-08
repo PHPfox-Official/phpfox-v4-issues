@@ -54,10 +54,7 @@ defined('PHPFOX') or exit('NO DICE!');
 {if $sVar}
 <div><input type="hidden" name="val[is_help]" value="true" /></div>
 {/if}
-<div class="table_header">
-	{phrase var='language.phrase_form'}
-</div>
-<div class="table">
+<div class="table"{if !PHPFOX_IS_TECHIE} style="display:none;"{/if}>
 	<div class="table_left">
 		{phrase var='language.product'}:
 	</div>
@@ -71,7 +68,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	<div class="clear"></div>
 </div>
-<div class="table">
+<div class="table"{if !PHPFOX_IS_TECHIE} style="display:none;"{/if}>
 	<div class="table_left">
 		{phrase var='language.module'}:
 	</div>

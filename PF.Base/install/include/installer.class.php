@@ -1368,8 +1368,9 @@ class Phpfox_Installer
 			}			
 		}
 
-		$license = '';
+		$license = file_get_contents(PHPFOX_DIR_SETTINGS . 'license.php');
 		file_put_contents(PHPFOX_DIR_SETTINGS . 'license.sett.php', $license);
+		unlink(PHPFOX_DIR_SETTINGS . 'license.php');
 
 		if (!defined('PHPFOX_SKIP_INSTALL_KEY'))
 		{

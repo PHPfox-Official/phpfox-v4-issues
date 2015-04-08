@@ -681,7 +681,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 							foreach ($aImages as $aImage)
 							{
 								// use the JS var set at progress.js
-								$this->call('sImages = sImages + ' . $aImage['photo_id'] . ' + ",";');
+								// $this->call('sImages = sImages + ' . $aImage['photo_id'] . ' + ",";');
 							}
 							// Make a call similar to the non HTML5 uploads.
 							$this->call('var sCurrentProgressLocation = \'' . Phpfox_Url::instance()->makeUrl('photo', array('view' => 'my', 'mode' => 'edit')) . '\';');

@@ -198,11 +198,25 @@ a.activity_feed_content_link_title, a.activity_feed_content_link_title:hover, #c
 }
 
 footer {
-	margin:50px 0px;
-	padding:20px 0px;
-	border-top:1px darken(@bodyBg, 10%) solid;
+	position:relative;
+	background:darken(@bodyBg, 4%);
+	padding:50px 0px 50px (@navWidth + 20);
+	border-top:1px darken(@bodyBg, 5%) solid;
 	color:darken(@bodyBg, 30%) !important;
 	font-size:@fontSizeBase - 1;
+
+	> ul {
+		li {
+			display:inline-block;
+			margin-right:10px;
+		}
+
+		li:after {
+			content:'/';
+			padding-left:10px;
+			color:darken(@bodyBg, 10%) !important;
+		}
+	}
 
 	a, a:hover {
 		color:darken(@bodyBg, 30%) !important;
@@ -214,10 +228,13 @@ footer {
 		color:darken(@bodyBg, 60%) !important;
 		transition:@transition;
 	}
-}
 
-#copyright {
-	padding-top:20px;
+	.copyright {
+		position:absolute;
+		right:20px;
+		top:50px;
+		color:darken(@bodyBg, 60%) !important;
+	}
 }
 
 h3 {

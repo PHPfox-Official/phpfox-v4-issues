@@ -16,9 +16,6 @@ defined('PHPFOX') or exit('NO DICE!');
 	{if $bIsEdit}
 	<div><input type="hidden" name="id" value="{$aForms.plugin_id}" /></div>
 	{/if}
-	<div class="table_header">
-		{phrase var='admincp.plugin_details'}
-	</div>
 	{module name='admincp.product.form'}
 	{module name='admincp.module.form'}
 	<div class="table">
@@ -64,13 +61,13 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 		</div>
 		<div class="clear"></div>
-	</div>	
-	<div class="table_header">
-		{phrase var='admincp.php_code'}
 	</div>
 	<div class="table">
-		<div class="table_span">
-			<textarea name="val[php_code]" rows="20" cols="50" style="width:98%;" id="php_code">{value type='textarea' id='php_code'}</textarea>
+		<div class="table_left">
+			{phrase var='admincp.php_code'}
+		</div>
+		<div class="table_right">
+			<textarea name="val[php_code]" rows="20" cols="50" id="php_code">{value type='textarea' id='php_code'}</textarea>
 		</div>
 	</div>
 	<div class="table_clear">

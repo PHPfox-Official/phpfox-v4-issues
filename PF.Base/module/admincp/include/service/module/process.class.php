@@ -39,11 +39,20 @@ class Admincp_Service_Module_Process extends Phpfox_Service
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('admincp.module_id_can_only_contain_the_following_characters'));
 		}
-		
+
+		if (!isset($aVals['text'])) {
+			$aVals['text'] = [];
+		}
+		if (!isset($aVals['menu'])) {
+			$aVals['menu'] = [];
+		}
+
+		/*
 		if (strlen(implode("", array_values($aVals['text']))) == 0)
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('admincp.provide_information_regarding_module'));
 		}
+		*/
 
 		$aInsert = array(
 			'product_id' => $iProductId,
@@ -101,8 +110,48 @@ class Admincp_Service_Module_Process extends Phpfox_Service
 		Phpfox::getService('log.staff')->add('module', 'add', array(
 				'name' => $sName
 			)
-		);		
-		
+		);
+
+		$path = PHPFOX_DIR_MODULE . $sName . PHPFOX_DS;
+		if (is_writable(PHPFOX_DIR_MODULE)) {
+			if (!is_dir($path)) {
+				mkdir($path);
+			}
+			$dirs = [
+				'include/component/ajax/',
+				'include/component/block/',
+				'include/component/controller/',
+				'include/service/',
+				'install/',
+				'static/css/',
+				'static/image/',
+				'static/jscript/',
+				'template/default/block/',
+				'template/default/controller/'
+			];
+			foreach ($dirs as $dir) {
+				if (!is_dir($path . $dir)) {
+					mkdir($path . $dir, 0777, true);
+				}
+			}
+		}
+
+		$clones = ['include/service/_example.class.php', 'include/component/controller/example.class.php', 'template/default/controller/example.html.php'];
+		foreach ($clones as $clone) {
+			$copy = PHPFOX_DIR_MODULE . 'core' . PHPFOX_DS . $clone;
+			$new = $path . $clone;
+			if (!file_exists($new)) {
+				$content = file_get_contents($copy);
+				$content = str_replace('MODULE', ucwords($sName), $content);
+
+				$name = str_replace('_example.', strtolower($sName) . '.', $new);
+				$name = str_replace('example.', 'index.', $name);
+
+				// p($name);
+				file_put_contents($name, $content);
+			}
+		}
+
 		$this->cache()->remove();
 		
 		return $sName;

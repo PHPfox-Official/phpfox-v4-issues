@@ -47,10 +47,6 @@ if (file_exists(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'de
 {
 	require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'dev.sett.php');
 }
-elseif (file_exists(PHPFOX_DIR . 'file' . PHPFOX_DS . 'log' . PHPFOX_DS . 'debug.php'))
-{
-	require_once(PHPFOX_DIR . 'file' . PHPFOX_DS . 'log' . PHPFOX_DS . 'debug.php');
-}
 
 require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'constant.sett.php');
 
@@ -61,6 +57,10 @@ if (!file_exists(PHPFOX_DIR_SETTINGS . 'license.sett.php')) {
 	define('PHPFOX_INSTALLER', true);
 	define('PHPFOX_INSTALLER_NO_TMP', true);
 	define('PHPFOX_NO_RUN', true);
+}
+else {
+	require(PHPFOX_DIR_SETTINGS . 'license.sett.php');
+	define('PHPFOX_IS_TECHIE', (PHPFOX_LICENSE_ID == 'techie' ? true : false));
 }
 
 // Set error reporting enviroment

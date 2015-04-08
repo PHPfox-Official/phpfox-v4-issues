@@ -311,44 +311,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				Phpfox::getPhrase('ban.ban_filter_display_name') => 'admincp.ban.display',
 				Phpfox::getPhrase('ban.ban_filter_ip') => 'admincp.ban.ip',
 				Phpfox::getPhrase('ban.ban_filter_word') => 'admincp.ban.word'
-			),
-			/*
-			'admincp.mail_messages' => array(
-				'admincp.view_messages' => 'admincp.mail.private'
-			),
-			*/
-			/*
-			'core.admincp_menu_country' => array(
-				'core.admincp_menu_country_manager' => 'admincp.core.country',
-				'core.admincp_menu_country_add' => 'admincp.core.country.add',
-				'core.admincp_menu_country_child_add' => 'admincp.core.country.child.add',
-				'core.admincp_menu_country_import' => 'admincp.core.country.import'
-			),
-			*/
-			/*
-			'core.admincp_menu_online' => array(
-				'core.admincp_menu_online_members' => 'admincp.user.browse.view_online',
-				'core.admincp_menu_online_guests' => 'admincp.core.online-guest'
-			),
-			*/
-			/*
-			'<i class="fa fa-database"></i>SQL' => array(
-				Phpfox::getPhrase('admincp.sql_maintenance') => 'admincp.sql',
-				Phpfox::getPhrase('admincp.sql_backup') => 'admincp.sql.backup',
-				Phpfox::getPhrase('admincp.alter_title_fields') => 'admincp.sql.title'
-			),
-			*/
-			/*
-			'core.currency' => array(
-				'core.currency_manager' => 'admincp.core.currency',
-				'core.add_currency' => 'admincp.core.currency.add'
-			),
-			'admincp.seo' => array(
-				'admincp.custom_elements' => 'admincp.seo.meta',
-				'admincp.nofollow_urls' => 'admincp.seo.nofollow',
-				'admincp.rewrite_url' => 'admincp.seo.rewrite'
 			)
-			*/
 		];
 
 		/*
@@ -430,6 +393,15 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			}
 
 			$aMenus[$sKey] = $mValue;
+
+			if (is_string($mValue) && $mValue == 'admincp.theme') {
+				$aMenus['<i class="fa fa-sheqel"></i>Techie'] = [
+					'Products' => 'admincp.product',
+					'Modules' => 'admincp.module',
+					'Plugins' => 'admincp.plugin',
+					'Components' => 'admincp.component',
+				];
+			}
 		}
 
 		// $aMenus['<i class="fa fa-cog"></i>Settings'] = array_merge($aSettings, $aMenus['Settings']);
@@ -505,9 +477,9 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'ActiveApp' => (new Core\App())->get('__module_' . $app['module_id'])
 			]);
 		}
-		
+
 		$this->template()->assign(array(
-				'sSectionTitle' => $sSectionTitle,
+						'sSectionTitle' => $sSectionTitle,
 						'aModulesMenu' => $aModules,
 						'aAdminMenus' => $aMenus,						
 						'aUserDetails' => $aUser,
@@ -520,8 +492,19 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 					'admin.js' => 'static_script',
 					'jquery/plugin/jquery.mosaicflow.min.js' => 'static_script'
 				)
-			)->setTitle(Phpfox::getPhrase('admincp.admin_cp'));		
-		
+			)->setTitle(Phpfox::getPhrase('admincp.admin_cp'));
+
+
+		if (in_array($app, ['plugin', 'module', 'product', 'component'])) {
+			$this->template()->setSectionTitle('Techie: ' . ucwords($app));
+			$this->template()->setActionMenu([
+				'New ' . ucwords($app) => [
+					'url' => $this->url()->makeUrl('admincp.' . $app . '.add'),
+					'class' => 'popup'
+				]
+			]);
+		}
+
 		if ($bPass)
 		{
 			Phpfox_Module::instance()->setController($this->_sModule . '.' . $this->_sController);
@@ -668,7 +651,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 					->setTitle(Phpfox::getPhrase('admincp.dashboard'))
 					->assign(array(
 						'bIsModuleConnection' => false,
-						'bIsDashboard' => true
+						'bIsDashboard' => true,
+						'aNewProducts' => Admincp_Service_Product_Product::instance()->getNewProductsForInstall()
 					)
 				);
 			}

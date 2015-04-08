@@ -56,7 +56,9 @@
 			$('input[name="val[title]"]').val(document.title);
 			$('input[name="val[keywords]"]').val($('meta[name="keywords"]').attr('content'));
 			$('input[name="val[description]"]').val($('meta[name="description"]').attr('content'));
-			$('textarea[name="val[head]"]').val(page_editor_meta.head);
+			if (typeof(page_editor_meta) == 'string') {
+				$('textarea[name="val[head]"]').val(page_editor_meta.head);
+			}
 		}
 
 		$('#page_editor').submit(function() {

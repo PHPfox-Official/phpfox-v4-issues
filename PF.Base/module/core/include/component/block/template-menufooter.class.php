@@ -20,7 +20,9 @@ class Core_Component_Block_Template_Menufooter extends Phpfox_Component
 	 */
 	public function process()
 	{
-		
+		$this->template()->assign([
+			'aFooterMenu' => $this->template()->getMenu('footer')
+		]);
 	}
 	
 	/**

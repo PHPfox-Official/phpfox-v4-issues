@@ -37,11 +37,10 @@ class Photo_Component_Controller_View extends Phpfox_Component
 			Phpfox::getService('notification.process')->delete('comment_photo', $this->request()->getInt('req2'), Phpfox::getUserId());
 			Phpfox::getService('notification.process')->delete('photo_like', $this->request()->getInt('req2'), Phpfox::getUserId());
 			Phpfox::getService('notification.process')->delete('photo_tag', $this->request()->getInt('req2'), Phpfox::getUserId());
-		}		
-		
+		}
 		// Get the photo
 		$aPhoto = Phpfox::getService('photo')->getPhoto($sId, $aUser['user_id']);
-		
+
 		if (!empty($aPhoto['module_id']) && $aPhoto['module_id'] != 'photo')
 		{			
 			if ($aCallback = Phpfox::callback($aPhoto['module_id'] . '.getPhotoDetails', $aPhoto))
@@ -55,7 +54,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 				}					
 			}
 		}
-		
+
 		// No photo founds lets get out of here
 		if (!isset($aPhoto['photo_id']))
 		{
@@ -67,7 +66,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 			header("Cache-Control: no-cache, must-revalidate");
 			header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 		}
-		
+
 		Phpfox::getService('core.redirect')->check($aPhoto['title']);
 		if (Phpfox::isModule('privacy'))
 		{
@@ -128,6 +127,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 		define('TAG_ITEM_ID', $aPhoto['photo_id']); // to be used with the cloud block
 		
 		// Check if we should set another controller
+		/*
 		if (!empty($sAction))
 		{
 			switch ($sAction)
@@ -143,6 +143,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 					break;
 			}			
 		}
+		*/
 		
 		// Increment the view counter
 		if (Phpfox::isModule('track') && Phpfox::isUser() && Phpfox::getUserId() != $aPhoto['user_id'] && !$aPhoto['is_viewed'])

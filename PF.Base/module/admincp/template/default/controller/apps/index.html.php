@@ -13,6 +13,9 @@
 	</div>
 
 	<div>
+		{foreach from=$aNewProducts item=product}
+			{template file='admincp.block.product.install'}
+		{/foreach}
 		{foreach from=$apps item=app}
 		<article>
 			<h1>

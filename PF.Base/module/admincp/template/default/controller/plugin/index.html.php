@@ -41,8 +41,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 </form>
 {else}
-No plugins have been added.
-<ul class="action">
-	<li><a href="{url link='admincp.plugin.add'}">{phrase var='admincp.create_a_new_plugin'}</a></li>	
-</ul>
+<div class="extra_info">
+	No plugins have been added.
+</div>
 {/if}

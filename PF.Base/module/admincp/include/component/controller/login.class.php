@@ -20,6 +20,12 @@ class Admincp_Component_Controller_Login extends Phpfox_Component
 	 */
 	public function process()
 	{
+		if (isset($_SERVER['CONTENT_TYPE']) && $_SERVER['CONTENT_TYPE'] == 'application/json') {
+			return [
+				'goto' => $this->url()->makeUrl('admincp.login')
+			];
+		}
+
 		if (($aVals = $this->request()->getArray('val')))
 		{
 			if (!empty($aVals['email']) && !empty($aVals['password']))

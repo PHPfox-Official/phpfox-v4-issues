@@ -111,7 +111,7 @@ class Language_Component_Controller_Admincp_Phrase_Add extends Phpfox_Component
 			'sVar' => $sPhrase,
 			'sCachePhrase' => (isset($sCachePhrase) ? $sCachePhrase : ''),
 			'sLastModuleId' => $this->request()->get('last-module')
-		))->setBreadCrumb(Phpfox::getPhrase('language.add_phrase'))
+		))->setBreadCrumb(Phpfox::getPhrase('language.add_phrase'), $this->url()->current(), true)
 			->setTitle(Phpfox::getPhrase('language.add_phrase'));
 			
 		(($sPlugin = Phpfox_Plugin::get('language.component_controller_admincp_phrase_add_process')) ? eval($sPlugin) : false);

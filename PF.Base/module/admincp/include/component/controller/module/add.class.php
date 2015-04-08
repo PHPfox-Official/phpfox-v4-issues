@@ -89,7 +89,7 @@ class Admincp_Component_Controller_Module_Add extends Phpfox_Component
 					{
 						if (($sName = Phpfox::getService('admincp.module.process')->add($aVals)))
 						{							
-							$this->url()->send('admincp', array('module', 'add'), Phpfox::getPhrase('admincp.module_successfully_created_redirect'));
+							$this->url()->send('admincp', array('module'), Phpfox::getPhrase('admincp.module_successfully_created_redirect'));
 						}
 					}
 				}
@@ -115,7 +115,7 @@ class Admincp_Component_Controller_Module_Add extends Phpfox_Component
 			}
 		}
 		
-		$this->template()->setBreadCrumb(($bIsEdit ? 'Editing Module: ' . $aRow['module_id'] : Phpfox::getPhrase('admincp.create_module')))
+		$this->template()->setBreadCrumb(($bIsEdit ? 'Editing Module: ' . $aRow['module_id'] : Phpfox::getPhrase('admincp.create_module')), $this->url()->current(), true)
 			->setTitle(($bIsEdit ? 'Editing Module: ' . $aRow['module_id'] : Phpfox::getPhrase('admincp.create_module')))		
 			->assign(array(
 				'aProducts' => Admincp_Service_Product_Product::instance()->get(),

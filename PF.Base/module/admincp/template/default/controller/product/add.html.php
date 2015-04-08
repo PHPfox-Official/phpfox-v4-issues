@@ -16,9 +16,6 @@ defined('PHPFOX') or exit('NO DICE!');
 	{if $bIsEdit}
 	<div><input type="hidden" name="id" value="{$aForms.product_id}" /></div>
 	{/if}
-	<div class="table_header">
-		{phrase var='admincp.product_details'}
-	</div>
 	<div class="table">
 		<div class="table_left">
 			{phrase var='admincp.product_id'}:
@@ -60,7 +57,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="clear"></div>
 	</div>		
-	<div class="table">
+	<div class="table" style="display:none;">
 		<div class="table_left">
 			{phrase var='admincp.product_url'}:
 		</div>
@@ -69,7 +66,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="clear"></div>
 	</div>		
-	<div class="table">
+	<div class="table" style="display:none;">
 		<div class="table_left">
 			{phrase var='admincp.version_check_url'}:
 		</div>

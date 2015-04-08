@@ -2242,11 +2242,21 @@ a.activity_feed_content_link_title:hover {
   transition: all 0.5s ease;
 }
 footer {
-  margin: 50px 0px;
-  padding: 20px 0px;
-  border-top: 1px #cccccc solid;
+  position: relative;
+  background: #dbdbdb;
+  padding: 50px 0px 50px 220px;
+  border-top: 1px #d8d8d8 solid;
   color: #999999 !important;
   font-size: 13px;
+}
+footer > ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+footer > ul li:after {
+  content: '/';
+  padding-left: 10px;
+  color: #cccccc !important;
 }
 footer a,
 footer a:hover {
@@ -2258,8 +2268,11 @@ footer a:hover {
   color: #4c4c4c !important;
   transition: all 0.5s ease;
 }
-#copyright {
-  padding-top: 20px;
+footer .copyright {
+  position: absolute;
+  right: 20px;
+  top: 50px;
+  color: #4c4c4c !important;
 }
 h3 {
   background: transparent;

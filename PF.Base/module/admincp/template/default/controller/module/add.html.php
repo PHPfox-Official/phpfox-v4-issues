@@ -11,31 +11,26 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<script type="text/javascript">
-<!--
 {literal}
+<script type="text/javascript">
 function isMenu(bNoSpeed)
 {
 	if ($('#js_select_menu').val() == '0')
 	{
-		$('#js_add_menu_div').hide((bNoSpeed ? '' : 'slow'));
+		$('#js_add_menu_div').hide();
 		return true;
 	}
-	
-	$('#js_add_menu_div').show((bNoSpeed ? '' : 'slow'));
+
+	$('#js_add_menu_div').show();
 	return true;
 }
-{/literal}
--->
 </script>
+{/literal}
 {$sCreateJs}
 <form method="post" action="{url link="admincp.module.add"}" id="js_form" onsubmit="{$sGetJsForm}">
 {if $bIsEdit}
 <div><input type="hidden" name="module_id" value="{$aForms.module_id}" /></div>
 {/if}
-<div class="table_header">
-	{phrase var='admincp.module_details'}
-</div>
 <div class="table">
 	<div class="table_left">
 		{phrase var='admincp.product'}:
@@ -51,7 +46,7 @@ function isMenu(bNoSpeed)
 	<div class="clear"></div>
 </div>
 {if PHPFOX_DEBUG}
-<div class="table">
+<div class="table" style="display:none;">
 	<div class="table_left">
 		{phrase var='admincp.core_module'}:
 	</div>
@@ -78,7 +73,7 @@ function isMenu(bNoSpeed)
 	</div>
 	<div class="clear"></div>
 </div>
-<div class="table">
+<div class="table"{if !$bIsEdit} style="display:none;"{/if}>
 	<div class="table_left">
 		{phrase var='admincp.add_menu'}:
 	</div>
@@ -91,13 +86,13 @@ function isMenu(bNoSpeed)
 	</div>
 	<div class="clear"></div>
 </div>
-<div class="table" id="js_add_menu_div">
+{if $bIsEdit}
+<div class="table" id="js_add_menu_div" style="display:none;">
 	<div class="table_left">
 		{phrase var='admincp.sub_menu'}:
 	</div>
 	<div class="table_right">
 		<script type="text/javascript">
-		<!--
 		function addMore()
 		{literal}{{/literal}
 			var iCnt = (parseInt($('#js_add_more_count').html()) + 1);
@@ -106,7 +101,6 @@ function isMenu(bNoSpeed)
 			$('#js_add_more_count').html(iCnt);
 			return false;
 		{literal}}{/literal}
-		-->
 		</script>
 		{for $i = 0; $i <= $iMenus; $i++}		
 		{if $bIsEdit && isset($aMenus[$i].var_name)}
@@ -126,9 +120,6 @@ function isMenu(bNoSpeed)
 		{help var='admincp.module_add_menu'}
 	</div>
 	<div class="clear"></div>
-</div>
-<div class="table_header">
-	{phrase var='admincp.language_package_details'}
 </div>
 <div class="table">
 	<div class="table_left">
@@ -150,10 +141,17 @@ function isMenu(bNoSpeed)
 	</div>
 	<div class="clear"></div>
 </div>
+{/if}
 <div class="table_clear">
 	<input type="submit" value="{phrase var='admincp.submit'}" class="button" />
 </div>
 </form>
+ {if ($bIsEdit)}
+{literal}
 <script type="text/javascript">
-	isMenu(true);
+	$Ready(function() {
+		isMenu(true);
+	});
 </script>
+{/literal}
+{/if}

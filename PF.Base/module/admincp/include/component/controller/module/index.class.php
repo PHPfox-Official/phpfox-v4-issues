@@ -62,11 +62,25 @@ class Admincp_Component_Controller_Module_Index extends Phpfox_Component
 				$this->url()->send('admincp.module', null, $sCachePhrase);
 			}
 		}
+
+		$modules = [];
+		$aModules = Phpfox::getService('admincp.module')->get(true);
+		if (!isset($aModules['3rdparty'])) {
+			$aModules['3rdparty'] = [];
+		}
+
+		foreach ($aModules['3rdparty'] as $key => $value) {
+			if ($value['product_id'] == 'phpfox') {
+				continue;
+			}
+
+			$modules[$key] = $value;
+		}
 		
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.manage_modules'))
 			->setBreadCrumb(Phpfox::getPhrase('admincp.manage_modules'))
 			->assign(array(
-				'aModules' => Phpfox::getService('admincp.module')->get(true)
+				'aModules' => $modules
 			)
 		);		
 	}

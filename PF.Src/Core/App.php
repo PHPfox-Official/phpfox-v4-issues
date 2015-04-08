@@ -64,6 +64,19 @@ class App {
 					continue;
 				}
 
+				$coreFile = PHPFOX_DIR_MODULE . $module_id . '/install/version/v3.phpfox';
+				// p($coreFile);
+				if ($includeModules == '__core') {
+					if (!file_exists($coreFile)) {
+						continue;
+					}
+				}
+				else if ($includeModules == '__not_core') {
+					if (file_exists($coreFile)) {
+						continue;
+					}
+				}
+
 				$app = [
 					'id' => '__module_' . $module_id,
 					'name' => \Phpfox_Locale::instance()->translate($module_id, 'module'),
@@ -74,7 +87,9 @@ class App {
 				$apps[] = new App\Object($app);
 			}
 
-			if ($includeModules == '__modules') {
+			// exit;
+
+			if ($includeModules == '__core' || $includeModules == '__not_core') {
 				return $apps;
 			}
 		}
@@ -82,8 +97,6 @@ class App {
 		foreach ($this->_apps as $app) {
 			$apps[] = new App\Object($app);
 		}
-
-		// d($apps); exit;
 
 		return $apps;
 	}

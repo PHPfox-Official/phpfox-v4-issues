@@ -1,10 +1,10 @@
 <div class="js_box_actions">
-	<a href="#">
+	<div>
 		Import File
 		<span>
 			<input type="file" name="file" class="ajax_upload" data-url="{url link='admincp.theme.import'}">
 		</span>
-	</a>
+	</div>
 </div>
 <form method="post" action="{url link='admincp.theme.add'}" class="ajax_post">
 	<div class="table">

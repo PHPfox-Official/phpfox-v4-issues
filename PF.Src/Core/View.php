@@ -60,9 +60,10 @@ class View {
 		$params['header'] = $Template->getHeader();
 		$params['js'] = $Template->getFooter();
 		$params['nav'] = new View\Functions('nav');
+		$params['footer'] = new View\Functions('footer');
 		$params['notification'] = new View\Functions('notification');
 		$params['logo'] = new View\Functions('logo');
-		$params['body'] = 'id="page_' . \Phpfox_Module::instance()->getPageId() . '" class="_' . \Phpfox_Module::instance()->getPageClass() . '"';
+		$params['body'] = 'id="page_' . \Phpfox_Module::instance()->getPageId() . '" class="' . \Phpfox_Module::instance()->getPageClass() . '"';
 
 		$locale = \Phpfox_Locale::instance()->getLang();
 		$params['html'] = 'xmlns="http://www.w3.org/1999/xhtml" dir="' . $locale['direction'] . '" lang="' . $locale['language_code'] . '"';

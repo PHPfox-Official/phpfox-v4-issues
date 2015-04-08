@@ -75,7 +75,9 @@ class Admincp_Component_Controller_Product_File extends Phpfox_Component
 		}
 		
 		// Run the import routine
-		if (isset($_FILES['import']) && ($aFile = $_FILES['import']))
+		// if (isset($_FILES['import']) && ($aFile = $_FILES['import']))
+		/*
+		if ($this->request()->get('import'))
 		{
 			if (preg_match('/^phpfox-product-(.*?)\.zip$/i', $aFile['name'], $aMatches))
             {
@@ -100,6 +102,7 @@ class Admincp_Component_Controller_Product_File extends Phpfox_Component
             	Phpfox_Error::set('Not a valid product to import.');	
             }
 		}
+		*/
 
 		$aProducts = Admincp_Service_Product_Product::instance()->get();
 		foreach ($aProducts as $iKey => $aProduct)

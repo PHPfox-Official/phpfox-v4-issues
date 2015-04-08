@@ -304,13 +304,8 @@ class Phpfox_Module
 		$oReq = Phpfox_Request::instance();
 		$oPage = Phpfox::getService('page');
 		
-		$this->_sModule = (($sReq1 = $oReq->get('req1')) ? strtolower($sReq1) : Phpfox::getParam('core.module_core'));		
-		
-		if (Phpfox::isMobile() && empty($sReq1))
-		{
-			$this->_sModule = 'mobile';
-		}
-		
+		$this->_sModule = (($sReq1 = $oReq->get('req1')) ? strtolower($sReq1) : Phpfox::getParam('core.module_core'));
+
 		if (($sFrame = $oReq->get('frame')) && in_array($sFrame, $this->_aFrames))
 		{
 			$aFrameParts = explode('-', $sFrame);			
@@ -391,6 +386,11 @@ class Phpfox_Module
 			$this->_sController = 'full';
 		}		
 */
+		if ($oReq->segment(1) == 'hashtag') {
+			$this->_sModule = 'core';
+			$this->_sController = (Phpfox::isUser() ? 'index-member' : 'index-visitor');
+		}
+
 		(($sPlugin = Phpfox_Plugin::get('module_setcontroller_end')) ? eval($sPlugin) : false);
 		
 		// Set the language pack cache

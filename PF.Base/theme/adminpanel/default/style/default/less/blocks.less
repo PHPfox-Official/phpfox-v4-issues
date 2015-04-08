@@ -9,6 +9,7 @@ div.info, #js_block_border_core_site-stat div.info {
 	display:table;
 	table-layout:fixed;
 	width:100%;
+	margin-bottom:10px;
 
 	div.info_left, div.info_right {
 		padding:5px 0px;
@@ -36,6 +37,39 @@ div.info_header {
 	padding:0px 2px;
 }
 
+div#main div.block.product_install {
+	div.title {
+		background:#3498db;
+		color:#fff;
+		border:0px;
+	}
+
+	div.bottom {
+		padding:20px 10px;
+		background:darken(#3498db, 15%);
+
+		ul {
+			li {
+				a, a:hover {
+					display:inline-block;
+					text-transform:uppercase;
+					padding:6px 14px;
+					background:transparent;
+					border:2px #fff solid;
+					color:#fff;
+					font-size:@fontSizeBase - 2;
+				}
+
+				a:hover {
+					background:#fff;
+					color:#3498db;
+					transition:@transition;
+				}
+			}
+		}
+	}
+}
+
 div#main div.block {
 	background:@blockBg;
 	border-radius:@blockRadius;
@@ -47,12 +81,39 @@ div#main div.block {
 		padding:@blockTitlePadding;
 		font-weight:300;
 		font-size:@blockTitleSize;
+		text-align:left;
 	}
 
 	div.content {
 		padding:@blockContentPadding;
 		font-size:@blockContentSize;
 		color:@blockColor;
+
+		a, a:hover {
+			color:darken(@blockColor, 25%);
+		}
+
+		a:hover {
+			color:@linkColor;
+		}
+	}
+
+	div.bottom {
+		.reset();
+		ul {
+			li {
+				.reset();
+
+				a, a:hover {
+					.reset();
+					display:block;
+					padding:10px;
+					background:darken(@blockBg, 4%);
+					color:@blockColor;
+					font-weight:normal;
+				}
+			}
+		}
 	}
 }
 

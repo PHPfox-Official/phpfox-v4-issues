@@ -171,7 +171,7 @@ $Core.searchFriendsInput =
 
 		var obj = $($oObj).parent().find('.js_temp_friend_search_form');
 		if (this._get('panel_mode')) {
-			obj = $('#panel');
+			obj = $('#panel').find('.js_temp_friend_search_form');
 		}
 		
 		if ($iFound)
@@ -184,10 +184,6 @@ $Core.searchFriendsInput =
 		}
 		else
 		{
-			if (this._get('panel_mode')) {
-				obj.html('');
-				return;
-			}
 			obj.html('').hide();
 		}
 	},

@@ -65,32 +65,13 @@ class Admincp_Component_Controller_Plugin_Add extends Phpfox_Component
 			{
 				if (Phpfox::getService('admincp.plugin.process')->add($aVals))
 				{
-					$this->url()->send('admincp.plugin.add', null, Phpfox::getPhrase('admincp.plugin_successfully_added'));
+					$this->url()->send('admincp.plugin', null, Phpfox::getPhrase('admincp.plugin_successfully_added'));
 				}
 			}
 		}
 		
-		if (Phpfox::getParam('core.enabled_edit_area'))
-		{
-			$this->template()->setHeader(array(
-					'editarea/edit_area_full.js' => 'static_script',
-					'<script type="text/javascript">				
-						editAreaLoader.init({
-							id: "php_code"	
-							,start_highlight: true
-							,allow_resize: "both"
-							,allow_toggle: false
-							,word_wrap: false
-							,language: "en"
-							,syntax: "php"
-						});		
-					</script>'
-				)
-			);
-		}
-		
 		$this->template()->setTitle(Phpfox::getPhrase('admincp.create_plugin'))
-			->setBreadcrumb(Phpfox::getPhrase('admincp.create_plugin'))					
+			->setBreadcrumb(Phpfox::getPhrase('admincp.create_plugin'), $this->url()->current(), true)
 			->assign(array(
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),			

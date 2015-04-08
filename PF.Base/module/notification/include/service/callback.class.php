@@ -38,6 +38,7 @@ class Notification_Service_Callback extends Phpfox_Service
 	public function getGlobalNotifications()
 	{
 		$iTotal = Phpfox::getService('notification')->getUnseenTotal();
+		// $iTotal += Phpfox::getService('friend.request')->getUnseenTotal();
 		if ($iTotal > 0)
 		{				
 			Phpfox_Ajax::instance()->call('$(\'#js_total_new_notifications\').html(\'' . (int) $iTotal . '\').css({display: \'block\'}).show();');

@@ -675,7 +675,7 @@ class Phpfox_Installer
 	{
 		$errors = [];
 		$aVerify = array(
-			'php_version' => (version_compare(phpversion(), '5', '<') !== true ? true : false),
+			// 'php_version' => (version_compare(phpversion(), '5', '<') !== true ? true : false),
 			'php_xml_support' => (function_exists('xml_set_element_handler') ? true : false),
 			'php_gd' => ((extension_loaded('gd') && function_exists('gd_info')) ? true : false)
 		);

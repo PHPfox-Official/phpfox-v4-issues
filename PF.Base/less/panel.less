@@ -42,7 +42,7 @@
 	font-size:@fontSizeBase - 2;
 
 	li {
-		> a, > a:hover {
+		> a, > a:hover, > .panel_row {
 			display:block;
 			color:@blockColor;
 			border-bottom:1px darken(@blockBg, 8%) solid;
@@ -73,6 +73,22 @@
 
 		.drop_data_user {
 			color:@linkFocus;
+		}
+
+		.panel_action {
+			margin-top:10px;
+			padding-top:10px;
+			border-top:1px darken(@blockBg, 6%) solid;
+			> span {
+				display:inline-block;
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+				text-transform:uppercase;
+				padding:4px 8px;
+				font-weight:500;
+				font-size:10px !important;
+				cursor:pointer;
+			}
 		}
 	}
 }

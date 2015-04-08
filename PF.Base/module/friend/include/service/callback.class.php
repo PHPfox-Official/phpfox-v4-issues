@@ -493,11 +493,6 @@ class Friend_Service_Callback extends Phpfox_Service
 
 	public function getGlobalNotifications()
 	{
-		if (Phpfox::isMobile())
-		{
-			return false;
-		}
-		
 		$iTotal = Phpfox::getService('friend.request')->getUnseenTotal();
 		if ($iTotal > 0)
 		{

@@ -134,6 +134,11 @@
 					i {
 						color:@brandPrimaryColor;
 					}
+
+					span {
+						background:@brandPrimaryColor;
+						color:@brandPrimary;
+					}
 				}
 			}
 		}
@@ -174,11 +179,24 @@
 						font-size:15px;
 						color:@navColor;
 					}
+
+					span {
+						position:absolute;
+						right:10px;
+						top:7px;
+						font-size:11px;
+						background:@brandPrimary;
+						color:@brandPrimaryColor;
+						text-indent:0px;
+						padding:2px 4px;
+						border-radius:4px;
+						display:none;
+					}
 				}
 
 				> a:hover, > a.menu_is_selected {
 					color:darken(@navColor, 60%);
-					/*background:darken(@navBg, 6%);*/
+					background:darken(@navBg, 4%);
 					transition:@transition;
 
 					i {

@@ -117,68 +117,6 @@ class Admincp_Service_Setting_Process extends Phpfox_Service
 		{
 			Phpfox_File::instance()->unlink(PHPFOX_DIR . 'file' . PHPFOX_DS . 'log' . PHPFOX_DS . 'debug.php');
 		}
-		
-		if (isset($aVals['value']['ftp_enabled']) && $aVals['value']['ftp_enabled'])
-		{			
-			define('PHPFOX_FTP_LOGIN_PASS', true);
-	
-			if (Phpfox::getLib('ftp')->connect($aVals['value']['ftp_host'], $aVals['value']['ftp_username'], $aVals['value']['ftp_password']))
-			{
-				if (!Phpfox::getLib('ftp')->test($aVals['value']['ftp_dir_path']))
-				{
-					return false;
-				}
-			}
-			
-			if (!Phpfox_Error::isPassed())
-			{
-				return false;
-			}			
-		}
-		
-		if (isset($aVals['value']['enable_api_support']) && $aVals['value']['enable_api_support'])
-		{
-			if (!Phpfox::getService('api')->test())
-			{
-				return false;
-			}
-		}
-		
-		if (isset($aVals['value']['enable_janrain_login']) && $aVals['value']['enable_janrain_login'] == 1 &&
-			( (isset($aVals['value']['janrain_api_key']) && empty($aVals['value']['janrain_api_key'])) ||
-				(isset($aVals['value']['janrain_application_domain']) && empty($aVals['value']['janrain_application_domain']))
-			)
-			)
-		{			
-			return Phpfox_Error::set('To enable Janrain you must set the API Key and the Application domain');
-		}
-		
-		if (isset($aVals['value']['method']) && $aVals['value']['method']['value'] == 'smtp')
-		{			
-			Phpfox_Error::skip(true);
-			
-			$bSent = Phpfox::getLib('mail', 'smtp')->test($aVals['value'])
-				->to($aVals['value']['email_from_email'])
-				->subject('Test SMTP E-mail')
-				->message('SMTP is working!')
-				->send();				
-				
-			if ($bSent === false)
-			{
-				$sEmailHeader = ob_get_contents();
-				
-				ob_clean();
-				
-				if (!empty($sEmailHeader))
-				{
-					Phpfox_Error::set('<b>SMTP Error Message</b>: ' . $sEmailHeader);
-				}
-				
-				return false;
-			}
-			
-			Phpfox_Error::skip(false);
-		}			
 
 		if (!empty($_FILES['watermark']['name']))
 		{

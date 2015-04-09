@@ -13,7 +13,7 @@
 
 		{if $bShowMenu}
 		<div class="feed_form_menu">
-			<a href="{url link='user.account'}">Account Settings</a>
+			<a href="{url link='user.setting'}">Account Settings</a>
 			<a href="{url link='user.profile'}">Edit Profile</a>
 			<a href="{url link='user.privacy'}">Privacy</a>
 			<a href="{url link='user.logout'}" class="no_ajax logout">Logout</a>

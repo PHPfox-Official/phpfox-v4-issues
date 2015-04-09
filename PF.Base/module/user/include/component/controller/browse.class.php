@@ -151,8 +151,8 @@ class User_Component_Controller_Browse extends Phpfox_Component
 		    eval($sPlugin);
 		}
 
-		$sDefaultOrderName = 'u.full_name';
-		$sDefaultSort = 'ASC';
+		$sDefaultOrderName = 'u.last_login';
+		$sDefaultSort = 'DESC';
 		if (Phpfox::getParam('user.user_browse_default_result') == 'last_login')
 		{
 			$sDefaultOrderName = 'u.last_login';

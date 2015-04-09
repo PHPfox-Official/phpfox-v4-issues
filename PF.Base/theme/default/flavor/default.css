@@ -6317,6 +6317,9 @@ div.forum_content {
   color: inherit;
   opacity: 0.4;
 }
+#page_friend_profile #content {
+  width: auto;
+}
 #page_user_browse #site_content {
   text-align: center;
 }
@@ -7557,12 +7560,31 @@ ul.activity_feed_form_attach li a:hover {
 .profiles_menu > ul > li > a,
 .profiles_menu > ul > li > a:hover {
   display: block;
-  color: #e5e5e5;
+  color: #b2b2b2;
   padding: 0px 20px;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.profiles_menu > ul > li > a > span,
+.profiles_menu > ul > li > a:hover > span {
+  font-size: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  margin-bottom: 2px;
+  background: #4c4c4c;
+  height: auto;
+  line-height: normal;
+  padding: 4px 6px;
 }
 .profiles_menu > ul > li:hover {
-  border-color: #252525;
+  border-color: #298ada;
   transition: all 0.5s ease;
+}
+.profiles_menu > ul > li:hover > a,
+.profiles_menu > ul > li:hover > a:hover {
+  color: #ffffff;
 }
 .profiles_menu > ul > li:hover > a.explore,
 .profiles_menu > ul > li:hover > a.explore:hover {
@@ -7878,7 +7900,7 @@ a.marketplace_contact_seller:hover {
 }
 .mail_thread {
   width: 600px;
-  top: 60px;
+  top: 20px;
   bottom: 20px;
   left: 50%;
   margin-left: -300px;
@@ -7920,6 +7942,7 @@ a.marketplace_contact_seller:hover {
   top: 40px;
   bottom: 65px;
   overflow: auto;
+  padding: 10px 0px;
 }
 .mail_thread .mail_thread_form_holder {
   position: absolute;

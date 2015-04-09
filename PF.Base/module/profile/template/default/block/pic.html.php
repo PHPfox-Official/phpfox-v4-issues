@@ -74,7 +74,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<ul>
 		<li><a href="{url link=$aUser.user_name}">Profile</a></li>
 		<li><a href="{url link=''$aUser.user_name'.info'}">Info</a></li>
-		<li><a href="{url link=''$aUser.user_name'.friend'}">Friends</a></li>
+		<li><a href="{url link=''$aUser.user_name'.friend'}">Friends{if $aUser.total_friend > 0}<span>{$aUser.total_friend}</span>{/if}</a></li>
 		{if $aProfileLinks}
 		<li>
 			<a href="#" class="explore"><i class="fa fa-ellipsis-h"></i></a>

@@ -165,14 +165,33 @@
 
 			> a, > a:hover {
 				display:block;
-				color:@headerColor;
+				color:darken(@headerColor, 20%);
 				padding:0px 20px;
+				font-size:@fontSizeBase + 1;
+				font-weight:300;
+				letter-spacing:1px;
+
+				> span {
+					font-size:@fontSizeBase - 4;
+					display:inline-block;
+					vertical-align:middle;
+					margin-left:8px;
+					margin-bottom:2px;
+					background:darken(@headerBg, 5%);
+					height:auto;
+					line-height:normal;
+					padding:4px 6px;
+				}
 			}
 		}
 
 		> li:hover {
-			border-color:darken(@headerBg, 20%);
+			border-color:@brandPrimary;
 			transition:@transition;
+
+			> a, > a:hover {
+				color:lighten(@headerColor, 10%);
+			}
 
 			> a.explore, > a.explore:hover {
 				background:@brandPrimary;

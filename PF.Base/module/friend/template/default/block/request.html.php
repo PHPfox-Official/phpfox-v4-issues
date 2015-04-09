@@ -66,8 +66,8 @@ defined('PHPFOX') or exit('NO DICE!');
 <div>
 	<input type="hidden" name="val[user_id]" value="{$aUser.user_id}" />
 </div>
-<div class="go_left t_center" id="profile_picture_container" style="width:125px;">
-	{img user=$aUser suffix='_120_square' max_width=120 max_height=120}
+<div class="go_left t_center" id="profile_picture_container">
+	{img user=$aUser suffix='_50_square' max_width=50 max_height=50}
 </div>
 <div class="request_text">
 {if $sError}
@@ -88,49 +88,13 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div>{phrase var='friend.you_are_already_friends_with_full_name' full_name=$aUser.full_name}</div>
 	{/if}
 {else}
-	{phrase var='friend.user_link_will_have_to_confirm_that_you_are_friends' user=$aUser}.
-	<div class="p_top_8">
-		<div id="js_personal_link" class="extra_info_link">
-			<a href="#" onclick="$('#js_personal_link').hide(); $('#js_personal_message').show(); return false;">
-				{phrase var='friend.add_a_personal_message'}
-			</a>
-		</div>
-		<div id="js_personal_message" style="display:none;">
-			{phrase var='friend.add_a_personal_message_form'}: <a href="#" onclick="$('#js_personal_message').hide(); $('#js_personal_link').show(); return false;">
-				{phrase var='friend.cancel'}
-			</a>
-			<div>
-				<textarea id="js_message" rows="4" cols="30" name="val[text]" onkeyup="limitChars('js_message', 250, 'js_limit_info');"></textarea>
-				<div id="js_limit_info">{phrase var='friend.write_your_message_within_250_characters'}</div>
-			</div>
-		</div>
-	</div>
-	{if Phpfox::getUserParam('friend.can_add_folders')}
-	<div class="p_top_8">
-		<div id="js_list_options" style="display:none;">
-			<select id="js_options" name="val[list_id]" onchange="return processList(this.value);">
-				<option value="" class="sJsDefaultList">{phrase var='friend.add_to_a_friend_list'}</option>
-				<optgroup label="{phrase var='friend.lists'}" class="sJsListOptGroup">
-					{foreach from=$aOptions item=aOption}
-					<option value="{$aOption.list_id}">{$aOption.name}</option>
-					{/foreach}
-				</optgroup>
-				<option value="">---</option>
-				<option value="create_new">{phrase var='friend.create_a_new_list'}</option>
-			</select> {phrase var='friend.optional'}
-		</div>
-		<div id="js_add_new_list"  style="display:none;">
-			<input type="text" name="name" value="" size="20" class="sJsCreateName" /> <input type="submit" value="{phrase var='friend.create'}" class="button" onclick="$('.sJsCreateName').ajaxCall('friend.addList', '&amp;type=single');" />
-			<div class="p_4">
-				<a href="#" onclick="return resetList();">{phrase var='friend.show_all_lists'}</a>
-			</div>
-		</div>
-	</div>
-	{/if}
-	<div class="p_top_8" id="container_submit_friend_request">
-		<input type="submit" onclick="{if $bSuggestion}$('#js_friend_suggestion').hide(); $('#js_friend_suggestion_loader').show(); {/if}$('#js_process_image').show(); $('#js_process_request').ajaxCall('friend.addRequest');" value="{phrase var='friend.add_friend'}" class="button" /> <span id="js_process_image" style="display:none;">{img theme='ajax/add.gif'}</span>
-	</div>
+	{phrase var='friend.user_link_will_have_to_confirm_that_you_are_friends' user=$aUser}
 {/if}
 </div>
 <div class="clear"></div>
+	<div class="p_top_15">
+		<div class="table_clear" id="container_submit_friend_request">
+			<input type="submit" onclick="{if $bSuggestion}$('#js_friend_suggestion').hide(); $('#js_friend_suggestion_loader').show(); {/if}$('#js_process_image').show(); $('#js_process_request').ajaxCall('friend.addRequest');" value="Send Friend Request" class="button" /> <span id="js_process_image" style="display:none;">{img theme='ajax/add.gif'}</span>
+		</div>
+	</div>
 </form>

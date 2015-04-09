@@ -1117,7 +1117,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			$oAjax->prepend('#js_new_feed_comment', $sNewContent);
 		}
 		
-		$oAjax->call('$(\'#' . $sId . '\').highlightFade();');
+		// $oAjax->call('$(\'#' . $sId . '\').highlightFade();');
 		
 		$oAjax->removeClass('.js_user_feed', 'row_first');
 		$oAjax->call("iCnt = 0; \$('.js_user_feed').each(function(){ iCnt++; if (iCnt == 1) { \$(this).addClass('row_first'); } });");

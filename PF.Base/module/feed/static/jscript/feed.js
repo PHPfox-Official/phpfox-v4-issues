@@ -45,8 +45,10 @@ $Core.isInView = function(elem, item)
 }
 	
 $Core.resetActivityFeedForm = function()
-{		
-	
+{
+	$('._load_is_feed').removeClass('active');
+	$('#panel').hide();
+
 	$('.activity_feed_form_attach li a').removeClass('active');
 	$('.activity_feed_form_attach li a:first').addClass('active');	
 	$('.global_attachment_holder_section').hide();

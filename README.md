@@ -72,5 +72,5 @@ define('PHPFOX_DEBUG', true);
 ```
 Refresh and see what errors come up.
 
-Feel free to report any issues you find (here)[https://github.com/moxi9/phpfox/issues].
+Feel free to report any issues you find [here](https://github.com/moxi9/phpfox/issues).
 

@@ -76,7 +76,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{required}{phrase var='user.date_of_birth'}:
 			</div>
 			<div class="table_right">
-				{select_date start_year=$sDobStart end_year=$sDobEnd field_separator=' / ' field_order='MDY' bUseDatepicker=false sort_years='DESC'}
+				{select_date start_year=$sDobStart end_year=$sDobEnd field_separator='' field_order='MDY' bUseDatepicker=false sort_years='DESC'}
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -114,8 +114,10 @@ defined('PHPFOX') or exit('NO DICE!');
 				</script>
 				
 				<span id="relation_with">
+					{*
 					<span class="js_relation_with_message" id="relation_with_message_to" style="display:none;">{phrase var='user.to'}:</span>
 					<span class="js_relation_with_message" id="relation_with_message_with" style="display:none;">{phrase var='user.with'}:</span>
+					*}
 						<div class="edit_friend_relation">
 										<span id="js_custom_search_friend"></span>	
 										<span id="sFriendImage">
@@ -158,7 +160,7 @@ defined('PHPFOX') or exit('NO DICE!');
 									{
 										$('#sFriendInput').before('<span id="sFriendImage"></span>');
 									}
-									$('#sFriendImage').html('<span style=""><img src="'+$Core.searchFriendsInput.aFoundUser['user_image'] + '"></span>');
+									$('#sFriendImage').html('' + $Core.searchFriendsInput.aFoundUser['user_image'] + '');
 									$('#js_custom_search_friend_placement').hide();
 									
 									/* Make sure there's only one input with the name 
@@ -186,54 +188,6 @@ defined('PHPFOX') or exit('NO DICE!');
 				</span>
 			</div>
 		</div>
-		{/if}
-		
-		
-		{if Phpfox::isModule('forum')}
-		<div class="separate"></div>		
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.forum_signature'}:
-			</div>
-			<div class="table_right">
-				<textarea cols="40" rows="5" id="signature" name="val[signature]">{$aForms.signature}</textarea>
-			</div>
-			<div class="clear"></div>
-		</div>		
-		{/if}
-		
-		{if Phpfox::isModule('feed') && Phpfox::getParam('feed.timeline_optional')}
-		<div class="separate"></div>		
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.timeline'}:
-			</div>
-			<div class="table_right">
-				<select name="val[use_timeline]">
-					<option value="0"{value id='use_timeline' type='select' default=0}>{phrase var='user.no'}</option>
-					<option value="1"{value id='use_timeline' type='select' default=1}>{phrase var='user.yes'}</option>
-				</select>
-			</div>
-			<div class="clear"></div>
-		</div>			
-		{/if}
-		
-		{if Phpfox::getParam('profile.allow_user_select_landing')}
-		{if Phpfox::isModule('feed') && !Phpfox::getParam('feed.timeline_optional')}
-		<div class="separate"></div>		
-		{/if}
-		<div class="table">
-			<div class="table_left">
-				{phrase var='user.landing_page'}:
-			</div>
-			<div class="table_right">
-				<select name="val[landing_page]">
-					<option value="wall"{value id='landing_page' type='select' default='wall'}>{phrase var='user.wall'}</option>
-					<option value="info"{value id='landing_page' type='select' default='info'}>{phrase var='user.profile_info'}</option>
-				</select>
-			</div>
-			<div class="clear"></div>
-		</div>		
 		{/if}
 </div>
 

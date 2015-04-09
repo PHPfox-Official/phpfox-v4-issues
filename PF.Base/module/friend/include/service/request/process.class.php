@@ -35,11 +35,13 @@ class Friend_Service_Request_Process extends Phpfox_Service
 		{
 			$aInsert['list_id'] = (int) $iListid;
 		}
-		
+
+		/*
 		if ($sText !== null && !empty($sText))
 		{
 			$aInsert['message'] = str_replace('<br />', " ", substr(Phpfox::getLib('parse.input')->prepare($sText), 0, 255));
 		}
+		*/
 
 		$iId = $this->database()->insert($this->_sTable, $aInsert);		
 

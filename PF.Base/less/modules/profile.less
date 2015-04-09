@@ -141,6 +141,19 @@
 					font-weight:normal;
 					color:@blockColor;
 					font-size:@fontSizeBase - 1;
+					position:relative;
+
+					> span {
+						position:absolute;
+						right:5px;
+						top:5px;
+						font-size:@fontSizeBase - 4;
+						display:inline-block;
+						background:darken(@blockBg, 5%);
+						height:auto;
+						line-height:normal;
+						padding:4px 6px;
+					}
 				}
 
 				a:hover {

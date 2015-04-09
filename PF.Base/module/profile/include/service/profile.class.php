@@ -166,6 +166,11 @@ class Profile_Service_Profile extends Phpfox_Service
 				{
 					continue;
 				}
+
+				if ($sModule == 'friend') {
+					continue;
+				}
+
 				// $aMenus[] = $aModuleCall[0];
 				$aMenus = array_merge($aMenus, $aModuleCall);
 			}

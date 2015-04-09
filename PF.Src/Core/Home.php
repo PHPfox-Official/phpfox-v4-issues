@@ -7,6 +7,7 @@ namespace Core;
  * @package Core
  *
  * @method Home verify()
+ * @method Home install()
  */
 class Home {
 	private $_id;
@@ -15,6 +16,12 @@ class Home {
 	public function __construct($id = null, $key = null) {
 		$this->_id = $id;
 		$this->_key = $key;
+	}
+
+	public function run($action, $response = null) {
+		header('Content-type: application/json');
+		echo (new Home\Run($action, $response));
+		exit;
 	}
 
 	public function __call($method, $args) {

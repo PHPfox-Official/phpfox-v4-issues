@@ -50,10 +50,10 @@ class Design extends \Core\Model {
 					list($title, $subType) = array_map('trim', explode('|', $title));
 				}
 
-				$type = '<input type="text" name="design[' . $var . ']" value="' . $value . '">';
+				$type = '<input type="text" name="design[' . $var . ']" value="' . htmlspecialchars($value) . '">';
 				if (substr($value, 0, 1) == '#' || $subType == 'color') {
 					// $type = 'color';
-					$type = '<input type="text" name="design[' . $var . ']" value="' . $value . '" class="_colorpicker">';
+					$type = '<input type="text" name="design[' . $var . ']" value="' . htmlspecialchars($value) . '" class="_colorpicker">';
 					$type .= '<div class="_colorpicker_holder"></div>';
 				}
 				else if (substr($value, 0, 2) == '"\\') {

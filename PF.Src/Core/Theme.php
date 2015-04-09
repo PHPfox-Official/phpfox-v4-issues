@@ -24,26 +24,29 @@ class Theme extends Model {
 		}
 	}
 
-	public function import() {
+	public function import($zip = null, $extra = null) {
 		$file = PHPFOX_DIR_FILE . 'static/' . uniqid() . '/';
 		mkdir($file);
 
-		$zip = $file . 'import.zip';
-		file_put_contents($zip, file_get_contents('php://input'));
+		if ($zip === null) {
+			$zip = $file . 'import.zip';
+			file_put_contents($zip, file_get_contents('php://input'));
+		}
 
 		$Zip = new \ZipArchive();
 		$Zip->open($zip);
 		$Zip->extractTo($file);
 		$Zip->close();
 
-		$themeId = 0;
+		$themeId = null;
 		$File = \Phpfox_File::instance();
 		foreach (scandir($file) as $f) {
 			if ($File->extension($f) == 'json') {
 				$data = json_decode(file_get_contents($file . $f));
 
 				$themeId = $this->make([
-					'name' => $data->name
+					'name' => $data->name,
+					'extra' => ($extra ? json_encode($extra) : null)
 				], $data->files);
 
 				$File->delete_directory($file);
@@ -59,6 +62,10 @@ class Theme extends Model {
 					]);
 				}
 			}
+		}
+
+		if ($themeId === null) {
+			throw new \Exception('Theme is missing its JSON file.');
 		}
 
 		return $themeId;
@@ -83,6 +90,7 @@ class Theme extends Model {
 		$id = $this->db->insert(':theme', [
 			'name' => $val['name'],
 			// 'folder' => $val['folder'],
+			'website' => (isset($val['extra']) ? $val['extra'] : null),
 			'created' => PHPFOX_TIME,
 			'is_active' => 1
 		]);
@@ -100,7 +108,7 @@ class Theme extends Model {
 				file_put_contents($path, $content);
 			}
 
-			return $this->get($id);
+			return $id;
 		}
 
 		$flavorId = $this->db->insert(':theme_style', [

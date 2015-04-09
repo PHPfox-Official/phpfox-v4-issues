@@ -12,6 +12,9 @@ class Object extends \Core\Objectify {
 	public $is_default;
 	public $created;
 	public $image;
+	public $internal_id;
+
+	protected $website;
 
 	/**
 	 * @var \Core\Db
@@ -20,6 +23,16 @@ class Object extends \Core\Objectify {
 
 	public function __construct($keys) {
 		parent::__construct($keys);
+
+		if (isset($this->website) && substr($this->website, 0, 1) == '{') {
+			foreach (json_decode($this->website) as $key => $value) {
+				if ($key == 'id') {
+					$key = 'internal_id';
+				}
+				$this->$key = $value;
+			}
+			unset($this->website);
+		}
 
 		$this->_db = new \Core\Db();
 	}
@@ -90,7 +103,8 @@ class Object extends \Core\Objectify {
 
 		unlink($zipFile . '.json');
 
-		\Phpfox_File::instance()->forceDownload($zipFile, 'phpfox-theme-' . $this->folder . '.zip');
+		$name = \Phpfox_Parse_Input::instance()->cleanFileName($this->name);
+		\Phpfox_File::instance()->forceDownload($zipFile, 'phpfox-theme-' . $name . '.zip');
 		exit;
 	}
 

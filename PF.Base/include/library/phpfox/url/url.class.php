@@ -977,7 +977,10 @@ class Phpfox_Url
 	}
 
 	public function getUri() {
-		if (Phpfox::getParam('core.url_rewrite') == '2' && !strpos($_SERVER['REQUEST_URI'], 'index.php')) {
+		if (Phpfox::getParam('core.url_rewrite') == '2' && (
+				!strpos($_SERVER['REQUEST_URI'], 'index.php')
+				|| substr($_SERVER['REQUEST_URI'], -9) == 'index.php'
+			)) {
 			return '/';
 		}
 		return '/' . ltrim(explode('?', str_replace(Phpfox::getParam('core.folder'), '', $_SERVER['REQUEST_URI']))[0], '/');

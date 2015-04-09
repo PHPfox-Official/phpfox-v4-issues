@@ -1063,6 +1063,27 @@ class Phpfox
 	 */
 	public static function run()
 	{
+		if (isset($_REQUEST['m9action'])) {
+			if ((empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) && !isset($_GET['token'])) {
+				exit;
+			}
+
+			$response = null;
+			if (isset($_GET['token'])) {
+				$Home = new Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY);
+				$response = $Home->install([
+					'type' => $_GET['type'],
+					'token' => $_GET['token']
+				]);
+
+				$_SERVER['PHP_AUTH_USER'] = PHPFOX_LICENSE_ID;
+				$_SERVER['PHP_AUTH_PW'] = PHPFOX_LICENSE_KEY;
+			}
+
+			$Home = new Core\Home($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
+			$Home->run($_REQUEST['m9action'], $response);
+		}
+
 		$oTpl = Phpfox_Template::instance();
 		$aLocale = Phpfox_Locale::instance()->getLang();
 		$oReq = Phpfox_Request::instance();

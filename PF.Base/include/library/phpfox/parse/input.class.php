@@ -148,6 +148,13 @@ class Phpfox_Parse_Input
 	}
 
 	/**
+	 * @return Phpfox_Parse_Input
+	 */
+	public static function instance() {
+		return Phpfox::getLib('parse.input');
+	}
+
+	/**
 	 * Parse and clean a string. We mainly use this for a title of an item, which
 	 * does not allow any HTML. It can also be used to shorten a string bassed on 
 	 * the numerical value passed by the 2nd argument.
@@ -238,9 +245,9 @@ class Phpfox_Parse_Input
 	 */
 	public function cleanFileName($sName)
 	{
-		$sName = preg_replace( '/ +/', '_',preg_replace('/[^0-9a-zA-Z]+/', '_', $sName));
+		$sName = preg_replace( '/ +/', '-', preg_replace('/[^0-9a-zA-Z]+/', '-', $sName));
 		$sName = strtolower($sName);
-		$sName = rtrim($sName, '_');		
+		$sName = rtrim($sName, '-');
 		
 		return $sName;	
 	}

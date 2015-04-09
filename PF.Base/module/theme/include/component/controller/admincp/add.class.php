@@ -22,7 +22,12 @@ class Theme_Component_Controller_Admincp_Add extends Phpfox_Component
 	{
 		if (($val = $this->request()->getArray('val'))) {
 			$Theme = new Core\Theme();
-			$Theme->make($val);
+			$newTheme = $Theme->make($val);
+
+			Phpfox::addMessage('Theme successfully created.');
+			return [
+				'redirect' => $this->url()->makeUrl('admincp.theme.manage', ['id' => $newTheme->theme_id])
+			];
 		}
 		
 		$this->template()

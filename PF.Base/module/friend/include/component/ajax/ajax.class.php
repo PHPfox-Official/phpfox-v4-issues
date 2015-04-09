@@ -200,7 +200,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 			$this->call('tb_remove();');
 			return false;
 		}
-		if (Phpfox::getService('friend.request.process')->add(Phpfox::getUserId(), $aVals['user_id'], (isset($aVals['list_id']) ? $aVals['list_id'] : 0), $aVals['text']))
+		if (Phpfox::getService('friend.request.process')->add(Phpfox::getUserId(), $aVals['user_id']))
 		{
 			if (isset($aVals['invite']))
 			{

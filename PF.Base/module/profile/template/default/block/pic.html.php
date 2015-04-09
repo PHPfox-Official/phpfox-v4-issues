@@ -81,7 +81,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<ul>
 				{foreach from=$aProfileLinks item=aProfileLink}
 					<li class="{if isset($aProfileLink.is_selected)} active{/if}">
-						<a href="{url link=$aProfileLink.url}" class="ajax_link">{$aProfileLink.phrase}{if isset($aProfileLink.total)}<span>({$aProfileLink.total|number_format})</span>{/if}</a>
+						<a href="{url link=$aProfileLink.url}" class="ajax_link">{$aProfileLink.phrase}{if isset($aProfileLink.total)}<span>{$aProfileLink.total|number_format}</span>{/if}</a>
 					</li>
 				{/foreach}
 			</ul>

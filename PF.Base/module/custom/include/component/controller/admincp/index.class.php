@@ -46,7 +46,10 @@ class Custom_Component_Controller_Admincp_Index extends Phpfox_Component
 		$this->template()
 			->setSectionTitle('Custom Fields')
 			->setActionMenu([
-				'Create a Custom Field' => $this->url()->makeUrl('admincp.custom.add')
+				'Create a Custom Field' => [
+					'url' => $this->url()->makeUrl('admincp.custom.add'),
+					'class' => '_popup'
+				]
 			])
 			->setTitle(Phpfox::getPhrase('custom.manage_custom_fields'))
 			->setBreadcrumb(Phpfox::getPhrase('custom.manage_custom_fields'))

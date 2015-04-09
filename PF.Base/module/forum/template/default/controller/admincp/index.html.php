@@ -45,10 +45,7 @@ defined('PHPFOX') or exit('NO DICE!');
 <div id="js_forum_edit_content"></div>
 <div id="js_form_actual_content">
 	<form method="post" action="{url link='admincp.forum'}">
-		<div class="table_header">
-			{phrase var='forum.forums'}
-		</div>
-		<div class="table">
+		<div class="_table">
 			<div class="sortable">
 				{$sForumList}
 			</div>

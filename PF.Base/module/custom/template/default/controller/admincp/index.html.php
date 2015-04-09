@@ -11,10 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="public_message" style="display:block;">
-	This will update the order of the custom fields in the Profile -> Edit Profile section. To update the order in which they are displayed please
-	<a href="{url link='admin.block'}">edit the blocks</a> from the controller profile.info
-</div>
 {if count($aGroups)}
 <div id="js_menu_drop_down" style="display:none;">
 	<div class="link_menu dropContent" style="display:block;">
@@ -24,9 +20,6 @@ defined('PHPFOX') or exit('NO DICE!');
 			<li><a href="#" onclick="return $Core.custom.action(this, 'delete');">{phrase var='custom.delete'}</a></li>
 		</ul>
 	</div>
-</div>
-<div class="table_header">
-	{phrase var='custom.custom_fields'}
 </div>
 <form method="post" action="{url link='admincp.custom'}">
 		<div class="sortable">

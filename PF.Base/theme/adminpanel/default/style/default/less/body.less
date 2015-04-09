@@ -199,9 +199,8 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	z-index:200;
 	border:0px;
 	box-shadow:none;
-	border-right:2px darken(@blockBg, 10%) solid;
-	background:darken(@blockBg, 0%);
-	color:@blockColor;
+	background:lighten(@topBg, 10%);
+	color:@topColor;
 	font-size:@fontSizeBase - 1;
 
 	.main_sub_menu_holder:first-of-type {
@@ -209,9 +208,11 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	}
 
 	> ul {
+		margin-top:10px;
+
 		li.separator {
-			color:darken(@blockBg, 60%);
-			border-color:darken(@blockBg, 8%);
+			color:lighten(@topColor, 60%);
+			border-color:darken(@topBg, 4%);
 		}
 
 		> li.focus {
@@ -245,13 +246,13 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 				font-weight:normal;
 				padding:6px 0px;
 				text-indent:12px;
-				color:@blockColor;
+				color:darken(@topColor, 20%);
 			}
 
 			> a:hover {
-				background:darken(@blockBg, 8%);
+				background:darken(@topBg, 6%);
 				transition:@transition;
-				color:darken(@blockColor, 40%);
+				color:lighten(@topColor, 40%);
 			}
 		}
 	}
@@ -470,11 +471,19 @@ div.sortable ul li, div.sortable ul li:hover {
 	background:transparent;
 	color:@textColor;
 	border:0px;
-	border-bottom:1px darken(@blockBg, 20%) solid;
+	/*border-bottom:1px darken(@blockBg, 20%) solid;*/
 	border-radius:0px;
+	margin-bottom:5px;
+
+	img {
+		margin-right:6px;
+		display:inline-block;
+	}
 
 	a, a:hover {
 		color:@blockColor;
+		display:inline-block;
+		padding-bottom:10px;
 	}
 }
 
@@ -486,15 +495,22 @@ div.sortable ul li span {
 	color:inherit;
 }
 
-div.sortable ul li ul {
-	margin:10px 0px 0px 0px;
+div.sortable ul li ul, div.sortable ul li:hover ul {
+	margin:0px;
 	background:@blockBg;
 	border:0px;
 	font-size:@fontSizeBase - 2;
 
 	li, li:hover {
 		background:@blockBg;
-		border:0px;
+		margin:0px;
+		padding:10px;
+		line-height:normal;
+		border-bottom:1px darken(@blockBg, 8%) solid;
+
+		a, a:hover {
+			padding:0px;
+		}
 	}
 }
 

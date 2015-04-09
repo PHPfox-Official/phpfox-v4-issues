@@ -231,17 +231,19 @@ ul#breadcrumb_menu li.active a:hover {
   z-index: 200;
   border: 0px;
   box-shadow: none;
-  border-right: 2px #e6e6e6 solid;
-  background: #ffffff;
-  color: #999999;
+  background: #595959;
+  color: #f2f2f2;
   font-size: 13px;
 }
 .main_menu li .main_sub_menu .main_sub_menu_holder:first-of-type {
   margin-top: 10px;
 }
+.main_menu li .main_sub_menu > ul {
+  margin-top: 10px;
+}
 .main_menu li .main_sub_menu > ul li.separator {
-  color: #666666;
-  border-color: #ebebeb;
+  color: #ffffff;
+  border-color: #353535;
 }
 .main_menu li .main_sub_menu > ul > li.focus > a,
 .main_menu li .main_sub_menu > ul > li.focus > a:hover {
@@ -273,12 +275,12 @@ ul#breadcrumb_menu li.active a:hover {
   font-weight: normal;
   padding: 6px 0px;
   text-indent: 12px;
-  color: #999999;
+  color: #bfbfbf;
 }
 .main_menu li .main_sub_menu > ul > li > a:hover {
-  background: #ebebeb;
+  background: #303030;
   transition: all 0.5s ease;
-  color: #333333;
+  color: #ffffff;
 }
 .main_sub_menu_holder {
   margin-bottom: 15px;
@@ -470,28 +472,52 @@ div.sortable ul li:hover {
   background: transparent;
   color: #808080;
   border: 0px;
-  border-bottom: 1px #cccccc solid;
+  /*border-bottom:1px darken(@blockBg, 20%) solid;*/
   border-radius: 0px;
+  margin-bottom: 5px;
+}
+div.sortable ul li img,
+div.sortable ul li:hover img {
+  margin-right: 6px;
+  display: inline-block;
 }
 div.sortable ul li a,
 div.sortable ul li:hover a,
 div.sortable ul li a:hover,
 div.sortable ul li:hover a:hover {
   color: #999999;
+  display: inline-block;
+  padding-bottom: 10px;
 }
 div.sortable ul li span {
   color: inherit;
 }
-div.sortable ul li ul {
-  margin: 10px 0px 0px 0px;
+div.sortable ul li ul,
+div.sortable ul li:hover ul {
+  margin: 0px;
   background: #ffffff;
   border: 0px;
   font-size: 12px;
 }
 div.sortable ul li ul li,
-div.sortable ul li ul li:hover {
+div.sortable ul li:hover ul li,
+div.sortable ul li ul li:hover,
+div.sortable ul li:hover ul li:hover {
   background: #ffffff;
-  border: 0px;
+  margin: 0px;
+  padding: 10px;
+  line-height: normal;
+  border-bottom: 1px #ebebeb solid;
+}
+div.sortable ul li ul li a,
+div.sortable ul li:hover ul li a,
+div.sortable ul li ul li:hover a,
+div.sortable ul li:hover ul li:hover a,
+div.sortable ul li ul li a:hover,
+div.sortable ul li:hover ul li a:hover,
+div.sortable ul li ul li:hover a:hover,
+div.sortable ul li:hover ul li:hover a:hover {
+  padding: 0px;
 }
 .mosaicflow__column {
   float: left;
@@ -1292,6 +1318,16 @@ a.delete_link:hover {
   color: #999999;
   opacity: 1;
 }
+.table_form_action a,
+.table_form_action a:hover {
+  display: block;
+  padding: 10px 0px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #999999;
+  font-weight: normal;
+  opacity: 0.8;
+}
 #js_block_border_core_site-stat .p_4,
 #js_block_border_core_site-stat div.info_right,
 div.info_right,
@@ -1527,6 +1563,15 @@ div.message {
   margin-bottom: 10px;
   background: #d9534f;
   color: #ffffff;
+}
+.error_message a,
+div.public_message a,
+div.message a,
+.error_message a:hover,
+div.public_message a:hover,
+div.message a:hover {
+  color: #ffffff !important;
+  text-decoration: underline;
 }
 div.public_message,
 div.message {

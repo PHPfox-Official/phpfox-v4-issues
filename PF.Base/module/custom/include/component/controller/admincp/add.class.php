@@ -170,7 +170,7 @@ class Custom_Component_Controller_Admincp_Add extends Phpfox_Component
 		$this->template()
 			->setSectionTitle('Custom Fields')
 			->setTitle(Phpfox::getPhrase('custom.add_a_new_custom_field'))
-			->setBreadcrumb($bIsEdit ? 'Edit Custom Field' : Phpfox::getPhrase('custom.add_a_new_custom_field'))
+			->setBreadcrumb($bIsEdit ? 'Edit Custom Field' : Phpfox::getPhrase('custom.add_a_new_custom_field'), $this->url()->current(), true)
 			->setPhrase(array(
 					'custom.are_you_sure_you_want_to_delete_this_custom_option'
 				)

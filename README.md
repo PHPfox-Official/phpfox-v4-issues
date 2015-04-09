@@ -1,6 +1,7 @@
 # PHPfox Developers Build
 
 Version: **4.0.0rc1**
+Stable: **No**
 
 ## License
 This build is intended for developers working with creating apps, modules, themes and language packages for [PHPfox](http://moxi9.com/phpfox).
@@ -61,15 +62,15 @@ Your final step will be to setup your Admin account.
 
 ![phpfox_installer_-_2015-04-08_16 36 00](https://cloud.githubusercontent.com/assets/6339284/7047535/6863fefe-de0d-11e4-832f-0b1f4782e5b7.png)
 
-## Installation Issues
-If you are running into issues with the web installer. The first thing you want to do is enable our internal debug mode. To do this create the file **include/setting/dev.sett.php**. 
+## Post Install Issues
+If you get a blank white screen after you install, you will need to enable debug mode. To do this create the file **PF.Base/include/setting/dev.sett.php**. 
 
 In that file add
 ```php
 <?php
 define('PHPFOX_DEBUG', true);
 ```
+Refresh and see what errors come up.
 
-Once that has been added, try the install again and enable your browsers developers console (e.g. Firebug). Watch the AJAX requests to view the console log and error reports provided during the install process.
-
+Feel free to report any issues you find (here)[https://github.com/moxi9/phpfox/issues].
 

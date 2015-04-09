@@ -42,11 +42,20 @@ class Language_Component_Controller_Admincp_Index extends Phpfox_Component
 				$this->url()->send('admincp', 'language', Phpfox::getPhrase('language.default_language_package_reset'));
 			}
 		}
+
+		if (PHPFOX_IS_TECHIE) {
+			$this->template()->setActionMenu([
+				'New Language' => [
+					'url' => $this->url()->makeUrl('admincp.language.add'),
+					'class' => 'popup'
+				]
+			]);
+		}
 		
 		$this->template()->assign(array(
 			'aLanguages' => $aLanguages
 		))->setTitle(Phpfox::getPhrase('language.manage_language_packages'))
-			->setBreadCrumb(Phpfox::getPhrase('language.manage_language_packages'));
+			->setSectionTitle('Languages');
 	}
 }
 

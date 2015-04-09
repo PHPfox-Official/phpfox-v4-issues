@@ -82,7 +82,7 @@ class Language_Component_Controller_Admincp_Add extends Phpfox_Component
 		}
 		
 		$this->template()->setTitle(($bIsEdit ? Phpfox::getPhrase('language.editing_language_package') . ': ' . $aLanguage['title'] : Phpfox::getPhrase('language.create_a_new_language_package')))
-			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('language.editing_language_package') . ': ' . $aLanguage['title'] : Phpfox::getPhrase('language.create_language_package')))
+			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('language.editing_language_package') . ': ' . $aLanguage['title'] : Phpfox::getPhrase('language.create_language_package')), $this->url()->current(), true)
 			->assign(array(
 					'aLanguages' => Phpfox::getService('language')->getAll(),
 					'bIsEdit' => $bIsEdit

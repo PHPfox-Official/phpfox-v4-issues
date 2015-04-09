@@ -271,6 +271,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'Currencies' => 'admincp.core.currency',
 				'Attachments' => 'admincp.attachment',
 				'Payment Gateways' => 'admincp.api.gateway',
+				'Language' => 'admincp.language',
 				// 'admincp.menu_tools_emoticon_package' => 'admincp.emoticon.package',
 
 				'User',

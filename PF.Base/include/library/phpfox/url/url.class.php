@@ -510,6 +510,9 @@ class Phpfox_Url
 			$aGets = $_GET;
 			unset($aGets['do']);
 			if ($aGets) {
+				if (!is_array($aParams)) {
+					$aParams = [];
+				}
 				$aParams = array_merge($aParams, $aGets);
 			}
 

@@ -22,7 +22,30 @@ class Language_Component_Controller_Admincp_Import extends Phpfox_Component
 	{		
 		$iPage = $this->request()->getInt('page', 0);
 		$bImportPhrases = false;
-		
+
+		if (($dir = $this->request()->get('dir'))) {
+			$dir = base64_decode($dir);
+			$parts = explode('language/', rtrim($dir, '/'));
+
+			$bImportPhrases = true;
+			$mReturn = Language_Service_Phrase_Process::instance()->installFromFolder($parts[1], $dir, $iPage);
+			if ($mReturn === 'done')
+			{
+				$sPhrase = Phpfox::getPhrase('language.successfully_installed_the_language_package');
+
+				Phpfox::getLib('cache')->remove('locale', 'substr');
+
+				$this->url()->send('admincp.language', null, $sPhrase);
+			}
+			else
+			{
+				if ($mReturn)
+				{
+					$this->template()->setHeader('<meta http-equiv="refresh" content="2;url=' . $this->url()->makeUrl('admincp.language.import', array('dir' => base64_encode($dir), 'page' => ($iPage + 1))) . '">');
+				}
+			}
+		}
+		/*
 		if (($sModulePackage = $this->request()->get('module')) || $this->request()->get('dir'))
 		{
 			if ($this->request()->get('dir'))
@@ -81,6 +104,7 @@ class Language_Component_Controller_Admincp_Import extends Phpfox_Component
 				$this->url()->send('admincp.language.import', array('module' => $sPackToInstall));
 			}		
 		}
+		*/
 		
 		$this->template()->setTitle(Phpfox::getPhrase('language.manage_language_packages'))
 			->setBreadCrumb(Phpfox::getPhrase('language.manage_language_packages'))

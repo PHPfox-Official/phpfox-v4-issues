@@ -272,8 +272,9 @@ class Language_Service_Process extends Phpfox_Service
 		return $sLanguageId;
 	}	
 	
-	public function installPackFromFolder($sPack, $sCustomDir = '')
+	public function installPackFromFolder($sPack, $sDir)
 	{
+		/*
 		if (!empty($sCustomDir))
 		{
 			if (!preg_match('/phpfox-language-([a-zA-Z0-9]+)\.zip/i', $_FILES['import']['name'], $aMatches))
@@ -283,17 +284,18 @@ class Language_Service_Process extends Phpfox_Service
 			
 			$sPack = $aMatches[1];
 		}
+		*/
 		
-		$sDir = (empty($sCustomDir) ? PHPFOX_DIR_INCLUDE : $sCustomDir . str_replace(PHPFOX_DIR, '', PHPFOX_DIR_INCLUDE)) . 'xml' . PHPFOX_DS . 'language' . PHPFOX_DS . $sPack . PHPFOX_DS;		
+		// $sDir = (empty($sCustomDir) ? PHPFOX_DIR_INCLUDE : $sCustomDir . str_replace(PHPFOX_DIR, '', PHPFOX_DIR_INCLUDE)) . 'xml' . PHPFOX_DS . 'language' . PHPFOX_DS . $sPack . PHPFOX_DS;
 
 		if (!is_dir($sDir))
 		{
-			return Phpfox_Error::set(Phpfox::getPhrase('language.not_a_valid_language_package_to_install'));
+			throw error(Phpfox::getPhrase('language.not_a_valid_language_package_to_install'));
 		}
 		
 		if (!file_exists($sDir . 'phpfox-language-import.xml'))
 		{
-			return Phpfox_Error::set(Phpfox::getPhrase('language.not_a_valid_language_package_to_install_missing_the_xml_file'));	
+			throw error(Phpfox::getPhrase('language.not_a_valid_language_package_to_install_missing_the_xml_file'));
 		}
 		
 		$aData = Phpfox::getLib('xml.parser')->parse($sDir . 'phpfox-language-import.xml');
@@ -343,19 +345,7 @@ class Language_Service_Process extends Phpfox_Service
 		{
 			return false;
 		}			
-		
-		if (isset($aData['settings']['image']))
-		{
-			if (file_exists(Phpfox::getParam('core.dir_pic') . 'flag' . PHPFOX_DS . $sPack . '.' . $aData['settings']['flag_id']))
-			{
-				unlink(Phpfox::getParam('core.dir_pic') . 'flag' . PHPFOX_DS . $sPack . '.' . $aData['settings']['flag_id']);
-			}				
-			
-			Phpfox_File::instance()->write(Phpfox::getParam('core.dir_pic') . 'flag' . PHPFOX_DS . $sPack . '.' . $aData['settings']['flag_id'], base64_decode($aData['settings']['image']));
-			
-			unset($aData['settings']['image']);
-		}
-		
+
 		$aData['settings']['language_id'] = $sPack;
 		$aData['settings']['time_stamp'] = PHPFOX_TIME;
 		

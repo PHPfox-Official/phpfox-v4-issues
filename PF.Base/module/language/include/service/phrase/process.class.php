@@ -299,9 +299,11 @@ class Language_Service_Phrase_Process extends Phpfox_Service
 		return $iCnt;
 	}	
 	
-	public function installFromFolder($sPack, $iPage = 0, $iLimit = 5)
+	public function installFromFolder($sPack, $sDir, $iPage = 0, $iLimit = 5)
 	{
-		$iGroup = (($iPage * $iLimit) + 1);	
+		$iGroup = (($iPage * $iLimit) + 1);
+
+		/*
 		if (is_array($sPack))
 		{
 			$sDir = PHPFOX_DIR_CACHE . $sPack[0] . PHPFOX_DS . 'upload' . PHPFOX_DS . str_replace(PHPFOX_DIR, '', PHPFOX_DIR_INCLUDE) . 'xml' . PHPFOX_DS . 'language' . PHPFOX_DS . $sPack[1] . PHPFOX_DS;
@@ -311,6 +313,7 @@ class Language_Service_Phrase_Process extends Phpfox_Service
 		{
 			$sDir = PHPFOX_DIR_INCLUDE . 'xml' . PHPFOX_DS . 'language' . PHPFOX_DS . $sPack . PHPFOX_DS;
 		}
+		*/
 				
 		if (!is_dir($sDir))
 		{

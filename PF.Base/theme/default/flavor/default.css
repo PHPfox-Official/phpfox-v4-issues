@@ -5024,7 +5024,8 @@ a.not_active:hover {
 }
 div.public_message,
 div.message,
-div.error_message {
+div.error_message,
+.valid_message {
   background: #5bc0de;
   color: #ffffff;
   font-size: 16px;
@@ -5034,6 +5035,9 @@ div.error_message {
 }
 div.error_message {
   background: #d9534f;
+}
+.valid_message {
+  background: #5cb85c;
 }
 #left #js_block_border_music_list,
 #right #js_block_border_music_list {
@@ -6320,6 +6324,21 @@ div.forum_content {
 #page_friend_profile #content {
   width: auto;
 }
+#js_block_content_profile_friend .user_rows_mini .user_rows {
+  width: 81px;
+  height: 110px;
+}
+#js_block_content_profile_friend .user_rows .user_profile_link_span > a,
+#js_block_content_profile_friend .user_rows .user_profile_link_span > a:hover {
+  text-align: left;
+  text-indent: 2px;
+}
+#js_block_content_profile_friend ._size__120 > span,
+#js_block_content_profile_friend ._size__120:hover > span {
+  top: 20px;
+  left: 0px;
+  width: 81px;
+}
 #page_user_browse #site_content {
   text-align: center;
 }
@@ -7540,6 +7559,19 @@ ul.activity_feed_form_attach li a:hover {
   font-weight: normal;
   color: #999999;
   font-size: 13px;
+  position: relative;
+}
+.profiles_menu > ul > li > ul a > span,
+.profiles_menu > ul > li > ul a:hover > span {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 10px;
+  display: inline-block;
+  background: #f2f2f2;
+  height: auto;
+  line-height: normal;
+  padding: 4px 6px;
 }
 .profiles_menu > ul > li > ul a:hover {
   color: #298ada;

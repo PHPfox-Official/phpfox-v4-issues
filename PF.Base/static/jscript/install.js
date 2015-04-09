@@ -20,8 +20,16 @@
 				url: BasePath + '?step=' + step,
 				type: (type ? type : 'GET'),
 				data: data,
+				error: function(e) {
+					// $('html').html(e.responseText);
+					document.open();
+					document.write(e.responseText);
+					document.close();
+				},
 				success: function(e) {
+
 					console.log(e);
+
 					// e = $.parseJSON(e);
 
 					if (typeof(e.next) == 'string') {

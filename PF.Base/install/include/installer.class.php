@@ -148,6 +148,9 @@ class Phpfox_Installer
 	
 	public function __construct()
 	{
+		header('Cache-Control: no-cache');
+		header('Pragma: no-cache');
+
 		session_start();
 
 		$this->_oTpl = Phpfox_Template::instance();

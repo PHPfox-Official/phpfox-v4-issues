@@ -20,6 +20,10 @@ define('PHPFOX_DS', DIRECTORY_SEPARATOR);
 define('PHPFOX_DIR', dirname(__FILE__) . PHPFOX_DS);
 define('PHPFOX_START_TIME', array_sum(explode(' ', microtime())));
 
+if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
+	exit('Dependencies for PHPfox missing. Make sure to run composer first.');
+}
+
 require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/include/init.inc.php');
 

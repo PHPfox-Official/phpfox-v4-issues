@@ -22,7 +22,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="forum_user_info_holder_inner_image"></div>
 				<div class="forum_user_info">
 					<div class="forum_thread_photo">
-						{img user=$aPost suffix='_120_square' max_width=100 max_height=100}
+						{img user=$aPost suffix='_50_square'}
 					</div>
 					<div class="forum_thread_user">
 						{$aPost|user:'':'':13}
@@ -59,18 +59,12 @@ defined('PHPFOX') or exit('NO DICE!');
 				{$aPost.text|parse|split:55}
 			</div>
 			{if Phpfox::getUserParam('core.can_view_update_info') && !empty($aPost.update_user)}
-			<div class="extra_info">
+			<div class="extra_info p_10">
 				{$aPost.last_update_on}
 			</div>
 			{/if}			
 			{if isset($aPost.attachments)}
 				{module name='attachment.list' sType=forum attachments=$aPost.attachments}
-			{/if}
-			
-			{if !empty($aPost.signature)}
-			<div class="forum_signature">
-				{$aPost.signature|parse}
-			</div>
 			{/if}
 
 			{plugin call='forum.template_block_post_after_content'}

@@ -1057,7 +1057,8 @@ foreach ($aTitleUpdate as $sTable => $sField)
 				);
 			}			
 		}
-	
+
+		/*
 		$aAppCategories = array(
 			'Just for Fun',			
 			'Gaming',
@@ -1091,7 +1092,8 @@ foreach ($aTitleUpdate as $sTable => $sField)
 					'name' => $sCategory					
 				)
 			);
-		}		
+		}
+		*/
 
 // Make all custom fields belong to "custom"		
 $this->_db()->update(Phpfox::getT('custom_field'), array('module_id' => 'custom'), 'module_id != "custom"');

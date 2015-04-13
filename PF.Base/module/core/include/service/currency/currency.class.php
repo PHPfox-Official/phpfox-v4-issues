@@ -71,7 +71,7 @@ class Core_Service_Currency_Currency extends Phpfox_Service
 		
 		if ($this->_sDefault === null)
 		{
-			foreach ($this->_aCurrencies as $sKey => $aCurrency)
+			foreach ((array) $this->_aCurrencies as $sKey => $aCurrency)
 			{
 				if ($aCurrency['is_default'] == '1')
 				{

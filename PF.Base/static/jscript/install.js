@@ -36,7 +36,7 @@
 						if (typeof(e.message) == 'string') {
 							$('#installer').html('<div class="process">' + e.message + '<i class="fa fa-spin fa-circle-o-notch"></i></div>');
 						}
-						runStep(e.next);
+						runStep(e.next, 'GET', timeout, (typeof(e.extra) == 'string' ? e.extra : ''));
 					}
 					else if (typeof(e.content) == 'string') {
 						$('#installer').html(e.content);

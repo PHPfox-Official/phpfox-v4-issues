@@ -151,18 +151,6 @@ class Phpfox_Setting
 		{
 			define('PHPFOX_SCRIPT_CONFIG', true);
 		}
-
-		if (file_exists(PHPFOX_DIR_SETTING . 'video.default.php'))
-		{
-			if (file_exists(PHPFOX_DIR_SETTING . 'video.php'))
-			{
-				require_once(PHPFOX_DIR_SETTING . 'video.php');
-			}
-			else
-			{
-				require_once(PHPFOX_DIR_SETTING . 'video.default.php');
-			}
-		}
 			
 		if ((!isset($_CONF['core.host'])) || (isset($_CONF['core.host']) && $_CONF['core.host'] == 'HOST_NAME'))
 		{
@@ -249,6 +237,19 @@ class Phpfox_Setting
 			{
 				if (md5(Phpfox::VERSION) != md5($aRow['value_actual']))
 				{
+					define('PHPFOX_NO_PLUGINS', true);
+					define('PHPFOX_NO_USER_SESSION', true);
+					define('PHPFOX_NO_CSRF', true);
+					define('PHPFOX_INSTALLER', true);
+					define('PHPFOX_INSTALLER_NO_TMP', true);
+					define('PHPFOX_NO_RUN', true);
+					define('PHPFOX_IS_UPGRADE', true);
+
+					require(PHPFOX_DIR . 'install/include/installer.class.php');
+
+					(new Phpfox_Installer())->run();
+					exit;
+
 					$sMessage = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
 					$sMessage .= '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">';
 					$sMessage .= '<head><title>Upgrade Taking Place</title><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /><style type="text/css">body{font-family:verdana; color:#000; font-size:9pt; margin:5px; background:#fff;} img{border:0px;}</style></head><body>';

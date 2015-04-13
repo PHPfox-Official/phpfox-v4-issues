@@ -1118,7 +1118,7 @@ class Phpfox_Template
 				$aJsVars['sJsCookieDomain'] = Phpfox::getParam('core.cookie_domain');
 				$aJsVars['sJsCookiePrefix'] = Phpfox::getParam('core.session_prefix');	
 				$aJsVars['bPhotoTheaterMode'] = (Phpfox::isModule('photo') ? Phpfox::getParam('photo.view_photos_in_theater_mode') : false);
-				$aJsVars['bUseHTML5Video'] = (Phpfox::getParam('video.upload_for_html5') ? true : false);				
+				$aJsVars['bUseHTML5Video'] = ((Phpfox::isModule('video') && Phpfox::getParam('video.upload_for_html5')) ? true : false);
 				if (Phpfox::isAdmin())
 				{
 					$aJsVars['sAdminCPLocation'] = Phpfox::getParam('admincp.admin_cp');

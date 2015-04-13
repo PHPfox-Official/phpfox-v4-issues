@@ -31,6 +31,7 @@ class Phpfox_Installer
 		'configuration',
 		'process',		
 		'import',
+		'update',
 		'language',
 		'module',
 		'post',
@@ -131,7 +132,9 @@ class Phpfox_Installer
 		'3.7.6',
 		'3.7.7',
 		
-		'3.8.0'
+		'3.8.0',
+
+		'4.0.0rc1'
 	);
 	
 	private $_sTempDir = '';
@@ -158,18 +161,12 @@ class Phpfox_Installer
 		$this->_oUrl = Phpfox_Url::instance();
 		
 		$this->_sTempDir = Phpfox_File::instance()->getTempDir();
-
-		if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
-		{
-			return;
-		}
-		
 		
 		$this->_sPage = $this->_oReq->get('page');		
 		$this->_sUrl = ($this->_oReq->get('req1') == 'upgrade' ? 'upgrade' : 'install');
-		self::$_sSessionId = ($this->_oReq->get('sessionid') ? $this->_oReq->get('sessionid') : uniqid());		
-		
-		if ($this->_sUrl == 'upgrade')
+		self::$_sSessionId = ($this->_oReq->get('sessionid') ? $this->_oReq->get('sessionid') : uniqid());
+
+		if (defined('PHPFOX_IS_UPGRADE'))
 		{
 			$this->_bUpgrade = true;			
 			
@@ -180,8 +177,8 @@ class Phpfox_Installer
 				
 				$this->_aOldConfig = $_CONF;
 			}
-		}	
-						
+		}
+
 		if (!Phpfox_File::instance()->isWritable($this->_sTempDir))
 		{
 			if (PHPFOX_SAFE_MODE)
@@ -201,7 +198,7 @@ class Phpfox_Installer
 		$this->_sSessionFile = $this->_sTempDir . 'installer_' . ($this->_bUpgrade ? 'upgrade_' : '') . '_' . self::$_sSessionId . '_' . 'phpfox.log';		
 			
 		$this->_hFile = fopen($this->_sSessionFile, 'a');
-		
+
 		if ($this->_sUrl == 'install' && $this->_oReq->get('req2') == '')
 		{			
 			if (file_exists(PHPFOX_DIR_SETTING . 'server.sett.php'))
@@ -218,17 +215,6 @@ class Phpfox_Installer
 			{				
 				$this->_oUrl->forward('../install/index.php?' . PHPFOX_GET_METHOD . '=/upgrade/');
 			}
-		}	
-		
-		if ($this->_bUpgrade)
-		{
-			$this->_aSteps = array(
-				'key',
-				'license',
-				'requirement',
-				'update',
-				'completed'
-			);
 		}
 
 		// Define some needed params
@@ -304,13 +290,7 @@ class Phpfox_Installer
 	}
 
 	public function run()
-	{		
-		if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
-		{
-			$this->_update();
-			exit;
-		}
-		
+	{
 		if ($this->_bUpgrade 
 				&& (int) substr($this->_getCurrentVersion(), 0, 1) < 2
 				&& file_exists(PHPFOX_DIR . '.htaccess')
@@ -325,7 +305,7 @@ class Phpfox_Installer
 		
 		$sStep = ($this->_oReq->get('step') ? strtolower($this->_oReq->get('step')) : 'start');
 
-		$this->_oTpl->setTitle(self::getPhrase('phpfox_installer'))->setBreadcrumb(self::getPhrase('phpfox_installer'));		
+		// $this->_oTpl->setTitle(self::getPhrase('phpfox_installer'))->setBreadcrumb(self::getPhrase('phpfox_installer'));
 		
 		$bPass = false;
 		if (!in_array($sStep, $this->_aSteps))
@@ -637,6 +617,13 @@ class Phpfox_Installer
 					// $this->_pass('license');
 					$data = "<?php define('PHPFOX_LICENSE_ID', '{$aVals['license_id']}'); define('PHPFOX_LICENSE_KEY', '{$aVals['license_key']}');";
 					file_put_contents(PHPFOX_DIR_SETTINGS . 'license.php', $data);
+
+					if ($this->_bUpgrade) {
+						return [
+							'message' => 'Updating',
+							'next' => 'update'
+						];
+					}
 
 					return [
 						'message' => 'Verifying license',
@@ -1257,105 +1244,46 @@ class Phpfox_Installer
 	
 	private function _update()
 	{
-		exit('Updates disabled...');
-
-		$aContent = array(
-			'action' => $this->_oReq->get('action'),
-			'version' => $this->_oReq->get('version'),
-			'page' => $this->_oReq->get('page'),
-			'time_stamp' => PHPFOX_TIME,
-			'ip_address' => Phpfox::getIp()
-		);	
-
-		$hFile = fopen(PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'upgrade_' . self::$_sSessionId . '.log', 'w');
-		fwrite($hFile, serialize($aContent) . "\n");
-		fclose($hFile);
-
-		$sNext = $this->_oReq->get('next');
-		if (!empty($sNext))
-		{
-			$sNext = str_replace('-', '.', $sNext);
-		}
-		
-		if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
-		{
-			foreach ($this->_aVersions as $iKey => $sVersion)
-			{
-				if (isset($bStopNextVersion))
-				{
-					if (file_exists(PHPFOX_DIR_INSTALL . 'include' . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php'))
-					{
-						require_once(PHPFOX_DIR_INSTALL . 'include' . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php');
-						p('Upgrading to ' . $sVersion . '');
-					}	
-				}	
-				
-				// p($this->_getCurrentVersion() . ' -> ' . $sVersion);
-				
-				if ($sVersion == $this->_getCurrentVersion())
-				{
-					$bStopNextVersion = true;
-				}				
-			}
-			
-			$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => Phpfox::getVersion()), 'var_name = \'phpfox_version\'');
-			Phpfox::getLib('cache')->remove();
-			p('Done!');
-			
-			exit;
-		}
-		
-		$sMessage = '';		
-		foreach ($this->_aVersions as $iKey => $sVersion)
-		{
-			if (isset($bStopNextVersion) || (!empty($sNext) && $sNext == $sVersion))
-			{
-				if (file_exists(PHPFOX_DIR_INSTALL . 'include' . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php'))
-				{
-					require_once(PHPFOX_DIR_INSTALL . 'include' . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php');
-					
-					if ($bCompleted === true)
-					{
-						if (isset($this->_aVersions[($iKey + 1)]))
-						{
-							$this->_oTpl->assign(array(
-									'sMessage' => 'Upgrade to ' . $sVersion . ' completed. Next version is ' . $this->_aVersions[($iKey + 1)] . '.',
-									'sNext' => $this->_step(array(
-											'update',
-											'version' => str_replace('.', '-', $sVersion),
-											'next' => str_replace('.', '-', $this->_aVersions[($iKey + 1)])
-										)
-									)
-								)
-							);
-						}
-						else 
-						{
-							$this->_pass('completed');
-						}
-					}
+		// d($this->_getCurrentVersion());
+		$version = $this->_oReq->get('version');
+		if (!$version) {
+			foreach ($this->_aVersions as $sVersion) {
+				if (isset($checkVersion)) {
+					$version = $sVersion;
+					break;
 				}
-				else 
-				{
-					$sMessage = 'You are not upgrading from a valid version. You must have v1.6.21 or higher installed. If you are using an older version you can use the upgrade script provided with the v1.6.21 package.';
+
+				if ($sVersion == $this->_getCurrentVersion()) {
+					$checkVersion = true;
 				}
-					
-				break;
-			}
-			
-			if (empty($sNext) && $sVersion == $this->_getCurrentVersion())
-			{				
-				$bStopNextVersion = true;
 			}
 		}
-		
-		if (!isset($bCompleted))
-		{
-			$this->_oTpl->assign(array(
-					'sMessage' => $sMessage			
-				)
-			);		
+
+		$nextVersion = false;
+		$upgradedVersion = null;
+		foreach ($this->_aVersions as $sVersion) {
+			if ($nextVersion === true) {
+				return [
+					'message' => 'Upgraded to ' . $upgradedVersion,
+					'next' => 'update',
+					'extra' => 'version=' . $sVersion
+				];
+			}
+
+			if ($version == $sVersion) {
+				// d(__DIR__ . '/include' . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php');
+				if (file_exists(__DIR__ . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php')) {
+					require_once(__DIR__ . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php');
+					// p('Upgrading to ' . $sVersion . '');
+					$nextVersion = true;
+					$upgradedVersion = $sVersion;
+				}
+			}
 		}
+
+		return [
+			'next' => 'completed'
+		];
 	}	
 	
 	private function _completed()
@@ -1375,6 +1303,7 @@ class Phpfox_Installer
 		file_put_contents(PHPFOX_DIR_SETTINGS . 'license.sett.php', $license);
 		unlink(PHPFOX_DIR_SETTINGS . 'license.php');
 
+		/*
 		if (!defined('PHPFOX_SKIP_INSTALL_KEY'))
 		{
 			$oApi = Phpfox::getLib('phpfox.api');
@@ -1383,6 +1312,7 @@ class Phpfox_Installer
 				Phpfox_Database::instance()->update(Phpfox::getT('setting'), array('value_actual' => '1'), "var_name = 'branding'");
 			}		
 		}
+		*/
 		
 		$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => Phpfox::getVersion()), 'var_name = \'phpfox_version\'');
 		$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => date('j/n/Y', PHPFOX_TIME)), 'var_name = \'official_launch_of_site\'');
@@ -1451,14 +1381,10 @@ class Phpfox_Installer
 			return $sVersion;
 		}
 
-		if ($this->_sUrl == 'install' && !defined('PHPFOX_IS_HOSTED_SCRIPT'))
-		{
-			return Phpfox::getVersion();
-		}
-
 		$bIsLegacy = true;
 		if (file_exists(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'server.sett.php'))
 		{
+			$_CONF = [];
 			require(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'server.sett.php');
 
 			if ($_CONF['core.is_installed'] === true)
@@ -1475,6 +1401,7 @@ class Phpfox_Installer
 
 		if (file_exists(PHPFOX_DIR . 'include' . PHPFOX_DS . 'settings' . PHPFOX_DS . 'version.php'))
 		{
+			$_CONF = [];
 			require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'settings' . PHPFOX_DS . 'version.php');
 
 			$sVersion = $_CONF['info.version'];

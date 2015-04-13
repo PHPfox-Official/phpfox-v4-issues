@@ -26,13 +26,17 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="forum_title">
 			<div class="forum_title_inner_holder">
 				<header>
-					{if $aThread.order_id == 1}
-						<span class="forum_tag_sticky">{phrase var='forum.sticky'}</span>: 
-					{/if}				
+					{$aThread|user}
 					<h1 itemprop="name"><a href="{permalink module='forum.thread' id=$aThread.thread_id title=$aThread.title}" class="forum_thread_link{if $aThread.css_class == 'new'} forum_thread_link_new{/if}" itemprop="url">{$aThread.title|clean|split:40|shorten:100:'...'}</a></h1>
+
+					<div class="forum_user_details">
+						<time>{$aThread.time_stamp|convert_time}</time>
+					</div>
+					{*
 					<div class="extra_info_link">
 						{phrase var='forum.by_full_name_on_time' full_name=$aThread|user:'':'':50:'':'author' time=$aThread.time_stamp|convert_time}
 					</div>
+					*}
 				</header>
 			</div>
 			
@@ -52,7 +56,12 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}
 			{/if}		
 		</div>
-		{if !$aThread.is_announcement}
+
+		<div class="forum_totals">
+			<span>{$aThread.total_post|number_format}</span>
+		</div>
+
+		{* if !$aThread.is_announcement}
 		{if !Phpfox::isMobile()}
 		<div class="forum_thread_total">
 			<div class="extra_info">
@@ -66,6 +75,6 @@ defined('PHPFOX') or exit('NO DICE!');
 			<a href="{permalink module='forum.thread' id=$aThread.thread_id title=$aThread.title}post_{$aThread.post_id}/">{$aThread.time_update|date:'forum.forum_time_stamp'}</a>
 		</div>
 		{/if}
-		{/if}
+		{/if *}
 	</div>
 {/item}

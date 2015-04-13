@@ -150,6 +150,13 @@ class Phpfox_Parse_Bbcode
 	{		
 		(($sPlugin = Phpfox_Plugin::get('parse_bbcode_construct')) ? eval($sPlugin) : false);
 	}
+
+	/**
+	 * @return Phpfox_Parse_Bbcode
+	 */
+	public static function instance() {
+		return Phpfox::getLib('parse.bbcode');
+	}
 	
 	/**
 	 * Run the first round of parsing of CODE related BBCode since we need to save them in memory.
@@ -221,14 +228,17 @@ class Phpfox_Parse_Bbcode
 		{		
 			for ($i = 0; $i < count($aSample[0]); $i++)
 			{		
-				$sTxt = preg_replace("/\[quote(.*?)\](.*?)\[\/quote\]/ise","''.stripslashes(\$this->_quote('$1','$2')).''", $sTxt);				
+				$sTxt = preg_replace_callback("/\[quote(.*?)\](.*?)\[\/quote\]/is", function($aMatches) {
+					return $this->_quote($aMatches[1], $aMatches[2]);
+				}, $sTxt);
 			}
 		}
+
 		
 		$sTxt = preg_replace("/\[img\](.*?)\[\/img\]/ise","''.stripslashes(\$this->_image('$1')).''", $sTxt);
-		
+
 		$sTxt = $this->preParse($sTxt);
-		
+
 		// Attachments
 		$sTxt = preg_replace("/\[attachment(.*?)\](.*?)\[\/attachment\]/ise","''.stripslashes(\$this->_attachment('$1', '$2')).''", $sTxt);
 		// $sTxt = preg_replace("/<a href=\"(.*?)\" attachment=\"(.*?)\">/ise","'<a href=\"' . preg_replace('/(_thumb|_view)/i', '', '$1') . '\" '.stripslashes(\$this->_attachment('$2')).'>'", $sTxt);			
@@ -239,15 +249,17 @@ class Phpfox_Parse_Bbcode
 		$sTxt = preg_replace("/\[attachment(.*?)\](.*?)\[\/attachment\]/ise","''.stripslashes(\$this->_parseAttachment('$1', '$2')).''", $sTxt);	
 	//	$sTxt = preg_replace("/<a href=\"(.*?)\" attachment=\"(.*?)\">/ise","'<a href=\"\\1\" '.stripslashes(\$this->_parseAttachment('$2')).'>'", $sTxt);				
 		$this->_aAttachments = array();
-		
+
+		/*
 		$sTxt = preg_replace("/\[video\](.*?)\[\/video\]/ise","''.stripslashes(\$this->_video('$1')).''", $sTxt);
 		if (count($this->_aVideos))
 		{
 			$this->_aVideos = Phpfox::getService('video')->verify(implode(',', $this->_aVideos), $this->_bUseVideoImage);
 		}		
 		$sTxt = preg_replace("/\[video\](.*?)\[\/video\]/ise","''.stripslashes(\$this->_parseVideo('$1')).''", $sTxt);
-		$this->_aVideos = array();	
-		
+		*/
+		$this->_aVideos = array();
+
 		if (count($this->_aUsers))
 		{
 			$oDb = Phpfox_Database::instance();
@@ -1073,7 +1085,7 @@ class Phpfox_Parse_Bbcode
 	{
 		$bData = false;
 		$bLink = true;
-		
+
 		if (!empty($sDetail))
 		{
 			$bData = true;
@@ -1092,8 +1104,8 @@ class Phpfox_Parse_Bbcode
 		// $sTxt = Phpfox::getLib('parse.input')->prepare($sTxt);
 		
 		(($sPlugin = Phpfox_Plugin::get('parse_bbcode_quote_start')) ? eval($sPlugin) : false);
-		
-		$sTxt = '<div class="new_quote">' . ($bData ? '<div class="new_quote_header">' . ($bLink ? '<a href="' . Phpfox_Url::instance()->makeUrl('profile', $aUser['user_name']) . '">' : '') . ($bLink ? $aUser['full_name'] : $sDetail) . ($bLink ? '</a>' : '') . ' [PHPFOX_PHRASE]core.said[/PHPFOX_PHRASE]</div>' : '') . '<div class="new_quote_content_holder"><div class="new_quote_content">' . $sTxt . '</div></div></div>';
+
+		$sTxt = '<div class="new_quote">' . ($bData ? '<div class="new_quote_header">' . ($bLink ? '<a href="' . Phpfox_Url::instance()->makeUrl('profile', $aUser['user_name']) . '">' : '') . ($bLink ? $aUser['full_name'] : $sDetail) . ($bLink ? '</a>' : '') . '</div>' : '') . '<div class="new_quote_content_holder"><div class="new_quote_content">' . $sTxt . '</div></div></div>';
 		
 		(($sPlugin = Phpfox_Plugin::get('parse_bbcode_quote_end')) ? eval($sPlugin) : false);
 		

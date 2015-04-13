@@ -25,7 +25,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					<li>
 						<a href="{if $aForum.post_id}{permalink module='forum.thread' id=$aForum.thread_id title=$aForum.thread_title_url}post_{$aForum.post_id}/{else}{permalink module='forum.thread' id=$aForum.thread_id title=$aForum.thread_title_url}{/if}" title="{$aForum.thread_title|clean}">
 							{$aForum.thread_title|clean|shorten:50:'...'}
-						</a><span>{$aForum.thread_time_stamp|convert_time}</span>
+						</a><span>{$aForum.thread_time_stamp|convert_time} by {$aForum|user}</span>
 					</li>
 				</ul>
 			</div>

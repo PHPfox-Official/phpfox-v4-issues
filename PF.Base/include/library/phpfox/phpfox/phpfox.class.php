@@ -1117,6 +1117,15 @@ class Phpfox
 			}
 
 			$sType = Phpfox_File::instance()->mime($sUri);
+			if (!file_exists($sPath)) {
+				// header('Content-type: ' . $sType);
+				header("HTTP/1.0 404 Not Found");
+				header('Content-type: application/json');
+				echo json_encode([
+					'error' => 404
+				]);
+				exit;
+			}
 
 			// header('Content-type: ' . $sType);
 			$HTTPCache->cache($sType, filemtime($sPath), 7);

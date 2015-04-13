@@ -109,6 +109,52 @@ class Phpfox_Parse_Output
 
 		$sTxt = nl2br($sTxt);
 
+		/*
+		if (preg_match_all("/\[quote(.*?)\]/i", $sTxt, $aSample) && isset($aSample[0]))
+		{
+			for ($i = 0; $i < count($aSample[0]); $i++)
+			{
+				$sTxt = preg_replace_callback("/\[quote(.*?)\](.*?)\[\/quote\]/is", function($aMatches) {
+					$bData = false;
+					$bLink = true;
+
+					$sDetail = null;
+					$sTxt = $aMatches[1];
+					if (isset($aMatches[2])) {
+						$sDetail = $aMatches[1];
+						$sTxt = $aMatches[2];
+					}
+
+					if (!empty($sDetail))
+					{
+						$bData = true;
+						$sDetail = substr_replace($sDetail, '', 0, 1);
+						$sDetail = Phpfox::getLib('parse.input')->jsClean(trim($sDetail));
+
+						$aUser = Phpfox::getService('user')->getUser($sDetail,'u.user_id, u.user_name, u.full_name');
+
+						if (empty($aUser))
+						{
+							$bLink = false;
+						}
+					}
+
+					$sTxt = stripslashes($sTxt);
+					// $sTxt = Phpfox::getLib('parse.input')->prepare($sTxt);
+
+					(($sPlugin = Phpfox_Plugin::get('parse_bbcode_quote_start')) ? eval($sPlugin) : false);
+
+					$sTxt = '<div class="new_quote">' . ($bData ? '<div class="new_quote_header">' . ($bLink ? '<a href="' . Phpfox_Url::instance()->makeUrl('profile', $aUser['user_name']) . '">' : '') . ($bLink ? $aUser['full_name'] : $sDetail) . ($bLink ? '</a>' : '') . '</div>' : '') . '<div class="new_quote_content_holder"><div class="new_quote_content">' . $sTxt . '</div></div></div>';
+
+					(($sPlugin = Phpfox_Plugin::get('parse_bbcode_quote_end')) ? eval($sPlugin) : false);
+
+					return $sTxt;
+				}, $sTxt);
+			}
+		}
+		*/
+		$sTxt = Phpfox_Parse_Bbcode::instance()->parse($sTxt);
+
 		return $sTxt;
 	}	
 

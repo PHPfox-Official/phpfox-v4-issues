@@ -1529,7 +1529,7 @@ class Phpfox_Module
 				->where('m.is_active = 1')
 				->order('m.module_id')
 				->execute('getRows');
-			
+
 			foreach ($aRows as $aRow) 
 			{
 				switch ($aRow['module_id'])

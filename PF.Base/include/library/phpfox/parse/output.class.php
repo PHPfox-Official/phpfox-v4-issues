@@ -107,7 +107,12 @@ class Phpfox_Parse_Output
 			$sTxt = $this->replaceHashTags($sTxt);
 		}
 
-		$sTxt = nl2br($sTxt);
+		$sTxt = str_replace("\n\r\n\r", "", $sTxt);
+		$sTxt = str_replace("\n\r", "", $sTxt);
+		// $sTxt = str_replace("\n\r\n\r", "\n", $sTxt);
+		// $sTxt = nl2br($sTxt);
+		$sTxt = str_replace("\n", "<div class=\"newline\"></div>", $sTxt);
+		// $sTxt = str_replace("<br>\n<br>", "", $sTxt);
 
 		/*
 		if (preg_match_all("/\[quote(.*?)\]/i", $sTxt, $aSample) && isset($aSample[0]))
@@ -853,7 +858,8 @@ class Phpfox_Parse_Output
 			{
 				$sHref = Phpfox_Url::instance()->makeUrl('core.redirect', array('url' => Phpfox_Url::instance()->encode($sHref)));
 			}
-		}	
+		}
+
 		
 		return $aMatches[1] . "<a href=\"" . $sHref . "\" target=\"_blank\" rel=\"nofollow\">" . $sName . "</a> ";
     }

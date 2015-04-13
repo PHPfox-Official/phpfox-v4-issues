@@ -2597,6 +2597,23 @@ a.page_section_menu_link:hover {
   top: 5px;
   z-index: 10;
 }
+code {
+  font-family: monospace;
+  white-space: pre;
+  background: #000;
+  color: #fff;
+  padding: 10px;
+  overflow: auto;
+  max-height: 400px;
+  display: block;
+}
+code br {
+  display: none;
+}
+div.newline {
+  padding: 6px 0px;
+  content: '';
+}
 #header_left {
   width: auto;
 }
@@ -6262,11 +6279,14 @@ div.forum_content {
 span.forum_tag_sticky {
   display: none;
 }
+.new_quote {
+  margin-bottom: 0px;
+}
 .new_quote > br:first-of-type,
 .forum_content > br:first-of-type,
 .new_quote > br:nth-of-type(2),
 .forum_content > br:nth-of-type(2) {
-  display: none;
+  /*display:none;*/
 }
 .new_quote_header {
   margin-left: 10px;

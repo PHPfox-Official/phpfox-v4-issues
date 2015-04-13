@@ -165,5 +165,3 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 
 {/if}
-
-{module name='forum.jump'}

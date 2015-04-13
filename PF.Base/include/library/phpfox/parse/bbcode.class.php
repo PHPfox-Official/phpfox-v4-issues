@@ -167,7 +167,9 @@ class Phpfox_Parse_Bbcode
 	public function preParse($sTxt)
 	{		
 		$sTxt = preg_replace("/\[php\](.*?)\[\/php\]/ise","''.stripslashes(\$this->_code('$1', 'php')).''", $sTxt);
-		$sTxt = preg_replace("/\[code\](.*?)\[\/code\]/ise","''.stripslashes(\$this->_code('$1', 'code')).''", $sTxt);
+		$sTxt = preg_replace_callback("/\[code\](.*?)\[\/code\]/is", function($matches) {
+			return $this->_code($matches[1], 'code');
+		}, $sTxt);
 		$sTxt = preg_replace("/\[html\](.*?)\[\/html\]/ise","''.stripslashes(\$this->_code('$1', 'html')).''", $sTxt);	
 		
 		(($sPlugin = Phpfox_Plugin::get('parse_bbcode_preparse_end')) ? eval($sPlugin) : false);	
@@ -214,10 +216,18 @@ class Phpfox_Parse_Bbcode
 	public function parse($sTxt)
 	{
 		foreach ($this->_aDefault as $sBbcode => $mValue)
-		{		
+		{
+			/*
 			$sTxt = preg_replace("/\[" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '').''", $sTxt);
 			$sTxt = preg_replace("/\[\/" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'suffix').''", $sTxt);
 			$sTxt = preg_replace("/\[" . $sBbcode . "=(.*?)\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'prefix', true, '$1').''", $sTxt);
+			*/
+			$sTxt = preg_replace("/\[" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '').''", $sTxt);
+			$sTxt = preg_replace("/\[\/" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'suffix').''", $sTxt);
+
+			$sTxt = preg_replace_callback("/\[" . $sBbcode . "=(.*?)\]/is", function($matches) use ($sBbcode) {
+				return $this->_replaceBbCode($sBbcode, 'prefix', true, $matches[1]);
+			}, $sTxt);
 		}
 		
 		$sTxt = preg_replace("/\[table=(.*?)\](.*?)\[\/table\]/ise", "''.\$this->_parseTable('$1','$2').''", $sTxt);
@@ -573,164 +583,13 @@ class Phpfox_Parse_Bbcode
 	 * @param string $sType Type of code block.
 	 * @return string Fully parsed code blocks.
 	 */
-	private function _code($sTxt, $sType)
+	private function _code($sCode, $sType = null)
 	{
-		$sTxt = stripslashes($sTxt);	
-		$sType = strtolower($sType);
-				
-		(($sPlugin = Phpfox_Plugin::get('parse_bbcode__code1')) ? eval($sPlugin) : false);
-		if (!isset($this->_aCodes[$sTxt]))
-		{
-			switch($sType)
-			{
-				case 'code':
-				case 'html':	
-				case 'php':			
-					$sTxt = trim($sTxt);
-					$this->_aBlockHeight[md5($sTxt)] = $this->_getBlockHeight($sTxt);
-					$sNewTxt = htmlspecialchars($sTxt);							
-					// $sNewTxt = str_replace("\n", "<br />", $sNewTxt);			
-					$sNewTxt = preg_replace('#&lt;((?>[^&"\']+?|&quot;.*&quot;|&(?!gt;)|"[^"]*"|\'[^\']*\')+)&gt;#esiU', "\$this->_htmlTags('\\1')", $sNewTxt);
-					// $this->_aBlockHeight[md5($sTxt)] = $this->_getBlockHeight($sNewTxt);
-					break;
-				case 'phpold':
-					
-					
-					$aCodeFind = array(
-						'&gt;',		// &gt; to >
-						'&lt;',		// &lt; to <
-						'&quot;',	// &quot; to ",
-						'&amp;',	// &amp; to &
-						'&#91;',    // &#91; to [
-						'&#93;',    // &#93; to ]
-						'<br />',
-						'<br>'
-					);
-					
-					$aCodeReplace = array(
-						'>',
-						'<',
-						'"',
-						'&',
-						'[',
-						']',
-						'',
-						''
-					);
-		
-					$sTxt = str_replace($aCodeFind, $aCodeReplace, $sTxt);		
-					$sTxt = trim($sTxt);		
-					
-					// do we have an opening <? tag?
-					if (!preg_match('#<\?#si', $sTxt))
-					{
-						// if not, replace leading newlines and stuff in a <?php tag and a closing tag at the end
-						$sTxt = "<?php BEGIN__PHPFOX__CODE__SNIPPET $sTxt END__PHPFOX__CODE__SNIPPET ?>";
-						$bAddedTags = true;
-					}
-					else
-					{
-						$bAddedTags = false;
-					}								
-					
-					if (empty($sTxt))
-					{
-						return '';
-					}					
+		$sCode = str_replace(['<br />', '<br>'], "\n", $sCode);
+		$sCode = trim($sCode);
+		$html = '<code>' . $sCode . '</code>';
 
-					$this->_aBlockHeight[md5($sTxt)] = $this->_getBlockHeight($sTxt);
-					
-					$sNewTxt = highlight_string($sTxt, true);											
-										
-					(($sPlugin = Phpfox_Plugin::get('parse_bbcode__code2')) ? eval($sPlugin) : false);
-					// if we added tags above, now get rid of them from the resulting string
-					if ($bAddedTags)
-					{
-						$aSearch = array(
-							'#&lt;\?php( |&nbsp;)BEGIN__PHPFOX__CODE__SNIPPET( |&nbsp;)#siU',
-							'#(<(span|font)[^>]*>)&lt;\?(</\\2>(<\\2[^>]*>))php( |&nbsp;)BEGIN__PHPFOX__CODE__SNIPPET( |&nbsp;)#siU',
-							'#END__PHPFOX__CODE__SNIPPET( |&nbsp;)\?(>|&gt;)#siU'
-						);
-						$aReplace = array(
-							'',
-							'\\4',
-							''
-						);
-			
-						$sNewTxt = preg_replace($aSearch, $aReplace, $sNewTxt);						
-					}					
-					
-					$sNewTxt = preg_replace('/&amp;#([0-9]+);/', '&#$1;', $sNewTxt);
-					$sNewTxt = str_replace(array('[', ']'), array('&#91;', '&#93;'), $sNewTxt);
-					$sNewTxt = preg_replace("/<span style=(.*?)>(.*)<\/span>/ise", "'' . \$this->_cleanSpan('$1', '$2') . ''", $sNewTxt);					
-					
-					break;
-				default:
-					$sTxt = trim($sTxt);
-					$sNewTxt = htmlspecialchars($sTxt);	
-					// $this->_aBlockHeight[md5($sTxt)] = $this->_getBlockHeight($sNewTxt);
-					break;
-			}
-			
-			$this->_aCodes[md5($sTxt)] = $sNewTxt;
-			
-			return '[' . $sType . ']' . md5($sTxt) . '[/' . $sType . ']';
-		}
-
-		$sNewTxt = $this->_aCodes[$sTxt];	
-
-		$sPrefix = '';	
-		$sSuffix = '';
-		if ($sType != 'php')
-		{
-			$sPrefix = '<pre>';	
-			$sSuffix = '</pre>';
-		}
-		
-		$sTitle = '';
-		if ($sType == 'php')
-		{
-			$sTitle = 'PHP ';
-		}
-		elseif ($sType == 'html')
-		{
-			$sTitle = 'HTML ';	
-		}		
-		elseif ($sType == 'css')
-		{
-			$sTitle = 'CSS ';	
-		}			
-		
-		$sNewTxt = trim($sNewTxt);
-		if (substr($sNewTxt, 0, 12) == '<br /><br />')
-		{
-			$sNewTxt = substr_replace($sNewTxt, '', 0, 12);
-		}		
-		if (substr($sNewTxt, 0, 6) == '<br />')
-		{
-			$sNewTxt = substr_replace($sNewTxt, '', 0, 6);
-		}
-		
-		if (substr($sNewTxt, -12) == '<br /><br />')
-		{
-			$sNewTxt = substr_replace($sNewTxt, '<br />', -12);
-		}			
-		
-		if (!isset($this->_aBlockHeight[$sTxt]))
-		{
-			$this->_aBlockHeight[$sTxt] = $this->_getBlockHeight($sNewTxt);
-		}
-		
-		$bNoTitle = false;
-		if ($sType == 'code')
-		{
-			$bNoTitle = true;
-		}
-		
-		$sTxt = '<div class="quote">' . ($bNoTitle ? '' : '<div class="quote_title">' . trim($sTitle) . ':</div>') . '<div class="quote_body" style="overflow:auto;' . ($this->_aBlockHeight[$sTxt] >= 540 ? ' height:' . $this->_aBlockHeight[$sTxt] . 'px;' : '') . '">' . $sPrefix . $sNewTxt . $sSuffix . '</div></div>';
-		
-		(($sPlugin = Phpfox_Plugin::get('parse_bbcode__code3')) ? eval($sPlugin) : false);
-		return $sTxt;
+		return $html;
 	}
 	
 	/**
@@ -1178,9 +1037,11 @@ class Phpfox_Parse_Bbcode
 			if (!isset($this->_aDefault[$sBbCode][$sType]))
 			{
 				return '[' . ($sType == 'suffix' ? '/' : '') . $sBbCode . '=' . stripslashes($sOption) . ']';
-			}			
- 
-			return str_replace('{option}', trim(trim(stripslashes($sOption), '"'), "'"), $this->_aDefault[$sBbCode][$sType]);	
+			}
+
+			$sOption = str_replace("&#039;", '', $sOption);
+
+			return str_replace('{option}', trim(trim(stripslashes($sOption), '"'), "'"), $this->_aDefault[$sBbCode][$sType]);
 		}
 		
 		if (!isset($this->_aDefault[$sBbCode][$sType]))

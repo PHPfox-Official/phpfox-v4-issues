@@ -101,7 +101,7 @@ class Admincp_Component_Controller_Maintain_Cache extends Phpfox_Component
 			)
 		);		
 		
-		$oSearch = Phpfox::getLib('search')->set(array(
+		$oSearch = Phpfox_Search::instance()->set(array(
 				'type' => 'cache',
 				'filters' => $aFilters,
 				'search' => 'search'

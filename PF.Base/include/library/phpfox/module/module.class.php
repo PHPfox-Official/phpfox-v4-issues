@@ -895,6 +895,12 @@ class Phpfox_Module
 			(($sPlugin = Phpfox_Plugin::get('component_pre_process')) ? eval($sPlugin) : false);
 			$mReturn = $this->_aComponent[$sHash]->process();
 
+			if (is_object($mReturn) && $mReturn instanceof Closure) {
+				ob_clean();
+				echo $mReturn->__invoke();
+				exit;
+			}
+
 			if ($sType == 'controller' && (is_array($mReturn) || is_object($mReturn))) {
 				if ($mReturn instanceof Core\jQuery) {
 					$mReturn = [
@@ -902,6 +908,7 @@ class Phpfox_Module
 					];
 				}
 
+				ob_clean();
 				header('Content-type: application/json');
 				echo json_encode($mReturn);
 				exit;

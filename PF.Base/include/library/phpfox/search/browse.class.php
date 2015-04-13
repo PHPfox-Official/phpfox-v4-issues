@@ -231,7 +231,7 @@ class Phpfox_Search_Browse
 	 */
 	public function search()
 	{
-		return Phpfox::getLib('search');
+		return Phpfox_Search::instance();
 	}
 	
 	/**
@@ -245,7 +245,7 @@ class Phpfox_Search_Browse
 		$this->_aConditions = array();
 		$this->_aParams = array();
 		
-		Phpfox::getLib('search')->reset();
+		Phpfox_Search::instance()->reset();
 	}
 }
 

@@ -95,7 +95,7 @@ class Phpfox_Service
      */    
     protected function search()
     {
-    	return Phpfox::getLib('search');
+    	return Phpfox_Search::instance();
     }
     
 	/**

@@ -159,14 +159,20 @@ class Phpfox_Search
 	{		
 		$this->_oReq = Phpfox_Request::instance();
 		$this->_oUrl = Phpfox_Url::instance();
-		
+	}
+
+	/**
+	 * @return Phpfox_Search
+	 */
+	public static function instance() {
+		return Phpfox::getLib('search');
 	}
 	
 	/**
 	 * Build the search form.
 	 *
 	 * @param array $aParams Search fields and settings.
-	 * @return object Return self object.
+	 * @return Phpfox_Search
 	 */
 	public function set($aParams)
 	{	
@@ -499,7 +505,7 @@ class Phpfox_Search
 	/**
 	 * Define that this is a live search.
 	 *
-	 * @return object Return self object.
+	 * @return Phpfox_Search
 	 */
 	public function live()
 	{
@@ -511,7 +517,7 @@ class Phpfox_Search
 	/**
 	 * Force to set search requests.
 	 *
-	 * @return object Return self object.
+	 * @return Phpfox_Search
 	 */
 	public function setRequests()
 	{		
@@ -1122,7 +1128,7 @@ class Phpfox_Search
 				if (count($this->_aSearch))
 				{
 					$_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$this->_sType] = $this->_aSearch;
-	
+
 					if (!$this->isSearch())
 					{					
 						$this->_oUrl->setParam('search-rid', md5(uniqid(rand(), true)));
@@ -1132,7 +1138,7 @@ class Phpfox_Search
 			}
 			return;
 		}
-		
+
 		// Search form posted
 		if (is_array($this->_aSearch) && count($this->_aSearch))
 		{
@@ -1250,7 +1256,12 @@ class Phpfox_Search
 						if (isset($aValue['add_any']))
 						{
 							$this->_aHtml[$iKey] .= '<option value="">' . Phpfox::getPhrase('core.any') . '</option>';	
-						}					
+						}
+
+						if (isset($aValue['select_value']))
+						{
+							$this->_aHtml[$iKey] .= '<option value="">' . $aValue['select_value'] . ':</option>';
+						}
 						
 						$bIsChecked = 0;
 						

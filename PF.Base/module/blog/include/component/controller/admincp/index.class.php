@@ -80,7 +80,7 @@ class Blog_Component_Controller_Admincp_Index extends Phpfox_Component
 			)
 		);		
 		
-		$oSearch = Phpfox::getLib('search')->set(array(
+		$oSearch = Phpfox_Search::instance()->set(array(
 				'type' => 'categories',
 				'filters' => $aFilters,
 				'search' => 'search'

@@ -163,7 +163,7 @@ class Marketplace_Service_Browse extends Phpfox_Service
 	
 	public function getQueryJoins($bIsCount = false, $bNoQueryFriend = false)
 	{
-		if (Phpfox::getLib('search')->isSearch() && $bIsCount)
+		if (Phpfox_Search::instance()->isSearch() && $bIsCount)
 		{
 			$this->database()->leftJoin(Phpfox::getT('marketplace_text'), 'mt', 'mt.listing_id = l.listing_id');
 		}

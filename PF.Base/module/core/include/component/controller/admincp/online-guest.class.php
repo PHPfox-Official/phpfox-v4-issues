@@ -58,7 +58,7 @@ class Core_Component_Controller_Admincp_Online_Guest extends Phpfox_Component
 			)
 		);		
 		
-		$oSearch = Phpfox::getLib('search')->set(array(
+		$oSearch = Phpfox_Search::instance()->set(array(
 				'type' => 'onlineguests',
 				'filters' => $aFilters,
 				'search' => 'search'

@@ -70,7 +70,7 @@ class Ad_Component_Controller_Admincp_Invoice extends Phpfox_Component
 			)
 		);		
 		
-		$oSearch = Phpfox::getLib('search')->set(array(
+		$oSearch = Phpfox_Search::instance()->set(array(
 				'type' => 'invoices',
 				'filters' => $aFilters,
 				'search' => 'search'

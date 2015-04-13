@@ -39,10 +39,10 @@ class User_Service_Featured_Featured extends Phpfox_Service
 		if (!($aUsers = $this->cache()->get($sCacheId)))
 		{
 			$aUsers = $this->database()->select(Phpfox::getUserField() . ', uf.ordering')
-			->from(Phpfox::getT('user'), 'u')
-			->join($this->_sTable, 'uf', 'uf.user_id = u.user_id')
-			->order('ordering DESC')
-			->execute('getSlaveRows');
+				->from(Phpfox::getT('user'), 'u')
+				->join($this->_sTable, 'uf', 'uf.user_id = u.user_id')
+				->order('ordering DESC')
+				->execute('getSlaveRows');
 			
 			if (Phpfox::getParam('user.cache_featured_users'))
 			{
@@ -63,7 +63,47 @@ class User_Service_Featured_Featured extends Phpfox_Service
 		}
 		
 		return array($aOut, count($aUsers));
-	}	
+	}
+
+	public function getOtherGender() {
+		$gender = 2;
+		if (Phpfox::getUserBy('gender') == '2') {
+			$gender = 1;
+		}
+
+		$cache = $this->cache()->set('rec_users');
+		$users = $this->cache()->get($cache, 360);
+		if ($users === false) {
+			$users = $this->database()
+				->select('u.*')
+				->from(':user', 'u')
+				->where(['gender' => $gender])
+				->limit(12)
+				->order('RAND()')
+				->all();
+
+			$this->cache()->save($cache, $users);
+		}
+
+		return $users;
+	}
+
+	public function getNewUsers() {
+		$cache = $this->cache()->set('new_users');
+		$users = $this->cache()->get($cache, 360);
+		if ($users === false) {
+			$users = $this->database()
+				->select('u.*')
+				->from(':user', 'u')
+				->limit(12)
+				->order('u.joined DESC')
+				->all();
+
+			$this->cache()->save($cache, $users);
+		}
+
+		return $users;
+	}
 	
 	/**
 	 * If a call is made to an unknown method attempt to connect

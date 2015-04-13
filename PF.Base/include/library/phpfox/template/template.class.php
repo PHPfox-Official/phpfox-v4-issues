@@ -857,7 +857,7 @@ class Phpfox_Template
 		$sSort = Phpfox_Request::instance()->get('sort');
 		if (!empty($sSort))
 		{
-			$mSortName = Phpfox::getLib('search')->getPhrase('sort', $sSort);
+			$mSortName = Phpfox_Search::instance()->getPhrase('sort', $sSort);
 			if ($mSortName !== false)
 			{
 				$sData .= ' ' . Phpfox::getParam('core.title_delim') . ' ' . $mSortName[1];

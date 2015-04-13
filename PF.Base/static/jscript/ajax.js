@@ -203,7 +203,23 @@ $Core.processPostForm = function(e, obj) {
 };
 
 $Behavior.onAjaxSubmit = function() {
-	$('.ajax').click(function() {
+	$('div.ajax:not(.built)').each(function() {
+		var t = $(this);
+		t.html('<i class="fa fa-spin fa-circle-o-notch"></i>');
+		t.addClass('built');
+		$.ajax({
+			url: t.data('url'),
+			data: 'is_ajax_get=1',
+			success: function(e) {
+				// $Core.processPostForm(e, t);
+				t.html(e);
+				t.fadeIn();
+				$Core.loadInit();
+			}
+		});
+	});
+
+	$('a.ajax').click(function() {
 		var t = $(this),
 			url = (t.data('url') ? t.data('url') : t.attr('href'));
 

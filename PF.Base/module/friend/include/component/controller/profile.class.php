@@ -59,7 +59,7 @@ class Friend_Component_Controller_Profile extends Phpfox_Component
 			)
 		);		
 		
-		$oFilter = Phpfox::getLib('search')->set(array(
+		$oFilter = Phpfox_Search::instance()->set(array(
 				'type' => 'friend',
 				'filters' => $aFilters,
 				'search' => 'search'

@@ -30,6 +30,11 @@ class User_Component_Block_Filter extends Phpfox_Component
 				)
 			);
 		}
+
+		$this->template()->assign([
+			'sHeader' => 'Find Friends'
+		]);
+		return 'block';
 	}
 	
 	/**

@@ -215,7 +215,7 @@ class Phpfox_Component
 	 */
 	protected function search()
 	{
-		return Phpfox::getLib('search');	
+		return Phpfox_Search::instance();
 	}
 	
 	/**

@@ -80,7 +80,7 @@ class Subscribe_Component_Controller_Admincp_List extends Phpfox_Component
 			)
 		);
 		
-		$oFilter = Phpfox::getLib('search')->live()
+		$oFilter = Phpfox_Search::instance()->live()
 			->setRequests()
 			->set(array(
 				'type' => 'subscribe',

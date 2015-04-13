@@ -416,7 +416,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 		$sForm = '<form' . stripslashes($sForm) . ">";
 		if (strpos($sData, '{token}') === false)
 		{
-			$sForm .= "\n" . '<?php echo \'<div><input type="hidden" name="\' . Phpfox::getTokenName() . \'[security_token]" value="\' . Phpfox::getService(\'log.session\')->getToken() . \'" /></div>\'; ?>';
+			/*$sForm .= "\n" . '<?php echo \'<div><input type="hidden" name="\' . Phpfox::getTokenName() . \'[security_token]" value="\' . Phpfox::getService(\'log.session\')->getToken() . \'" /></div>\'; ?>';*/
 		}
 		$sForm .= stripslashes($sData) . "\n";
 		$sForm .= '</form>' . "\n";
@@ -806,6 +806,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				return '<?php unset(' . implode(', ', $aArgs) . '); ?>';
 				break;
 			case 'token':
+				return '';
 				return '<?php echo \'<div><input type="hidden" name="\' . Phpfox::getTokenName() . \'[security_token]" value="\' . Phpfox::getService(\'log.session\')->getToken() . \'" /></div>\'; ?>';
 				break;
 			case 'img':

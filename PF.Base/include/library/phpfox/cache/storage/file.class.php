@@ -169,7 +169,7 @@ class Phpfox_Cache_Storage_File extends Phpfox_Cache_Abstract
 		}
 
 		$sContent = '<?php return ' . var_export($mContent, true) . ';';
-		
+
 		file_put_contents($this->_getName($this->_aName[$sId]), $sContent);
 
 		return true;

@@ -19,7 +19,29 @@ class User_Component_Controller_Browse extends Phpfox_Component
      * Controller
      */
     public function process()
-    {    	
+    {
+	    if ($this->request()->get('featured') || $this->request()->get('recommend')) {
+		    return function() {
+			    $users = [];
+			    if ($this->request()->get('recommend')) {
+				    $title = 'Recommended Users';
+				    $users = Friend_Service_Suggestion::instance()->get();
+				    if (!$users) {
+					    $users = User_Service_Featured_Featured::instance()->getOtherGender();
+				    }
+			    }
+				else {
+					$title = 'Recently Active';
+					$users = User_Service_Featured_Featured::instance()->getNewUsers();
+				}
+				echo '<div class="block_clear"><div class="title">' . $title . '</div><div class="content">';
+			    foreach ($users as $user) {
+					$this->template()->assign('aUser', $user)->getTemplate('user.block.rows');
+			    }
+			    echo '</div></div>';
+		    };
+	    }
+
         if ($sPlugin = Phpfox_Plugin::get('user.component_controller_browse__1')){eval($sPlugin);if (isset($aPluginReturn)){return $aPluginReturn;}}
 
 		$aCallback = $this->getParam('aCallback', false);
@@ -208,19 +230,19 @@ class User_Component_Controller_Browse extends Phpfox_Component
 		    'from' => array(
 			    'type' => 'select',
 			    'options' => $aAge,
-			    'add_any' => true
+			    'select_value' => 'From'
 		    ),
 		    'to' => array(
 			    'type' => 'select',
 			    'options' => $aAge,
-			    'add_any' => true
+			    'select_value' => 'To'
 		    ),
 		    'country' => array(
 			    'type' => 'select',
 			    'options' => Phpfox::getService('core.country')->get(),
 			    'search' => 'AND u.country_iso = \'[VALUE]\'',
 			    'add_any' => true,
-			    'style' => 'width:150px;',
+			    // 'style' => 'width:150px;',
 			    'id' => 'country_iso'
 		    ),
 		    'country_child_id' => array(
@@ -285,7 +307,7 @@ class User_Component_Controller_Browse extends Phpfox_Component
 			$aSearchParams['no_session_search'] = true;
 		}
 		
-		$oFilter = Phpfox::getLib('search')->set($aSearchParams);
+		$oFilter = Phpfox_Search::instance()->set($aSearchParams);
 
 		$sStatus = $oFilter->get('status');
 		$sView = $this->request()->get('view');
@@ -453,20 +475,31 @@ class User_Component_Controller_Browse extends Phpfox_Component
 		if (($sPlugin = Phpfox_Plugin::get('user.component_controller_browse_filter_process')))
 		{
 		    eval($sPlugin);
-		}		
+		}
 
-		list($iCnt, $aUsers) = Phpfox::getService('user.browse')->conditions($oFilter->getConditions())
-		    ->callback($aCallback)
-		    ->sort($oFilter->getSort())
-		    ->page($oFilter->getPage())
-		    ->limit($iPageSize)
-		    ->online($bIsOnline)
-		    ->extend((isset($bExtendContent) ? true : $bExtend))
-		    ->featured($mFeatured)
-		    ->pending($bPendingMail)
-		    ->custom($aCustomSearch)
-		    ->gender($bIsGender)
-		    ->get();
+	    $iCnt = 0;
+	    $aUsers = [];
+	    if ($oFilter->isSearch()) {
+			list($iCnt, $aUsers) = Phpfox::getService('user.browse')->conditions($oFilter->getConditions())
+			    ->callback($aCallback)
+			    ->sort($oFilter->getSort())
+			    ->page($oFilter->getPage())
+			    ->limit($iPageSize)
+			    ->online($bIsOnline)
+			    ->extend((isset($bExtendContent) ? true : $bExtend))
+			    ->featured($mFeatured)
+			    ->pending($bPendingMail)
+			    ->custom($aCustomSearch)
+			    ->gender($bIsGender)
+			    ->get();
+	    }
+	    else {
+
+		   //  $aFeatured = User_Service_Featured_Featured::instance()->get();
+		    $this->template()->assign([
+				'highlightUsers' => 1
+		    ]);
+	    }
 
 		/*
 		foreach ($aUsers as $iIndex => $aUser)
@@ -481,7 +514,7 @@ class User_Component_Controller_Browse extends Phpfox_Component
 		{
 		    foreach ($aCustomValues as $iKey => $sCustomValue)
 		    {
-			$aNewCustomValues['custom[' . $iKey . ']'] = $sCustomValue;
+				$aNewCustomValues['custom[' . $iKey . ']'] = $sCustomValue;
 		    }
 		}
 		else
@@ -500,13 +533,7 @@ class User_Component_Controller_Browse extends Phpfox_Component
 		}
 		
 		Phpfox_Url::instance()->setParam('page', $iPage);
-		
-		// http://www.phpfox.com/tracker/view/15277/
-		if($iPage > Phpfox_Pager::instance()->getTotalPages())
-		{
-			Phpfox_Url::instance()->send('error.404');
-		}
-		
+
 		if ($this->request()->get('featured') == 1)
 		{
 		    $this->template()->setHeader(array(

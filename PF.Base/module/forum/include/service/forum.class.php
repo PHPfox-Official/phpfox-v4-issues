@@ -291,7 +291,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			);
 		}
 		
-		return Phpfox::getLib('search')->set($aSettings);			
+		return Phpfox_Search::instance()->set($aSettings);
 	}
 	
 	public function getForRss($iId)

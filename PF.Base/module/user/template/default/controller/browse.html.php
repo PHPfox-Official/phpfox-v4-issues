@@ -256,9 +256,15 @@ defined('PHPFOX') or exit('NO DICE!');
 	{pager}
 </div>
 {else}
-
-{foreach from=$aUsers name=users item=aUser}
-	{template file='user.block.rows'}
-{/foreach}
-{pager}
+	{if isset($highlightUsers)}
+<div class="ajax" data-url="{url link='user.browse' recommend=1}"></div>
+	<div class="ajax" data-url="{url link='user.browse' featured=1}"></div>
+	{else}
+		{if $aUsers}
+		{foreach from=$aUsers name=users item=aUser}
+			{template file='user.block.rows'}
+		{/foreach}
+		{pager}
+		{/if}
+	{/if}
 {/if}

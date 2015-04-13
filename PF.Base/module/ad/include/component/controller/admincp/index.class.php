@@ -97,7 +97,7 @@ class Ad_Component_Controller_Admincp_Index extends Phpfox_Component
 			)
 		);		
 		
-		$oSearch = Phpfox::getLib('search')->set(array(
+		$oSearch = Phpfox_Search::instance()->set(array(
 				'type' => 'campaigns',
 				'filters' => $aFilters,
 				'search' => 'search'

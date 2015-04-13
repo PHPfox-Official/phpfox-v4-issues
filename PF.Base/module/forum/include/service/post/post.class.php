@@ -173,7 +173,7 @@ class Forum_Service_Post_Post extends Phpfox_Service
 				}
 				
 				$aPosts[$iKey]['count'] = $iTotal;
-				$aPosts[$iKey]['text'] = Phpfox::getLib('search')->highlight('keyword', $aPost['text']);		
+				$aPosts[$iKey]['text'] = Phpfox_Search::instance()->highlight('keyword', $aPost['text']);
 				$aPosts[$iKey]['forum_info_phrase'] = Phpfox::getPhrase('forum.title_posted_in_forum_name', array(
 						'link' => $sLink,
 						'title' => Phpfox::getLib('parse.output')->clean($aPost['thread_title']),

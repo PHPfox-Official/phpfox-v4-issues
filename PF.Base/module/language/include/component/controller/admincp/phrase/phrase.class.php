@@ -155,7 +155,7 @@ class Language_Component_Controller_Admincp_Phrase_Phrase extends Phpfox_Compone
 			)		
 		);
 		
-		$oSearch = Phpfox::getLib('search')->set(array(
+		$oSearch = Phpfox_Search::instance()->set(array(
 			'type' => 'phrases',
 			'filters' => $aFilters,
 			'cache' => true,

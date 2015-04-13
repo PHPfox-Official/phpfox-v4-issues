@@ -145,7 +145,7 @@ class Mail_Component_Controller_Admincp_Private extends Phpfox_Component
 			)
 		);
 		
-		$oFilter = Phpfox::getLib('search')
+		$oFilter = Phpfox_Search::instance()
 			->set(array(
 				'type' => 'browse',
 				'filters' => $aFilters,

@@ -58,7 +58,7 @@ class Core_Component_Controller_Admincp_Latest_Admin_Login extends Phpfox_Compon
 			)
 		);		
 		
-		$oSearch = Phpfox::getLib('search')->set(array(
+		$oSearch = Phpfox_Search::instance()->set(array(
 				'type' => 'onlineguests',
 				'filters' => $aFilters,
 				'search' => 'search'

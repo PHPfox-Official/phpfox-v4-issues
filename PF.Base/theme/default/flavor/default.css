@@ -2614,6 +2614,34 @@ div.newline {
   padding: 6px 0px;
   content: '';
 }
+.user_rem_me {
+  display: inline-block;
+  color: #999999;
+  margin-left: -4px;
+}
+button {
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+  padding: 0px;
+  margin: 0px;
+  display: inline-block;
+  font-size: 26px;
+  cursor: pointer;
+}
 #header_left {
   width: auto;
 }
@@ -3346,8 +3374,86 @@ div#right div.menu ul li.active {
   margin-bottom: 10px;
 }
 #header_menu .guest_login .block {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+  /*margin-bottom:0px;*/
+  /*padding-bottom:0px;*/
+}
+#left #js_block_border_user_login-block,
+#right #js_block_border_user_login-block,
+#content #js_block_border_user_login-block,
+#header_menu #js_block_border_user_login-block {
+  background: #3f3f3f;
+  color: #e5e5e5;
+}
+#left #js_block_border_user_login-block .title,
+#right #js_block_border_user_login-block .title,
+#content #js_block_border_user_login-block .title,
+#header_menu #js_block_border_user_login-block .title {
+  background: #ffffff;
+  color: #999999;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  padding-top: 20px;
+}
+#left #js_block_border_user_login-block .table_clear input.button,
+#right #js_block_border_user_login-block .table_clear input.button,
+#content #js_block_border_user_login-block .table_clear input.button,
+#header_menu #js_block_border_user_login-block .table_clear input.button {
+  width: auto;
+}
+#left #js_block_border_user_login-block .table,
+#right #js_block_border_user_login-block .table,
+#content #js_block_border_user_login-block .table,
+#header_menu #js_block_border_user_login-block .table {
+  margin-bottom: 5px;
+  background: transparent;
+}
+#left #js_block_border_user_login-block .main_user_pass,
+#right #js_block_border_user_login-block .main_user_pass,
+#content #js_block_border_user_login-block .main_user_pass,
+#header_menu #js_block_border_user_login-block .main_user_pass {
+  display: table;
+  width: 100%;
+  /*
+			> input {
+				width:80%;
+			}
+
+			> button {
+				text-align:center;
+				margin:auto;
+				width:20%;
+			}
+			*/
+}
+#left #js_block_border_user_login-block .main_user_pass > div,
+#right #js_block_border_user_login-block .main_user_pass > div,
+#content #js_block_border_user_login-block .main_user_pass > div,
+#header_menu #js_block_border_user_login-block .main_user_pass > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+#left #js_block_border_user_login-block .main_user_pass > div:not(:first-of-type),
+#right #js_block_border_user_login-block .main_user_pass > div:not(:first-of-type),
+#content #js_block_border_user_login-block .main_user_pass > div:not(:first-of-type),
+#header_menu #js_block_border_user_login-block .main_user_pass > div:not(:first-of-type) {
+  padding: 0px 5px 0px 10px;
+}
+#left #js_block_border_user_login-block .bottom,
+#right #js_block_border_user_login-block .bottom,
+#content #js_block_border_user_login-block .bottom,
+#header_menu #js_block_border_user_login-block .bottom {
+  background: transparent;
+}
+#left #js_block_border_user_login-block .bottom > ul > li a,
+#right #js_block_border_user_login-block .bottom > ul > li a,
+#content #js_block_border_user_login-block .bottom > ul > li a,
+#header_menu #js_block_border_user_login-block .bottom > ul > li a,
+#left #js_block_border_user_login-block .bottom > ul > li a:hover,
+#right #js_block_border_user_login-block .bottom > ul > li a:hover,
+#content #js_block_border_user_login-block .bottom > ul > li a:hover,
+#header_menu #js_block_border_user_login-block .bottom > ul > li a:hover {
+  display: inline-block;
 }
 #left .block,
 #right .block,

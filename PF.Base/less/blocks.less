@@ -21,13 +21,76 @@
 
 	.guest_login {
 		.block {
-			margin-bottom:0px;
-			padding-bottom:0px;
+			/*margin-bottom:0px;*/
+			/*padding-bottom:0px;*/
 		}
 	}
 }
 
 #left, #right, #content, #header_menu {
+
+	#js_block_border_user_login-block {
+		background:darken(@headerBg, 10%);
+		color:@headerColor;
+
+		.title {
+			background:@blockBg;
+			color:@blockColor;
+			text-transform:uppercase;
+			font-size:@fontSizeBase - 2;
+			font-weight:500;
+			padding-top:20px;
+		}
+
+		.table_clear input.button {
+			width:auto;
+
+		}
+
+		.table {
+			margin-bottom:5px;
+			background:transparent;
+		}
+
+		.main_user_pass {
+			display:table;
+			width:100%;
+
+			> div {
+				display:table-cell;
+				vertical-align:middle;
+			}
+
+			> div:not(:first-of-type) {
+				padding:0px 5px 0px 10px;
+			}
+
+			/*
+			> input {
+				width:80%;
+			}
+
+			> button {
+				text-align:center;
+				margin:auto;
+				width:20%;
+			}
+			*/
+		}
+
+		.bottom {
+			background:transparent;
+
+			> ul {
+				> li {
+					a, a:hover {
+						display:inline-block;
+					}
+				}
+			}
+		}
+	}
+
 	.block, .block_clear {
 		background:@blockBg;
 		color:@blockColor;

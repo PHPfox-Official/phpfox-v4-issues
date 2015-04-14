@@ -31,10 +31,6 @@ class User_Component_Block_Login_Block extends Phpfox_Component
 		}
 
 		$aFooter = array();
-		if (Phpfox::getParam('user.allow_user_registration'))
-		{
-			$aFooter[Phpfox::getPhrase('user.sign')] = $this->url()->makeUrl('user.register');
-		}
 		$aFooter[Phpfox::getPhrase('user.forgot_password')] = $this->url()->makeUrl('user.password.request');
 		
 		// Assign the needed vars for the template

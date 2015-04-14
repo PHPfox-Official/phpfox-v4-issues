@@ -20,28 +20,26 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	
 	<div class="table">
-		<div class="table_right">
-			<input placeholder="{phrase var='user.password'}" type="password" name="val[password]" id="js_password" value="" size="30" />
+		<div class="table_right main_user_pass">
+			<div><input placeholder="{phrase var='user.password'}" type="password" name="val[password]" id="js_password" value="" size="30" /></div>
+			<div><button><i class="fa fa-sign-in"></i></button></div>
 		</div>
 	</div>
 	
 	<div class="table_clear">
-		<input type="submit" value="{phrase var='user.login_button'}" class="button" />
-		<div class="p_top_8 user_rem_me">
+		{*<input type="submit" value="{phrase var='user.login_button'}" class="button" />*}
+		<div class="user_rem_me">
 			<label><input type="checkbox" name="val[remember_me]" value="" class="checkbox" /> {phrase var='user.remember'}</label>
 		</div>
 	</div>
 </form>
-{if (Phpfox::isModule('facebook') && Phpfox::getParam('facebook.enable_facebook_connect')) || (Phpfox::isModule('janrain') && Phpfox::getParam('janrain.enable_janrain_login'))}
+{*
+{if Phpfox::isModule('facebook') && Phpfox::getParam('facebook.enable_facebook_connect')}
 <div class="p_top_8">	
 	{phrase var='user.or_login_with'}:
 	{if Phpfox::isModule('facebook') && Phpfox::getParam('facebook.enable_facebook_connect')}
 	<div class="header_login_block"><div class="fbconnect_button"><fb:login-button scope="publish_stream,email,user_birthday" v="2"></fb:login-button></div></div>
 	{/if}
-	{if Phpfox::isModule('janrain') && Phpfox::getParam('janrain.enable_janrain_login')}
-	<div class="header_login_block">
-		<a class="rpxnow" href="{$sJanrainUrl}">{img theme='layout/janrain-icons.png'}</a>
-	</div>
-	{/if}
 </div>
 {/if}
+*}

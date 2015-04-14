@@ -148,6 +148,11 @@ class Phpfox_Installer
 	private $_sPage = '';
 	
 	private static $_sSessionId = null;
+
+	/**
+	 * @var Phpfox_Database_Driver_Mysql
+	 */
+	public $db;
 	
 	public function __construct()
 	{
@@ -1273,7 +1278,19 @@ class Phpfox_Installer
 			if ($version == $sVersion) {
 				// d(__DIR__ . '/include' . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php');
 				if (file_exists(__DIR__ . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php')) {
-					require_once(__DIR__ . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php');
+					$callback = require(__DIR__ . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.php');
+					if ($callback instanceof Closure) {
+						$this->db = Phpfox_Database::instance();
+
+						$reset = false;
+						$return = call_user_func($callback, $this);
+						if (is_array($return) && isset($return)) {
+							$reset = true;
+						}
+
+						$this->_upgradeDatabase($sVersion, $reset);
+						$bCompleted = true;
+					}
 					// p('Upgrading to ' . $sVersion . '');
 					$nextVersion = true;
 					$upgradedVersion = $sVersion;
@@ -1607,7 +1624,7 @@ class Phpfox_Installer
 		return $aSteps;
 	}
 	
-	private function _upgradeDatabase($sVersion)
+	private function _upgradeDatabase($sVersion, $reset = false)
 	{
 		if ((int) substr($this->_getCurrentVersion(), 0, 1) <= 1)
 		{
@@ -1617,6 +1634,10 @@ class Phpfox_Installer
 		if (!defined('PHPFOX_UPGRADE_MODULE_XML'))
 		{
 			define('PHPFOX_UPGRADE_MODULE_XML', true);
+		}
+
+		if ($reset) {
+			define('PHPFOX_PRODUCT_UPGRADE_CHECK', true);
 		}
 		
 		$hDir = opendir(PHPFOX_DIR_MODULE);
@@ -1682,7 +1703,11 @@ class Phpfox_Installer
 			$bIsNewModule = false;
 			if (file_exists(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . 'install' . PHPFOX_DS . 'phpfox.xml.php'))
 			{
-				$aModule = Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . 'install' . PHPFOX_DS . 'phpfox.xml.php');			
+				$aModule = Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . 'install' . PHPFOX_DS . 'phpfox.xml.php');
+				if ($reset) {
+					Admincp_Service_Module_Process::instance()->install($sModule, array('insert' => true), 'phpfox', $aModule);
+					continue;
+				}
 				
 				if (isset($aModule['data']['module_id']))
 				{
@@ -1704,7 +1729,7 @@ class Phpfox_Installer
 								'phrase_var_name' => $aModule['data']['phrase_var_name']
 							)
 						);
-						Phpfox::getService('admincp.module.process')->install(null, array('insert' => true), 'phpfox', $aModule);
+						Admincp_Service_Module_Process::instance()->install(null, array('insert' => true), 'phpfox', $aModule);
 					}
 				}
 				

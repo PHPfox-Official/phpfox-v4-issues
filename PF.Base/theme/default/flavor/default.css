@@ -3426,6 +3426,14 @@ div#right div.menu ul li.active {
 			}
 			*/
 }
+#left #js_block_border_user_login-block .main_user_pass i,
+#right #js_block_border_user_login-block .main_user_pass i,
+#content #js_block_border_user_login-block .main_user_pass i,
+#header_menu #js_block_border_user_login-block .main_user_pass i {
+  font-size: 20px !important;
+  margin-bottom: 5px !important;
+  display: block !important;
+}
 #left #js_block_border_user_login-block .main_user_pass > div,
 #right #js_block_border_user_login-block .main_user_pass > div,
 #content #js_block_border_user_login-block .main_user_pass > div,

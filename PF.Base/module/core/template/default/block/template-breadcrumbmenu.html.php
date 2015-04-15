@@ -11,16 +11,22 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-	{if !$bIsUsersProfilePage && count($aSubMenus)}
+	{if (!$bIsUsersProfilePage && count($aSubMenus)) || !Phpfox::isUser()}
 	<div class="breadcrumbs_menu">
 		<ul>
-			{foreach from=$aSubMenus key=iKey name=submenu item=aSubMenu}
-			<li>
-				<a href="{url link=$aSubMenu.url)}">
-					{phrase var=$aSubMenu.module'.'$aSubMenu.var_name}
-				</a>
-			</li>
-			{/foreach}
+			{if Phpfox::isUser()}
+				{foreach from=$aSubMenus key=iKey name=submenu item=aSubMenu}
+				<li>
+					<a href="{url link=$aSubMenu.url)}">
+						{phrase var=$aSubMenu.module'.'$aSubMenu.var_name}
+					</a>
+				</li>
+				{/foreach}
+			{else}
+				<li>
+					<a href="{url link='user.register'}">Register</a>
+				</li>
+			{/if}
 		</ul>
 	</div>
 	{/if}	

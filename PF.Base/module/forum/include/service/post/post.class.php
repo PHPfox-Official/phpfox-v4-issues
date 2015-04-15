@@ -32,6 +32,21 @@ class Forum_Service_Post_Post extends Phpfox_Service
 		
 		return $this;
 	}
+
+	public function getRecentForForum($forumId) {
+		// ft.forum_id IN(' . implode(',', $ids) . ') AND ft.group_id = 0 AND ft.view_id >= 0
+		$posts = $this->database()->select('ft.title AS thread_title, fp.*, fpt.text_parsed, ' . Phpfox::getUserField())
+			->from(':forum_thread', 'ft')
+			->join(':forum_post', 'fp', 'fp.thread_id = ft.thread_id')
+			->join(':forum_post_text', 'fpt', 'fpt.post_id = fp.post_id')
+			->join(':user', 'u', 'u.user_id = fp.user_id')
+			->where(['ft.forum_id' => $forumId, 'ft.group_id' => 0, 'ft.view_id' => 0])
+			->limit(20)
+			->order('ft.time_update DESC, fp.time_stamp DESC')
+			->all();
+
+		return $posts;
+	}
 	
 	public function getPost($iId)
 	{

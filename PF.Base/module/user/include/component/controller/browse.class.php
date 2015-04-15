@@ -34,6 +34,11 @@ class User_Component_Controller_Browse extends Phpfox_Component
 					$title = 'Recently Active';
 					$users = User_Service_Featured_Featured::instance()->getNewUsers();
 				}
+
+			    if ((is_array($users) && !$users) || $users === true) {
+				    return '';
+			    }
+
 				echo '<div class="block_clear"><div class="title">' . $title . '</div><div class="content">';
 			    foreach ($users as $user) {
 					$this->template()->assign('aUser', $user)->getTemplate('user.block.rows');

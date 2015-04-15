@@ -27,7 +27,12 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="forum_title_inner_holder">
 				<header>
 					{$aThread|user}
-					<h1 itemprop="name"><a href="{permalink module='forum.thread' id=$aThread.thread_id title=$aThread.title}" class="forum_thread_link{if $aThread.css_class == 'new'} forum_thread_link_new{/if}" itemprop="url">{$aThread.title|clean|split:40|shorten:100:'...'}</a></h1>
+					<h1 itemprop="name">
+						<a href="{permalink module='forum.thread' id=$aThread.thread_id title=$aThread.title}" class="forum_thread_link{if $aThread.css_class == 'new'} forum_thread_link_new{/if}" itemprop="url">
+							{* if $aThread.order_id == 1}<i class="fa fa-paperclip"></i>{/if *}
+							{$aThread.title|clean|split:40|shorten:100:'...'}
+						</a>
+					</h1>
 
 					<div class="forum_user_details">
 						<time>{$aThread.time_stamp|convert_time}</time>
@@ -58,7 +63,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 
 		<div class="forum_totals">
-			<span>{$aThread.total_post|number_format}</span>
+			<span>{$aThread.total_post|number_format}<em>Replies</em></span>
 		</div>
 
 		{* if !$aThread.is_announcement}

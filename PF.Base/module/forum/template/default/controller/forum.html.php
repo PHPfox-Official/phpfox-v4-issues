@@ -25,7 +25,9 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/foreach}
 	{else}
 		{foreach from=$aThreads item=aThread}
+			{if $aThread.order_id != '1'}
 			{template file='forum.block.thread-entry'}
+			{/if}
 		{/foreach}
 	{/if}
 

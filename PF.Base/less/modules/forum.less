@@ -139,7 +139,7 @@ div.sub_menu_bar_main a:hover {
 		.user_profile_link_span > a, .user_profile_link_span > a:hover {
 			color:@blockColor !important;
 			font-weight:normal !important;
-			display:block;
+			display:inline-block;
 			font-size:@fontSizeBase - 2;
 
 		}
@@ -152,7 +152,7 @@ div.sub_menu_bar_main a:hover {
 	}
 
 	.forum_totals {
-		width:50px;
+		width:60px;
 		text-align:center;
 		vertical-align:middle;
 		line-height:normal;
@@ -163,7 +163,19 @@ div.sub_menu_bar_main a:hover {
 			display:block;
 			background:darken(@blockBg, 3%);
 			color:lighten(@blockColor, 5%);
-			padding:10px 0px;
+			padding:10px 0px 20px 0px;
+			position:relative;
+
+			> em {
+				font-style:normal;
+				text-transform:uppercase;
+				font-weight:500;
+				font-size:9px;
+				position:absolute;
+				bottom:6px;
+				left:10px;
+				opacity:0.6;
+			}
 		}
 	}
 }
@@ -338,6 +350,7 @@ div.forum_content {
 }
 
 ._forum_title {
+	margin-right:175px;
 	header {
 		h1 {
 			line-height:15px;
@@ -346,6 +359,10 @@ div.forum_content {
 				font-size:@fontSizeBase + 4;
 				font-weight:normal;
 			}
+		}
+
+		h2 {
+			padding-top:10px;
 		}
 	}
 }
@@ -446,4 +463,189 @@ span.forum_tag_sticky {
 			display:none;
 		}
 	}
+}
+
+.thread_view_holder {
+	display:table;
+	width:100%;
+
+	> section {
+		display:table-cell;
+		width:50%;
+		padding-right:10px;
+		vertical-align:top;
+	}
+
+	> section:not(:first-of-type) {
+		padding-left:10px;
+		padding-right:0px;
+	}
+
+	.thread_replies {
+		> h1 {
+			color:lighten(@textColor, 10%);
+			font-weight:500;
+			font-size:12px;
+			text-transform:uppercase;
+		}
+	}
+}
+
+.threeColumn(page_forum_forum);
+
+#page_forum_thread {
+	#content {
+		width:auto;
+	}
+
+	#container > ._block_h1 > h1 {
+		width:auto;
+	}
+
+	.sub_menu_bar a, .sub_menu_bar a:hover {
+		background:transparent;
+	}
+
+	.forum_header_menu {
+		top:6px;
+		right:(@containerMaxWidth / 2) + 10;
+	}
+}
+
+.thread_view_all, .thread_view_all:hover {
+	position:absolute;
+	right:0px;
+	top:8px;
+	font-size:@fontSizeBase - 2;
+	display:block;
+	text-transform:uppercase;
+	font-weight:500;
+
+	> span {
+		display:inline-block;
+		margin-left:5px;
+		background:darken(@bodyBg, 10%);
+		color:@textColor;
+		padding:2px 4px;
+	}
+}
+
+.forum_popup_replies {
+	display:block;
+	width:@contentWidth;
+	top:0px;
+	margin-left:-(@contentWidth / 2);
+
+	.js_box_content {
+		padding:0px;
+	}
+}
+
+.table_row.forum_row.forum_sticky {
+	background:@bodyBg;
+	border-color:darken(@bodyBg, 10%);
+}
+
+#right #js_block_border_forum_recent.block {
+	background:transparent;
+
+	.title {
+		background:transparent;
+		color:@textColor;
+		text-transform:uppercase;
+		font-weight:500;
+		font-size:11px;
+		padding:0px;
+	}
+
+	.content {
+		padding:0px;
+	}
+
+	.table_row.forum_row {
+		background:transparent;
+	}
+
+	.table_row.forum_row > div {
+		padding:6px;
+		padding-left:0px;
+		border-bottom:1px darken(@bodyBg, 10%) solid;
+
+		h1 {
+			line-height:normal;
+			padding:0px;
+			font-size:@fontSizeBase;
+			font-weight:normal;
+
+			a.forum_thread_link, a.forum_thread_link:hover {
+				font-size:@fontSizeBase !important;
+				color:@textColor !important;
+			}
+		}
+	}
+
+	.forum_title_inner_holder {
+		> header {
+			.user_profile_link_span {
+				display:none;
+			}
+		}
+	}
+
+	._moderator {
+		display:none;
+	}
+
+	.table_row.forum_row .forum_totals {
+		display:none;
+	}
+}
+
+.js_box_content {
+	.form_extra {
+		display:none;
+	}
+}
+
+.forum_mini_post {
+	> ._c {
+		text-overflow:ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		max-height:20px;
+		padding:6px 0px;
+	}
+
+	> ._u {
+		.user_profile_link_span > a, .user_profile_link_span > a:hover {
+			color:@textColor !important;
+			font-weight:normal !important;
+			font-size:@fontSizeBase - 2;
+		}
+	}
+
+	> ._i {
+		position:absolute;
+		left:0px;
+		top:4px;
+	}
+
+	> time {
+		font-size:@fontSizeBase - 2;
+		opacity:0.6;
+	}
+
+	h1 {
+		font-size:@fontSizeBase;
+		font-weight:normal;
+		line-height:normal;
+		padding:0px;
+	}
+
+	padding-left:40px;
+	position:relative;
+	border-bottom:1px darken(@bodyBg, 10%) solid;
+	color:@textColor;
+	padding-bottom:10px;
+	margin-bottom:10px;
 }

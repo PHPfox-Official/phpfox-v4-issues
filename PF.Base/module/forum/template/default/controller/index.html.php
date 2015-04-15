@@ -61,7 +61,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	{/if}
 </div>
 {else}
-{template file='forum.block.entry'}
+	{template file='forum.block.entry'}
 {/if}
 
 {*

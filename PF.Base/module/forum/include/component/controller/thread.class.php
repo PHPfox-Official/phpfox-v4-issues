@@ -19,7 +19,7 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 	 * Controller
 	 */
 	public function process()
-	{		
+	{
 		define('PHPFOX_PAGER_FORCE_COUNT', true);
 
 		Phpfox::getUserParam('forum.can_view_forum', true);		
@@ -53,7 +53,18 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 			$this->url()->send('forum', array($aThread['forum_url'] . '-' . $aThread['forum_id'], $aThread['title_url']));
 		}
 
-		$aThreadCondition[] = 'ft.thread_id = ' . $this->request()->getInt('req3') . '';
+		$threadId = $this->request()->getInt('req3');
+		if ($this->request()->segment(3) == 'replies' && $this->request()->getInt('id')) {
+			$threadId = $this->request()->getInt('id');
+			$iPage = 1;
+			$iPageSize = 200;
+			$this->template()->setBreadCrumb('Latest Replies', $this->url()->current(), true);
+			$this->template()->assign([
+				'isReplies' => true
+			]);
+		}
+
+		$aThreadCondition[] = 'ft.thread_id = ' . $threadId . '';
 		
 		$sPermaView = $this->request()->get('view', null);
 		if ((int) $sPermaView <= 0)
@@ -123,7 +134,7 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 		
 		if ($iPostId = $this->request()->getInt('post'))
 		{
-			$iCurrentPage = Phpfox::getService('forum.post')->getPostPage($aThread['thread_id'], $iPostId, $iPageSize);			
+			$iCurrentPage = Forum_Service_Post_Post::instance()->getPostPage($aThread['thread_id'], $iPostId, $iPageSize);
 			
 			$sFinalLink = $this->url()->permalink('forum.thread', $aThread['thread_id'], $aThread['title'], false, null, array('page' => $iCurrentPage));
 			
@@ -283,6 +294,7 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 			)
 			->assign(array(
 					'aThread' => $aThread,
+					'aPost' => (isset($aThread['post_starter']) ? $aThread['post_starter'] : ''),
 					'iTotalPosts' => $iCnt,
 					'sCurrentThreadLink' => $sCurrentThreadLink,
 					'aCallback' => $aCallback,

@@ -14,7 +14,7 @@ class Theme extends Model {
 				->where(['t.is_default' => 1])
 				->get();
 
-			if (!self::$_active) {
+			if (!self::$_active || defined('PHPFOX_CSS_FORCE_DEFAULT')) {
 				self::$_active = [
 					'name' => 'Default',
 					'folder' => 'default',

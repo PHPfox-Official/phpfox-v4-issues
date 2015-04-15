@@ -1821,7 +1821,8 @@ $Behavior.linkClickAll = function()
  			$('#user_profile_photo').imgAreaSelect({ hide: true });		
 		}	
 		
-		$('.ajax_link_reset').hide(); 
+		$('.ajax_link_reset').hide();
+		$('#core_js_messages').html('');
 		
 		bAjaxLinkIsClicked = true;
 		

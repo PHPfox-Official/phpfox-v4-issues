@@ -373,22 +373,45 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 		}
 		
 		(($sPlugin = Phpfox_Plugin::get('forum.service_thread_getthread_query')) ? eval($sPlugin) : false);
-		
-		if (isset($bLeftJoinQuery))
-		{
-			$this->database()->leftJoin(Phpfox::getT('user'), 'u', 'u.user_id = fp.user_id')->leftJoin(Phpfox::getT('user_field'), 'uf', 'uf.user_id = fp.user_id');
-		}
-		else 
-		{
-			$this->database()->join(Phpfox::getT('user'), 'u', 'u.user_id = fp.user_id')->join(Phpfox::getT('user_field'), 'uf', 'uf.user_id = fp.user_id');
+
+		if (!isset($bLeftJoinQuery)) {
+			$bLeftJoinQuery = false;
 		}
 
-		if(Phpfox::isModule('like'))
-		{
-			$this->database()->select('l.like_id AS is_liked, ')
+		$theJoins = function() use($bLeftJoinQuery) {
+			if (isset($bLeftJoinQuery) && $bLeftJoinQuery !== false)
+			{
+				$this->database()->leftJoin(Phpfox::getT('user'), 'u', 'u.user_id = fp.user_id')->leftJoin(Phpfox::getT('user_field'), 'uf', 'uf.user_id = fp.user_id');
+			}
+			else
+			{
+				$this->database()->join(Phpfox::getT('user'), 'u', 'u.user_id = fp.user_id')->join(Phpfox::getT('user_field'), 'uf', 'uf.user_id = fp.user_id');
+			}
+
+			if(Phpfox::isModule('like'))
+			{
+				$this->database()->select('l.like_id AS is_liked, ')
 					->leftJoin(Phpfox::getT('like'), 'l', 'l.type_id = \'forum_post\' AND l.item_id = fp.post_id AND l.user_id = ' . Phpfox::getUserId());
+			}
+		};
+
+		if (!$iPage) {
+			$theJoins();
+			$aThread['post_starter'] = $this->database()->select('fp.*, ' . (Phpfox::getParam('core.allow_html') ? 'fpt.text_parsed' : 'fpt.text') . ' AS text, ' . Phpfox::getUserField() . ', u.joined, u.country_iso, uf.signature, uf.total_post')
+				->from(Phpfox::getT('forum_post'), 'fp')
+				->join(Phpfox::getT('forum_post_text'), 'fpt', 'fpt.post_id = fp.post_id')
+				->where($mConditions)
+				->order('fp.time_stamp ASC')
+				->limit(1)
+				->get();
 		}
-		
+
+		if (!$iPage) {
+			$iPageSize = 4;
+			$sOrder = 'fp.time_stamp DESC';
+		}
+
+		$theJoins();
 		$aThread['posts'] = $this->database()->select('fp.*, ' . (Phpfox::getParam('core.allow_html') ? 'fpt.text_parsed' : 'fpt.text') . ' AS text, ' . Phpfox::getUserField() . ', u.joined, u.country_iso, uf.signature, uf.total_post')
 			->from(Phpfox::getT('forum_post'), 'fp')
 			->join(Phpfox::getT('forum_post_text'), 'fpt', 'fpt.post_id = fp.post_id')			
@@ -401,11 +424,18 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 			throw error('no_items');
 		}
 
+		if (isset($aThread['post_starter'])) {
+			// $aThread['posts'] = array_merge($aThread['post_starter'], $aThread['posts']);
+			$aThread['posts'][] = $aThread['post_starter'];
+			$aThread['posts'] = array_reverse($aThread['posts']);
+		}
+
 		$sPostIds = '';
 		$iTotal = ($iPage > 1 ? (($iPageSize * $iPage) - $iPageSize) : 0);		
 		foreach ($aThread['posts'] as $iKey => $aPost)
 		{
 			$iTotal++;
+
 			$aThread['posts'][$iKey]['count'] = ($sPermaView === null ? $iTotal : Phpfox::getService('forum.post')->getPostCount());
 			$aThread['posts'][$iKey]['forum_id'] = $aThread['forum_id'];
 			$aThread['posts'][$iKey]['last_update_on'] = Phpfox::getPhrase('forum.last_update_on_time_stamp_by_update_user', array(
@@ -436,6 +466,12 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 			if(Phpfox::isModule('like') && Phpfox::isModule('feed'))
 			{
 				$aThread['posts'][$iKey]['aFeed']['feed_like_phrase'] = Feed_Service_Feed::instance()->getPhraseForLikes($aThread['posts'][$iKey]['aFeed']);
+			}
+
+			if (isset($aThread['post_starter']) && $aThread['post_starter']['post_id'] == $aPost['post_id']) {
+				$aThread['post_starter'] = array_merge($aThread['post_starter'], $aThread['posts'][$iKey]);
+				unset($aThread['posts'][$iKey]);
+				continue;
 			}
 			
 			if ($aPost['total_attachment'])

@@ -95,7 +95,8 @@ class Phpfox_Setting
 		'core.include_master_files' => false,
 		'core.force_secure_site' => false,
 		'core.auth_user_via_session' => false,
-		'core.defer_loading_images' => false
+		'core.defer_loading_images' => false,
+		'video.convert_servers_enable' => false
 	);
 	
 	/**

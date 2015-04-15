@@ -36,6 +36,16 @@
 			<source_code />
 			<source_parsed />
 		</block>
+		<block type_id="0" m_connection="forum.index" module_id="forum" component="recent" location="3" is_active="1" ordering="1" disallow_access="" can_move="0">
+			<title>Recent Threads</title>
+			<source_code />
+			<source_parsed />
+		</block>
+		<block type_id="0" m_connection="forum.forum" module_id="forum" component="recent" location="3" is_active="1" ordering="1" disallow_access="" can_move="0">
+			<title>Recent Posts</title>
+			<source_code />
+			<source_parsed />
+		</block>
 	</blocks>
 	<hooks>
 		<hook module_id="forum" hook_type="controller" module="forum" call_name="forum.component_controller_search_clean" added="1240687633" version_id="2.0.0beta1" />
@@ -108,6 +118,7 @@
 		<component module_id="forum" component="stat" m_connection="" module="forum" is_controller="0" is_block="1" is_active="1" />
 		<component module_id="forum" component="forums" m_connection="" module="forum" is_controller="0" is_block="1" is_active="1" />
 		<component module_id="forum" component="forum" m_connection="forum.forum" module="forum" is_controller="1" is_block="0" is_active="1" />
+		<component module_id="forum" component="recent" m_connection="" module="forum" is_controller="0" is_block="1" is_active="1" />
 	</components>
 	<phrases>
 		<phrase module_id="forum" version_id="2.0.0alpha1" var_name="module_forum" added="1232964154">Forum</phrase>

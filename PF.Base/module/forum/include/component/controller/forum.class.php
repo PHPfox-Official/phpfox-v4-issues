@@ -54,7 +54,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			}			
 		}
 		
-		$oSearch = Phpfox::getService('forum')->getSearchFilter($this->getParam('bIsSearchQuery', false));
+		$oSearch = Forum_Service_Forum::instance()->getSearchFilter($this->getParam('bIsSearchQuery', false));
 		
 		if ($oSearch->isSearch())
 		{

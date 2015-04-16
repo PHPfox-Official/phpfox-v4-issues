@@ -7195,11 +7195,12 @@ span.forum_tag_sticky {
 }
 */
 .pages_header {
-  height: 420px;
+  /*height:420px;*/
   position: relative;
   width: 1180px;
   margin: auto;
-  margin-bottom: 20px;
+  height: auto;
+  min-height: 140px;
 }
 .pages_header .pages_header_cover img {
   background-size: cover;
@@ -7315,7 +7316,6 @@ span.forum_tag_sticky {
   transition: all 0.5s ease;
 }
 .pages_header {
-  height: 120px;
   background: transparent;
   margin: auto;
 }
@@ -7326,7 +7326,7 @@ span.forum_tag_sticky {
   display: block;
 }
 #page_pages_view .pages_header {
-  height: 420px;
+  /*height:420px;*/
   background: inherit;
   margin: auto;
 }

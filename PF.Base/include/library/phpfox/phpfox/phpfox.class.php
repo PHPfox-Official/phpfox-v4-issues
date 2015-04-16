@@ -1445,7 +1445,8 @@ class Phpfox
 				'h1_clean' => strip_tags($h1),
 				'error' => $error,
 				'controller_e' => (Phpfox::isAdmin() ? Phpfox_Url::instance()->makeUrl('admincp.element.edit', ['controller' => base64_encode(Phpfox_Module::instance()->getFullControllerName())]) : null),
-				'meta' => Phpfox_Template::instance()->getPageMeta()
+				'meta' => Phpfox_Template::instance()->getPageMeta(),
+				'keep_body' => Phpfox_Template::instance()->keepBody(),
 			]);
 
 			// header("Content-length: " . strlen($data));

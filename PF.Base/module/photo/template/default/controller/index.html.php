@@ -44,10 +44,10 @@ defined('PHPFOX') or exit('NO DICE!');
 		    
 		    {else}
 
-			<div class="clearfix mosaicflow_load" data-width="200">
+			<div class="clearfix mosaicflow_load" data-width="300">
 				{foreach from=$aPhotos item=aPhoto}
-				<article class="photos_row">
-					<header>
+				<article class="photos_row" data-photo-id="{$aPhoto.photo_id}">
+					<header class="_a" data-href="{$aPhoto.link}">
 						<h1><a href="{$aPhoto.link}">{$aPhoto.title|clean}</a></h1>
 						<ul class="photos_row_info">
 							<li>by {$aPhoto|user}</li>

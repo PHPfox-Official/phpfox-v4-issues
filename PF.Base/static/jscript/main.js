@@ -682,34 +682,42 @@ $Behavior.globalInit = function()
 		});
 	}
 	*/
-	if ($('#js_block_border_ad_display').length && !$('#js_block_border_ad_display').hasClass('is_built')) {
+
+	/*
+	if ($('#js_block_border_ad_display').length
+		&& !$('#js_block_border_ad_display').hasClass('is_built')
+		&& $('#js_block_border_ad_display').is(':visible')
+		) {
 		var t = $('#js_block_border_ad_display');
 		var thisPosition = t.offset(),
 			isInFixed = false,
 			extraHeight = ($('#header').height() + 20),
-			goFixed = (thisPosition.top - extraHeight);
-		$(window).scroll(function() {
-			var w = $(this);
-			if ((w.scrollTop() >= goFixed)) {
-				if (!isInFixed) {
-					isInFixed = true;
-					// p(($(this).scrollTop() - extraHeight));
-					p(extraHeight);
-					t.css({
-						position: 'fixed',
-						top: extraHeight,
-						width: t.width()
-					})
+			goFixed = (thisPosition.top - extraHeight),
+			thisScroll = function() {
+				var w = $(this);
+				if ((w.scrollTop() >= goFixed)) {
+					if (!isInFixed) {
+						isInFixed = true;
+						// p(($(this).scrollTop() - extraHeight));
+						p(extraHeight);
+						t.css({
+							position: 'fixed',
+							top: extraHeight,
+							width: t.width()
+						})
+					}
 				}
-			}
-			else {
-				if (isInFixed) {
-					isInFixed = false;
-					t.attr('style', '');
+				else {
+					if (isInFixed) {
+						isInFixed = false;
+						t.attr('style', '');
+					}
 				}
-			}
-		});
+			};
+		$(window).off('scroll', thisScroll);
+		$(window).on('scroll', thisScroll);
 	}
+	*/
 
 	if ($('.set_to_fixed').length) {
 		$('.set_to_fixed:not(.built)').addClass('dont-unbind').each(function() {
@@ -799,10 +807,10 @@ $Behavior.globalInit = function()
 		return false;
 	});
 
-	if ($('.mosaicflow_load').length) {
+	if ($('.mosaicflow_load:not(.built_flow)').length) {
 		var mLoad = setInterval(function() {
 			if (typeof(jQuery().mosaicflow) == 'function') {
-				// $('.mosaicflow_load').addClass('mosaicflow');
+				$('.mosaicflow_load').addClass('built_flow');
 
 				$('.mosaicflow_load').mosaicflow({
 					minItemWidth: $('.mosaicflow_load').data('width'),
@@ -1663,6 +1671,8 @@ $Core.page = function(url) {
 if (!isset(page_editor_meta)) {
 	var page_editor_meta;
 }
+
+var cacheCurrentBody = null;
 $Core.show_page = function($aParams)
 {
 	if (typeof CorePageAjaxBrowsingStart == 'function')
@@ -1693,6 +1703,23 @@ $Core.show_page = function($aParams)
 	if (!empty($aParams['files']))
 	{
 		$Core.loadStaticFiles($aParams['files']);
+	}
+
+	if ($aParams['keep_body']) {
+		if (cacheCurrentBody === null) {
+			cacheCurrentBody = {
+				contentObject: $('#content').html(),
+				main: $('#main').html(),
+				scrollTop: $(window).scrollTop(),
+				id: $('body').attr('id'),
+				title: document.title,
+				class: $('body').attr('class'),
+				url: window.location.href
+			};
+		}
+	}
+	else {
+		cacheCurrentBody = null;
 	}
 
 	for (var location in $aParams['blocks']) {
@@ -1744,7 +1771,7 @@ $Core.show_page = function($aParams)
 };
 
 $Core.updatePageHistory = function()
-{	
+{
 	var $sLocation = window.location.hash.replace('#!', '');
 	if (empty($sLocation))
 	{
@@ -1755,39 +1782,35 @@ $Core.updatePageHistory = function()
 };
 
 $Behavior.janRainLoader = function(){	
-	if (!getParam('bJsIsMobile') && $('#janrainEngageEmbedHolder').length < 1)
-	{
-		$('body').prepend('<div style="position:absolute; z-index:5000; display:none;" id="janrainEngageEmbedHolder"><a href="#" style="position:absolute; bottom:5px; right:5px; z-index:1000000;" onclick="$(this).parent().hide(); return false;">Close</a><div id="janrainEngageEmbed"></div></div>');
-	}
-	$('.rpxnow').click(function(){
-		
-		if (getParam('bJsIsMobile')){
-			$.ajaxCall('janrain.login');
-			return false;
+	$('._a_back').click(function() {
+		if (typeof(cacheCurrentBody.main) == 'string') {
+			$('#main').html(cacheCurrentBody.main);
+			$('body').attr('id', cacheCurrentBody.id);
+			history.pushState(null, null, lastPushState);
+			$('html, body').animate({
+				scrollTop: cacheCurrentBody.scrollTop
+			}, 400);
+			$Core.loadInit();
 		}
-		janrain.engage.signin.widget.init();
-		$('#janrainEngageEmbedHolder').show();
-		$('#janrainEngageEmbedHolder').css({
-				top: getPageScroll()[1] + (getPageHeight() / 5),
-				left: '50%',
-				'margin-left': '-' + (($('#janrainEngageEmbed').width() / 2) + 12) + 'px'		        
-			});	
-		return false;
 	});
-}
+};
 
 var bAjaxLinkIsClicked = false;
 var bCanByPassClick = false;
 var sClickProfileName = '';
+var lastPushState;
 $Behavior.linkClickAll = function()
 {
 	if (!$Core.hasPushState() || $('#admincp_base').length) {
 		return;
 	}
 	
-	$('a').click(function()
+	$('a, ._a').click(function()
 	{
 		var $sLink = $(this).attr('href');
+		if (!$sLink) {
+			$sLink = $(this).data('href');
+		}
 		
 		if (!$sLink)
 		{
@@ -1875,6 +1898,9 @@ $Behavior.linkClickAll = function()
 			}
 		}
 
+		if (cacheCurrentBody === null) {
+			lastPushState = window.location.href;
+		}
 		history.pushState(null, null, $sLink);
 
 		$Core.page($sLink);

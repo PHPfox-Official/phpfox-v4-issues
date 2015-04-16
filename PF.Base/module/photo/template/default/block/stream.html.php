@@ -1,7 +1,54 @@
 
-<div class="photos_view">
+<div class="photos_view_loader">
+	<i class="fa fa-spin fa-circle-o-notch"></i>
+</div>
+<div class="photos_view" data-photo-id="{$aForms.photo_id}">
 	{img id='js_photo_view_image' server_id=$aForms.server_id path='photo.url_photo' file=$aForms.destination suffix='_1024' title=$aForms.title}
+	{literal}
+	<script>
+		var preLoadImages = false;
+		$Ready(function() {
+			if ($('#js_photo_view_image').length && !preLoadImages) {
+				preLoadImages = true;
+				if (cacheCurrentBody !== null && typeof(cacheCurrentBody.contentObject) == 'string' && !$('.photos_stream').length) {
+					var images = '';
+					$(cacheCurrentBody.contentObject).find('.photos_row').each(function() {
+						var t = $(this),
+							src = t.find('> a'),
+							isActive = '';
+						t.addClass('pre_load');
 
+						images += '<a href="' + src.attr('href') + '" data-photo-id="' + t.data('photo-id') + '">' + src.html() + '</a>';
+					});
+
+					if (images) {
+						$('#content').prepend('<div class="photos_stream"><div>' + images + '</div></div>');
+					}
+				}
+
+				$('#js_photo_view_image').load(function() {
+					$('body').addClass('photo_is_active');
+
+					$Core.loadInit();
+				});
+			}
+
+			if (!$('#js_photo_view_image').length) {
+				$('.photos_stream').remove();
+			}
+
+			if ($('.photos_stream').length && $('#js_photo_view_image').length) {
+				$('.photos_stream a.active').removeClass('active');
+				if ($('.photos_view').data('photo-id')) {
+					$('.photos_stream a[data-photo-id="' + $('.photos_view').data('photo-id') + '"]').addClass('active');
+				}
+			}
+		});
+	</script>
+	{/literal}
+	{if PHPFOX_IS_AJAX_PAGE}
+	<span class="_a_back"><i class="fa fa-close"></i></span>
+	{/if}
 	<div class="photos_actions">
 		{phrase var='photo.in_this_photo'}: <span id="js_photo_in_this_photo"></span>
 		<ul>

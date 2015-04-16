@@ -258,7 +258,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 				->setMeta('description',  Phpfox::getPhrase('photo.full_name_s_photo_from_time_stamp', array('full_name' => $aPhoto['full_name'], 'time_stamp' => Phpfox::getTime(Phpfox::getParam('core.description_time_stamp'), $aPhoto['time_stamp']))) . ': ' . (empty($aPhoto['description']) ? $aPhoto['title'] : $aPhoto['title'] . '.' . $aPhoto['description']))
 				->setMeta('keywords', $this->template()->getKeywords($aPhoto['title']))
 				->setMeta('keywords', Phpfox::getParam('photo.photo_meta_keywords'))
-				->setMeta('description', Phpfox::getParam('photo.photo_meta_description'))		
+				->setMeta('description', Phpfox::getParam('photo.photo_meta_description'))
 				->setMeta('og:image', Phpfox::getLib('image.helper')->display(array(
 							'server_id' => $aPhoto['server_id'],
 							'path' => 'photo.url_photo',
@@ -282,6 +282,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 						'photo.click_here_to_tag_as_yourself'
 					)
 				)
+				->keepBody(true)
 				->setEditor(array(
 						'load' => 'simple'					
 					)

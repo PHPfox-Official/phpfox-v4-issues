@@ -255,6 +255,7 @@ class Phpfox_Template
 
 	private $_theme;
 	private $_meta;
+	private $_keepBody = false;
 	
 	/**
 	 * Class constructor we use to build the current theme and style
@@ -1018,6 +1019,16 @@ class Phpfox_Template
 
 	public function getPageMeta() {
 		return $this->_meta;
+	}
+
+	public function keepBody($param = null) {
+		if ($param === null) {
+			return $this->_keepBody;
+		}
+
+		$this->_keepBody = $param;
+
+		return $this;
 	}
 
 	/**

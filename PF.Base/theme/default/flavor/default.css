@@ -7693,6 +7693,7 @@ ul.activity_feed_form_attach li a:hover {
 }
 #content .photos_row:hover header {
   display: block;
+  cursor: pointer;
 }
 #content .photos_row {
   display: block;
@@ -7732,6 +7733,9 @@ ul.activity_feed_form_attach li a:hover {
   display: block;
   width: 100%;
   height: auto;
+}
+#page_photo_index .mosaicflow_load {
+  min-height: 1000px;
 }
 #page_photo_index #top {
   /*margin-bottom:-30px;*/
@@ -7815,12 +7819,55 @@ ul.activity_feed_form_attach li a:hover {
 	margin:auto;
 }
 */
+#page_photo_view #header,
+#page_photo_view #top {
+  background: transparent;
+}
+#page_photo_view #top {
+  margin-top: 0px;
+}
+#page_photo_view #container,
+#page_photo_view #header {
+  display: none;
+}
+#page_photo_view .photos_view {
+  display: none;
+}
+#page_photo_view .photos_view_loader {
+  position: fixed;
+  font-size: 24px;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
+}
+#page_photo_view.photo_is_active .photos_view_loader {
+  display: none;
+}
+#page_photo_view.photo_is_active .photos_view {
+  display: block;
+}
+#page_photo_view.photo_is_active #container {
+  display: block;
+}
 .photos_view {
   background: #0c0c0c;
   text-align: center;
   margin-bottom: 20px;
   padding: 20px 0px 10px 0px;
   position: relative;
+}
+.photos_view > ._a_back {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: 1000;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+.photos_view > ._a_back > i {
+  font-size: 22px;
+  margin-top: 9px;
 }
 .photos_view .photos_actions {
   padding: 10px 0px 0px 10px;
@@ -7998,6 +8045,41 @@ ul.activity_feed_form_attach li a:hover {
   margin-left: -15px;
   margin-top: -15px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+.photos_stream {
+  position: fixed;
+  z-index: 100;
+  left: 200px;
+  bottom: 0px;
+  right: 0px;
+  height: 120px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);
+}
+.photos_stream > div {
+  display: table;
+}
+.photos_stream > div > a.active img,
+.photos_stream > div > a.active:hover img {
+  border-color: #298ada;
+}
+.photos_stream > div > a,
+.photos_stream > div > a:hover {
+  display: table-cell;
+  height: 120px;
+  width: 120px;
+  text-align: center;
+  vertical-align: middle;
+}
+.photos_stream > div > a:hover {
+  background: #000;
+  transition: all 0.5s ease;
+}
+.photos_stream > div img {
+  vertical-align: middle;
+  max-width: 90px;
+  max-height: 90px;
+  border: 2px #333333 solid;
 }
 .profiles_banner_bg > .cover_bg {
   position: absolute;

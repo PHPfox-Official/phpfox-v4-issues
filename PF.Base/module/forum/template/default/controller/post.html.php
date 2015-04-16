@@ -67,8 +67,17 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_left">
 			<label for="text">{required}{phrase var='forum.message'}:</label>
 		</div>
-		<div class="table_right">
+		<div class="table_right" id="js_forum_new_post">
 			{editor id='text'}
+			{literal}
+			<script>
+				$Ready(function() {
+					if ($('#js_forum_new_post').length) {
+						$('#js_forum_new_post textarea').focus();
+					}
+				});
+			</script>
+			{/literal}
 		</div>
 	</div>
 

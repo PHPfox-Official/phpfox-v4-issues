@@ -26,15 +26,20 @@ class Ad_Component_Block_Display extends Phpfox_Component
 			return false;
 		}
 
+		/*
 		if (Phpfox::getParam('ad.multi_ad') && $this->getParam('block_id') != 3 && $this->getParam('block_id') != 50 && $this->getParam('bIsIframe') != true)
 		{
 			return false;
 		}
-		
+		*/
+
+		$this->setParam('block_id', 50);
+		/*
 		if ($this->getParam('bIsIframe') == true && Phpfox::getParam('ad.multi_ad') == true)
 		{
 			$this->setParam('block_id', 50);
 		}
+		*/
 
 		if (Phpfox::getParam('ad.multi_ad') != true && $this->getParam('adId') !== null && is_numeric($this->getParam('adId')) && $this->getParam('adId') > 0)
 		{

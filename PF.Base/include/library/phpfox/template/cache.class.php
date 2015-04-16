@@ -667,10 +667,11 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				$sContent .= '<?php endif; ?>' . "\n";	
 				
 				$sContent .= '<?php endforeach; ?>';
-				
+				/*
 				$sContent .= '<?php if (!Phpfox::isAdminPanel()): ?>';
 				$sContent .= '<?php Phpfox::getBlock(\'ad.display\', array(\'block_id\' => ' . $this->_removeQuote($aArgs['location']) . ')); ?>';
 				$sContent .= '<?php endif; ?>';
+				*/
 				
 				$sContent .= '<?php endif; ?>';
 

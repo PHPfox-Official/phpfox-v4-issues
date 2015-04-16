@@ -666,6 +666,11 @@ class Phpfox_Module
 		{
 			$aBlocks[$iId] = true;
 		}
+
+		if ($iId == '3') {
+			// \Phpfox::getBlock('ad.display', array('block_id' => 3));
+			$aBlocks[$iId][] = 'ad.display';
+		}
 					
 		return $aBlocks[$iId];
 	}

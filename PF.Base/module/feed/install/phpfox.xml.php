@@ -13,7 +13,7 @@
 		<menu module_id="feed" parent_var_name="" m_connection="mobile" var_name="menu_feed_news_feed_532c28d5412dd75bf975fb951c740a30" ordering="116" url_value="feed" version_id="3.1.0rc1" disallow_access="" module="feed" mobile_icon="small_activity-feed.png" />
 	</menus>
 	<settings>
-		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="feed_only_friends" phrase_var_name="setting_feed_only_friends" ordering="0" version_id="2.0.0alpha1">0</setting>
+		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="feed_only_friends" phrase_var_name="setting_feed_only_friends" ordering="0" version_id="2.0.0alpha1">1</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="feed_display_limit" phrase_var_name="setting_feed_display_limit" ordering="0" version_id="2.0.0alpha1">10</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="string" var_name="feed_display_time_stamp" phrase_var_name="setting_feed_display_time_stamp" ordering="1" version_id="2.0.0alpha3">F j, Y g:i a</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="comment_feed_cutoff" phrase_var_name="setting_comment_feed_cutoff" ordering="1" version_id="2.0.0alpha3">4</setting>

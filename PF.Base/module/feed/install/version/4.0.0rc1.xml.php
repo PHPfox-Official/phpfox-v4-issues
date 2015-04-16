@@ -4,6 +4,17 @@
 			<group />
 			<module_id>feed</module_id>
 			<is_hidden>0</is_hidden>
+			<type>boolean</type>
+			<var_name>feed_only_friends</var_name>
+			<phrase_var_name>setting_feed_only_friends</phrase_var_name>
+			<ordering>0</ordering>
+			<version_id>2.0.0alpha1</version_id>
+			<value>1</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>feed</module_id>
+			<is_hidden>0</is_hidden>
 			<type>string</type>
 			<var_name>feed_display_time_stamp</var_name>
 			<phrase_var_name>setting_feed_display_time_stamp</phrase_var_name>

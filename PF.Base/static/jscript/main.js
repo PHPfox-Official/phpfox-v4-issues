@@ -702,6 +702,7 @@ $Behavior.globalInit = function()
 			else {
 				if (isInFixed) {
 					isInFixed = false;
+					t.attr('style', '');
 				}
 			}
 		});

@@ -123,7 +123,7 @@ class Poll_Service_Callback extends Phpfox_Service
 		$bCanViewItem = true;
 		if (Phpfox::isModule('privacy') && $aItem['privacy'] > 0)
 		{
-			$bCanViewItem = Phpfox::getService('privacy')->check('poll', $aItem['poll_id'], $aItem['user_id'], $aItem['privacy'], $aItem['is_friend'], true);
+			$bCanViewItem = Privacy_Service_Privacy::instance()->check('poll', $aItem['poll_id'], $aItem['user_id'], $aItem['privacy'], $aItem['is_friend'], true);
 		}
 
 		if (!$bCanViewItem)

@@ -408,7 +408,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			else
 			{
 				if (Phpfox::getParam('feed.feed_only_friends'))
-				{					
+				{
 					if (Phpfox::isModule('friend'))
 					{
 						// Get my friends feeds

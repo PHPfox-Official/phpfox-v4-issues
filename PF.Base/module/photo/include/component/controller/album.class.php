@@ -81,7 +81,7 @@ class Photo_Component_Controller_Album extends Phpfox_Component
 		
 		if (Phpfox::isModule('privacy'))
 		{
-			Phpfox::getService('privacy')->check('photo_album', $aAlbum['album_id'], $aAlbum['user_id'], $aAlbum['privacy'], $aAlbum['is_friend']);		
+			Privacy_Service_Privacy::instance()->check('photo_album', $aAlbum['album_id'], $aAlbum['user_id'], $aAlbum['privacy'], $aAlbum['is_friend']);
 		}
 		
 		(($sPlugin = Phpfox_Plugin::get('photo.component_controller_album_process_album')) ? eval($sPlugin) : false);

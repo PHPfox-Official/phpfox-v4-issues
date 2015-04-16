@@ -133,10 +133,12 @@ class Phpfox_Search_Browse
 		// testing:
 		// $this->_aConditions = array_merge( (array)array_pop($this->_aConditions), (array)array_pop($this->_aConditions));
 		// d($this->_aConditions);die();
+
+		/*
 		if (Phpfox::getParam('core.section_privacy_item_browsing') && (isset($this->_aParams['hide_view']) && !in_array($this->_sView, $this->_aParams['hide_view'])))
 		{			
-			Phpfox::getService('privacy')->buildPrivacy(array_merge($this->_aParams, array('count' => true)));			
-				
+			Privacy_Service_Privacy::instance()->buildPrivacy(array_merge($this->_aParams, array('count' => true)));
+			
 			$this->_iCnt = $this->database()->joinCount('total_item')->execute('getSlaveField');		
 		}
 		else 
@@ -149,12 +151,11 @@ class Phpfox_Search_Browse
 				//->limit($this->search()->getPage(), $this->search()->getDisplay())
 				->execute('getSlaveField');
 		}
-		
-		if ($this->_iCnt)
-		{
+		*/
+
 			if (Phpfox::getParam('core.section_privacy_item_browsing') && (isset($this->_aParams['hide_view']) && !in_array($this->_sView, $this->_aParams['hide_view'])))
 			{
-				Phpfox::getService('privacy')->buildPrivacy($this->_aParams);
+				Privacy_Service_Privacy::instance()->buildPrivacy($this->_aParams);
 				
 				$this->database()->unionFrom($this->_aParams['alias']);
 			}
@@ -183,12 +184,15 @@ class Phpfox_Search_Browse
 			{
 				$this->_oBrowse->processRows($this->_aRows);
 			}
-		}
+
+
+		/*
 		else if ($this->search()->getPage() > 0)
 		{
 			// Phpfox_Url::instance()->send('error.404');
 			throw error('no_items');
 		}
+		*/
 
 	}
 	
@@ -227,7 +231,7 @@ class Phpfox_Search_Browse
 	 * Extends search class
 	 * 
 	 * @see Phpfox_Search
-	 * @return object Returns the search object
+	 * @return Phpfox_Search
 	 */
 	public function search()
 	{

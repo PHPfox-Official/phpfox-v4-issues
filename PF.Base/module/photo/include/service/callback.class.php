@@ -512,7 +512,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		$bCanViewItem = true;
 		if ($aItem['privacy'] > 0)
 		{
-			$bCanViewItem = Phpfox::getService('privacy')->check('photo', $aItem['photo_id'], $aItem['user_id'], $aItem['privacy'], $aItem['is_friend'], true);
+			$bCanViewItem = Privacy_Service_Privacy::instance()->check('photo', $aItem['photo_id'], $aItem['user_id'], $aItem['privacy'], $aItem['is_friend'], true);
 		}		
 		
 		if ($bCanViewItem)
@@ -2006,7 +2006,7 @@ class Photo_Service_Callback extends Phpfox_Service
 		$bCanViewItem = true;
 		if ($aRow['privacy'] > 0)
 		{
-			$bCanViewItem = Phpfox::getService('privacy')->check('photo', $aRow['photo_id'], $aRow['photo_user_id'], $aRow['privacy'], $aRow['is_friend'], true);
+			$bCanViewItem = Privacy_Service_Privacy::instance()->check('photo', $aRow['photo_id'], $aRow['photo_user_id'], $aRow['privacy'], $aRow['is_friend'], true);
 		}
 		
 		$sLink = Phpfox::permalink('photo', $aRow['photo_id'], $aRow['title']);

@@ -61,7 +61,7 @@ class Like_Service_Process extends Phpfox_Service
 			{
 				return Phpfox_Error::display('Not allowed to like this item.');
 			}
-			else if ($aFeed['privacy'] == 4 && ( $bCheck = Phpfox::getService('privacy')->check($sType, $iItemId, $aFeed['user_id'], $aFeed['privacy'], null, true)) != true)
+			else if ($aFeed['privacy'] == 4 && ( $bCheck = Privacy_Service_Privacy::instance()->check($sType, $iItemId, $aFeed['user_id'], $aFeed['privacy'], null, true)) != true)
 			{
 				return Phpfox_Error::display('Not allowed to like this item.');
 			}

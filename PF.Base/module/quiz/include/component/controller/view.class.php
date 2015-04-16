@@ -181,7 +181,7 @@ class Quiz_Component_Controller_View extends Phpfox_Component
 			{
 				$aQuiz['is_friend'] = 0;
 			}
-			Phpfox::getService('privacy')->check('quiz', $aQuiz['quiz_id'], $aQuiz['user_id'], $aQuiz['privacy'], $aQuiz['is_friend']);			
+			Privacy_Service_Privacy::instance()->check('quiz', $aQuiz['quiz_id'], $aQuiz['user_id'], $aQuiz['privacy'], $aQuiz['is_friend']);
 		}
 		
 		// extra info: used for displaying results for one user

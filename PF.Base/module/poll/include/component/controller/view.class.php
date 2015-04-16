@@ -67,7 +67,7 @@ class Poll_Component_Controller_View extends Phpfox_Component
 		Phpfox::getService('core.redirect')->check($aPoll['question']);
 		if (Phpfox::isModule('privacy'))
 		{
-			Phpfox::getService('privacy')->check('poll', $aPoll['poll_id'], $aPoll['user_id'], $aPoll['privacy'], $aPoll['is_friend']);		
+			Privacy_Service_Privacy::instance()->check('poll', $aPoll['poll_id'], $aPoll['user_id'], $aPoll['privacy'], $aPoll['is_friend']);
 		}
 		
 		// set if we can show the poll results

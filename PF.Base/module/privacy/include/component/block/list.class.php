@@ -23,7 +23,7 @@ class Privacy_Component_Block_List extends Phpfox_Component
 		$aUsers = array();
 		if ($this->getParam('id'))
 		{
-			$aUsers = Phpfox::getService('privacy')->get($this->getParam('type'), $this->getParam('id'));		
+			$aUsers = Privacy_Service_Privacy::instance()->get($this->getParam('type'), $this->getParam('id'));
 		}
 		
 		$this->template()->assign(array(

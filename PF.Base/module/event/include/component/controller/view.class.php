@@ -57,7 +57,7 @@ class Event_Component_Controller_View extends Phpfox_Component
 		Phpfox::getService('core.redirect')->check($aEvent['title']);
 		if (Phpfox::isModule('privacy'))
 		{
-			Phpfox::getService('privacy')->check('event', $aEvent['event_id'], $aEvent['user_id'], $aEvent['privacy'], $aEvent['is_friend']);
+			Privacy_Service_Privacy::instance()->check('event', $aEvent['event_id'], $aEvent['user_id'], $aEvent['privacy'], $aEvent['is_friend']);
 		}
 		
 		$this->setParam('aEvent', $aEvent);

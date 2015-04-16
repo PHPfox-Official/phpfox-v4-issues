@@ -64,7 +64,7 @@ class Marketplace_Component_Controller_View extends Phpfox_Component
 		Phpfox::getService('core.redirect')->check($aListing['title']);
 		if (Phpfox::isModule('privacy'))
 		{
-			Phpfox::getService('privacy')->check('marketplace', $aListing['listing_id'], $aListing['user_id'], $aListing['privacy'], $aListing['is_friend']);		
+			Privacy_Service_Privacy::instance()->check('marketplace', $aListing['listing_id'], $aListing['user_id'], $aListing['privacy'], $aListing['is_friend']);
 		}
 
 		$this->setParam('aRatingCallback', array(

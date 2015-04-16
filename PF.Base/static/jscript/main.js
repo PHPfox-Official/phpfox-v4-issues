@@ -686,15 +686,18 @@ $Behavior.globalInit = function()
 		var t = $('#js_block_border_ad_display');
 		var thisPosition = t.offset(),
 			isInFixed = false,
-			extraHeight = ($('#header').height() + 20);
+			extraHeight = ($('#header').height() + 20),
+			goFixed = (thisPosition.top - extraHeight);
 		$(window).scroll(function() {
 			var w = $(this);
-			if ((w.scrollTop() >= (thisPosition.top - extraHeight))) {
+			if ((w.scrollTop() >= goFixed)) {
 				if (!isInFixed) {
 					isInFixed = true;
+					// p(($(this).scrollTop() - extraHeight));
+					p(extraHeight);
 					t.css({
 						position: 'fixed',
-						top: ($(this).scrollTop() - extraHeight),
+						top: extraHeight,
 						width: t.width()
 					})
 				}

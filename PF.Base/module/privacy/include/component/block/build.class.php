@@ -20,7 +20,7 @@ class Privacy_Component_Block_Build extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aPrivacySettings = Phpfox::getService('privacy')->get($this->getParam('privacy_module_id'), $this->getParam('privacy_item_id'));
+		$aPrivacySettings = Privacy_Service_Privacy::instance()->get($this->getParam('privacy_module_id'), $this->getParam('privacy_item_id'));
 		
 		if (!count($aPrivacySettings))
 		{

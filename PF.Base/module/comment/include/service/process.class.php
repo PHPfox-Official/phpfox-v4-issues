@@ -53,7 +53,7 @@ class Comment_Service_Process extends Phpfox_Service
 					{
 						return Phpfox_Error::display(Phpfox::getPhrase('feed.unable_to_post_a_comment_on_this_item_due_to_privacy_settings'));
 					}
-					else if ($aFeed['privacy_comment'] == 4 && ( $bCheck = Phpfox::getService('privacy')->check($aVals['type'], $aVals['item_id'], $aFeed['user_id'], $aFeed['privacy_comment'], null, true)) != true)
+					else if ($aFeed['privacy_comment'] == 4 && ( $bCheck = Privacy_Service_Privacy::instance()->check($aVals['type'], $aVals['item_id'], $aFeed['user_id'], $aFeed['privacy_comment'], null, true)) != true)
 					{
 						return Phpfox_Error::display(Phpfox::getPhrase('feed.unable_to_post_a_comment_on_this_item_due_to_privacy_settings'));
 					}
@@ -74,7 +74,7 @@ class Comment_Service_Process extends Phpfox_Service
 					{
 						return Phpfox_Error::display(Phpfox::getPhrase('feed.unable_to_post_a_comment_on_this_item_due_to_privacy_settings'));
 					}
-					else if ($aFeed['privacy'] == 4 && ( $bCheck = Phpfox::getService('privacy')->check($aVals['type'], $aVals['item_id'], $aFeed['user_id'], $aFeed['privacy'], null, true)) != true)
+					else if ($aFeed['privacy'] == 4 && ( $bCheck = Privacy_Service_Privacy::instance()->check($aVals['type'], $aVals['item_id'], $aFeed['user_id'], $aFeed['privacy'], null, true)) != true)
 					{
 						return Phpfox_Error::display(Phpfox::getPhrase('feed.unable_to_post_a_comment_on_this_item_due_to_privacy_settings'));
 					}

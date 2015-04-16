@@ -265,7 +265,7 @@ class Poll_Service_Poll extends Phpfox_Service
 		
 		if (Phpfox::getParam('core.section_privacy_item_browsing'))
 		{	
-			Phpfox::getService('privacy')->buildPrivacy(array(
+			Privacy_Service_Privacy::instance()->buildPrivacy(array(
 					'module_id' => 'poll',
 					'alias' => 'poll',
 					'field' => 'poll_id',
@@ -293,7 +293,7 @@ class Poll_Service_Poll extends Phpfox_Service
 				
 		if (Phpfox::getParam('core.section_privacy_item_browsing'))
 		{
-			Phpfox::getService('privacy')->buildPrivacy(array(
+			Privacy_Service_Privacy::instance()->buildPrivacy(array(
 					'module_id' => 'poll',
 					'alias' => 'poll',
 					'field' => 'poll_id',

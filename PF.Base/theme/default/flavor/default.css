@@ -2849,9 +2849,9 @@ button {
   border-bottom: 1px #f0f0f0 solid;
 }
 .block .sub_section_menu > ul li > a:hover {
-  background: #298ada;
-  color: #ffffff;
-  transition: all 0.5s ease;
+  background: #f0f0f0;
+  color: #222222;
+  /*transition:@transition;*/
 }
 .block .sub_section_menu > ul li.active > a,
 .block .sub_section_menu > ul li.active > a:hover {
@@ -2877,9 +2877,9 @@ button {
   border-bottom: 1px #f0f0f0 solid;
 }
 .block > .content > ul.action li > a:hover {
-  background: #298ada;
-  color: #ffffff;
-  transition: all 0.5s ease;
+  background: #f0f0f0;
+  color: #222222;
+  /*transition:@transition;*/
 }
 .block > .content > ul.action li.active > a,
 .block > .content > ul.action li.active > a:hover {
@@ -8335,6 +8335,7 @@ ul.activity_feed_form_attach li a:hover {
   line-height: normal;
   font-size: 20px;
   margin-bottom: 4px;
+  padding: 2px 0px;
 }
 .listing_info,
 .listing_category {

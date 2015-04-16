@@ -63,7 +63,7 @@ class Music_Component_Controller_View extends Phpfox_Component
 		Phpfox::getService('core.redirect')->check($aSong['title']);
 		if (Phpfox::isModule('privacy'))
 		{
-			Phpfox::getService('privacy')->check('music_song', $aSong['song_id'], $aSong['user_id'], $aSong['privacy'], $aSong['is_friend']);
+			Privacy_Service_Privacy::instance()->check('music_song', $aSong['song_id'], $aSong['user_id'], $aSong['privacy'], $aSong['is_friend']);
 		}
 		
 		

@@ -70,7 +70,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 		Phpfox::getService('core.redirect')->check($aPhoto['title']);
 		if (Phpfox::isModule('privacy'))
 		{
-			Phpfox::getService('privacy')->check('photo', $aPhoto['photo_id'], $aPhoto['user_id'], $aPhoto['privacy'], $aPhoto['is_friend']);
+			Privacy_Service_Privacy::instance()->check('photo', $aPhoto['photo_id'], $aPhoto['user_id'], $aPhoto['privacy'], $aPhoto['is_friend']);
 		}
 		
 		if ($aPhoto['mature'] != 0)

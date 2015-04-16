@@ -53,7 +53,7 @@ class Music_Component_Controller_View_Album extends Phpfox_Component
 		Phpfox::getService('core.redirect')->check($aAlbum['name'], 'req4');
 		if (Phpfox::isModule('privacy'))
 		{
-			Phpfox::getService('privacy')->check('music_album', $aAlbum['album_id'], $aAlbum['user_id'], $aAlbum['privacy'], $aAlbum['is_friend']);
+			Privacy_Service_Privacy::instance()->check('music_album', $aAlbum['album_id'], $aAlbum['user_id'], $aAlbum['privacy'], $aAlbum['is_friend']);
 		}
 
 		$this->setParam('aAlbum', $aAlbum);

@@ -61,7 +61,7 @@ class Blog_Component_Controller_View extends Phpfox_Component
 		Phpfox::getService('core.redirect')->check($aItem['title']);
 		if (Phpfox::isModule('privacy'))
 		{
-			Phpfox::getService('privacy')->check('blog', $aItem['blog_id'], $aItem['user_id'], $aItem['privacy'], $aItem['is_friend']);
+			Privacy_Service_Privacy::instance()->check('blog', $aItem['blog_id'], $aItem['user_id'], $aItem['privacy'], $aItem['is_friend']);
 		}
 		
 		// http://www.phpfox.com/tracker/view/14944/

@@ -55,7 +55,7 @@ class Pages_Component_Controller_View extends Phpfox_Component
 
 		if (Phpfox::getUserBy('profile_page_id') <= 0 && Phpfox::isModule('privacy'))
 		{
-			Phpfox::getService('privacy')->check('pages', $aPage['page_id'], $aPage['user_id'], $aPage['privacy'], (isset($aPage['is_friend']) ? $aPage['is_friend'] : 0));		
+			Privacy_Service_Privacy::instance()->check('pages', $aPage['page_id'], $aPage['user_id'], $aPage['privacy'], (isset($aPage['is_friend']) ? $aPage['is_friend'] : 0));
 		}		
 		
 		$bCanViewPage = true;

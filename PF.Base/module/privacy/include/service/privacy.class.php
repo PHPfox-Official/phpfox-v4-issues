@@ -193,11 +193,12 @@ class Privacy_Service_Privacy extends Phpfox_Service
 		$bIsCount = (isset($aCond['count']) ? true : false);
 		
 		$oObject = Phpfox::getService($aCond['service']);
-		
+
+		/*
 		if (Phpfox::getUserParam('core.can_view_private_items'))
 		{
 			$oObject->getQueryJoins($bIsCount, true);
-			
+
 			// http://www.phpfox.com/tracker/view/14708/
 			if(!$bIsCount && isset($aCond['join']) && !empty($aCond['join']))
 			{
@@ -207,14 +208,26 @@ class Privacy_Service_Privacy extends Phpfox_Service
 					$aCond['join']['alias'] . "." . $aCond['join']['field'] . ' = ' . $aCond['alias'] . "." . $aCond['field']
 				);
 			}
-					
+			// p($this->search()->getConditions()); exit;
 			$this->database()->select(($bIsCount ? (isset($aCond['distinct']) ? 'COUNT(DISTINCT ' . $aCond['distinct'] . ')' : 'COUNT(*)') : $aCond['alias'] . '.*'))
 				->from($aCond['table'], $aCond['alias'])
 				->where(str_replace('%PRIVACY%', '0,1,2,3,4', $this->search()->getConditions()))
-				->union();			
+				->union();
 			
 			return;
-		}		
+		}
+		*/
+		if (Phpfox::getUserParam('core.can_view_private_items'))
+		{
+			$oObject->getQueryJoins($bIsCount, true);
+
+			$this->database()->select(($bIsCount ? (isset($aCond['distinct']) ? 'COUNT(DISTINCT ' . $aCond['distinct'] . ')' : 'COUNT(*)') : $aCond['alias'] . '.*'))
+				->from($aCond['table'], $aCond['alias'])
+				// ->where(array_merge(array('AND ' . $aCond['alias'] . '.user_id = ' . Phpfox::getUserId()), $aUserCond))
+				->union();
+
+			return;
+		}
 		
 		$aUserCond = array();
 		$aFriendCond = array();
@@ -271,15 +284,22 @@ class Privacy_Service_Privacy extends Phpfox_Service
 		if (Phpfox::isUser())
 		{			
 			$oObject->getQueryJoins($bIsCount, true);
-			
+
 			$this->database()->select(($bIsCount ? (isset($aCond['distinct']) ? 'COUNT(DISTINCT ' . $aCond['distinct'] . ')' : 'COUNT(*)') : $aCond['alias'] . '.*'))
 				->from($aCond['table'], $aCond['alias'])
 				->join(Phpfox::getT('friend'), 'f', 'f.is_page = 0 AND f.user_id = ' . $aCond['alias'] . '.user_id AND f.friend_user_id = ' . Phpfox::getUserId())
 				->where($aFriendCond)
 				->union();	
-		}	
+		}
+
+		$forcePublic = false;
+		if (in_array($this->request()->segment(1), ['marketplace'])) {
+			// $forcePublic = true;
+		}
 		
-		if (Phpfox::getParam('core.friends_only_community'))
+		if (Phpfox::getParam('core.friends_only_community')
+			&& !$forcePublic
+		)
 		{
 			// Public items
 			$oObject->getQueryJoins($bIsCount);
@@ -305,7 +325,7 @@ class Privacy_Service_Privacy extends Phpfox_Service
 			$this->database()->select(($bIsCount ? (isset($aCond['distinct']) ? 'COUNT(DISTINCT ' . $aCond['distinct'] . ')' : 'COUNT(*)') : $aCond['alias'] . '.*'))
 				->from($aCond['table'], $aCond['alias'])				
 				->where($aPublicCond)						
-				->where($aPublicCond)
+				// ->where($aPublicCond)
 				->union();			
 		}
 	}

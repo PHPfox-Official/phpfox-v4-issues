@@ -213,7 +213,7 @@ class Music_Service_Callback extends Phpfox_Service
 		$bCanViewItem = true;
 		if ($aItem['privacy'] > 0)
 		{
-			$bCanViewItem = Phpfox::getService('privacy')->check('music', $aItem['song_id'], $aItem['user_id'], $aItem['privacy'], $aItem['is_friend'], true);
+			$bCanViewItem = Privacy_Service_Privacy::instance()->check('music', $aItem['song_id'], $aItem['user_id'], $aItem['privacy'], $aItem['is_friend'], true);
 		}		
 		
 		$aReturn = array(

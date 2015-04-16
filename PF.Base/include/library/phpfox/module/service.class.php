@@ -69,7 +69,7 @@ class Phpfox_Service
      * Extends the pre-parsing object.
      *
      * @see Phpfox_Parse_Input
-     * @return object
+     * @return Phpfox_Parse_Input
      */
     protected function preParse()
     {
@@ -80,7 +80,7 @@ class Phpfox_Service
      * Extends the validation/sanity check object.
      *
      * @see Phpfox_Validator
-     * @return object
+     * @return Phpfox_Validator
      */
     protected function validator()
     {
@@ -91,7 +91,7 @@ class Phpfox_Service
      * Extends the search check object.
      *
      * @see Phpfox_Search
-     * @return object
+     * @return Phpfox_Search
      */    
     protected function search()
     {
@@ -102,7 +102,7 @@ class Phpfox_Service
 	 * Extends the request class and returns its class object.
 	 *
 	 * @see Phpfox_Request
-	 * @return object
+	 * @return Phpfox_Request
 	 */
 	protected function request()
 	{

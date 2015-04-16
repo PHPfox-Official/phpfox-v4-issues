@@ -100,7 +100,7 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 
 					if (Phpfox::isModule('tag'))
 					{
-					    $aThread['tag_list'] = Phpfox::getService('tag')->getForEdit('forum', $aThread['thread_id']);
+					    $aThread['tag_list'] = Tag_Service_Tag::instance()->getForEdit('forum', $aThread['thread_id']);
 					}
 					
 					$this->template()->assign(array(

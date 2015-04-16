@@ -152,7 +152,7 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 		
 		if (Phpfox::isModule('tag') && $aCallback === null)
 		{
-			$aTags = Phpfox::getService('tag')->getTagsById(($aCallback === null ? 'forum' : 'forum_group'), $aThread['thread_id']);				
+			$aTags = Tag_Service_Tag::instance()->getTagsById(($aCallback === null ? 'forum' : 'forum_group'), $aThread['thread_id']);
 			if (isset($aTags[$aThread['thread_id']]))
 			{
 				$aThread['tag_list'] = $aTags[$aThread['thread_id']];
@@ -162,7 +162,7 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 		// Add tags to meta keywords
 		if (!empty($aThread['tag_list']) && $aThread['tag_list'] && Phpfox::isModule('tag'))
 		{
-			$this->template()->setMeta('keywords', Phpfox::getService('tag')->getKeywords($aThread['tag_list']));
+			$this->template()->setMeta('keywords', Tag_Service_Tag::instance()->getKeywords($aThread['tag_list']));
 		}		
 		
 		$this->setParam('iActiveForumId', $aForum['forum_id']);

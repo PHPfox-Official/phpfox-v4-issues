@@ -53,7 +53,7 @@ class Blog_Component_Controller_Add extends Phpfox_Component
 			
 			if (Phpfox::isModule('tag'))
 			{
-				$aTags = Phpfox::getService('tag')->getTagsById('blog', $aRow['blog_id']);
+				$aTags = Tag_Service_Tag::instance()->getTagsById('blog', $aRow['blog_id']);
 				if (isset($aTags[$aRow['blog_id']]))
 				{
 					$aRow['tag_list'] = '';					

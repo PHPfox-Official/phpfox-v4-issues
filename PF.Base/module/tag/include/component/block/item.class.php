@@ -44,7 +44,7 @@ class Tag_Component_Block_Item extends Phpfox_Component
 			$iItemId = $this->getParam('item_id');				
 			$sTags = '';
 			$sTagsClean = '';
-			$aMainTags = Phpfox::getService('tag')->getTagsById($sType, $iItemId);	
+			$aMainTags = Tag_Service_Tag::instance()->getTagsById($sType, $iItemId);
 			
 			if (!isset($aMainTags[$iItemId]))
 			{

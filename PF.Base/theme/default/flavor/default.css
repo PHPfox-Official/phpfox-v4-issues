@@ -5846,15 +5846,40 @@ div.comment_mini_end {
 .feed_banner > img {
   max-width: 580px;
 }
+#hashtag_cloud .tag_cloud ul li {
+  display: block;
+}
+#hashtag_cloud .tag_cloud ul li a,
+#hashtag_cloud .tag_cloud ul li a:hover {
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+  display: inline-block;
+  font-size: 14px;
+}
 .site_hash_tag,
 .site_hash_tag:hover {
   color: #298ada !important;
   display: inline-block;
 }
 .site_hash_tag:hover {
-  background: #298ada;
+  background: #298ada !important;
   color: #ffffff !important;
   transition: all 0.5s ease;
+  text-decoration: none !important;
 }
 .js_feed_comment_process_form {
   background: transparent;

@@ -116,7 +116,7 @@ class Page_Service_Process extends Phpfox_Service
 		$aVals['keyword'] = (!empty($aVals['keyword']) ? $oFilter->clean($aVals['keyword']) : null);
 		$aVals['description'] = (!empty($aVals['description']) ? $oFilter->clean($aVals['description']) : null);		
 		$aVals['title'] = $oFilter->clean($aVals['title'], 255);		
-		$aVals['total_tag'] = ((Phpfox::isModule('tag') && isset($aVals['tag_list'])) ? Phpfox::getService('tag')->getCount($aVals['tag_list']) : 0);
+		$aVals['total_tag'] = ((Phpfox::isModule('tag') && isset($aVals['tag_list'])) ? Tag_Service_Tag::instance()->getCount($aVals['tag_list']) : 0);
 		
 		$aSql = array(		
 			'module_id',	

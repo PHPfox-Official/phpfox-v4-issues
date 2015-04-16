@@ -127,7 +127,7 @@ class Photo_Service_Photo extends Phpfox_Service
 		
 		if (Phpfox::isModule('tag'))
 		{
-			$aTags = Phpfox::getService('tag')->getTagsById('photo', $aPhoto['photo_id']);	
+			$aTags = Tag_Service_Tag::instance()->getTagsById('photo', $aPhoto['photo_id']);
 			if (isset($aTags[$aPhoto['photo_id']]))
 			{
 				$aPhoto['tag_list'] = '';					
@@ -241,7 +241,7 @@ class Photo_Service_Photo extends Phpfox_Service
 		}
 		if (Phpfox::isModule('tag'))
 		{
-			$aTags = Phpfox::getService('tag')->getTagsById('photo', $aPhoto['photo_id']);	
+			$aTags = Tag_Service_Tag::instance()->getTagsById('photo', $aPhoto['photo_id']);
 			if (isset($aTags[$aPhoto['photo_id']]))
 			{
 				$aPhoto['tag_list'] = $aTags[$aPhoto['photo_id']];

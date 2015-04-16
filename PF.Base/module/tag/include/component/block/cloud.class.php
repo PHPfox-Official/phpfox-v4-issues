@@ -32,7 +32,7 @@ class Tag_Component_Block_Cloud extends Phpfox_Component
 			return false;
 		}
 		
-		$aRows = Phpfox::getService('tag')->getTagCloud($sType, (($this->getParam('bIsProfile') === true && ($aUser = $this->getParam('aUser'))) ? $aUser['user_id'] : null), $this->getParam('iTagDisplayLimit', null));		
+		$aRows = Tag_Service_Tag::instance()->getTagCloud($sType, (($this->getParam('bIsProfile') === true && ($aUser = $this->getParam('aUser'))) ? $aUser['user_id'] : null), $this->getParam('iTagDisplayLimit', null));
 
 		if (!count($aRows))
 		{

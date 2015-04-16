@@ -75,7 +75,7 @@ class Page_Component_Controller_View extends Phpfox_Component
 		
 		if ($aPage['total_tag'] > 0 && Phpfox::isModule('tag'))
 		{			
-			$aTags = Phpfox::getService('tag')->getTagsById('page', $aPage['page_id']);	
+			$aTags = Tag_Service_Tag::instance()->getTagsById('page', $aPage['page_id']);
 			if (isset($aTags[$aPage['page_id']]))
 			{
 				$aPage['tag_list'] = $aTags[$aPage['page_id']];

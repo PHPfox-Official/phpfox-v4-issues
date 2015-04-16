@@ -381,15 +381,26 @@ div.comment_mini_end {
 	}
 }
 
+#hashtag_cloud .tag_cloud ul li {
+	display:block;
+}
+
+#hashtag_cloud .tag_cloud ul li a, #hashtag_cloud .tag_cloud ul li a:hover {
+	.reset();
+	display:inline-block;
+	font-size:@fontSizeBase;
+}
+
 .site_hash_tag, .site_hash_tag:hover {
 	color:@brandPrimary !important;
 	display:inline-block;
 }
 
 .site_hash_tag:hover {
-	background:@brandPrimary;
+	background:@brandPrimary !important;
 	color:@brandPrimaryColor !important;
 	transition:@transition;
+	text-decoration:none !important;
 }
 
 .js_feed_comment_process_form {

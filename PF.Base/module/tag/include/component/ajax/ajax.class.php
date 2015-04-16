@@ -38,7 +38,7 @@ class Tag_Component_Ajax_Ajax extends Phpfox_Ajax
 			return false;
 		}
 		
-		$aRows = Phpfox::getService('tag')->getInlineSearchForUser(Phpfox::getUserId(), $aParams['tag_list'], $this->get('category_id'));
+		$aRows = Tag_Service_Tag::instance()->getInlineSearchForUser(Phpfox::getUserId(), $aParams['tag_list'], $this->get('category_id'));
 		
 		if (count($aRows))
 		{
@@ -60,7 +60,7 @@ class Tag_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function inlineUpdate()
 	{	
-		if (($iUserId = Phpfox::getService('tag')->hasAccess($this->get('sType'), $this->get('item_id'), 'edit_own_tags', 'edit_user_tags')) && Phpfox::getService('tag.process')->update($this->get('sType'), $this->get('item_id'), $iUserId, (Phpfox::getLib('parse.format')->isEmpty($this->get('quick_edit_input')) ? null : $this->get('quick_edit_input'))))
+		if (($iUserId = Tag_Service_Tag::instance()->hasAccess($this->get('sType'), $this->get('item_id'), 'edit_own_tags', 'edit_user_tags')) && Phpfox::getService('tag.process')->update($this->get('sType'), $this->get('item_id'), $iUserId, (Phpfox::getLib('parse.format')->isEmpty($this->get('quick_edit_input')) ? null : $this->get('quick_edit_input'))))
 		{
 			if (Phpfox::getLib('parse.format')->isEmpty($this->get('quick_edit_input')))
 			{
@@ -68,7 +68,7 @@ class Tag_Component_Ajax_Ajax extends Phpfox_Ajax
 			}
 			else 
 			{
-				$aTags = Phpfox::getService('tag')->getTagsById($this->get('sType'), $this->get('item_id'));
+				$aTags = Tag_Service_Tag::instance()->getTagsById($this->get('sType'), $this->get('item_id'));
 				Phpfox::getBlock('tag.item', array('bDontCleanTags' => true, 'sType' => $this->get('sType'), 'sTags' => $aTags[$this->get('item_id')], 'iItemId' => $this->get('item_id'), 'iUserId' => $iUserId, 'bIsInline' => true));
 				$this->html('#' . $this->get('id'), Phpfox::getLib('parse.output')->clean($this->getContent(false), false), '.highlightFade()');
 				$this->html('#' . $this->get('content'), Phpfox::getLib('parse.output')->parse(Phpfox::getLib('parse.input')->clean($this->get('quick_edit_input'))));

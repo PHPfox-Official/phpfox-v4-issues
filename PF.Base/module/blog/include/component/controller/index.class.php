@@ -223,7 +223,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 		}
 		elseif ($this->request()->get((defined('PHPFOX_IS_PAGES_VIEW') ? 'req4' : ($bIsProfile === true ? 'req3' : 'req2'))) == 'tag')
 		{
-			if (($aTag = Phpfox::getService('tag')->getTagInfo('blog', $this->request()->get((defined('PHPFOX_IS_PAGES_VIEW') ? 'req5' : ($bIsProfile === true ? 'req4' : 'req3'))))))
+			if (($aTag = Tag_Service_Tag::instance()->getTagInfo('blog', $this->request()->get((defined('PHPFOX_IS_PAGES_VIEW') ? 'req5' : ($bIsProfile === true ? 'req4' : 'req3'))))))
 			{
 				$this->template()->setBreadCrumb(Phpfox::getPhrase('tag.topic') . ': ' . $aTag['tag_text'] . '', $this->url()->makeUrl('current'), true);				
 				$this->search()->setCondition('AND tag.tag_text = \'' . Phpfox_Database::instance()->escape($aTag['tag_text']) . '\'');
@@ -311,7 +311,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 			$this->template()->setMeta('keywords', $this->template()->getKeywords($aItem['title']));	
 			if (!empty($aItem['tag_list']))
 			{
-				$this->template()->setMeta('keywords', Phpfox::getService('tag')->getKeywords($aItem['tag_list']));
+				$this->template()->setMeta('keywords', Tag_Service_Tag::instance()->getKeywords($aItem['tag_list']));
 			}
 		}		
 		

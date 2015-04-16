@@ -19,7 +19,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<ul>
 			{foreach from=$aRows item=aRow}
 				<li>
-					<a href="{$aRow.link}" data-text="{$aRow.key}">
+					<a href="{$aRow.link}" data-text="{$aRow.key}" class="site_hash_tag">
 						{if Phpfox::getParam('tag.enable_hashtag_support')}#{/if}{$aRow.key}
 					</a>
 				</li>

@@ -447,7 +447,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 		
 		if ($this->request()->get('req2') == 'tag')
 		{
-			if (($aTag = Phpfox::getService('tag')->getTagInfo('photo', $this->request()->get('req3'))))
+			if (($aTag = Tag_Service_Tag::instance()->getTagInfo('photo', $this->request()->get('req3'))))
 			{
 				$this->template()->setBreadCrumb(Phpfox::getPhrase('tag.topic') . ': ' . $aTag['tag_text'] . '', $this->url()->makeUrl('current'), true);				
 				

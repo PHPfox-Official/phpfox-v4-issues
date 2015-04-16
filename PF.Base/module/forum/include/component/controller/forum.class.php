@@ -328,7 +328,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			
 			if ($bIsTagSearch)
 			{
-				$aTag = Phpfox::getService('tag')->getTagInfo('forum', ($bIsModuleTagSearch ? $this->request()->get('req5') : $this->request()->get('req3')));
+				$aTag = Tag_Service_Tag::instance()->getTagInfo('forum', ($bIsModuleTagSearch ? $this->request()->get('req5') : $this->request()->get('req3')));
 				if (!empty($aTag['tag_text']))
 				{
 					if ($bIsModuleTagSearch)

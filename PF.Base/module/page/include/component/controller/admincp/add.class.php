@@ -44,7 +44,7 @@ class Page_Component_Controller_Admincp_Add extends Phpfox_Component
 			
 				if (Phpfox::isModule('tag'))
 				{
-					$aTags = Phpfox::getService('tag')->getTagsById('page', $aPage['page_id']);
+					$aTags = Tag_Service_Tag::instance()->getTagsById('page', $aPage['page_id']);
 					if (isset($aTags[$aPage['page_id']]))
 					{
 						$aPage['tag_list'] = '';					

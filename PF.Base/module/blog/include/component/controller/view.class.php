@@ -128,7 +128,7 @@ class Blog_Component_Controller_View extends Phpfox_Component
 		
 		if (Phpfox::isModule('tag'))
 		{
-			$aTags = Phpfox::getService('tag')->getTagsById('blog', $aItem['blog_id']);	
+			$aTags = Tag_Service_Tag::instance()->getTagsById('blog', $aItem['blog_id']);
 			if (isset($aTags[$aItem['blog_id']]))
 			{
 				$aItem['tag_list'] = $aTags[$aItem['blog_id']];
@@ -162,7 +162,7 @@ class Blog_Component_Controller_View extends Phpfox_Component
 		// Add tags to meta keywords
 		if (!empty($aItem['tag_list']) && $aItem['tag_list'] && Phpfox::isModule('tag'))
 		{
-			$this->template()->setMeta('keywords', Phpfox::getService('tag')->getKeywords($aItem['tag_list']));
+			$this->template()->setMeta('keywords', Tag_Service_Tag::instance()->getKeywords($aItem['tag_list']));
 		}	
 		
 		if (isset($aItem['module_id']) && Phpfox::hasCallback($aItem['module_id'], 'getVideoDetails'))

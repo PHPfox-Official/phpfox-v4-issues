@@ -188,7 +188,7 @@ class Blog_Service_Blog extends Phpfox_Service
 
 		if (Phpfox::isModule('tag'))
 		{
-			$aTags = Phpfox::getService('tag')->getTagsById('blog', implode(', ', $aIds));	
+			$aTags = Tag_Service_Tag::instance()->getTagsById('blog', implode(', ', $aIds));
 		}
 
 		$oFilterOutput = Phpfox::getLib('parse.output');

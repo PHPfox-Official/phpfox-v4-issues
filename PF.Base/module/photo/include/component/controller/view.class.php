@@ -155,7 +155,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 		// Add photo tags to meta keywords
 		if (!empty($aPhoto['tag_list']) && $aPhoto['tag_list'] && Phpfox::isModule('tag'))
 		{
-			$this->template()->setMeta('keywords', Phpfox::getService('tag')->getKeywords($aPhoto['tag_list']));
+			$this->template()->setMeta('keywords', Tag_Service_Tag::instance()->getKeywords($aPhoto['tag_list']));
 		}		
 
 		$this->template()->setTitle($aPhoto['title']);

@@ -69,7 +69,7 @@ class Tag_Service_Tag extends Phpfox_Service
 	public function getForEdit($sCategory, $iId)
 	{
 		$sList = '';		
-		$aTags = Phpfox::getService('tag')->getTagsById($sCategory, $iId);		
+		$aTags = Tag_Service_Tag::instance()->getTagsById($sCategory, $iId);
 		
 		if (isset($aTags[$iId]))
 		{					

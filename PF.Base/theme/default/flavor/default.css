@@ -3098,8 +3098,8 @@ div#right div.menu ul li.active {
   height: 32px;
   background-size: contain;
 }
-.nav_pages a span,
-.nav_pages a:hover span {
+.nav_pages a span.js_hover_info,
+.nav_pages a:hover span.js_hover_info {
   display: none;
 }
 #content a.drop_down_link {

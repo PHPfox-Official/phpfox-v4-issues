@@ -189,7 +189,11 @@ class Phpfox_Image_Helper
 			{			
 				$iWidth = 80;			
 				$iHeight = 70;
-				if (isset($aParams['path']) && $aParams['path'] == 'core.url_user' && !isset($aParams['is_page_image']) && isset($aParams['user']))
+				if (isset($aParams['path'])
+					&& $aParams['path'] == 'core.url_user'
+					// && !isset($aParams['is_page_image'])
+					// && isset($aParams['user'])
+				)
 				{
 					static $aGenders = null;
 					
@@ -232,8 +236,8 @@ class Phpfox_Image_Helper
 					
 					// $sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/' . $sGender . 'profile' . $sImageSuffix . '.png');
 					$sImageSize = $sImageSuffix;
-					if (isset($aParams['user'])) {
-						$name = $aParams['user'][$sSuffix . 'full_name'];
+					// if (isset($aParams['user'])) {
+						$name = (isset($aParams['user']) ? $aParams['user'][$sSuffix . 'full_name'] : (isset($aParams['title']) ? $aParams['title'] : ''));
 						$parts = explode(' ', $name);
 						$first = $name[0];
 						$last = $name[1];
@@ -246,14 +250,14 @@ class Phpfox_Image_Helper
 						}
 
 						$ele = 'a';
-						if (isset($aParams['no_link'])) {
+						if (isset($aParams['no_link']) || !isset($sLink)) {
 							$ele = 'span';
 						}
 
 						$image = '<' . $ele . '' . ($ele == 'a' ? ' href="' . $sLink . '"' : '') . ' class="no_image_user _size_' . $sImageSize . ' _gender_' . $sGender . ' _first_' . strtolower($first . $last) . '"><span>' . $first . $last . '</span></' . $ele . '>';
 
 						return $image;
-					}
+					// }
 				}
 				else 
 				{
@@ -261,6 +265,9 @@ class Phpfox_Image_Helper
 					$sImageSize = '';
 					if (isset($aParams['suffix'])) {
 						$sImageSize = $aParams['suffix'];
+					}
+					if (isset($aParams['max_width'])) {
+						$sImageSize = $aParams['max_width'];
 					}
 					$image = '<' . $ele . ' class="no_image_item i_size_' . $sImageSize . '"><span></span></' . $ele . '>';
 
@@ -282,6 +289,7 @@ class Phpfox_Image_Helper
 			$aParams['file'] = '';
 		}
 
+		/*
 		if (empty($aParams['file']))
 			{
 				$iWidth = 80;
@@ -359,11 +367,13 @@ class Phpfox_Image_Helper
 					if (isset($aParams['suffix'])) {
 						$sImageSize = $aParams['suffix'];
 					}
+
 					$image = '<' . $ele . ' class="no_image_item i_size_' . $sImageSize . '"><span></span></' . $ele . '>';
 
 					return $image;
 				}
 			}
+		*/
 		
 		// Windows slash fix
 		$sSrc = str_replace("\\", '/', $sSrc);

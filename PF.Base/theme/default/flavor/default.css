@@ -5482,6 +5482,22 @@ div.error_message {
   display: block;
   transition: all 0.5s ease;
 }
+table.default_table {
+  margin-top: 20px;
+}
+table.default_table th {
+  background: transparent;
+  color: #808080;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+table.default_table td {
+  padding: 10px;
+  background: #ffffff;
+  color: #999999;
+  border-bottom: 1px #ebebeb solid;
+}
 #welcome {
   padding: 0px;
   margin-bottom: 20px;
@@ -6459,6 +6475,9 @@ span.forum_tag_sticky {
   padding-right: 0px;
 }
 .thread_view_holder .thread_replies > h1 {
+  background: #ffffff;
+  border-bottom: 1px #ebebeb solid;
+  padding: 10px;
   color: #9a9a9a;
   font-weight: 500;
   font-size: 12px;
@@ -6483,8 +6502,19 @@ span.forum_tag_sticky {
 #page_forum_forum #container {
   margin-left: 290px;
 }
+#page_forum_thread div.sub_menu_bar_main {
+  right: 10px;
+  top: -62px;
+}
 #page_forum_thread #content {
   width: auto;
+}
+#page_forum_thread #container {
+  width: 80%;
+  margin-left: 20px;
+}
+#page_forum_thread #container > ._block_h1 {
+  margin-bottom: 20px;
 }
 #page_forum_thread #container > ._block_h1 > h1 {
   width: auto;
@@ -6495,25 +6525,30 @@ span.forum_tag_sticky {
 }
 #page_forum_thread .forum_header_menu {
   top: 6px;
-  right: 470px;
+  right: 50%;
+  margin-right: 10px;
+}
+#page_forum_thread #panels {
+  display: none;
 }
 .thread_view_all,
 .thread_view_all:hover {
   position: absolute;
-  right: 0px;
-  top: 8px;
+  right: 10px;
+  top: 10px;
   font-size: 12px;
   display: block;
   text-transform: uppercase;
   font-weight: 500;
+  opacity: 0.6;
 }
 .thread_view_all > span,
 .thread_view_all:hover > span {
   display: inline-block;
   margin-left: 5px;
-  background: #cccccc;
-  color: #808080;
-  padding: 2px 4px;
+  background: #e6e6e6;
+  color: #999999;
+  padding: 0px 6px;
 }
 .forum_popup_replies {
   display: block;
@@ -6608,6 +6643,33 @@ span.forum_tag_sticky {
   font-weight: normal;
   line-height: normal;
   padding: 0px;
+}
+.forum_thread_view_holder {
+  border: 0px;
+}
+#page_forum_thread ._block_h1 {
+  position: fixed;
+  background: #ffffff;
+  top: 40px;
+  left: 200px;
+  right: 0px;
+  z-index: 100;
+}
+#page_forum_thread ._block_h1 > h1 {
+  position: static;
+  /*
+		left:@navWidth;
+		top:@headerHeight;
+		right:auto;
+		width:auto;
+		*/
+  z-index: 100;
+  background: transparent;
+}
+#page_forum_thread div.sub_menu_bar_main {
+  position: fixed;
+  top: 44px;
+  z-index: 2000;
 }
 #panel .js_friend_search_link {
   border-bottom: 1px #f0f0f0 solid;

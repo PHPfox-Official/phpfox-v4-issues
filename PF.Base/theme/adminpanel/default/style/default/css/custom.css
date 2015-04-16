@@ -917,6 +917,38 @@ select:focus {
 .table3 .row_right .p_4 {
   position: relative;
 }
+.table .table_right .currency,
+.table3 .table_right .currency,
+.table .table_right_text .currency,
+.table3 .table_right_text .currency,
+.table .row_right .currency,
+.table3 .row_right .currency {
+  position: relative;
+}
+.table .table_right .currency > span,
+.table3 .table_right .currency > span,
+.table .table_right_text .currency > span,
+.table3 .table_right_text .currency > span,
+.table .row_right .currency > span,
+.table3 .row_right .currency > span {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  width: 30px;
+  text-align: center;
+  background: #f4645f;
+  color: #ffffff;
+  padding-top: 8px;
+}
+.table .table_right .currency > input,
+.table3 .table_right .currency > input,
+.table .table_right_text .currency > input,
+.table3 .table_right_text .currency > input,
+.table .row_right .currency > input,
+.table3 .row_right .currency > input {
+  text-indent: 40px;
+}
 ul.table_clear_button li {
   float: none;
   display: block;

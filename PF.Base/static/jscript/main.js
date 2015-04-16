@@ -799,8 +799,7 @@ $Behavior.globalInit = function()
 			t.replaceWith('test');
 		};
 		i.onload = function(e) {
-			// p(e);
-			// t.css('background-image', 'url(' + src + ')');
+			t.attr('src', src);
 		};
 		i.src = src;
 	});

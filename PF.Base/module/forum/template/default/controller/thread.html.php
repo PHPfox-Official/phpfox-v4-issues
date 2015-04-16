@@ -150,6 +150,20 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="thread_view_holder">
 			<section class="thread_starter">
 				{template file='forum.block.post'}
+				{literal}
+				<script>
+					$Ready(function() {
+						if ($('#page_forum_thread').length
+							&& $('#js_block_border_ad_display').length
+							&& !$('#page_forum_thread').hasClass('ad_created')
+							) {
+							$('#page_forum_thread').addClass('ad_created');
+							$('.thread_starter').append($('#js_block_border_ad_display'));
+							p('test...');
+						}
+					});
+				</script>
+				{/literal}
 			</section>
 			<section class="thread_replies">
 				<h1>Latest Replies</h1>
@@ -161,28 +175,13 @@ defined('PHPFOX') or exit('NO DICE!');
 					{plugin call='forum.template_controller_post_2'}
 				{/foreach}
 
-				{* pager *}
 		{if isset($aThread.post_starter)}
+				<div id="js_post_new_thread"></div>
+				{if !PHPFOX_IS_AJAX && (Phpfox::getUserParam('forum.can_approve_forum_thread') || Phpfox::getUserParam('forum.can_delete_other_posts'))}
+				{moderation}
+				{/if}
 			</section>
 		</div>
-		<div id="js_post_new_thread"></div>
 		{/if}
 	</div>
-
-	{if !PHPFOX_IS_AJAX && (Phpfox::getUserParam('forum.can_approve_forum_thread') || Phpfox::getUserParam('forum.can_delete_other_posts'))}
-	{moderation}
-	{/if}
-
-	{if $sPermaView === null}
-	{if !$aThread.is_announcement}
-	{if $aThread.is_closed}
-	<div class="sub_menu_bar_main sub_menu_bar_main_bottom"><a href="#" onclick="return false;">{phrase var='forum.closed'}</a></div>
-	{else}
-	{if (Phpfox::getUserParam('forum.can_reply_to_own_thread') && $aThread.user_id == Phpfox::getUserId()) || Phpfox::getUserParam('forum.can_reply_on_other_threads') || Phpfox::getService('forum.moderate')->hasAccess('' . $aThread.forum_id . '', 'can_reply')}
-	<div class="sub_menu_bar_main sub_menu_bar_main_bottom"><a href="#" onclick="$Core.box('forum.reply', 800, 'id={$aThread.thread_id}'); return false;">{phrase var='forum.new_reply'}</a></div>
-	{/if}
-	{/if}
-	{/if}
-
-	{/if}
 {/if}

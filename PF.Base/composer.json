@@ -2,6 +2,7 @@
 	"require": {
 		"twig/twig": "1.18.*@dev",
 		"leafo/lessphp": "0.4.0",
-		"filp/whoops": "1.*"
+		"filp/whoops": "1.*",
+		"ircmaxell/password-compat": "~1.0"
 	}
 }

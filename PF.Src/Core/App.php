@@ -7,20 +7,28 @@ class App {
 
 	public function __construct() {
 
-		foreach (scandir(PHPFOX_DIR_SITE . 'apps/') as $apps) {
-			if ($apps == '.' || $apps == '..') {
+		$base = PHPFOX_DIR_SITE . 'apps/';
+		foreach (scandir($base) as $vendors) {
+			if ($vendors == '.' || $vendors == '..') {
 				continue;
 			}
 
-			$path = PHPFOX_DIR_SITE . 'apps/' . $apps . '/';
-			$file = $path . 'app.json';
-			if (!file_exists($file)) {
+			if (!is_dir($base . $vendors)) {
 				continue;
 			}
-			$data = json_decode(file_get_contents($file));
-			$data->path = $path;
+			foreach (scandir($base . $vendors) as $apps) {
+				$path = $base . $vendors . '/' . $apps . '/';
+				$file = $path . 'app.json';
+				if (!file_exists($file)) {
+					continue;
+				}
+				$data = json_decode(file_get_contents($file));
+				$data->path = $path;
 
-			$this->_apps[$data->id] = $data;
+				$this->_apps[$data->id] = $data;
+			}
+
+
 		}
 
 		// d($this->_apps); exit;

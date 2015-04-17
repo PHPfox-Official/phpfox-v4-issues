@@ -14,6 +14,10 @@ class Controller {
 		foreach ($Apps->all() as $App) {
 			self::$active = $App->path;
 
+			$vendor = $App->path . 'vendor/autoload.php';
+			if (file_exists($vendor)) {
+				require($vendor);
+			}
 			require($App->path . 'start.php');
 		}
 	}

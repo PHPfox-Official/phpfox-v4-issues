@@ -285,95 +285,17 @@ class Phpfox_Image_Helper
 		$aParams['file'] = preg_replace('/%[^s]/', '%%', $aParams['file']);
 		$sSrc = Phpfox::getParam($aParams['path']) . sprintf($aParams['file'], (isset($aParams['suffix']) ? $aParams['suffix'] : ''));
 		$sDirSrc = str_replace(Phpfox::getParam('core.path'), PHPFOX_DIR, $sSrc);
+
+		if (isset($aParams['server_id']) && $aParams['server_id']) {
+			$newPath = Phpfox_Cdn::instance()->getUrl($sSrc);
+			if (!empty($newPath)) {
+				$sSrc = $newPath;
+			}
+		}
+
 		if (!file_exists($sDirSrc)) {
 			$aParams['file'] = '';
 		}
-
-		/*
-		if (empty($aParams['file']))
-			{
-				$iWidth = 80;
-				$iHeight = 70;
-				if (isset($aParams['path']) && $aParams['path'] == 'core.url_user' && !isset($aParams['is_page_image']) && isset($aParams['user']))
-				{
-					static $aGenders = null;
-
-					if ($aGenders === null)
-					{
-						$aGenders = array();
-						foreach ((array) Phpfox::getParam('core.global_genders') as $iKey => $aGender)
-						{
-							if (isset($aGender[3]))
-							{
-								$aGenders[$iKey] = $aGender[3];
-							}
-						}
-					}
-
-					$sGender = '';
-					if (isset($aParams['user']) && isset($aParams['user'][$sSuffix . 'gender']))
-					{
-						if (isset($aGenders[$aParams['user'][$sSuffix . 'gender']]))
-						{
-							$sGender = $aGenders[$aParams['user'][$sSuffix . 'gender']] . '_';
-						}
-					}
-
-					$sImageSuffix = '';
-					if (!empty($aParams['suffix']))
-					{
-						$aParams['suffix'] = str_replace('_square', '', $aParams['suffix']);
-						$iHeight = ltrim($aParams['suffix'], '_');
-						$iWidth = ltrim($aParams['suffix'], '_');
-						if ((int) $iWidth >= 200)
-						{
-							// $sSrc .= '_noimage';
-						}
-						else
-						{
-							$sImageSuffix = $aParams['suffix'];
-						}
-					}
-
-					// $sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/' . $sGender . 'profile' . $sImageSuffix . '.png');
-					$sImageSize = $sImageSuffix;
-					if (isset($aParams['user'])) {
-						$name = $aParams['user'][$sSuffix . 'full_name'];
-						$parts = explode(' ', $name);
-						$first = $name[0];
-						$last = $name[1];
-						if (isset($parts[1])) {
-							$last = $parts[1][0];
-						}
-
-						if (isset($aParams['max_width'])) {
-							$sImageSize = '_' . $aParams['max_width'];
-						}
-
-						$ele = 'a';
-						if (isset($aParams['no_link'])) {
-							$ele = 'span';
-						}
-
-						$image = '<' . $ele . '' . ($ele == 'a' ? ' href="' . $sLink . '"' : '') . ' class="no_image_user _size_' . $sImageSize . ' _gender_' . $sGender . ' _first_' . strtolower($first . $last) . '"><span>' . $first . $last . '</span></' . $ele . '>';
-
-						return $image;
-					}
-				}
-				else
-				{
-					$ele = 'span';
-					$sImageSize = '';
-					if (isset($aParams['suffix'])) {
-						$sImageSize = $aParams['suffix'];
-					}
-
-					$image = '<' . $ele . ' class="no_image_item i_size_' . $sImageSize . '"><span></span></' . $ele . '>';
-
-					return $image;
-				}
-			}
-		*/
 		
 		// Windows slash fix
 		$sSrc = str_replace("\\", '/', $sSrc);

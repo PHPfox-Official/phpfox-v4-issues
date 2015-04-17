@@ -9,7 +9,7 @@ class Model {
 	protected $db;
 
 	/**
-	 * @var \Phpfox_Cache_Storage_File
+	 * @var \Core\Cache
 	 */
 	protected $cache;
 
@@ -20,7 +20,7 @@ class Model {
 
 	public function __construct() {
 		$this->db = \Phpfox_Database::instance();
-		$this->cache = \Phpfox_Cache::instance();
+		$this->cache = new Cache();
 		$this->active = (new \Api\User())->get(\Phpfox::getUserId());
 	}
 }

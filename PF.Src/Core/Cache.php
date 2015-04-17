@@ -19,6 +19,10 @@ class Cache {
 		return $this->_cache->save($this->_cache->set($key), $value);
 	}
 
+	public function del($key) {
+		return $this->_cache->remove($this->_cache->set($key));
+	}
+
 	public function get($key) {
 		return $this->_cache->get($this->_cache->set($key));
 	}

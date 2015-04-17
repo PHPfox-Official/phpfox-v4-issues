@@ -35,6 +35,11 @@ function j($element) {
 	return new \Core\jQuery($element);
 }
 
+function setting($key, $default = null) {
+	$Setting = new \Core\Setting();
+	return $Setting->get($key, $default);
+}
+
 function phrase() {
 	$Reflect = (new ReflectionClass('Phpfox_Locale'))->newInstanceWithoutConstructor();
 

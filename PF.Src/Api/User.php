@@ -4,6 +4,10 @@ namespace Api;
 
 class User extends \Core\Api {
 
+	public function post() {
+		
+	}
+
 	/**
 	 * @param null $userId
 	 * @return User\Object|User\Object[]

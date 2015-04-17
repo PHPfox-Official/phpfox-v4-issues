@@ -3,9 +3,9 @@
 namespace Core;
 
 class Controller {
-	protected $request;
-	protected $url;
-	protected $active;
+	public $request;
+	public $url;
+	public $active;
 
 	private $_view;
 

@@ -30,11 +30,13 @@ class Route {
 					];
 				}
 
+				$key = trim($key, '/');
 				$value['path'] = \Core\Route\Controller::$active;
 				self::$routes[$key] = $value;
 			}
 		}
 		else {
+			$route = trim($route, '/');
 			self::$routes[$route] = [
 				'path' => \Core\Route\Controller::$active
 			];

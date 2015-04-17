@@ -473,6 +473,7 @@ class Phpfox_Url
 	 */
 	public function makeUrl($sUrl, $aParams = array(), $bFullPath = false)
 	{
+		$sUrl = trim($sUrl, '/');
 		if (defined('PHPFOX_INSTALLER'))
 		{
 			if (is_array($aParams))

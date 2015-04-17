@@ -129,11 +129,16 @@ class User_Service_Auth extends Phpfox_Service
 					$this->database()->insert(Phpfox::getT('user_activity'), array('user_id' => $this->_aUser['user_id']));
 				}				
 
-				if (isset($this->_aUser['password']) && isset($this->_aUser['password_salt']) && !Phpfox::getLib('hash')->getRandomHash(Phpfox::getLib('hash')->setHash($this->_aUser['password'], $this->_aUser['password_salt']), $sPasswordHash))
-				{
-					$this->_setDefault();
-					$this->logout();
-				}			
+				if (isset($this->_aUser['password']) && strlen($this->_aUser['password']) > 32) {
+
+				}
+				else {
+					if (isset($this->_aUser['password']) && isset($this->_aUser['password_salt']) && !Phpfox::getLib('hash')->getRandomHash(Phpfox::getLib('hash')->setHash($this->_aUser['password'], $this->_aUser['password_salt']), $sPasswordHash))
+					{
+						$this->_setDefault();
+						$this->logout();
+					}
+				}
 
 				if (isset($this->_aUser['user_id']))
 				{
@@ -343,11 +348,20 @@ class User_Service_Auth extends Phpfox_Service
 			$bDoPhpfoxLoginCheck = true;
 			if ($sPlugin = Phpfox_Plugin::get('user.service_auth_login__password')){eval($sPlugin);}
 
-			if (!$bNoPasswordCheck && $bDoPhpfoxLoginCheck && (Phpfox::getLib('hash')->setHash($sPassword, $aRow['password_salt']) != $aRow['password']))
-			{
-				Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));				
-				//return array(false, $aRow);
-				$bReturn = true;
+			if (strlen($aRow['password']) > 32) {
+				$Hash = new Core\Hash();
+				if (!$Hash->check($sPassword, $aRow['password'])) {
+					Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
+					$bReturn = true;
+				}
+			}
+			else {
+				if (!$bNoPasswordCheck && $bDoPhpfoxLoginCheck && (Phpfox::getLib('hash')->setHash($sPassword, $aRow['password_salt']) != $aRow['password']))
+				{
+					Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
+					//return array(false, $aRow);
+					$bReturn = true;
+				}
 			}
 		}
 
@@ -359,8 +373,6 @@ class User_Service_Auth extends Phpfox_Service
 							->from(Phpfox::getT('user_field'))
 							->where('user_id = ' . $aRow['user_id'])
 							->execute('getSlaveField');
-
-			
 						
 			$iUnlockTimeOut = $iLocked + (Phpfox::getParam('user.brute_force_cool_down') * 60);
 			$iRemaining = $iUnlockTimeOut - PHPFOX_TIME;

@@ -106,11 +106,14 @@
 
 						{if isset($aSectionAppMenus)}
 						<div class="apps_menu">
+							{if !$ActiveApp.is_module}
+							<div class="active_app" data-app-id="{$ActiveApp.id}"></div>
+							{/if}
 							{$ActiveApp.icon}
 
 							<ul>
 							{foreach from=$aSectionAppMenus key=sPhrase item=aMenu}
-								<li><a href="{url link=$aMenu.url}"{if $aMenu.is_active} class="active"{/if}>{$sPhrase}</a></li>
+								<li><a href="{url link=$aMenu.url}"{if isset($aMenu.is_active) && $aMenu.is_active} class="active"{/if}>{$sPhrase}</a></li>
 							{/foreach}
 							</ul>
 						</div>

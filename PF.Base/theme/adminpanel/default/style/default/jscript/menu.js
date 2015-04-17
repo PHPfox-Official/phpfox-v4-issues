@@ -1,7 +1,22 @@
 
 var bIsAdminMenuClickSet = false;
 $Behavior.adminMenuClick = function()
-{	
+{
+	$('.apps_menu ul li a').click(function() {
+		if ($('.active_app').length) {
+			$.ajax({
+				url: $(this).attr('href'),
+				contentType: 'application/json',
+				success: function(e) {
+					$('._block_content').html(e.content);
+					$Core.loadInit();
+				}
+			});
+
+			return false;
+		}
+	});
+
 	$('body').click(function(){
 		
 		$('.main_menu_link').each(function(){
@@ -56,4 +71,4 @@ $Behavior.adminMenuClick = function()
 		}
 	});
 	*/
-}
+};

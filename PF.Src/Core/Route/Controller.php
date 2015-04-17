@@ -42,11 +42,13 @@ class Controller {
 
 		$content = false;
 		$routes = \Core\Route::$routes;
-		$uri = $this->_request->uri();
+		$uri = trim($this->_request->uri(), '/');
 		$uriParts = explode('/', $uri);
 
 		// d($uriParts);
 		foreach ($routes as $key => $route) {
+			$key = trim($key, '/');
+
 			if (strpos($key, ':')) {
 				$parts = explode('/', $key);
 				if (count($uriParts) === count($parts)) {
@@ -86,6 +88,10 @@ class Controller {
 					}
 				}
 			}
+		}
+
+		if ($this->_request->segment(1) == 'admincp') {
+			// \Phpfox::getComponent('admincp.index', ['bNoTemplate' => true, 'isRoute' => true], 'controller');
 		}
 
 		if (isset($routes[$uri])) {
@@ -134,9 +140,19 @@ class Controller {
 					$content = ['error' => \Core\Exception::getErrors(true)];
 				}
 				else {
-					echo $e->getMessage();
-					exit;
+					throw new \Exception($e->getMessage(), 0, $e);
 				}
+			}
+
+			if (isset($_SERVER['CONTENT_TYPE'])
+				&& $_SERVER['CONTENT_TYPE'] == 'application/json'
+				&& $content instanceof \Core\View
+			) {
+				header('Content-type: application/json');
+				echo json_encode([
+					'content' => $content->getContent()
+				]);
+				exit;
 			}
 
 			if (is_array($content)) {

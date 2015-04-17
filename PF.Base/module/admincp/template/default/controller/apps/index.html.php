@@ -29,6 +29,15 @@
 	</div>
 
 	<div>
-
+		{foreach from=$appsV4 item=app}
+			<article>
+				<h1>
+					<a href="{url link='admincp.app' id=$app.id}">
+						{$app.icon}
+						<span>{$app.name|clean}</span>
+					</a>
+				</h1>
+			</article>
+		{/foreach}
 	</div>
 </div>

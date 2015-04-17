@@ -11,6 +11,7 @@ class Object extends \Core\Objectify {
 	public $version;
 	public $currentVersion;
 	public $unityId;
+	public $admincpMenu;
 
 	public function __construct($keys) {
 		parent::__construct($keys);

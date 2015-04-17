@@ -24,6 +24,12 @@ class Route {
 
 		if (is_array($route)) {
 			foreach ($route as $key => $value) {
+				if (is_string($value)) {
+					$value = [
+						'call' => $value
+					];
+				}
+
 				$value['path'] = \Core\Route\Controller::$active;
 				self::$routes[$key] = $value;
 			}

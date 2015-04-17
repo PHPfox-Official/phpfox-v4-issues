@@ -6,6 +6,7 @@ class App {
 	private $_apps = [];
 
 	public function __construct() {
+
 		foreach (scandir(PHPFOX_DIR_SITE . 'apps/') as $apps) {
 			if ($apps == '.' || $apps == '..') {
 				continue;
@@ -19,7 +20,7 @@ class App {
 			$data = json_decode(file_get_contents($file));
 			$data->path = $path;
 
-			$this->_apps[$data->name] = $data;
+			$this->_apps[$data->id] = $data;
 		}
 
 		// d($this->_apps); exit;
@@ -46,6 +47,9 @@ class App {
 				'is_module' => true,
 				'version' => $module['version']
 			];
+		}
+		else {
+			$app = $this->_apps[$id];
 		}
 
 		return new App\Object($app);

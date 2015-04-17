@@ -184,7 +184,7 @@ class Phpfox_Database_Driver_Mysql extends Phpfox_Database_Dba
 		
         if (!$hRes)
         {
-        	Phpfox_Error::trigger('Query Error:' . $this->_sqlError(), (PHPFOX_DEBUG ? E_USER_ERROR : E_USER_WARNING));
+        	Phpfox_Error::trigger('Query Error:' . $this->_sqlError() . ' [' . $sSql . ']', (PHPFOX_DEBUG ? E_USER_ERROR : E_USER_WARNING));
         }        
      
         (PHPFOX_DEBUG ? Phpfox_Debug::end('sql', array('sql' => $sSql, 'slave' => $this->_bIsSlave, 'rows' => (is_bool($hRes) ? '-' : @$this->_aCmd['mysql_num_rows']($hRes)))) : '');

@@ -18,8 +18,8 @@ class User extends \Core\Api {
 			$users = [];
 			$rows = $this->db->select('*')->from(':user')
 				->where($where)
-				->limit(10)
-				->order('user_id DESC')
+				->limit($this->getLimit(10))
+				->order($this->getOrder('user_id DESC'))
 				->all();
 			foreach ($rows as $row) {
 				$users[] = new User\Object($row);

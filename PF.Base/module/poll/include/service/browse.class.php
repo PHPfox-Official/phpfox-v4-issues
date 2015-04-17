@@ -59,6 +59,10 @@ class Poll_Service_Browse extends Phpfox_Service
 		}
 		$sPolls = rtrim($sPolls, ',');
 
+		if (empty($sPolls)) {
+			return;
+		}
+
 		$aAnswers = $this->database()->select('pa.*, pr.user_id as voted')
 			->from(Phpfox::getT('poll_answer'),'pa')
 			->where('pa.poll_id IN(' . $sPolls . ')')

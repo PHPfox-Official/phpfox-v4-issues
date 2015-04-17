@@ -57,7 +57,7 @@ class Blog_Component_Ajax_Ajax extends Phpfox_Ajax
 			Phpfox_Template::instance()->getTemplate('blog.block.category-form');
 		}		
 
-		$this->call('$("#js_add_new_category").prepend("' . $this->getContent() . '").highlightFade(); $("#js_category_info").html("' . Phpfox::getPhrase('blog.added') . '").highlightFade().fadeOut(5000); $("#js_add_category").val(""); $Core.loadInit();');
+		$this->call('$("#js_add_new_category").prepend("' . $this->getContent() . '"); $("#js_category_info").html("' . Phpfox::getPhrase('blog.added') . '").highlightFade().fadeOut(5000); $("#js_add_category").val(""); $Core.loadInit();');
 	}
 	
 	public function displayCategories()

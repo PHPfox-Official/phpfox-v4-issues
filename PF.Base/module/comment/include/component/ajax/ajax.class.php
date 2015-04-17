@@ -217,7 +217,7 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 						$this->append('#js_feed_comment_post_' . $aVals['is_via_feed'], '<div id="' . $sId . '">' . $this->getContent(false) . '</div>');
 					}
 					
-					$this->call('$(\'#' . $sId . '\').highlightFade();');					
+					// $this->call('$(\'#' . $sId . '\').highlightFade();');
 				}
 				else 
 				{

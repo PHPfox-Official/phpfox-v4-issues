@@ -27,7 +27,7 @@ $Core.forum =
 		tb_remove();
 		
 		$.scrollTo('#post' + iPostId, 800);
-		$('#post' + iPostId).highlightFade();		
+		// $('#post' + iPostId).highlightFade();
 	},
 	
 	deletePost: function(iPostId)

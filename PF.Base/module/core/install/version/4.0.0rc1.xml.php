@@ -323,28 +323,6 @@
 			<group />
 			<module_id>core</module_id>
 			<is_hidden>0</is_hidden>
-			<type>boolean</type>
-			<var_name>allow_cdn</var_name>
-			<phrase_var_name>setting_allow_cdn</phrase_var_name>
-			<ordering>1</ordering>
-			<version_id>2.0.5</version_id>
-			<value>0</value>
-		</setting>
-		<setting>
-			<group />
-			<module_id>core</module_id>
-			<is_hidden>0</is_hidden>
-			<type>string</type>
-			<var_name>cdn_cname</var_name>
-			<phrase_var_name>setting_cdn_cname</phrase_var_name>
-			<ordering>6</ordering>
-			<version_id>2.0.5</version_id>
-			<value />
-		</setting>
-		<setting>
-			<group />
-			<module_id>core</module_id>
-			<is_hidden>0</is_hidden>
 			<type>string</type>
 			<var_name>ip_infodb_api_key</var_name>
 			<phrase_var_name>setting_ip_infodb_api_key</phrase_var_name>
@@ -384,28 +362,6 @@
 			<ordering>16</ordering>
 			<version_id>3.0.0Beta1</version_id>
 			<value>1</value>
-		</setting>
-		<setting>
-			<group />
-			<module_id>core</module_id>
-			<is_hidden>0</is_hidden>
-			<type>boolean</type>
-			<var_name>cdn_amazon_https</var_name>
-			<phrase_var_name>setting_cdn_amazon_https</phrase_var_name>
-			<ordering>7</ordering>
-			<version_id>2.1.0beta2</version_id>
-			<value>0</value>
-		</setting>
-		<setting>
-			<group />
-			<module_id>core</module_id>
-			<is_hidden>0</is_hidden>
-			<type>string</type>
-			<var_name>cdn_service</var_name>
-			<phrase_var_name>setting_cdn_service</phrase_var_name>
-			<ordering>8</ordering>
-			<version_id>3.1.0beta1</version_id>
-			<value />
 		</setting>
 		<setting>
 			<group />
@@ -544,17 +500,6 @@
 			<module_id>core</module_id>
 			<is_hidden>0</is_hidden>
 			<type>boolean</type>
-			<var_name>push_jscss_to_cdn</var_name>
-			<phrase_var_name>setting_push_jscss_to_cdn</phrase_var_name>
-			<ordering>16</ordering>
-			<version_id>3.6.0rc1</version_id>
-			<value>0</value>
-		</setting>
-		<setting>
-			<group />
-			<module_id>core</module_id>
-			<is_hidden>0</is_hidden>
-			<type>boolean</type>
 			<var_name>force_404_check</var_name>
 			<phrase_var_name>setting_force_404_check</phrase_var_name>
 			<ordering>7</ordering>
@@ -582,6 +527,61 @@
 			<ordering>2</ordering>
 			<version_id>2.0.0rc1</version_id>
 			<value>watermark%s.png</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>allow_cdn</var_name>
+			<phrase_var_name>setting_allow_cdn</phrase_var_name>
+			<ordering>1</ordering>
+			<version_id>2.0.5</version_id>
+			<value>1</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>string</type>
+			<var_name>cdn_cname</var_name>
+			<phrase_var_name>setting_cdn_cname</phrase_var_name>
+			<ordering>6</ordering>
+			<version_id>2.0.5</version_id>
+			<value />
+		</setting>
+		<setting>
+			<group />
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>cdn_amazon_https</var_name>
+			<phrase_var_name>setting_cdn_amazon_https</phrase_var_name>
+			<ordering>7</ordering>
+			<version_id>2.1.0beta2</version_id>
+			<value>0</value>
+		</setting>
+		<setting>
+			<group />
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>string</type>
+			<var_name>cdn_service</var_name>
+			<phrase_var_name>setting_cdn_service</phrase_var_name>
+			<ordering>8</ordering>
+			<version_id>3.1.0beta1</version_id>
+			<value />
+		</setting>
+		<setting>
+			<group />
+			<module_id>core</module_id>
+			<is_hidden>1</is_hidden>
+			<type>boolean</type>
+			<var_name>push_jscss_to_cdn</var_name>
+			<phrase_var_name>setting_push_jscss_to_cdn</phrase_var_name>
+			<ordering>16</ordering>
+			<version_id>3.6.0rc1</version_id>
+			<value>0</value>
 		</setting>
 		<setting>
 			<group />

@@ -101,8 +101,6 @@ Site Name</setting>
 		<setting group="" module_id="core" is_hidden="0" type="string" var_name="amazon_secret_key" phrase_var_name="setting_amazon_secret_key" ordering="3" version_id="2.0.5" />
 		<setting group="" module_id="core" is_hidden="0" type="string" var_name="amazon_bucket" phrase_var_name="setting_amazon_bucket" ordering="4" version_id="2.0.5" />
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="amazon_bucket_created" phrase_var_name="setting_amazon_bucket_created" ordering="5" version_id="2.0.5">0</setting>
-		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="allow_cdn" phrase_var_name="setting_allow_cdn" ordering="1" version_id="2.0.5">0</setting>
-		<setting group="" module_id="core" is_hidden="0" type="string" var_name="cdn_cname" phrase_var_name="setting_cdn_cname" ordering="6" version_id="2.0.5" />
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="force_https_secure_pages" phrase_var_name="setting_force_https_secure_pages" ordering="10" version_id="2.0.5dev1">0</setting>
 		<setting group="" module_id="core" is_hidden="0" type="array" var_name="global_genders" phrase_var_name="setting_global_genders" ordering="1" version_id="2.0.5dev2"><![CDATA[s:112:"array(
   0 => '1|core.his|profile.male|core.himself',
@@ -113,9 +111,7 @@ Site Name</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="site_wide_ajax_browsing" phrase_var_name="setting_site_wide_ajax_browsing" ordering="1" version_id="2.1.0Beta1">0</setting>
 		<setting group="" module_id="core" is_hidden="0" type="drop" var_name="date_field_order" phrase_var_name="setting_date_field_order" ordering="15" version_id="3.0.0Beta1"><![CDATA[a:2:{s:7:"default";s:3:"MDY";s:6:"values";a:3:{i:0;s:3:"MDY";i:1;s:3:"DMY";i:2;s:3:"YMD";}}]]></setting>
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="use_jquery_datepicker" phrase_var_name="setting_use_jquery_datepicker" ordering="16" version_id="3.0.0Beta1">1</setting>
-		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="cdn_amazon_https" phrase_var_name="setting_cdn_amazon_https" ordering="7" version_id="2.1.0beta2">0</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="disable_hash_bang_support" phrase_var_name="setting_disable_hash_bang_support" ordering="14" version_id="3.0.0beta3">0</setting>
-		<setting group="" module_id="core" is_hidden="0" type="string" var_name="cdn_service" phrase_var_name="setting_cdn_service" ordering="8" version_id="3.1.0beta1" />
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="enable_amazon_expire_urls" phrase_var_name="setting_enable_amazon_expire_urls" ordering="9" version_id="3.1.0rc1">0</setting>
 		<setting group="" module_id="core" is_hidden="0" type="integer" var_name="amazon_s3_expire_url_timeout" phrase_var_name="setting_amazon_s3_expire_url_timeout" ordering="10" version_id="3.1.0rc1">60</setting>
 		<setting group="general" module_id="core" is_hidden="0" type="string" var_name="official_launch_of_site" phrase_var_name="setting_official_launch_of_site" ordering="17" version_id="3.2.0beta1">1/1/2012</setting>
@@ -131,7 +127,6 @@ Site Name</setting>
 		<setting group="" module_id="core" is_hidden="0" type="array" var_name="controllers_to_load_delayed" phrase_var_name="setting_controllers_to_load_delayed" ordering="4" version_id="3.6.0rc1"><![CDATA[s:8:"array();";]]></setting>
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="super_cache_system" phrase_var_name="setting_super_cache_system" ordering="5" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="store_only_users_in_session" phrase_var_name="setting_store_only_users_in_session" ordering="6" version_id="3.6.0rc1">0</setting>
-		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="push_jscss_to_cdn" phrase_var_name="setting_push_jscss_to_cdn" ordering="16" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="force_404_check" phrase_var_name="setting_force_404_check" ordering="7" version_id="3.6.0rc1">0</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="boolean" var_name="force_secure_site" phrase_var_name="setting_force_secure_site" ordering="1" version_id="3.6.0rc1">0</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="boolean" var_name="use_custom_cookie_names" phrase_var_name="setting_use_custom_cookie_names" ordering="2" version_id="3.6.0rc1">0</setting>
@@ -146,6 +141,11 @@ Site Name</setting>
 		<setting group="security" module_id="core" is_hidden="0" type="string" var_name="check_body_header" phrase_var_name="setting_check_body_header" ordering="10" version_id="3.6.0rc1">HTTP/1.0 500 Internal Server Error</setting>
 		<setting group="registration" module_id="core" is_hidden="0" type="boolean" var_name="city_in_registration" phrase_var_name="setting_city_in_registration" ordering="17" version_id="3.7.0beta1">0</setting>
 		<setting group="" module_id="core" is_hidden="0" type="string" var_name="watermark_image" phrase_var_name="setting_watermark_image" ordering="2" version_id="2.0.0rc1">watermark%s.png</setting>
+		<setting group="" module_id="core" is_hidden="1" type="boolean" var_name="allow_cdn" phrase_var_name="setting_allow_cdn" ordering="1" version_id="2.0.5">1</setting>
+		<setting group="" module_id="core" is_hidden="1" type="string" var_name="cdn_cname" phrase_var_name="setting_cdn_cname" ordering="6" version_id="2.0.5" />
+		<setting group="" module_id="core" is_hidden="1" type="boolean" var_name="cdn_amazon_https" phrase_var_name="setting_cdn_amazon_https" ordering="7" version_id="2.1.0beta2">0</setting>
+		<setting group="" module_id="core" is_hidden="1" type="string" var_name="cdn_service" phrase_var_name="setting_cdn_service" ordering="8" version_id="3.1.0beta1" />
+		<setting group="" module_id="core" is_hidden="1" type="boolean" var_name="push_jscss_to_cdn" phrase_var_name="setting_push_jscss_to_cdn" ordering="16" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="core" is_hidden="1" type="drop" var_name="wysiwyg" phrase_var_name="setting_wysiwyg" ordering="0" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:7:"default";s:6:"values";a:3:{i:0;s:7:"default";i:1;s:7:"tinymce";i:2;s:9:"fckeditor";}}]]></setting>
 		<setting group="" module_id="core" is_hidden="1" type="boolean" var_name="allow_html" phrase_var_name="setting_allow_html" ordering="0" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="core" is_hidden="1" type="large_string" var_name="allowed_html" phrase_var_name="setting_allowed_html" ordering="0" version_id="2.0.0alpha1"><![CDATA[<p><br><br /><strong><em><u><ul><li><font><ol><img><div><span><blockquote><strike><sub><sup><h1><h2><h3><h4><h5><h6><a><b><i><hr><tt><s><center><big><abbr><pre><small><object><embed><param><code>]]></setting>

@@ -236,3 +236,24 @@
 		}
 	}
 }
+
+.userImage(@size) {
+	@newSize: @size * 1px;
+	._image__@{size}_square {
+		width:@newSize;
+		height:@newSize;
+		overflow:hidden;
+		background-size:contain;
+	}
+
+	._image_@{size} {
+		width:@newSize;
+		height:@newSize;
+		overflow:hidden;
+		background-size:contain;
+	}
+}
+
+.userImage(50);
+.userImage(200);
+.userImage(32);

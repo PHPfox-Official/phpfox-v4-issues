@@ -116,6 +116,7 @@ class Phpfox_Image_Helper
 		}
 		
 		$bIsServer = (!empty($aParams['server_id']) ? true : false);
+		$isObject = false;
 				
 		if (($sPlugin = Phpfox_Plugin::get('image_helper_display_start'))){eval($sPlugin);if (isset($mReturnPlugin)){return $mReturnPlugin;}}
 
@@ -182,7 +183,12 @@ class Phpfox_Image_Helper
 			if (Phpfox::getParam('user.prevent_profile_photo_cache') && isset($aParams['user'][$sSuffix . 'user_id']) && $aParams['user'][$sSuffix . 'user_id'] == Phpfox::getUserId())
 			{
 				$aParams['time_stamp'] = true;
-			}			
+			}
+
+			if (substr($aParams['file'], 0, 1) == '{') {
+				$isObject = true;
+				$aParams['org_file'] = $aParams['file'];
+			}
 		}		
 
 		if (empty($aParams['file']))
@@ -349,13 +355,26 @@ class Phpfox_Image_Helper
 		$sImage .= '<img';
 		if ($bDefer == true)
 		{
-			$aParams['class'] = ' image_deferred ' . (isset($aParams['class']) ? ' ' . $aParams['class'] : '');
+			if ($isObject) {
+				$object = json_decode($aParams['org_file'], true);
+				$sSrc = array_values($object)[0];
+				$sImage .= ' data-object="' . array_keys($object)[0] . '" ';
+				// ob_clean(); d($sSrc); exit;
+			}
+
+			$size = (isset($aParams['suffix']) ? $aParams['suffix'] : '');
+			if (isset($aParams['max_width'])) {
+				$size = $aParams['max_width'];
+			}
+
+			$aParams['class'] = ' _image_' . $size . ' ' . ($isObject ? 'image_object' : 'image_deferred') . ' ' . (isset($aParams['class']) ? ' ' . $aParams['class'] : '');
 			$sImage .= ' data-src="' . $sSrc . (isset($aParams['time_stamp']) ? '?t=' . uniqid() : '') . '" src="' . Phpfox_Template::instance()->getStyle('image', 'misc/defer_holder.gif') . '" ';
 		}
 		else
 		{
 			$sImage .= ' src="' . $sSrc . (isset($aParams['time_stamp']) ? '?t=' . uniqid() : '') . '" ';
 		}
+
 		if (isset($aParams['title']))
 		{
 			$sImage .= ' alt="' . htmlspecialchars($aParams['title']) . '" ';
@@ -365,21 +384,10 @@ class Phpfox_Image_Helper
 			$sImage .= ' alt="' . htmlspecialchars($sAlt) . '" ';
 		}
 		
-		if(!defined('PHPFOX_INSTALLER') && Phpfox::getParam('user.display_user_online_status') && isset($aParams['user']))
-		{
-			$sImage .= ' title="' . htmlspecialchars($aParams['title']) . '"';
-		}
-		
 		if (isset($aParams['js_hover_title']))
 		{
 			$sImage .= ' class="js_hover_title" ';
 			unset($aParams['js_hover_title']);
-		}
-		
-		if (!defined('PHPFOX_INSTALLER') && Phpfox::getParam('user.display_user_online_status') && isset($aParams['user']) && !isset($aParams['no_online_status']))
-		{
-			$sImage .= ' class="' . ($bIsOnline ? 'image_online_status' : 'image_online') . (isset($aParams['class']) ? ' ' . $aParams['class'] : '') . '" ';
-			unset($aParams['class']);
 		}
 		
 		if (isset($aParams['force_max']))
@@ -397,18 +405,10 @@ class Phpfox_Image_Helper
 			$sImage .= 'width="' . $iWidth . '" ';
 		}
 		
-		if (isset($bNoWidthHeightFound))
-		{
-			$sImage .= ' style="max-width:' . $aParams['max_width'] . 'px;max-height:' . $aParams['max_height'] . 'px;' . (isset($aParams['style']) ? $aParams['style'] : '') . '" ';
-		}
-		
-		if (isset($aParams['force_max']))
-		{
-			unset($aParams['force_max']);
-		}
-		
-		unset($aParams['server_id'], 
-			$aParams['src'], 
+		unset($aParams['server_id'],
+			$aParams['force_max'],
+			$aParams['org_file'],
+			$aParams['src'],
 			$aParams['max_height'], 
 			$aParams['max_width'], 
 			$aParams['href'], 

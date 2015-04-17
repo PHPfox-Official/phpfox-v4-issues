@@ -1,3 +1,39 @@
+._image__50_square {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  background-size: contain;
+}
+._image_50 {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  background-size: contain;
+}
+._image__200_square {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  background-size: contain;
+}
+._image_200 {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  background-size: contain;
+}
+._image__32_square {
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  background-size: contain;
+}
+._image_32 {
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  background-size: contain;
+}
 ._first_aa {
   background: #2980b9;
 }

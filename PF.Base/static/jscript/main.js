@@ -1,5 +1,19 @@
-// var $Core = {};
-// var $Behavior = {};
+
+var PF = {
+	url: {
+		send: function(url, relocation) {
+			url = getParam('sJsHome') + trim(url, '/');
+			if (relocation) {
+				window.location.href = url;
+				return;
+			}
+
+			history.pushState(null, null, url);
+		}
+	}
+};
+
+
 var $Cache = {};
 var $oEventHistory = {};
 var $oStaticHistory = {};
@@ -13,7 +27,6 @@ if (typeof window.console.log == 'undefined')
 {
 	window.console.log = function(sTxt){};
 }
-
 
 $.fn.message = function(sMessage, sType) 
 {

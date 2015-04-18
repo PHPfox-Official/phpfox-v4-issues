@@ -16,6 +16,9 @@ class Event {
 	}
 
 	public static function trigger($name) {
+		$args = func_get_args();
+		unset($args[0]);
+
 		// if (self::$_events === null) {
 			if (isset(self::$_events[$name])) {
 				$callback = self::$_events[$name];
@@ -26,6 +29,9 @@ class Event {
 						if (method_exists($object, '__returnObject')) {
 							return $object;
 						}
+					}
+					else if (is_object($c) && $c instanceof \Closure) {
+						call_user_func_array($c, $args);
 					}
 				}
 			}

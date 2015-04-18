@@ -1042,43 +1042,8 @@ class Phpfox_Template
 		if (Phpfox::isAdminPanel()) {
 			$this->setHeader(array('custom.css' => 'style_css'));
 		}
-		/*
-		if (!defined('PHPFOX_INSTALLER'))
-		{
-			$this->setHeader(array('custom.css' => 'style_css'));
 
-			$aLocale = Phpfox_Locale::instance()->getLang();
-			if ($aLocale['direction'] == 'rtl')
-			{
-				$this->setHeader(array(
-						'rtl.css' => 'style_css'
-					)
-				);
-			}
-			
-			$sCustomCss = '';			
-			$aThemeCache = $this->getThemeCache();
-			if (isset($aThemeCache['l_width']) && $aThemeCache['l_width'] > 0)
-			{
-				$sCustomCss .= '#left { width:' . (int) $aThemeCache['l_width'] . 'px; }';
-				$sCustomCss .= '#main_content { margin-left:' . (int) $aThemeCache['l_width'] . 'px; }';
-			}			
-			if (isset($aThemeCache['c_width']) && $aThemeCache['c_width'] > 0)
-			{
-				$sCustomCss .= '.content3, .item_view .js_feed_comment_border, .item_view .item_tag_holder, .item_view .attachment_holder_view { width:' . (int) $aThemeCache['c_width'] . 'px; }';				
-			}
-			if (isset($aThemeCache['r_width']) && $aThemeCache['r_width'] > 0)
-			{
-				$sCustomCss .= '#right { width:' . (int) $aThemeCache['r_width'] . 'px; }';
-				$sCustomCss .= '.content4 { width:' . (960 - (int) $aThemeCache['r_width']) . 'px; }';
-			}
-
-			if (!empty($sCustomCss))
-			{
-				$this->setHeader('<style type="text/css">' . $sCustomCss . '</style>');
-			}			
-		}
-		*/
+		Core\Event::trigger('lib_phpfox_template_getheader', $this);
 
 		$aArrayData = array();
 		$sData = '';

@@ -46,6 +46,10 @@ function phrase() {
 	return call_user_func_array([$Reflect, 'phrase'], func_get_args());
 }
 
+function _p() {
+	return call_user_func_array(['Core\Phrase', 'get'], func_get_args());
+}
+
 function error() {
 	$Reflect = (new ReflectionClass('Core\Exception'))->newInstanceWithoutConstructor();
 

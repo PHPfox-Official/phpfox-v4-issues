@@ -29,6 +29,47 @@ class Object extends \Core\Objectify {
 		$this->icon = '<b class="app_icons"><i class="app_icon _' . strtolower($name) . '">' . $name . '</i></b>';
 	}
 
+	public function export() {
+		$zipFile = PHPFOX_DIR_FILE . 'static/' . uniqid() . '.zip';
+		$zipArchive = new \ZipArchive();
+
+		if (!$zipArchive->open($zipFile, \ZIPARCHIVE::OVERWRITE)) {
+			throw new \Exception('Unable to create ZIP archive.');
+		}
+
+		$exclude = array('.git');
+		$filter = function ($file, $key, $iterator) use ($exclude) {
+			if ($iterator->hasChildren() && !in_array($file->getFilename(), $exclude)) {
+				return true;
+			}
+			return $file->isFile();
+		};
+
+		$directory = new \SplFileInfo($this->path);
+		$innerIterator = new \RecursiveDirectoryIterator(
+			$directory->getRealPath(),
+			\RecursiveDirectoryIterator::SKIP_DOTS
+		);
+		$files = new \RecursiveIteratorIterator(
+			new \RecursiveCallbackFilterIterator($innerIterator, $filter)
+		);
+
+		foreach ($files as $name => $file) {
+			if ($file instanceof \SplFileInfo) {
+				$filePath = $file->getRealPath();
+				$name = str_replace($directory->getRealPath(), '', $filePath);
+				$zipArchive->addFile($filePath, $name);
+			}
+		}
+
+		$zipArchive->close();
+
+		$name = \Phpfox_Parse_Input::instance()->cleanFileName($this->id);
+		\Phpfox_File::instance()->forceDownload($zipFile, 'phpfox-app-' . $name . '.zip');
+
+		return $zipFile;
+	}
+
 	public function __toArray() {
 
 	}

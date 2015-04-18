@@ -34,6 +34,53 @@ class App {
 		// d($this->_apps); exit;
 	}
 
+	/**
+	 * @param null $zip
+	 * @return App\Object
+	 * @throws mixed
+	 */
+	public function import($zip = null) {
+		if ($zip === null) {
+			$zip = PHPFOX_DIR_FILE . 'static/import-' . uniqid() . '.zip';
+			register_shutdown_function(function() use($zip) {
+				unlink($zip);
+			});
+
+			file_put_contents($zip, file_get_contents('php://input'));
+		}
+
+		$archive = new \ZipArchive();
+		$archive->open($zip);
+		$json = $archive->getFromName('/app.json');
+
+		$json = json_decode($json);
+		if (!isset($json->id)) {
+			throw error('Not a valid App to install.');
+		}
+
+		$base = PHPFOX_DIR_SITE . 'Apps/' . $json->id . '/';
+		if (!is_dir($base)) {
+			mkdir($base, 0777, true);
+		}
+
+		$archive->close();
+		$appPath = $base . 'import-' . uniqid() . '.zip';
+		copy($zip, $appPath);
+
+		$newZip = new \ZipArchive();
+		$newZip->open($appPath);
+		$newZip->extractTo($base);
+		$newZip->close();
+
+		register_shutdown_function(function() use($appPath) {
+			unlink($appPath);
+		});
+
+		$CoreApp = new \Core\App();
+
+		return $CoreApp->get($json->id);
+	}
+
 	public function get($id) {
 		$app = [];
 		if (substr($id, 0, 9) == '__module_') {

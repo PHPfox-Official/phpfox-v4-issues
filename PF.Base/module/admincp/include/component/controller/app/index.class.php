@@ -15,6 +15,11 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 				];
 			}
 
+			if ($this->request()->get('export')) {
+				$App->export();
+				exit;
+			}
+
 			$menus = [];
 			if ($App->admincpMenu) {
 				foreach ($App->admincpMenu as $key => $value) {
@@ -51,6 +56,15 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 				'ActiveApp' => $App,
 				'settings' => $settings
 			]);
+
+			if (defined('PHPFOX_IS_TECHIE') && PHPFOX_IS_TECHIE) {
+				$this->template()->setActionMenu([
+					'Export' => [
+						'url' => $this->url()->makeUrl('admincp/app', ['id' => $App->id, 'export' => '1']),
+						'class' => ''
+					]
+				]);
+			}
 		}
 
 		$this->template()

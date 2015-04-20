@@ -3,6 +3,7 @@
 		"twig/twig": "1.18.*@dev",
 		"leafo/lessphp": "0.4.0",
 		"filp/whoops": "1.*",
-		"ircmaxell/password-compat": "~1.0"
+		"ircmaxell/password-compat": "~1.0",
+		"phpmailer/phpmailer": "dev-master"
 	}
 }

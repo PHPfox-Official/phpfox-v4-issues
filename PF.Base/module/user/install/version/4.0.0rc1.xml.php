@@ -213,4 +213,5 @@
 			<source_parsed />
 		</block>
 	</phpfox_update_blocks>
+	<sql><![CDATA[a:1:{s:11:"ALTER_FIELD";a:1:{s:11:"phpfox_user";a:1:{s:8:"password";a:4:{i:0;s:9:"VCHAR:150";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}}}}]]></sql>
 </upgrade>

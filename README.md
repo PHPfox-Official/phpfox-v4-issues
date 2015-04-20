@@ -1,6 +1,6 @@
 # PHPfox Developers Build
 
-Version: **4.0.0rc1**
+Version: **4.0.0rc2**
 Stable: **No**
 
 ## License

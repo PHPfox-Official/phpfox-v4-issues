@@ -46,12 +46,19 @@
 			display:block;
 			color:@blockColor;
 			border-bottom:1px darken(@blockBg, 8%) solid;
+			position:relative;
+		}
+
+		.panel_rows_time {
+			margin-top:5px;
 		}
 
 		.panel_focus {
-			color:@linkFocus;
-			font-weight:500;
-			font-size:@fontSizeBase;
+			.drop_data_user {
+				color:@linkFocus;
+				font-weight:500;
+				font-size:@fontSizeBase - 2;
+			}
 		}
 
 		.panel_rows_image {

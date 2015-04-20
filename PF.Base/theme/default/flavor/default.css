@@ -5081,11 +5081,15 @@ a.not_active:hover {
   display: block;
   color: #999999;
   border-bottom: 1px #ebebeb solid;
+  position: relative;
 }
-.panel_rows li .panel_focus {
+.panel_rows li .panel_rows_time {
+  margin-top: 5px;
+}
+.panel_rows li .panel_focus .drop_data_user {
   color: #222222;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
 }
 .panel_rows li .panel_rows_image {
   position: absolute;

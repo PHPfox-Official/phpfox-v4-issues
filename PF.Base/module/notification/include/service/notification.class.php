@@ -119,7 +119,7 @@ class Notification_Service_Notification extends Phpfox_Service
 			->where('n.user_id = ' . Phpfox::getUserId() . '')
 			->group('n.type_id, n.item_id')
 			->order('n.is_seen ASC, n.time_stamp DESC')
-			->limit(5)
+			->limit(20)
 			->execute('getSlaveRows');
 		
 		$aRows = array();
@@ -209,8 +209,10 @@ class Notification_Service_Notification extends Phpfox_Service
 				$aNotifications[] = array_merge($aRow, (array) $aCallBack);	
 			}
 						
-			$this->database()->update($this->_sTable, array('is_seen' => '1'), 'type_id = \'' . $this->database()->escape($aRow['type_id']) . '\' AND notification_id = ' . (int) $aRow['notification_id']);
-		}		
+			// $this->database()->update($this->_sTable, array('is_seen' => '1'), 'type_id = \'' . $this->database()->escape($aRow['type_id']) . '\' AND notification_id = ' . (int) $aRow['notification_id']);
+		}
+
+		$this->database()->update($this->_sTable, array('is_seen' => '1'), ['user_id' => Phpfox::getUserId()]);
 		
 		return $aNotifications;
 	}	

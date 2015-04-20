@@ -6,7 +6,7 @@ class Notification_Component_Controller_Panel extends Phpfox_Component {
 
 		// list($iCnt, $aFriends) = Phpfox::getService('friend.request')->get();
 		$this->template()->assign([
-			'aNotifications' => Phpfox::getService('notification')->get()
+			'aNotifications' => Notification_Service_Notification::instance()->get()
 			// 'aFriends' => $aFriends
 		]);
 	}

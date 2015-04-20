@@ -60,7 +60,7 @@ if (!file_exists(PHPFOX_DIR_SETTINGS . 'license.sett.php')) {
 }
 else {
 	require(PHPFOX_DIR_SETTINGS . 'license.sett.php');
-	define('PHPFOX_IS_TECHIE', (PHPFOX_LICENSE_ID == 'techie' ? true : false));
+	define('PHPFOX_IS_TECHIE', ((PHPFOX_LICENSE_ID == 'techie' || preg_match('/techie\_(.*?)/i', PHPFOX_LICENSE_ID)) ? true : false));
 }
 
 // Set error reporting enviroment

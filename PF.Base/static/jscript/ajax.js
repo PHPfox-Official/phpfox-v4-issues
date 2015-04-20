@@ -203,6 +203,27 @@ $Core.processPostForm = function(e, obj) {
 };
 
 $Behavior.onAjaxSubmit = function() {
+	$('.moxi9:not(.built)').each(function() {
+		var t = $(this);
+
+		t.addClass('built');
+		$.ajax({
+			url: getParam('sJsHome'),
+			data: 'm9callback=' + t.data('call') + '&current=' + encodeURIComponent(window.location.href),
+			success: function(e) {
+				if (typeof(e.error) == 'string') {
+
+					t.html('<div class="error_message">' + e.error + '</div>');
+
+					return;
+				}
+
+				t.data('json', e).addClass('success');
+				$Core.loadInit();
+			}
+		});
+	});
+
 	$('div.ajax:not(.built)').each(function() {
 		var t = $(this);
 		t.html('<i class="fa fa-spin fa-circle-o-notch"></i>');

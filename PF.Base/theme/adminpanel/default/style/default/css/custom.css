@@ -669,6 +669,9 @@ div.sortable ul li:hover ul li:hover a:hover {
   opacity: 1;
   transition: all 0.5s ease;
 }
+.hide_it {
+  display: none;
+}
 div#admincp_site_link {
   text-align: left;
   background: transparent;

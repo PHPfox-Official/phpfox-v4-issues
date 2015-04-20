@@ -6,8 +6,10 @@ namespace Core;
  * Class Home
  * @package Core
  *
+ * @method Home token()
  * @method Home verify()
  * @method Home install()
+ * @method Home vendor($name)
  */
 class Home {
 	private $_id;
@@ -25,11 +27,15 @@ class Home {
 	}
 
 	public function __call($method, $args) {
-
 		$url = (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'http://api.phpfox.com/') . $method;
 		$Http = new HTTP($url);
 		$Http->auth($this->_id, $this->_key);
-		foreach ($args as $value) {
+
+		// $Http->using(['current' => \Phpfox_Url::instance()->current()]);
+		foreach ($args as $key => $value) {
+			if (is_string($value)) {
+				// $value = [$key => $value];
+			}
 			$Http->using($value);
 		}
 

@@ -17,7 +17,7 @@ class Exception {
 		}
 		unset($args[0]);
 
-		$out = vsprintf($message, $args);
+		$out = ($args ? vsprintf($message, $args) : $message);
 
 		self::$_errors[] = $out;
 

@@ -1063,6 +1063,20 @@ class Phpfox
 	 */
 	public static function run()
 	{
+		if (isset($_REQUEST['m9callback'])) {
+			header('Content-type: application/json');
+			try {
+				$Home = new Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY);
+				$callback = $_REQUEST['m9callback'];
+				unset($_GET['m9callback'], $_GET['do']);
+				echo json_encode(call_user_func([$Home, $callback], $_GET));
+			} catch (\Exception $e) {
+				// throw new \Exception($e->getMessage(), 0, $e);
+				echo json_encode(['error' => $e->getMessage()]);
+			}
+			exit;
+		}
+
 		if (isset($_REQUEST['m9action'])) {
 			if ((empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) && !isset($_GET['token'])) {
 				exit;

@@ -34,6 +34,47 @@ class App {
 		// d($this->_apps); exit;
 	}
 
+	public function vendor() {
+
+	}
+
+	public function make($name, $vendor = null) {
+		$base = PHPFOX_DIR_SITE . 'Apps/' . $vendor . '/';
+		if (!is_dir($base)) {
+			mkdir($base);
+		}
+
+		if (!preg_match('/^[a-zA-Z\-0-9]+$/', $name)) {
+			throw new \Exception('Product name can only contain alphanumeric characters and a dash.');
+		}
+
+		$appBase = $base . $name . '/';
+		if (is_dir($appBase)) {
+			throw new \Exception('App already exists.');
+		}
+
+		$dirs = [
+			'Controllers',
+			'Model',
+			'views'
+		];
+		foreach ($dirs as $dir) {
+			$path = $appBase . $dir;
+			if (!is_dir($path)) {
+				mkdir($path, 0777, true);
+			}
+		}
+
+		$json = json_encode(['id' => $vendor . '/' . $name, 'name' => $name], JSON_PRETTY_PRINT);
+		file_put_contents($appBase . 'app.json', $json);
+
+		file_put_contents($appBase . 'start.php', "<?php\n");
+
+		$App = new App();
+
+		return $App->get($vendor . '/' . $name);
+	}
+
 	/**
 	 * @param null $zip
 	 * @return App\Object

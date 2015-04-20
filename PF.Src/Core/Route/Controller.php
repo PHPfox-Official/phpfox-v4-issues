@@ -18,7 +18,10 @@ class Controller {
 			if (file_exists($vendor)) {
 				require($vendor);
 			}
-			require($App->path . 'start.php');
+
+			if (file_exists($App->path . 'start.php')) {
+				require($App->path . 'start.php');
+			}
 		}
 	}
 

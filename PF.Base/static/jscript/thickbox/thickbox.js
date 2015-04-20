@@ -10,11 +10,6 @@ var bIsPhotoImage = false;
 
 $Behavior.addDraggableToBoxes = function()
 {
-	if ($('.js_box').length > 0 && !$.ui)
-    {
-    	$Core.loadStaticFile(getParam('sJsHome') + 'static/jscript/jquery/ui.js');
-    }
-    
     $('.js_box').each(function()
     {
     	$(this).draggable('destroy');
@@ -40,6 +35,7 @@ $Behavior.addDraggableToBoxes = function()
     });
 
 	$('.popup').click(function() {
+		p('clicky');
 		tb_show('', $(this).attr('href'), $(this));
 
 		return false;

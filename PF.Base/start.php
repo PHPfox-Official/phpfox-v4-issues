@@ -60,10 +60,15 @@ if (!defined('PHPFOX_NO_RUN')) {
 	try {
 		Phpfox::run();
 	} catch (\Exception $e) {
-		if (PHPFOX_IS_AJAX_PAGE) {
+		if (PHPFOX_IS_AJAX_PAGE || Phpfox_Request::instance()->get('is_ajax_post')) {
 			header('Content-type: application/json');
+
+			$msg = $e->getMessage();
+			if (Phpfox_Request::instance()->get('is_ajax_post')) {
+				$msg = '<div class="error_message">' . $msg . '</div>';
+			}
 			echo json_encode([
-				'error' => $e->getMessage()
+				'error' => $msg
 			]);
 			exit;
 		}

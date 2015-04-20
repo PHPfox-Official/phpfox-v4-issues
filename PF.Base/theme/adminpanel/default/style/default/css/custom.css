@@ -201,6 +201,7 @@ ul#breadcrumb_menu li.active a:hover {
   margin-left: 200px;
   position: relative;
   margin-top: 60px;
+  min-height: 1000px;
 }
 #admincp_search_inner {
   position: absolute;
@@ -424,6 +425,22 @@ div#breadcrumb_holder {
   bottom: 20px;
   background: #ffffff;
 }
+.apps_version {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 20px;
+  line-height: 20px;
+  text-indent: 5px;
+  color: #b3b3b3;
+  font-size: 10px;
+}
+.apps_version > span {
+  text-indent: 0px;
+  position: absolute;
+  right: 5px;
+}
 .apps_menu {
   position: fixed;
   left: 200px;
@@ -441,6 +458,7 @@ div#breadcrumb_holder {
 }
 .apps_menu > ul {
   margin-top: 20px;
+  margin-bottom: 30px;
 }
 .apps_menu > ul > li {
   display: block;
@@ -6200,27 +6218,79 @@ i._zz {
 .themes article h1 a:hover em {
   display: block;
 }
-.admincp_apps {
-  display: table;
-  table-layout: fixed;
+.admincp_apps_holder > section:not(.preview) {
+  margin-right: 20%;
 }
-.admincp_apps > div {
-  display: table-cell;
-  width: 33%;
-  overflow: auto;
-  border-right: 2px #dbdbdb solid;
+.admincp_apps_holder > section.preview {
+  width: 20%;
+  background: #ffffff;
+  position: fixed;
+  z-index: 100;
+  right: 0px;
+  bottom: 0px;
+  top: 40px;
+}
+.admincp_apps_holder > section.preview > a,
+.admincp_apps_holder > section.preview > a:hover {
+  display: block;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
   text-align: center;
-  vertical-align: top;
-  padding: 0px 20px;
+  height: 50px;
+  line-height: 50px;
+  text-transform: uppercase;
+  background: #3f3f3f;
+  color: #f2f2f2;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 12px;
 }
-.admincp_apps > div:last-of-type {
-  border: 0px;
+.admincp_apps_holder > section.preview > a:hover {
+  transition: all 0.5s ease;
+  background: #f4645f;
+  color: #ffffff;
+}
+.admincp_apps_holder > section.preview > div {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  bottom: 50px;
+  left: 10px;
+  overflow: auto;
+}
+.admincp_apps_holder > section.preview > div > h1 {
+  font-size: 20px;
+  font-weight: 200;
+  margin-bottom: 10px;
+  color: #999999;
+}
+.admincp_apps {
+  /*
+	display:table;
+	table-layout:fixed;
+
+	> div {
+		display:table-cell;
+		width:33%;
+		overflow:auto;
+		border-right:2px darken(@bodyBg, 4%) solid;
+		text-align:center;
+		vertical-align:top;
+		padding:0px 20px;
+	}
+
+	> div:last-of-type {
+		border:0px;
+	}
+	*/
 }
 .admincp_apps article {
   width: 100px;
   height: 120px;
   display: inline-block;
-  margin: 0px 10px 20px 0px;
+  margin: 0px 15px 20px 0px;
   position: relative;
 }
 .admincp_apps article a,

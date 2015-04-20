@@ -129,24 +129,6 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 			->order("setting.ordering ASC")
 			->execute('getSlaveRows');		
 		
-		$sCdnDir = PHPFOX_DIR_LIB . PHPFOX_DS . 'phpfox' . PHPFOX_DS . 'cdn' . PHPFOX_DS . 'module' . PHPFOX_DS;
-		$aCdns = array();
-		$hDir = opendir($sCdnDir);		
-		while ($sFile = readdir($hDir))
-		{
-			if (substr($sFile, -10)  != '.class.php')
-			{
-				continue;
-			}
-			
-			$aCdns[] = substr_replace($sFile, '', -10);
-		}
-		if (count($aCdns))
-		{
-			$aCdns = array_merge(array(''), $aCdns);
-		}
-		closedir($hDir);
-		
 		// Load all fonts used for CAPTCHA
 		$sFontDir = Phpfox::getParam('core.dir_static') . 'image' . PHPFOX_DS . 'font' . PHPFOX_DS;
 		$aFonts = array();
@@ -163,17 +145,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 		closedir($hDir);
 		
 		// Load all the editors that are valid
-		$aWysiwygs = array();
-		$aEditors = Phpfox_File::instance()->getFiles(Phpfox::getParam('core.dir_static') . 'jscript' . PHPFOX_DS . 'wysiwyg' . PHPFOX_DS);
-		foreach ($aEditors as $sEditor)
-		{
-			if (!file_exists(Phpfox::getParam('core.dir_static') . 'jscript' . PHPFOX_DS . 'wysiwyg' . PHPFOX_DS . $sEditor . PHPFOX_DS . 'core.js'))
-			{
-				continue;
-			}
-			$aWysiwygs[] = $sEditor;
-		}
-				
+		$aWysiwygs = array();				
 		$aTimezones = Phpfox::getService('core')->getTimeZones();
 		
 		if (defined('PHPFOX_IS_HOSTED_SCRIPT') && !defined('PHPFOX_GROUPLY_TEST'))

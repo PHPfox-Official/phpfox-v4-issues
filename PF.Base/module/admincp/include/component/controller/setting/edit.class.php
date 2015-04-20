@@ -92,6 +92,9 @@ class Admincp_Component_Controller_Setting_Edit extends Phpfox_Component
 			$sWatermarkImage = Phpfox::getLib('cdn')->getUrl(str_replace(PHPFOX_DIR, '', $sWatermarkImage));
 		}
 
+		if (Phpfox::isModule($sSettingTitle)) {
+			$sSettingTitle = Phpfox_Locale::instance()->translate($sSettingTitle, 'module');
+		}
 		$this->template()->setSectionTitle($sSettingTitle);
 		
 		$this->template()->setBreadCrumb(Phpfox::getPhrase('admincp.manage_settings'), $this->url()->makeUrl('admincp.setting'))

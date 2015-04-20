@@ -116,6 +116,10 @@
 								<li><a href="{url link=$aMenu.url}"{if isset($aMenu.is_active) && $aMenu.is_active} class="active"{/if}>{$sPhrase}</a></li>
 							{/foreach}
 							</ul>
+
+							<div class="apps_version">
+								©{$ActiveApp.vendor}<span>v{$ActiveApp.version}</span>
+							</div>
 						</div>
 						<div class="apps_content">
 						{/if}

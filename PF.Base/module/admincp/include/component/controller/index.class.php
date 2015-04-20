@@ -267,16 +267,24 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 			'Tools',
 			'Settings' => [
+				// 'Site &amp; Server',
 				'Countries' => 'admincp.core.country',
 				'Currencies' => 'admincp.core.currency',
 				'Attachments' => 'admincp.attachment',
 				'Payment Gateways' => 'admincp.api.gateway',
 				'Language' => 'admincp.language',
 				// 'admincp.menu_tools_emoticon_package' => 'admincp.emoticon.package',
+				/*
+				'Contact Us' => $this->url()->makeUrl('admincp.setting.edit', ['module-id' => 'contact']),
+				'Activity Feed' => $this->url()->makeUrl('admincp.setting.edit', ['module-id' => 'feed']),
+				'Private Messages' => $this->url()->makeUrl('admincp.setting.edit', ['module-id' => 'mail']),
+				*/
 
 				'User',
 				'Relationship Statues' => 'admincp.custom.relationships',
 				'Cancellation Options' => 'admincp.user.cancellations.manage',
+				'Subscription Packages' => 'admincp.subscribe',
+				'E-Gifts' => 'admincp.egift.categories',
 				/*
 				'SEO',
 				'admincp.custom_elements' => 'admincp.seo.meta',
@@ -284,6 +292,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'admincp.rewrite_url' => 'admincp.seo.rewrite'
 				*/
 			],
+			'<i class="fa fa-bullhorn"></i>Announcements' => 'admincp.announcement',
+			'<i class="fa fa-newspaper-o"></i>Newsletter' => 'admincp.newsletter.manage',
 			'<i class="fa fa-info"></i>Status' => array(
 				Phpfox::getPhrase('core.site_statistics') => 'admincp.core.stat',
 				Phpfox::getPhrase('core.admincp_menu_system_overview') => 'admincp.core.system',
@@ -324,6 +334,41 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		// d($aThemes); exit;
 
 		list($aGroups, $aModules, $aProductGroups) = Phpfox::getService('admincp.setting.group')->get();
+
+		$aCache = $aGroups;
+		$aGroups = [];
+
+		// $aGroups[] = 'Site &amp; Server';
+		foreach ($aCache as $key => $value) {
+
+			$n = $key;
+			switch ($value['group_id']) {
+				case 'cookie':
+					$n = 'Browser Cookies';
+					break;
+				case 'site_offline_online':
+					$n = 'Toggle Site';
+					break;
+				case 'general':
+					$n = 'Name &amp; Copyright';
+					break;
+				case 'mail':
+					$n = 'Mail Server';
+					break;
+				case 'spam':
+					$n = 'Spam Assistance';
+					break;
+				case 'registration':
+					continue 2;
+					break;
+			}
+
+
+			// unset($aGroups[$key]);
+			$aGroups[$n] = $value;
+		}
+		ksort($aGroups);
+
 		// d($aGroups); exit;
 
 		$aApps = [];
@@ -358,6 +403,9 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			$aSettings[$sGroupName] = $this->url()->makeUrl('admincp.setting.edit', ['group-id' => $aGroupValues['group_id']]);
 			// $aMenus['Settings'][$sGroupName] = '#';
 		}
+
+		// d($aSettings); exit;
+
 		$aCache = $aMenus;
 		$aMenus = [];
 		foreach ($aCache as $sKey => $mValue) {
@@ -375,6 +423,35 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			}
 			*/
 
+			/*
+			if (is_string($mValue) && $mValue === 'Tools') {
+
+				// d($mValue);
+				$aMenus[$sKey] = 'Modules';
+				foreach ((new Core\App())->all('__core') as $Core) {
+					$icon = '';
+					$name = $Core->name;
+					$id = str_replace('__module_', '', $Core->id);
+					switch ($id) {
+						case 'ad':
+							$icon = 'money';
+							break;
+						case 'blog':
+							$icon = 'file';
+							break;
+					}
+
+					if (!empty($icon)) {
+						$icon = '<i class="fa fa-' . $icon . '"></i>';
+					}
+
+					$aMenus[$icon . $Core->name] = $this->url()->makeUrl('admincp.app', ['id' => $Core->id]);
+				}
+
+				$sKey++;
+			}
+			*/
+
 			if ($sKey === 'Settings') {
 				$sKey = '<i class="fa fa-cog"></i>Settings';
 				/*
@@ -389,8 +466,55 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				}
 				$mValue = array_merge($aSettings, $aMerge);
 				*/
+				$moduleSettings = [];
+				foreach ((new Core\App())->all('__core') as $Core) {
+					$name = $Core->name;
+					$id = str_replace('__module_', '', $Core->id);
+					$url = $this->url()->makeUrl('admincp.app', ['id' => $Core->id]);
+					$goSettings = false;
+					$goIndex = false;
 
-				$mValue = array_merge($aSettings, $mValue);
+					switch ($id) {
+						case 'ad':
+							$name = 'Ad Campaigns';
+							break;
+						case 'blog':
+							$name = 'Blog Categories &amp; Settings';
+							break;
+						case 'contact':
+							$name = '"Contact Us" Form';
+							break;
+						case 'feed':
+							$goSettings = true;
+							$name = 'Activity Feed';
+							break;
+						case 'forum':
+							$name = 'Forums';
+							$goIndex = true;
+							break;
+						case 'mail':
+							$name = 'Private Messages';
+							break;
+						case 'event':
+						case 'photo':
+							case 'marketplace':
+							case 'music':
+							case 'pages':
+							$goIndex = true;
+							break;
+					}
+
+					if ($goSettings) {
+						$url = $this->url()->makeUrl('admincp.setting.edit', ['module-id' => $id]);
+					}
+					else if ($goIndex) {
+						$url = $this->url()->makeUrl('admincp.' . $id);
+					}
+
+					$moduleSettings[$name] = $url;
+				}
+
+				$mValue = array_merge($aSettings, $mValue, ['Modules'], $moduleSettings);
 			}
 
 			$aMenus[$sKey] = $mValue;
@@ -404,6 +528,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				];
 			}
 		}
+
+
 
 		// $aMenus['<i class="fa fa-cog"></i>Settings'] = array_merge($aSettings, $aMenus['Settings']);
 		// unset($aMenus['Settings']);
@@ -434,7 +560,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 		if ($app && Phpfox::isModule($app) && !in_array($app, $aSkipModules)) {
 			$app = Phpfox_Module::instance()->get($app);
 
-			$sSectionTitle = '<a href="' . $this->url()->makeUrl('admincp.apps') . '">Apps</a>';
+			$name = Phpfox_Locale::instance()->translate($app['module_id'], 'module');
+			$sSectionTitle = $name;
 			$menu = unserialize($app['menu']);
 			$menus = [];
 			$current = $this->url()->getUrl();
@@ -444,10 +571,6 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				$infoActive = true;
 			}
 
-			$menus[Phpfox_Locale::instance()->translate($app['module_id'], 'module')] = [
-				'is_active' => $infoActive,
-				'url' => $this->url()->makeUrl('admincp.app', ['id' => '__module_' . $app['module_id']])
-			];
 			if (Admincp_Service_Setting_Setting::instance()->moduleHasSettings($app['module_id'])) {
 				$menus['Settings'] = [
 					'is_active' => $is_settings,

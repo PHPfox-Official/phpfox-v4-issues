@@ -166,6 +166,7 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 	margin-left:200px;
 	position:relative;
 	margin-top:@topHeight + 20;
+	min-height:1000px;
 }
 
 #admincp_search_inner {
@@ -416,6 +417,24 @@ div#breadcrumb_holder {
 	}
 }
 
+.apps_version {
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	height:20px;
+	line-height:20px;
+	text-indent:5px;
+	color:lighten(@blockColor, 10%);
+	font-size:@fontSizeBase - 4;
+
+	> span {
+		text-indent:0px;
+		position:absolute;
+		right:5px;
+	}
+}
+
 .apps_menu {
 	position:fixed;
 	left:200px;
@@ -435,6 +454,7 @@ div#breadcrumb_holder {
 
 	> ul {
 		margin-top:20px;
+		margin-bottom:30px;
 		> li {
 			display:block;
 

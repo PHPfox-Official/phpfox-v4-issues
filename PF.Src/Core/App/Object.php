@@ -5,6 +5,7 @@ namespace Core\App;
 class Object extends \Core\Objectify {
 	public $id;
 	public $name;
+	public $vendor;
 	public $path;
 	public $is_module = false;
 	public $icon;
@@ -27,6 +28,7 @@ class Object extends \Core\Objectify {
 			$name .= $this->name[1];
 		}
 		$this->icon = '<b class="app_icons"><i class="app_icon _' . strtolower($name) . '">' . $name . '</i></b>';
+		$this->vendor = explode('/', $this->id)[0];
 	}
 
 	public function export() {

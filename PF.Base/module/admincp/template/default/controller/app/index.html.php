@@ -1,4 +1,4 @@
-{if $settings}
+{if isset($settings)}
 	<form class="on_change_submit" method="post" action="{url link='current'}">
 		{foreach from=$settings item=setting key=var}
 		<div class="table_header2 settings">

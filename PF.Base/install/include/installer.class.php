@@ -134,7 +134,8 @@ class Phpfox_Installer
 		
 		'3.8.0',
 
-		'4.0.0rc1'
+		'4.0.0rc1',
+		'4.0.0rc2'
 	);
 	
 	private $_sTempDir = '';
@@ -553,6 +554,8 @@ class Phpfox_Installer
 	########################
 	private function _start()
 	{
+		$this->_oTpl->setTitle('PHPfox ' . Phpfox::getVersion());
+
 		$errors = $this->_requirement();
 		if (is_array($errors)) {
 			$this->_oTpl->assign([
@@ -644,7 +647,8 @@ class Phpfox_Installer
 				}
 			}
 		}
-		
+
+		// $this->_oTpl->setTitle('PHPfox ' . Phpfox::getVersion());
 		$this->_oTpl->assign(array(
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),
@@ -670,9 +674,9 @@ class Phpfox_Installer
 	{
 		$errors = [];
 		$aVerify = array(
-			// 'php_version' => (version_compare(phpversion(), '5', '<') !== true ? true : false),
-			'php_xml_support' => (function_exists('xml_set_element_handler') ? true : false),
-			'php_gd' => ((extension_loaded('gd') && function_exists('gd_info')) ? true : false)
+			'<a href="http://php.net/manual/en/book.mbstring.php" target="_blank">Multibyte String</a>' => (function_exists('mb_substr') ? true : false),
+			'<a href="http://php.net/manual/en/book.xml.php" target="_blank">XML Parser</a>' => (function_exists('xml_set_element_handler') ? true : false),
+			'<a href="http://php.net/manual/en/book.image.php" target="_blank">PHP GD</a>' => ((extension_loaded('gd') && function_exists('gd_info')) ? true : false)
 		);
 				
 		foreach ($aVerify as $sCheck => $bPassed)

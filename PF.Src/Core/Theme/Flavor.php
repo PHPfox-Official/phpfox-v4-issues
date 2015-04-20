@@ -13,6 +13,12 @@ class Flavor extends \Core\Model {
 		// $this->_service = new Service($this->_theme);
 	}
 
+	public function getDefault() {
+		$flavor = $this->db->select('*')->from(':theme_style')->where(['theme_id' => $this->_theme->theme_id, 'is_default' => 1])->get();
+
+		return new Flavor\Object($this->_theme, $flavor);
+	}
+
 	public function make($val) {
 		/*
 		 *

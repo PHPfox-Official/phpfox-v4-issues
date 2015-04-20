@@ -18,16 +18,20 @@ class Object extends \Core\Objectify {
 	public function __construct($keys) {
 		parent::__construct($keys);
 
-		$name = $this->name[0];
-		// $first = $name;
-		$parts = explode(' ', $this->name);
-		if (isset($parts[1])) {
-			$name .= trim($parts[1])[0];
+		if (!$this->icon) {
+			$name = $this->name[0];
+			$parts = explode(' ', $this->name);
+			if (isset($parts[1])) {
+				$name .= trim($parts[1])[0];
+			}
+			else {
+				$name .= $this->name[1];
+			}
+			$this->icon = '<b class="app_icons"><i class="app_icon _' . strtolower($name) . '">' . $name . '</i></b>';
 		}
 		else {
-			$name .= $this->name[1];
+			$this->icon = '<div class="app_icons image_load" data-src="' . $this->icon . '"></div>';
 		}
-		$this->icon = '<b class="app_icons"><i class="app_icon _' . strtolower($name) . '">' . $name . '</i></b>';
 		$this->vendor = explode('/', $this->id)[0];
 	}
 

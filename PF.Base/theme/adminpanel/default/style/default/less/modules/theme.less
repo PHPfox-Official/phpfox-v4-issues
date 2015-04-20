@@ -172,6 +172,19 @@
 }
 
 .themes {
+	.theme_colors {
+		padding-top:40px;
+		text-align:center;
+
+		> span {
+			display:inline-block;
+			width:120px;
+			height:150px;
+			margin:10px;
+			border:1px darken(@blockBg, 10%) solid;
+		}
+	}
+
 	article {
 		width:300px;
 		height:400px;
@@ -181,6 +194,9 @@
 		display:inline-block;
 		vertical-align:top;
 		margin:0px 10px 20px 0px;
+		background-size:cover;
+		background-repeat:no-repeat;
+		background-position:center center;
 
 		h1 {
 			a, a:hover {
@@ -213,8 +229,8 @@
 					left:0px;
 					top:0px;
 					right:0px;
-					background:rgba(0, 0, 0, 0.8);
-					color:#fff;
+					background:@topBg;
+					color:@topColor;
 					font-weight:200;
 					font-size:@fontSizeBase + 4;
 					height:40px;

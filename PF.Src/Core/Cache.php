@@ -26,4 +26,8 @@ class Cache {
 	public function get($key) {
 		return $this->_cache->get($this->_cache->set($key));
 	}
+
+	public function __call($method, $args) {
+		return call_user_func_array([$this->_cache, $method], $args);
+	}
 }

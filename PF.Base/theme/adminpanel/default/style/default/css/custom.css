@@ -6160,6 +6160,17 @@ i._zz {
   border-color: #f4645f;
   transition: all 0.5s ease;
 }
+.themes .theme_colors {
+  padding-top: 40px;
+  text-align: center;
+}
+.themes .theme_colors > span {
+  display: inline-block;
+  width: 120px;
+  height: 150px;
+  margin: 10px;
+  border: 1px #e6e6e6 solid;
+}
 .themes article {
   width: 300px;
   height: 400px;
@@ -6169,6 +6180,9 @@ i._zz {
   display: inline-block;
   vertical-align: top;
   margin: 0px 10px 20px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .themes article h1 a,
 .themes article h1 a:hover {
@@ -6202,8 +6216,8 @@ i._zz {
   left: 0px;
   top: 0px;
   right: 0px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  background: #3f3f3f;
+  color: #f2f2f2;
   font-weight: 200;
   font-size: 18px;
   height: 40px;
@@ -6320,6 +6334,7 @@ i._zz {
   height: 100px;
   position: relative;
   margin: auto;
+  background-size: contain;
 }
 .app_icons i {
   font-style: normal;

@@ -34,7 +34,54 @@ class Object extends \Core\Objectify {
 			unset($this->website);
 		}
 
+		$currentImage = $this->image;
+
 		$this->_db = new \Core\Db();
+		$this->image = new \Core\Objectify(function() use ($currentImage) {
+
+			// class="image_load" data-src="{$theme.image}"
+			$html = '';
+			if ($currentImage) {
+				$html = 'class="image_load" data-src="' . $currentImage . '"';
+			}
+			else {
+				$hex = function($color) {
+					$color = trim($color);
+					$color = preg_replace('/(lighten|darken)\(\#(.*), (.*)\)/i', '#\\2', $color);
+
+					return '<span style="background:' . $color . ';"></span>';
+				};
+
+				$flavor = (new \Core\Theme\Flavor($this))->getDefault();
+				$path = $this->getPath() . 'flavor/' . $flavor->folder . '.less';
+				if (file_exists($path)) {
+					$colors = [];
+					$lines = file($path);
+					foreach ($lines as $line) {
+						// p($line);
+						if (preg_match('/@brandPrimary\:(.*?);/s', $line, $matches)) {
+							$colors[] = $hex($matches[1]);
+						}
+						else if (preg_match('/@bodyBg\:(.*?);/s', $line, $matches)) {
+							$colors[] = $hex($matches[1]);
+						}
+						else if (preg_match('/@blockBg\:(.*?);/s', $line, $matches)) {
+							$colors[] = $hex($matches[1]);
+						}
+						else if (preg_match('/@headerBg\:(.*?);/s', $line, $matches)) {
+							$colors[] = $hex($matches[1]);
+						}
+					}
+
+					if ($colors) {
+						$colors = implode('', $colors);
+						$html = '><div class="theme_colors">' . $colors . '<' . "/div";
+					}
+				}
+			}
+
+			return $html;
+		});
 	}
 
 	public function getPath() {

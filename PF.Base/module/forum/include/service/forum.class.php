@@ -220,6 +220,8 @@ class Forum_Service_Forum extends Phpfox_Service
 		);
 		
 		$aFilters = array(
+
+
 			'display' => array(
 				'type' => 'select',
 				'options' => $aDisplays,
@@ -275,8 +277,26 @@ class Forum_Service_Forum extends Phpfox_Service
 		
 		$aSettings = array(
 			'type' => 'forum',
-			'filters' => $aFilters,
-			'cache' => true,
+			// 'filters' => $aFilters,
+			// 'field' => 'ft.thread_id',
+			'search_tool' => array(
+				'table_alias' => 'ft',
+				'search' => array(
+					'action' => '',
+					'default_value' => 'Search this forum...',
+					'name' => 'search',
+					'field' => array('ft.title')
+				),
+				'sort' => array(
+					'latest' => array('ft.time_stamp', Phpfox::getPhrase('blog.latest')),
+					// 'most-viewed' => array('blog.total_view', Phpfox::getPhrase('blog.most_viewed')),
+					// 'most-liked' => array('blog.total_like', Phpfox::getPhrase('blog.most_liked')),
+					// 'most-talked' => array('blog.total_comment', Phpfox::getPhrase('blog.most_discussed'))
+				),
+				'show' => array(5, 10, 15)
+			),
+
+			// 'cache' => true,
 			'field' => array(
 				'depend' => 'result',
 				'fields' => array('fp.post_id', 'ft.thread_id')

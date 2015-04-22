@@ -217,6 +217,7 @@ class Privacy_Service_Privacy extends Phpfox_Service
 			return;
 		}
 		*/
+		/*
 		if (Phpfox::getUserParam('core.can_view_private_items'))
 		{
 			$oObject->getQueryJoins($bIsCount, true);
@@ -228,6 +229,7 @@ class Privacy_Service_Privacy extends Phpfox_Service
 
 			return;
 		}
+		*/
 		
 		$aUserCond = array();
 		$aFriendCond = array();

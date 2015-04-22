@@ -2,7 +2,9 @@
 
 class Forum_Component_Block_Recent extends Phpfox_Component {
 	public function process() {
-
+		if ($this->request()->segment(2) == 'search') {
+			return false;
+		}
 		$title = '';
 		$threads = [];
 		$type = 'threads';

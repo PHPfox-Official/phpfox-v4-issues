@@ -25,12 +25,11 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			return Phpfox_Module::instance()->setController('forum.index');
 		}
 		
-		
 		Phpfox::getUserParam('forum.can_view_forum', true);
 		
 		$aParentModule = $this->getParam('aParentModule');
 
-		$bIsSearch = ($this->request()->getInt('search-id', false) ? true : false);	
+		$bIsSearch = ($this->request()->get('search') ? true : false);
 		$aCallback = $this->getParam('aCallback', null);
 		$sView = $this->request()->get('view');	
 		$bShowPosts = false;
@@ -53,11 +52,24 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				$aCallback['url_home'] = 'group.' . $aCallback['title_url'] . '.forum';
 			}			
 		}
-		
+
 		$oSearch = Forum_Service_Forum::instance()->getSearchFilter($this->getParam('bIsSearchQuery', false));
-		
-		if ($oSearch->isSearch())
+
+		if ($oSearch->isSearch() && $this->request()->getInt('req2') == 'search')
 		{
+			$aIds = [];
+			$aForums = Phpfox::getService('forum')->live()->getForums();
+			foreach ($aForums as $aForum) {
+				$aIds[] = $aForum['forum_id'];
+
+				$aChilds = (array) Phpfox::getService('forum')->id($aForum['forum_id'])->getChildren();
+				foreach ($aChilds as $iId) {
+					$aIds[] = $iId;
+				}
+			}
+
+			$oSearch->setCondition('AND ft.forum_id IN(' . implode(',', $aIds) . ')');
+			/*
 			$aSearch = $this->request()->getArray('search');	
 
 			if (!empty($aSearch['forum']) && is_array($aSearch['forum']))
@@ -169,6 +181,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 					$this->url()->send('forum.search', null, Phpfox::getPhrase('forum.no_results_found'));
 				}
 			}
+			*/
 		}					
 		
 		define('PHPFOX_PAGER_FORCE_COUNT', true);
@@ -185,7 +198,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				$sViewId = 'ft.view_id >= 0';	
 			}
 		}
-		
+
 		if ($aParentModule == null)
 		{
 			$iForumId = $this->request()->getInt('req2');		
@@ -240,12 +253,12 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				}
 				else 
 				{
-					$oSearch->setCondition('ft.forum_id = ' . $aForum['forum_id'] . ' AND ft.group_id = 0 AND ' . $sViewId . ' AND ft.is_announcement = 0');
+					$oSearch->setCondition('AND ft.forum_id = ' . $aForum['forum_id'] . ' AND ft.group_id = 0 AND ' . $sViewId . ' AND ft.is_announcement = 0');
 				}				
 			}
 			else 
 			{				
-				$oSearch->setCondition('ft.forum_id = 0 AND ft.group_id = ' . $aParentModule['item_id'] . ' AND ' . $sViewId . ' AND ft.is_announcement = 0');
+				$oSearch->setCondition('AND ft.forum_id = 0 AND ft.group_id = ' . $aParentModule['item_id'] . ' AND ' . $sViewId . ' AND ft.is_announcement = 0');
 			}
 			
 			// get the forums that we cant access
@@ -291,7 +304,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				->isNewSearch(($sView == 'new' ? true : false))
 				->isSubscribeSearch(($sView == 'subscribed' ? true : false))
 				->isModuleSearch($bIsModuleTagSearch)
-				->get($oSearch->getConditions(), 'ft.order_id DESC, ' . $oSearch->getSort(), $oSearch->getPage(), $iPageSize);						
+				->get($oSearch->getConditions(), 'ft.order_id DESC, ' . $oSearch->getSort(), $oSearch->getPage(), $iPageSize);
 		}
 		
 		
@@ -314,7 +327,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 					)					
 				);				
 
-		if ($bIsSearch)
+		if ($bIsSearch && !isset($aForum['forum_id']))
 		{			
 			if (is_array($aCallback))
 			{
@@ -346,11 +359,11 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			{
 				if (is_array($aCallback))
 				{
-					$this->template()->setBreadcrumb(Phpfox::getPhrase('forum.search'), $this->url()->makeUrl('forum.search', array('module' => 'pages', 'item' => $aCallback['group_id'])));
+					// $this->template()->setBreadcrumb(Phpfox::getPhrase('forum.search'), $this->url()->makeUrl('forum.search', array('module' => 'pages', 'item' => $aCallback['group_id'])));
 				}
 				else 
 				{
-					$this->template()->setBreadcrumb(Phpfox::getPhrase('forum.search'), $this->url()->makeUrl('forum.search'));	
+					// $this->template()->setBreadcrumb(Phpfox::getPhrase('forum.search'), $this->url()->makeUrl('forum.search'));
 				}
 			}
 			
@@ -416,6 +429,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				{
 					$this->url()->send('forum');
 				}
+
 				
 				$this->template()->setTitle(Phpfox_Locale::instance()->convert($aForum['name']))
 					->setBreadcrumb($aForum['breadcrumb'])

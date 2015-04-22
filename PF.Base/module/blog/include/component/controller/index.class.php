@@ -122,7 +122,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 						'action' => ($bIsProfile === true ? $this->url()->makeUrl($aUser['user_name'], array('blog', 'view' => $this->request()->get('view'))) : $this->url()->makeUrl('blog', array('view' => $this->request()->get('view')))),
 						'default_value' => Phpfox::getPhrase('blog.search_blogs_dot'),
 						'name' => 'search',
-						'field' => array('blog.title', 'blog_text.text')
+						'field' => array('blog.title')
 					),
 					'sort' => array(
 						'latest' => array('blog.time_stamp', Phpfox::getPhrase('blog.latest')),

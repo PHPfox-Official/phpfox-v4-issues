@@ -63,7 +63,7 @@ class Phpfox_Search_Browse
 	 * Set the params for the browse routine.
 	 * 	 
 	 * @param array	$aParams ARRAY of params.
-	 * @return object Return self.
+	 * @return Phpfox_Search_Browse
 	 */
 	public function params($aParams)
 	{
@@ -88,8 +88,7 @@ class Phpfox_Search_Browse
 	 */
 	public function execute()
 	{
-		$aActualConditions = (array) $this->search()->getConditions();		
-		
+		$aActualConditions = (array) $this->search()->getConditions();
 		list($sModule, $sService) = explode('.',$this->_aParams['service']);		
 		if (Phpfox::isModule('input') && (isset($_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sModule][Phpfox_Request::instance()->get('search-id')]['input'])))
 		{
@@ -129,7 +128,10 @@ class Phpfox_Search_Browse
 					$this->_aConditions[] = str_replace('%PRIVACY%', '0', $sCond);
 					break;
 			}
-		}		
+		}
+
+		// d($this->_aConditions); exit;
+
 		// testing:
 		// $this->_aConditions = array_merge( (array)array_pop($this->_aConditions), (array)array_pop($this->_aConditions));
 		// d($this->_aConditions);die();
@@ -153,14 +155,15 @@ class Phpfox_Search_Browse
 		}
 		*/
 
-			if (Phpfox::getParam('core.section_privacy_item_browsing') && (isset($this->_aParams['hide_view']) && !in_array($this->_sView, $this->_aParams['hide_view'])))
+			if (Phpfox::getParam('core.section_privacy_item_browsing')
+				&& (isset($this->_aParams['hide_view']) && !in_array($this->_sView, $this->_aParams['hide_view'])))
 			{
 				Privacy_Service_Privacy::instance()->buildPrivacy($this->_aParams);
 				
 				$this->database()->unionFrom($this->_aParams['alias']);
 			}
 			else 
-			{				
+			{
 				$this->_oBrowse->getQueryJoins();
 				
 				$this->database()->from($this->_aParams['table'], $this->_aParams['alias'])->where($this->_aConditions);

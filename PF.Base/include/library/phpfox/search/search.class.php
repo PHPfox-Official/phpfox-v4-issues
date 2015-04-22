@@ -214,9 +214,8 @@ class Phpfox_Search
 		
 		if (!count($this->_aSearch))
 		{
-			$this->_aSearch = $this->_oReq->getArray('search');		
+			$this->_aSearch = $this->_oReq->getArray('search');
 		}
-		
 		if (isset($this->_aSearch['reset']))
 		{
 			$this->_reset();
@@ -242,7 +241,7 @@ class Phpfox_Search
         if ($this->_bCache && ($iSearchId = $this->_oReq->getInt('search-id')))
         {
         	$this->getSearch($iSearchId, $this->_oReq->getInt('page'), $this->getDisplay());
-        }		
+        }
 
 		Phpfox_Template::instance()->assign(array(
 				'aFilters' => $this->_aHtml
@@ -269,7 +268,7 @@ class Phpfox_Search
 			);
 		}
 		*/
-		
+
 		if (isset($this->_aParams['search_tool']))
 		{
 			$iSortCnt = 0;
@@ -389,7 +388,7 @@ class Phpfox_Search
 								$sLink = Phpfox_Url::instance()->makeUrl('current');
 								$sLink = preg_replace('/page_(.*?)\//i', '', $sLink);
 								$sLink = str_replace('' . $aData['param'] . '_' . Phpfox_Request::instance()->get($aData['param']) . '/', '', $sLink);
-								$sLink = $sLink . $aData['param'] . '_' . $aLink['link'] . '/';
+								$sLink = $sLink . '&' . $aData['param'] . '=' . $aLink['link'];
 								
 								$this->_aSearchTool[$sSearchKey][$sFilterName]['data'][$iDataKey]['link'] = $sLink;
 								
@@ -416,8 +415,8 @@ class Phpfox_Search
 					}
 				}
 			}
-			
-			if (Phpfox_Request::instance()->get('search-id') && isset($this->_aSearchTool['search']) && $this->isSearch())
+
+			if ($this->isSearch())
 			{
 				$this->_aSearchTool['search']['actual_value'] = $this->get($this->_aSearchTool['search']['name']);				
 				if (!empty($this->_aSearchTool['search']['actual_value']) && ($this->_aSearchTool['search']['actual_value'] != $this->_aSearchTool['search']['default_value']))
@@ -431,7 +430,7 @@ class Phpfox_Search
 				)
 			);
 		}
-		
+
 		if (Phpfox::getLib('session')->get('search_fail'))
 		{
 			Phpfox::getLib('session')->remove('search_fail');
@@ -546,9 +545,13 @@ class Phpfox_Search
 	 */
 	public function isSearch()
 	{		
-		
+		if ($this->_oReq->getArray('search')) {
+			return true;
+		}
+		return false;
+
 		if (isset($this->_aSearch['submit']) && isset($this->_aParams['search']))
-		{			
+		{
 			if (is_array($this->_aParams['search']))
 			{
 				foreach ($this->_aParams['search'] as $sSearchKey)
@@ -559,7 +562,7 @@ class Phpfox_Search
 					}
 				}
 			}
-			else 
+			else
 			{
 				if ($this->_getVar($this->_aParams['search']))
 				{
@@ -568,9 +571,9 @@ class Phpfox_Search
 			}
 			return false;
 		}
-		else 
-		{			
-			return (isset($this->_aSearch['submit']) ? true : false);	
+		else
+		{
+			return (isset($this->_aSearch['submit']) ? true : false);
 		}
 	}	
 	
@@ -714,8 +717,8 @@ class Phpfox_Search
 		if ($aConds !== null)
 		{
 			return $aConds;
-		}		
-		
+		}
+
 		if ($this->_oReq->get('when') || $this->_bIsCustomSearchDate)
 		{
 			$iTimeDisplay = Phpfox::getLib('date')->mktime(0, 0, 0, Phpfox::getTime('m'), Phpfox::getTime('d'), Phpfox::getTime('Y'));
@@ -747,19 +750,19 @@ class Phpfox_Search
 					break;			
 			}
 		}
-		
+
 		if (!count($this->_aConds))
 		{
 			return array();
-		}		
-		
+		}
+
 		$oDb = Phpfox_Database::instance();
 		$aConds = array();		
 		foreach ($this->_aConds as $mKey => $mValue)
 		{
 			$aConds[] = (is_numeric($mKey) ? $mValue : str_replace('[VALUE]', Phpfox::getLib('parse.input')->clean($oDb->escape($mValue)), $mKey));
 		}		
-				
+
 		return $aConds;
 	}
 	
@@ -1044,7 +1047,7 @@ class Phpfox_Search
      * Extends the browse object.
      *
      * @see Phpfox_Search_Browse
-     * @return object
+     * @return Phpfox_Search_Browse
      */        
     public function browse()
     {
@@ -1091,7 +1094,7 @@ class Phpfox_Search
 	 *
 	 */
 	private function _getQueries()
-	{		
+	{
 		if ($this->_bLiveQuery === true)
 		{
 			return;
@@ -1189,6 +1192,7 @@ class Phpfox_Search
 				}
 
 				// Store the search in a session array
+				/*
 				if (!isset($this->_aParams['no_session_search']))
 				{
 					$_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$this->_sType][$iId] = $this->_aSearch;
@@ -1196,6 +1200,7 @@ class Phpfox_Search
 					$this->_oUrl->setParam('search-id', $iId);
 					$this->_oUrl->forward($this->_oUrl->getFullUrl());
 				}
+				*/
 			}
 		}
 

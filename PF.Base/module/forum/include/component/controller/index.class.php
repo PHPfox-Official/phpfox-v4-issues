@@ -98,7 +98,37 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		if ($this->request()->getInt('req2') > 0)
 		{
 			return Phpfox_Module::instance()->setController('forum.forum');
-		}		
+		}
+
+		if ($aParentModule === null) {
+			Phpfox_Search::instance()->set(array(
+				'type' => 'forum',
+				// 'filters' => $aFilters,
+				// 'field' => 'ft.thread_id',
+				'search_tool' => array(
+					'table_alias' => 'ft',
+					'search' => array(
+						'action' => $this->url()->makeUrl('forum.search'),
+						'default_value' => 'Search...',
+						'name' => 'search',
+						'field' => array('ft.title')
+					),
+					'sort' => array(
+						'latest' => array('ft.time_stamp', Phpfox::getPhrase('blog.latest')),
+						// 'most-viewed' => array('blog.total_view', Phpfox::getPhrase('blog.most_viewed')),
+						// 'most-liked' => array('blog.total_like', Phpfox::getPhrase('blog.most_liked')),
+						// 'most-talked' => array('blog.total_comment', Phpfox::getPhrase('blog.most_discussed'))
+					),
+					'show' => array(5, 10, 15)
+				),
+
+				// 'cache' => true,
+				'field' => array(
+					'depend' => 'result',
+					'fields' => array('fp.post_id', 'ft.thread_id')
+				)
+			));
+		}
 		
 		$this->setParam('bIsForum', true);
 

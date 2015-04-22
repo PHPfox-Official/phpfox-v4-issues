@@ -15,7 +15,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="header_bar_menu">
 		{if isset($aSearchTool.search)}
 			<div class="header_bar_search">
-				<form method="post" action="{$aSearchTool.search.action|clean}" onbeforesubmit="$Core.Search.checkDefaultValue(this,\'{$aSearchTool.search.default_value}\');">
+				<form method="GET" action="{$aSearchTool.search.action|clean}" onbeforesubmit="$Core.Search.checkDefaultValue(this,\'{$aSearchTool.search.default_value}\');">
 					<div>
 						<input type="hidden" name="search[submit]" value="1" />
 					</div>

@@ -7784,6 +7784,7 @@ ul.activity_feed_form_attach li a:hover {
 }
 #page_photo_index #container {
   padding: 0px 20px;
+  display: block;
 }
 #page_photo_index .mosaicflow_load {
   margin-bottom: 50px;
@@ -7792,6 +7793,10 @@ ul.activity_feed_form_attach li a:hover {
 #page_photo_index #content {
   width: auto;
   margin: 0px;
+}
+#page_photo_index #content,
+#page_photo_index #panel {
+  display: block;
 }
 #page_photo_index #left,
 #page_photo_index #right {

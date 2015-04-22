@@ -109,7 +109,7 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		foreach ($aForums as $aForum) {
 			$aIds[] = $aForum['forum_id'];
 
-			$aChilds = Phpfox::getService('forum')->id($aForum['forum_id'])->getChildren();
+			$aChilds = (array) Phpfox::getService('forum')->id($aForum['forum_id'])->getChildren();
 			foreach ($aChilds as $iId) {
 				$aIds[] = $iId;
 			}

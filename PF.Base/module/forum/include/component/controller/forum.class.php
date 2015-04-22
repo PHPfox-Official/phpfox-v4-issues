@@ -190,9 +190,10 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		{
 			$iForumId = $this->request()->getInt('req2');		
 
-			// $aForums = Phpfox::getService('forum')->live()->id($iForumId)->getForums();
-			$aForums = array();
+			$aForums = Phpfox::getService('forum')->live()->id($iForumId)->getForums();
+			// $aForums = array();
 			$aForum = Phpfox::getService('forum')->id($iForumId)->getForum();
+			$this->template()->assign('isSubForumList', true);
 		}
 		else
 		{

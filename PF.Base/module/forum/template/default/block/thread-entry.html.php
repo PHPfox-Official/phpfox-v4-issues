@@ -26,7 +26,11 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="forum_title">
 			<div class="forum_title_inner_holder">
 				<header>
-					{$aThread|user}
+					{if $aThread.cache_name}
+						<span class="user_profile_link_span"><a href="#">{$aThread.cache_name|clean}</a></span>
+					{else}
+						{$aThread|user}
+					{/if}
 					<h1 itemprop="name">
 						<a href="{permalink module='forum.thread' id=$aThread.thread_id title=$aThread.title}" class="forum_thread_link{if $aThread.css_class == 'new'} forum_thread_link_new{/if}" itemprop="url">
 							{* if $aThread.order_id == 1}<i class="fa fa-paperclip"></i>{/if *}

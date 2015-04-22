@@ -107,14 +107,19 @@ li {
 
 #content {
 	width:@contentWidth;
+	display:table-cell;
+	vertical-align:top;
+	padding-right:20px;
 	/*margin-left:@columnLeftWidth + 20;*/
 }
 
 #container {
-	> ._block_h1 > h1 {
+	display:table;
+
+	#content > ._block_h1 > h1 {
 		background:@blockBg;
 		padding:@blockContentPadding 0px @blockContentPadding @blockContentPadding;
-		width:@contentWidth - @blockContentPadding;
+		/*width:@contentWidth - 40;*/
 		/*margin-left:@columnLeftWidth + (@blockContentPadding * 2);*/
 		margin-bottom:0px;
 		border-bottom:1px darken(@blockBg, 6%) solid;
@@ -155,9 +160,14 @@ li {
 
 #panels {
 	width:@columnWidth;
+	position:relative;
+	/*
 	position:absolute;
 	right:0px;
 	top:0px;
+	*/
+	display:table-cell;
+	vertical-align:top;
 
 	#right, #left {
 		border:0px;

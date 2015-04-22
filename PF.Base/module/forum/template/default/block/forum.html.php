@@ -22,18 +22,6 @@ defined('PHPFOX') or exit('NO DICE!');
 				</header>
 			</div>
 
-			{* if $aForum.thread_title}
-			<div class="_form_last_post">
-				<ul>
-					<li>
-						<a href="{if $aForum.post_id}{permalink module='forum.thread' id=$aForum.thread_id title=$aForum.thread_title_url}post_{$aForum.post_id}/{else}{permalink module='forum.thread' id=$aForum.thread_id title=$aForum.thread_title_url}{/if}" title="{$aForum.thread_title|clean}">
-							{$aForum.thread_title|clean|shorten:50:'...'}
-						</a><span>{$aForum.thread_time_stamp|convert_time} by {$aForum|user}</span>
-					</li>
-				</ul>
-			</div>
-			{/if *}
-
 			<ul class="_forum_info">
 				<li><strong>{$aForum.total_thread|number_format}</strong><span>{phrase var='forum.threads'}</span></li>
 				<li><strong>{$aForum.total_post|number_format}</strong><span>{phrase var='forum.posts'}</span></li>

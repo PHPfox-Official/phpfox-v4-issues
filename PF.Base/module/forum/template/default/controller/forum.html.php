@@ -11,6 +11,10 @@
 defined('PHPFOX') or exit('NO DICE!');
 
 ?>
+{if $aCallback === null && !$bIsSearch}
+	{template file='forum.block.entry'}
+{/if}
+
 {if !PHPFOX_IS_AJAX && !$bIsSearch && count($aAnnouncements)}
 	{foreach from=$aAnnouncements item=aThread}
 		{template file='forum.block.thread-entry'}

@@ -256,7 +256,7 @@ class Phpfox_Image_Helper
 						}
 
 						$ele = 'a';
-						if (isset($aParams['no_link']) || !isset($sLink)) {
+						if (isset($aParams['no_link']) || !isset($sLink) || (isset($aParams['user']) && isset($aParams['user'][$sSuffix . 'no_link']))) {
 							$ele = 'span';
 						}
 

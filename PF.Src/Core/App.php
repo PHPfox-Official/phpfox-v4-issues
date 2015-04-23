@@ -19,9 +19,16 @@ class App {
 			foreach (scandir($base . $vendors) as $apps) {
 				$path = $base . $vendors . '/' . $apps . '/';
 				$file = $path . 'app.json';
+				$installed = $path . 'app.lock';
+
 				if (!file_exists($file)) {
 					continue;
 				}
+
+				if (!file_exists($installed)) {
+					continue;
+				}
+
 				$data = json_decode(file_get_contents($file));
 				$data->path = $path;
 
@@ -72,7 +79,21 @@ class App {
 
 		$App = new App();
 
-		return $App->get($vendor . '/' . $name);
+		$Object = $App->get($vendor . '/' . $name);
+
+		$this->install($Object);
+
+		return $Object;
+	}
+
+	public function install(App\Object $App) {
+		$path = $App->path . 'app.lock';
+		$lock = json_encode(['installed' => PHPFOX_TIME, 'version' => $App->version], JSON_PRETTY_PRINT);
+		file_put_contents($path, $lock);
+
+		\Core\Event::trigger('on_install', $App);
+
+		return true;
 	}
 
 	/**

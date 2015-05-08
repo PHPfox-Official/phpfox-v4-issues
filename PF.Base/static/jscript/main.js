@@ -1957,7 +1957,7 @@ $Core.init = function()
 	{
 		if ($('.nano').length) {
 			$('.nano, .nano-content').addClass('dont-unbind');
-			$('.nano').nanoScroller();
+			$('.nano').css('visibility', 'visible').nanoScroller();
 		}
 
 		$.each($Behavior, function() 

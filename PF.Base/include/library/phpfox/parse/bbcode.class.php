@@ -222,17 +222,25 @@ class Phpfox_Parse_Bbcode
 			$sTxt = preg_replace("/\[\/" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'suffix').''", $sTxt);
 			$sTxt = preg_replace("/\[" . $sBbcode . "=(.*?)\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'prefix', true, '$1').''", $sTxt);
 			*/
-			$sTxt = preg_replace("/\[" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '').''", $sTxt);
-			$sTxt = preg_replace("/\[\/" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'suffix').''", $sTxt);
+			$sTxt = preg_replace_callback("/\[" . $sBbcode . "\]/is", function() use ($sBbcode) {
+				return $this->_replaceBbCode('' . $sBbcode . '');
+			}, $sTxt);
+			$sTxt = preg_replace_callback("/\[" . $sBbcode . "\]/is", function() use ($sBbcode) {
+				return $this->_replaceBbCode('' . $sBbcode . '', 'suffix');
+			}, $sTxt);
 
 			$sTxt = preg_replace_callback("/\[" . $sBbcode . "=(.*?)\]/is", function($matches) use ($sBbcode) {
 				return $this->_replaceBbCode($sBbcode, 'prefix', true, $matches[1]);
 			}, $sTxt);
 		}
-		
-		$sTxt = preg_replace("/\[table=(.*?)\](.*?)\[\/table\]/ise", "''.\$this->_parseTable('$1','$2').''", $sTxt);
-		$sTxt = preg_replace("/\[user\](.+?)\[\/user\]/ise", "''.stripslashes(\$this->_parseMember('user', '$1')).''", $sTxt);
-		$sTxt = preg_replace("/\[profile\](.+?)\[\/profile\]/ise", "''.stripslashes(\$this->_parseMember('profile', '$1')).''", $sTxt);
+
+		// $sTxt = preg_replace("/\[table=(.*?)\](.*?)\[\/table\]/ise", "''.\$this->_parseTable('$1','$2').''", $sTxt);
+		$sTxt = preg_replace_callback("/\[user\](.+?)\[\/user\]/is", function($matches) {
+				return stripslashes($this->_parseMember('user', $matches[1]));
+		}, $sTxt);
+		$sTxt = preg_replace_callback("/\[profile\](.+?)\[\/profile\]/is", function($matches) {
+			return stripslashes($this->_parseMember('profile', $matches[1]));
+		}, $sTxt);
 		
 		if (preg_match_all("/\[quote(.*?)\]/i", $sTxt, $aSample) && isset($aSample[0]))
 		{		
@@ -245,18 +253,24 @@ class Phpfox_Parse_Bbcode
 		}
 
 		
-		$sTxt = preg_replace("/\[img\](.*?)\[\/img\]/ise","''.stripslashes(\$this->_image('$1')).''", $sTxt);
+		$sTxt = preg_replace_callback("/\[img\](.*?)\[\/img\]/is", function($matches) {
+			return stripslashes($this->_image($matches[1]));
+}, $sTxt);
 
 		$sTxt = $this->preParse($sTxt);
 
 		// Attachments
-		$sTxt = preg_replace("/\[attachment(.*?)\](.*?)\[\/attachment\]/ise","''.stripslashes(\$this->_attachment('$1', '$2')).''", $sTxt);
+		$sTxt = preg_replace_callback("/\[attachment(.*?)\](.*?)\[\/attachment\]/is", function($matches) {
+				return stripslashes($this->_attachment($matches[1], $matches[2]));
+		}, $sTxt);
 		// $sTxt = preg_replace("/<a href=\"(.*?)\" attachment=\"(.*?)\">/ise","'<a href=\"' . preg_replace('/(_thumb|_view)/i', '', '$1') . '\" '.stripslashes(\$this->_attachment('$2')).'>'", $sTxt);			
 		if (count($this->_aAttachments))
 		{
 			$this->_aAttachments = Phpfox::getService('attachment')->verify(implode(',', $this->_aAttachments));			
 		}		
-		$sTxt = preg_replace("/\[attachment(.*?)\](.*?)\[\/attachment\]/ise","''.stripslashes(\$this->_parseAttachment('$1', '$2')).''", $sTxt);	
+		$sTxt = preg_replace_callback("/\[attachment(.*?)\](.*?)\[\/attachment\]/is", function($matches) {
+			return stripslashes($this->_parseAttachment($matches[1], $matches[2]));
+}, $sTxt);
 	//	$sTxt = preg_replace("/<a href=\"(.*?)\" attachment=\"(.*?)\">/ise","'<a href=\"\\1\" '.stripslashes(\$this->_parseAttachment('$2')).'>'", $sTxt);				
 		$this->_aAttachments = array();
 
@@ -305,9 +319,16 @@ class Phpfox_Parse_Bbcode
 				}
 			}			
 		}
+
+		$sTxt = preg_replace_callback("/\[user\](.+?)\[\/user\]/is", function($matches) {
+			return stripslashes($this->_parseUser('user', $matches[1]));
+		}, $sTxt);
+		$sTxt = preg_replace_callback("/\[profile\](.+?)\[\/profile\]/is", function($matches) {
+			return stripslashes($this->_parseUser('profile', $matches[1]));
+		}, $sTxt);
 		
-		$sTxt = preg_replace("/\[user\](.+?)\[\/user\]/ise", "''.stripslashes(\$this->_parseUser('user', '$1')).''", $sTxt);
-		$sTxt = preg_replace("/\[profile\](.+?)\[\/profile\]/ise", "''.stripslashes(\$this->_parseUser('profile', '$1')).''", $sTxt);
+		// $sTxt = preg_replace("/\[user\](.+?)\[\/user\]/ise", "''.stripslashes(\$this->_parseUser('user', '$1')).''", $sTxt);
+		// $sTxt = preg_replace("/\[profile\](.+?)\[\/profile\]/ise", "''.stripslashes(\$this->_parseUser('profile', '$1')).''", $sTxt);
 		
 		(($sPlugin = Phpfox_Plugin::get('parse_bbcode_parse_end')) ? eval($sPlugin) : false);
 		

@@ -987,7 +987,7 @@ class Phpfox_Url
 			)) {
 			return '/';
 		}
-		return '/' . ltrim(explode('?', str_replace(Phpfox::getParam('core.folder'), '', $_SERVER['REQUEST_URI']))[0], '/');
+		return '/' . ltrim(explode('?', (Phpfox::getParam('core.folder') != '/' ? str_replace(Phpfox::getParam('core.folder'), '', $_SERVER['REQUEST_URI']) : $_SERVER['REQUEST_URI']))[0], '/');
 	}
 	
 	/**

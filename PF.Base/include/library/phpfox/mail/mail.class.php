@@ -459,6 +459,7 @@ class Phpfox_Mail
 							$sSubject = Phpfox_Locale::instance()->getPhraseHistory($this->_aSubject, $aUser['language_id']);
 						}
 
+						/*
 						$sMessage = preg_replace('/\{setting var=\'(.*)\'\}/ise', "'' . Phpfox::getParam('\\1') . ''", $sMessage);
 						$sMessage = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1',{$this->_sArray}, false, null, '".$aUser['language_id']."') . ''", $sMessage);
 						$sMessagePlain = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1',{$this->_sArray}, false, null, '".$aUser['language_id']."') . ''", $sMessagePlain);
@@ -468,7 +469,9 @@ class Phpfox_Mail
 						$sSubject = html_entity_decode($sSubject, null, 'UTF-8'); // http://www.phpfox.com/tracker/view/10392/
 						$sSubject = str_replace(array('&#039;', '&#0039;'), "'", $sSubject); // http://www.phpfox.com/tracker/view/15051/
 						$sEmailSig = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1',{$this->_sArray}, false, null, '".$aUser['language_id']."') . ''", Phpfox::getParam('core.mail_signature'));
-				
+						*/
+						$sEmailSig = Phpfox::getParam('core.mail_signature');
+
 						// Load plain text template
 						$sTextPlain = Phpfox_Template::instance()->assign(array(
 									'sName' => $aUser['full_name'],

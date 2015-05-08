@@ -166,11 +166,11 @@ class Phpfox_Parse_Bbcode
 	 */
 	public function preParse($sTxt)
 	{		
-		$sTxt = preg_replace("/\[php\](.*?)\[\/php\]/ise","''.stripslashes(\$this->_code('$1', 'php')).''", $sTxt);
+		$sTxt = preg_replace_callback("/\[php\](.*?)\[\/php\]/is", function($matches) {return stripslashes($this->_code($matches[1], 'php')); }, $sTxt);
 		$sTxt = preg_replace_callback("/\[code\](.*?)\[\/code\]/is", function($matches) {
 			return $this->_code($matches[1], 'code');
 		}, $sTxt);
-		$sTxt = preg_replace("/\[html\](.*?)\[\/html\]/ise","''.stripslashes(\$this->_code('$1', 'html')).''", $sTxt);	
+		$sTxt = preg_replace_callback("/\[html\](.*?)\[\/html\]/is", function($matches) {return stripslashes($this->_code($matches[1], 'html')); }, $sTxt);
 		
 		(($sPlugin = Phpfox_Plugin::get('parse_bbcode_preparse_end')) ? eval($sPlugin) : false);	
 		

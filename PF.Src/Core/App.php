@@ -101,7 +101,7 @@ class App {
 	 * @return App\Object
 	 * @throws mixed
 	 */
-	public function import($zip = null) {
+	public function import($zip = null, $download = false) {
 		if ($zip === null) {
 			$zip = PHPFOX_DIR_FILE . 'static/import-' . uniqid() . '.zip';
 			register_shutdown_function(function() use($zip) {
@@ -109,6 +109,16 @@ class App {
 			});
 
 			file_put_contents($zip, file_get_contents('php://input'));
+		}
+
+		if ($download) {
+			$zipUrl = $zip;
+			$zip = PHPFOX_DIR_FILE . 'static/import-' . uniqid() . '.zip';
+			register_shutdown_function(function() use($zip) {
+				unlink($zip);
+			});
+
+			file_put_contents($zip, file_get_contents($zipUrl));
 		}
 
 		$archive = new \ZipArchive();

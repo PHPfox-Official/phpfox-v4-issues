@@ -17,6 +17,7 @@ abstract class Api {
 	public function __construct() {
 		$this->db = \Phpfox_Database::instance();
 		$this->request = \Phpfox_Request::instance();
+
 		if ($this->request->segment(1) == 'api') {
 			if ($this->request->authPass() != 'bar') {
 				throw error('Authentication failed.');

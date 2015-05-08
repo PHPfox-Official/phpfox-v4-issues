@@ -10,6 +10,7 @@ namespace Core;
  * @method Home verify()
  * @method Home install()
  * @method Home vendor($name)
+ * @method Home admincp()
  */
 class Home {
 	private $_id;
@@ -18,6 +19,12 @@ class Home {
 	public function __construct($id = null, $key = null) {
 		$this->_id = $id;
 		$this->_key = $key;
+	}
+
+	public function checkAppInstalled($params) {
+		$App = new \Core\App();
+		$_App = $App->get($params['id']);
+		d($_App); exit;
 	}
 
 	public function run($action, $response = null) {
@@ -31,7 +38,7 @@ class Home {
 		$Http = new HTTP($url);
 		$Http->auth($this->_id, $this->_key);
 
-		// $Http->using(['current' => \Phpfox_Url::instance()->current()]);
+		$Http->using(['domain' => \Phpfox::getParam('core.path')]);
 		foreach ($args as $key => $value) {
 			if (is_string($value)) {
 				// $value = [$key => $value];

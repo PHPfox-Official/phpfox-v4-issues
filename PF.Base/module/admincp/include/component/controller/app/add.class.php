@@ -2,8 +2,12 @@
 
 class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 	public function process() {
-		if (isset($_SERVER['HTTP_X_FILE_NAME'])) {
-			$App = (new Core\App())->import();
+		if (isset($_SERVER['HTTP_X_FILE_NAME']) || $this->request()->get('download')) {
+			$App = (new Core\App())->import($this->request()->get('download'), ($this->request()->get('download') ? true : false));
+
+			if ($this->request()->get('download')) {
+				$this->url()->send('admincp.app', ['id' => $App->id]);
+			}
 
 			return [
 				'redirect' => $this->url()->makeUrl('admincp.app', ['id' => $App->id])

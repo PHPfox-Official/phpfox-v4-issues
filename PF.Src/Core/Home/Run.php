@@ -23,6 +23,9 @@ class Run {
 		file_put_contents($zip, file_get_contents($response->download));
 
 		switch ($Request->get('type')) {
+			case 'isAppInstalled':
+				echo "OK";
+				break;
 			case 'language':
 				$file = PHPFOX_DIR_FILE . 'static/' . uniqid() . '/';
 				mkdir($file);

@@ -1069,6 +1069,9 @@ class Phpfox
 				$Home = new Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY);
 				$callback = $_REQUEST['m9callback'];
 				unset($_GET['m9callback'], $_GET['do']);
+				if (!$_GET) {
+					$_GET = [];
+				}
 				echo json_encode(call_user_func([$Home, $callback], $_GET));
 			} catch (\Exception $e) {
 				// throw new \Exception($e->getMessage(), 0, $e);
@@ -1103,8 +1106,10 @@ class Phpfox
 		$oReq = Phpfox_Request::instance();
 		$oModule = Phpfox_Module::instance();
 
-		$aStaticFolders = ['file', 'static', 'theme', 'module', 'apps', 'themes'];
-		if (in_array($oReq->segment(1), $aStaticFolders)) {
+		$aStaticFolders = ['file', 'static', 'module', 'apps', 'themes'];
+		if (in_array($oReq->segment(1), $aStaticFolders) ||
+			($oReq->segment(1) == 'theme' && $oReq->segment(2) != 'demo')
+		) {
 			$sUri = Phpfox_Url::instance()->getUri();
 			if ($sUri == '/static/ajax.php') {
 				$oAjax = Phpfox_Ajax::instance();

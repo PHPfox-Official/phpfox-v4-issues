@@ -35,7 +35,7 @@
 					{/foreach}
 				{/if}
 			</div>
-			<a href="http://store.moxi9.com/phpfox/apps?version=4" target="_blank">Find More Apps</a>
+			<a href="{url link='admincp.store' load='apps'}">Find More Apps</a>
 		</section>
 	</div>
 

@@ -5549,6 +5549,258 @@ table.default_table td {
   color: #999999;
   border-bottom: 1px #ebebeb solid;
 }
+#page_theme_demo {
+  background: #D2D2D2;
+}
+.demo-holder {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  background: #D2D2D2;
+  color: #808080;
+  /*
+	header {
+		h1 {
+			padding:0px;
+			margin:0px;
+			color:#fff;
+			text-indent:20px;
+			text-align:center;
+			font-weight:200;
+			font-size:20px;
+
+			a, a:hover {
+				color:#fff;
+				text-decoration:none;
+			}
+		}
+
+		> a, > a:hover {
+			position:absolute;
+			right:10px;
+			top:16px;
+			display:block;
+			padding:10px 30px;
+			background:#0c0c0c;
+			color:#fff;
+			line-height:normal;
+			border-radius:30px;
+			text-decoration:none;
+		}
+
+		> i, > i:hover {
+			position:absolute;
+			left:20px;
+			top:25px;
+			font-size:20px;
+			color:#fff;
+			display:block;
+			cursor:pointer;
+		}
+
+		> i:hover {
+			color:#222;
+		}
+	}
+	*/
+}
+.demo-buttons {
+  position: fixed;
+  top: 30px;
+  left: 0px;
+  right: 0px;
+  height: 30px;
+  padding-left: 10px;
+  z-index: 1;
+}
+.demo-buttons > ul li {
+  display: inline-block;
+  vertical-align: top;
+}
+.demo-buttons > ul li:not(.tab) {
+  width: 16px;
+  height: 30px;
+  position: relative;
+}
+.demo-buttons > ul li:not(.tab) span {
+  display: block;
+  position: absolute;
+  left: 4px;
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  background: green;
+  border-radius: 50%;
+}
+.demo-buttons > ul li:not(.tab) span.g {
+  background: #2ECC71;
+}
+.demo-buttons > ul li:not(.tab) span.y {
+  background: #F1C40F;
+}
+.demo-buttons > ul li:not(.tab) span.r {
+  background: #E74C3C;
+}
+.demo-buttons > ul li.tab {
+  background: #EEEEEE;
+  color: #808080;
+  padding: 0px 15px;
+  margin-left: 10px;
+  font-size: 12px;
+  margin-top: 6px;
+  line-height: 24px;
+  border-radius: 4px;
+  padding-bottom: 20px;
+}
+.demo-buttons > div {
+  position: absolute;
+  right: 20px;
+  top: -2px;
+}
+.demo-buttons > div li {
+  display: inline-block;
+  font-size: 12px;
+  color: #222;
+  height: 30px;
+  line-height: 30px;
+}
+.demo-buttons > div li:hover {
+  color: #298ada;
+  transition: all 0.5s ease;
+  cursor: default;
+}
+.demo-buttons > div li.get a,
+.demo-buttons > div li.get a:hover {
+  display: block;
+  height: 20px;
+  line-height: 20px;
+  background: #0c0c0c;
+  color: #fff;
+  border-radius: 30px;
+  margin: 0px 10px;
+  padding: 0px 15px;
+  font-size: 11px;
+}
+.demo-content,
+.demo-overlay,
+.demo-themes {
+  position: fixed;
+  top: 60px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 10;
+}
+.demo-content iframe,
+.demo-overlay iframe,
+.demo-themes iframe {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  margin: 0px;
+}
+.demo-overlay {
+  z-index: 30;
+  background: #fff;
+}
+.demo-overlay i {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+}
+.demo-overlay-full {
+  top: 0px;
+}
+.demo-themes {
+  z-index: 20;
+  background: #e5e5e5;
+  color: #808080;
+  text-align: center;
+  padding: 50px;
+  overflow: auto;
+  display: none;
+}
+.themes .theme_colors {
+  padding-top: 40px;
+  text-align: center;
+}
+.themes .theme_colors > span {
+  display: inline-block;
+  width: 120px;
+  height: 150px;
+  margin: 10px;
+  border: 1px #e6e6e6 solid;
+}
+.themes article {
+  width: 300px;
+  height: 400px;
+  background: #ffffff;
+  color: #999999;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0px 10px 20px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  overflow: hidden;
+}
+.themes article h1 a,
+.themes article h1 a:hover {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+}
+.themes article h1 a em,
+.themes article h1 a:hover em {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -40px;
+  padding: 6px 20px;
+  text-indent: 0px;
+  font-weight: 300;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: #298ada;
+  color: #ffffff;
+  font-size: 16px;
+}
+.themes article h1 a span,
+.themes article h1 a:hover span {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  background: #222;
+  color: #fff;
+  font-weight: 200;
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+  letter-spacing: 1px;
+  text-indent: 8px;
+}
+.themes article h1 a:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.5s ease;
+}
+.themes article h1 a:hover em {
+  display: block;
+}
 #welcome {
   padding: 0px;
   margin-bottom: 20px;
@@ -6572,9 +6824,7 @@ span.forum_tag_sticky {
   width: auto;
 }
 #page_forum_thread #container {
-  width: auto;
-  margin-left: 20px;
-  margin-right: 20px;
+  width: 95%;
 }
 #page_forum_thread #container > ._block_h1 {
   margin-bottom: 20px;
@@ -6589,7 +6839,7 @@ span.forum_tag_sticky {
 #page_forum_thread .forum_header_menu {
   top: 6px;
   right: 50%;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 #page_forum_thread #panels {
   display: none;
@@ -6597,7 +6847,7 @@ span.forum_tag_sticky {
 .thread_view_all,
 .thread_view_all:hover {
   position: absolute;
-  right: 10px;
+  right: 30px;
   top: 10px;
   font-size: 12px;
   display: block;

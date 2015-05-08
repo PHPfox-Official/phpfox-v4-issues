@@ -690,6 +690,21 @@ div.sortable ul li:hover ul li:hover a:hover {
 .hide_it {
   display: none;
 }
+#page_admincp_store_index #main {
+  min-height: 0px;
+}
+#page_admincp_store_index div#copyright {
+  display: none;
+}
+#phpfox_store {
+  position: fixed;
+  top: 40px;
+  left: 200px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 10000;
+  background: transparent;
+}
 div#admincp_site_link {
   text-align: left;
   background: transparent;

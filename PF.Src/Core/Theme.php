@@ -8,10 +8,12 @@ class Theme extends Model {
 	public function __construct() {
 		parent::__construct();
 		if (!self::$_active) {
+			$cookie = \Phpfox::getCookie('theme_id');
+
 			self::$_active = $this->db->select('t.*, ts.folder AS flavor_folder')
 				->from(':theme', 't')
 				->join(':theme_style', 'ts', ['t.theme_id' => ['=' => 'ts.theme_id'], 'ts.is_default' => 1])
-				->where(['t.is_default' => 1])
+				->where(($cookie ? ['t.theme_id' => (int) $cookie] : ['t.is_default' => 1]))
 				->get();
 
 			if (!self::$_active || defined('PHPFOX_CSS_FORCE_DEFAULT')) {

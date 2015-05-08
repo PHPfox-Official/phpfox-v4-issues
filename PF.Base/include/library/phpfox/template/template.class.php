@@ -1677,8 +1677,14 @@ class Phpfox_Template
 		}
 
 		if (!defined('PHPFOX_INSTALLER') && !Phpfox::isAdminPanel()) {
-			$Theme = $this->_theme->get();
-			$sData .= '<link href="' . Phpfox::getParam('core.path') . 'themes/' . $Theme->folder . '/flavor/' . $Theme->flavor_folder . '.css?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
+			$Request = \Phpfox_Request::instance();
+			if ($Request->segment(1) == 'theme' && $Request->segment(2) == 'demo') {
+				$sData .= '<link href="' . Phpfox::getParam('core.path') . 'theme/default/flavor/default.css?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
+			}
+			else {
+				$Theme = $this->_theme->get();
+				$sData .= '<link href="' . Phpfox::getParam('core.path') . 'themes/' . $Theme->folder . '/flavor/' . $Theme->flavor_folder . '.css?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
+			}
 		}
 
 		if (!defined('PHPFOX_INSTALLER')) {

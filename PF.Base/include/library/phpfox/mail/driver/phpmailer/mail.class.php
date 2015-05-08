@@ -29,12 +29,14 @@ class Phpfox_Mail_Driver_Phpmailer_Mail implements Phpfox_Mail_Interface
 	 */
 	public function __construct()
     {
+	    /*
 	    if (!file_exists(PHPFOX_DIR_LIB . 'phpmailer' . PHPFOX_DS . 'class.phpmailer.php'))
 	    {
 	    	return Phpfox_Error::trigger('Unable to load lib: ' . PHPFOX_DIR_LIB . 'phpmailer' . PHPFOX_DS . 'class.phpmailer.php', E_USER_ERROR);
 	    }
     	
 	   	require_once(PHPFOX_DIR_LIB . 'phpmailer' . PHPFOX_DS . 'class.phpmailer.php');
+	    */
     	
 	    $this->_oMail = new PHPMailer;
 	    $this->_oMail->From = (Phpfox::getParam('core.email_from_email') ? Phpfox::getParam('core.email_from_email') : 'server@localhost.com');

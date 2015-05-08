@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html {{ html }}>
+	<head>
+		<title>{{ block('title') }}</title>
+		{{ header }}
+		{{ block('header') }}
+	</head>
+	<body {{ body }}>
+		{{ errors }}
+		{{ block('content') }}
+		{{ js }}
+	</body>
+</html>

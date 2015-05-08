@@ -3,6 +3,9 @@
 namespace Core;
 
 class View {
+
+	public static $template = 'layout';
+
 	private $_loader;
 	private $_env;
 	private $_render = [];
@@ -48,8 +51,9 @@ class View {
 	public function getContent() {
 		$Template = \Phpfox_Template::instance();
 		if (!$this->_render) {
+
 			$this->_render = [
-				'name' => '@Base/layout.html',
+				'name' => '@Base/' . self::$template . '.html',
 				'params' => [
 					'content' => new View\Functions('content'),
 					'top' => new View\Functions('top'),

@@ -229,7 +229,7 @@ class Phpfox_Request
     			{
 					if (Phpfox::getParam('core.allow_cdn'))
 					{
-						return Phpfox::getLib('cdn')->getServerId();
+						return (int) Phpfox::getLib('cdn')->getServerId();
 					}
     				
     				return 0;

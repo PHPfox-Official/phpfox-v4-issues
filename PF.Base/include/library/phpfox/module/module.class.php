@@ -441,7 +441,9 @@ class Phpfox_Module
 		if (Phpfox::getParam('core.site_is_offline')
 			&& !Phpfox::getUserParam('core.can_view_site_offline')
 			&& (
-				$this->_sModule != 'user' && !in_array($this->_sController, ['login', 'logout'])
+				$this->_sModule != 'user'
+				&& $this->_sModule != 'captcha'
+				&& !in_array($this->_sController, ['login', 'logout'])
 			)
 		) {
 			$this->_sModule = 'core';

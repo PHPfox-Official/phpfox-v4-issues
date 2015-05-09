@@ -15,10 +15,12 @@ if (version_compare(phpversion(), '5.4', '<') === true)
 
 ob_start();
 
-define('PHPFOX', true);
-define('PHPFOX_DS', DIRECTORY_SEPARATOR);
-define('PHPFOX_DIR', dirname(__FILE__) . PHPFOX_DS);
-define('PHPFOX_START_TIME', array_sum(explode(' ', microtime())));
+if (!defined('PHPFOX')) {
+	define('PHPFOX', true);
+	define('PHPFOX_DS', DIRECTORY_SEPARATOR);
+	define('PHPFOX_DIR', dirname(__FILE__) . PHPFOX_DS);
+	define('PHPFOX_START_TIME', array_sum(explode(' ', microtime())));
+}
 
 if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
 	exit('Dependencies for PHPfox missing. Make sure to run composer first.');

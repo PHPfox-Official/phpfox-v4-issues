@@ -29,6 +29,13 @@ class Phpfox_Hash
 	public function __construct()
 	{			
 	}
+
+	/**
+	 * @return Phpfox_Hash
+	 */
+	public static function instance() {
+		return Phpfox::getLib('hash');
+	}
 	
 	/**
 	 * Creates an MD5 hash with the password itself wrapped in MD5 as

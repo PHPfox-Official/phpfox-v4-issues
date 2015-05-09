@@ -25,7 +25,7 @@ defined('PHPFOX') or exit('NO DICE!');
 						{img user=$aPost suffix='_50_square'}
 					</div>
 					<div class="forum_thread_user">
-						{if $aPost.cache_name}
+						{if isset($aPost.cache_name) && $aPost.cache_name}
 							<span class="user_profile_link_span"><a href="#">{$aPost.cache_name|clean}</a></span>
 						{else}
 							{$aPost|user:'':'':13}

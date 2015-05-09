@@ -5,7 +5,7 @@
 			{img user=$post suffix='_50_square' max_width=32 max_height=32}
 		</div>
 		<div class="_u">
-			{if $post.cache_name}
+			{if isset($post.cache_name) && $post.cache_name}
 				<span class="user_profile_link_span"><a href="#">{$post.cache_name|clean}</a></span>
 			{else}
 				{$post|user}

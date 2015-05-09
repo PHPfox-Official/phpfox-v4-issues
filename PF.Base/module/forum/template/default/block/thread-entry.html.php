@@ -26,7 +26,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="forum_title">
 			<div class="forum_title_inner_holder">
 				<header>
-					{if $aThread.cache_name}
+					{if isset($aThread.cache_name) && $aThread.cache_name}
 						<span class="user_profile_link_span"><a href="#">{$aThread.cache_name|clean}</a></span>
 					{else}
 						{$aThread|user}

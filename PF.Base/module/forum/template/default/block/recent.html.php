@@ -13,7 +13,7 @@
 		</div>
 		<h1><a href="{permalink module='forum.thread' title=$post.thread_title id=$post.thread_id}">{$post.thread_title|clean}</a></h1>
 		<div class="_c">
-			{$post.text_parsed|parse}
+			{$post.text_parsed|strip_tags|shorten:50:'...'}
 		</div>
 		<time>
 			{$post.time_stamp|convert_time}

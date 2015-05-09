@@ -45,12 +45,14 @@ class Forum_Service_Post_Post extends Phpfox_Service
 			->order('ft.time_update DESC, fp.time_stamp DESC')
 			->all();
 
+		/*
 		foreach ($posts as $key => $post) {
 			if ($post['cache_name']) {
 				$posts[$key]['full_name'] = $post['cache_name'];
 				$posts[$key]['no_link'] = true;
 			}
 		}
+		*/
 
 		return $posts;
 	}

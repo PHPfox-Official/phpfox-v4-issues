@@ -148,10 +148,12 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 			
 			foreach ($aThreads as $iKey => $aThread)
 			{
+				/*
 				if ($aThread['cache_name']) {
 					$aThreads[$iKey]['full_name'] = $aThread['cache_name'];
 					$aThreads[$iKey]['no_link'] = true;
 				}
+				*/
 
 				$sCss = 'new';
 				if ($aThread['is_closed'])
@@ -440,13 +442,14 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 		foreach ($aThread['posts'] as $iKey => $aPost)
 		{
 			$iTotal++;
-
+			/*
 			if ($aPost['cache_name']) {
 				$aThread['posts'][$iKey]['user_id'] = 0;
 				$aThread['posts'][$iKey]['user_image'] = '';
 				$aThread['posts'][$iKey]['full_name'] = $aPost['cache_name'];
 				$aThread['posts'][$iKey]['no_link'] = true;
 			}
+			*/
 
 			$aThread['posts'][$iKey]['count'] = ($sPermaView === null ? $iTotal : Phpfox::getService('forum.post')->getPostCount());
 			$aThread['posts'][$iKey]['forum_id'] = $aThread['forum_id'];

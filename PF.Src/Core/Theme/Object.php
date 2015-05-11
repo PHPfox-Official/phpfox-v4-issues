@@ -196,7 +196,7 @@ class Object extends \Core\Objectify {
 	}
 
 	public function merge() {
-		$flavorId = $this->internal_id;
+		$flavorId = $this->flavor_id;
 		$id = $this->theme_id;
 		$path = PHPFOX_DIR_SITE . 'themes/' . $id . '/';
 		$File = \Phpfox_File::instance();

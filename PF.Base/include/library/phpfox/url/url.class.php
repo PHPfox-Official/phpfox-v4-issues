@@ -867,7 +867,13 @@ class Phpfox_Url
 	private function _send($sUrl, $iHeader = null)
 	{
 		// Clean buffer
-		ob_clean();		
+		ob_clean();
+
+		if (Phpfox_Request::instance()->get('is_ajax_post')) {
+			header('Content-type: application/json');
+			echo json_encode(['process' => 'complete']);
+			exit;
+		}
 		
 		if (defined('PHPFOX_IS_AJAX_PAGE') && PHPFOX_IS_AJAX_PAGE)
 		{

@@ -11,6 +11,12 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+<div class="js_pager_view_more_link">
+	<a href="{$sCurrentUrl}" class="next_page">
+		<i class="fa fa-spin fa-circle-o-notch"></i>
+	</a>
+</div>
+
 {if isset($aPager) && $aPager.totalPages > 1}
 	<div class="pager_outer">
 			<ul class="pager">

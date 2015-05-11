@@ -13,8 +13,10 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if defined('PHPFOX_IS_ADMIN_SEARCH')}
+
+{if !PHPFOX_IS_AJAX}
 <div class="block_search">
-	<form method="post" action="{url link='admincp.user.browse'}">
+	<form method="get" action="{url link='admincp.user.browse'}">
 		<div class="table">
 			<div class="table_left">
 				{phrase var='user.search'}:
@@ -131,11 +133,34 @@ defined('PHPFOX') or exit('NO DICE!');
 </div>
 
 <div class="block_content">
-
-	<form method="post" action="{url link='current'}">
+	{literal}
+	<script>
+		function delete_users(response, form, data) {
+			// p(form);
+			for (var i in data) {
+				var e = data[i];
+				if (e.name == 'delete') {
+					// p('is delete...');
+					form.find('input[type="checkbox"]').each(function() {
+						if ($(this).is(':checked')) {
+							$('#js_user_' + $(this).val()).remove();
+						}
+					});
+				}
+			}
+		};
+	</script>
+	{/literal}
+	<form method="post" action="{url link='current'}" class="ajax_post" data-callback="delete_users">
+{/if}
+		{if $aUsers}
 		<table cellpadding="0" cellspacing="0" {if !Phpfox::getParam('user.randomize_featured_members') && isset($bShowFeatured) && $bShowFeatured == 1} id="js_drag_drop"{/if}>
 		<tr>
-			<th style="width:10px;"><input type="checkbox" name="val[id]" value="" id="js_check_box_all" class="main_checkbox" /></th>
+			<th style="width:10px;">
+				{if !PHPFOX_IS_AJAX}
+					<input type="checkbox" name="val[id]" value="" id="js_check_box_all" class="main_checkbox" />
+				{/if}
+			</th>
 			<th style="width:20px;"></th>
 			<th>{phrase var='user.user_id'}</th>
 			<th>{phrase var='user.photo'}</th>
@@ -244,6 +269,13 @@ defined('PHPFOX') or exit('NO DICE!');
 		</tr>
 		{/foreach}
 		</table>
+
+		{pager}
+
+		{/if}
+
+	{/if}
+{if !PHPFOX_IS_AJAX}
 		<div class="table_clear table_hover_action">
 			<input type="submit" name="approve" value="{phrase var='user.approve'}" class="button sJsCheckBoxButton disabled" disabled="true" />
 			<input type="submit" name="ban" value="{phrase var='user.ban'}" class="sJsConfirm button sJsCheckBoxButton disabled" disabled="true" />
@@ -253,7 +285,6 @@ defined('PHPFOX') or exit('NO DICE!');
 			<input type="submit" name="delete" value="{phrase var='user.delete'}" class="sJsConfirm button sJsCheckBoxButton disabled" disabled="true" />
 		</div>
 	</form>
-	{pager}
 </div>
 {else}
 	{if isset($highlightUsers)}

@@ -258,6 +258,7 @@ $Behavior.onAjaxSubmit = function() {
 
 	$('.ajax_post').submit(function() {
 		var t = $(this),
+			callback = t.data('callback'),
 			data = t.serialize();
 
 		t.find('.error_message').remove();
@@ -267,6 +268,9 @@ $Behavior.onAjaxSubmit = function() {
 			data: data + '&is_ajax_post=1',
 			success: function(e) {
 				$Core.processPostForm(e, t);
+				if (callback) {
+					window[callback](e, t, t.serializeArray());
+				}
 			}
 		});
 

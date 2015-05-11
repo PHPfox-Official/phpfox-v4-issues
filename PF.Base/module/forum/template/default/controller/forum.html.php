@@ -11,7 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!');
 
 ?>
-{if $aCallback === null && !$bIsSearch}
+{if !PHPFOX_IS_AJAX && $aCallback === null && !$bIsSearch}
 	{template file='forum.block.entry'}
 {/if}
 
@@ -29,9 +29,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/foreach}
 	{else}
 		{foreach from=$aThreads item=aThread}
-			{if $aThread.order_id != '1'}
 			{template file='forum.block.thread-entry'}
-			{/if}
 		{/foreach}
 	{/if}
 
@@ -39,5 +37,5 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 
 {if !isset($bIsPostSearch) && (Phpfox::getUserParam('forum.can_approve_forum_thread') || Phpfox::getUserParam('forum.can_delete_other_posts'))}
-{moderation}
+	{moderation}
 {/if}

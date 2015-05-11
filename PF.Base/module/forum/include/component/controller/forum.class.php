@@ -58,11 +58,11 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		if ($oSearch->isSearch() && $this->request()->getInt('req2') == 'search')
 		{
 			$aIds = [];
-			$aForums = Phpfox::getService('forum')->live()->getForums();
+			$aForums = Forum_Service_Forum::instance()->live()->getForums();
 			foreach ($aForums as $aForum) {
 				$aIds[] = $aForum['forum_id'];
 
-				$aChilds = (array) Phpfox::getService('forum')->id($aForum['forum_id'])->getChildren();
+				$aChilds = (array) Forum_Service_Forum::instance()->id($aForum['forum_id'])->getChildren();
 				foreach ($aChilds as $iId) {
 					$aIds[] = $iId;
 				}
@@ -84,7 +84,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 					
 					if (empty($aSearch['group_id']))
 					{
-						if (!Phpfox::getService('forum')->hasAccess($iSearchForum, 'can_view_forum'))
+						if (!Forum_Service_Forum::instance()->hasAccess($iSearchForum, 'can_view_forum'))
 						{
 							continue;
 						}
@@ -103,7 +103,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			{
 				if (empty($aSearch['group_id']))
 				{
-					$sForums = Phpfox::getService('forum')->getCanViewForumAccess('can_view_forum');
+					$sForums = Forum_Service_Forum::instance()->getCanViewForumAccess('can_view_forum');
 					if ($sForums !== false)
 					{
 						$oSearch->setCondition('AND ft.forum_id NOT IN(' . $sForums . ')');	
@@ -160,7 +160,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				
 				if (empty($aSearch['group_id']))
 				{
-					$sForums = Phpfox::getService('forum')->getCanViewForumAccess('can_view_thread_content');
+					$sForums = Forum_Service_Forum::instance()->getCanViewForumAccess('can_view_thread_content');
 					if ($sForums !== false)
 					{
 						$oSearch->setCondition('AND ft.forum_id NOT IN(' . $sForums . ')');	
@@ -201,11 +201,11 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 
 		if ($aParentModule == null)
 		{
-			$iForumId = $this->request()->getInt('req2');		
+			$iForumId = $this->request()->getInt('req2');
 
-			$aForums = Phpfox::getService('forum')->live()->id($iForumId)->getForums();
+			$aForums = Forum_Service_Forum::instance()->live()->id($iForumId)->getForums();
 			// $aForums = array();
-			$aForum = Phpfox::getService('forum')->id($iForumId)->getForum();
+			$aForum = Forum_Service_Forum::instance()->id($iForumId)->getForum();
 			$this->template()->assign('isSubForumList', true);
 		}
 		else
@@ -262,7 +262,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			}
 			
 			// get the forums that we cant access
-			$aForbiddenForums = Phpfox::getService('forum')->getForbiddenForums();
+			$aForbiddenForums = Forum_Service_Forum::instance()->getForbiddenForums();
 			if (!empty($aForbiddenForums))
 			{
 				$oSearch->setCondition(' AND ft.forum_id NOT IN (' . implode(',', $aForbiddenForums) . ')');
@@ -308,7 +308,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		}
 		
 		
-		$aAccess = Phpfox::getService('forum')->getUserGroupAccess($iForumId, Phpfox::getUserBy('user_group_id'));
+		$aAccess = Forum_Service_Forum::instance()->getUserGroupAccess($iForumId, Phpfox::getUserBy('user_group_id'));
 		
 		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
@@ -425,7 +425,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			
 			if ($aParentModule === null)
 			{			
-				if (!Phpfox::getService('forum')->hasAccess($aForum['forum_id'], 'can_view_forum'))
+				if (!Forum_Service_Forum::instance()->hasAccess($aForum['forum_id'], 'can_view_forum'))
 				{
 					$this->url()->send('forum');
 				}

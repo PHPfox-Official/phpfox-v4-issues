@@ -293,7 +293,7 @@ class Forum_Service_Forum extends Phpfox_Service
 					// 'most-liked' => array('blog.total_like', Phpfox::getPhrase('blog.most_liked')),
 					// 'most-talked' => array('blog.total_comment', Phpfox::getPhrase('blog.most_discussed'))
 				),
-				'show' => array(5, 10, 15)
+				'show' => array(20)
 			),
 
 			// 'cache' => true,

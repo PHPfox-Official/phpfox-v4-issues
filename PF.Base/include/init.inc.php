@@ -13,22 +13,7 @@ defined('PHPFOX') or exit('NO DICE!');
 @ini_set('memory_limit', '-1');
 @set_time_limit(0);
 
-if (!function_exists('memory_get_usage'))
-{
-	function memory_get_usage() {}
-}
-
-if (function_exists('get_magic_quotes_runtime') && get_magic_quotes_runtime())
-{
-	if (preg_match('/5\.3\.(.*)/i', PHP_VERSION))
-	{
-		ini_set('magic_quotes_runtime', 0);
-	}
-	else
-	{
-		set_magic_quotes_runtime(0);
-	}    
-}
+require(PHPFOX_DIR . 'include' . PHPFOX_DS . 'library' . PHPFOX_DS . 'phpfox' . PHPFOX_DS . 'functions' . PHPFOX_DS . 'fallback.php');
 
 if (!isset($_SERVER['HTTP_USER_AGENT']))
 {

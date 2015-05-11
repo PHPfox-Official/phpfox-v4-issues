@@ -19,7 +19,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{if isset($aPage) && isset($aPage.is_reg) && $aPage.is_reg}
 		{else}
 			{if isset($aPage) && $aPage.is_liked}
-			<a href="#" class="pages_like_join pages_unlike_unjoin" onclick="$('#js_add_pages_unlike').show(); $.ajaxCall('like.delete', 'type_id=pages&amp;item_id={$aPage.page_id}'); return false;">
+			<a href="#" class="pages_like_join pages_unlike_unjoin" onclick="$(this).remove(); $.ajaxCall('like.delete', 'type_id=pages&amp;item_id={$aPage.page_id}'); return false;">
 				{if $aPage.page_type == '1' }
 				Unjoin
 				{else}
@@ -28,7 +28,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			</a>
 			{else}
 
-			<a href="#" class="pages_like_join" onclick="$(this).parent().hide(); $('#js_add_pages_unlike').show(); {if $aPage.page_type == '1' && $aPage.reg_method == '1'} $.ajaxCall('pages.signup', 'page_id={$aPage.page_id}'); {else}$.ajaxCall('like.add', 'type_id=pages&amp;item_id={$aPage.page_id}');{/if} return false;">
+			<a href="#" class="pages_like_join" onclick="$(this).remove(); {if $aPage.page_type == '1' && $aPage.reg_method == '1'} $.ajaxCall('pages.signup', 'page_id={$aPage.page_id}'); {else}$.ajaxCall('like.add', 'type_id=pages&amp;item_id={$aPage.page_id}');{/if} return false;">
 				{if $aPage.page_type == '1' }
 				{phrase var='pages.join'}
 				{else}

@@ -758,6 +758,12 @@ class Forum_Service_Forum extends Phpfox_Service
 		{
 			$this->_aForums = array();
 		}
+
+		foreach ($this->_aForums as $key => $value) {
+			$this->_aForums[$key]['toggle_class'] = (Phpfox::getCookie('forum_toggle_' . $value['forum_id']) ? ' is_toggled' : '');
+		}
+
+		// d($this->_aForums); exit;
 		
 		$bIsSet = true;
 	

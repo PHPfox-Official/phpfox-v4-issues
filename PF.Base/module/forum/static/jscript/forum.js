@@ -132,7 +132,27 @@ $Core.forum =
 }
 
 $Behavior.videoAttachment = function()
-{	
+{
+	if ($('.forum_holder').length) {
+
+	}
+
+	$('#page_forum_index .toggle').click(function() {
+		var t = $(this), parent = t.parents('.forum_holder:first');
+
+		// p('Forum: ' + 'forum_toggle_' + parent.data('forum-id'));
+
+		if (parent.hasClass('is_toggled')) {
+			deleteCookie('forum_toggle_' + parent.data('forum-id'));
+			parent.removeClass('is_toggled'); // .find('.content').show();
+
+			return;
+		}
+
+		parent.addClass('is_toggled'); // .find('.content').hide();
+		setCookie('forum_toggle_' + parent.data('forum-id'), 1);
+	});
+
 	var oVideoAttachments = $('span[id^=js_attachment_id_]');
 	$.each( oVideoAttachments, function( i, selector )
 	{

@@ -20,9 +20,12 @@ defined('PHPFOX') or exit('NO DICE!');
 
 		{foreach from=$aForums name=forums item=aForum}
 			{if $aForum.is_category}
-			<div class="block">
+			<div class="block forum_holder{if isset($aForum.toggle_class)} {$aForum.toggle_class}{/if}" data-forum-id="{$aForum.forum_id}">
 				<div class="title">
 					<a href="{permalink module='forum' id=$aForum.forum_id title=$aForum.name}"{if !empty($aForum.description)} title="{$aForum.description|parse}" {/if}>{$aForum.name|clean|convert}</a>
+					<span class="toggle">
+						<i class="fa fa-caret-square-o-up"></i>
+					</span>
 				</div>
 				<div class="content">
 					{foreach from=$aForum.sub_forum item=aForum}

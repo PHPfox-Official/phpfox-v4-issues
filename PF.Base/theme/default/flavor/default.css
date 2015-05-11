@@ -6717,6 +6717,36 @@ div.forum_content {
   margin-top: 60px;
   z-index: 100;
 }
+#page_forum_index #content .block > .title,
+#page_forum_index #content .block_clear > .title {
+  position: relative;
+}
+#page_forum_index #content .block > .title a,
+#page_forum_index #content .block_clear > .title a,
+#page_forum_index #content .block > .title a:hover,
+#page_forum_index #content .block_clear > .title a:hover {
+  display: inline-block;
+}
+#page_forum_index #content .block > .title .toggle,
+#page_forum_index #content .block_clear > .title .toggle {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+#page_forum_index #content .block > .title .toggle i,
+#page_forum_index #content .block_clear > .title .toggle i {
+  color: #e0e0e0;
+}
+#content .is_toggled .title {
+  opacity: 0.4;
+}
+#content .is_toggled .title:hover {
+  opacity: 1;
+}
+#content .is_toggled .content {
+  display: none;
+}
 #page_forum_index div.row1,
 #page_forum_forum div.row1,
 #page_forum_index div.row2,

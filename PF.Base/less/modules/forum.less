@@ -376,6 +376,41 @@ div.forum_content {
 	}
 }
 
+#page_forum_index {
+	#content .block > .title, #content .block_clear > .title {
+		position:relative;
+
+		a, a:hover {
+			display:inline-block;
+		}
+
+		.toggle {
+			position:absolute;
+			right:10px;
+			top:10px;
+			cursor:pointer;
+
+			i {
+				color:darken(@blockTitleBg, 10%);
+			}
+		}
+	}
+}
+
+#content .is_toggled {
+	.title {
+		opacity:0.4;
+	}
+
+	.title:hover {
+		opacity:1;
+	}
+
+	.content {
+		display:none;
+	}
+}
+
 #page_forum_index, #page_forum_forum {
 	div.row1, div.row2 {
 		padding-top:@blockContentPadding;

@@ -133,6 +133,10 @@ define('PHPFOX_TIME', time());
 
 Phpfox::getLib('setting')->set();
 
+if (!defined('PHPFOX_NO_PLUGINS')) {
+	Phpfox_Plugin::set();
+}
+
 // Start a session if needed
 if (!defined('PHPFOX_NO_SESSION'))
 {

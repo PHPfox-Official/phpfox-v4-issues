@@ -195,6 +195,52 @@ class Object extends \Core\Objectify {
 		return $flavors;
 	}
 
+	public function merge() {
+		$flavorId = $this->internal_id;
+		$id = $this->theme_id;
+		$path = PHPFOX_DIR_SITE . 'themes/' . $id . '/';
+		$File = \Phpfox_File::instance();
+		$copy = [];
+		$dirs = [];
+		$files = $File->getAllFiles(PHPFOX_DIR. 'theme/default/');
+		foreach ($files as $file) {
+			if (!in_array($File->extension($file), [
+				'html', 'js', 'css', 'less'
+			])) {
+				continue;
+			}
+
+			$parts = pathinfo($file);
+
+			$dirs[] = str_replace(PHPFOX_DIR . 'theme/default/', '', $parts['dirname']);
+			$copy[] = $file;
+		}
+
+		foreach ($copy as $file) {
+			$newFile = $path . str_replace(PHPFOX_DIR . 'theme/default/', '', $file);
+			if (in_array($File->extension($file), ['less', 'css'])) {
+				$newFile = str_replace('default.' . $File->extension($file), $flavorId . '.' . $File->extension($file), $newFile);
+			}
+
+			copy($file, $newFile);
+
+			// p($file . ' -> ' . $newFile);
+			if ($File->extension($file) == 'less') {
+				$content = file_get_contents($newFile);
+				$content = str_replace('../../../', '../../../../PF.Base/', $content);
+				file_put_contents($newFile, $content);
+			}
+		}
+
+		$Db = new \Core\Db();
+		$Cache = new \Core\Cache();
+
+		$Db->update(':setting', array('value_actual' => ((int) \Phpfox::getParam('core.css_edit_id') + 1)), 'var_name = \'css_edit_id\'');
+		$Cache->del('setting');
+
+		return true;
+	}
+
 	public function __toArray() {
 
 	}

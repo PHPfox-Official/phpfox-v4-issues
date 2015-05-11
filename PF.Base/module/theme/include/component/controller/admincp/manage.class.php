@@ -20,6 +20,11 @@ class Theme_Component_Controller_Admincp_Manage extends Phpfox_Component {
 		else if ($this->request()->get('export')) {
 			$Theme->export();
 		}
+		else if ($this->request()->get('merge')) {
+			$Theme->merge();
+
+			$this->url()->send('admincp.theme.manage', ['id' => $this->request()->get('id')], 'Successfully merged the theme.');
+		}
 
 		$Service = new Core\Theme\Service($Theme);
 

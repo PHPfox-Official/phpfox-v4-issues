@@ -26,7 +26,7 @@ class CSS extends \Core\Model {
 		file_put_contents($path . '.css', $parsed);
 
 		$this->db->update(':setting', array('value_actual' => ((int) \Phpfox::getParam('core.css_edit_id') + 1)), 'var_name = \'css_edit_id\'');
-		$this->cache->remove('setting');
+		$this->cache->del('setting');
 
 		return true;
 

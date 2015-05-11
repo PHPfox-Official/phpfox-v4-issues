@@ -6711,6 +6711,11 @@ div.forum_content {
 ._forum_title header h2 {
   padding-top: 10px;
 }
+#page_forum_forum ._moderator {
+  position: absolute;
+  left: 5px;
+  margin-top: 20px;
+}
 #page_forum_index div.row1,
 #page_forum_forum div.row1,
 #page_forum_index div.row2,

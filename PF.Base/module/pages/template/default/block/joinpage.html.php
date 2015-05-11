@@ -19,7 +19,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{if isset($aPage) && isset($aPage.is_reg) && $aPage.is_reg}
 		{else}
 			{if isset($aPage) && $aPage.is_liked}
-			<a href="#" class="pages_like_join pages_unlike_unjoin">
+			<a href="#" class="pages_like_join pages_unlike_unjoin" onclick="$('#js_add_pages_unlike').show(); $.ajaxCall('like.delete', 'type_id=pages&amp;item_id={$aPage.page_id}'); return false;">
 				{if $aPage.page_type == '1' }
 				Unjoin
 				{else}

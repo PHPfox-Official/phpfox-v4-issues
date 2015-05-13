@@ -275,7 +275,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/if}
 
 	{/if}
-{if !PHPFOX_IS_AJAX}
+{if !PHPFOX_IS_AJAX && defined('PHPFOX_IS_ADMIN_SEARCH')}
 		<div class="table_clear table_hover_action">
 			<input type="submit" name="approve" value="{phrase var='user.approve'}" class="button sJsCheckBoxButton disabled" disabled="true" />
 			<input type="submit" name="ban" value="{phrase var='user.ban'}" class="sJsConfirm button sJsCheckBoxButton disabled" disabled="true" />

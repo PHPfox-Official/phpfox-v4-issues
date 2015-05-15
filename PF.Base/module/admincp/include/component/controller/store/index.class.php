@@ -8,7 +8,8 @@ class Admincp_Component_Controller_Store_index extends Phpfox_Component {
 
 		$this->template()->setSectionTitle('Store');
 		$this->template()->assign([
-			'token' => $response->token
+			'token' => $response->token,
+			'load' => $this->request()->get('load')
 		]);
 	}
 }

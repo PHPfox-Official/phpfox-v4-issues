@@ -16,6 +16,6 @@
 	</section>
 
 	<section class="preview">
-		<a href="http://store.moxi9.com/phpfox/themes?version=4" target="_blank">Find More Themes</a>
+		<a href="{url link='admincp.store' load='themes'}">Find More Themes</a>
 	</section>
 </div>

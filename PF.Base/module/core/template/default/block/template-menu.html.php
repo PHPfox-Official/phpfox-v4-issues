@@ -11,7 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<nav>
+<nav class="site_menu">
 	{plugin call='core.template_block_template_menu_1'}
 	{if Phpfox::getUserBy('profile_page_id') <= 0}
 	<ul>

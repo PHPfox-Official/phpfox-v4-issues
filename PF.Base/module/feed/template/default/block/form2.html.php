@@ -13,10 +13,12 @@
 
 		{if $bShowMenu}
 		<div class="feed_form_menu">
-			<a href="{url link='user.setting'}">Account Settings</a>
-			<a href="{url link='user.profile'}">Edit Profile</a>
-			<a href="{url link='user.privacy'}">Privacy</a>
-			<a href="{url link='user.logout'}" class="no_ajax logout">Logout</a>
+			<div>
+				<a href="{url link='user.setting'}">Account Settings</a>
+				<a href="{url link='user.profile'}">Edit Profile</a>
+				<a href="{url link='user.privacy'}">Privacy</a>
+				<a href="{url link='user.logout'}" class="no_ajax logout">Logout</a>
+			</div>
 		</div>
 		{/if}
 		<a href="#" class="_panel _load_is_feed" data-open="{url link='feed.form'}" data-class="is_feed">What's up?</a>

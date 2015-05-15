@@ -84,6 +84,10 @@ class Object extends \Core\Objectify {
 		});
 	}
 
+	public function basePath() {
+		return PHPFOX_DIR . 'theme/default/';
+	}
+
 	public function getPath() {
 		if ($this->folder == 'default') {
 			return PHPFOX_DIR . 'theme/' . $this->folder . '/';

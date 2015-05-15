@@ -1,4 +1,5 @@
 <?php
+/*
 if (isset($this->_aVars['aFeed']) && isset($this->_aVars['aFeed']['comment_type_id']) && $this->_aVars['aFeed']['comment_type_id'] == 'photo' && isset($this->_aVars['aFeed']['feed_display']) && $this->_aVars['aFeed']['feed_display'] == 'view')
 {
 	if (isset($this->_aVars['aForms']) && $this->_aVars['aForms']['allow_download'] == '1')
@@ -13,4 +14,5 @@ if (isset($this->_aVars['aFeed']) && isset($this->_aVars['aFeed']['comment_type_
 		echo '<li><a href="' . Phpfox::permalink(array('photo', 'all'), $this->_aVars['aForms']['photo_id'], $this->_aVars['aForms']['title']) . '" class="no_ajax_link">' . Phpfox::getPhrase('photo.view_all_sizes') . '</a></li>';
 	}
 }
+*/
 ?>

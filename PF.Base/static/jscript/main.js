@@ -1952,7 +1952,6 @@ $Core.init = function()
 	}
 
 	$bDocumentIsLoaded = true;
-		
 	$(document).ready(function()
 	{
 		if ($('.nano').length) {

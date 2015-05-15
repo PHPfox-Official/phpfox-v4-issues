@@ -43,6 +43,10 @@ class HTML extends \Core\Model {
 
 	public function get() {
 		$html = $this->_theme->getPath() . 'html/layout.html';
+		if (!file_exists($html)) {
+			$html = $this->_theme->basePath() . 'html/layout.html';
+		}
+
 		$html = file_get_contents($html);
 
 		return $html;

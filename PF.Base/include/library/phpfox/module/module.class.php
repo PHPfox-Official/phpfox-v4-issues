@@ -457,6 +457,9 @@ class Phpfox_Module
 		if (defined('PHPFOX_IS_PAGES_VIEW')) {
 			$class .= ' _is_pages_view ';
 		}
+		if (!Phpfox::isUser()) {
+			$class .= ' _is_guest_user ';
+		}
 
 		return $class;
 	}

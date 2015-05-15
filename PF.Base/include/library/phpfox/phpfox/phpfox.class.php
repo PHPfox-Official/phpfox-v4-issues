@@ -153,6 +153,9 @@ class Phpfox
 	public static function internalVersion() {
 		$version = self::getCleanVersion();
 		$version .= Phpfox::getParam('core.css_edit_id');
+		if (defined('PHPFOX_NO_CSS_CACHE')) {
+			return Phpfox::getTime();
+		}
 
 		return $version;
 	}

@@ -1,18 +1,10 @@
 {if $demoId}
 <div class="demo-overlay demo-overlay-full">
 	<i class="fa fa-spin fa-circle-o-notch"></i>
+	<meta http-equiv="refresh" content="0; url={url link=''}">
 </div>
 {else}
 <div class="demo-holder">
-	<!--
-	<header>
-		<i class="fa fa-paint-brush"></i>
-		<h1><a href="http://phpfox.com/">PHPfox Community Demo</a></h1>
-		<a href="http://phpfox.com/">Buy Now</a>
-	</header>
-	-->
-
-
 	<div class="demo-buttons">
 		<ul>
 			<li><span class="r"></span></li>
@@ -29,16 +21,17 @@
 			</ul>
 		</div>
 	</div>
-	<div class="demo-overlay">
+	<div class="demo-overlay" style="display:none;">
 		<i class="fa fa-spin fa-circle-o-notch"></i>
 	</div>
-	<div class="demo-themes">
+	<div class="demo-themes" style="display:block;">
+		<h1>Select your Flavor</h1>
 		<div class="themes">
-			{foreach from=$themes item=theme}
-			<article {$theme.image}>
+			{foreach from=$flavors item=flavor}
+			<article {$flavor.image}>
 			<h1>
-				<a href="{url link='theme.demo' id=$theme.theme_id}" class="no_ajax" target="demo-frame">
-					<span>{$theme.name|clean}</span>
+				<a href="{url link='theme.demo' id=$flavor.style_id}" class="no_ajax" target="demo-frame">
+					<span>{$flavor.theme_name|clean} {$flavor.name|clean}</span>
 					<em>Try</em>
 				</a>
 			</h1>
@@ -61,6 +54,19 @@
 				$('.demo-themes').hide();
 				$('.demo-content').hide();
 				$('.demo-overlay').show();
+				$('.theme-selector.active').removeClass('active');
+
+				if ($('.demo-content').length && !$('.demo-content').hasClass('built')) {
+					frame.attr('src', demoUrl);
+					frame.attr('id', 'demo-frame');
+					frame.attr('name', 'demo-frame')
+
+					$('.demo-content').html(frame);
+					frame.load(function() {
+						// $('.demo-overlay').fadeOut();
+					});
+				}
+
 				frame.load(function() {
 					p('frame is reloaded...');
 					$('.demo-overlay').hide();
@@ -68,22 +74,12 @@
 				});
 			});
 
-			if ($('.demo-content').length && !$('.demo-content').hasClass('built')) {
-				frame.attr('src', demoUrl);
-				frame.attr('id', 'demo-frame');
-				frame.attr('name', 'demo-frame')
-
-				$('.demo-content').html(frame);
-				frame.load(function() {
-					$('.demo-overlay').fadeOut();
-				});
-			}
-
 			$('.theme-selector').click(function() {
 				var t = $(this);
 				if (t.hasClass('active')) {
 					$('.demo-overlay, .demo-themes').hide();
 					$('.demo-content').show();
+					t.removeClass('active');
 					return;
 				}
 

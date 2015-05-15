@@ -11,5 +11,5 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<a href="{url link=''}" id="logo"><i></i>{param var='core.site_title'}</a>
+<a href="{url link=''}" id="logo"><span><i></i>{param var='core.site_title'}</span></a>
 <span class="mobile_menu"></span>

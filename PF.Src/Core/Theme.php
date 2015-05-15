@@ -8,13 +8,22 @@ class Theme extends Model {
 	public function __construct() {
 		parent::__construct();
 		if (!self::$_active) {
-			$cookie = \Phpfox::getCookie('theme_id');
+			$cookie = \Phpfox::getCookie('flavor_id');
 
-			self::$_active = $this->db->select('t.*, ts.folder AS flavor_folder')
-				->from(':theme', 't')
-				->join(':theme_style', 'ts', ['t.theme_id' => ['=' => 'ts.theme_id'], 'ts.is_default' => 1])
-				->where(($cookie ? ['t.theme_id' => (int) $cookie] : ['t.is_default' => 1]))
-				->get();
+			if ($cookie) {
+				self::$_active = $this->db->select('t.*, ts.folder AS flavor_folder')
+					->from(':theme_style', 'ts')
+					->join(':theme', 't', ['t.theme_id' => ['=' => 'ts.theme_id']])
+					->where(['ts.style_id' => (int) $cookie])
+					->get();
+			}
+			else {
+				self::$_active = $this->db->select('t.*, ts.folder AS flavor_folder')
+					->from(':theme', 't')
+					->join(':theme_style', 'ts', ['t.theme_id' => ['=' => 'ts.theme_id'], 'ts.is_default' => 1])
+					->where(($cookie ? ['t.theme_id' => (int) $cookie] : ['t.is_default' => 1]))
+					->get();
+			}
 
 			if (!self::$_active || defined('PHPFOX_CSS_FORCE_DEFAULT')) {
 				self::$_active = [

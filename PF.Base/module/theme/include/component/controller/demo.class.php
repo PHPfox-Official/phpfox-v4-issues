@@ -8,16 +8,24 @@ class Theme_Component_Controller_Demo extends Phpfox_Component {
 
 		$demoId = 0;
 		if (($demoId = $this->request()->get('id'))) {
-			Phpfox::setCookie('theme_id', $demoId);
+			Phpfox::setCookie('flavor_id', $demoId);
 
-			$this->url()->send('');
+			// $this->url()->send('');
 		}
 
 		Core\View::$template = 'blank';
 		$Themes = new Core\Theme();
 
+		$flavors = [];
+		foreach ($Themes->all() as $Theme) {
+			foreach ($Theme->flavors() as $Flavor) {
+				$flavors[] = $Flavor;
+			}
+		}
+
 		$this->template()->assign([
-			'themes' => $Themes->all(),
+			// 'themes' => $Themes->all(),
+			'flavors' => $flavors,
 			'demoId' => $demoId
 		]);
 	}

@@ -245,10 +245,14 @@ class Phpfox_Image_Helper
 					// if (isset($aParams['user'])) {
 						$name = (isset($aParams['user']) ? $aParams['user'][$sSuffix . 'full_name'] : (isset($aParams['title']) ? $aParams['title'] : ''));
 						$parts = explode(' ', $name);
-						$first = $name[0];
-						$last = $name[1];
-						if (isset($parts[1])) {
-							$last = $parts[1][0];
+					$first = '';
+					$last = '';
+						if (strlen($name) > 2) {
+							$first = $name[0];
+							$last = $name[1];
+							if (isset($parts[1])) {
+								$last = $parts[1][0];
+							}
 						}
 
 						if (isset($aParams['max_width'])) {

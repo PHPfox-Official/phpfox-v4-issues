@@ -180,7 +180,7 @@ class Theme extends Model {
 		if ($id !== null) {
 			$data = $this->db->select('t.*, ts.style_id AS flavor_id, ts.folder AS flavor_folder')
 				->from(':theme', 't')
-				->join(':theme_style', 'ts', ['t.theme_id' => ['=' => 'ts.theme_id'], 'ts.is_default' => 1])
+				->join(':theme_style', 'ts', ['t.theme_id' => ['=' => 'ts.theme_id']])
 				->where(['t.theme_id' => (int) $id])
 				->get();
 		}

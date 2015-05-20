@@ -411,7 +411,8 @@ class Phpfox_Installer
 				'sPublicMessage' => Phpfox::getMessage(),
 				'aBreadCrumbs' => $aBreadCrumbs,
 				'aBreadCrumbTitle' => $aBreadCrumbTitle,
-				'aSteps' => $this->_getSteps()
+				'aSteps' => $this->_getSteps(),
+				'sCurrentVersion' => Phpfox::getVersion()
 			)
 		);
 		
@@ -606,6 +607,8 @@ class Phpfox_Installer
 
 		if ($aVals = $this->_oReq->getArray('val'))
 		{
+			$response = new stdClass();
+			// $response->valid = true;
 			if ($oValid->isValid($aVals))
 			{
 				if ($aVals['license_id'] == 'techie' && $aVals['license_key'] == 'techie') {
@@ -613,10 +616,15 @@ class Phpfox_Installer
 					$response->valid = true;
 				}
 				else {
-					$Home = new Core\Home($aVals['license_id'], $aVals['license_key']);
-					$response = $Home->verify([
-						'url' => $this->getHostPath()
-					]);
+					try {
+						$Home = new Core\Home($aVals['license_id'], $aVals['license_key']);
+						$response = $Home->verify([
+							'url' => $this->getHostPath()
+						]);
+					} catch (\Exception $e) {
+						$response = new stdClass();
+						$response->error = $e->getMessage();
+					}
 				}
 
 				// Connect to phpFox and verify the license				
@@ -624,6 +632,9 @@ class Phpfox_Installer
 				{
 					// $this->_pass('license');
 					$data = "<?php define('PHPFOX_LICENSE_ID', '{$aVals['license_id']}'); define('PHPFOX_LICENSE_KEY', '{$aVals['license_key']}');";
+					if ($aVals['is_trial']) {
+						$data .= " define('PHPFOX_TRIAL', '" . Phpfox::getTime() . "');";
+					}
 					file_put_contents(PHPFOX_DIR_SETTINGS . 'license.php', $data);
 
 					if ($this->_bUpgrade) {
@@ -640,6 +651,13 @@ class Phpfox_Installer
 				}
 				else 
 				{
+					if (!is_object($response)) {
+						$info = $response;
+						$response = new stdClass();
+						$response->error = $info;
+					}
+
+					Phpfox_Error::set($response->error);
 					$this->_oTpl->assign(array(
 							'sError' => $response->error
 						)

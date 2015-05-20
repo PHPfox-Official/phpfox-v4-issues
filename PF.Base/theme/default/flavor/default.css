@@ -2319,6 +2319,14 @@ footer .copyright {
   position: absolute;
   right: 20px;
   top: 50px;
+  color: #999999 !important;
+  text-align: right;
+}
+footer .branding {
+  color: #4c4c4c !important;
+}
+footer .branding a,
+footer .branding a:hover {
   color: #4c4c4c !important;
 }
 h3 {
@@ -2349,6 +2357,13 @@ h3 {
   padding: 10px;
   max-width: 600px;
   margin: 50px auto;
+}
+.captcha_holder {
+  background: #ffffff;
+  color: #999999;
+  padding: 20px;
+  width: 40%;
+  margin-bottom: 20px;
 }
 input[type="text"],
 input[type="email"],

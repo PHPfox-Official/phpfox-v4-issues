@@ -520,7 +520,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 			$aMenus[$sKey] = $mValue;
 
-			if (is_string($mValue) && $mValue == 'admincp.theme') {
+			if (is_string($mValue) && $mValue == 'admincp.theme' && PHPFOX_IS_TECHIE) {
 				$aMenus['<i class="fa fa-sheqel"></i>Techie'] = [
 					'Products' => 'admincp.product',
 					'Modules' => 'admincp.module',

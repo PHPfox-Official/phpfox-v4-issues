@@ -14,7 +14,10 @@ class Flavor extends \Core\Model {
 	}
 
 	public function getDefault() {
-		$flavor = $this->db->select('*')->from(':theme_style')->where(['theme_id' => $this->_theme->theme_id, 'is_default' => 1])->get();
+		$flavor = $this->db->select('*')
+			->from(':theme_style')
+			->where(['theme_id' => $this->_theme->theme_id])
+			->get();
 
 		return new Flavor\Object($this->_theme, $flavor);
 	}

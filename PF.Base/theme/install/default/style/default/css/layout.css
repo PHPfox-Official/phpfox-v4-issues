@@ -142,6 +142,10 @@ body {
   font-size: 24px;
   background: #3f3f3f;
 }
+#header > span {
+  color: #727272;
+  margin-left: 4px;
+}
 #installer {
   margin: 50px auto 100px auto;
   text-align: center;
@@ -168,29 +172,33 @@ body {
   color: #b3b3b3;
 }
 .table_header {
-  background: #595959;
-  color: #cdcdcd;
+  background: #fff;
+  color: #808080;
+  border-bottom: 1px #dfdfdf solid;
   font-size: 20px;
-  height: 50px;
-  line-height: 50px;
-  font-weight: 300;
-  text-indent: 20px;
+  padding: 30px 20px;
+  font-weight: 200;
   text-align: left;
 }
-#installer > form {
+#installer > form,
+#installer > #client_details > form {
   text-align: left;
 }
-#installer > form .table {
+#installer > form .table,
+#installer > #client_details > form .table {
   padding: 20px 20px 0px 20px;
 }
-#installer > form .table .table_left {
+#installer > form .table .table_left,
+#installer > #client_details > form .table .table_left {
   font-size: 16px;
   font-weight: 300;
   padding-bottom: 5px;
   letter-spacing: 1px;
 }
 #installer > form .table .table_right input,
-#installer > form .table .table_right select {
+#installer > #client_details > form .table .table_right input,
+#installer > form .table .table_right select,
+#installer > #client_details > form .table .table_right select {
   width: 100%;
   margin: 0px;
   border: 0px;
@@ -201,7 +209,9 @@ body {
   text-indent: 10px;
 }
 #installer > form .table .table_right input[type="text"]:focus,
-#installer > form .table .table_right input[type="password"]:focus {
+#installer > #client_details > form .table .table_right input[type="text"]:focus,
+#installer > form .table .table_right input[type="password"]:focus,
+#installer > #client_details > form .table .table_right input[type="password"]:focus {
   background: #ffffff;
 }
 .table_clear {
@@ -246,4 +256,26 @@ body {
   font-weight: 300;
   padding: 60px 0px;
   text-align: center;
+}
+#license_selector > a,
+#license_selector > a:hover {
+  display: block;
+  padding: 10px 0px;
+  text-indent: 10px;
+  text-decoration: none;
+  background: #fff;
+  color: #8d8d8d;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 300;
+  border-bottom: 1px #e5e5e5 solid;
+}
+#license_selector > a i,
+#license_selector > a:hover i {
+  margin-right: 10px;
+}
+#license_selector > a:hover {
+  background: #f2f2f2;
+  transition: all 0.5s ease;
+  color: #222;
 }

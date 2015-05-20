@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div id="header">
-			PHPfox
+			PHPfox <span>{$sCurrentVersion}</span>
 		</div>
 		<div id="installer">
 			{if isset($requirementErrors)}

@@ -11,10 +11,20 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+<div id="license_selector">
 	<div class="table_header">
-		Client Details
+		Select a license to assign to this copy of PHPfox:
+	</div>
+	<a href="#" class="premium"><i class="fa fa-diamond"></i>Premium</a>
+	<a href="#" class="developers"><i class="fa fa-code"></i>Developers</a>
+	<a href="#" class="trial"><i class="fa fa-star"></i>Trial</a>
+</div>
+<div id="client_details" style="display:none;">
+	<div class="table_header">
+		Enter your license ID &amp; Key:
 	</div>
 	<form method="post" action="#key" id="js_form">
+		<div><input type="hidden" id="license_trial" name="val[is_trial]" value="0"></div>
 		<div class="table">
 			<div class="table_right">
 				<input type="text" name="val[license_id]" id="license_id" value="{value type='input' id='license_id'}" size="30" placeholder="License ID" />
@@ -29,3 +39,4 @@ defined('PHPFOX') or exit('NO DICE!');
 			<input type="submit" value="Continue" class="button" />
 		</div>
 	</form>
+</div>

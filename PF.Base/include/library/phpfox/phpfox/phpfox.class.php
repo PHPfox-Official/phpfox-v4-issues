@@ -109,6 +109,11 @@ class Phpfox
 		
 		return Phpfox::getParam('core.phpfox_version');
 	}
+
+	public static function isTrial()
+	{
+		return (defined('PHPFOX_TRIAL') ? true : false);
+	}
 	
 	/**
 	 * Get the current phpFox version ID.
@@ -206,7 +211,7 @@ class Phpfox
 			return '';
 		}
 		
-		return 'Powered By ' . ($bLink ? '<a href="http://www.phpfox.com/">' : '') . 'PHPFox' . ($bLink ? '</a>' : '') . ($bVersion ? ' Version ' . PhpFox::getVersion() : '');
+		return '' . ($bLink ? '<a href="http://www.phpfox.com/">' : '') . 'Powered By PHPFox' . ($bVersion ? ' Version ' . PhpFox::getVersion() : '') . ($bLink ? '</a>' : '');
 	}
 	
 	/**

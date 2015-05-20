@@ -2,6 +2,29 @@
 (function($) {
 
 	var boot = function() {
+
+		$('#license_selector a').click(function() {
+			var t = $(this);
+
+			if (t.hasClass('premium')) {
+				// $('#license_selector').hide();
+				$('#license_selector').html('<div class="process"><i class="fa fa-spin fa-circle-o-notch"></i></div>');
+				setTimeout(function() {
+					$('#license_selector').hide();
+					$('#client_details').fadeIn();
+				}, 800);
+			}
+			else {
+				$('#license_id, #license_key').val('techie');
+				if (t.hasClass('trial')) {
+					$('#license_trial').val(1);
+				}
+				$('#js_form').trigger('submit');
+			}
+
+			return false;
+		});
+
 		$('form:not(.built)').submit(function() {
 			var t = $(this);
 

@@ -11,8 +11,9 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+
 		{if !defined('PHPFOX_SKIP_IM')}
-                <div id="js_im_player"></div>
+        <div id="js_im_player"></div>
 		{module name='im.footer'}
 		{$sDebugInfo}
 		{/if}

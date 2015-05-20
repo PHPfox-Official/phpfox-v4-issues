@@ -18,4 +18,9 @@ defined('PHPFOX') or exit('NO DICE!');
 </ul>
 <div class="copyright">
 	{param var='core.site_copyright'}
+	{if Phpfox::isTrial()}
+	<div class="branding">
+		{branding}
+	</div>
+	{/if}
 </div>

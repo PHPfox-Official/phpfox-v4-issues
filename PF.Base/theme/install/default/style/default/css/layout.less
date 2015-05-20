@@ -65,6 +65,11 @@ body {
 	font-weight:300;
 	font-size:24px;
 	background:lighten(#0c0c0c, 20%);
+
+	> span {
+		color:lighten(#0c0c0c, 40%);
+		margin-left:4px;
+	}
 }
 
 #installer {
@@ -96,17 +101,16 @@ body {
 }
 
 .table_header {
-	background:lighten(#0c0c0c, 30%);
-	color:lighten(@installTextColor, 30%);
+	background:#fff;
+	color:#808080;
+	border-bottom:1px #dfdfdf solid;
 	font-size:@installFontSizeBase + 6;
-	height:50px;
-	line-height:50px;
-	font-weight:300;
-	text-indent:20px;
+	padding:30px 20px;
+	font-weight:200;
 	text-align:left;
 }
 
-#installer > form {
+#installer > form, #installer > #client_details > form {
 	text-align:left;
 
 	.table {
@@ -184,4 +188,29 @@ body {
 	font-weight:300;
 	padding:60px 0px;
 	text-align:center;
+}
+
+#license_selector {
+	> a, > a:hover {
+		display:block;
+		padding:10px 0px;
+		text-indent:10px;
+		text-decoration:none;
+		background:#fff;
+		color:lighten(#808080, 5%);
+		text-align:left;
+		font-size:20px;
+		font-weight:300;
+		border-bottom:1px @installBodyBg solid;
+
+		i {
+			margin-right:10px;
+		}
+	}
+
+	> a:hover {
+		background:#f2f2f2;
+		transition:@installTransition;
+		color:#222;
+	}
 }

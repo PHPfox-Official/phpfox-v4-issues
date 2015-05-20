@@ -37,6 +37,9 @@ class Home {
 		$url = (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'http://api.phpfox.com/') . $method;
 		$Http = new HTTP($url);
 		$Http->auth($this->_id, $this->_key);
+		if (\Phpfox::isTrial()) {
+			$Http->header('PHPFOX_IS_TRIAL', '1');
+		}
 
 		$Http->using(['domain' => \Phpfox::getParam('core.path')]);
 		foreach ($args as $key => $value) {

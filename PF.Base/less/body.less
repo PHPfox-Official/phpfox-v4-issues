@@ -243,7 +243,15 @@ footer {
 		position:absolute;
 		right:20px;
 		top:50px;
+		color:darken(@bodyBg, 30%) !important;
+		text-align:right;
+	}
+
+	.branding {
 		color:darken(@bodyBg, 60%) !important;
+		a, a:hover {
+			color:darken(@bodyBg, 60%) !important;
+		}
 	}
 }
 
@@ -261,4 +269,12 @@ h3 {
 	padding:@blockContentPadding;
 	max-width:600px;
 	margin:50px auto;
+}
+
+.captcha_holder {
+	background:@blockBg;
+	color:@blockColor;
+	padding:20px;
+	width:40%;
+	margin-bottom:20px;
 }

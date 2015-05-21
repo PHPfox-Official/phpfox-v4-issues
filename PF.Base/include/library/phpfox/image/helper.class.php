@@ -165,6 +165,10 @@ class Phpfox_Image_Helper
 			$aParams['server_id'] = (isset($aParams['user']['user_' . $sSuffix . 'server_id']) ? $aParams['user']['user_' . $sSuffix . 'server_id'] : (isset($aParams['user'][$sSuffix . 'server_id']) ? $aParams['user'][$sSuffix . 'server_id'] : '')) ;
 			$aParams['file'] = $aParams['user'][$sSuffix . 'user_image'];
 			$aParams['path'] = 'core.url_user';
+			if (isset($aParams['user']['' . $sSuffix . 'is_user_page'])) {
+				$aParams['path'] = 'pages.url_image';
+				$aParams['suffix'] = '_120';
+			}
 			$aParams['title'] = ($bIsOnline ? Phpfox::getPhrase('core.full_name_is_online', array('full_name' => Phpfox::getLib('parse.output')->shorten($aParams['user'][$sSuffix . 'full_name'], Phpfox::getParam('user.maximum_length_for_full_name')))) : Phpfox::getLib('parse.output')->shorten($aParams['user'][$sSuffix . 'full_name'], Phpfox::getParam('user.maximum_length_for_full_name')));
 			
 			// Create the users link

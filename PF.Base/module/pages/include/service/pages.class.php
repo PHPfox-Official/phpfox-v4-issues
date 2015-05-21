@@ -175,6 +175,8 @@ class Pages_Service_Pages extends Phpfox_Service
 		foreach ($aPages as $iKey => $aPage)
 		{
 			$aPages[$iKey]['is_app'] = false;
+
+			/*
 			if ($aPage['app_id'])
 			{
 				if ($aPages[$iKey]['aApp'] = Phpfox::getService('apps')->getForPage($aPage['app_id']))
@@ -209,6 +211,10 @@ class Pages_Service_Pages extends Phpfox_Service
 					}					
 				}				
 			}
+			*/
+
+			$aPages[$iKey]['is_user_page'] = true;
+			$aPages[$iKey]['user_image'] = $aPage['image_path'];
 			$aPages[$iKey]['url'] = $this->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']);
 		}
 		

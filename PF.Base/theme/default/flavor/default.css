@@ -7648,6 +7648,7 @@ span.forum_tag_sticky {
 .pages_header_info .pages_header_image img {
   max-width: 100px;
   max-height: 100px;
+  background-size: cover;
 }
 .pages_header_fixed .pages_header_info {
   position: fixed;

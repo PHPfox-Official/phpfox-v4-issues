@@ -278,3 +278,25 @@ h3 {
 	width:40%;
 	margin-bottom:20px;
 }
+
+#main-banner {
+	position:fixed;
+	top:@headerHeight;
+	left:@navWidth;
+	right:0px;
+	bottom:0px;
+	z-index:1;
+
+	img {
+		width:100%;
+		height:100%;
+		background-size:cover;
+		background-repeat:no-repeat;
+	}
+}
+
+#page_core_index-visitor._is_guest_user  {
+	#panels {
+		z-index:100;
+	}
+}

@@ -34,7 +34,7 @@ class Home {
 	}
 
 	public function __call($method, $args) {
-		$url = (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'http://api.phpfox.com/') . $method;
+		$url = (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'https://store.phpfox.us/') . $method;
 		$Http = new HTTP($url);
 		$Http->auth($this->_id, $this->_key);
 		if (\Phpfox::isTrial()) {
@@ -42,6 +42,7 @@ class Home {
 		}
 
 		$Http->using(['domain' => \Phpfox::getParam('core.path')]);
+		$Http->using(['version' => \Phpfox::VERSION]);
 		foreach ($args as $key => $value) {
 			if (is_string($value)) {
 				// $value = [$key => $value];

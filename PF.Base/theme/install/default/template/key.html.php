@@ -27,12 +27,12 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div><input type="hidden" id="license_trial" name="val[is_trial]" value="0"></div>
 		<div class="table">
 			<div class="table_right">
-				<input type="text" name="val[license_id]" id="license_id" value="{value type='input' id='license_id'}" size="30" placeholder="License ID" />
+				<input autocomplete="off" type="text" name="val[license_id]" id="license_id" value="{value type='input' id='license_id'}" size="30" placeholder="License ID" />
 			</div>
 		</div>
 		<div class="table">
 			<div class="table_right">
-				<input type="text" name="val[license_key]" id="license_key" value="" size="30" placeholder="License Key" />
+				<input autocomplete="off" type="text" name="val[license_key]" id="license_key" value="" size="30" placeholder="License Key" />
 			</div>
 		</div>
 		<div class="table_clear">

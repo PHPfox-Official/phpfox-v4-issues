@@ -21,13 +21,13 @@ class Privacy_Component_Block_Form extends Phpfox_Component
 	public function process()
 	{		
 		$aPrivacyControls = array();
-		if (!Phpfox::getParam('core.friends_only_community'))
-		{
+		// if (!Phpfox::getParam('core.friends_only_community'))
+		// {
 			$aPrivacyControls[] = array(
 				'phrase' => Phpfox::getPhrase('privacy.everyone'),
 				'value' => '0'
 			);
-		}
+		// }
 		if (Phpfox::isModule('friend'))
 		{
 			$aPrivacyControls[] = array(

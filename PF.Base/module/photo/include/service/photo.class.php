@@ -717,12 +717,14 @@ class Photo_Service_Photo extends Phpfox_Service
 			{
 				if ($iKey === 4)
 				{
-					break;
+					// break;
 				}
 				
 				$aFeatured[] = $aRow;
 			}
 		}
+
+		// d($aFeatured); exit;
 		
 		return array($iTotal, $aFeatured);
 	}	

@@ -23,10 +23,15 @@ class Core_Component_Controller_Index_Visitor extends Phpfox_Component
 	    if ($sPlugin = Phpfox_Plugin::get('core.component_controller_index_visitor_start'))
 	    {
 			eval($sPlugin);
-	    }		
-		
+	    }
+
+		$photo = [];
+		list($total, $featured) = Photo_Service_Photo::instance()->getFeatured();
+		if (is_array($featured) && isset($featured[0])) {
+			$photo = $featured[0];
+		}
+
 		$this->template()->setHeader('cache', array(
-					'jquery/plugin/jquery.bt.js' => 'static_script',
 					'register.js' => 'module_user',
 					'country.js' => 'module_core',
 					'comment.css' => 'style_css'
@@ -35,12 +40,9 @@ class Core_Component_Controller_Index_Visitor extends Phpfox_Component
 			->setPhrase(array(
 					'user.continue'
 				)
-			)			
-			->setHeader('head',array(				
-				"<!--[if IE ]>\n\t\t\t<script type=\"text/javascript\" src=\"" . Phpfox::getParam('core.url_static_script') . "jquery/plugin/excanvas.js\"></script>\n\t<![endif]-->",				
-			)
-		)->assign(array(
-				'aSettings' => Phpfox::getService('custom')->getForEdit(array('user_main', 'user_panel', 'profile_panel'), null, null, true)
+			)->assign(array(
+				'aSettings' => Phpfox::getService('custom')->getForEdit(array('user_main', 'user_panel', 'profile_panel'), null, null, true),
+					'featured' => $photo
 			)
 		);	
 	}

@@ -11,3 +11,8 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{if isset($featured.server_id)}
+<div id="main-banner">
+	{img server_id=$featured.server_id path='photo.url_photo' file=$featured.destination suffix='_1024'}
+</div>
+{/if}

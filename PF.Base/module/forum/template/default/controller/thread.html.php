@@ -106,13 +106,6 @@ defined('PHPFOX') or exit('NO DICE!');
 				</div>
 			</li>
 			{/if}
-			{if Phpfox::getParam('forum.enable_rss_on_threads') && Phpfox::isModule('rss')}
-			<li class="sub_menu_bar_li">
-				<a href="{url link='forum.rss' thread=$aThread.thread_id}" title="{phrase var='forum.subscribe_to_this_thread'}" class="no_ajax_link">
-					{img theme='rss/tiny.png' class='v_middle'}
-				</a>
-			</li>
-			{/if}
 		</ul>
 		<div class="clear"></div>
 	</div>

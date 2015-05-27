@@ -6682,10 +6682,12 @@ div.forum_content {
 .forum_thread_user a:hover {
   font-size: 15px;
 }
-.forum_post_count {
+.forum_post_count,
+.forum_post_count:hover {
   position: absolute;
   right: 10px;
   top: 10px;
+  color: #9a9a9a;
 }
 .forum_quote {
   display: block;
@@ -6905,7 +6907,7 @@ span.forum_tag_sticky {
   background: transparent;
 }
 #page_forum_thread .forum_header_menu {
-  top: 6px;
+  top: 36px;
   right: 50%;
   margin-right: 20px;
 }

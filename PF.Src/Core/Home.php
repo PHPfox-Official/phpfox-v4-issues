@@ -34,7 +34,7 @@ class Home {
 	}
 
 	public function __call($method, $args) {
-		$url = (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'https://store.phpfox.us/') . $method;
+		$url = (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'http://store.phpfox.us/') . $method;
 		$Http = new HTTP($url);
 		$Http->auth($this->_id, $this->_key);
 		if (\Phpfox::isTrial()) {

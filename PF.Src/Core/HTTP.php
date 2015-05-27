@@ -110,6 +110,8 @@ class HTTP {
 
 		$this->_data = curl_exec($curl);
 
+		// var_dump($this->_data); exit;
+
 		curl_close($curl);
 
 		$data = trim($this->_data);

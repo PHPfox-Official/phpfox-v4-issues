@@ -725,11 +725,18 @@ span.forum_tag_sticky {
 	border:0px;
 }
 
+#page_forum_thread.single_mode {
+	.thread_replies {
+		display:none;
+	}
+}
+
 #page_forum_thread {
 	._block_h1 {
 		position:fixed;
 		top:@headerHeight;
 		left:@navWidth;
+		right:0px;
 		z-index:100;
 	}
 

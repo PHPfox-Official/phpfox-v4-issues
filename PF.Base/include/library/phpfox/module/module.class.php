@@ -180,6 +180,8 @@ class Phpfox_Module
 	private $_oBlocklet;
 
 	private $_sControllerTemplateClass;
+
+	private $_class = '';
 	
 	/**
 	 * Class constructor that caches all the modules, components (blocks/controllers) and drag/drop information.
@@ -452,6 +454,10 @@ class Phpfox_Module
 		}
 	}
 
+	public function appendPageClass($class) {
+		$this->_class .= ' '. $class . ' ';
+	}
+
 	public function getPageClass() {
 		$class = '';
 		if (defined('PHPFOX_IS_PAGES_VIEW')) {
@@ -460,6 +466,8 @@ class Phpfox_Module
 		if (!Phpfox::isUser()) {
 			$class .= ' _is_guest_user ';
 		}
+
+		$class .= $this->_class;
 
 		return $class;
 	}

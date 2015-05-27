@@ -1126,12 +1126,14 @@ class Phpfox
 				exit;
 			}
 
-			header("HTTP/1.0 404 Not Found");
-			header('Content-type: application/json');
-			echo json_encode([
-				'error' => 404
-			]);
-			exit;
+			if (Phpfox::getParam('core.url_rewrite') == '1') {
+				header("HTTP/1.0 404 Not Found");
+				header('Content-type: application/json');
+				echo json_encode([
+					'error' => 404
+				]);
+				exit;
+			}
 
 			$HTTPCache = new Core\HTTP\Cache();
 			$HTTPCache->checkCache();

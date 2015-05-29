@@ -1929,6 +1929,7 @@ $Core.loadInit = function(forceIt)
 		setTimeout(function(){ 
 			$Core.loadInit();
 		}, 20);
+
 		return false;
 	}
 	

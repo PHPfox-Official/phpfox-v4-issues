@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html {{ html }}>
 	<head>
-		<title>{{ block('title') }}</title>
+		<title>{{ title }}</title>
 		{{ header }}
-		{{ block('header') }}
 	</head>
 	<body {{ body }}>
 
 		{{ logo }}
 		<div id="header">
-			{{ block('breadcrumb') }}
+			{{ breadcrumb }}
 		</div>
 
 		<div id="panel"></div>
@@ -24,23 +23,23 @@
 
 		<div id="main">
 			<div id="top">
-				{{ block('top') }}
+				{{ top }}
 			</div>
 
 			<div id="container">
 				<div id="content">
-					{{ block('h1') }}
+					{{ h1 }}
 					{{ errors }}
-					{{ block('content') }}
+					{{ content }}
 				</div>
 
 				<div id="panels">
 					<div id="left">
-						{{ block('left') }}
+						{{ left }}
 					</div>
 
 					<div id="right">
-						{{ block('right') }}
+						{{ right }}
 					</div>
 				</div>
 			</div>

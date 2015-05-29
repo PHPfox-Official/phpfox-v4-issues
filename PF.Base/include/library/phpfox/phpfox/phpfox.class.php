@@ -1049,6 +1049,7 @@ class Phpfox
 			'common.css' => 'style_css',
 			'thickbox.css' => 'style_css',
 			'jquery.css' => 'style_css',
+			'comment.css' => 'style_css',
 			'pager.css' => 'style_css',
 			'jquery/jquery.js' => 'static_script',
 			'jquery/ui.js' => 'static_script',
@@ -1215,7 +1216,7 @@ class Phpfox
 				$View = new Core\View();
 			}
 		}
-	
+
 		if (!PHPFOX_IS_AJAX_PAGE)
 		{
 				$oTpl->setImage(array(
@@ -1267,8 +1268,7 @@ class Phpfox
 					$oTpl->setHeader('<script type="text/javascript" src="' . $sUrl . '"></script>');
 				}
 		}
-			
-		
+
 		if ($sPlugin = Phpfox_Plugin::get('get_controller'))
 		{
 			eval($sPlugin);
@@ -1279,7 +1279,7 @@ class Phpfox
 		]);
 
 		$oModule->getController();
-		
+
 		Phpfox::getService('admincp.seo')->setHeaders();
 		
 		if (!defined('PHPFOX_DONT_SAVE_PAGE'))
@@ -1403,15 +1403,23 @@ class Phpfox
 		if ((!PHPFOX_IS_AJAX_PAGE && $oTpl->sDisplayLayout && !isset($View))
 			|| (!PHPFOX_IS_AJAX_PAGE && self::isAdminPanel())
 		)
-		{			
+		{
 			$oTpl->getLayout($oTpl->sDisplayLayout);
 		}
 
 		if (PHPFOX_IS_AJAX_PAGE) {
 			header('Content-type: application/json');
 
-			Phpfox_Module::instance()->getControllerTemplate();
-			$content = ob_get_contents(); ob_clean();
+			/*
+			if (isset($View) && $View instanceof \Core\View) {
+				$content = $View->getContent();
+			}
+			else {
+				Phpfox_Module::instance()->getControllerTemplate();
+				$content = ob_get_contents(); ob_clean();
+			}
+			*/
+			$content = $View->getContent();
 
 			$oTpl->getLayout('breadcrumb');
 			$breadcrumb = ob_get_contents(); ob_clean();

@@ -7198,7 +7198,7 @@ span.forum_tag_sticky {
   opacity: 0.4;
 }
 #page_friend_profile #content {
-  width: auto;
+  width: 100%;
 }
 #js_block_content_profile_friend .user_rows_mini .user_rows {
   width: 81px;

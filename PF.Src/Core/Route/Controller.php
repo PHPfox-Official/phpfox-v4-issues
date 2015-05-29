@@ -4,6 +4,7 @@ namespace Core\Route;
 
 class Controller {
 	public static $active;
+	public static $name;
 
 	private $_request;
 
@@ -79,6 +80,7 @@ class Controller {
 										}
 									}
 
+									// $args[$_arg] = $segment;
 									$args[$_arg] = $segment;
 								}
 							}
@@ -104,6 +106,9 @@ class Controller {
 		if (isset($routes[$uri])) {
 			$r = $routes[$uri];
 
+			$r['route'] = $uri;
+			self::$name = $r;
+
 			try {
 				if (isset($r['auth'])) {
 					\Phpfox::isUser(true);
@@ -122,7 +127,11 @@ class Controller {
 				if (isset($routes[$uri]['run'])) {
 					$Controller = new \Core\Controller($routes[$uri]['path'] . 'views');
 
-					$content = call_user_func($routes[$uri]['run'], $Controller);
+					$pass = [$Controller];
+					if (isset($r['args'])) {
+						$pass = array_merge($pass, $r['args']);
+					}
+					$content = call_user_func_array($routes[$uri]['run'], $pass);
 				}
 				else if (isset($r['call'])) {
 					$parts = explode('@', $r['call']);
@@ -151,16 +160,14 @@ class Controller {
 				}
 			}
 
+			/*
 			if (isset($_SERVER['CONTENT_TYPE'])
 				&& $_SERVER['CONTENT_TYPE'] == 'application/json'
 				&& $content instanceof \Core\View
 			) {
-				header('Content-type: application/json');
-				echo json_encode([
-					'content' => $content->getContent()
-				]);
-				exit;
+				echo $content->getContent();
 			}
+			*/
 
 			if (is_array($content)) {
 				header('Content-type: application/json');

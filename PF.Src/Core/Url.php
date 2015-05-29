@@ -8,6 +8,7 @@ namespace Core;
  *
  * @method make($route)
  * @method send($route)
+ * @method current()
  * @method uri()
  */
 class Url {
@@ -31,6 +32,9 @@ class Url {
 				break;
 			case 'uri':
 				$method = 'getUri';
+				break;
+			case 'current':
+				$method = 'current';
 				break;
 		}
 

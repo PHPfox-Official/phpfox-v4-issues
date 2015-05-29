@@ -165,6 +165,15 @@ class Feed_Service_Feed extends Phpfox_Service
 
 	public function get($iUserid = null, $iFeedId = null, $iPage = 0, $bForceReturn = false)
 	{
+		$params = [];
+		if (is_array($iUserid)) {
+			$params = $iUserid;
+			$iUserid = null;
+			if (isset($params['id'])) {
+				$iFeedId = $params['id'];
+			}
+		}
+
 		$oUrl = Phpfox_Url::instance();
 		$oReq = Phpfox_Request::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');
@@ -210,8 +219,14 @@ class Feed_Service_Feed extends Phpfox_Service
 		
 		$iTotalFeeds = (int) Phpfox::getComponentSetting(($iUserid === null ? Phpfox::getUserId() : $iUserid), 'feed.feed_display_limit_' . ($iUserid !== null ? 'profile' : 'dashboard'), Phpfox::getParam('feed.feed_display_limit'));
 		$iOffset = ($iPage * $iTotalFeeds);
-		
-		(($sPlugin = Phpfox_Plugin::get('feed.service_feed_get_start')) ? eval($sPlugin) : false);		
+
+		$extra = '';
+		(($sPlugin = Phpfox_Plugin::get('feed.service_feed_get_start')) ? eval($sPlugin) : false);
+
+		if (isset($params['type_id'])) {
+			$extra .= ' AND type_id ' . (is_array($params['type_id']) ? 'IN(' . implode(',', array_map(function($value) { return "'{$value}'"; }, $params['type_id'])) . ')' : '= \'' . $params['type_id'] . '\'') . '';
+			// d($extra); exit;
+		}
 		
 		$sOrder = 'feed.time_update DESC';
 		if (Phpfox::getUserBy('feed_sort') || defined('PHPFOX_IS_USER_PROFILE'))
@@ -385,7 +400,7 @@ class Feed_Service_Feed extends Phpfox_Service
 		{
 			// Users must be active within 7 days or we skip their activity feed
 			$iLastActiveTimeStamp = ((int) Phpfox::getParam('feed.feed_limit_days') <= 0 ? 0 : (PHPFOX_TIME - (86400 * Phpfox::getParam('feed.feed_limit_days'))));			
-			if (Phpfox::isModule('privacy') && Phpfox::getUserParam('privacy.can_view_all_items'))
+			if (Phpfox::isModule('privacy') && Phpfox::getUserParam('privacy.can_view_all_items') && $oReq->get('view-all'))
 			{
 				$this->_hashSearch();
 				
@@ -402,7 +417,7 @@ class Feed_Service_Feed extends Phpfox_Service
 						->order($sOrder)
 						->group('feed.feed_id')
 						->limit($iOffset, $iTotalFeeds)			
-						->where('feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
+						->where('feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' ' . $extra . ' AND feed.feed_reference = 0')
 						->execute('getSlaveRows');
 			}
 			else
@@ -415,14 +430,14 @@ class Feed_Service_Feed extends Phpfox_Service
 						$this->database()->select('feed.*')
 							->from($this->_sTable, 'feed')
 							->join(Phpfox::getT('friend'), 'f', 'f.user_id = feed.user_id AND f.friend_user_id = ' . Phpfox::getUserId())
-							->where('feed.privacy IN(0,1,2) AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
+							->where('feed.privacy IN(0,1,2) ' . $extra . ' AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
 							// ->limit($iTotalFeeds)
 							->union();
 
 						// Get my feeds
 						$this->database()->select('feed.*')
 							->from($this->_sTable, 'feed')
-							->where('feed.privacy IN(0,1,2,3,4) AND feed.user_id = ' . Phpfox::getUserId() . ' AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
+							->where('feed.privacy IN(0,1,2,3,4) ' . $extra . ' AND feed.user_id = ' . Phpfox::getUserId() . ' AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
 							// ->limit($iTotalFeeds)
 							->union();
 					}
@@ -438,7 +453,7 @@ class Feed_Service_Feed extends Phpfox_Service
 						$this->database()->select('feed.*')
 							->from($this->_sTable, 'feed')
 							->join(Phpfox::getT('friend'), 'f', 'f.user_id = feed.user_id AND f.friend_user_id = ' . Phpfox::getUserId())
-							->where('feed.privacy IN(1,2) AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
+							->where('feed.privacy IN(1,2) ' . $extra . ' AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
 							->limit($iTotalFeeds)
 							->union();		
 
@@ -447,7 +462,7 @@ class Feed_Service_Feed extends Phpfox_Service
 							->from($this->_sTable, 'feed')
 							->join(Phpfox::getT('friend'), 'f1', 'f1.user_id = feed.user_id')
 							->join(Phpfox::getT('friend'), 'f2', 'f2.user_id = ' . Phpfox::getUserId() . ' AND f2.friend_user_id = f1.friend_user_id')					
-							->where('feed.privacy IN(2) AND feed.time_stamp > \'' . $iLastActiveTimeStamp .  '\' AND feed.feed_reference = 0')
+							->where('feed.privacy IN(2) ' . $extra . ' AND feed.time_stamp > \'' . $iLastActiveTimeStamp .  '\' AND feed.feed_reference = 0')
 							->limit($iTotalFeeds)
 							->union();
 					}				
@@ -455,13 +470,13 @@ class Feed_Service_Feed extends Phpfox_Service
 					// Get my feeds
 					$this->database()->select('feed.*')
 						->from($this->_sTable, 'feed')
-						->where('feed.privacy IN(' . $sMyFeeds . ') AND feed.user_id = ' . Phpfox::getUserId() . ' AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
+						->where('feed.privacy IN(' . $sMyFeeds . ') ' . $extra . ' AND feed.user_id = ' . Phpfox::getUserId() . ' AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
 						->union();
 
 					// Get public feeds
 					$this->database()->select('feed.*')
 						->from($this->_sTable, 'feed')
-						->where('feed.privacy IN(0) AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
+						->where('feed.privacy IN(0) ' . $extra . ' AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
 						->union();					
 
                     if (Phpfox::isModule('privacy'))
@@ -473,7 +488,7 @@ class Feed_Service_Feed extends Phpfox_Service
 					// Get feeds based on custom friends lists	
 					$this->database()->select('feed.*')
 						->from($this->_sTable, 'feed')						
-						->where('feed.privacy IN(4) AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
+						->where('feed.privacy IN(4) ' . $extra . ' AND feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' AND feed.feed_reference = 0')
 						->union();				
 				}
 

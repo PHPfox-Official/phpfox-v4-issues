@@ -256,6 +256,8 @@ class Phpfox_Template
 	private $_theme;
 	private $_meta;
 	private $_keepBody = false;
+
+	public $delayedHeaders = [];
 	
 	/**
 	 * Class constructor we use to build the current theme and style
@@ -580,9 +582,8 @@ class Phpfox_Template
 	 * @return $this
 	 */
 	public function setBreadCrumb($sPhrase, $sLink = '', $bIsTitle = false)
-	{		
+	{
 		(($sPlugin = Phpfox_Plugin::get('template_template_setbreadcrump')) ? eval($sPlugin) : false);
-		
 		if (is_array($sPhrase))
 		{
 			foreach ($sPhrase as $aPhrase)
@@ -1041,6 +1042,12 @@ class Phpfox_Template
 	{
 		if (Phpfox::isAdminPanel()) {
 			$this->setHeader(array('custom.css' => 'style_css'));
+		}
+
+		if ($this->delayedHeaders) {
+			foreach ($this->delayedHeaders as $header) {
+				$this->setHeader('cache', $header);
+			}
 		}
 
 		Core\Event::trigger('lib_phpfox_template_getheader', $this);

@@ -21,7 +21,6 @@ defined('PHPFOX') or exit('NO DICE!');
 	{/if}
 
 	{breadcrumb_list}
-
 	{menu_sub}
 	{breadcrumb_menu}
 </div>

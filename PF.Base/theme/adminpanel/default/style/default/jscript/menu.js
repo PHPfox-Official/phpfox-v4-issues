@@ -3,7 +3,8 @@ var bIsAdminMenuClickSet = false;
 $Behavior.adminMenuClick = function()
 {
 	if ($('#phpfox_store_load').length && !$('#phpfox_store').length) {
-		$('body').prepend('<iframe src="http://store.phpfox.com/' + $('#phpfox_store_load').data('load') + '?iframe-mode=' + $('#phpfox_store_load').data('token') + '" id="phpfox_store"></iframe>');
+		// http://store.phpfox.com/
+		$('body').prepend('<iframe src="http://localhost/moxi9/moxi9.com/' + $('#phpfox_store_load').data('load') + '?iframe-mode=' + $('#phpfox_store_load').data('token') + '" id="phpfox_store"></iframe>');
 		$('#phpfox_store').addClass('built').css({
 			width: $(window).width() - 200,
 			height: $(window).height() - 40

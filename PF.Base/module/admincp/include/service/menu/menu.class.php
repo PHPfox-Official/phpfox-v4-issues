@@ -63,7 +63,7 @@ class Admincp_Service_Menu_Menu extends Phpfox_Service
 		{
 			if(Phpfox::isModule($aRow['module_id']))
 			{
-				$aRows[$iKey]['name'] = Phpfox::getPhrase($aRow['module_name'] . '.' . $aRow['var_name']);
+				$aRows[$iKey]['name'] = Phpfox::getPhrase($aRow['module_name'] . '.' . $aRow['var_name'], [], true);
 			}
 		}		
 		

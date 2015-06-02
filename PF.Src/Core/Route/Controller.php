@@ -53,6 +53,8 @@ class Controller {
 		$uri = trim($this->_request->uri(), '/');
 		$uriParts = explode('/', $uri);
 
+		// d($routes); exit;
+
 		// d($uriParts);
 		foreach ($routes as $key => $route) {
 			$key = trim($key, '/');
@@ -76,7 +78,9 @@ class Controller {
 									$segment = $this->_request->segment($iteration);
 									if (isset($route['where']) && isset($route['where'][$_arg])) {
 										if (!preg_match('/' . $route['where'][$_arg] . '/i', $segment)) {
-											return false;
+											// return false;
+											// continue;
+											break 2;
 										}
 									}
 
@@ -103,14 +107,17 @@ class Controller {
 			// \Phpfox::getComponent('admincp.index', ['bNoTemplate' => true, 'isRoute' => true], 'controller');
 		}
 
+		// d($routes); exit;
+
 		if (isset($routes[$uri])) {
 			$r = $routes[$uri];
 
 			$r['route'] = $uri;
+			// d($r); exit;
 			self::$name = $r;
 
 			try {
-				if (isset($r['auth'])) {
+				if (isset($r['auth']) && $r['auth'] === true) {
 					\Phpfox::isUser(true);
 				}
 
@@ -141,6 +148,7 @@ class Controller {
 
 					$content = call_user_func_array([$Controller, $parts[1]], (isset($r['args']) ? $r['args'] : []));
 				}
+				/*
 				else if (isset($r['url'])) {
 					$response = (new \Core\HTTP($r['url']))
 						->auth('foo', 'bar')
@@ -151,9 +159,14 @@ class Controller {
 						'content' => 'test...'
 					]);
 				}
+				*/
 			} catch (\Exception $e) {
 				if ($this->_request->isPost()) {
-					$content = ['error' => \Core\Exception::getErrors(true)];
+					$errors = \Core\Exception::getErrors(true);
+					if (!$errors) {
+						$errors = '<div class="error_message">' . $e->getMessage() . '</div>';
+					}
+					$content = ['error' => $errors];
 				}
 				else {
 					throw new \Exception($e->getMessage(), 0, $e);

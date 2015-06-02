@@ -39,23 +39,25 @@ class Admincp_Service_Menu_Process extends Phpfox_Service
 		// Find the user groups we disallowed
 		$aDisallow = array();
 		$aUserGroups = Phpfox::getService('user.group')->get();
-		if (isset($aVals['allow_access']))
-		{			
-			foreach ($aUserGroups as $aUserGroup)
+		if (!isset($aVals['allow_all'])) {
+			if (isset($aVals['allow_access']))
 			{
-				if (!in_array($aUserGroup['user_group_id'], $aVals['allow_access']))
+				foreach ($aUserGroups as $aUserGroup)
+				{
+					if (!in_array($aUserGroup['user_group_id'], $aVals['allow_access']))
+					{
+						$aDisallow[] = $aUserGroup['user_group_id'];
+					}
+				}
+			}
+			else
+			{
+				foreach ($aUserGroups as $aUserGroup)
 				{
 					$aDisallow[] = $aUserGroup['user_group_id'];
 				}
-			}			
+			}
 		}
-		else 
-		{
-			foreach ($aUserGroups as $aUserGroup)
-			{
-				$aDisallow[] = $aUserGroup['user_group_id'];
-			}				
-		}	
 
 		foreach ($aVals['text'] as $iId => $sText)
 		{

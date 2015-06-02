@@ -6,6 +6,18 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 		$App = (new Core\App())->get($this->request()->get('id'));
 		if (!$App->is_module) {
 
+			if (($val = $this->request()->get('val'))) {
+				if (!($error = User_Service_Auth::instance()->loginAdmin($val['email'], $val['password']))) {
+					throw new \Exception(implode('', Phpfox_Error::get()));
+				}
+
+				$App->delete();
+				Phpfox::addMessage('App successfully uninstalled.');
+				return [
+					'redirect' => $this->url()->makeUrl('admincp/apps')
+				];
+			}
+
 			if (($settings = $this->request()->get('setting'))) {
 				$Setting = new Core\Setting\Service($App);
 				$Setting->save($settings);
@@ -28,6 +40,10 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 					];
 				}
 			}
+
+			$menus['Uninstall'] = [
+				'url' => $this->url()->makeUrl('admincp/app', ['id' => $App->id, 'uninstall' => 'yes'])
+			];
 
 			$settings = [];
 			foreach ($App->settings as $key => $value) {
@@ -71,7 +87,8 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 			->setTitle($App->name)
 			// ->setSectionTitle($App->name)
 			->assign([
-				'App' => $App
+				'App' => $App,
+				'uninstall' => $this->request()->get('uninstall')
 			]);
 	}
 }

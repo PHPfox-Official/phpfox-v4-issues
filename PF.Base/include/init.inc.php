@@ -45,7 +45,9 @@ if (!file_exists(PHPFOX_DIR_SETTINGS . 'license.sett.php')) {
 }
 else {
 	require(PHPFOX_DIR_SETTINGS . 'license.sett.php');
-	define('PHPFOX_IS_TECHIE', (((PHPFOX_LICENSE_ID == 'techie' || preg_match('/techie\_(.*?)/i', PHPFOX_LICENSE_ID)) && !defined('PHPFOX_IS_TRIAL')) ? true : false));
+	if (!defined('PHPFOX_IS_TECHIE')) {
+		define('PHPFOX_IS_TECHIE', (((PHPFOX_LICENSE_ID == 'techie' || preg_match('/techie\_(.*?)/i', PHPFOX_LICENSE_ID)) && !defined('PHPFOX_IS_TRIAL')) ? true : false));
+	}
 }
 
 // Set error reporting enviroment

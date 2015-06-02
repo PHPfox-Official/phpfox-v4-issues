@@ -36,7 +36,7 @@ class Link_Service_Link extends Phpfox_Service
 				
 		if (!isset($aParts['host']))
 		{
-			return Phpfox_Error::set(Phpfox::getPhrase('link.not_a_valid_link'));
+			return Phpfox_Error::set(Phpfox::getPhrase('link.not_a_valid_link'), true);
 		}
 
 		/*
@@ -128,6 +128,9 @@ class Link_Service_Link extends Phpfox_Service
 
 		$MediaEmbed = new MediaEmbed();
 		$MediaObject = $MediaEmbed->parseUrl($sUrl);
+		if (!$MediaObject instanceof \MediaEmbed\Object\MediaObject) {
+			throw new Exception('Does not look like a URL we can embed.');
+		}
 
 		return [
 			'link' => $sUrl,

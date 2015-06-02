@@ -23,8 +23,19 @@ class Home {
 
 	public function checkAppInstalled($params) {
 		$App = new \Core\App();
-		$_App = $App->get($params['id']);
-		d($_App); exit;
+		try {
+			$_App = $App->get($params['id']);
+
+			return [
+				'installed' => 'yes',
+				'version' => $_App->vendor
+			];
+		} catch(\Exception $e) {
+			return [
+				'error' => true,
+				'message' => $e->getMessage()
+			];
+		}
 	}
 
 	public function run($action, $response = null) {

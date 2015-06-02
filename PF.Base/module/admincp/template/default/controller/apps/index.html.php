@@ -13,6 +13,7 @@
 	<div class="admincp_apps_holder">
 		<section>
 			<div class="admincp_apps">
+				{if count($apps)}
 				{foreach from=$apps item=app}
 				<article>
 					<h1>
@@ -23,6 +24,11 @@
 					</h1>
 				</article>
 				{/foreach}
+				{else}
+				<div class="message">
+					No apps have been installed.
+				</div>
+				{/if}
 			</div>
 		</section>
 
@@ -34,6 +40,9 @@
 					{template file='admincp.block.product.install'}
 					{/foreach}
 				{/if}
+			</div>
+			<div class="unity-get-featured" data-type="apps">
+
 			</div>
 			<a href="{url link='admincp.store' load='apps'}">Find More Apps</a>
 		</section>

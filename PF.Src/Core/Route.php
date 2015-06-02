@@ -6,6 +6,7 @@ namespace Core;
  * Class Route
  * @package Core
  *
+ * @method Route auth($authenticate)
  * @method Route run($callback)
  * @method Route accept($methods)
  * @method Route call($class)

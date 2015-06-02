@@ -77,23 +77,17 @@ class App {
 
 		file_put_contents($appBase . 'start.php', "<?php\n");
 
+		$lockPath = $base . 'app.lock';
+		$lock = json_encode(['installed' => PHPFOX_TIME, 'version' => 0], JSON_PRETTY_PRINT);
+		file_put_contents($lockPath, $lock);
+
 		$App = new App();
 
 		$Object = $App->get($vendor . '/' . $name);
 
-		$this->install($Object);
+		// $this->install($Object);
 
 		return $Object;
-	}
-
-	public function install(App\Object $App) {
-		$path = $App->path . 'app.lock';
-		$lock = json_encode(['installed' => PHPFOX_TIME, 'version' => $App->version], JSON_PRETTY_PRINT);
-		file_put_contents($path, $lock);
-
-		\Core\Event::trigger('on_install', $App);
-
-		return true;
 	}
 
 	/**
@@ -101,8 +95,8 @@ class App {
 	 * @return App\Object
 	 * @throws mixed
 	 */
-	public function import($zip = null, $download = false) {
-		if ($zip === null) {
+	public function import($zip = null, $download = false, $isUpgrade = false) {
+		if ($zip === null || empty($zip)) {
 			$zip = PHPFOX_DIR_FILE . 'static/import-' . uniqid() . '.zip';
 			register_shutdown_function(function() use($zip) {
 				unlink($zip);
@@ -148,9 +142,38 @@ class App {
 			unlink($appPath);
 		});
 
-		$CoreApp = new \Core\App();
+		$lockPath = $base . 'app.lock';
+		if (!$isUpgrade && file_exists($lockPath)) {
+			unlink($lockPath);
+		}
 
-		return $CoreApp->get($json->id);
+		if (file_exists($lockPath)) {
+			$lock = json_decode(file_get_contents($lockPath));
+			$lock->updated = PHPFOX_TIME;
+			file_put_contents($lockPath, json_encode($lock, JSON_PRETTY_PRINT));
+		}
+		else {
+			if (isset($json->menu)) {
+				\Admincp_Service_Menu_Process::instance()->add([
+					'm_connection' => 'main',
+					'product_id' => 'phpfox',
+					'allow_all' => true,
+					'mobile_icon' => (isset($json->menu->icon) ? $json->menu->icon : null),
+					'url_value' => $json->menu->url,
+					'text' => ['en' => $json->menu->name]
+				]);
+			}
+
+			$lock = json_encode(['installed' => PHPFOX_TIME, 'version' => $json->version], JSON_PRETTY_PRINT);
+			file_put_contents($lockPath, $lock);
+		}
+
+		$CoreApp = new \Core\App();
+		$Object = $CoreApp->get($json->id);
+
+		// $this->install($Object);
+
+		return $Object;
 	}
 
 	public function get($id) {
@@ -176,6 +199,10 @@ class App {
 			];
 		}
 		else {
+			if (!isset($this->_apps[$id])) {
+				throw new \Exception('App not found "' . $id . '".');
+			}
+
 			$app = $this->_apps[$id];
 		}
 

@@ -9,25 +9,9 @@
 		<div id="admincp_base"></div>
 		<div id="global_ajax_message"></div>
 
-		{*
-		<div id="top_holder">
-		<div id="main_top_fixed">
-			<div id="main_top">
-				<div class="main_holder">
-					<div id="main_top_inner">
-						<a href="{url link='admincp'}" id="logo">AdminCP</a>
-						<div id="user_info_link">
-							{phrase var='admincp.logged_in_as' user=$aUserDetails} <span class="separator">|</span> <a href="{url link=''}">{phrase var='admincp.view_site'}</a>					
-						</div>
-					</div>
-				</div>
-			</div>
-		*}
-
 		<div id="header">
 			<a href="#" class="header_logo">AdminCP</a>
 		</div>
-
 
 		<div id="top">
 			<div class="nano">

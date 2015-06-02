@@ -35,6 +35,13 @@ class Object extends \Core\Objectify {
 		$this->vendor = explode('/', $this->id)[0];
 	}
 
+	public function delete() {
+		$path = $this->path;
+		if (is_dir($path)) {
+			\Phpfox_File::instance()->delete_directory($path);
+		}
+	}
+
 	public function export() {
 		$zipFile = PHPFOX_DIR_FILE . 'static/' . uniqid() . '.zip';
 		$zipArchive = new \ZipArchive();
@@ -45,6 +52,10 @@ class Object extends \Core\Objectify {
 
 		$exclude = array('.git');
 		$filter = function ($file, $key, $iterator) use ($exclude) {
+			if ($file->getFileName() == 'app.lock') {
+				return false;
+			}
+
 			if ($iterator->hasChildren() && !in_array($file->getFilename(), $exclude)) {
 				return true;
 			}

@@ -3,6 +3,7 @@
 class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 	public function process() {
 		$Theme = new Core\Theme();
+
 		$file = null;
 		if ($this->request()->get('type') == 'theme') {
 			$dir = PHPFOX_DIR_FILE . 'static/' . uniqid() . '/';
@@ -24,7 +25,9 @@ class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 			$App = (new Core\App())->import($this->request()->get('download'), ($this->request()->get('download') ? true : false));
 
 			if ($this->request()->get('download')) {
-				$this->url()->send('admincp.app', ['id' => $App->id]);
+				// $this->url()->send('admincp.app', ['id' => $App->id]);
+				echo '<script>window.top.location.href = \'' . $this->url()->makeUrl('admincp.app', ['id' => $App->id]) . '\';</script>';
+				exit;
 			}
 
 			return [

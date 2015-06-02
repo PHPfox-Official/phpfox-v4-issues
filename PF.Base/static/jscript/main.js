@@ -1,8 +1,14 @@
 
 var PF = {
 	url: {
-		send: function(url, relocation) {
+		make: function(url) {
 			url = getParam('sJsHome') + trim(url, '/');
+
+			return url;
+		},
+
+		send: function(url, relocation) {
+			url = PF.url.make(url);
 			if (relocation) {
 				window.location.href = url;
 				return;

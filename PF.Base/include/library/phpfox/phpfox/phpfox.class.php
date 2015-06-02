@@ -1419,7 +1419,13 @@ class Phpfox
 				$content = ob_get_contents(); ob_clean();
 			}
 			*/
-			$content = $View->getContent();
+			if ($View instanceof \Core\View){
+				$content = $View->getContent();
+			}
+			else {
+				Phpfox_Module::instance()->getControllerTemplate();
+				$content = ob_get_contents(); ob_clean();
+			}
 
 			$oTpl->getLayout('breadcrumb');
 			$breadcrumb = ob_get_contents(); ob_clean();

@@ -113,8 +113,12 @@ class Phpfox_Error
 	 * @param string $sMsg Error message you want to display
 	 * @return bool Always returns FALSE since we encountered an error
 	 */
-	public static function set($sMsg)
+	public static function set($sMsg, $throwIt = false)
 	{
+		if ($throwIt) {
+			throw new Exception($sMsg);
+		}
+
 		self::$aErrors[] = $sMsg;
 		
 		return false;

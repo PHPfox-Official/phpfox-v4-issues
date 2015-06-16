@@ -20,6 +20,16 @@ class Error_Component_Controller_404 extends Phpfox_Component
 	 */
 	public function process()
 	{
+		if (\Core\Route\Controller::$isApi) {
+			header('Content-type: application/json');
+
+			echo json_encode([
+				'error' => 404,
+				'uri' => $_SERVER['REQUEST_URI']
+			]);
+			exit;
+		}
+
 		$aRequests = Phpfox_Request::instance()->getRequests();
         
         if ($sPlugin = Phpfox_Plugin::get('error.component_controller_notfound_1')){eval($sPlugin); if (isset($mReturnPlugin)){ return $mReturnPlugin;}}

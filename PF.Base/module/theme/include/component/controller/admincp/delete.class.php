@@ -6,9 +6,8 @@ class Theme_Component_Controller_Admincp_Delete extends Phpfox_Component {
 		if ($this->request()->get('sure')) {
 			$Theme->delete();
 			Phpfox::addMessage('Successfully deleted the theme.');
-			return [
-				'redirect' => $this->url()->makeUrl('admincp.theme')
-			];
+
+			$this->url()->send('admincp.theme');
 		}
 
 		$this->template()->setBreadCrumb('Are you sure?', $this->url()->makeUrl('current'), true);

@@ -14,13 +14,34 @@ abstract class Api {
 
 	protected $order;
 
+	/**
+	 * @var App\Object
+	 */
+	protected $active;
+
 	public function __construct() {
 		$this->db = \Phpfox_Database::instance();
 		$this->request = \Phpfox_Request::instance();
 
 		if ($this->request->segment(1) == 'api') {
-			if ($this->request->authPass() != 'bar') {
-				throw error('Authentication failed.');
+			\Core\Route\Controller::$isApi = true;
+
+			if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
+				throw new \Exception('Missing authentication key and pass.');
+			}
+
+			foreach ((new App())->all() as $App) {
+				if ($App->auth->id == $_SERVER['PHP_AUTH_USER']) {
+					$this->active = $App;
+				}
+			}
+
+			if (!$this->active) {
+				throw new \Exception('Unable to find this app.');
+			}
+
+			if ($_SERVER['PHP_AUTH_PW'] != $App->auth->key) {
+				throw new \Exception('Authentication failed. Key is not valid.');
 			}
 		}
 	}
@@ -57,5 +78,51 @@ abstract class Api {
 		}
 
 		return $this->order;
+	}
+
+	protected function requires($fields) {
+		foreach ($fields as $key) {
+			if (!isset($_REQUEST[$key])) {
+				throw new \Exception('Missing "' . $key . '".');
+			}
+		}
+	}
+
+	protected function isApi() {
+		return \Core\Route\Controller::$isApi;
+	}
+
+	protected function auth() {
+		if (\Phpfox::isUser()) {
+			return;
+		}
+
+		if (empty($_SERVER['HTTP_USER_ID'])) {
+			throw new \Exception('This resource requires an HTTP USER_ID header.');
+		}
+
+		\User_Service_Auth::instance()->setUserId($_SERVER['HTTP_USER_ID']);
+	}
+
+	protected function accept(array $keys) {
+		$accept = [];
+		foreach ($keys as $key => $value) {
+			$v = $this->request($key);
+			if ($v === false) {
+				continue;
+			}
+			$accept[$value] = $v;
+		}
+
+		return $accept;
+	}
+
+	protected function request($key) {
+		if (isset($_REQUEST[$key])) {
+			return $_REQUEST[$key];
+		}
+
+		// throw new \Exception('"' . $key . '" is missing.');
+		return false;
 	}
 }

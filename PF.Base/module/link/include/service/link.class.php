@@ -87,8 +87,12 @@ class Link_Service_Link extends Phpfox_Service
 		*/
 
 		$aParseBuild = array();
-		$sContent = Phpfox_Request::instance()->send($sUrl, array(), 'GET', $_SERVER['HTTP_USER_AGENT']);
-		preg_match_all('/<(meta|link)(.*?)>/i', $sContent, $aRegMatches);		
+		$sContent = Phpfox_Request::instance()->send($sUrl, array(), 'GET', $_SERVER['HTTP_USER_AGENT'], null, true);
+		preg_match_all('/<(meta|link)(.*?)>/i', $sContent, $aRegMatches);
+		if (preg_match('/<title>(.*?)<\/title>/is', $sContent, $aMatches)) {
+			$aParseBuild['title'] = $aMatches[1];
+		}
+
 		if (isset($aRegMatches[2]))
 		{
 			foreach ($aRegMatches as $iKey => $aMatch)
@@ -102,8 +106,8 @@ class Link_Service_Link extends Phpfox_Service
 				{
 					$sLine = rtrim($sLine, '/');
 					$sLine = trim($sLine);
-					
-					preg_match('/(property|name|rel)=("|\')(.*?)("|\')/ise', $sLine, $aType);
+
+					preg_match('/(property|name|rel|image_src)=("|\')(.*?)("|\')/is', $sLine, $aType);
 					if (count($aType) && isset($aType[3]))
 					{
 						$sType = $aType[3];
@@ -126,18 +130,34 @@ class Link_Service_Link extends Phpfox_Service
 			}
 		}
 
+		$image = '';
+		$embed = '';
 		$MediaEmbed = new MediaEmbed();
 		$MediaObject = $MediaEmbed->parseUrl($sUrl);
 		if (!$MediaObject instanceof \MediaEmbed\Object\MediaObject) {
-			throw new Exception('Does not look like a URL we can embed.');
+			// $xml = simplexml_load_string($sContent, 'SimpleXMLElement', LIBXML_NOERROR |  LIBXML_ERR_NONE);
+			// throw new Exception('Does not look like a URL we can embed.');
+
+			if (isset($aParseBuild['og:image'])) {
+				$image = $aParseBuild['og:image'];
+			}
+		}
+		else {
+			$image = $MediaObject->image();
+			$embed = $MediaObject->getEmbedCode();
+		}
+
+		if (isset($aParseBuild['title'])) {
+			$aParseBuild['og:title'] = $aParseBuild['title'];
+			$aParseBuild['og:description'] = $aParseBuild['description'];
 		}
 
 		return [
 			'link' => $sUrl,
 			'title' => (isset($aParseBuild['og:title']) ? $aParseBuild['og:title'] : ''),
 			'description' => (isset($aParseBuild['og:description']) ? $aParseBuild['og:description'] : ''),
-			'default_image' => $MediaObject->image(),
-			'embed_code' => $MediaObject->getEmbedCode()
+			'default_image' => $image,
+			'embed_code' => $embed
 		];
 	}
 	

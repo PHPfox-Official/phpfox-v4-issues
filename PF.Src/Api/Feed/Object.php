@@ -7,18 +7,19 @@ class Object extends \Core\Objectify {
 	/**
 	 * @var \Api\User\Object
 	 */
-	public $user;
 	public $id;
-	public $item_id;
-	public $url;
-	public $external_url;
-	public $title;
-	public $description;
-	public $time_stamp;
-	public $image;
-	public $type;
-	public $privacy = 0;
-	public $likes = 0;
-	public $is_liked = false;
-	public $comments = 0;
+	public $content;
+	public $total_likes = 0;
+	public $total_comments = 0;
+	public $user;
+	public $custom;
+
+	public function __construct($objects) {
+		parent::__construct($objects);
+
+		$this->custom = (object) $this->custom;
+		if (substr($this->content, 0, 1) == '{') {
+			$this->content = json_decode($this->content);
+		}
+	}
 }

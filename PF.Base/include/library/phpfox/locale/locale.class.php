@@ -425,7 +425,7 @@ class Phpfox_Locale
 				
 				if (PHPFOX_DEBUG && $bNoDebug === false)
 				{
-					Phpfox_Error::trigger('Unable to find the phrase: ' . strip_tags($sParam));
+					// Phpfox_Error::trigger('Unable to find the phrase: ' . strip_tags($sParam));
 				}
 				return '';
 			}

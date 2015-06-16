@@ -18,11 +18,13 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 	public function add()
 	{		
 		$aVals = $this->get('val');		
-		$bPassCaptcha = true;		
-		$sVar = Phpfox::callback($aVals['type'] . '.getAjaxCommentVar');	
-		if ($sVar !== null)
-		{
-			Phpfox::getUserParam($sVar, true);
+		$bPassCaptcha = true;
+		if ($aVals['type'] != 'app') {
+			$sVar = Phpfox::callback($aVals['type'] . '.getAjaxCommentVar');
+			if ($sVar !== null)
+			{
+				Phpfox::getUserParam($sVar, true);
+			}
 		}
 		
 		if (!Phpfox::getUserParam('comment.can_post_comments'))

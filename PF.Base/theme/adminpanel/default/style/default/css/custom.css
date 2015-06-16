@@ -223,7 +223,7 @@ ul#breadcrumb_menu li.active a:hover {
 }
 .main_menu li .main_sub_menu {
   position: fixed;
-  top: 40px;
+  top: 0px;
   left: 200px;
   width: 200px;
   bottom: 0px;
@@ -693,16 +693,19 @@ div.sortable ul li:hover ul li:hover a:hover {
 #page_admincp_store_index #main {
   min-height: 0px;
 }
+#page_admincp_store_index .main_title_holder {
+  display: none;
+}
 #page_admincp_store_index div#copyright {
   display: none;
 }
 #phpfox_store {
   position: fixed;
-  top: 40px;
+  top: 0px;
   left: 200px;
   right: 0px;
   bottom: 0px;
-  z-index: 10000;
+  z-index: 199;
   background: transparent;
 }
 div#admincp_site_link {
@@ -1625,8 +1628,7 @@ div.message {
   width: auto;
   float: none;
   text-indent: 0px;
-  padding: 10px 0px;
-  text-indent: 10px;
+  padding: 10px;
   font-size: 14px;
   margin-bottom: 10px;
   background: #d9534f;

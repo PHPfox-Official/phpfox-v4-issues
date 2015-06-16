@@ -115,6 +115,10 @@ class Phpfox_Error
 	 */
 	public static function set($sMsg, $throwIt = false)
 	{
+		if (\Core\Route\Controller::$isApi) {
+			$throwIt = true;
+		}
+
 		if ($throwIt) {
 			throw new Exception($sMsg);
 		}

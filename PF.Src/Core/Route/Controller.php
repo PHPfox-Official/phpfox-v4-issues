@@ -5,6 +5,7 @@ namespace Core\Route;
 class Controller {
 	public static $active;
 	public static $name;
+	public static $isApi = false;
 
 	private $_request;
 
@@ -28,24 +29,7 @@ class Controller {
 
 	public function get() {
 		if ($this->_request->segment(1) == 'api') {
-			$api = 'Api\\' . $this->_request->segment(2);
-			if (class_exists($api)) {
-				try {
-					$Reflect = (new \ReflectionClass($api))->newInstance();
-					if (!method_exists($Reflect, $this->_request->method())) {
-						throw error('Method not found.');
-					}
-					$data = call_user_func([$Reflect, $this->_request->method()]);
-				} catch (\Exception $e) {
-					$data = [
-						'error' => $e->getMessage()
-					];
-				}
-
-				header('Content-type: application/json');
-				echo json_encode($data);
-				exit;
-			}
+			self::$isApi = true;
 		}
 
 		$content = false;
@@ -55,7 +39,7 @@ class Controller {
 
 		// d($routes); exit;
 
-		// d($uriParts);
+		// d($uriParts); exit;
 		foreach ($routes as $key => $route) {
 			$key = trim($key, '/');
 
@@ -110,6 +94,7 @@ class Controller {
 		// d($routes); exit;
 
 		if (isset($routes[$uri])) {
+			$routes[$uri] = (array) $routes[$uri];
 			$r = $routes[$uri];
 
 			$r['route'] = $uri;
@@ -140,26 +125,64 @@ class Controller {
 					}
 					$content = call_user_func_array($routes[$uri]['run'], $pass);
 				}
+				else if (isset($r['url'])) {
+					$Template = \Phpfox_Template::instance();
+					$response = (new \Core\HTTP($r['url']))
+						->auth('foo', 'bar')
+						->call($_SERVER['REQUEST_METHOD']);
+					$xml = simplexml_load_string($response);
+
+					if (isset($xml->head)) {
+						foreach ((array) $xml->head as $type => $data) {
+							switch ($type) {
+								case 'style':
+									$Template->setHeader('<' . $type . '>' . (string) $data . '</' . $type . '>');
+									break;
+							}
+						}
+					}
+
+					$innerHTML = function($xml) {
+						$innerXML = '';
+						foreach (dom_import_simplexml($xml)->childNodes as $child) {
+							$innerXML .= $child->ownerDocument->saveXML( $child );
+						}
+						return $innerXML;
+					};
+
+					$Controller = new \Core\Controller();
+					$Controller->title('' . $xml->head->title);
+					$content = $Controller->render('@Base/blank.html', [
+						'content' => $innerHTML($xml->body)
+					]);
+				}
 				else if (isset($r['call'])) {
 					$parts = explode('@', $r['call']);
+					if (!isset($parts[1])) {
+						$parts[1] = $this->_request->method();
+					}
 
 					$Reflection = new \ReflectionClass($parts[0]);
 					$Controller = $Reflection->newInstance((isset($routes[$uri]['path']) ? $routes[$uri]['path'] . 'views' : null));
 
-					$content = call_user_func_array([$Controller, $parts[1]], (isset($r['args']) ? $r['args'] : []));
-				}
-				/*
-				else if (isset($r['url'])) {
-					$response = (new \Core\HTTP($r['url']))
-						->auth('foo', 'bar')
-						->call($this->_request->method());
+					$args = (isset($r['args']) ? $r['args'] : []);
 
-					$Controller = new \Core\Controller();
-					return $Controller->render('@Base/layout.html', [
-						'content' => 'test...'
-					]);
+					try {
+						$content = call_user_func_array([$Controller, $parts[1]], $args);
+					} catch (\Exception $e) {
+						if (self::$isApi) {
+							http_response_code(400);
+							$content = [
+								'error' => [
+									'message' => $e->getMessage()
+								]
+							];
+						}
+						else {
+							throw new \Exception($e->getMessage(), $e->getCode(), $e);
+						}
+					}
 				}
-				*/
 			} catch (\Exception $e) {
 				if ($this->_request->isPost()) {
 					$errors = \Core\Exception::getErrors(true);
@@ -169,22 +192,13 @@ class Controller {
 					$content = ['error' => $errors];
 				}
 				else {
-					throw new \Exception($e->getMessage(), 0, $e);
+					throw new \Exception($e->getMessage(), $e->getCode(), $e);
 				}
 			}
 
-			/*
-			if (isset($_SERVER['CONTENT_TYPE'])
-				&& $_SERVER['CONTENT_TYPE'] == 'application/json'
-				&& $content instanceof \Core\View
-			) {
-				echo $content->getContent();
-			}
-			*/
-
-			if (is_array($content)) {
+			if (is_array($content) || self::$isApi) {
 				header('Content-type: application/json');
-				echo json_encode($content);
+				echo json_encode($content, JSON_PRETTY_PRINT);
 				exit;
 			}
 

@@ -16,13 +16,12 @@ defined('PHPFOX') or exit('NO DICE!');
  * @version 		$Id: helper.class.php 7287 2014-04-28 16:29:52Z Fern $
  */
 class Phpfox_Image_Helper
-{	
+{
 	/**
-	 * Class constructor
-	 *
+	 * @return Phpfox_Image_Helper
 	 */
-	public function __construct()
-	{			
+	public static function instance() {
+		return Phpfox::getLib('image.helper');
 	}
 	
 	/**

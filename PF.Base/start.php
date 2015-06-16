@@ -26,6 +26,10 @@ if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
 	exit('Dependencies for PHPfox missing. Make sure to run composer first.');
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'PUT' || $_SERVER['REQUEST_METHOD'] == 'DELETE') {
+	parse_str(file_get_contents('php://input'), $_REQUEST);
+}
+
 require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/include/init.inc.php');
 
@@ -62,6 +66,19 @@ if (!defined('PHPFOX_NO_RUN')) {
 	try {
 		Phpfox::run();
 	} catch (\Exception $e) {
+
+		if (\Core\Route\Controller::$isApi) {
+			http_response_code(400);
+			$content = [
+				'error' => [
+					'message' => $e->getMessage()
+				]
+			];
+			header('Content-type: application/json');
+			echo json_encode($content, JSON_PRETTY_PRINT);
+			exit;
+		}
+
 		if (PHPFOX_IS_AJAX_PAGE || Phpfox_Request::instance()->get('is_ajax_post')) {
 			header('Content-type: application/json');
 

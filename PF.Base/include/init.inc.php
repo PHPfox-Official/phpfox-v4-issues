@@ -124,6 +124,11 @@ if (!defined('PHPFOX_NO_PLUGINS')) {
 	Phpfox_Plugin::set();
 }
 
+if (Phpfox_Request::instance()->get('ping-no-session')) {
+	define('PHPFOX_NO_SESSION', true);
+	define('PHPFOX_NO_APPS', true);
+}
+
 // Start a session if needed
 if (!defined('PHPFOX_NO_SESSION'))
 {

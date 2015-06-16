@@ -534,6 +534,11 @@ class User_Service_User extends Phpfox_Service
 		{
 			$aFields[] = 'last_activity';
 		}
+
+		// if (\Core\Route\Controller::$isApi) {
+			$aFields[] = 'birthday';
+			$aFields[] = 'country_iso';
+		// }
 		
 		/* Return $aFields but about iUserId */
 		if ($iUserId != null)

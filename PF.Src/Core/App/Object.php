@@ -11,9 +11,17 @@ class Object extends \Core\Objectify {
 	public $icon;
 	public $version;
 	public $currentVersion;
-	public $unityId;
+	public $auth = [
+		'id' => '',
+		'key' => ''
+	];
 	public $admincpMenu;
 	public $settings = [];
+	public $webhooks = [];
+	public $routes = [];
+	public $head = [];
+	public $js = [];
+	public $map = [];
 
 	public function __construct($keys) {
 		parent::__construct($keys);
@@ -33,6 +41,14 @@ class Object extends \Core\Objectify {
 			$this->icon = '<div class="app_icons image_load" data-src="' . $this->icon . '"></div>';
 		}
 		$this->vendor = explode('/', $this->id)[0];
+
+		if (!$this->is_module && \Core\Route\Controller::$isApi) {
+			$key = PHPFOX_DIR_SETTINGS . md5($this->id . \Phpfox::getParam('core.salt')) . '.php';
+			if (!file_exists($key)) {
+				throw new \Exception('App is missing auth file. Something went wrong with the install of this product.');
+			}
+			$this->auth = (object) require($key);
+		}
 	}
 
 	public function delete() {

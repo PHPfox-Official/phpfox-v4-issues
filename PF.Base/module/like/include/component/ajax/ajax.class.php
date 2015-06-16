@@ -180,7 +180,11 @@ class Like_Component_Ajax_Ajax extends Phpfox_Ajax
 		$sContent = $this->getContent(false);
 		$sContent = str_replace("'", "\'", $sContent);
 
-		$sType = str_replace('-', '_', $sType);		
+		$sType = str_replace('-', '_', $sType);
+		if ($sType == 'app') {
+			$feed = \Phpfox_Database::instance()->select('*')->from(':feed')->where(['feed_id' => $sId])->get();
+			$sType = $feed['type_id'];
+		}
 		
 		$sCall = ' $("#js_feed_like_holder_' . $sType . '_' . $sId . '").find(\'.js_comment_like_holder:first\').html(\'' . $sContent . '\');';
 		$this->call($sCall);

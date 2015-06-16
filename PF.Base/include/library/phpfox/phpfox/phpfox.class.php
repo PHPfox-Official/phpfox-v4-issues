@@ -609,7 +609,7 @@ class Phpfox
 			return $aValues[$sHash];
 		}
 		
-		$aFields = Phpfox::getService('user')->getUserFields();
+		$aFields = User_Service_User::instance()->getUserFields();
 		
 		$aValues[$sHash] = '';
 		foreach ($aFields as $sField)
@@ -1089,6 +1089,7 @@ class Phpfox
 			exit;
 		}
 
+		/*
 		if (isset($_REQUEST['m9action'])) {
 			if ((empty($_SERVER['PHP_AUTH_USER']) || empty($_SERVER['PHP_AUTH_PW'])) && !isset($_GET['token'])) {
 				exit;
@@ -1109,6 +1110,7 @@ class Phpfox
 			$Home = new Core\Home($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);
 			$Home->run($_REQUEST['m9action'], $response);
 		}
+		*/
 
 		$oTpl = Phpfox_Template::instance();
 		$aLocale = Phpfox_Locale::instance()->getLang();

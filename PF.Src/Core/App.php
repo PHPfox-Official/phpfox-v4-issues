@@ -3,19 +3,37 @@
 namespace Core;
 
 class App {
+	public static $routes = [];
+
 	private $_apps = [];
 
 	public function __construct() {
+		if (defined('PHPFOX_NO_APPS')) {
+			return;
+		}
 
-		$base = PHPFOX_DIR_SITE . 'apps/';
-		foreach (scandir($base) as $vendors) {
-			if ($vendors == '.' || $vendors == '..') {
+		$base = PHPFOX_DIR_SITE . 'Apps/';
+		foreach (scandir($base) as $app) {
+			if ($app == '.' || $app == '..') {
 				continue;
 			}
 
-			if (!is_dir($base . $vendors)) {
+			$path = $base . $app . '/';
+
+			if (!file_exists($path . 'app.lock')) {
 				continue;
 			}
+
+			$data = json_decode(file_get_contents($path . 'app.json'));
+			$data->path = $path;
+
+			if (isset($data->routes)) {
+				self::$routes = array_merge(self::$routes, (array) $data->routes);
+			}
+
+			$this->_apps[$data->id] = $data;
+
+			/*
 			foreach (scandir($base . $vendors) as $apps) {
 				$path = $base . $vendors . '/' . $apps . '/';
 				$file = $path . 'app.json';
@@ -32,10 +50,13 @@ class App {
 				$data = json_decode(file_get_contents($file));
 				$data->path = $path;
 
+				if (isset($data->routes)) {
+					self::$routes = array_merge(self::$routes, (array) $data->routes);
+				}
+
 				$this->_apps[$data->id] = $data;
 			}
-
-
+			*/
 		}
 
 		// d($this->_apps); exit;
@@ -45,14 +66,42 @@ class App {
 
 	}
 
-	public function make($name, $vendor = null) {
-		$base = PHPFOX_DIR_SITE . 'Apps/' . $vendor . '/';
-		if (!is_dir($base)) {
-			mkdir($base);
+	public function make($name) {
+		ignore_user_abort(true);
+
+		$base = PHPFOX_DIR_SITE . 'Apps/';
+		$isGit = false;
+		$gitFile = null;
+		$git = '';
+		$url = '';
+
+		if (substr($name, 0, 8) == 'https://') {
+			$isGit = true;
+			$git = $name;
+
+			$url = substr_replace(str_replace(['github.com'], ['raw.githubusercontent.com'], $git), '', -4) . '/master/app.json';
+			$gitFile = PHPFOX_DIR_FILE . 'static/' . md5($git) . '.log';
+			if (file_exists($gitFile)) {
+				unlink($gitFile);
+			}
+
+			$headers = @get_headers($url);
+			if ($headers[0] != 'HTTP/1.1 200 OK') {
+				throw error('Unable to load the URL "%s"', $url);
+			}
+
+			file_put_contents($gitFile, "## Github Headers: ##\n" . print_r($headers, true) . "\n\n");
+
+			$json = json_decode(file_get_contents($url . '?v=' . PHPFOX_TIME));
+			if (!isset($json->id)) {
+				throw error('Not a valid JSON file. Missing App ID.');
+			}
+			$name = $json->id;
+			file_put_contents($gitFile, "## App JSON File: ##\n" . print_r($json, true) . file_get_contents($gitFile) . "\n\n");
 		}
 
-		if (!preg_match('/^[a-zA-Z\-0-9]+$/', $name)) {
-			throw new \Exception('Product name can only contain alphanumeric characters and a dash.');
+		if (!preg_match('/^[a-zA-Z\_0-9]+$/', $name)) {
+			throw new \Exception('Product name can only contain alphanumeric characters and/or an underscore.');
 		}
 
 		$appBase = $base . $name . '/';
@@ -60,34 +109,88 @@ class App {
 			throw new \Exception('App already exists.');
 		}
 
-		$dirs = [
-			'Controllers',
-			'Model',
-			'views'
-		];
-		foreach ($dirs as $dir) {
-			$path = $appBase . $dir;
-			if (!is_dir($path)) {
-				mkdir($path, 0777, true);
+		if ($isGit && function_exists('shell_exec')) {
+			$out = shell_exec('git --version');
+			if (!preg_match('/git version ([0-9\.]+) (.*?)/', $out)) {
+				throw new \Exception('Server does not support git.');
 			}
+			file_put_contents($gitFile, "## git version: ##\n" . $out . file_get_contents($gitFile) . "\n\n");
 		}
 
-		$json = json_encode(['id' => $vendor . '/' . $name, 'name' => $name], JSON_PRETTY_PRINT);
-		file_put_contents($appBase . 'app.json', $json);
+		try {
+			if (!$isGit) {
+				throw error('not_git');
+			}
 
-		file_put_contents($appBase . 'start.php', "<?php\n");
+			$out = shell_exec('git clone ' . $git . ' ' . $appBase . ' 2>&1');
+			if (!file_exists($appBase . 'app.json')) {
+				throw error('Not a valid Git app.');
+			}
+			file_put_contents($gitFile, "## Running git clone: ##\n" . $out . file_get_contents($gitFile) . "\n\n");
 
-		$lockPath = $base . 'app.lock';
+			$headers = @get_headers(str_replace('app.json', 'composer.json', $url));
+			if ($headers[0] == 'HTTP/1.1 200 OK') {
+				$composer = $appBase . 'composer.phar';
+				if (!file_exists($composer)) {
+					file_put_contents($composer, file_get_contents('https://getcomposer.org/composer.phar'));
+				}
+				chdir($appBase);
+				$out = shell_exec('php composer.phar install 2>&1');
+				file_put_contents($gitFile, "## Running composer: ##\n" . $out . file_get_contents($gitFile));
+				chdir(PHPFOX_DIR);
+			}
+
+			$this->processJson($json);
+		}
+		catch (\Exception $e) {
+			if ($e->getMessage() != 'not_git') {
+				throw new \Exception($e->getMessage(), $e->getCode(), $e);
+			}
+
+			$dirs = [
+				'assets',
+				'Controllers',
+				'Model',
+				'views'
+			];
+			foreach ($dirs as $dir) {
+				$path = $appBase . $dir;
+				if (!is_dir($path)) {
+					mkdir($path, 0777, true);
+				}
+			}
+
+			$json = json_encode(['id' => $name, 'name' => $name], JSON_PRETTY_PRINT);
+			file_put_contents($appBase . 'app.json', $json);
+
+			file_put_contents($appBase . 'assets/autoload.js', "\n\$Ready(function() {\n\n});");
+			file_put_contents($appBase . 'assets/autoload.less', "\n@import \"../../../../PF.Base/less/variables\";\n");
+			file_put_contents($appBase . 'start.php', "<?php\n");
+		}
+
+		$lockPath = $appBase . 'app.lock';
 		$lock = json_encode(['installed' => PHPFOX_TIME, 'version' => 0], JSON_PRETTY_PRINT);
 		file_put_contents($lockPath, $lock);
 
 		$App = new App();
 
-		$Object = $App->get($vendor . '/' . $name);
+		$Object = $App->get($name);
 
-		// $this->install($Object);
+		$this->makeKey($Object, md5(uniqid()), md5(uniqid() . rand(0, 10000)));
 
 		return $Object;
+	}
+
+	public function makeKey(App\Object $App, $id, $key) {
+		$file = PHPFOX_DIR_SETTINGS . md5($App->id . \Phpfox::getParam('core.salt')) . '.php';
+
+		$response = [
+			'id' => $id,
+			'key' => $key
+		];
+		$paste = "<?php\nreturn " . var_export((array) $response, true) . ';';
+
+		file_put_contents($file, $paste);
 	}
 
 	/**
@@ -147,22 +250,16 @@ class App {
 			unlink($lockPath);
 		}
 
+		$isNew = false;
 		if (file_exists($lockPath)) {
 			$lock = json_decode(file_get_contents($lockPath));
 			$lock->updated = PHPFOX_TIME;
 			file_put_contents($lockPath, json_encode($lock, JSON_PRETTY_PRINT));
 		}
 		else {
-			if (isset($json->menu)) {
-				\Admincp_Service_Menu_Process::instance()->add([
-					'm_connection' => 'main',
-					'product_id' => 'phpfox',
-					'allow_all' => true,
-					'mobile_icon' => (isset($json->menu->icon) ? $json->menu->icon : null),
-					'url_value' => $json->menu->url,
-					'text' => ['en' => $json->menu->name]
-				]);
-			}
+			$isNew = true;
+
+			$this->processJson($json);
 
 			$lock = json_encode(['installed' => PHPFOX_TIME, 'version' => $json->version], JSON_PRETTY_PRINT);
 			file_put_contents($lockPath, $lock);
@@ -171,9 +268,25 @@ class App {
 		$CoreApp = new \Core\App();
 		$Object = $CoreApp->get($json->id);
 
-		// $this->install($Object);
+		if ($isNew) {
+			$Request = \Phpfox_Request::instance();
+			$this->makeKey($Object, $Request->get('auth_id'), $Request->get('auth_key'));
+		}
 
 		return $Object;
+	}
+
+	public function processJson($json) {
+		if (isset($json->menu)) {
+			\Admincp_Service_Menu_Process::instance()->add([
+				'm_connection' => 'main',
+				'product_id' => 'phpfox',
+				'allow_all' => true,
+				'mobile_icon' => (isset($json->menu->icon) ? $json->menu->icon : null),
+				'url_value' => $json->menu->url,
+				'text' => ['en' => $json->menu->name]
+			]);
+		}
 	}
 
 	public function get($id) {

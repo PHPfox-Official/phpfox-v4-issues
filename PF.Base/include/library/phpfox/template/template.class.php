@@ -1052,6 +1052,23 @@ class Phpfox_Template
 
 		Core\Event::trigger('lib_phpfox_template_getheader', $this);
 
+		foreach ((new Core\App())->all() as $App) {
+			if ($App->head && is_array($App->head)) {
+				foreach ($App->head as $head) {
+					$this->setHeader($head);
+				}
+			}
+
+			if ($App->settings) {
+				$Setting = new Core\Setting();
+				foreach ($App->settings as $key => $setting) {
+					if (isset($setting->js_variable)) {
+						$this->setHeader('<script>var ' . $key . ' = "' . $Setting->get($key) . '";</script>');
+					}
+				}
+			}
+		}
+
 		$aArrayData = array();
 		$sData = '';
 		$sJs = '';
@@ -1904,6 +1921,23 @@ class Phpfox_Template
 
 			$this->_sFooter .= '<a href="' . Phpfox_Url::instance()->makeUrl('admincp') . '" class="js_hover_title no_ajax"><i class="fa fa-diamond"></i><span class="js_hover_info">AdminCP</span></a>';
 			$this->_sFooter .= '</div>';
+		}
+
+		foreach ((new Core\App())->all() as $App) {
+			if ($App->js && is_array($App->js)) {
+				foreach ($App->js as $js) {
+					$this->_sFooter .= '<script src="' . $js . '"></script>';
+				}
+			}
+		}
+
+		if (Phpfox::isUser()) {
+			$image = Phpfox_Image_Helper::instance()->display([
+				'user' => Phpfox::getUserBy(),
+				'suffix' => '_50_square',
+				'return_url' => true
+			]);
+			$this->_sFooter .= '<div id="auth-user" data-id="' . Phpfox::getUserId() . '" data-name="' . Phpfox::getUserBy('full_name') . '" data-image="' . $image . '"></div>';
 		}
 
 		return $this->_sFooter;

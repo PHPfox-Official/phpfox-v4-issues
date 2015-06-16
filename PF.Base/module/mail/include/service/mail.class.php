@@ -224,7 +224,7 @@ class Mail_Service_Mail extends Phpfox_Service
 					$iUserCnt = 0;
 					foreach ($aRows[$iKey]['users'] as $iUserKey => $aUser)
 					{
-						if (!defined('PHPFOX_IS_PRIVATE_MAIL') && $aUser['user_id'] == Phpfox::getUserId())
+						if (!\Core\Route\Controller::$isApi && !defined('PHPFOX_IS_PRIVATE_MAIL') && $aUser['user_id'] == Phpfox::getUserId())
 						{
 							unset($aRows[$iKey]['users'][$iUserKey]);
 							
@@ -743,7 +743,7 @@ class Mail_Service_Mail extends Phpfox_Service
 		Phpfox_Template::instance()->buildSectionMenu('mail', $aFilterMenu);
 	}
 	
-	public function getThreadedMail($iThreadId, $iPage = 0)
+	public function getThreadedMail($iThreadId, $iPage = 0, $getLatest = false)
 	{		
 		$aThread = $this->database()->select('mt.*, mtu.is_archive AS user_is_archive')
 			->from(Phpfox::getT('mail_thread'), 'mt')
@@ -763,7 +763,11 @@ class Mail_Service_Mail extends Phpfox_Service
 			->execute('getSlaveRows');
 
 		$iLimit = 10;
-		$iOffset = ($iPage * $iLimit);	
+		$iOffset = ($iPage * $iLimit);
+
+		if ($getLatest) {
+			$iLimit = 1;
+		}
 
 		$aMessages = $this->database()->select('mtt.*, ' . Phpfox::getUserField())
 			->from(Phpfox::getT('mail_thread_text'), 'mtt')
@@ -771,7 +775,14 @@ class Mail_Service_Mail extends Phpfox_Service
 			->where('mtt.thread_id = ' . (int) $iThreadId)
 			->order('mtt.time_stamp DESC')
 			->limit($iOffset, $iLimit)
-			->execute('getSlaveRows');		
+			->execute('getSlaveRows');
+
+		if ($getLatest) {
+			if (!isset($aMessages[0])) {
+				throw error('Message not found.');
+			}
+			return $aMessages[0];
+		}
 		
 		$aMessages = array_reverse($aMessages);
 		

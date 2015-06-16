@@ -167,6 +167,7 @@ class Phpfox_Request
     	
     	foreach ($mName as $sKey => $sValue)
     	{
+		    $_REQUEST[$sKey] = $sValue;
     		$this->_aArgs[$sKey] = $sValue;
     	}
     }

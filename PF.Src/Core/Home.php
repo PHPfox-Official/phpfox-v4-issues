@@ -11,6 +11,7 @@ namespace Core;
  * @method Home install()
  * @method Home vendor($name)
  * @method Home admincp()
+ * @method Home key()
  */
 class Home {
 	private $_id;
@@ -45,7 +46,7 @@ class Home {
 	}
 
 	public function __call($method, $args) {
-		$url = (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'http://store.phpfox.us/') . $method;
+		$url = (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'http://api.phpfox.com/') . $method;
 		$Http = new HTTP($url);
 		$Http->auth($this->_id, $this->_key);
 		if (\Phpfox::isTrial()) {

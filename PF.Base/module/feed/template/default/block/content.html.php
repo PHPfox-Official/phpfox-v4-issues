@@ -113,6 +113,12 @@ defined('PHPFOX') or exit('NO DICE!');
 						{$aFeed.feed_custom_html}
 					</div>
 				{/if}
+
+				{*
+				{if !empty($aFeed.app_content)}
+					{$aFeed.app_content}
+				{/if}
+				*}
 				
 				{if !empty($aFeed.parent_module_id)}
 					{module name='feed.mini' parent_feed_id=$aFeed.parent_feed_id parent_module_id=$aFeed.parent_module_id}

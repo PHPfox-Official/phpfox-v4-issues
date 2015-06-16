@@ -403,7 +403,11 @@ class Mail_Service_Process extends Phpfox_Service
 			}			
 		}			
 		
-		(($sPlugin = Phpfox_Plugin::get('mail.service_process_add')) ? eval($sPlugin) : false);	
+		(($sPlugin = Phpfox_Plugin::get('mail.service_process_add')) ? eval($sPlugin) : false);
+
+		if (\Core\Route\Controller::$isApi) {
+			return $iTextId;
+		}
 		
 		return $iId;
 	}	

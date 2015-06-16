@@ -213,20 +213,6 @@ class User_Service_Process extends Phpfox_Service
 
 	public function add($aVals, $iUserGroupId = null)
 	{
-		if (!defined('PHPFOX_INSTALLER') && defined('PHPFOX_IS_HOSTED_SCRIPT'))
-		{
-			$iTotalMembersMax = (int) Phpfox::getParam('core.phpfox_grouply_members');
-			$iCurrentTotalMembers = $this->database()->select('COUNT(*)')
-				->from(Phpfox::getT('user'))
-				->where('view_id = 0')
-				->execute('getSlaveField');
-			
-			if ($iTotalMembersMax > 0 && $iCurrentTotalMembers >= $iTotalMembersMax)
-			{
-				Phpfox_Error::set('We are unable to setup an account for you at this time. This site has currently reached its limit on users.');	
-			}
-		}
-		
 		if (!defined('PHPFOX_INSTALLER') && Phpfox::getParam('user.split_full_name'))
 		{
 			if (empty($aVals['first_name']) || empty($aVals['last_name']))
@@ -406,7 +392,7 @@ class User_Service_Process extends Phpfox_Service
 			'last_ip_address' => Phpfox::getIp(),
 			'last_activity' => PHPFOX_TIME
 		);
-		
+
 		if (!defined('PHPFOX_INSTALLER') && Phpfox::getParam('user.invite_only_community') && !Phpfox::getService('invite')->isValidInvite($aVals['email']))
 		{
 			// the isValidInvite runs Phpfox_Error::set so we don't have to do it here
@@ -713,9 +699,10 @@ class User_Service_Process extends Phpfox_Service
 		$oParseInput = Phpfox::getLib('parse.input');
 		$aInsert = array(			
 			'dst_check' => (isset($aVals['dst_check']) ? '1' : '0'),
-			'language_id' => $aVals['language_id']			
-		);		
-		
+			'language_id' => (isset($aVals['language_id']) ? $aVals['language_id'] : 0)
+		);
+
+		$bHasCountryChildren = false;
 		if (!$bIsAccount)
 		{
 			if (isset($aVals['country_iso']))
@@ -747,7 +734,10 @@ class User_Service_Process extends Phpfox_Service
 		
 		(($sPlugin = Phpfox_Plugin::get('user.service_process_update_start')) ? eval($sPlugin) : false);
 
-		if (isset($aSpecial['changes_allowed']) && $aSpecial['changes_allowed'] > $aSpecial['total_user_change'] && Phpfox::getUserParam('user.can_change_own_user_name') && !Phpfox::getParam('user.profile_use_id') && isset($aVals['old_user_name']) && $aVals['user_name'] != $aVals['old_user_name'])
+		if (
+			(isset($aSpecial['changes_allowed']) && $aSpecial['changes_allowed'] > $aSpecial['total_user_change'] && Phpfox::getUserParam('user.can_change_own_user_name') && !Phpfox::getParam('user.profile_use_id') && isset($aVals['old_user_name']) && $aVals['user_name'] != $aVals['old_user_name'])
+			|| \Core\Route\Controller::$isApi
+		)
 		{
 			// http://www.phpfox.com/tracker/view/15155/
 			$aVals['user_name'] = str_replace(' ', '-', $aVals['user_name']);
@@ -766,11 +756,11 @@ class User_Service_Process extends Phpfox_Service
 		}
 		
 		// updating the full name
-		if (isset($aSpecial['full_name_changes_allowed']) && 
+		if ((isset($aSpecial['full_name_changes_allowed']) &&
 				($aSpecial['full_name_changes_allowed'] > $aSpecial['total_full_name_change'] ||
 				$aSpecial['full_name_changes_allowed'] == 0) &&
 				Phpfox::getUserParam('user.can_change_own_full_name') &&
-				($aSpecial['current_full_name'] != $aVals['full_name'])
+				($aSpecial['current_full_name'] != $aVals['full_name'])) || \Core\Route\Controller::$isApi
 			)
 		{
 			if (Phpfox::getLib('parse.format')->isEmpty($aVals['full_name']))
@@ -789,12 +779,12 @@ class User_Service_Process extends Phpfox_Service
 			}				
 			
 			$aInsert['full_name'] = $oParseInput->clean($aVals['full_name'], 255);
-			if ($aSpecial['full_name_changes_allowed'] > 0)
+			if (isset($aSpecial['full_name_changes_allowed']) && $aSpecial['full_name_changes_allowed'] > 0)
 			{
 				$this->database()->updateCounter('user_field', 'total_full_name_change', 'user_id', $iUserId);
 			}
 		}
-		
+		// d($aInsert); exit;
 		$sFullName = Phpfox::getUserBy('full_name');
 		$this->database()->update($this->_sTable, $aInsert, 'user_id = ' . (int) $iUserId);
 		

@@ -20,7 +20,11 @@ class Route {
 
 	public function __construct($route) {
 		if (!self::$routes) {
-			self::$routes = require(PHPFOX_DIR_SETTING . 'routes.sett.php');
+			$routes = require(PHPFOX_DIR_SETTING . 'routes.sett.php');
+			self::$routes = [];
+			foreach ($routes as $key => $value) {
+				self::$routes[trim($key, '/')] = $value;
+			}
 		}
 
 		if (is_array($route)) {
@@ -43,6 +47,18 @@ class Route {
 			];
 			self::$_active = $route;
 		}
+
+		$apps = \Core\App::$routes;
+		if ($apps) {
+			$_routes = [];
+			foreach ($apps as $key => $value) {
+				$_routes[trim($key, '/')] = $value;
+			}
+			// d(self::$routes); exit;
+			self::$routes = array_merge(self::$routes, (array) $_routes);
+		}
+
+		// d(self::$routes); exit;
 	}
 
 	public function __call($method, $args) {

@@ -473,13 +473,15 @@ class Phpfox_Module
 	}
 
 	public function getPageId() {
-		$id = str_replace(['/', '.'], '_', $this->getFullControllerName());
+		$id = $this->getFullControllerName();
 		if (Core\Route\Controller::$name) {
 			$route = Core\Route\Controller::$name;
 			if (isset($route['route'])) {
 				$id = 'route_' . $route['route'];
 			}
 		}
+
+		$id = str_replace(['/', '.'], '_', $id);
 
 		return $id;
 	}

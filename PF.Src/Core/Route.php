@@ -15,10 +15,11 @@ namespace Core;
  */
 class Route {
 	public static $routes = [];
+	public static $group;
 
 	private static $_active;
 
-	public function __construct($route) {
+	public function __construct($route, \Closure $callback = null) {
 		if (!self::$routes) {
 			$routes = require(PHPFOX_DIR_SETTING . 'routes.sett.php');
 			self::$routes = [];
@@ -41,10 +42,18 @@ class Route {
 			}
 		}
 		else {
+			if (self::$group) {
+				$route = self::$group . $route;
+			}
+
 			$route = trim($route, '/');
 			self::$routes[$route] = [
-				'path' => \Core\Route\Controller::$active
+				'path' => \Core\Route\Controller::$active,
+				'id' => \Core\Route\Controller::$activeId
 			];
+			if ($callback instanceof \Closure) {
+				self::$routes[$route]['run'] = $callback;
+			}
 			self::$_active = $route;
 		}
 

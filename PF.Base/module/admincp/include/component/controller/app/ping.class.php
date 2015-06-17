@@ -21,7 +21,7 @@ class Admincp_Component_Controller_App_Ping extends Phpfox_Component {
 		echo str_replace(PHP_EOL, '<br />', $output);         //add newlines
 		flush();
 		*/
-		
+
 		header('Content-type: application/javascript');
 		echo "var js = " . json_encode(['output' => $out]) . ";";
 		echo "$('#debug_info').html(js.output);";

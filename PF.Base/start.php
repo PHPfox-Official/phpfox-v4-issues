@@ -41,6 +41,10 @@ function j($element) {
 	return new \Core\jQuery($element);
 }
 
+function param($key) {
+	return Phpfox::getParam($key);
+}
+
 function setting($key, $default = null) {
 	$Setting = new \Core\Setting();
 	return $Setting->get($key, $default);
@@ -64,6 +68,8 @@ function error() {
 
 if (!defined('PHPFOX_NO_RUN')) {
 	try {
+		(new Core\App());
+
 		Phpfox::run();
 	} catch (\Exception $e) {
 

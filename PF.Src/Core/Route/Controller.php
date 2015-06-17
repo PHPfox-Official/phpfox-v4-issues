@@ -4,6 +4,7 @@ namespace Core\Route;
 
 class Controller {
 	public static $active;
+	public static $activeId;
 	public static $name;
 	public static $isApi = false;
 
@@ -11,20 +12,6 @@ class Controller {
 
 	public function __construct() {
 		$this->_request = new \Core\Request();
-
-		$Apps = new \Core\App();
-		foreach ($Apps->all() as $App) {
-			self::$active = $App->path;
-
-			$vendor = $App->path . 'vendor/autoload.php';
-			if (file_exists($vendor)) {
-				require($vendor);
-			}
-
-			if (file_exists($App->path . 'start.php')) {
-				require($App->path . 'start.php');
-			}
-		}
 	}
 
 	public function get() {
@@ -87,18 +74,11 @@ class Controller {
 			}
 		}
 
-		if ($this->_request->segment(1) == 'admincp') {
-			// \Phpfox::getComponent('admincp.index', ['bNoTemplate' => true, 'isRoute' => true], 'controller');
-		}
-
-		// d($routes); exit;
-
 		if (isset($routes[$uri])) {
 			$routes[$uri] = (array) $routes[$uri];
 			$r = $routes[$uri];
 
 			$r['route'] = $uri;
-			// d($r); exit;
 			self::$name = $r;
 
 			try {
@@ -126,13 +106,30 @@ class Controller {
 					$content = call_user_func_array($routes[$uri]['run'], $pass);
 				}
 				else if (isset($r['url'])) {
+					$App = (new \Core\App())->get($r['id']);
+
 					$Template = \Phpfox_Template::instance();
 					$response = (new \Core\HTTP($r['url']))
-						->auth('foo', 'bar')
+						->auth($App->auth->id, $App->auth->key)
+						->header('API_ENDPOINT', \Phpfox_Url::instance()->makeUrl('api'))
 						->call($_SERVER['REQUEST_METHOD']);
-					$xml = simplexml_load_string($response);
 
+					$xml = @simplexml_load_string($response);
+					if ($xml === false) {
+						$xml = new \stdClass();
+						$xml->body = $response;
+					}
+					else {
+						if (!isset($xml->body)) {
+							$xml = new \stdClass();
+							$xml->body = $response;
+						}
+					}
+
+					$Controller = new \Core\Controller();
 					if (isset($xml->head)) {
+						$Controller->title('' . $xml->head->title);
+
 						foreach ((array) $xml->head as $type => $data) {
 							switch ($type) {
 								case 'style':
@@ -145,15 +142,13 @@ class Controller {
 					$innerHTML = function($xml) {
 						$innerXML = '';
 						foreach (dom_import_simplexml($xml)->childNodes as $child) {
-							$innerXML .= $child->ownerDocument->saveXML( $child );
+							$innerXML .= $child->ownerDocument->saveXML($child);
 						}
 						return $innerXML;
 					};
 
-					$Controller = new \Core\Controller();
-					$Controller->title('' . $xml->head->title);
 					$content = $Controller->render('@Base/blank.html', [
-						'content' => $innerHTML($xml->body)
+						'content' => (is_string($xml->body) ? $xml->body : $innerHTML($xml->body))
 					]);
 				}
 				else if (isset($r['call'])) {
@@ -203,6 +198,12 @@ class Controller {
 			}
 
 			if (empty($content) || $this->_request->isPost()) {
+				if (is_object($content) && $content instanceof \Core\jQuery) {
+					header('Content-type: application/json');
+					echo json_encode([
+						'run' => (string) $content
+					]);
+				}
 
 				exit;
 			}

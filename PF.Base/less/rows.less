@@ -320,3 +320,31 @@ a.item_bar_action:before {
 .js_attachment_list {
 	padding-bottom:50px;
 }
+
+
+
+.row {
+	background:@blockBg;
+	border-bottom:1px darken(@blockBg, 8%) solid;
+	padding:@blockContentPadding;
+
+	p {
+		margin-bottom:10px;
+		font-weight:300;
+	}
+
+	.loopingClass(row, 10);
+}
+
+.row:before,
+.row:after {
+	content: " ";
+	display: table;
+}
+
+.row:after {
+	clear: both;
+}
+
+.loopingClassBrand(margin, 10);
+.loopingClassBrand(margin-bottom, 10);

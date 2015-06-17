@@ -16,12 +16,6 @@ defined('PHPFOX') or exit('NO DICE!');
 class Phpfox_Cdn {
 	private static $_object;
 
-	public function __construct($aParams = array()) {
-		if (!self::$_object) {
-			self::$_object = \Core\Event::trigger('lib_phpfox_cdn');
-		}
-	}
-
 	/**
 	 * @return Phpfox_Cdn
 	 */
@@ -34,6 +28,10 @@ class Phpfox_Cdn {
 	}
 
 	public function __call($method, $args) {
+		if (!self::$_object) {
+			self::$_object = \Core\Event::trigger('lib_phpfox_cdn');
+		}
+
 		if (is_object(self::$_object)) {
 			return call_user_func_array([self::$_object, $method], $args);
 		}

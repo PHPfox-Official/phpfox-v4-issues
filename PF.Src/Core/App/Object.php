@@ -9,7 +9,7 @@ class Object extends \Core\Objectify {
 	public $path;
 	public $is_module = false;
 	public $icon;
-	public $version;
+	public $version = '1';
 	public $currentVersion;
 	public $auth = [
 		'id' => '',
@@ -42,12 +42,20 @@ class Object extends \Core\Objectify {
 		}
 		$this->vendor = explode('/', $this->id)[0];
 
-		if (!$this->is_module && \Core\Route\Controller::$isApi) {
-			$key = PHPFOX_DIR_SETTINGS . md5($this->id . \Phpfox::getParam('core.salt')) . '.php';
-			if (!file_exists($key)) {
-				throw new \Exception('App is missing auth file. Something went wrong with the install of this product.');
+		if (!$this->is_module) {
+			$file = PHPFOX_DIR_SETTINGS . md5($this->id . \Phpfox::getParam('core.salt')) . '.php';
+			if (!file_exists($file)) {
+				$id = md5(uniqid());
+				$key = md5(uniqid() . rand(0, 10000));
+				// throw new \Exception('App "' . $this->id . '" is missing auth file. Something went wrong with the install of this product.');
+				$response = [
+					'id' => $id,
+					'key' => $key
+				];
+				$paste = "<?php\n// @app ' . $this->id . ' \nreturn " . var_export((array) $response, true) . ';';
+				file_put_contents($file, $paste);
 			}
-			$this->auth = (object) require($key);
+			$this->auth = (object) require($file);
 		}
 	}
 
@@ -68,7 +76,7 @@ class Object extends \Core\Objectify {
 
 		$exclude = array('.git');
 		$filter = function ($file, $key, $iterator) use ($exclude) {
-			if ($file->getFileName() == 'app.lock') {
+			if ($file->getFileName() == 'app.lock' || $file->getFileName() == 'composer.phar') {
 				return false;
 			}
 
@@ -98,6 +106,7 @@ class Object extends \Core\Objectify {
 		$zipArchive->close();
 
 		$name = \Phpfox_Parse_Input::instance()->cleanFileName($this->id);
+		$name .= '-v' . $this->version;
 		\Phpfox_File::instance()->forceDownload($zipFile, 'phpfox-app-' . $name . '.zip');
 
 		return $zipFile;

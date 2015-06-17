@@ -264,3 +264,41 @@
 .userImage(50);
 .userImage(200);
 .userImage(32);
+
+.loopingClass(@className, @index) when (@index > 0) {
+
+	@newIndex: (@index * 10);
+	@total: percentage((@index) * 0.1);
+	@padding: ((@blockContentPadding / 2) * 2);
+
+	.@{className}-@{newIndex} {
+		width: ~"calc(@{total} - @{padding})";
+		float:left;
+		vertical-align:top;
+		word-wrap: break-word;
+		padding:(@blockContentPadding / 2);
+	}
+
+	.loopingClass(@className, (@index - 1));
+}
+
+.loopingClass (@className, 0) {}
+
+.loopingClassBrand(@className, @index) when (@index > 0) {
+
+	@newIndex: (@index * 10);
+
+	.@{className}-@{newIndex} {
+		& when (@className = margin) {
+			margin:@newIndex + 0px;
+		}
+		& when (@className = margin-bottom) {
+			margin-bottom:@newIndex + 0px;
+
+		}
+	}
+
+	.loopingClassBrand(@className, (@index - 1));
+}
+
+.loopingClassBrand (@className, 0) {}

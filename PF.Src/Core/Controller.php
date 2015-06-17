@@ -28,6 +28,12 @@ class Controller {
 		return $this;
 	}
 
+	public function menu(array $menu) {
+		$this->_template->setSubMenu($menu);
+
+		return $this;
+	}
+
 	public function section($name, $url) {
 		$this->_template->setBreadcrumb($name, $this->url->make($url));
 

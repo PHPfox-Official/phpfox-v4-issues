@@ -256,6 +256,7 @@ class Phpfox_Template
 	private $_theme;
 	private $_meta;
 	private $_keepBody = false;
+	private $_subMenu = [];
 
 	public $delayedHeaders = [];
 	
@@ -1049,6 +1050,8 @@ class Phpfox_Template
 				$this->setHeader('cache', $header);
 			}
 		}
+
+		// $this->setHeader('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">');
 
 		Core\Event::trigger('lib_phpfox_template_getheader', $this);
 
@@ -1922,6 +1925,8 @@ class Phpfox_Template
 			$this->_sFooter .= '<a href="' . Phpfox_Url::instance()->makeUrl('admincp') . '" class="js_hover_title no_ajax"><i class="fa fa-diamond"></i><span class="js_hover_info">AdminCP</span></a>';
 			$this->_sFooter .= '</div>';
 		}
+
+		// $this->_sFooter .= '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>';
 
 		foreach ((new Core\App())->all() as $App) {
 			if ($App->js && is_array($App->js)) {
@@ -2957,6 +2962,25 @@ class Phpfox_Template
 				'aFilterMenus' => $aFilterMenuCache,
 			)
 		);	
+	}
+
+	public function setSubMenu($menu) {
+		$this->_subMenu = $menu;
+	}
+
+	public function getSubMenu() {
+		if (!$this->_subMenu) {
+			return '';
+		}
+
+		$html = '<ul>';
+		foreach ($this->_subMenu as $name => $url) {
+			$active = '';
+			$html .= '<li' . $active . '><a href="' . Phpfox_Url::instance()->makeUrl($url) . '">' . $name . '</a></li>';
+		}
+		$html .= '</ul>';
+
+		return $html;
 	}
 	
 	/**

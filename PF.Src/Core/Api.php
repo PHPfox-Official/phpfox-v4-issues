@@ -33,6 +33,7 @@ abstract class Api {
 			foreach ((new App())->all() as $App) {
 				if ($App->auth->id == $_SERVER['PHP_AUTH_USER']) {
 					$this->active = $App;
+					break;
 				}
 			}
 
@@ -41,7 +42,7 @@ abstract class Api {
 			}
 
 			if ($_SERVER['PHP_AUTH_PW'] != $App->auth->key) {
-				throw new \Exception('Authentication failed. Key is not valid.');
+				throw new \Exception('Authentication failed. Key is not valid: ' . $App->auth->key);
 			}
 		}
 	}

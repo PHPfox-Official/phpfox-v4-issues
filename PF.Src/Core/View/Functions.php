@@ -70,6 +70,8 @@ class Functions {
 					$this->_loadBlocks(1);
 					break;
 				case 'right':
+
+					echo $Template->getSubMenu();
 					$this->_loadBlocks(3);
 					break;
 				case 'logo':

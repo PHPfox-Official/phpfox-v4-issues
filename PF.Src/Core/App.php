@@ -33,6 +33,18 @@ class App {
 
 			$this->_apps[$data->id] = $data;
 
+			\Core\Route\Controller::$active = $data->path;
+			\Core\Route\Controller::$activeId = $data->id;
+
+			$vendor = $data->path . 'vendor/autoload.php';
+			if (file_exists($vendor)) {
+				require_once($vendor);
+			}
+
+			if (file_exists($data->path . 'start.php')) {
+				require_once($data->path . 'start.php');
+			}
+
 			/*
 			foreach (scandir($base . $vendors) as $apps) {
 				$path = $base . $vendors . '/' . $apps . '/';

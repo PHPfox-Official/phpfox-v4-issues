@@ -4,7 +4,7 @@ namespace Core;
 
 class Model {
 	/**
-	 * @var \Phpfox_Database_Driver_Mysql
+	 * @var \Core\Db
 	 */
 	protected $db;
 
@@ -14,13 +14,19 @@ class Model {
 	protected $cache;
 
 	/**
+	 * @var \Core\Url
+	 */
+	protected $url;
+
+	/**
 	 * @var \Api\User\Object
 	 */
 	protected $active;
 
 	public function __construct() {
-		$this->db = \Phpfox_Database::instance();
+		$this->db = new Db();
 		$this->cache = new Cache();
 		$this->active = (new \Api\User())->get(\Phpfox::getUserId());
+		$this->url = new Url();
 	}
 }

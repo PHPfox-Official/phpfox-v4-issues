@@ -5,6 +5,7 @@
 		"filp/whoops": "1.*",
 		"ircmaxell/password-compat": "~1.0",
 		"phpmailer/phpmailer": "dev-master",
-		"dereuromark/media-embed": "dev-master"
+		"dereuromark/media-embed": "dev-master",
+		"wixel/gump": "dev-master"
 	}
 }

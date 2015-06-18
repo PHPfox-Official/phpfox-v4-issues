@@ -1107,7 +1107,10 @@ class Phpfox
 
 		$aStaticFolders = ['file', 'static', 'module', 'apps', 'themes'];
 		if (in_array($oReq->segment(1), $aStaticFolders) ||
-			($oReq->segment(1) == 'theme' && $oReq->segment(2) != 'demo')
+			(
+				$oReq->segment(1) == 'theme' && $oReq->segment(2) != 'demo'
+				&& $oReq->segment(1) == 'theme' && $oReq->segment(2) != 'sample'
+			)
 		) {
 			$sUri = Phpfox_Url::instance()->getUri();
 			if ($sUri == '/static/ajax.php') {

@@ -3855,6 +3855,13 @@ div#right div.menu ul li.active {
   text-indent: 5px;
   text-decoration: none;
 }
+.block_sample {
+  background: rgba(255, 255, 0, 0.1);
+  border: 1px yellow dashed;
+  color: #222;
+  padding: 10px;
+  cursor: pointer;
+}
 .block div.row1,
 .block div.row2 {
   padding-top: 0px;

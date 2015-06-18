@@ -112,6 +112,11 @@ class Functions {
 	}
 
 	private function _loadBlocks($location) {
+		if (\Phpfox_Template::instance()->bIsSample) {
+			echo '<div class="block_sample" onclick="window.parent.$(\'#location\').val(' . $location . '); window.parent.js_box_remove(window.parent.$(\'.js_box\').find(\'.js_box_content\')[0]);">[Block: ' . $location . ']</div>';
+			return;
+		}
+
 		echo '<div class="_block" data-location="' . $location . '">';
 		if ($location == 3) {
 			echo \Phpfox_Template::instance()->getSubMenu();

@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 class Theme_Component_Controller_Sample extends Phpfox_Component 
 {
 	public function process()
-	{	
+	{
 		Phpfox::getUserParam('theme.can_view_theme_sample', true);
 		Phpfox::isUser(true);
 		$this->template()->bIsSample = true;

@@ -1748,6 +1748,7 @@ $Core.show_page = function($aParams)
 		}
 	}
 
+	$('#public_message').remove();
 	$('._block_menu_sub').html($aParams['menuSub']);
 	$('._block_top').html($aParams['search']);
 	$('._block_breadcrumb').html($aParams['breadcrumb']);

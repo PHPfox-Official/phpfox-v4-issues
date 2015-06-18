@@ -96,6 +96,7 @@ class View {
 		$params['js'] = $Template->getFooter();
 		$params['nav'] = new View\Functions('nav');
 		$params['footer'] = new View\Functions('footer');
+		$params['errors'] = new View\Functions('errors');
 		$params['top'] = new View\Functions('top');
 		$params['left'] = new View\Functions('left');
 		$params['right'] = new View\Functions('right');

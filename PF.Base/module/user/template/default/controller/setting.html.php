@@ -33,12 +33,13 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="table_right">
 				<input type="text" name="val[last_name]" id="last_name" value="{value type='input' id='last_name'}" size="30" {if $iTotalFullNameChangesAllowed != 0 && $aForms.total_full_name_change >= $iTotalFullNameChangesAllowed}readonly="readonly"{/if} />
 			</div>			
-		</div>		
+		</div>
+
+		{if $iTotalFullNameChangesAllowed > 0}
 		<div class="extra_info">
-			{if $iTotalFullNameChangesAllowed > 0}
-				{phrase var='user.total_full_name_change_out_of_allowed' total_full_name_change=$aForms.total_full_name_change allowed=$iTotalFullNameChangesAllowed}
-			{/if}
-		</div>		
+			{phrase var='user.total_full_name_change_out_of_allowed' total_full_name_change=$aForms.total_full_name_change allowed=$iTotalFullNameChangesAllowed}
+		</div>
+		{/if}
 		<div class="separate"></div>
 		{else}		
 		<div class="table">
@@ -51,11 +52,12 @@ defined('PHPFOX') or exit('NO DICE!');
 				{else}
 				<input type="text" name="val[full_name]" id="full_name" value="{value type='input' id='full_name'}" size="30" />
 				{/if}
+
+				{if $iTotalFullNameChangesAllowed > 0}
 				<div class="extra_info">
-					{if $iTotalFullNameChangesAllowed > 0}
-						{phrase var='user.total_full_name_change_out_of_allowed' total_full_name_change=$aForms.total_full_name_change allowed=$iTotalFullNameChangesAllowed}
-					{/if}
+					{phrase var='user.total_full_name_change_out_of_allowed' total_full_name_change=$aForms.total_full_name_change allowed=$iTotalFullNameChangesAllowed}
 				</div>
+				{/if}
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -134,7 +136,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				</select>
 				{if PHPFOX_USE_DATE_TIME != true && Phpfox::getParam('core.identify_dst')}
 				<div class="extra_info">
-					<label><input type="checkbox" name="val[dst_check]" value="1" class="v_middle" {if $aForms.dst_check}checked="checked" {/if}/> {phrase var='user.enable_dst_daylight_savings_time'}</labe>
+					<label><input type="checkbox" name="val[dst_check]" value="1" class="v_middle" {if $aForms.dst_check}checked="checked" {/if}/> {phrase var='user.enable_dst_daylight_savings_time'}</label>
 				</div>
 				{/if}
 			</div>

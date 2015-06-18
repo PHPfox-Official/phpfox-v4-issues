@@ -31,6 +31,8 @@ class Admincp_Component_Controller_Maintain_Cache extends Phpfox_Component
 		
 		if ($this->request()->get('all'))
 		{
+			Phpfox_Database::instance()->update(Phpfox::getT('setting'), array('value_actual' => ((int) Phpfox::getParam('core.css_edit_id') + 1)), 'var_name = \'css_edit_id\'');
+
 			Phpfox::getLib('cache')->remove();
 			Phpfox::getLib('template.cache')->remove();
 			Phpfox::getLib('cache')->removeStatic();

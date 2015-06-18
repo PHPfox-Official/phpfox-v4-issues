@@ -425,12 +425,16 @@ div.comment_mini_end {
 
 ._load_is_feed, ._load_is_feed:hover {
 	display:block;
-	background:@formBg;
-	color:@formColor;
-	padding:10px 0px 10px 10px;
-	border:@formBorder;
+	background:darken(@navBg, 8%);
+	color:@navColor;
+	padding:15px 0px 15px 10px;
 	font-size:@fontSizeBase - 2;
 	cursor:text;
+	transition:@transition;
+}
+
+._load_is_feed:hover {
+	background:darken(@navBg, 12%);
 }
 
 #panel {

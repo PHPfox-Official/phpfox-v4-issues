@@ -337,10 +337,15 @@ $Behavior.activityFeedProcess = function() {
 		$('.activity_feed_form_button_status_info textarea').keydown(function(){$Core.resizeTextarea($(this));});
 		
 		$('#global_attachment_status textarea').focus(function()
-		{			
+		{
+			var t = $(this);
+			if (t.hasClass('_is_set')) {
+				return;
+			}
 			// if ($(this).val() == $('#global_attachment_status_value').html())
 			{
-				$(this).val('');
+				t.addClass('_is_set');
+				// $(this).val('');
 				$(this).css({height: '50px'});
 				$('.activity_feed_form_button').show();
 				$(this).addClass('focus');
@@ -365,7 +370,7 @@ $Behavior.activityFeedProcess = function() {
 			
 			if (($('#global_attachment_status textarea').val() == $('#global_attachment_status_value').html() && empty($sDefaultValue)) || !$bIsDefault)
 			{
-				$(this).val('');
+				// $(this).val('');
 				$(this).css({height: '50px'});
 				
 				$(this).addClass('focus');
@@ -379,14 +384,14 @@ $Behavior.activityFeedProcess = function() {
 				var oStatusUpdateTextareaFilled = $('#global_attachment_status textarea');
 				
 				if ($sStatusUpdateValue == oStatusUpdateTextareaFilled.val()){
-					oStatusUpdateTextareaFilled.val('');
+					// oStatusUpdateTextareaFilled.val('');
 				}
 			}
 			else{
 				var oCustomTextareaFilled = $('.activity_feed_form_button_status_info textarea');
 			
 				if ($sCustomPhrase == oCustomTextareaFilled.val()){
-					oCustomTextareaFilled.val('');				
+					// oCustomTextareaFilled.val('');
 				}				
 			}			
 			
@@ -702,7 +707,7 @@ $Core.commentFeedTextareaClick = function($oObj)
 		
 	if ($($oObj).val() == $('.js_comment_feed_value').html())
 	{
-		$($oObj).val('');
+		// $($oObj).val('');
 	}
 	
 	$($oObj).addClass('js_comment_feed_textarea_focus').addClass('is_focus');

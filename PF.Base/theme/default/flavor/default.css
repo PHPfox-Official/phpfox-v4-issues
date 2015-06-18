@@ -6463,12 +6463,15 @@ div.comment_mini_end {
 ._load_is_feed,
 ._load_is_feed:hover {
   display: block;
-  background: #ffffff;
-  color: #999999;
-  padding: 10px 0px 10px 10px;
-  border: 1px transparent solid;
+  background: #ebebeb;
+  color: #9a9a9a;
+  padding: 15px 0px 15px 10px;
   font-size: 12px;
   cursor: text;
+  transition: all 0.5s ease;
+}
+._load_is_feed:hover {
+  background: #e0e0e0;
 }
 #panel .activity_feed_form_share {
   background: #595959;

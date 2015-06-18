@@ -159,8 +159,10 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/literal}
 			</section>
 			<section class="thread_replies">
+				{*
 				<h1>Latest Replies</h1>
 				<a href="{url link='forum.thread.replies' id=$aThread.thread_id}" class="thread_view_all popup" data-custom-class="forum_popup_replies">View All Replies<span>{$iTotalPosts}</span></a>
+				*}
 		{/if}
 				{foreach from=$aThread.posts name=posts item=aPost}
 					{plugin call='forum.template_controller_post_1'}

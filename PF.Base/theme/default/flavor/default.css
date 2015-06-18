@@ -2389,9 +2389,9 @@ textarea,
 input:focus,
 textarea:focus,
 select {
-  background: #e5e5e5;
-  color: #808080;
-  border: 1px #dfdfdf solid;
+  background: #ffffff;
+  color: #999999;
+  border: 1px transparent solid;
   padding: 10px 0px;
   text-indent: 10px;
   outline: 0px;
@@ -2406,11 +2406,13 @@ select {
   margin-bottom: 10px;
 }
 .table {
-  background: #ffffff;
-  padding: 10px;
-  margin-bottom: 20px;
+  /*background:@blockBg;*/
+  background: transparent;
+  padding: 0px;
+  margin-bottom: 0px;
 }
 .table .table_left {
+  padding-top: 20px;
   font-size: 15px;
   color: #999999;
   font-weight: 300;
@@ -2418,33 +2420,47 @@ select {
 }
 .table .table_right {
   position: relative;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px transparent solid;
 }
 .table .table_right input[type="email"],
 .table .table_right input[type="text"],
 .table .table_right input[type="password"],
 .table .table_right textarea,
 .table .table_right textarea:focus {
-  background: #e5e5e5;
-  color: #808080;
-  border: 1px #dfdfdf solid;
-  padding: 10px 0px;
+  background: #ffffff;
+  color: #999999;
+  border: 0px;
+  padding: 0px;
   width: 100%;
   outline: none;
-  text-indent: 10px;
+  text-indent: 0px;
 }
 .table .table_right select {
   width: 100%;
+  border: 0px;
 }
 .table .table_right .extra_info {
   font-size: 12px;
-  color: #a6a6a6;
+  color: #a8a8a8;
+  border-top: 1px #f0f0f0 solid;
+  margin-top: 15px;
+  padding-top: 10px;
+}
+.table .table_right .extra_info a,
+.table .table_right .extra_info a:hover {
+  color: #a8a8a8;
 }
 .table .table_right .js_datepicker_holder {
   display: block;
   margin-bottom: 10px;
+  padding: 5px;
+  background: #f5f5f5;
 }
 .table .table_right .js_datepicker_holder input[type="text"] {
   text-indent: 30px;
+  background: transparent;
 }
 .table .table_right .js_datepicker_core_start select {
   width: auto;
@@ -2467,8 +2483,8 @@ select {
   float: none;
   text-indent: 0px;
   position: absolute;
-  left: 8px;
-  top: 9px;
+  left: 10px;
+  top: 5px;
 }
 .js_datepicker_image:before {
   display: inline-block;
@@ -2489,6 +2505,7 @@ ul.table_clear_button li {
 }
 div.table_clear {
   padding: 0px;
+  margin-top: 20px;
 }
 .table_clear input.button {
   padding-left: 0px;
@@ -2515,23 +2532,29 @@ input.button,
 a.button_off_link,
 a.button,
 a.button:hover {
-  background: transparent;
-  color: #298ada;
+  /*
+	background:transparent;
+	color:@brandPrimary;
+	border:1px @brandPrimary solid;
+	*/
   padding: 12px 20px;
   font-size: 15px;
   font-weight: 300;
   letter-spacing: 1px;
   text-transform: uppercase;
-  border: 1px #298ada solid;
   box-shadow: none;
   display: block;
   text-align: center;
   transition: all 0.5s ease;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  border: 1px transparent solid;
 }
 input.button:hover,
 a.button:hover {
-  background: #298ada;
-  color: #ffffff;
+  background: transparent;
+  color: #298ada;
+  border-color: #298ada;
   transition: all 0.5s ease;
 }
 input.button_off {
@@ -2646,9 +2669,12 @@ a.page_section_menu_link:hover {
 }
 .form_extra {
   position: absolute;
-  right: -320px;
+  right: -310px;
   top: 0px;
   width: 300px;
+}
+.form_extra > div > .table:first-of-type .table_left {
+  padding-top: 0px;
 }
 .js_tmp_upload_bar {
   border: 0px;
@@ -3019,7 +3045,7 @@ button {
   text-indent: 0px;
   display: block;
   text-align: center;
-  border: 3px #298ada solid;
+  border: 1px #298ada solid;
   height: 30px;
   line-height: 30px;
   padding: 0px 10px;
@@ -3438,7 +3464,7 @@ div#right div.menu ul li.active {
   text-indent: 0px;
   display: block;
   text-align: center;
-  border: 3px #f5f5f5 solid;
+  border: 1px #f5f5f5 solid;
   height: 30px;
   line-height: 30px;
   padding: 0px 10px;
@@ -4575,10 +4601,10 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
   position: relative;
 }
 .edit_menu_container {
-  background: #e5e5e5;
-  padding: 5px 5px 40px 5px;
+  background: #ffffff;
+  padding: 0px 0px 40px 0px;
   position: relative;
-  border: 1px #dfdfdf solid;
+  border: 0px;
 }
 .edit_menu_container textarea,
 .edit_menu_container textarea:focus {
@@ -4590,14 +4616,14 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
   border-color: transparent;
 }
 .global_attachment {
-  background: #e0e0e0;
+  background: #fafafa;
   border: 0px;
   height: 40px;
   line-height: 40px;
   position: absolute;
-  left: 0px;
+  left: -10px;
   bottom: 0px;
-  right: 0px;
+  right: -10px;
 }
 .global_attachment ul.global_attachment_list {
   margin-left: 5px;
@@ -4617,7 +4643,7 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
 }
 .global_attachment ul.global_attachment_list li a i:before,
 .global_attachment ul.global_attachment_list li a:hover i:before {
-  color: #767676;
+  color: #8f8f8f;
 }
 .global_attachment ul.global_attachment_list li a:hover i:before {
   color: #298ada;
@@ -5006,7 +5032,7 @@ a.not_active:hover {
   text-indent: 0px;
   display: block;
   text-align: center;
-  border: 3px #298ada solid;
+  border: 1px #298ada solid;
   height: 30px;
   line-height: 30px;
   padding: 0px 10px;
@@ -6236,8 +6262,8 @@ div.comment_mini_end {
   margin-top: 20px;
 }
 .feed_form_textarea {
-  background: #e5e5e5;
-  color: #808080;
+  background: #ffffff;
+  color: #999999;
   padding: 10px;
 }
 .feed_form_textarea textarea {
@@ -6259,7 +6285,7 @@ div.comment_mini_end {
 .feed_form_actions a:hover {
   display: block;
   text-align: center;
-  border: 3px #298ada solid;
+  border: 1px #298ada solid;
   height: 30px;
   line-height: 30px;
   padding: 0px 10px;
@@ -6430,10 +6456,10 @@ div.comment_mini_end {
 ._load_is_feed,
 ._load_is_feed:hover {
   display: block;
-  background: #e5e5e5;
-  color: #808080;
+  background: #ffffff;
+  color: #999999;
   padding: 10px 0px 10px 10px;
-  border: 1px #dfdfdf solid;
+  border: 1px transparent solid;
   font-size: 12px;
   cursor: text;
 }
@@ -6551,7 +6577,7 @@ div.sub_menu_bar_main a,
 div.sub_menu_bar_main a:hover {
   display: block;
   text-align: center;
-  border: 3px #298ada solid;
+  border: 1px #298ada solid;
   height: 30px;
   line-height: 30px;
   padding: 0px 10px;
@@ -6871,10 +6897,11 @@ div.forum_content {
   display: block;
   height: 30px;
   position: relative;
+  visibility: hidden;
 }
 .forum_quote a,
 .forum_quote a:hover {
-  display: none;
+  display: block;
   right: 10px;
   top: 5px;
   position: absolute;
@@ -6882,10 +6909,25 @@ div.forum_content {
   height: 20px;
   text-indent: -1000px;
   overflow: hidden;
-  background: red;
+  color: #999999;
 }
-.forum_outer:hover .forum_quote a {
-  display: block;
+.forum_quote a:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  text-indent: 0px !important;
+  content: '\f10d';
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 20px;
+}
+.forum_outer:hover .forum_quote {
+  visibility: visible;
 }
 .forum_header_menu {
   background: transparent;
@@ -6905,8 +6947,8 @@ div.forum_content {
   float: none;
   text-indent: 0px;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 35px;
+  right: 20px;
   z-index: 20;
 }
 ._forum_title {
@@ -7041,18 +7083,23 @@ span.forum_tag_sticky {
   display: none;
 }
 .thread_view_holder {
-  display: table;
-  width: 100%;
-}
-.thread_view_holder > section {
-  display: table-cell;
-  width: 50%;
-  padding-right: 10px;
-  vertical-align: top;
-}
-.thread_view_holder > section:not(:first-of-type) {
-  padding-left: 10px;
-  padding-right: 0px;
+  /*
+	display:table;
+	width:100%;
+	*/
+  /*
+	> section {
+		display:table-cell;
+		width:50%;
+		padding-right:10px;
+		vertical-align:top;
+	}
+
+	> section:not(:first-of-type) {
+		padding-left:10px;
+		padding-right:0px;
+	}
+	*/
 }
 .thread_view_holder .thread_replies > h1 {
   background: #ffffff;
@@ -7064,32 +7111,32 @@ span.forum_tag_sticky {
   text-transform: uppercase;
 }
 /*.threeColumn(page_forum_forum);*/
-#page_forum_thread div.sub_menu_bar_main {
+#___page_forum_thread div.sub_menu_bar_main {
   right: 10px;
   top: -62px;
 }
-#page_forum_thread #content {
+#___page_forum_thread #content {
   width: auto;
 }
-#page_forum_thread #container {
+#___page_forum_thread #container {
   width: 95%;
 }
-#page_forum_thread #container > ._block_h1 {
+#___page_forum_thread #container > ._block_h1 {
   margin-bottom: 20px;
 }
-#page_forum_thread #container > ._block_h1 > h1 {
+#___page_forum_thread #container > ._block_h1 > h1 {
   width: auto;
 }
-#page_forum_thread .sub_menu_bar a,
-#page_forum_thread .sub_menu_bar a:hover {
+#___page_forum_thread .sub_menu_bar a,
+#___page_forum_thread .sub_menu_bar a:hover {
   background: transparent;
 }
-#page_forum_thread .forum_header_menu {
+#___page_forum_thread .forum_header_menu {
   top: 36px;
   right: 50%;
   margin-right: 20px;
 }
-#page_forum_thread #panels {
+#___page_forum_thread #panels {
   display: none;
 }
 .thread_view_all,
@@ -7211,14 +7258,17 @@ span.forum_tag_sticky {
 #page_forum_thread.single_mode .thread_replies {
   display: none;
 }
-#page_forum_thread ._block_h1 {
+#page_forum_thread #content ._block_h1 {
   position: fixed;
   top: 40px;
-  left: 200px;
-  right: 0px;
-  z-index: 100;
+  left: 210px;
+  right: auto;
+  z-index: 2001;
+  display: inline;
+  background: transparent;
+  border: 0px;
 }
-#page_forum_thread ._block_h1 > h1 {
+#page_forum_thread #content ._block_h1 > h1 {
   position: static;
   /*
 		left:@navWidth;
@@ -7277,8 +7327,8 @@ span.forum_tag_sticky {
   transition: all 0.5s ease;
 }
 .js_custom_search_friend_holder {
-  border: 1px #dfdfdf solid;
-  background: #e5e5e5;
+  border: 1px transparent solid;
+  background: #ffffff;
   padding: 0px;
 }
 .js_custom_search_friend_holder > ul {
@@ -7325,13 +7375,13 @@ span.forum_tag_sticky {
   font-size: 12px;
 }
 #js_friend_loader input {
-  background: #e5e5e5;
-  color: #808080;
-  border: 1px #dfdfdf solid;
-  padding: 10px 0px;
+  background: #ffffff;
+  color: #999999;
+  border: 0px;
+  padding: 0px;
   width: 100%;
   outline: none;
-  text-indent: 10px;
+  text-indent: 0px;
 }
 .friend_search_holder,
 .friend_search_holder:hover {
@@ -7776,7 +7826,7 @@ span.forum_tag_sticky {
 .pages_like_join:hover {
   display: block;
   text-align: center;
-  border: 3px #298ada solid;
+  border: 1px #298ada solid;
   height: 30px;
   line-height: 30px;
   padding: 0px 10px;
@@ -8088,7 +8138,7 @@ ul.activity_feed_form_attach li a:hover {
   position: absolute;
   left: 8px;
   top: 10px;
-  color: #808080;
+  color: #999999;
   font-size: 14px;
   cursor: move;
 }
@@ -8096,9 +8146,9 @@ ul.activity_feed_form_attach li a:hover {
   display: table;
   table-layout: fixed;
   width: 100%;
-  background: #f4f4f4;
-  border: 1px #dfdfdf solid;
-  color: #808080;
+  background: #ffffff;
+  border: 1px transparent solid;
+  color: #999999;
 }
 .poll_add_more a,
 .poll_add_more a:hover {
@@ -8136,7 +8186,7 @@ ul.activity_feed_form_attach li a:hover {
 .quiz_add_new_question a:hover {
   display: block;
   text-align: center;
-  border: 3px #cccccc solid;
+  border: 1px #cccccc solid;
   height: 30px;
   line-height: 30px;
   padding: 0px 10px;
@@ -9561,6 +9611,10 @@ a.marketplace_contact_seller:hover {
     width: 35px;
     /*overflow:hidden;*/
   }
+  #page_forum_thread div.sub_menu_bar_main,
+  #page_forum_thread #content ._block_h1 {
+    left: 35px;
+  }
   #main {
     margin-left: 35px;
   }
@@ -9618,6 +9672,10 @@ a.marketplace_contact_seller:hover {
     margin-left: -8px;
     margin-top: -10px;
     font-size: 20px;
+  }
+  #page_forum_thread div.sub_menu_bar_main,
+  #page_forum_thread #content ._block_h1 {
+    left: 0px;
   }
   #logo,
   #logo:hover {

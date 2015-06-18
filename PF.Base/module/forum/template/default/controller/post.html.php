@@ -64,11 +64,8 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 	{/if}
 	<div class="table">
-		<div class="table_left">
-			<label for="text">{required}{phrase var='forum.message'}:</label>
-		</div>
 		<div class="table_right" id="js_forum_new_post">
-			{editor id='text'}
+			{editor id='text' placeholder='Your reply...'}
 			{literal}
 			<script>
 				$Ready(function() {

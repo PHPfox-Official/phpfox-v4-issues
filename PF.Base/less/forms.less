@@ -22,11 +22,13 @@ select {
 }
 
 .table {
-	background:@blockBg;
-	padding:10px;
-	margin-bottom:20px;
+	/*background:@blockBg;*/
+	background:transparent;
+	padding:0px;
+	margin-bottom:0px;
 
 	.table_left {
+		padding-top:20px;
 		font-size:@fontSizeBase + 1;
 		color:@blockColor;
 		font-weight:300;
@@ -36,6 +38,9 @@ select {
 
     .table_right {
 	    position:relative;
+	    padding:10px;
+	    background:@blockBg;
+	    border:@formBorder;
 
 	    input[type="email"], input[type="text"], input[type="password"], textarea, textarea:focus {
 			.full_input();
@@ -43,18 +48,30 @@ select {
 
 	    select {
 		    width:100%;
+		    border:0px;
 	    }
 
 	    .extra_info {
 		    font-size:@fontSizeBase - 2;
-		    color:lighten(@blockColor, 5%);
+		    color:lighten(@blockColor, 6%);
+		    border-top:1px darken(@blockBg, 6%) solid;
+		    margin-top:15px;
+		    padding-top:10px;
+
+		    a, a:hover {
+			    color:lighten(@blockColor, 6%);
+		    }
 	    }
 
 	    .js_datepicker_holder {
 		    display:block;
 		    margin-bottom:10px;
+		    padding:5px;
+		    background:darken(@formBg, 4%);
+
 		    input[type="text"] {
 			    text-indent:30px;
+			    background:transparent;
 		    }
 	    }
 
@@ -70,8 +87,8 @@ select {
 .js_datepicker_image {
 	.reset();
 	position:absolute;
-	left:8px;
-	top:9px;
+	left:10px;
+	top:5px;
 }
 
 .js_datepicker_image:before {
@@ -87,6 +104,7 @@ ul.table_clear_button li {
 
 div.table_clear {
 	padding:0px;
+	margin-top:20px;
 }
 
 .table_clear {
@@ -114,24 +132,32 @@ input.button_link:hover {
 }
 
 input.button, a.button_off_link, a.button, a.button:hover {
+	/*
 	background:transparent;
 	color:@brandPrimary;
+	border:1px @brandPrimary solid;
+	*/
+
 	padding:12px 20px;
 	font-size:@fontSizeBase + 1;
 	font-weight:300;
 	letter-spacing:1px;
 	text-transform:uppercase;
-	border:1px @brandPrimary solid;
 	box-shadow:none;
 	display:block;
 	text-align:center;
 	transition:@transition;
+
+	background:rgba(0, 0, 0, 0.4);
+	color:#fff;
+	border:1px transparent solid;
 }
 
 
 input.button:hover, a.button:hover {
-	background:@brandPrimary;
-	color:@brandPrimaryColor;
+	background:transparent;
+	color:@brandPrimary;
+	border-color:@brandPrimary;
 	transition:@transition;
 }
 
@@ -233,9 +259,15 @@ a.page_section_menu_link:hover {
 
 .form_extra {
 	position:absolute;
-	right:-(@columnWidth + 20);
+	right:-(@columnWidth + 10);
 	top:0px;
 	width:@columnWidth;
+
+	> div > .table:first-of-type {
+		.table_left {
+			padding-top:0px;
+		}
+	}
 }
 
 .js_tmp_upload_bar {

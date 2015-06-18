@@ -160,7 +160,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 			}
 		}
 		
-		if (Phpfox::getParam('core.defer_loading_user_images'))
+		// if (Phpfox::getParam('core.defer_loading_user_images'))
 		{
 			$this->call('$Core.loadInit();');
 		}

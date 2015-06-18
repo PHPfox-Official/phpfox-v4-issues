@@ -2512,7 +2512,9 @@ input.button_link:hover {
   transition: all 0.5s ease;
 }
 input.button,
-a.button_off_link {
+a.button_off_link,
+a.button,
+a.button:hover {
   background: transparent;
   color: #298ada;
   padding: 12px 20px;
@@ -2522,8 +2524,12 @@ a.button_off_link {
   text-transform: uppercase;
   border: 1px #298ada solid;
   box-shadow: none;
+  display: block;
+  text-align: center;
+  transition: all 0.5s ease;
 }
-input.button:hover {
+input.button:hover,
+a.button:hover {
   background: #298ada;
   color: #ffffff;
   transition: all 0.5s ease;
@@ -3290,6 +3296,31 @@ div#right div.menu ul li.active {
 }
 #pf_admin > a.site_is_offline:hover i {
   color: #fff;
+}
+.section_menu {
+  background: #ffffff;
+  margin-bottom: 20px;
+  border-radius: 0px;
+}
+.section_menu ul li {
+  display: block;
+}
+.section_menu ul li a,
+.section_menu ul li a:hover {
+  display: block;
+  color: #b3b3b3;
+  padding: 10px;
+}
+.section_menu ul li a:hover {
+  background: #f5f5f5;
+  color: #858585;
+  transition: all 0.5s ease;
+}
+.section_menu ul li a.active,
+.section_menu ul li a.active:hover {
+  background: #298ada;
+  color: #ffffff;
+  transition: all 0.5s ease;
 }
 .notifications {
   border-bottom: 1px #ebebeb solid;

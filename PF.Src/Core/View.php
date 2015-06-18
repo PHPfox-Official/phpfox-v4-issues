@@ -81,6 +81,7 @@ class View {
 		}
 
 		$params = $this->_render['params'];
+		$params['ActiveUser'] = (\Phpfox::isUser() ? (array) (new \Api\User())->get(\Phpfox::getUserBy()) : []);
 		$params['content'] = $this->_env->render($this->_render['name'], $params);
 		if (PHPFOX_IS_AJAX_PAGE) {
 			$content = (string) new View\Functions('content', $params['content']);
@@ -103,6 +104,8 @@ class View {
 		$params['notification'] = new View\Functions('notification');
 		$params['logo'] = new View\Functions('logo');
 		$params['body'] = 'id="page_' . \Phpfox_Module::instance()->getPageId() . '" class="' . \Phpfox_Module::instance()->getPageClass() . '"';
+
+		// d($params['active']); exit;
 
 		$locale = \Phpfox_Locale::instance()->getLang();
 		$params['html'] = 'xmlns="http://www.w3.org/1999/xhtml" dir="' . $locale['direction'] . '" lang="' . $locale['language_code'] . '"';

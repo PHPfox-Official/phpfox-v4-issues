@@ -501,3 +501,33 @@ div#content div.menu, div#left div.menu, div#right div.menu {
 		}
 	}
 }
+
+.section_menu {
+	background:@blockBg;
+	margin-bottom:@blockMarginBottom;
+	border-radius:@blockRadius;
+
+	ul {
+		li {
+			display:block;
+
+			a, a:hover {
+				display:block;
+				color:lighten(@blockColor, 10%);
+				padding:10px;
+			}
+
+			a:hover {
+				background:darken(@blockBg, 4%);
+				color:darken(@blockColor, 8%);
+				transition:@transition;
+			}
+
+			a.active, a.active:hover {
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+				transition:@transition;
+			}
+		}
+	}
+}

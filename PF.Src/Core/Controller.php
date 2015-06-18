@@ -28,7 +28,11 @@ class Controller {
 		return $this;
 	}
 
-	public function menu(array $menu) {
+	public function menu(array $menu = []) {
+		if (!$menu) {
+			return $this->_template->getSubMenu();
+		}
+
 		$this->_template->setSubMenu($menu);
 
 		return $this;

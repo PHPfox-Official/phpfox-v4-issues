@@ -108,6 +108,14 @@ class Controller {
 				else if (isset($r['url'])) {
 					$App = (new \Core\App())->get($r['id']);
 
+					$innerHTML = function($xml) {
+						$innerXML = '';
+						foreach (dom_import_simplexml($xml)->childNodes as $child) {
+							$innerXML .= $child->ownerDocument->saveXML($child);
+						}
+						return $innerXML;
+					};
+
 					$Template = \Phpfox_Template::instance();
 					$response = (new \Core\HTTP($r['url']))
 						->auth($App->auth->id, $App->auth->key)
@@ -126,6 +134,20 @@ class Controller {
 						}
 					}
 
+					if (isset($xml->api)) {
+						if (isset($xml->api->section)) {
+							$Template->setBreadCrumb($xml->api->section->name, \Phpfox_Url::instance()->makeUrl($xml->api->section->url));
+						}
+
+						if (isset($xml->api->h1)) {
+							$Template->setBreadCrumb($xml->api->h1->name, \Phpfox_Url::instance()->makeUrl($xml->api->h1->url), true);
+						}
+
+						if (isset($xml->api->menu)) {
+							$Template->setSubMenu($innerHTML($xml->api->menu));
+						}
+					}
+
 					$Controller = new \Core\Controller();
 					if (isset($xml->head)) {
 						$Controller->title('' . $xml->head->title);
@@ -138,14 +160,6 @@ class Controller {
 							}
 						}
 					}
-
-					$innerHTML = function($xml) {
-						$innerXML = '';
-						foreach (dom_import_simplexml($xml)->childNodes as $child) {
-							$innerXML .= $child->ownerDocument->saveXML($child);
-						}
-						return $innerXML;
-					};
 
 					$content = $Controller->render('@Base/blank.html', [
 						'content' => (is_string($xml->body) ? $xml->body : $innerHTML($xml->body))

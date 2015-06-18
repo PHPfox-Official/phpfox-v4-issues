@@ -2973,12 +2973,25 @@ class Phpfox_Template
 			return '';
 		}
 
-		$html = '<ul>';
+		$current = trim(Phpfox_Request::instance()->uri(), '/');
+		if (is_string($this->_subMenu)) {
+			$current = Phpfox_Url::instance()->makeUrl($current);
+			$this->_subMenu = preg_replace('/href\=\"' . preg_quote($current, '/') . '\"/i', 'href="' . $current . '" class="active"', $this->_subMenu);
+
+			return $this->_subMenu;
+		}
+
+		$html = '<div class="section_menu"><ul>';
 		foreach ($this->_subMenu as $name => $url) {
 			$active = '';
-			$html .= '<li' . $active . '><a href="' . Phpfox_Url::instance()->makeUrl($url) . '">' . $name . '</a></li>';
+			$check = trim($url, '/');
+			if ($check == $current) {
+				$active = ' class="active"';
+			}
+
+			$html .= '<li><a href="' . Phpfox_Url::instance()->makeUrl($url) . '"' . $active . '>' . $name . '</a></li>';
 		}
-		$html .= '</ul>';
+		$html .= '</ul></div>';
 
 		return $html;
 	}

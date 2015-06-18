@@ -1466,6 +1466,9 @@ class Phpfox
 
 			$blocks = [];
 			foreach (range(1, 12) as $location) {
+				if ($location == 3) {
+					echo \Phpfox_Template::instance()->getSubMenu();
+				}
 				$aBlocks = Phpfox_Module::instance()->getModuleBlocks($location);
 				$blocks[$location] = [];
 				foreach ($aBlocks as $sBlock) {

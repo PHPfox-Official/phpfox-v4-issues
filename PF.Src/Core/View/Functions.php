@@ -71,7 +71,6 @@ class Functions {
 					break;
 				case 'right':
 
-					echo $Template->getSubMenu();
 					$this->_loadBlocks(3);
 					break;
 				case 'logo':
@@ -115,6 +114,9 @@ class Functions {
 
 	private function _loadBlocks($location) {
 		echo '<div class="_block" data-location="' . $location . '">';
+		if ($location == 3) {
+			echo \Phpfox_Template::instance()->getSubMenu();
+		}
 		$blocks = \Phpfox_Module::instance()->getModuleBlocks($location);
 		foreach ($blocks as $block) {
 			\Phpfox::getBlock($block);

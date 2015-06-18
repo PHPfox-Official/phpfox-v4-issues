@@ -113,7 +113,7 @@ input.button_link:hover {
 	transition:@transition;
 }
 
-input.button, a.button_off_link {
+input.button, a.button_off_link, a.button, a.button:hover {
 	background:transparent;
 	color:@brandPrimary;
 	padding:12px 20px;
@@ -123,9 +123,13 @@ input.button, a.button_off_link {
 	text-transform:uppercase;
 	border:1px @brandPrimary solid;
 	box-shadow:none;
+	display:block;
+	text-align:center;
+	transition:@transition;
 }
 
-input.button:hover {
+
+input.button:hover, a.button:hover {
 	background:@brandPrimary;
 	color:@brandPrimaryColor;
 	transition:@transition;

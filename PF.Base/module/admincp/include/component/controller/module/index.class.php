@@ -70,7 +70,7 @@ class Admincp_Component_Controller_Module_Index extends Phpfox_Component
 		}
 
 		foreach ($aModules['3rdparty'] as $key => $value) {
-			if ($value['product_id'] == 'phpfox') {
+			if ($value['product_id'] == 'phpfox' && $this->request()->get('view') != 'all') {
 				continue;
 			}
 

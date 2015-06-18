@@ -11,6 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{if $aModules}
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th style="width:20px;"></th>
@@ -23,3 +24,8 @@ defined('PHPFOX') or exit('NO DICE!');
 	{/foreach}
 	</table>
 	<div class="table_clear"></div>
+{else}
+<div class="message">
+	No modules found.
+</div>
+{/if}

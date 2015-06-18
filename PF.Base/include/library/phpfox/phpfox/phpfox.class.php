@@ -369,7 +369,12 @@ class Phpfox
 	 * @return object
 	 */
 	public static function getBlock($sClass, $aParams = array(), $bTemplateParams = false)
-	{		
+	{
+		if (is_array($sClass)) {
+			echo $sClass[0];
+			return;
+		}
+
 		return Phpfox_Module::instance()->getComponent($sClass, $aParams, 'block', $bTemplateParams);
 	}	
 	

@@ -44,31 +44,6 @@ class App {
 			if (file_exists($data->path . 'start.php')) {
 				require_once($data->path . 'start.php');
 			}
-
-			/*
-			foreach (scandir($base . $vendors) as $apps) {
-				$path = $base . $vendors . '/' . $apps . '/';
-				$file = $path . 'app.json';
-				$installed = $path . 'app.lock';
-
-				if (!file_exists($file)) {
-					continue;
-				}
-
-				if (!file_exists($installed)) {
-					continue;
-				}
-
-				$data = json_decode(file_get_contents($file));
-				$data->path = $path;
-
-				if (isset($data->routes)) {
-					self::$routes = array_merge(self::$routes, (array) $data->routes);
-				}
-
-				$this->_apps[$data->id] = $data;
-			}
-			*/
 		}
 
 		// d($this->_apps); exit;

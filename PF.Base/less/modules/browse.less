@@ -10,9 +10,9 @@
 		height:40px;
 		line-height:40px;
 		text-align:center;
-		background:@blockBg;
-		color:lighten(@blockColor, 5%);
-		border-bottom:1px darken(@blockBg, 10%) solid;
+		background:transparent;
+		color:darken(@bodyBg, 12%);
+		border:0px;
 		padding:0px;
 		/*
 		position:fixed;
@@ -26,8 +26,8 @@
 	.table_right {
 		label {
 			background:darken(@blockBg, 4%);
-			padding:4px 8px;
-			margin:0px 8px 8px 0px;
+			padding:10px;
+			margin:0px 10px 0px 0px;
 			display:inline-block;
 
 			input {
@@ -260,11 +260,11 @@
 
 #left {
 	#js_block_border_user_filter.block > .content {
-		padding:0px;
+		/*padding:0px;*/
 
 		.table {
 			border-bottom:1px darken(@blockBg, 10%) solid;
-			padding:@blockContentPadding;
+			padding:0px;
 			margin:0px;
 
 			.table_left {

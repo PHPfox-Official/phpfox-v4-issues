@@ -69,10 +69,12 @@
 		{% set name = name.name %}
 	{% endif %}
 
-	<div class="formGroup">
+	<div class="table">
 		{% if title is not null %}
-			<label for="__form_{{ name }}">{{ title }}</label>
+		<div class="table_left">{{ title }}</div>
 		{% endif %}
-		<textarea id="__form_{{ name }}" name="{{ name }}" placeholder="{{ placeholder }}"{% if maxlength %} maxlength="{{ maxlength }}"{% endif %}>{{ value|e }}</textarea>
+		<div class="table_right">
+			<textarea id="__form_{{ name }}" name="val[{{ name }}]" placeholder="{{ placeholder }}"{% if maxlength %} maxlength="{{ maxlength }}"{% endif %}>{{ value|e }}</textarea>
+		</div>
 	</div>
 {% endmacro %}

@@ -237,13 +237,13 @@ div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_d
 
 .breadcrumbs_menu {
 	position:fixed;
-	top:0px;
-	right:0px;
+	top:5px;
+	right:10px;
 
 	li {
 		display:inline-block;
-		height:@headerHeight;
-		line-height:@headerHeight;
+		height:(@headerHeight - 15);
+		line-height:(@headerHeight - 15);
 		vertical-align:top;
 	}
 
@@ -251,12 +251,21 @@ div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_d
 	li {
 		a, a:hover {
 			display:block;
-			background:@brandPrimary;
-			color:@brandPrimaryColor;
-			padding:0px 15px;
-			font-size:@fontSizeBase - 2;
+			background:transparent;
+			color:#fff;
+			border:2px #fff solid;
+			padding:0px 10px;
+			font-size:@fontSizeBase - 4;
 			text-transform:uppercase;
-			font-weight:500;
+			font-weight:300;
+			letter-spacing:1px;
+			transition:@transition;
+			border-radius:30px;
+		}
+
+		a:hover {
+			background:#fff;
+			color:#222;
 		}
 	}
 }

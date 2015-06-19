@@ -11,6 +11,3 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="timezone t_center" style="margin-top:30px;">
-	{phrase var='forum.all_times_are_gmt_time_zone_the_time_now_is_current_time' time_zone=$sCurrentTimeZone current_time=$sCurrentSiteTime}
-</div>

@@ -86,7 +86,7 @@
 	background:@formBg;
 	color:@formColor;
 	border:0px;
-	padding:0px;
+	padding:5px 0px;
 	width:100%;
 	outline:none;
 	text-indent:0px;
@@ -129,6 +129,8 @@
 
 			> .title {
 				text-transform:uppercase;
+				background:@blockBg;
+				color:@blockColor;
 				font-size:@fontSizeBase;
 				border:0px;
 				height:40px;
@@ -161,13 +163,15 @@
 
 			> .content {
 				display:none;
-				max-height:300px;
+				max-height:250px;
 				overflow:auto;
-				position:absolute;
 				background:@blockBg;
+				/*
+				position:absolute;
 				left:0px;
 				right:0px;
-				z-index:100;
+				*/
+				padding:10px;
 			}
 		}
 

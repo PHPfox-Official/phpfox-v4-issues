@@ -12,6 +12,9 @@ class Service extends \Core\Model {
 	}
 
 	public function save($settings) {
+		$file = PHPFOX_DIR_SETTINGS . md5($this->_app->id . '-settings') . '.php';
+		file_put_contents($file, "<?php\nreturn " . var_export($settings, true) . ";");
+
 		foreach ($settings as $key => $value) {
 			$this->db->delete(':setting', ['product_id' => $this->_app->id, 'var_name' => $key]);
 			$this->db->insert(':setting', [

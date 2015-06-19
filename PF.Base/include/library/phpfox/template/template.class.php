@@ -2563,7 +2563,7 @@ class Phpfox_Template
 		}		
 		
 		$sCachedId = $oCache->set(array('theme', 'menu_' . str_replace(array('/', '\\'), '_', $sConnection) . (Phpfox::isUser() ? Phpfox::getUserBy('user_group_id') : 0)));
-		
+
 		if ((!($aMenus = $oCache->get($sCachedId))) && is_bool($aMenus) && !$aMenus)
 		{
 			$aParts = explode('.', $sConnection);		

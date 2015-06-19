@@ -40,7 +40,7 @@ select {
 	    position:relative;
 	    padding:10px;
 	    background:@blockBg;
-	    border:@formBorder;
+	    border:1px darken(@blockBg, 4%) solid;
 
 	    input[type="email"], input[type="text"], input[type="password"], textarea, textarea:focus {
 			.full_input();
@@ -48,7 +48,10 @@ select {
 
 	    select {
 		    width:100%;
+		    margin:10px 0px;
 		    border:0px;
+		    background:darken(@blockBg, 4%);
+		    text-indent:5px;
 	    }
 
 	    .extra_info {
@@ -146,19 +149,16 @@ input.button, a.button_off_link, a.button, a.button:hover {
 	box-shadow:none;
 	display:block;
 	text-align:center;
-	transition:@transition;
 
-	background:rgba(0, 0, 0, 0.4);
-	color:#fff;
-	border:1px transparent solid;
+	background:transparent;
+	color:@headerBg;
+	border:1px @headerBg solid;
 }
 
 
 input.button:hover, a.button:hover {
-	background:transparent;
-	color:@brandPrimary;
-	border-color:@brandPrimary;
-	transition:@transition;
+	background:@headerBg;
+	color:@headerColor;
 }
 
 input.button_off {

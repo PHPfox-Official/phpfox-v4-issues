@@ -31,6 +31,26 @@ class Core_Component_Controller_Index_Visitor extends Phpfox_Component
 			$photo = $featured[0];
 		}
 
+		$images = [
+			'create-a-community-for-musicians.jpg' => 'Creating communities for Musicians',
+			'create-a-community-for-athletes.jpg' => 'Creating communities for Athletes',
+			'create-a-community-for-photographers.jpg' => 'Creating communities for Photographers',
+			'create-a-social-network-for-fine-cooking.jpg' => 'Creating communities for Fine Cooking'
+		];
+		$total = rand(1, (count($images)));
+		$image = [];
+		$cnt = 0;
+		foreach ($images as $image => $info) {
+			$cnt++;
+			$image = [
+				'image' => 'http://bg.m9.io/' . $image,
+				'info' => $info
+			];
+			if ($cnt === $total) {
+				break;
+			}
+		}
+
 		$this->template()->setHeader('cache', array(
 					'register.js' => 'module_user',
 					'country.js' => 'module_core',
@@ -42,7 +62,8 @@ class Core_Component_Controller_Index_Visitor extends Phpfox_Component
 				)
 			)->assign(array(
 				'aSettings' => Phpfox::getService('custom')->getForEdit(array('user_main', 'user_panel', 'profile_panel'), null, null, true),
-					'featured' => $photo
+				// 'featured' => $photo,
+					'image' => $image
 			)
 		);	
 	}

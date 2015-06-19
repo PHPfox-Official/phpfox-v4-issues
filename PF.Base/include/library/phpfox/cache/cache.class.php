@@ -61,21 +61,45 @@ class Phpfox_Cache
 	 * @param array $aParams Any extra params you may want to pass to the storage object.
 	 */
 	public function __construct($aParams = array())
-	{		
+	{
 		if (!self::$_oObject)
 		{
-			$sStorage = (isset($aParams['storage']) ? $aParams['storage'] : Phpfox::getParam('core.cache_storage'));
-			
-			switch($sStorage)
-			{
-				case 'memcache':
-					$sStorage = 'phpfox.cache.storage.memcache';
-					break;
-				default:		
-					$sStorage = 'phpfox.cache.storage.file';
-			}						
-			
-			self::$_oObject = Phpfox::getLib($sStorage, $aParams);
+			$dir = PHPFOX_DIR_SITE . 'Apps/';
+			if (is_dir($dir)) {
+				foreach (scandir($dir) as $app) {
+					$path = $dir . $app . '/';
+					if (file_exists($path . 'app.lock') && file_exists($path . 'app.json')) {
+						$json = json_decode(file_get_contents($path . 'app.json'));
+						if (is_object($json) && isset($json->lib) && isset($json->lib->cache)) {
+							if (file_exists($path . 'vendor/autoload.php')) {
+								require($path . 'vendor/autoload.php');
+							}
+							try {
+								self::$_oObject = (new \ReflectionClass($json->lib->cache))->newInstance();
+							}
+							catch (\Exception $e) {
+
+							}
+							break;
+						}
+					}
+				}
+			}
+
+			if (!self::$_oObject) {
+				$sStorage = (isset($aParams['storage']) ? $aParams['storage'] : Phpfox::getParam('core.cache_storage'));
+
+				switch($sStorage)
+				{
+					case 'memcache':
+						$sStorage = 'phpfox.cache.storage.memcache';
+						break;
+					default:
+						$sStorage = 'phpfox.cache.storage.file';
+				}
+
+				self::$_oObject = Phpfox::getLib($sStorage, $aParams);
+			}
 		}
 	}
 

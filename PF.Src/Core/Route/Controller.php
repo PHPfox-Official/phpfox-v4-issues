@@ -111,6 +111,9 @@ class Controller {
 					$innerHTML = function($xml) {
 						$innerXML = '';
 						foreach (dom_import_simplexml($xml)->childNodes as $child) {
+							if ($child->nodeName == 'api') {
+								continue;
+							}
 							$innerXML .= $child->ownerDocument->saveXML($child);
 						}
 						return $innerXML;
@@ -122,7 +125,13 @@ class Controller {
 						->header('API_ENDPOINT', \Phpfox_Url::instance()->makeUrl('api'))
 						->call($_SERVER['REQUEST_METHOD']);
 
-					$xml = @simplexml_load_string($response);
+					$doc = new \DOMDocument();
+					libxml_use_internal_errors(true);
+					$doc->loadHTML($response);
+					$xml = $doc->saveXML($doc);
+
+
+					$xml = @simplexml_load_string($xml);
 					if ($xml === false) {
 						$xml = new \stdClass();
 						$xml->body = $response;
@@ -134,18 +143,20 @@ class Controller {
 						}
 					}
 
-					if (isset($xml->api)) {
-						if (isset($xml->api->section)) {
-							$Template->setBreadCrumb($xml->api->section->name, \Phpfox_Url::instance()->makeUrl($xml->api->section->url));
+					if (isset($xml->body->api)) {
+						if (isset($xml->body->api->section)) {
+							$Template->setBreadCrumb($xml->body->api->section->name, \Phpfox_Url::instance()->makeUrl($xml->body->api->section->url));
 						}
 
-						if (isset($xml->api->h1)) {
-							$Template->setBreadCrumb($xml->api->h1->name, \Phpfox_Url::instance()->makeUrl($xml->api->h1->url), true);
+						if (isset($xml->body->api->h1)) {
+							$Template->setBreadCrumb($xml->body->api->h1->name, \Phpfox_Url::instance()->makeUrl($xml->body->api->h1->url), true);
 						}
 
-						if (isset($xml->api->menu)) {
-							$Template->setSubMenu($innerHTML($xml->api->menu));
+						if (isset($xml->body->api->menu)) {
+							$Template->setSubMenu($innerHTML($xml->body->api->menu));
 						}
+
+						// unset($xml->body->api);
 					}
 
 					$Controller = new \Core\Controller();

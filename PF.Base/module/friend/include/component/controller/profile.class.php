@@ -83,7 +83,7 @@ class Friend_Component_Controller_Profile extends Phpfox_Component
 		if (($iListId = $this->request()->getInt('list')) && ($aList = Phpfox::getService('friend.list')->getList($iListId, Phpfox::getUserId())) && isset($aList['list_id']))
 		{
 			$this->search()->setCondition('AND fld.list_id = ' . (int) $aList['list_id'] . ' AND friend.user_id = ' . $aUser['user_id']);
-			$this->template()->setTitle($aList['name'])->setBreadcrumb($aList['name'], $this->url()->makeUrl('friend', array('view' => 'list', 'id' => $iListId)), true);
+			// $this->template()->setTitle($aList['name'])->setBreadcrumb($aList['name'], $this->url()->makeUrl('friend', array('view' => 'list', 'id' => $iListId)), true);
 		}		
 		
 		list($iCnt, $aFriends) = Friend_Service_Friend::instance()->get($oFilter->getConditions(), $oFilter->getSort(), $oFilter->getPage(), $iPageSize, true, true, ($this->request()->get('view') ? true : false), ($bMutual === true ? $aUser['user_id'] : null));
@@ -111,7 +111,11 @@ class Friend_Component_Controller_Profile extends Phpfox_Component
 		}
 		
 		$this->template()->setMeta('description', Phpfox::getPhrase('friend.sign_up_on_site_title_and_connect_with_full_name_message_full_name_or_add_full_name_as_you', array('site_title' => Phpfox::getParam('core.site_title'), 'full_name' => $aUser['full_name'])));
-		
+
+		if (Phpfox::getUserId() == $aUser['user_id']) {
+			$this->template()->assign('lists', Friend_Service_List_List::instance()->get());
+		}
+
 		$this->template()->setTitle(Phpfox::getPhrase('friend.full_name_s_friends', array('full_name' => $aUser['full_name'])))
 			->setBreadcrumb(Phpfox::getPhrase('friend.friends'))
 			->setHeader('cache', array(
@@ -121,7 +125,8 @@ class Friend_Component_Controller_Profile extends Phpfox_Component
 			)
 			->assign(array(
 					'aFriends' => $aFriends,
-					'sFriendView' => $this->request()->get('view')
+					'sFriendView' => $this->request()->get('view'),
+					'activeList' => $this->request()->get('list')
 				)
 			);
 	}

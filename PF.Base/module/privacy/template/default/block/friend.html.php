@@ -118,7 +118,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					{if !empty($sCustomPrivacyId)}
 					<div><input type="hidden" name="custom-id" value="{$sCustomPrivacyId}" /></div>
 					{/if}
-					<div class="go_left" style="margin-right:5px;">
+					<div>
 						<div id="js_custom_search_friend"></div>
 					</div>
 					<div>

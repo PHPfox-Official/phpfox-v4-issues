@@ -7,7 +7,7 @@ class Group {
 
 		\Core\Route::$group = $name;
 
-		call_user_func($callback);
+		call_user_func($callback, new \Core\Controller());
 
 		\Core\Route::$group = null;
 	}

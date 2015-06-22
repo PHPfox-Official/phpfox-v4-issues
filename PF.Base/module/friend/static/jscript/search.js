@@ -31,7 +31,7 @@ $Core.searchFriendsInput =
 		var $sHtml = '';
 		if (!this._get('no_build')){			
 			
-			$sHtml += '<div style="width:' + this._get('width') + '; position:relative;" class="js_friend_search_form" id="' + this.sId + '">';
+			$sHtml += '<div style="position:relative;" class="js_friend_search_form" id="' + this.sId + '">';
 			$sHtml += '<input type="text" id="' + this._get('search_input_id') + '" name="null" value="' + this._get('default_value') + '" autocomplete="off" onfocus="$Core.searchFriendsInput.buildFriends(this);" onkeyup="$Core.searchFriendsInput.getFriends(this);" style="width:100%;" class="js_temp_friend_search_input" />';
 			$sHtml += '<div class="js_temp_friend_search_form" style="display:none;"></div>';
 			$sHtml += '</div>';
@@ -180,7 +180,7 @@ $Core.searchFriendsInput =
 				$sHtml += '<li><a href="#" class="holder_notify_drop_link" onclick="$(this).parents(\'form:first\').submit(); return false;">' + oTranslations['friend.show_more_results_for_search_term'].replace('{search_term}',htmlspecialchars($oObj.value)) + '</a></li>';
 			}
 
-			obj.html('<div class="js_temp_friend_search_form_holder" style="width:' + this._get('width') + ';"><ul>' + $sHtml + '</ul></div>').show();
+			obj.html('<div class="js_temp_friend_search_form_holder"><ul>' + $sHtml + '</ul></div>').show();
 		}
 		else
 		{
@@ -213,7 +213,7 @@ $Core.searchFriendsInput =
 		{
 			return false;
 		}
-		
+
 		this.aLiveUsers[$iUserId] = true;
 		$Behavior.reloadLiveUsers = function(){
 			$Core.searchFriendsInput.aLiveUsers = {};
@@ -233,7 +233,7 @@ $Core.searchFriendsInput =
 		$sHtml += '<a href="#" class="friend_search_remove" title="Remove" onclick="$Core.searchFriendsInput.removeSelected(this, ' + $iUserId + ');  return false;">Remove</a>';
 		if (!this._get('inline_bubble'))
 		{
-			$sHtml += '<div class="friend_search_image"><img src="' + $aUser['user_image'] + '" alt="" style="width:25px; height:25px;" /></div>';
+			$sHtml += '<div class="friend_search_image">' + $aUser['user_image'] + '</div>';
 		}
 		$sHtml += '<div class="friend_search_name">' + $aUser['full_name'] + '</div>';
 		if (!this._get('inline_bubble'))

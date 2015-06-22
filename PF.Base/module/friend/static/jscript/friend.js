@@ -1,3 +1,4 @@
+
 $Core.friend = {};
 $Core.friend.addNewList = function(iListId, sName){	
 	$('.friend_action_drop_down').each(function(){			

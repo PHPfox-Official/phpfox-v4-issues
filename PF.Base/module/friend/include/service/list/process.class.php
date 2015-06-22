@@ -113,7 +113,7 @@ class Friend_Service_List_Process extends Phpfox_Service
 		// how many friends are in destination list:
 		$oService = Phpfox::getService('friend.list');
 		$iCountDest = $oService->getCountForFolder($mFolder);
-		
+
 		foreach ($aIds as $iId)
 		{			
 			// move friend

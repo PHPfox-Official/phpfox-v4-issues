@@ -35,7 +35,6 @@ $Behavior.addDraggableToBoxes = function()
     });
 
 	$('.popup').click(function() {
-		p('clicky');
 		tb_show('', $(this).attr('href'), $(this));
 
 		return false;

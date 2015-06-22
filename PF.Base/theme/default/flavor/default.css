@@ -2460,6 +2460,26 @@ select {
   padding: 0px;
   margin-bottom: 10px;
 }
+.js_box input[type="text"],
+.js_box input[type="email"],
+.js_box input[type="password"],
+.js_box textarea,
+.js_box input:focus,
+.js_box textarea:focus,
+.js_box select {
+  background: #f2f2f2;
+  width: 100%;
+  padding-right: 0px;
+}
+.js_box .js_custom_search_friend_holder {
+  background: #f2f2f2;
+  border-top: #ebebeb;
+}
+.js_box input.button {
+  width: 100%;
+  margin-top: 10px;
+  display: block;
+}
 .table {
   /*background:@blockBg;*/
   background: transparent;
@@ -4303,6 +4323,11 @@ a.item_bar_action:before {
   vertical-align: top;
   word-wrap: break-word;
   padding: 5px;
+}
+.row-transparent {
+  background: transparent;
+  border: 0px;
+  padding: 0px;
 }
 .row:before,
 .row:after {
@@ -7554,6 +7579,41 @@ span.forum_tag_sticky {
   top: 20px;
   left: 0px;
   width: 81px;
+}
+.list_manager_holder {
+  position: relative;
+}
+.list_manager {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: block;
+  z-index: 100000;
+}
+.list_manager i {
+  display: none;
+  font-size: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+.list_manager.active,
+.list_manager:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+.list_manager.active i,
+.list_manager:hover i {
+  display: block;
+}
+.list_manager.active {
+  background: rgba(255, 255, 255, 0.6);
+}
+.list_manager.active i {
+  color: #298ada;
 }
 #page_user_browse #site_content {
   text-align: center;

@@ -3,9 +3,12 @@
 	.reset();
 
 	text-align:center;
-	display:block;
-	background:darken(@blockBg, 2%);
-	padding:8px 0px;
+	display:inline-block;
+	background:@bodyBg;
+	color:@textColor;
+	border:1px darken(@bodyBg, 6%) solid;
+	padding:8px 12px;
+
 }
 
 .user_block {
@@ -112,22 +115,25 @@
 		background:transparent;
 
 		.bottom {
-			background:darken(@blockBg, 4%);
-			font-size:@fontSizeBase - 1;
+			font-size:@fontSizeBase - 3;
 
 			> ul {
 				> li {
-					display:block;
+					display:inline-block;
 
 					a, a:hover {
 						display:block;
-						padding:4px 0px;
-						text-indent:@blockContentPadding;
-						color:@blockColor;
+						padding:8px 12px;
+						color:@textColor;
+						background:@bodyBg;
+						border-radius:30px;
+						opacity:0.8;
 					}
 
 					a:hover {
-						color:@linkColor;
+						border-color:@brandPrimary;
+						color:darken(@textColor, 10%);
+						opacity:1;
 						transition:@transition;
 					}
 				}

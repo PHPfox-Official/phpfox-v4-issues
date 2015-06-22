@@ -38,3 +38,28 @@
 		}
 	}
 }
+
+#js_block_border_event_rsvp {
+	form {
+		> .p_2 {
+			display:block;
+			padding:10px 0px;
+			cursor:pointer;
+			border:1px transparent solid;
+			border-radius:30px;
+
+			input[type="checkbox"], input[type="radio"] {
+				visibility:hidden;
+			}
+		}
+
+		> .p_2:hover {
+			color:darken(@textColor, 20%);
+		}
+
+		> .p_2.active {
+			border-color:@brandPrimary;
+			color:darken(@textColor, 20%);
+		}
+	}
+}

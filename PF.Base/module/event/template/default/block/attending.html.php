@@ -32,7 +32,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="content">
 		<ul class="block_listing">
 		{foreach from=$aMaybeInvites name=invites item=aInvite}
-			<li>{img user=$aInvite suffix='_50_square' max_width=24 max_height=24 class='v_middle'} {$aInvite|user}</li>
+			<li>{img user=$aInvite suffix='_50_square' max_width=32 max_height=32 class='v_middle'} {$aInvite|user}</li>
 		{/foreach}
 		</ul>
 	</div>
@@ -47,7 +47,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="content">
 		<ul class="block_listing">
 		{foreach from=$aAwaitingInvites name=invites item=aInvite}
-			<li>{img user=$aInvite suffix='_50_square' max_width=24 max_height=24 class='v_middle'} {$aInvite|user}</li>
+			<li>{img user=$aInvite suffix='_50_square' max_width=32 max_height=32 class='v_middle'} {$aInvite|user}</li>
 		{/foreach}
 		</ul>
 		<div class="clear"></div>
@@ -63,7 +63,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="content">
 		<ul class="block_listing">
 		{foreach from=$aNotAttendingInvites name=invites item=aInvite}
-			<li>{img user=$aInvite suffix='_50_square' max_width=24 max_height=24 class='v_middle'} {$aInvite|user}</li>
+			<li>{img user=$aInvite suffix='_50_square' max_width=32 max_height=32 class='v_middle'} {$aInvite|user}</li>
 		{/foreach}
 		</ul>
 	</div>

@@ -61,7 +61,7 @@ class Event_Component_Block_List extends Phpfox_Component
 				)
 			)
 		);
-		
+
 		$this->template()->assign(array(
 				'aInvites' => $aInvites,
 				'iRsvp' => $iRsvp				
@@ -74,8 +74,8 @@ class Event_Component_Block_List extends Phpfox_Component
 			if ($aCallback !== false)
 			{
 				$sExtra .= '&amp;module=' . $aCallback['module'] . '&amp;item=' . $aCallback['item'];	
-			}			
-			
+			}
+
 			$this->template()->assign(array(
 					'sHeader' => '',
 					'aMenu' => array(

@@ -44,7 +44,7 @@ class Event_Component_Block_Attending extends Phpfox_Component
 			)
 		);		
 		
-		// return 'block';
+		return 'block';
 	}
 	
 	/**

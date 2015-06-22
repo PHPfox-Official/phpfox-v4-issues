@@ -1951,7 +1951,7 @@ $Core.loadInit = function(forceIt)
 };
 
 $Core.init = function()
-{	
+{
 	if ($Core.hasPushState())
 	{
 		window.addEventListener("popstate", function(e) {

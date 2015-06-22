@@ -25,27 +25,11 @@ defined('PHPFOX') or exit('NO DICE!');
 					<span class="js_hover_info">{phrase var='attachment.insert_a_photo'}</span>
 				</a>
 			</li>
-			{if Phpfox::isModule('link')}
-			<li>
-				<a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'link.attach', 600, '&amp;category_id={$aAttachmentShare.type}');" class="js_hover_title">
-					<i class="fa fa-link"></i>
-					<span class="js_hover_info">{phrase var='attachment.attach_a_link'}</span>
-				</a>
-			</li>
-			{/if}
 			{if !isset($bNoAttachaFile)}
 			<li>
 				<a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'attachment.add', 500, '&amp;category_id={$aAttachmentShare.type}');" class="js_hover_title">
 					<i class="fa fa-paperclip"></i>
 					<span class="js_hover_info">{phrase var='attachment.attach_a_file'}</span>
-				</a>
-			</li>
-			{/if}
-			{if Phpfox::isModule('emoticon')}
-			<li>
-				<a href="#" onclick="return $Core.shareInlineBox(this, '{$aAttachmentShare.id}', {if $aAttachmentShare.inline}true{else}false{/if}, 'emoticon.preview', 400, '&amp;editor_id=' + Editor.getId());" class="js_hover_title">
-					<i class="fa fa-smile-o"></i>
-					<span class="js_hover_info">{phrase var='attachment.insert_emoticon'}</span>
 				</a>
 			</li>
 			{/if}

@@ -35,7 +35,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div class="js_upload_form_holder_global">
 			<div class="js_upload_form_holder">
-				<form method="post" enctype="multipart/form-data" action="{url link='current' frame='attachment-frame'}" target="js_upload_frame" id="attachment_js_upload_frame_form" class="js_upload_frame_form">
+				<form method="post" enctype="multipart/form-data" action="{url link='attachment.frame'}" target="js_upload_frame" id="attachment_js_upload_frame_form" class="js_upload_frame_form">
 					<div><input type="hidden" name="category_name" value="{$sCategoryId}" class="category_name" /></div>
 					<div><input type="hidden" name="input" value="{$sAttachmentInput}" /></div>
 					<div><input type="hidden" name="attachment_obj_id" value="{$sAttachmentObjId}" /></div>

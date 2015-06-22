@@ -55,11 +55,8 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 	{if isset($iForumId)}
 		<div class="table">
-			<div class="table_left">
-				<label for="title">{if isset($iForumId)}{required}{/if}{phrase var='forum.title'}:</label>
-			</div>
 			<div class="table_right">
-				<input type="text" name="val[title]" value="{value type='input' id='title'}" size="40" id="title" />	
+				<input type="text" name="val[title]" placeholder="{phrase var='forum.title'}" value="{value type='input' id='title'}" size="40" id="title" />
 			</div>
 		</div>
 	{/if}

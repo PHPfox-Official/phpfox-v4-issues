@@ -102,8 +102,11 @@ defined('PHPFOX') or exit('NO DICE!');
 					{if Phpfox::getUserParam('profile.can_change_cover_photo')}
 					<li>
 						<a href="#" id="js_change_cover_photo" onclick="$Core.box('profile.logo', 500); return false;">
-							{if empty($aUser.cover_photo)}{phrase var='user.add_a_cover'}{else}{phrase var='user.change_cover'}{/if}
+							{if empty($aUser.cover_photo)}{phrase var='user.add_a_cover'}{else}Change Cover Photo{/if}
 						</a>
+						{if !empty($aUser.cover_photo)}
+						<li><a href="#" onclick="$('#cover_section_menu_drop').hide(); $.ajaxCall('user.removeLogo'); return false;">Remove Cover Photo</a></li>
+						{/if}
 						{*
 						<div id="cover_section_menu_drop">
 							<ul>

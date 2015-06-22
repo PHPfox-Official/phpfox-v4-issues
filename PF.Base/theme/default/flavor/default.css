@@ -7446,7 +7446,8 @@ span.forum_tag_sticky {
 .js_temp_friend_search_form_holder {
   background: #ffffff;
   color: #999999;
-  border: 1px #ffffff solid;
+  border: 1px #ebebeb solid;
+  padding: 0px;
 }
 .js_temp_friend_search_form_holder .js_friend_search_link > span {
   display: inline-block;
@@ -7462,6 +7463,7 @@ span.forum_tag_sticky {
 .js_friend_search_link:hover {
   background: #f0f0f0;
   transition: all 0.5s ease;
+  cursor: pointer;
 }
 .js_custom_search_friend_holder {
   border: 1px transparent solid;
@@ -7614,6 +7616,13 @@ span.forum_tag_sticky {
 }
 .list_manager.active i {
   color: #298ada;
+}
+#sFriendImage {
+  border: 1px #298ada dashed;
+}
+#sFriendInput {
+  background: #f2f2f2;
+  color: #999999;
 }
 #page_user_browse #site_content {
   text-align: center;

@@ -10,7 +10,8 @@
 .js_temp_friend_search_form_holder {
 	background:@blockBg;
 	color:@blockColor;
-	border:1px @blockBg solid;
+	border:1px darken(@blockBg, 8%) solid;
+	padding:0px;
 
 	.js_friend_search_link {
 		> span {
@@ -30,6 +31,7 @@
 .js_friend_search_link:hover {
 	background:darken(@blockBg, 6%);
 	transition:@transition;
+	cursor:pointer;
 }
 
 .js_custom_search_friend_holder {
@@ -161,4 +163,13 @@
 	i {
 		color:@brandPrimary;
 	}
+}
+
+#sFriendImage {
+	border:1px @brandPrimary dashed;
+}
+
+#sFriendInput {
+	background:darken(@blockBg, 5%);
+	color:@blockColor;
 }

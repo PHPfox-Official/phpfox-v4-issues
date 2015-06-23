@@ -76,7 +76,7 @@ class View {
 			\Phpfox_Module::instance()->getControllerTemplate();
 			$content = ob_get_contents(); ob_clean();
 
-			$this->_render['name'] = '@Base/Layout.html';
+			$this->_render['name'] = '@Base/layout.html';
 			$this->_render['params']['content'] = $content;
 		}
 

@@ -2884,6 +2884,13 @@ button {
   font-size: 26px;
   cursor: pointer;
 }
+.label_hover label,
+.label_hover label:hover {
+  background: transparent;
+}
+.label_hover label:hover {
+  background: #ebebeb;
+}
 #header_left {
   width: auto;
 }

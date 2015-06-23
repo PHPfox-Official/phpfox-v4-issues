@@ -53,7 +53,7 @@ $Core.resetActivityFeedForm = function()
 	$('.activity_feed_form_attach li a:first').addClass('active');	
 	$('.global_attachment_holder_section').hide();
 	$('#global_attachment_status').show();		
-	$('.global_attachment_holder_section textarea').val($('#global_attachment_status_value').html()).css({height: $sCssHeight});
+	$('.global_attachment_holder_section textarea').val('').css({height: $sCssHeight});
 		
 	$('.activity_feed_form_button_status_info').hide();
 	$('.activity_feed_form_button_status_info textarea').val('');	
@@ -659,7 +659,7 @@ $Behavior.activityFeedLoader = function()
 		var sCommentForm = $(this).parents('.js_feed_comment_border:first').find('.js_feed_comment_form:first').html();
 		oParent.html(sCommentForm);
 		oParent.find('.js_feed_comment_parent_id:first').val($(this).attr('rel'));
-		
+
 		oParent.find('.js_comment_feed_textarea:first').focus();
 		$Core.commentFeedTextareaClick(oParent.find('.js_comment_feed_textarea:first'));
 		
@@ -690,17 +690,24 @@ $Behavior.activityFeedLoader = function()
 $Core.commentFeedTextareaClick = function($oObj)
 {
 	$($oObj).addClass('dont-unbind');
+	$($oObj).blur(function() {
+		$(this).removeClass('dont-unbind');
+	});
 	$($oObj).keydown(function(e)
 	{
 		if (e.which == 13) {
 			e.preventDefault();
 			$($oObj).parents('form:first').trigger('submit');
+			$($oObj).removeClass('dont-unbind');
+			// $($oObj).unbind();
+			$Core.loadInit();
+			p('is added...');
 
 			return false;
 		}
 
-		if ($(this).hasClass('no_resize_textarea')){
-			return;
+		if ($(this).hasClass('no_resize_textarea')) {
+			return null;
 		}
 		$Core.resizeTextarea($(this));
 	});

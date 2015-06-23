@@ -332,15 +332,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					</div>	
 			</div>
 		{/if}
-		
-		
-		{if $sStep != 'invite' && $bIsNewPage}
-		<strong>{phrase var='pages.after_updating'}:</strong> 
-		<select name="action">
-			<option value="1">{phrase var='pages.go_to_the_next_step'}</option>
-			<option value="2">{phrase var='pages.view_this_page_lower'}</option>
-		</select>		
-		{/if}
+
 	</form>
 </div>
 {else}

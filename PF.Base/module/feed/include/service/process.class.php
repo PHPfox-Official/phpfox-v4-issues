@@ -189,6 +189,10 @@ class Feed_Service_Process extends Phpfox_Service
 			'time_update' => $iNewTimeStamp,
 			'content' => $content
 		);
+
+		if ($this->_bIsCallback) {
+			unset($aInsert['content']);
+		}
 		
 		if (!$this->_bIsCallback && !Phpfox::getParam('feed.add_feed_for_comments') && preg_match('/^(.*)_comment$/i', $sType))
 		{

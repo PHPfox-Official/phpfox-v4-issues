@@ -289,8 +289,21 @@
 		margin:auto;
 	}
 
+	#activity_feed_share_this_one ul li div.parent {
+		.reset();
+	}
+
+	#activity_feed_share_this_one ul li div.parent select {
+		width:100%;
+		background:darken(@blockBg, 8%);
+		padding:10px;
+		font-size:@fontSizeBase - 2;
+	}
+
 	#activity_feed_share_this_one {
-		display:none;
+		/*display:none;*/
+		position:static;
+		margin-bottom:-10px;
 	}
 
 	#header {

@@ -8226,8 +8226,34 @@ span.forum_tag_sticky {
   width: 1180px;
   margin: auto;
 }
+._is_pages_view #activity_feed_share_this_one ul li div.parent {
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+}
+._is_pages_view #activity_feed_share_this_one ul li div.parent select {
+  width: 100%;
+  background: #ebebeb;
+  padding: 10px;
+  font-size: 12px;
+}
 ._is_pages_view #activity_feed_share_this_one {
-  display: none;
+  /*display:none;*/
+  position: static;
+  margin-bottom: -10px;
 }
 ._is_pages_view #header {
   display: none;

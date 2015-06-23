@@ -323,6 +323,11 @@ $Core.upload = {
 			if (xhr.readyState == 4) {
 				$Core.processPostForm($.parseJSON(xhr.responseText), obj);
 			}
+		};
+
+		if (obj.data('onstart')) {
+			var thisFunction = window[obj.data('onstart')];
+			thisFunction();
 		}
 
 		xhr.open('POST', obj.data('url'), true);

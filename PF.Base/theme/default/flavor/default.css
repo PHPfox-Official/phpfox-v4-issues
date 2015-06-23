@@ -3959,6 +3959,10 @@ div#right div.menu ul li.active {
   padding: 10px;
   cursor: pointer;
 }
+#content .block {
+  background: #ffffff;
+  padding: 10px;
+}
 .block div.row1,
 .block div.row2 {
   padding-top: 0px;
@@ -4149,12 +4153,12 @@ a.item_bar_action:before {
   opacity: 1;
 }
 .user_rows_mini {
-  margin: -10px;
+  /*margin:-@blockContentPadding;*/
 }
 .user_rows_mini .user_rows {
-  width: 98px;
+  width: 96px;
   height: 120px;
-  /*margin:0px -4px -4px 0px;*/
+  margin: 0px -1px -1px 0px;
   border-color: #ffffff;
 }
 .user_rows_mini .user_rows .user_profile_link_span > a,
@@ -7576,7 +7580,7 @@ span.forum_tag_sticky {
   width: 100%;
 }
 #js_block_content_profile_friend .user_rows_mini .user_rows {
-  width: 81px;
+  width: 79px;
   height: 110px;
 }
 #js_block_content_profile_friend .user_rows .user_profile_link_span > a,
@@ -8531,6 +8535,9 @@ ul.activity_feed_form_attach li a:hover {
   width: 100%;
   height: auto;
 }
+#page_profile_index #container {
+  width: auto;
+}
 #page_photo_index .mosaicflow_load {
   min-height: 1000px;
 }
@@ -8883,6 +8890,17 @@ ul.activity_feed_form_attach li a:hover {
   max-height: 90px;
   border: 2px #333333 solid;
 }
+#js_crop_tool {
+  background: #e6e6e6;
+}
+#js_main_photo {
+  background: #e6e6e6;
+  text-align: center;
+  padding: 20px;
+}
+#js_main_photo img {
+  /*max-width:400px;*/
+}
 .profiles_banner_bg > .cover_bg {
   position: absolute;
   top: 0px;
@@ -8931,7 +8949,16 @@ ul.activity_feed_form_attach li a:hover {
 .profile_image > .p_4 {
   display: none;
 }
-.profile_image > .p_4 > a {
+.profile_image > .p_4 input {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
+}
+.profile_image > .p_4 > span {
   display: block;
   position: absolute;
   overflow: hidden;
@@ -8942,8 +8969,9 @@ ul.activity_feed_form_attach li a:hover {
   right: 0px;
   left: 0px;
   bottom: 0px;
+  z-index: 1;
 }
-.profile_image > .p_4 > a:before {
+.profile_image > .p_4 > span:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -9210,26 +9238,13 @@ ul.activity_feed_form_attach li a:hover {
 #page_profile_index #header {
   display: none;
 }
-.profile_image_holder {
+.profile_image_holder i {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-}
-.profile_image_holder a,
-.profile_image_holder a:hover {
-  display: block;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-}
-.profile_image_holder a > span,
-.profile_image_holder a:hover > span {
-  width: 100%;
-  height: 100%;
+  left: 50%;
+  top: 50%;
+  font-size: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
 }
 .listing_row {
   background: #ffffff;

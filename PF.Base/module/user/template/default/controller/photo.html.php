@@ -18,21 +18,12 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 <div class="main_break">
 	{plugin call='user.template_controller_photo_1'}
-	<div id="js_crop_tool">
 		{plugin call='user.template_controller_photo_2'}
-		{if (!empty($sProfileImage) && Phpfox::getUserBy('user_image')) || $bIsProcess}
-			{if !$bIsProcess}
-				<div style="float:left;">
-					<strong>{phrase var='user.avatar'}:</strong>
-					<div class="p_2" id="js_user_avatar">
-						{$sImageAvatar}
-					</div>
-				</div>
-				<div class="clear"></div>
-			{/if}	
-			
+		{if $bIsProcess}
+		<div id="js_crop_tool" class="block">
 			{if ($bIsProcess) || (!$bIsProcess && $iImageWidth > 75 && $iImageHeight > 75)}
-				<h3>{phrase var='user.profile_picture_cropping_tool'}</h3>
+				<div class="title">{phrase var='user.profile_picture_cropping_tool'}</div>
+				<div class="content">
 				{if ($bIsProcess && ($iImageWidth <= 75 || $iImageHeight <= 75))}
 					{$sProfileImage}
 					<div class="extra_info">
@@ -40,8 +31,6 @@ defined('PHPFOX') or exit('NO DICE!');
 					</div>	
 					<form method="post" action="#" onsubmit="return $Core.photo_crop.save(this);">
 						{plugin call='user.template_controller_photo_3'}
-						<div><input type="hidden" name="in_process" value="{$sCacheImage}" /></div>
-						<div><input type="hidden" name="val[skip_croping]" value="{$sCacheImage}" /></div>
 						
 						<input type="submit" value="{phrase var='user.save_avatar'}" id="js_save_profile_photo" class="button" /> <span id="js_photo_preview_ajax"></span>		
 					</form>
@@ -51,14 +40,12 @@ defined('PHPFOX') or exit('NO DICE!');
 						{phrase var='user.click_and_drag_a_box_on_the_original_image_to_create_your_cropped_image'}
 					</div>
 					<div class="p_4">
-						<div style="float:left; margin-right:10px;">
-						<strong>{phrase var='user.original'}:</strong>
+						<div id="js_main_photo" style="float:left; margin-right:10px;">
 							<div class="p_2" style="position:relative;">
 								{$sProfileImage}
 							</div>
 						</div>
 						<div id="js_photo_preview" style="display:none;">
-							<strong>{phrase var='user.preview'}:</strong>
 							<div class="p_2">
 								<div style="position:relative; overflow:hidden; width:75px; height:75px; border:1px #000 solid;">
 									{$sProfileImage2}
@@ -68,9 +55,6 @@ defined('PHPFOX') or exit('NO DICE!');
 						<br style="clear:both;"/>
 						<form method="post" action="#" onsubmit="return $Core.photo_crop.save(this);">
 							{plugin call='user.template_controller_photo_5'}
-						{if $bIsProcess}
-							<div><input type="hidden" name="in_process" value="{$sCacheImage}" /></div>
-						{/if}		
 							<div><input type="hidden" name="val[x1]" value="" id="x1" /></div>
 							<div><input type="hidden" name="val[y1]" value="" id="y1" /></div>
 							<div><input type="hidden" name="val[x2]" value="" id="x2" /></div>
@@ -85,26 +69,26 @@ defined('PHPFOX') or exit('NO DICE!');
 						</form>			
 					</div>
 				{/if}
+				</div>
 			{/if}
+		</div>
 		{/if}
 		{plugin call='user.template_controller_photo_6'}
-	</div>
 	
 {if !$bIsProcess}
+<div class="block">
 	{plugin call='user.template_controller_photo_7'}
 	{if !empty($sProfileImage)}
-	<h3>{phrase var='user.upload_a_new_profile_picture'}</h3>
+	<div class="title">Select an Image</div>
 	{/if}
-	<div id="js_upload_photo_form">
+	<div class="block_content" id="js_upload_photo_form">
 		{plugin call='user.template_controller_photo_8'}
 		<div id="js_photo_form_holder">
 			{plugin call='user.template_controller_photo_9'}
 			<form method="post" action="{if $bIsRegistration}{url link='user.photo.register'}{else}{url link='user.photo'}{/if}" id="js_form" enctype="multipart/form-data" onsubmit="return startProcess(true, true);">		
 				<div class="table">
 					{plugin call='user.template_controller_photo_10'}
-					<div class="table_left">
-						<label for="image">{phrase var='user.select_an_image'}:</label>
-					</div>
+
 					<div class="table_right">				
 						<div id="js_progress_uploader"></div>
 						<div class="extra_info">
@@ -128,7 +112,8 @@ defined('PHPFOX') or exit('NO DICE!');
 				{phrase var='core.uploading'}
 			</span>
 		</div>
-	</div>	
+	</div>
+</div>
 {/if}	
 	
 </div>

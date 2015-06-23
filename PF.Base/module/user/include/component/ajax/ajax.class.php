@@ -742,8 +742,10 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 				 * 
 				 */
 					Phpfox::addMessage(Phpfox::getPhrase('user.profile_photo_successfully_updated'));
+
+					Phpfox::setCookie('recache_image', 'yes', (PHPFOX_TIME + 600));
 					
-					$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('user.photo') . '\';');
+					$this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('profile') . '\';');
 				/*
 				}
 				else 

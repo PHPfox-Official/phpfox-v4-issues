@@ -31,14 +31,22 @@ class User_Component_Controller_Photo extends Phpfox_Component
 		$bIsProcess = false;		
 		if ($this->request()->get('req3') == 'process')
 		{
+			$bIsProcess = true;
+			/*
 			if (($sStep = $this->request()->get('step')))
 			{
 				$bIsProcess = true;
 				$aCacheImage = unserialize(base64_decode(urldecode($sStep)));
 			}
+			*/
 		}
+
+		if (isset($_SERVER['HTTP_X_FILE_NAME'])) {
+			define('PHPFOX_HTML5_PHOTO_UPLOAD', true);
+		}
+
 		(($sPlugin = Phpfox_Plugin::get('user.component_controller_photo_2')) ? eval($sPlugin) : false);
-		if ($aVals = $this->request()->getArray('val'))
+		if (($aVals = $this->request()->getArray('val')) || isset($_SERVER['HTTP_X_FILE_NAME']))
 		{
 			$aImage = Phpfox_File::instance()->load('image', array('jpg', 'gif', 'png'), (Phpfox::getUserParam('user.max_upload_size_profile_photo') === 0 ? null : (Phpfox::getUserParam('user.max_upload_size_profile_photo') / 1024)));
 			
@@ -70,13 +78,14 @@ class User_Component_Controller_Photo extends Phpfox_Component
 						exit;
 					}
 					else 
-					{				
+					{
 						if (Phpfox::getUserParam('user.force_cropping_tool_for_photos'))
 						{					
 							$this->url()->send('user.photo.process', array('step' => urlencode(base64_encode(serialize($aImage)))));
 						}
 						else 
 						{
+							/*
 							if ($bIsRegistration === true)
 							{
 								$this->url()->send($sNextUrl, null, Phpfox::getPhrase('user.profile_photo_successfully_uploaded'));
@@ -85,6 +94,13 @@ class User_Component_Controller_Photo extends Phpfox_Component
 							{
 								$this->url()->send('user.photo', null, Phpfox::getPhrase('user.profile_photo_successfully_uploaded'));
 							}
+							*/
+							if (isset($_SERVER['HTTP_X_FILE_NAME'])) {
+								return [
+									'redirect' => $this->url()->makeUrl('user.photo.process')
+								];
+							}
+							$this->url()->send('user.photo.process');
 						}						
 					}
 				}			
@@ -96,20 +112,21 @@ class User_Component_Controller_Photo extends Phpfox_Component
 			exit;
 		}		
 		
-		$sImage = Phpfox::getLib('image.helper')->display(array(
+		$sImage = Phpfox_Image_Helper::instance()->display(array(
 				'server_id' => Phpfox::getUserBy('server_id'),
 				'title' => Phpfox::getUserBy('full_name'),
 				'path' => 'core.url_user',
-				'file' => ($bIsProcess === true ? $aCacheImage['user_image'] : Phpfox::getUserBy('user_image')),
+				'file' => Phpfox::getUserBy('user_image'),
 				'suffix' => '',
-				'max_width' => 500,
-				'max_height' => 500,
+				'max_width' => 400,
+				'max_height' => 400,
 				'no_default' => true,
 				'time_stamp' => true,
 				'id' => 'user_profile_photo',				
 				'class' => 'border'
 			)
 		);
+		// $sImage = str_replace('<img', '<img ', $sImage);
 		/*
 		$sImageThumb = Phpfox::getLib('image.helper')->display(array(
 				'server_id' => Phpfox::getUserBy('server_id'),
@@ -137,7 +154,29 @@ class User_Component_Controller_Photo extends Phpfox_Component
 				'time_stamp' => true,
 				'class' => 'border'
 			)
-		);		
+		);
+
+
+		if ((Phpfox::getUserBy('user_image') && !empty($sImage)))
+		{
+			preg_match("/src=\"(.*?)\"/", $sImage, $aMatches);
+			list($width, $height) = @getimagesize($aMatches[1]);
+			list($newHeight, $newWidth) = Phpfox_Image_Helper::instance()->getNewSize([$aMatches[1]], 400, 400, $width, $height);
+
+			$sImage = str_replace('<img', '<img width="' . $newWidth . '" height="' . $newHeight . '" ', $sImage);
+			$this->template()->setHeader('cache', array(
+					'jquery/plugin/jquery.crop.js' => 'static_script',
+					'jquery/plugin/imgnotes/jquery.imgareaselect.js' => 'static_script',
+					'imgareaselect-default.css' => 'style_css',
+					'<script type="text/javascript">$Behavior.initPhotoCrop = function(){$Core.photo_crop.init({width: 75, height: 75, image_width: ' . $newWidth . ', image_height: ' . $newHeight . '}); };</script>'
+				)
+			)
+				->assign(array(
+						'iImageHeight' => $newHeight,
+						'iImageWidth' => $newWidth
+					)
+				);
+		}
 		
 		$sPageTitle = ($bIsRegistration ? Phpfox::getPhrase('user.upload_profile_picture') : Phpfox::getPhrase('user.edit_profile_picture'));		
 		(($sPlugin = Phpfox_Plugin::get('user.component_controller_photo_3')) ? eval($sPlugin) : false);
@@ -161,41 +200,10 @@ class User_Component_Controller_Photo extends Phpfox_Component
 					'bIsRegistration' => $bIsRegistration,
 					'sNextUrl' => $this->url()->makeUrl($sNextUrl),
 					'bIsProcess' => $bIsProcess,
-					'sCacheImage' => ($bIsProcess ? $aCacheImage['user_image'] : ''),
+					// 'sCacheImage' => ($bIsProcess ? $aCacheImage['user_image'] : ''),
 					'iMaxFileSize' => (Phpfox::getUserParam('user.max_upload_size_profile_photo') === 0 ? null : ((Phpfox::getUserParam('user.max_upload_size_profile_photo') / 1024) * 1048576))
 				)
 			);
-		
-		if ((Phpfox::getUserBy('user_image') && !empty($sImage)) || ($bIsProcess === true && !empty($sImage)))
-		{
-			preg_match("/height=\"(.*?)\" width=\"(.*?)\"/", $sImage, $aMatches);
-			if (!isset($aMatches[1]))
-			{
-				preg_match("/src=\"(.*?)\"/", $sImage, $aMatches);
-
-				$aImage = getimagesize($aMatches[1]);
-				$iHeight = $aImage[1];
-				$iWidth = $aImage[0];
-			}
-			else
-			{
-				$iHeight = $aMatches[1];
-				$iWidth = $aMatches[2];
-			}
-			
-			$this->template()->setHeader('cache', array(
-						'jquery/plugin/jquery.crop.js' => 'static_script',
-						'jquery/plugin/imgnotes/jquery.imgareaselect.js' => 'static_script',
-						'imgareaselect-default.css' => 'style_css',
-						'<script type="text/javascript">$Behavior.initPhotoCrop = function(){$Core.photo_crop.init({width: 75, height: 75, image_width: ' . $iWidth . ', image_height: ' . $iHeight . '}); };</script>'		
-					)
-				)		
-				->assign(array(
-						'iImageHeight' => $iHeight,
-						'iImageWidth' => $iWidth
-					)
-				);
-		}
 	}
 }
 

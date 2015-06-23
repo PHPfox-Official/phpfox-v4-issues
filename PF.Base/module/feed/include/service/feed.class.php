@@ -1293,9 +1293,16 @@ class Feed_Service_Feed extends Phpfox_Service
 			return false;
 		}
 
-		$isApp = false;
-		if (!Phpfox::isModule($aRow['type_id'])) {
+		/*
+		if (($aRow['type_id'])) {
 			$isApp = true;
+		}
+		*/
+		try {
+			(new Core\App())->get($aRow['type_id']);
+			$isApp = true;
+		} catch (Exception $e) {
+			$isApp = false;
 		}
 
 		if (!$isApp && !Phpfox::hasCallback($aRow['type_id'], 'getActivityFeed'))

@@ -52,9 +52,19 @@
 
 	> .p_4 {
 		display:none;
+
+		input {
+			position:absolute;
+			top:0px;
+			left:0px;
+			right:0px;
+			height:100%;
+			opacity:0;
+			z-index:2;
+		}
 	}
 
-	> .p_4 > a {
+	> .p_4 > span {
 		display:block;
 		position:absolute;
 		overflow:hidden;
@@ -65,9 +75,10 @@
 		right:0px;
 		left:0px;
 		bottom:0px;
+		z-index:1;
 	}
 
-	> .p_4 > a:before {
+	> .p_4 > span:before {
 		.fa('\f093');
 		position:absolute;
 		left:50%;
@@ -327,13 +338,25 @@
 .noHeader(page_profile_index);
 
 .profile_image_holder {
+	i {
+		position:absolute;
+		left:50%;
+		top:50%;
+		font-size:30px;
+		margin-left:-15px;
+		margin-top:-15px;
+	}
+}
+
+/*
+.profile_image_holder {
 	position:absolute;
 	top:0px;
 	left:0px;
 	right:0px;
 	bottom:0px;
 
-	a, a:hover {
+	span {
 		display:block;
 		position:absolute;
 		top:0px;
@@ -347,3 +370,4 @@
 		}
 	}
 }
+*/

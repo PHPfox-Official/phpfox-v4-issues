@@ -50,6 +50,10 @@
 
 .photos_row img { display:block; width:100%; height:auto; }
 
+#page_profile_index #container {
+	width:auto;
+}
+
 #page_photo_index {
 	.mosaicflow_load {
 		min-height:1000px;
@@ -421,5 +425,19 @@
 			max-height:90px;
 			border:2px lighten(#000, 20%) solid;
 		}
+	}
+}
+
+#js_crop_tool {
+	background:darken(@blockBg, 10%);
+}
+
+#js_main_photo {
+	background:darken(@blockBg, 10%);
+	text-align:center;
+	padding:20px;
+
+	img {
+		/*max-width:400px;*/
 	}
 }

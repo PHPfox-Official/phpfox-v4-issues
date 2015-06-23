@@ -13,7 +13,7 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 {if !PHPFOX_IS_AJAX}
 <div class="main_search_bar">
-	<form method="post" action="{url link='search'}">
+	<form method="get" action="{url link='search'}">
 		<input type="text" name="q" value="{if isset($sQuery)}{$sQuery|clean}{/if}" class="main_search_bar_input" /><input type="submit" value="Search" class="main_search_bar_button" />
 	</form>
 </div>

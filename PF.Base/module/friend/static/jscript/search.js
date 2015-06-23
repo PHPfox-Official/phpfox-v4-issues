@@ -176,7 +176,7 @@ $Core.searchFriendsInput =
 		
 		if ($iFound)
 		{		
-			if (this._get('global_search')){
+			if (this._get('global_search')) {
 				$sHtml += '<li><a href="#" class="holder_notify_drop_link" onclick="$(this).parents(\'form:first\').submit(); return false;">' + oTranslations['friend.show_more_results_for_search_term'].replace('{search_term}',htmlspecialchars($oObj.value)) + '</a></li>';
 			}
 
@@ -184,7 +184,11 @@ $Core.searchFriendsInput =
 		}
 		else
 		{
-			obj.html('').hide();
+			if (this._get('global_search')) {
+				obj.html('<div class="js_temp_friend_search_form_holder"><div class="message">No results found.</div><ul><li><a href="#" class="holder_notify_drop_link" onclick="$(\'#header_search_form\').submit(); return false;">Try a global search...</a></li></ul></div>').show();
+			} else {
+				obj.html('').hide();
+			}
 		}
 	},
 	

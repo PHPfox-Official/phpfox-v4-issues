@@ -365,3 +365,54 @@ h3 {
 		padding-top:10px;
 	}
 }
+
+#page_search_index {
+	.main_search_bar {
+		position:relative;
+		margin:0px;
+		border:0px;
+	}
+
+	.main_search_bar_button {
+		position:absolute;
+		right:5px;
+		top:7px;
+	}
+
+	.main_search_bar_input {
+		width:100%;
+		padding:10px 0px;
+		text-indent:10px;
+	}
+}
+
+a.global_view_more, a.global_view_more:hover {
+	.reset();
+
+	background:transparent;
+	border:1px darken(@bodyBg, 8%) solid;
+	padding:15px 0px;
+	text-align:center;
+	display:block;
+	border-radius:30px;
+	color:lighten(@textColor, 6%);
+	font-size:@fontSizeBase + 2;
+	font-weight:300;
+	transition:@transition;
+	margin:20px 0px;
+}
+
+a.global_view_more:hover {
+	border-color:@brandPrimary;
+	color:darken(@textColor, 40%);
+}
+
+.search_result {
+	background:@blockBg;
+	padding:@blockContentPadding;
+}
+
+.search_result_image {
+	top:10px;
+	left:10px;
+}

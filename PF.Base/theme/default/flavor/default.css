@@ -2437,6 +2437,62 @@ h3 {
 #page_core_index-member #main {
   padding-top: 10px;
 }
+#page_search_index .main_search_bar {
+  position: relative;
+  margin: 0px;
+  border: 0px;
+}
+#page_search_index .main_search_bar_button {
+  position: absolute;
+  right: 5px;
+  top: 7px;
+}
+#page_search_index .main_search_bar_input {
+  width: 100%;
+  padding: 10px 0px;
+  text-indent: 10px;
+}
+a.global_view_more,
+a.global_view_more:hover {
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+  background: transparent;
+  border: 1px #d1d1d1 solid;
+  padding: 15px 0px;
+  text-align: center;
+  display: block;
+  border-radius: 30px;
+  color: #8f8f8f;
+  font-size: 16px;
+  font-weight: 300;
+  transition: all 0.5s ease;
+  margin: 20px 0px;
+}
+a.global_view_more:hover {
+  border-color: #298ada;
+  color: #1a1a1a;
+}
+.search_result {
+  background: #ffffff;
+  padding: 10px;
+}
+.search_result_image {
+  top: 10px;
+  left: 10px;
+}
 input[type="text"],
 input[type="email"],
 input[type="password"],

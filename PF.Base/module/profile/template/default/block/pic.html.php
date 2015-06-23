@@ -102,7 +102,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{if Phpfox::getUserId() == $aUser.user_id}
 		<ul>
 			<li>
-				<a href="#">
+				<a href="#" onclick="return false;">
 					<i class="fa fa-cog"></i>
 					<span>Manage</span>
 				</a>

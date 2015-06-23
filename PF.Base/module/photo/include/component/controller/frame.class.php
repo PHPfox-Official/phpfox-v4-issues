@@ -105,7 +105,7 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 				{
 					if (isset($aVals['is_cover_photo']))
 					{
-						echo 'window.parent.$(\'#js_cover_photo_iframe_loader_error\').html(\'<div class="error_message">' . implode('', Phpfox_Error::get()) . '</div>\');';
+						echo 'window.parent.$(\'#js_cover_photo_iframe_loader_error\').html(\'<div class="error_message">' . implode('', Phpfox_Error::get()) . '</div>\').show();';
 					}
 					else
 					{					
@@ -389,7 +389,7 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 				{
 					echo 'window.parent.$(\'#js_cover_photo_iframe_loader_upload\').hide();';
 					echo 'window.parent.$(\'#js_activity_feed_form\').show();';
-					echo 'window.parent.$(\'#js_cover_photo_iframe_loader_error\').html(\'<div class="error_message">' . implode('', Phpfox_Error::get()) . '</div>\');';
+					echo 'window.parent.$(\'#js_cover_photo_iframe_loader_error\').html(\'<div class="error_message">' . implode('', Phpfox_Error::get()) . '</div>\').show();';
 				}
 				else
 				{

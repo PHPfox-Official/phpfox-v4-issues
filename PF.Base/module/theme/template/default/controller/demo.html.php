@@ -47,7 +47,6 @@
 		var demoUrl = '{url link=''}';
 		{literal}
 		$Ready(function() {
-
 			var frame = $('<iframe></iframe>');
 
 			$('.demo-themes .themes a').click(function() {

@@ -76,7 +76,7 @@ class View {
 			\Phpfox_Module::instance()->getControllerTemplate();
 			$content = ob_get_contents(); ob_clean();
 
-			$this->_render['name'] = '@Base/layout.html';
+			$this->_render['name'] = '@Base/' . self::$template . '.html';
 			$this->_render['params']['content'] = $content;
 		}
 
@@ -112,6 +112,6 @@ class View {
 		$params['html'] = 'xmlns="http://www.w3.org/1999/xhtml" dir="' . $locale['direction'] . '" lang="' . $locale['language_code'] . '"';
 
 		// return $this->_env->render($this->_render['name'], $params);
-		return $this->_env->render('@Theme/layout.html', $params);
+		return $this->_env->render('@Theme/' . self::$template . '.html', $params);
 	}
 }

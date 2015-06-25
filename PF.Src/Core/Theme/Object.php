@@ -228,7 +228,7 @@ class Object extends \Core\Objectify {
 
 			copy($file, $newFile);
 
-			p($file . ' -> ' . $newFile);
+			// p($file . ' -> ' . $newFile);
 			if ($File->extension($file) == 'less') {
 				$content = file_get_contents($newFile);
 				$content = str_replace('../../../', '../../../../PF.Base/', $content);
@@ -242,7 +242,7 @@ class Object extends \Core\Objectify {
 		$Db->update(':setting', array('value_actual' => ((int) \Phpfox::getParam('core.css_edit_id') + 1)), 'var_name = \'css_edit_id\'');
 		$Cache->del('setting');
 
-		exit;
+		// exit;
 
 		return true;
 	}

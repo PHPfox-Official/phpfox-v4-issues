@@ -26,6 +26,9 @@
 					<li><a href="{url link='admincp.theme.flavor' theme=$theme.theme_id}" class="popup">New Flavor</a></li>
 					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id export=1}" target="_blank" class="no_ajax">Export theme</a></li>
 					<li><a href="{url link='admincp.theme.delete' id=$theme.theme_id sure='yes'}" class="sJsConfirm is_delete">Remove theme</a></li>
+					{if $theme.name == 'Neutron'}
+					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id merge='yes'}" class="ajax">Revert theme</a></li>
+					{/if}
 				</ul>
 			</div>
 		</div>

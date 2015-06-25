@@ -13,6 +13,8 @@ namespace Core;
  * @method Db where(array $where)
  * @method Db limit($limit)
  * @method Db all()
+ * @method insert($table, array $set)
+ * @method update($table, array $set, array $where)
  */
 class Db {
 	private static $_object = null;

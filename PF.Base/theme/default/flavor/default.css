@@ -3737,6 +3737,7 @@ div#right div.menu ul li.active {
 #content #js_block_border_user_login-block .bottom,
 #header_menu #js_block_border_user_login-block .bottom {
   background: transparent;
+  padding: 0px 10px;
 }
 #left #js_block_border_user_login-block .bottom > ul > li a,
 #right #js_block_border_user_login-block .bottom > ul > li a,

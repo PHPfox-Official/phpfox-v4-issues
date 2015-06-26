@@ -13,6 +13,10 @@ class App {
 		}
 
 		$base = PHPFOX_DIR_SITE . 'Apps/';
+		if (!is_dir($base)) {
+			return;
+		}
+
 		foreach (scandir($base) as $app) {
 			if ($app == '.' || $app == '..') {
 				continue;

@@ -1095,26 +1095,28 @@ class User_Service_Process extends Phpfox_Service
 		}
 		
 		$sStatus = $this->preParse()->prepare($aVals['user_status']);
-		
-		$aUpdates = $this->database()->select('content')
-			->from(Phpfox::getT('user_status'))
-			->where('user_id = ' . (int) Phpfox::getUserId())
-			->limit(Phpfox::getParam('user.check_status_updates'))
-			->order('time_stamp DESC')
-			->execute('getSlaveRows');
-			
-		$iReplications = 0;
-		foreach ($aUpdates as $aUpdate)
-		{
-			if ($aUpdate['content'] == $sStatus)
+
+		if (!defined('PHPFOX_INSTALLER')) {
+			$aUpdates = $this->database()->select('content')
+				->from(Phpfox::getT('user_status'))
+				->where('user_id = ' . (int) Phpfox::getUserId())
+				->limit(Phpfox::getParam('user.check_status_updates'))
+				->order('time_stamp DESC')
+				->execute('getSlaveRows');
+
+			$iReplications = 0;
+			foreach ($aUpdates as $aUpdate)
 			{
-				$iReplications++;
+				if ($aUpdate['content'] == $sStatus)
+				{
+					$iReplications++;
+				}
 			}
-		}
-			
-		if ($iReplications > 0)
-		{
-			return Phpfox_Error::set(Phpfox::getPhrase('user.you_have_already_added_this_recently_try_adding_something_else'));			
+
+			if ($iReplications > 0)
+			{
+				return Phpfox_Error::set(Phpfox::getPhrase('user.you_have_already_added_this_recently_try_adding_something_else'));
+			}
 		}
 		
 		if (empty($aVals['privacy']))
@@ -1164,7 +1166,7 @@ class User_Service_Process extends Phpfox_Service
 
 		(($sPlugin = Phpfox_Plugin::get('user.service_process_add_updatestatus')) ? eval($sPlugin) : false);		
 		
-		$iReturnId = Phpfox::getService('feed.process')->add('user_status', $iStatusId, $aVals['privacy'], $aVals['privacy_comment'], 0, null, 0, (isset($aVals['parent_feed_id']) ? $aVals['parent_feed_id'] : 0), (isset($aVals['parent_module_id']) ? $aVals['parent_module_id'] : null));
+		$iReturnId = Feed_Service_Process::instance()->add('user_status', $iStatusId, $aVals['privacy'], $aVals['privacy_comment'], 0, null, 0, (isset($aVals['parent_feed_id']) ? $aVals['parent_feed_id'] : 0), (isset($aVals['parent_module_id']) ? $aVals['parent_module_id'] : null));
 		
 		(($sPlugin = Phpfox_Plugin::get('user.service_process_add_updatestatus_end')) ? eval($sPlugin) : false);
 		

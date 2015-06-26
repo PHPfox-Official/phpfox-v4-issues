@@ -273,6 +273,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'Attachments' => 'admincp.attachment',
 				'Payment Gateways' => 'admincp.api.gateway',
 				'Language' => 'admincp.language',
+				'Short URLs' => 'admincp.setting.url',
 				// 'admincp.menu_tools_emoticon_package' => 'admincp.emoticon.package',
 				/*
 				'Contact Us' => $this->url()->makeUrl('admincp.setting.edit', ['module-id' => 'contact']),
@@ -285,7 +286,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'Cancellation Options' => 'admincp.user.cancellations.manage',
 				'Subscription Packages' => 'admincp.subscribe',
 				'E-Gifts' => 'admincp.egift.categories',
-				'Registration' => $this->url()->makeUrl('admincp.setting.edit', ['group-id' => 'registration'])
+				'Registration' => $this->url()->makeUrl('admincp.setting.edit', ['group-id' => 'registration']),
 				/*
 				'SEO',
 				'admincp.custom_elements' => 'admincp.seo.meta',

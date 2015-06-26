@@ -722,14 +722,18 @@ class Phpfox_Installer
 			$errors[] = 'No database driver found.';
 		}
 
-		$dirs = [PHPFOX_DIR_FILE, PHPFOX_DIR_SITE];
+		$parent = dirname(dirname(dirname(dirname(__FILE__))));
+		$dirs = [PHPFOX_DIR, PHPFOX_DIR_SITE];
 		foreach ($dirs as $dir) {
 			if (@!is_writable($dir)) {
-				$dir = str_replace(PHPFOX_DIR, '', $dir);
-				$dir = str_replace('../', '', $dir);
+				$dir = str_replace($parent, '', $dir);
+				$dir = str_replace('/PF.Base/../', '/', $dir);
+				// $dir = str_replace('../', '', $dir);
+				/*
 				if (substr($dir, 0, 4) == 'file') {
 					$dir = 'PF.Base/' . $dir;
 				}
+				*/
 
 				$errors[] = "Directory needs to be writable: {$dir}";
 			}
@@ -754,8 +758,8 @@ class Phpfox_Installer
 			}
 		}
 
-		if (!is_dir(PHPFOX_DIR_SITE . 'apps/')) {
-			mkdir(PHPFOX_DIR_SITE . 'apps/');
+		if (!is_dir(PHPFOX_DIR_SITE . 'Apps/')) {
+			mkdir(PHPFOX_DIR_SITE . 'Apps/');
 		}
 		if (!is_dir(PHPFOX_DIR_SITE . 'themes/')) {
 			mkdir(PHPFOX_DIR_SITE . 'themes/');
@@ -1240,14 +1244,20 @@ class Phpfox_Installer
 			{				
 				if (($iUserId = Phpfox::getService('user.process')->add($aVals, ADMIN_USER_ID)))
 				{
-					list($bLogin, $aUser) = Phpfox::getService('user.auth')->login($aVals['email'], $aVals['password'], 'email');
+					list($bLogin, $aUser) = User_Service_Auth::instance()->login($aVals['email'], $aVals['password'], true, 'email');
 					if ($bLogin || isset($aVals['skip_user_login']))
-					{						
+					{
+						define('PHPFOX_FEED_NO_CHECK', true);
+						User_Service_Auth::instance()->setUserId($iUserId);
 						$this->_db()->update(Phpfox::getT('user_field'), array('in_admincp' => PHPFOX_TIME), 'user_id = ' . $iUserId);
 						$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => Phpfox::getVersion()), 'var_name = \'phpfox_version\'');
 						
 						$this->_video(true);
-						
+
+						User_Service_Process::instance()->updateStatus([
+							'user_status' => 'Hello World!'
+						]);
+
 						// $this->_pass('completed');
 						return [
 							'next' => 'completed'

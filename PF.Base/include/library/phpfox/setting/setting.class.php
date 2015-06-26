@@ -163,6 +163,13 @@ class Phpfox_Setting
 			$_CONF['core.folder'] = '/';				
 		}
 
+		if (!defined('PHPFOX_INSTALLER')
+			&& $_CONF['core.url_rewrite'] == '1'
+			&& !file_exists(PHPFOX_DIR_SETTINGS . 'rewrite.sett.php')
+		) {
+			$_CONF['core.url_rewrite'] = '2';
+		}
+
 		if (!defined('PHPFOX_INSTALLER') && $_CONF['core.url_rewrite'] == '2') {
 			$_CONF['core.folder'] = $_CONF['core.folder'] . 'index.php/';
 		}

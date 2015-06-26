@@ -30,21 +30,4 @@
 			<value />
 		</menu>
 	</menus>
-	<blocks>
-		<block>
-			<type_id>2</type_id>
-			<m_connection>core.index-member</m_connection>
-			<module_id>core</module_id>
-			<component />
-			<location>1</location>
-			<is_active>1</is_active>
-			<ordering>11</ordering>
-			<disallow_access />
-			<can_move>0</can_move>
-			<title>Test Block</title>
-			<source_code>This is a test</source_code>
-			<source_parsed><![CDATA[<?php /* Cached: June 18, 2015, 10:38 am */ ?>
-This is a test]]></source_parsed>
-		</block>
-	</blocks>
 </upgrade>

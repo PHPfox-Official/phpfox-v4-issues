@@ -3442,8 +3442,10 @@ div#right div.menu ul li.active {
 #pf_admin > a:hover i {
   font-size: 16px;
   position: absolute;
-  left: 12px;
+  left: 0px;
   top: 7px;
+  right: 0px;
+  text-align: center;
   color: #808080;
 }
 #pf_admin > a span,

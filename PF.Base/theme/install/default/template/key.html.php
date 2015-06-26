@@ -17,7 +17,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	<a href="#" class="premium"><i class="fa fa-diamond"></i>Premium</a>
 	<a href="#" class="developers"><i class="fa fa-code"></i>Developers</a>
-	<a href="#" class="trial"><i class="fa fa-star"></i>Trial</a>
+	{* <a href="#" class="trial"><i class="fa fa-star"></i>Trial</a> *}
 </div>
 <div id="client_details" style="display:none;">
 	<div class="table_header">

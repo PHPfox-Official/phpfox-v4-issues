@@ -13,6 +13,7 @@ defined('PHPFOX') or exit('NO DICE!');
 $_CONF['core.http'] = 'https://';
 $_CONF['core.https'] = 'http://';
 
+$_CONF['core.folder_original'] = str_replace('/index.php/', '/', $_CONF['core.folder']);
 $_CONF['core.path'] = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? 'https' : 'http') . '://' . $_CONF['core.host'] . $_CONF['core.folder'];
 
 $_CONF['core.dir_file'] = PHPFOX_DIR . 'file' . PHPFOX_DS;

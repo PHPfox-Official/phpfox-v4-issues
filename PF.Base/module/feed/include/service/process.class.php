@@ -137,11 +137,13 @@ class Feed_Service_Process extends Phpfox_Service
 		{
 			eval($sPlugin);
 		}
-		
-		if (!$isApp && ((!Phpfox::isUser() && $this->_bAllowGuest === false) || (defined('PHPFOX_SKIP_FEED') && PHPFOX_SKIP_FEED)))
-		{
-			return false;
-		}		
+
+		if (!defined('PHPFOX_FEED_NO_CHECK')) {
+			if (!$isApp && ((!Phpfox::isUser() && $this->_bAllowGuest === false) || (defined('PHPFOX_SKIP_FEED') && PHPFOX_SKIP_FEED)))
+			{
+				return false;
+			}
+		}
 		
 		if ($iParentUserId === null)
         {
@@ -150,7 +152,7 @@ class Feed_Service_Process extends Phpfox_Service
 		
 		$iNewTimeStamp = PHPFOX_TIME;
 		$iNewTimeStampCheck = Phpfox::getLib('date')->mktime(0, 0, 0, date('n', PHPFOX_TIME), date('j', PHPFOX_TIME), date('Y', PHPFOX_TIME));
-		if (Phpfox::getParam('feed.can_add_past_dates'))
+		if (!defined('PHPFOX_INSTALLER') && Phpfox::getParam('feed.can_add_past_dates'))
 		{
 			$aVals = (array) Phpfox_Request::instance()->getArray('val');
 			if (PHPFOX_IS_AJAX)
@@ -194,7 +196,7 @@ class Feed_Service_Process extends Phpfox_Service
 			unset($aInsert['content']);
 		}
 		
-		if (!$this->_bIsCallback && !Phpfox::getParam('feed.add_feed_for_comments') && preg_match('/^(.*)_comment$/i', $sType))
+		if (!defined('PHPFOX_INSTALLER') && !$this->_bIsCallback && !Phpfox::getParam('feed.add_feed_for_comments') && preg_match('/^(.*)_comment$/i', $sType))
 		{
 			$aInsert['feed_reference'] = true;
 		}		

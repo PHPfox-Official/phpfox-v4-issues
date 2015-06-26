@@ -238,12 +238,6 @@ Site Name</setting>
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="2" m_connection="core.index-member" module_id="core" component="" location="1" is_active="1" ordering="11" disallow_access="" can_move="0">
-			<title>Test Block</title>
-			<source_code>This is a test</source_code>
-			<source_parsed><![CDATA[<?php /* Cached: June 18, 2015, 10:38 am */ ?>
-This is a test]]></source_parsed>
-		</block>
 	</blocks>
 	<hooks>
 		<hook module_id="core" hook_type="component" module="core" call_name="core.component_message_clean" added="1231838390" version_id="2.0.0alpha1" />

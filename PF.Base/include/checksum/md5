@@ -1,5 +1,5 @@
 b41e07ec10d99cc5f9a83db7c3488e6e composer.lock
-0224af08e126b5018ff6c1afbcc99f71 include/checksum/md5
+7498f88e3a56b929e2c60396e773b9d0 include/checksum/md5
 d7f7e3d45fa8602bec28e7a51c902110 include/cron/exec.php
 68b329da9893e34099c7d8ad5cb9c940 include/cron/index.html
 68b329da9893e34099c7d8ad5cb9c940 include/index.html
@@ -939,7 +939,7 @@ dea6e51059432db643d55956c4242180 module/core/include/service/redirect/redirect.c
 fc4846ca8ebfc83e773abcff54c6c7ae module/core/include/service/stat/process.class.php
 317b265d253d6addfe6bdb6fa0778376 module/core/include/service/stat/stat.class.php
 9c07534117d0ad62403dafcaa1958312 module/core/include/service/system.class.php
-01cbe777d2c0b8042d8a255175b18b93 module/core/install/phpfox.xml.php
+8123e8af06e9a27327489e03d3dc1169 module/core/install/phpfox.xml.php
 67c058418ca8339187c01ea9df1b5a27 module/core/install/version/2.0.0.xml.php
 5a755059e3af2a8cd1833654a383c1e5 module/core/install/version/2.0.0rc10.xml.php
 6afdd5f3fb2b4e9eed0d69ae08d45299 module/core/install/version/2.0.0rc11.xml.php
@@ -1002,7 +1002,7 @@ be4fb9cd9c59e506cc4d7dc1518383b1 module/core/install/version/3.7.0rc1.xml.php
 7a583478c105ad620b50ea9ff53d75e8 module/core/install/version/3.7.6beta1.xml.php
 b9487e841b4ddd37c77129914eb55539 module/core/install/version/3.7.6rc1.xml.php
 7101d86b05889ded656186b5225cf039 module/core/install/version/4.0.0rc1.xml.php
-c6c4ad6a31208fe104e32ef0937ac02a module/core/install/version/4.0.0rc2.xml.php
+83dc940d7d9c1cec54ff8b60205c6f1b module/core/install/version/4.0.0rc2.xml.php
 a08f5814ac2ee1db9633fe8bfdcd337c module/core/install/version/install.xml.php
 83168e6cb289d732cc78427b51f93153 module/core/install/version/v3.phpfox
 68b329da9893e34099c7d8ad5cb9c940 module/core/static/css/index.html
@@ -4300,7 +4300,7 @@ f690df66f17db5a43f5b7d238e484d96 theme/install/default/template/completed.html.p
 988eba4ef9145c29ee12c6a5efd3a2e6 theme/install/default/template/configuration.html.php
 a25406fd7e78110f2e5bb8d9c2f88d94 theme/install/default/template/default.html.php
 65d860f90da92a494b8dd0206bb6b710 theme/install/default/template/final.html.php
-09530547393fbbec061558202df85286 theme/install/default/template/key.html.php
+bef75a66cb8a22bafd9e1878110d239e theme/install/default/template/key.html.php
 cb861100ed86b388a09980ae4f27bdf4 theme/install/default/template/license.html.php
 2b92d9f5a101ba649987757594c9de55 theme/install/default/template/requirement.html.php
 e0538fc06da7e716c92f597645bc525b theme/install/default/template/template.html.php

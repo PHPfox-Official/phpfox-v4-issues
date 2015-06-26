@@ -2508,6 +2508,10 @@ select {
   outline: 0px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
+  -webkit-appearance: none !important;
+}
+input.button {
+  -webkit-appearance: none !important;
 }
 select {
   text-indent: 0px;
@@ -4740,16 +4744,18 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
 ._block_menu_sub .header_display > a:hover {
   display: block;
   height: 40px;
+  line-height: 40px;
   width: 40px;
   font-size: 16px;
   background: transparent;
+  position: relative;
 }
-._block_menu_sub .header_display > a i:before,
-._block_menu_sub .header_display > a:hover i:before {
+._block_menu_sub .header_display > a i,
+._block_menu_sub .header_display > a:hover i {
   color: #7c7c7c;
   position: absolute;
   left: 10px;
-  top: -5px;
+  top: 12px;
 }
 ._block_menu_sub .header_display > a span,
 ._block_menu_sub .header_display > a:hover span {
@@ -5486,6 +5492,14 @@ a.not_active:hover {
   overflow: auto;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   border-left: 1px #e6e6e6 solid;
+}
+#panel > i {
+  font-size: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
 }
 .panel_is_active #panel {
   left: 200px;
@@ -8417,12 +8431,14 @@ ul.activity_feed_form_attach li a:hover {
   margin-bottom: 15px;
 }
 #page_poll_add .placeholder input[type="text"] {
+  background: #e6e6e6;
   text-indent: 32px;
+  padding: 15px 0px;
 }
 #page_poll_add .placeholder > div > span > i {
   position: absolute;
-  left: 8px;
-  top: 10px;
+  left: 15px;
+  top: 15px;
   color: #999999;
   font-size: 14px;
   cursor: move;
@@ -9937,6 +9953,10 @@ a.marketplace_contact_seller:hover {
   }
   .panel_is_active #panel {
     left: 35px;
+    -moz-transition: none;
+    -webkit-transition: none;
+    -o-transition: color 0 ease-in;
+    transition: none;
   }
   #logo,
   #logo:hover {
@@ -9956,8 +9976,58 @@ a.marketplace_contact_seller:hover {
   #panels {
     display: none;
   }
+  #page_profile_index #container {
+    margin-left: auto;
+  }
+  .panel_is_active #panel.is_feed {
+    margin: 0px !important;
+    top: 0px !important;
+    left: 0px !important;
+    right: 0px !important;
+    bottom: 0px !important;
+    z-index: 200000 !important;
+  }
 }
 @media (max-device-width: 700px), (max-width: 700px) {
+  .demo-buttons > ul li.tab {
+    display: none;
+  }
+  .themes article {
+    width: auto;
+  }
+  .profiles_banner {
+    min-height: 500px;
+  }
+  .profiles_banner .cover > img {
+    min-height: 500px;
+    background-size: contain;
+  }
+  .profiles_menu > ul {
+    left: 0px;
+  }
+  .profiles_info {
+    left: 20px;
+    text-align: center;
+  }
+  .profile_menu_is_fixed .profiles_menu {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    z-index: 1;
+  }
+  .profile_image {
+    top: auto;
+    bottom: 120px;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin-left: -50px;
+  }
+  #page_profile_index #container {
+    margin-left: 20px;
+  }
   .mobile_menu {
     display: block;
     width: 40px;
@@ -9999,12 +10069,15 @@ a.marketplace_contact_seller:hover {
     background: transparent;
     padding: 0px 0px 0px 8px;
   }
-  .breadcrumbs {
-    position: static;
-  }
-  .breadcrumbs_menu {
-    z-index: 1000;
-  }
+  /*
+	.breadcrumbs {
+		position:static;
+	}
+
+	.breadcrumbs_menu {
+		z-index:1000;
+	}
+	*/
   #main {
     margin-left: 0px;
   }
@@ -10016,9 +10089,12 @@ a.marketplace_contact_seller:hover {
     margin: auto;
     width: 95%;
   }
+  .breadcrumbs {
+    padding-left: 10px;
+  }
   .breadcrumbs > h1,
   .breadcrumbs ._block_menu_sub {
-    display: none;
+    /*display:none;*/
   }
   #header_search,
   #header_menu,
@@ -10059,5 +10135,29 @@ a.marketplace_contact_seller:hover {
     top: 40px;
     z-index: 600;
     bottom: 0px;
+  }
+  footer {
+    text-align: center;
+  }
+  footer .copyright {
+    position: static;
+    text-align: center;
+    margin-top: 20px;
+  }
+  #logo,
+  #logo {
+    display: none;
+  }
+  #page_user_browse #panels {
+    display: none !important;
+  }
+  footer {
+    padding-left: 20px;
+  }
+  .photos_stream {
+    left: 0px;
+  }
+  #page_profile_index #header {
+    display: block;
   }
 }

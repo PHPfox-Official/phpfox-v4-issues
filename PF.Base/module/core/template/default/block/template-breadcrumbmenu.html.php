@@ -23,9 +23,8 @@ defined('PHPFOX') or exit('NO DICE!');
 				</li>
 				{/foreach}
 			{else}
-				<li>
-					<a href="{url link='user.register'}">Register</a>
-				</li>
+				<li class="register_menu"><a href="{url link='user.register'}">Register</a></li>
+				<li class="login_menu"><a href="{url link='user.login'}">Login</a></li>
 			{/if}
 		</ul>
 	</div>

@@ -624,7 +624,8 @@ $Core.openPanel = function(obj) {
 		obj.addClass('active');
 		$('body').addClass('panel_is_active');
 
-		$('#panel').html('');
+		$('#panel').html('<i class="fa fa-spin fa-circle-o-notch"></i>');
+
 		$.ajax({
 			url: obj.data('open'),
 			contentType: 'application/json',

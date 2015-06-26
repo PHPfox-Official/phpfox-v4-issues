@@ -16,6 +16,7 @@
 		<menu module_id="core" parent_var_name="" m_connection="footer" var_name="menu_privacy" ordering="12" url_value="policy" version_id="2.0.0alpha1" disallow_access="" module="core" />
 		<menu module_id="core" parent_var_name="" m_connection="" var_name="menu_log_out" ordering="10" url_value="user.logout" version_id="2.0.0alpha1" disallow_access="a:1:{i:0;s:1:&quot;3&quot;;}" module="core" />
 		<menu module_id="core" parent_var_name="" m_connection="friend.index" var_name="menu_core_create_a_list_a441eadc1389cdf0ffe6c4f8babdd66e" ordering="101" url_value="#friend-add-list" version_id="3.0.0beta1" disallow_access="" module="core" />
+		<menu module_id="core" parent_var_name="" m_connection="main" var_name="menu_core_videos_fad58de7366495db4650cfefac2fcd61" ordering="130" url_value="/videos" version_id="4.0.0rc2" disallow_access="" module="core" mobile_icon="video-camera" />
 	</menus>
 	<setting_groups>
 		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_cookie">cookie</name>
@@ -236,6 +237,12 @@ Site Name</setting>
 			<title></title>
 			<source_code />
 			<source_parsed />
+		</block>
+		<block type_id="2" m_connection="core.index-member" module_id="core" component="" location="1" is_active="1" ordering="11" disallow_access="" can_move="0">
+			<title>Test Block</title>
+			<source_code>This is a test</source_code>
+			<source_parsed><![CDATA[<?php /* Cached: June 18, 2015, 10:38 am */ ?>
+This is a test]]></source_parsed>
 		</block>
 	</blocks>
 	<hooks>
@@ -1309,6 +1316,8 @@ http://htmlpurifier.org/live/configdoc/plain.html#HTML.Allowed</info>]]></phrase
 		<phrase module_id="core" version_id="4.0.0rc1" var_name="menu_core_551ebb6920d0a_d41d8cd98f00b204e9800998ecf8427e" added="1428077417" />
 		<phrase module_id="core" version_id="4.0.0rc1" var_name="menu_core_sample_d41d8cd98f00b204e9800998ecf8427e" added="1428077905">Sample</phrase>
 		<phrase module_id="core" version_id="4.0.0rc1" var_name="menu_core_my_new_sample_d41d8cd98f00b204e9800998ecf8427e" added="1428132724">My New Sample</phrase>
+		<phrase module_id="core" version_id="4.0.0rc2" var_name="menu_core_hello_world_fad58de7366495db4650cfefac2fcd61" added="1433244089">Hello World!</phrase>
+		<phrase module_id="core" version_id="4.0.0rc2" var_name="menu_core_videos_fad58de7366495db4650cfefac2fcd61" added="1434443481">Videos</phrase>
 	</phrases>
 	<pages>
 		<page module_id="core" is_phrase="1" has_bookmark="0" parse_php="1" add_view="0" full_size="1" title="core.about" title_url="about" added="1231338597">

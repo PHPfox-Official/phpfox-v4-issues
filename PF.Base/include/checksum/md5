@@ -1,5 +1,5 @@
 b41e07ec10d99cc5f9a83db7c3488e6e composer.lock
-7498f88e3a56b929e2c60396e773b9d0 include/checksum/md5
+c33bb9161726e130cd36e84b1c3783fb include/checksum/md5
 d7f7e3d45fa8602bec28e7a51c902110 include/cron/exec.php
 68b329da9893e34099c7d8ad5cb9c940 include/cron/index.html
 68b329da9893e34099c7d8ad5cb9c940 include/index.html
@@ -50,7 +50,7 @@ b601d00d7d8e8b382faa19f2c9bc796f include/library/phpfox/image/library/gd.class.p
 1b8d11d01dfb9948f4969ab7be9ce0c9 include/library/phpfox/mail/interface.class.php
 5d2bc1c379af42d1eeff44539b27624e include/library/phpfox/mail/mail.class.php
 e5996459eca40b423b0eed8beb3e2741 include/library/phpfox/module/component.class.php
-8a749ebe92e2df3a9241146b8a9d2b05 include/library/phpfox/module/module.class.php
+70a49aecded54e0cbbc12e1592d82f42 include/library/phpfox/module/module.class.php
 bddf59ff4bb4637b2f6c5e5ba35a6ee2 include/library/phpfox/module/service.class.php
 6a5c8fc25c243928deb37103f5804f05 include/library/phpfox/pager/pager.class.php
 2516e65af54d2cf1ab40286787a349a8 include/library/phpfox/parse/bbcode.class.php
@@ -75,7 +75,7 @@ b1a89ed84a26c577f506a20162a7ef4c include/library/phpfox/session/handler/memcache
 4d7927e038c4bdcc1d63a80916a9e455 include/library/phpfox/session/session.class.php
 eff29e521393c0c13a689a6e391d1c26 include/library/phpfox/session/storage/cookie.class.php
 01ad401b6551876f30b90f73616b950d include/library/phpfox/session/storage/session.class.php
-e3b40be6ad15b55a45435750e0b8d95f include/library/phpfox/setting/setting.class.php
+3a014b544f29bef36d388ab6fcb4a95b include/library/phpfox/setting/setting.class.php
 9921d0764bffee255a9e2c2faf9edb7a include/library/phpfox/spam/hash.class.php
 0945d5886cfa5c2f3fed116512fb2d8a include/library/phpfox/spam/spam.class.php
 b6f9a74a6759cda807973e2ff1fcc212 include/library/phpfox/template/cache.class.php
@@ -86,7 +86,7 @@ f591f204929776b3be48abf8a9ad72be include/library/phpfox/template/template.class.
 6aa7e3af70b7ec662dffb6b0bbbab20c include/library/phpfox/xml/parser.class.php
 68b329da9893e34099c7d8ad5cb9c940 include/plugin/index.html
 d2d6b0e976f398a7e262eeb748ad4f2f include/setting/cdn.sett.php.new
-f6ddf88b99a791d8447ad1d10961dd7f include/setting/common.sett.php
+01c61fad31f1b63120398aaf716a87de include/setting/common.sett.php
 ea49e5d42795bd04f48d6054eba7dc80 include/setting/constant.sett.php
 4202ad46b0802846a260e9c15204cd54 include/setting/htmlpurifier.sett.php.new
 68b329da9893e34099c7d8ad5cb9c940 include/setting/index.html
@@ -104,7 +104,7 @@ c5d6db6b9f31be65ffb8c99d98c1b5e3 include/xml/module.xml.php
 cb0a13cc863ccc792a1d30f827ee53cd include/xml/version.xml.php
 c18a5d2abb8af5913b114fcb41600500 less/alerts.less
 157f2a8e16f3d27f6256e4866b877c5e less/autoload.less
-32ffeac5f7e3dec9c825eca387ec4d02 less/blocks.less
+70e6afb99265913b09a10f9df0409828 less/blocks.less
 909597de02f5319ea82a7ca850031602 less/body.less
 84acf85b20afbcbf3d6aaabfc465c18b less/box.less
 7c99900d76ce61695bf677f0ca543e31 less/breadcrumb.less
@@ -131,11 +131,11 @@ ee5a35921dd4eaf438e6ee2e8a7e7c36 less/modules/poll.less
 7c9e9b8f3059ed1580dd334de1e75103 less/modules/quiz.less
 db8f69a679c80fc8fa8a9041524e5805 less/modules/report.less
 9fdd864c9ef85bed74ca25efbddc6b99 less/nano.less
-801e0abf6526df9e0909592c3d766f0d less/nav.less
+92b85ed50cd17c7c63720a8cd2cf5e11 less/nav.less
 5ef979bf1c4dbef5f9d556774b21034a less/noimage.less
 c35a6ff7e40780a42966005d14b82af0 less/notifications.less
 8b946a2357512627f4fda206c01300af less/pager.less
-771b2662d4a1995121b953b072a0e645 less/panel.less
+8504f58b8e5bce9a365484f31c9cdac5 less/panel.less
 f05cc9a58fa3aa18f5ead323c713ec6c less/reset.less
 0cef1657cf7801296c954578f245cc29 less/responsive.less
 f2dae62fa3077d3ba4e4afbe355913d9 less/rows.less
@@ -262,7 +262,7 @@ c1c39497e4db112b4b0d896448f5bf3a module/admincp/include/component/controller/che
 9ff088aefb43154e14d272adb3e894fe module/admincp/include/component/controller/component/index.class.php
 2d6325cc920a5ed71fffff3172332118 module/admincp/include/component/controller/element/edit.class.php
 1fcea7fca3967ef69a3215ea163f4b08 module/admincp/include/component/controller/foxporter/index.class.php
-e9781e2ccc3bee86dd85a4607fbf3923 module/admincp/include/component/controller/index.class.php
+da6decc0deea946bb805c22b7387b00d module/admincp/include/component/controller/index.class.php
 e44bf9dfb8170de0e76d684accca9487 module/admincp/include/component/controller/limit.class.php
 e23dd35e43f13ea64c6851cbefa81243 module/admincp/include/component/controller/login.class.php
 ba9fed7b2b22e7a4486e2158777f6d4e module/admincp/include/component/controller/logout.class.php
@@ -292,15 +292,16 @@ d995f725352b9152e4dc9ade158d5e82 module/admincp/include/component/controller/seo
 dd3ae116354bdad3b9b8ad274be70569 module/admincp/include/component/controller/setting/index.class.php
 9d3f7c6903c020a4e11f52134d5901dd module/admincp/include/component/controller/setting/missing.class.php
 4ce82c4acca9211d799d2249c7deaacb module/admincp/include/component/controller/setting/search.class.php
+670ced99c099f388c8e8e7e7d527fd4f module/admincp/include/component/controller/setting/url.class.php
 89f14599d656eecae3c06407929b60d0 module/admincp/include/component/controller/sql/backup.class.php
 1421ab35d64cef7dc6ae161cf43f7552 module/admincp/include/component/controller/sql/index.class.php
 3c5d36747b2db4164e51f3fe87bfde76 module/admincp/include/component/controller/sql/title.class.php
 f2f632543976daa71716f0f7d1b8c5ce module/admincp/include/component/controller/stat/add.class.php
 7411954ec5856ebde42a54bed2b99701 module/admincp/include/component/controller/stat/index.class.php
-a26a237144f674696a60147d9f039861 module/admincp/include/component/controller/store/index.class.php
+ec101b88f5d5ad12d82c42dc7cccc7d5 module/admincp/include/component/controller/store/index.class.php
 4dea84dc8e834363f0ab3d816371bad2 module/admincp/include/phpfox.class.php
 68b329da9893e34099c7d8ad5cb9c940 module/admincp/include/plugin/index.html
-b8a1cac39a4a3d6917e2e80ba4f85463 module/admincp/include/service/admincp.class.php
+3508b672d2be08861648b040da36ae72 module/admincp/include/service/admincp.class.php
 2e710d699e3d57e4f5835e8ed15b84b6 module/admincp/include/service/block/block.class.php
 cac1f42a45fa5655909d99b62397e5da module/admincp/include/service/block/process.class.php
 0fa098c66a8f4abad9b9e09a6255ba74 module/admincp/include/service/callback.class.php
@@ -377,7 +378,7 @@ c1bb291b193009df25e400139913d58b module/admincp/template/default/block/product/f
 2d1a7c81151fa9693ebd7cbb013339eb module/admincp/template/default/block/product/install.html.php
 05b16d7b93515cb2dc0f3007b92b5409 module/admincp/template/default/controller/app/add.html.php
 7807d243cf5e3c3b4fd50d94f75ca1ad module/admincp/template/default/controller/app/index.html.php
-6f3c89fac4479fcb8f7b87442aebe1c4 module/admincp/template/default/controller/apps/index.html.php
+91063d5c27bc809127dbf0e880545772 module/admincp/template/default/controller/apps/index.html.php
 dbe2125ba95f13e78ccb5f2b7b83bcfe module/admincp/template/default/controller/block/add.html.php
 17221c6a025215b4777f61117576eb97 module/admincp/template/default/controller/block/index.html.php
 18ab1b6ccedaa3616d996e55a0458e75 module/admincp/template/default/controller/checksum/modified.html.php
@@ -416,6 +417,7 @@ f993d10c00c21396b18a9165a5559f5f module/admincp/template/default/controller/sett
 fa176e4e0a79083137092008b0fb2ea4 module/admincp/template/default/controller/setting/index.html.php
 d40e5a6bd857ea83bc1d0eb85089f604 module/admincp/template/default/controller/setting/missing.html.php
 b67c20a5b1fdbba69db5c1bd9528021a module/admincp/template/default/controller/setting/search.html.php
+a336123b8ea45e90366be059db9e2aaf module/admincp/template/default/controller/setting/url.html.php
 7cf4184fe096887d468162dbf8816310 module/admincp/template/default/controller/sql/backup.html.php
 2c6b9d4ea6dedb431aa5f2205ce2a51c module/admincp/template/default/controller/sql/index.html.php
 62448568d1029ea804516302466792fb module/admincp/template/default/controller/sql/title.html.php
@@ -1472,7 +1474,7 @@ e98d1c8655b0c6045a81745cb06a8ed2 module/feed/include/component/controller/index.
 84ad67cf3a4efdac26ba248397eaedec module/feed/include/service/block.class.php
 43fcd2e6dd6b792185eb2df5de4760b3 module/feed/include/service/callback.class.php
 43e6b848a99d9853694d12814fb4471d module/feed/include/service/feed.class.php
-f37e6b0f6450d702e0c79efe9ca854a3 module/feed/include/service/process.class.php
+a995ef6fa282d35559fb6b63b8c2d79c module/feed/include/service/process.class.php
 1dbc381ea1a58d325f01b2dc58280c36 module/feed/install/phpfox.xml.php
 975913111472f2b83200c580f37b2905 module/feed/install/version/2.0.0.xml.php
 daf35ea7154af626566de93c90d7daa9 module/feed/install/version/2.0.0rc10.xml.php
@@ -1528,7 +1530,7 @@ ba338bb0fdceba3e0ebe76a5a843fc9b module/feed/install/version/3.7.5.xml.php
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/css/index.html
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/image/index.html
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/index.html
-bee48c509e511036bd9c86d0508576ad module/feed/static/jscript/feed.js
+734b1c9014b9cf20502d56fb9d712cd0 module/feed/static/jscript/feed.js
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/jscript/index.html
 f96b0c23ccb68cd01bff81eb9ad4b28e module/feed/static/jscript/places.js
 d3b06d937f63c243989ae8ddf8d1f4ec module/feed/template/default/block/checkin.html.php
@@ -3461,7 +3463,7 @@ d98f7e882f284c053bfc5905d6f2b76e module/theme/template/default/controller/adminc
 393f21317c455f58d25b10cde81e2643 module/theme/template/default/controller/admincp/export.html.php
 15475b1103cf5f7f629053f64fbc65e9 module/theme/template/default/controller/admincp/flavor.html.php
 35e012b813ee96bf6ed8b581ce691740 module/theme/template/default/controller/admincp/import.html.php
-7130f830147e1384f1a65f5c04165f42 module/theme/template/default/controller/admincp/index.html.php
+b7eb9fd5184a88a36e96b0039d0c5685 module/theme/template/default/controller/admincp/index.html.php
 f724b21c2a3fa5f903c747066e33a328 module/theme/template/default/controller/admincp/manage.html.php
 1280eede6b96be1d644987951f09ab30 module/theme/template/default/controller/admincp/style/add.html.php
 650f2a4b6172e84fb1272541f58d3f20 module/theme/template/default/controller/admincp/style/css/add.html.php
@@ -3586,7 +3588,7 @@ ca356ba5aa651f5acccc8671bcec5ef6 module/user/include/service/group/setting/proce
 d94a640aeb8bc840c45d03955eb27cf8 module/user/include/service/password.class.php
 14350b09eb5e4ff583b379c7acf88cc7 module/user/include/service/privacy/privacy.class.php
 f04a70f1fe02a2c9528767c50ef63713 module/user/include/service/privacy/process.class.php
-3eb35b649e39b2660e121049ab8f239f module/user/include/service/process.class.php
+c784bda0537c68c63fc9682d748f011b module/user/include/service/process.class.php
 41fda4a63940cc21074b6ec3ce25cf98 module/user/include/service/promotion/process.class.php
 8e3a05322a786915375ef69ae0b6a164 module/user/include/service/promotion/promotion.class.php
 91830a1b1b31b303f65465ab64731e2a module/user/include/service/register.class.php
@@ -3814,7 +3816,7 @@ b69ce49c28b7502c874fcbcc0a907f7b static/jscript/jquery/plugin/jquery.tablednd.js
 e26c63f07619e080175a83706d1690e2 static/jscript/jquery/plugin/star/jquery.rating.js
 3b7a845229f4041f5d8a18399f4c7357 static/jscript/jquery/plugin/star/star.gif
 4b0966ab2b6094a6da2532e84e5b1d69 static/jscript/jquery/ui.js
-a0f9d14e138b2a5279da59fdbd7afa48 static/jscript/main.js
+82e7a3af5197515217cbc233bb9eadc1 static/jscript/main.js
 1e3a10bd5f44fd8401499bfb98e0560b static/jscript/progress.js
 f4a16e068f6df3dc361d4534ffce0884 static/jscript/quick_edit.js
 43756c8e40ea182caef401f82b6ed054 static/jscript/search.js
@@ -3829,7 +3831,7 @@ dfbb941c7fb7f7737ce8a4b9e21062cb static/upgrade.html
 0fde334a45fec82d893ae1a9a73ced6d theme/adminpanel/default/style/default/css/colorpicker.css
 0211176698b92659fc1b4852d7392ba4 theme/adminpanel/default/style/default/css/comment.css
 b91cf83ac01ff78f83187bf86d697635 theme/adminpanel/default/style/default/css/common.css
-6a6f6ff8c20a141e4456dae33225beff theme/adminpanel/default/style/default/css/custom.css
+057ebbb8ca6b27b9c06f3a7191df5337 theme/adminpanel/default/style/default/css/custom.css
 2c805545b104901e941b520eaf1b8913 theme/adminpanel/default/style/default/css/custom.less
 fa5146e4f051db91657cd64e42e6eb2d theme/adminpanel/default/style/default/css/debug.css
 36ef4e8835caddde806838fffe797148 theme/adminpanel/default/style/default/css/drag.css
@@ -3903,7 +3905,7 @@ c33734a1bf58bec328ffa27872e96ae1 theme/adminpanel/default/style/default/image/mi
 ec018cba3e2e7cff51df9705f54b7f06 theme/adminpanel/default/style/default/image/misc/move.png
 97176626eef35c7beb4f05a850325042 theme/adminpanel/default/style/default/image/misc/page_white_edit.png
 c9b528b9541e127967eda62f79118ef0 theme/adminpanel/default/style/default/image/misc/tick.png
-cee96c00469c180263a74467562a2409 theme/adminpanel/default/style/default/jscript/menu.js
+1f59562fe21c8ca052a8b140be69bca1 theme/adminpanel/default/style/default/jscript/menu.js
 0cdf0d8a8c6c637bbb73587a7bbae8b3 theme/adminpanel/default/style/default/less/alerts.less
 9b899982aa4d99cee566ef98791f2e12 theme/adminpanel/default/style/default/less/blocks.less
 95d26b5bdb3f2fad3fe1fcfdfce737a6 theme/adminpanel/default/style/default/less/body.less
@@ -3912,8 +3914,8 @@ f08a19f18d0521dac8b30cacb667630d theme/adminpanel/default/style/default/less/col
 cec961ff314c52eb5f224abbf2f14a25 theme/adminpanel/default/style/default/less/forms.less
 4be2f8e659c93004204cb9c60ecb869b theme/adminpanel/default/style/default/less/login.less
 a29a9db50eb904bec8ec6baf51ee3b6d theme/adminpanel/default/style/default/less/mixins.less
-e44e10c5079e4b3f649ca8a513fe7b17 theme/adminpanel/default/style/default/less/modules/apps.less
-b6c62186fcaf62b04c63d07144d66179 theme/adminpanel/default/style/default/less/modules/theme.less
+88bc40880df1ffcc494651111e4ba3cb theme/adminpanel/default/style/default/less/modules/apps.less
+adf23edc6b266e474dd474709cb47aac theme/adminpanel/default/style/default/less/modules/theme.less
 ea95b2f0c527bf8a763f2ad83f42f159 theme/adminpanel/default/style/default/less/nano.less
 103d8679261fbaab801e74da706efb37 theme/adminpanel/default/style/default/less/variables.less
 6f35124cba442ebb2298073b4ffeb481 theme/adminpanel/default/template/blank.html.php
@@ -3924,7 +3926,7 @@ ea95b2f0c527bf8a763f2ad83f42f159 theme/adminpanel/default/style/default/less/nan
 1a5c794018106cbc0c3d6716c9a539b3 theme/adminpanel/default/template/template.html.php
 68b329da9893e34099c7d8ad5cb9c940 theme/adminpanel/index.html
 bbd5eb10fd276b38c7d235093c75441e theme/default/assets/autoload.js
-3d5737a1b7027f38ded8539a9aaa0ed4 theme/default/flavor/default.css
+33e48b7854cb1e6a585fa9fb6a76153c theme/default/flavor/default.css
 3ec1ef9bdb944951f3aa8452e8348aa4 theme/default/flavor/default.less
 157a7e23807a282544d184507d4b09a0 theme/default/html/blank.html
 3a7390617d19c66aadc0b05ccf338949 theme/default/html/layout.html

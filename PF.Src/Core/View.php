@@ -42,6 +42,10 @@ class View {
 		}));
 	}
 
+	public function env() {
+		return $this->_env;
+	}
+
 	public function loader() {
 		return $this->_loader;
 	}

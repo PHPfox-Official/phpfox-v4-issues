@@ -66,6 +66,18 @@ class Object extends \Core\Objectify {
 		}
 	}
 
+	/**
+	 * @param $object
+	 * @return Map
+	 */
+	public function map($object, $feed) {
+		if (substr($object, 0, 1) == '{') {
+			$object = json_decode($object);
+		}
+
+		return new Map($this, (object) $object, $this->map, $feed);
+	}
+
 	public function export() {
 		$zipFile = PHPFOX_DIR_FILE . 'static/' . uniqid() . '.zip';
 		$zipArchive = new \ZipArchive();

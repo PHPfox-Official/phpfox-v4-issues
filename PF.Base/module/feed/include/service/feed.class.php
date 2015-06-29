@@ -453,7 +453,7 @@ class Feed_Service_Feed extends Phpfox_Service
 				{				
 					$sMyFeeds = '1,2,3,4';
 					(($sPlugin = Phpfox_Plugin::get('feed.service_feed_get_buildquery')) ? eval($sPlugin) : '');
-					
+
 					if (Phpfox::isModule('friend'))
 					{
 						// Get my friends feeds
@@ -514,7 +514,7 @@ class Feed_Service_Feed extends Phpfox_Service
 						->order($sOrder)
 						->group('feed.feed_id')
 						->limit($iOffset, $iTotalFeeds)			
-						->execute('getSlaveRows');					
+						->execute('getSlaveRows');
 			}
 		}
 
@@ -1299,7 +1299,7 @@ class Feed_Service_Feed extends Phpfox_Service
 		}
 		*/
 		try {
-			(new Core\App())->get($aRow['type_id']);
+			$App = (new Core\App())->get($aRow['type_id']);
 			$isApp = true;
 		} catch (Exception $e) {
 			$isApp = false;
@@ -1333,11 +1333,13 @@ class Feed_Service_Feed extends Phpfox_Service
 			if ($isApp) {
 				// $aFeed = $aRow;
 				$aRow['item_id'] = $aRow['feed_id'];
+
+				$Map = $App->map($aRow['content'], $aRow);
 				$aFeed = [
 					'is_app' => true,
-					'feed_link' => '',
-					'feed_title' => '',
-					'app_content' => $aRow['content'],
+					'feed_link' => $Map->link,
+					'feed_title' =>$Map->title,
+					// 'app_content' => $aRow['content'],
 					'item_id' => $aRow['feed_id'],
 					'comment_type_id' => 'app',
 					'like_type_id' => 'app',
@@ -1345,6 +1347,10 @@ class Feed_Service_Feed extends Phpfox_Service
 					'total_comment' => (int) $this->database()->select('COUNT(*)')->from(':comment')->where(['type_id' => 'app', 'item_id' => $aRow['feed_id']])->execute('getField'),
 					'feed_is_liked' => ($this->database()->select('COUNT(*)')->from(':like')->where(['type_id' => 'app', 'item_id' => $aRow['feed_id'], 'user_id' => Phpfox::getUserId()])->execute('getField') ? true : false)
 				];
+
+				if ($Map->content) {
+					$aFeed['app_content'] = $Map->content;
+				}
 			}
 			else {
 				$aFeed = Phpfox::callback($aRow['type_id'] . '.getActivityFeed', $aRow, (isset($this->_aCallback['module']) ? $this->_aCallback : null));

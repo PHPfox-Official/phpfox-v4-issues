@@ -16,6 +16,7 @@
 	</section>
 
 	<section class="preview">
-		<a href="{url link='admincp.store' load='themes'}">Find More Themes</a>
+		<div class="phpfox_store_featured" data-type="themes"></div>
+		<a href="{url link='admincp.store' load='themes'}" class="phpfox_store_view_more">Find More Themes</a>
 	</section>
 </div>

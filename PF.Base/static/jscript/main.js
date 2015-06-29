@@ -792,6 +792,7 @@ $Behavior.globalInit = function()
 
 	$('.cancel_post').click(function() {
 		$('._load_is_feed').removeClass('active');
+		$('body').removeClass('panel_is_active');
 		$('#panel').hide();
 	});
 	$('.feed_form_textarea textarea').keydown(function() {

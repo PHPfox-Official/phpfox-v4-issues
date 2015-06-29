@@ -10,10 +10,15 @@ class Admincp_Component_Controller_Store_index extends Phpfox_Component {
 			exit;
 		}
 
+		$load = $this->request()->get('load');
+		$token = $response->token;
+		if (($open = $this->request()->get('open'))) {
+			$token .= '&search=' . $open;
+		}
 		$this->template()->setSectionTitle('<a href="' . $this->url()->current() . '">Store</a>');
 		$this->template()->assign([
-			'token' => $response->token,
-			'load' => $this->request()->get('load')
+			'token' => $token,
+			'load' => $load
 		]);
 	}
 }

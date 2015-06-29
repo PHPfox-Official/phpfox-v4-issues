@@ -33,6 +33,7 @@
 		</section>
 
 		<section class="preview">
+			{*
 			<div>
 				{if $aNewProducts}
 					<h1>Apps Pending Installation</h1>
@@ -41,10 +42,9 @@
 					{/foreach}
 				{/if}
 			</div>
-			<div class="unity-get-featured" data-type="apps">
-
-			</div>
-			<a href="{url link='admincp.store' load='apps'}">Find More Apps</a>
+			*}
+			<div class="phpfox_store_featured" data-type="apps"></div>
+			<a href="{url link='admincp.store' load='apps'}" class="phpfox_store_view_more">Find More Apps</a>
 		</section>
 	</div>
 

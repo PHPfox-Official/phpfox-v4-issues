@@ -48,6 +48,7 @@ $Core.resetActivityFeedForm = function()
 {
 	$('._load_is_feed').removeClass('active');
 	$('#panel').hide();
+	$('body').removeClass('panel_is_active');
 
 	$('.activity_feed_form_attach li a').removeClass('active');
 	$('.activity_feed_form_attach li a:first').addClass('active');	

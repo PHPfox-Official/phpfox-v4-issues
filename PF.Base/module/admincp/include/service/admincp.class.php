@@ -253,6 +253,8 @@ class Admincp_Service_Admincp extends Phpfox_Service
 	
 	public function check()
 	{
+		return 0;
+
 		$iCnt = 0;
 		
 		// Is the install dir. in place?

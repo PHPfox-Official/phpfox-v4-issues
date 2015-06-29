@@ -12,6 +12,8 @@ namespace Core;
  * @method Home vendor($name)
  * @method Home admincp()
  * @method Home key()
+ * @method Home sync()
+ * @method Home user()
  */
 class Home {
 	private $_id;

@@ -28,6 +28,53 @@ $Behavior.adminMenuClick = function()
 		}
 	});
 
+	var storeFeatured = $('.phpfox_store_featured');
+	if (storeFeatured.length && !storeFeatured.hasClass('is_built')) {
+		var parentUrl = $('.phpfox_store_view_more').attr('href');
+		var url = 'http://store.phpfox.com/featured';
+
+		storeFeatured.addClass('is_built');
+		// url = 'http://localhost/moxi9/moxi9.com/featured';
+		$.ajax({
+			url: url,
+			data: 'type=' + storeFeatured.data('type'),
+			success: function(e) {
+				var html = '', className = 'admincp_apps', articleImage = '', icon = '';
+				if (typeof(e) == 'object') {
+					switch (storeFeatured.data('type')) {
+						case 'themes':
+							className = 'themes';
+							break;
+					}
+				}
+
+				html += '<div class="' + className + '">';
+				for (var i in e) {
+					var t = e[i];
+
+					icon = '';
+					articleImage = '';
+					if (typeof(e) == 'object') {
+						switch (storeFeatured.data('type')) {
+							case 'themes':
+								articleImage = ' style="background-image:url(' + t.icon + ')"';
+								icon = '';
+								break;
+							case 'apps':
+								icon = '<div class="app_icons image_load" data-src="' + t.icon + '"></div>';
+								break;
+						}
+					}
+					html += '<article' + articleImage + '><h1><a href="' + parentUrl + '&open=' + encodeURIComponent(t.url) + '">' + icon + '<span>' + t.name + '</span></a></h1></article>';
+				}
+				html += '</div>';
+
+				storeFeatured.html(html);
+				$Core.loadInit();
+			}
+		});
+	}
+
 	$('body').click(function(){
 		
 		$('.main_menu_link').each(function(){

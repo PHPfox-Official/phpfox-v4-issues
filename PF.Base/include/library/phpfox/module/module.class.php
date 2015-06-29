@@ -469,7 +469,11 @@ class Phpfox_Module
 
 		$class .= $this->_class;
 
-		return $class;
+		$object = new stdClass();
+		$object->cssClass = $class;
+		Core\Event::trigger('lib_module_page_class', $object);
+
+		return $object->cssClass;
 	}
 
 	public function getPageId() {
@@ -483,7 +487,11 @@ class Phpfox_Module
 
 		$id = str_replace(['/', '.'], '_', $id);
 
-		return $id;
+		$object = new stdClass();
+		$object->id = $id;
+		Core\Event::trigger('lib_module_page_id', $object);
+
+		return $object->id;
 	}
 	
 	/**

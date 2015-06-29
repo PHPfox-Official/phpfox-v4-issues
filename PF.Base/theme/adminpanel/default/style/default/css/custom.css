@@ -6177,20 +6177,30 @@ i._zz {
   border-color: #f4645f;
   transition: all 0.5s ease;
 }
+.preview .themes {
+  text-align: center;
+  margin-top: 10px;
+}
+.preview .themes article {
+  width: 200px;
+  height: 300px;
+  text-align: left;
+  border: 1px #f0f0f0 solid;
+}
 .themes .theme_colors {
   padding-top: 40px;
   text-align: center;
 }
 .themes .theme_colors > span {
   display: inline-block;
-  width: 120px;
-  height: 150px;
+  width: 100px;
+  height: 130px;
   margin: 10px;
   border: 1px #e6e6e6 solid;
 }
 .themes article {
-  width: 300px;
-  height: 400px;
+  width: 250px;
+  height: 350px;
   background: #ffffff;
   color: #999999;
   position: relative;
@@ -6261,6 +6271,9 @@ i._zz {
   bottom: 0px;
   top: 40px;
 }
+.admincp_apps_holder > section.preview .admincp_apps {
+  padding: 10px;
+}
 .admincp_apps_holder > section.preview > a,
 .admincp_apps_holder > section.preview > a:hover {
   display: block;
@@ -6285,10 +6298,10 @@ i._zz {
 }
 .admincp_apps_holder > section.preview > div {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 0px;
   bottom: 50px;
-  left: 10px;
+  left: 0px;
   overflow: auto;
 }
 .admincp_apps_holder > section.preview > div > h1 {
@@ -6352,6 +6365,7 @@ i._zz {
   position: relative;
   margin: auto;
   background-size: contain;
+  border: 1px #ececec solid;
 }
 .app_icons i {
   font-style: normal;

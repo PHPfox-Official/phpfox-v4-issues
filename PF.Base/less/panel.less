@@ -28,12 +28,25 @@
 		transition:@transition;
 	}
 
+	/*
+	#panel.is_feed:before {
+		content: '';
+		position:fixed;
+		z-index:1000;
+		top:0px;
+		right:0px;
+		bottom:0px;
+		left:0px;
+		background:rgba(0, 0, 0, 0.2);
+	}
+	*/
+
 	#panel.is_feed {
 		z-index:2000;
 		bottom:auto;
-		left:10px;
+		left:50%;
 		top:0px;
-		margin-top:-40px;
+		margin-left:-300px;
 		width:600px;
 		overflow:visible;
 
@@ -41,6 +54,10 @@
 		-webkit-transition: none;
 		-o-transition: color 0 ease-in;
 		transition: none;
+
+		> i {
+			position:fixed;
+		}
 	}
 }
 

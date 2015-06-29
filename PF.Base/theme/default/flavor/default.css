@@ -3686,6 +3686,18 @@ div#right div.menu ul li.active {
   padding: 10px;
   padding-top: 20px;
 }
+#left #js_block_border_user_login-block .table_clear,
+#right #js_block_border_user_login-block .table_clear,
+#content #js_block_border_user_login-block .table_clear,
+#header_menu #js_block_border_user_login-block .table_clear {
+  margin-top: 4px;
+}
+#left #js_block_border_user_login-block .user_rem_me,
+#right #js_block_border_user_login-block .user_rem_me,
+#content #js_block_border_user_login-block .user_rem_me,
+#header_menu #js_block_border_user_login-block .user_rem_me {
+  font-size: 11px;
+}
 #left #js_block_border_user_login-block .table_clear input.button,
 #right #js_block_border_user_login-block .table_clear input.button,
 #content #js_block_border_user_login-block .table_clear input.button,
@@ -3745,6 +3757,13 @@ div#right div.menu ul li.active {
   background: transparent;
   padding: 0px 10px;
 }
+#left #js_block_border_user_login-block .bottom > ul > li,
+#right #js_block_border_user_login-block .bottom > ul > li,
+#content #js_block_border_user_login-block .bottom > ul > li,
+#header_menu #js_block_border_user_login-block .bottom > ul > li {
+  margin: 0px;
+  padding: 0px;
+}
 #left #js_block_border_user_login-block .bottom > ul > li a,
 #right #js_block_border_user_login-block .bottom > ul > li a,
 #content #js_block_border_user_login-block .bottom > ul > li a,
@@ -3754,6 +3773,12 @@ div#right div.menu ul li.active {
 #content #js_block_border_user_login-block .bottom > ul > li a:hover,
 #header_menu #js_block_border_user_login-block .bottom > ul > li a:hover {
   display: inline-block;
+  border: 0px;
+  background: transparent;
+  color: #9a9a9a;
+  opacity: 1;
+  padding-left: 0px;
+  border-radius: 0px;
 }
 #left .block,
 #right .block,
@@ -5503,6 +5528,20 @@ a.not_active:hover {
   margin-left: -15px;
   margin-top: -15px;
 }
+.panel_is_active {
+  /*
+	#panel.is_feed:before {
+		content: '';
+		position:fixed;
+		z-index:1000;
+		top:0px;
+		right:0px;
+		bottom:0px;
+		left:0px;
+		background:rgba(0, 0, 0, 0.2);
+	}
+	*/
+}
 .panel_is_active #panel {
   left: 200px;
   transition: all 0.5s ease;
@@ -5510,15 +5549,18 @@ a.not_active:hover {
 .panel_is_active #panel.is_feed {
   z-index: 2000;
   bottom: auto;
-  left: 10px;
+  left: 50%;
   top: 0px;
-  margin-top: -40px;
+  margin-left: -300px;
   width: 600px;
   overflow: visible;
   -moz-transition: none;
   -webkit-transition: none;
   -o-transition: color 0 ease-in;
   transition: none;
+}
+.panel_is_active #panel.is_feed > i {
+  position: fixed;
 }
 .panel_rows {
   background: #ffffff;

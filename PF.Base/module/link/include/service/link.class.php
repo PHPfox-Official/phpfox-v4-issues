@@ -137,7 +137,6 @@ class Link_Service_Link extends Phpfox_Service
 		if (!$MediaObject instanceof \MediaEmbed\Object\MediaObject) {
 			// $xml = simplexml_load_string($sContent, 'SimpleXMLElement', LIBXML_NOERROR |  LIBXML_ERR_NONE);
 			// throw new Exception('Does not look like a URL we can embed.');
-
 			if (isset($aParseBuild['og:image'])) {
 				$image = $aParseBuild['og:image'];
 			}
@@ -150,6 +149,10 @@ class Link_Service_Link extends Phpfox_Service
 		if (isset($aParseBuild['title'])) {
 			$aParseBuild['og:title'] = $aParseBuild['title'];
 			$aParseBuild['og:description'] = $aParseBuild['description'];
+		}
+
+		if (!$image && isset($aParseBuild['og:image'])) {
+			$image = $aParseBuild['og:image'];
 		}
 
 		return [

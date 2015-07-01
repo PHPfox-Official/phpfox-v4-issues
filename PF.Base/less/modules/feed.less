@@ -504,3 +504,48 @@ div.comment_mini_end {
 		max-width:120px;
 	}
 }
+
+.load_more_comments, .load_more_comments:hover {
+	display:block;
+	text-align:center;
+	color:@blockColor;
+	background:@blockBg;
+	text-decoration:none;
+	text-transform:uppercase;
+	font-size:@fontSizeBase - 2;
+	height:40px;
+	line-height:40px;
+
+	i {
+		line-height:40px;
+		display:none;
+	}
+
+	span {
+		display:block;
+		opacity:0.5;
+		transition:@transition;
+	}
+}
+
+.load_more_comments:hover {
+
+	span {
+		opacity:1;
+		color:darken(@blockColor, 5%);
+		transition:@transition;
+	}
+}
+
+.load_more_comments.active {
+	opacity:1;
+
+	i {
+		display:block;
+		margin:auto;
+	}
+
+	span {
+		display:none;
+	}
+}

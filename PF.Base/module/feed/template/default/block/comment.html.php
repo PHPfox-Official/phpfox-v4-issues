@@ -1,3 +1,11 @@
+{if (isset($showOnlyComments))}
+{if (isset($aFeed.comments) && count($aFeed.comments))}
+<a href="{url link='feed.comments'}?type={$aFeed.type_id}&id={$aFeed.item_id}&page={$nextIteration}" class="load_more_comments ajax"  onclick="$(this).addClass('active');"><i class="fa fa-spin fa-circle-o-notch"></i><span>View Previous Comments</span></a>
+{foreach from=$aFeed.comments name=comments item=aComment}
+{template file='comment.block.mini'}
+{/foreach}
+{/if}
+{else}
 {if isset($sDelayedParam)}
 <script type="text/javascript">
 	var bLoadDelayedComments = true;
@@ -86,11 +94,11 @@
 		    {/if}
 		{/if}		
 		{if isset($aFeed.comments) && count($aFeed.comments)}
-			{if isset($sFeedType) &&  $sFeedType == 'view' && $aFeed.total_comment > Phpfox::getParam('comment.comment_page_limit')}
-			<div class="comment_mini" id="js_feed_comment_pager_{$aFeed.feed_id}">
-				{pager}
+			{if true || isset($sFeedType) &&  $sFeedType == 'view' && $aFeed.total_comment > Phpfox::getParam('comment.comment_page_limit')}
+			<div id="js_feed_comment_pager_{$aFeed.feed_id}">
+				<a href="{url link='feed.comments'}?type={$aFeed.type_id}&id={$aFeed.item_id}&page=2" class="load_more_comments ajax"  onclick="$(this).addClass('active');"><i class="fa fa-spin fa-circle-o-notch"></i><span>View Previous Comments</span></a>
 			</div>
-			{/if}			
+			{/if}
 			<div id="js_feed_comment_view_more_{$aFeed.feed_id}">
 			{parse_image width=200 height=200}
 			{foreach from=$aFeed.comments name=comments item=aComment}
@@ -172,4 +180,5 @@
 {/if}
 {if isset($sDelayedParam)}
 </div>
+{/if}
 {/if}

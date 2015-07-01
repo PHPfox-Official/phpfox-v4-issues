@@ -237,6 +237,20 @@ $Core.resetFeedForm = function(f) {
 
 $Behavior.activityFeedProcess = function() {
 
+	/*
+	$('.load_more_comments').click(function() {
+		$.ajax({
+			url: getParam('sJsAjax'),
+			data: 'core[call]=comment.viewMoreFeed',
+			success: function(e) {
+				p(e);
+			}
+		});
+
+		return false;
+	});
+	*/
+
 	$('.feed_stream:not(.built)').each(function() {
 		var t = $(this),
 			s = document.createElement('script');

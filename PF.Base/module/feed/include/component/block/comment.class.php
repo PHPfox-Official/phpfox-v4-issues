@@ -123,9 +123,9 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 		$iCommentId = null;
 		$bIsViewingComments = false;
 		if (Phpfox::isModule('comment') && $sFeedType != 'mini')
-		{	
+		{
 			if ((int) $aFeed['total_comment'] > 0)
-			{	
+			{
 				if ($sFeedType == 'view')
 				{
 					$iPageLimit = Phpfox::getParam('comment.comment_page_limit');
@@ -138,7 +138,7 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 					$bIsViewingComments = true;
 				}
 							
-				$aFeed['comments'] = Phpfox::getService('comment')->getCommentsForFeed($aFeed['comment_type_id'], $aFeed['item_id'], $iPageLimit, $mPager, $iCommentId);
+				$aFeed['comments'] = Comment_Service_Comment::instance()->getCommentsForFeed($aFeed['comment_type_id'], $aFeed['item_id'], $iPageLimit, $mPager, $iCommentId);
 			}
 		}
 		
@@ -173,7 +173,8 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 		$this->template()->assign(array(
 				'aFeed' => $aFeed,
 				'sFeedType' => $sFeedType,
-				'bIsViewingComments' => $bIsViewingComments
+				'bIsViewingComments' => $bIsViewingComments,
+				'feedJson' => json_encode($aFeed)
 			)
 		);
 	}

@@ -6271,6 +6271,15 @@ i._zz {
   bottom: 0px;
   top: 40px;
 }
+.admincp_apps_holder > section.preview > h1 {
+  height: 40px;
+  line-height: 40px;
+  text-indent: 10px;
+  font-weight: 300;
+  color: #808080;
+  font-size: 16px;
+  background: #f8f8f8;
+}
 .admincp_apps_holder > section.preview .admincp_apps {
   padding: 10px;
 }
@@ -6298,7 +6307,7 @@ i._zz {
 }
 .admincp_apps_holder > section.preview > div {
   position: absolute;
-  top: 0px;
+  top: 40px;
   right: 0px;
   bottom: 50px;
   left: 0px;

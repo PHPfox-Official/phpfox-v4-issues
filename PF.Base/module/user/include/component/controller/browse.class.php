@@ -485,7 +485,7 @@ class User_Component_Controller_Browse extends Phpfox_Component
 	    $iCnt = 0;
 	    $aUsers = [];
 	    if ($oFilter->isSearch() || defined('PHPFOX_IS_ADMIN_SEARCH')) {
-			list($iCnt, $aUsers) = Phpfox::getService('user.browse')->conditions($oFilter->getConditions())
+			list($iCnt, $aUsers) = User_Service_Browse::instance()->conditions($oFilter->getConditions())
 			    ->callback($aCallback)
 			    ->sort($oFilter->getSort())
 			    ->page($oFilter->getPage())

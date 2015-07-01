@@ -14,6 +14,8 @@ abstract class Api {
 
 	protected $order;
 
+	protected $where = [];
+
 	/**
 	 * @var App\Object
 	 */
@@ -59,6 +61,12 @@ abstract class Api {
 		return $this;
 	}
 
+	public function where($where = []) {
+		$this->where = $where;
+
+		return $this;
+	}
+
 	public function assign($postFields) {
 		$this->request->set($postFields);
 
@@ -71,6 +79,14 @@ abstract class Api {
 		}
 
 		return $this->limit;
+	}
+
+	protected function getWhere($default = []) {
+		if ($default) {
+
+		}
+
+		return $this->where;
 	}
 
 	protected function getOrder($default) {

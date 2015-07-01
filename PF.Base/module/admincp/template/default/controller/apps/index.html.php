@@ -43,7 +43,10 @@
 				{/if}
 			</div>
 			*}
-			<div class="phpfox_store_featured" data-type="apps"></div>
+			<h1>Featured Apps</h1>
+			<div class="phpfox_store_featured" data-type="apps">
+
+			</div>
 			<a href="{url link='admincp.store' load='apps'}" class="phpfox_store_view_more">Find More Apps</a>
 		</section>
 	</div>

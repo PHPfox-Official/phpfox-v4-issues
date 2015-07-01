@@ -65,7 +65,7 @@ class User extends \Core\Api {
 		else {
 			$users = [];
 			$rows = $this->db->select('*')->from(':user')
-				->where($where)
+				->where($this->getWhere())
 				->limit($this->getLimit(10))
 				->order($this->getOrder('user_id DESC'))
 				->all();

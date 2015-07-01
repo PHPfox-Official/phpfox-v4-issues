@@ -182,6 +182,8 @@ class Phpfox_Module
 	private $_sControllerTemplateClass;
 
 	private $_class = '';
+
+	public $blocks = [];
 	
 	/**
 	 * Class constructor that caches all the modules, components (blocks/controllers) and drag/drop information.
@@ -203,7 +205,7 @@ class Phpfox_Module
 			{
 				$this->_cacheModules();	
 			}
-		}		
+		}
 	}
 
 	/**
@@ -215,6 +217,10 @@ class Phpfox_Module
 
 	public function all() {
 		return $this->_aModules;
+	}
+
+	public function block($controller, $location, $html) {
+		$this->blocks[$controller][$location][] = [$html];
 	}
 
 	public function get($sModule) {
@@ -234,6 +240,8 @@ class Phpfox_Module
 	 */
 	public function loadBlocks()
 	{
+		Core\Event::trigger('lib_module_get_blocks', $this);
+
 		$this->_cacheModuleBlocks();	
 	}
 	
@@ -590,7 +598,6 @@ class Phpfox_Module
 	
 		$aBlocks[$iId] = array();
 
-
 		if (defined('PHPFOX_IS_USER_PROFILE') && $iId == 11) {
 			$aBlocks[$iId][] = 'profile.pic';
 		}
@@ -601,6 +608,7 @@ class Phpfox_Module
 
 		(($sPlugin = Phpfox_Plugin::get('get_module_blocks')) ? eval($sPlugin) : false);
 
+
 		/*
 		if (is_object($this->_oBlocklet) && method_exists($this->_oBlocklet, 'location_' . $iId)) {
 			call_user_func([$this->_oBlocklet, 'location_' . $iId]);
@@ -609,6 +617,9 @@ class Phpfox_Module
 
 		//$sController = strtolower($this->_sModule . '.' . $this->_sController);
 		$sController = strtolower($this->_sModule . '.' . str_replace(array('\\', '/'), '.' , $this->_sController));
+
+		// $this->blocks = $this->_aModuleBlocks;
+		// $this->_aModuleBlocks = $this->blocks;
 
 		if (isset($this->_aModuleBlocks[$sController][$iId]) || isset($this->_aModuleBlocks[str_replace('.index','',$sController)][$iId]) || isset($this->_aModuleBlocks[$this->_sModule][$iId]) || isset($this->_aModuleBlocks[''][$iId]))
 		{
@@ -699,6 +710,16 @@ class Phpfox_Module
 		if ($iId == '3') {
 			// \Phpfox::getBlock('ad.display', array('block_id' => 3));
 			$aBlocks[$iId][] = 'ad.display';
+		}
+
+		/*
+		if (isset($this->blocks[$sController]) && isset($this->blocks[$sController][$iId])) {
+			$aBlocks[$iId] = array_merge($aBlocks[$iId], (array) $this->blocks[$sController][$iId]);
+			d($this->blocks[$sController][$iId]); exit;
+		}
+		*/
+		if (isset($this->blocks[$sController]) && isset($this->blocks[$sController][$iId])) {
+			$aBlocks[$iId] = array_merge($aBlocks[$iId], (array) $this->blocks[$sController][$iId]);
 		}
 					
 		return $aBlocks[$iId];

@@ -46,7 +46,12 @@ class App {
 			}
 
 			if (file_exists($data->path . 'start.php')) {
-				require_once($data->path . 'start.php');
+				$callback = require_once($data->path . 'start.php');
+				if (is_callable($callback)) {
+					$View = new \Core\View();
+					$View->loader()->addPath($data->path . 'views/', $data->id);
+					call_user_func($callback, $this->get($data->id), $View->env());
+				}
 			}
 		}
 

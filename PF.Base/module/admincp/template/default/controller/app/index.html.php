@@ -24,7 +24,7 @@
 		</div>
 	</form>
 {else}
-	{if isset($settings)}
+	{if isset($settings) && $settings}
 		<form class="on_change_submit" method="post" action="{url link='current'}">
 			{foreach from=$settings item=setting key=var}
 			<div class="table_header2 settings">
@@ -48,5 +48,7 @@
 			</div>
 			{/foreach}
 		</form>
+	{else}
+	{$customContent}
 	{/if}
 {/if}

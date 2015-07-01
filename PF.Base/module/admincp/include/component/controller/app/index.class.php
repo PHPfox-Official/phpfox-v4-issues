@@ -83,12 +83,18 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 			}
 		}
 
+		$customContent = '';
+		// if ($App->storeId) {
+			// $customContent = '<iframe src="http://store.phpfox.com/product/' . $App->storeId . '/go" frameborder="0" class="acp_frame_product"></iframe>';
+		// }
+
 		$this->template()
 			->setTitle($App->name)
 			// ->setSectionTitle($App->name)
 			->assign([
 				'App' => $App,
-				'uninstall' => $this->request()->get('uninstall')
+				'uninstall' => $this->request()->get('uninstall'),
+				'customContent' => $customContent
 			]);
 	}
 }

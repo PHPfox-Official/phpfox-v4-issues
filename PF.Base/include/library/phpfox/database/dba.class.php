@@ -973,9 +973,13 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 			$sWhere = 'AND ' . $sKey . '';
 			$sKey = array_keys($mValue)[0];
 			$sValue = array_values($mValue)[0];
+			$sKey = strtolower($sKey);
 			switch ($sKey) {
 				case '=':
-					$sWhere .= '= ' . $sValue . ' ';
+					$sWhere .= ' = ' . $sValue . ' ';
+					break;
+				case 'in':
+					$sWhere .= ' IN(' . $mValue[$sKey] . ')';
 					break;
 			}
 

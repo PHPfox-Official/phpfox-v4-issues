@@ -37,7 +37,7 @@ $Behavior.adminMenuClick = function()
 		// url = 'http://localhost/moxi9/moxi9.com/featured';
 		$.ajax({
 			url: url,
-			data: 'type=' + storeFeatured.data('type'),
+			data: 'v=1&type=' + storeFeatured.data('type'),
 			success: function(e) {
 				var html = '', className = 'admincp_apps', articleImage = '', icon = '';
 				if (typeof(e) == 'object') {

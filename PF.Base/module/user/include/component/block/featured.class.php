@@ -19,7 +19,9 @@ class User_Component_Block_Featured extends Phpfox_Component
 	 * Controller
 	 */
 	public function process()
-	{		
+	{
+		return false;
+
 		list($aUsers, $iTotal) = Phpfox::getService('user.featured')->get();
 		if (empty($aUsers) || $aUsers === false) return false;
 		if (count($aUsers) < $iTotal) $this->template()->assign(array('aFooter' => array(

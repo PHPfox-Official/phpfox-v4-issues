@@ -50,6 +50,7 @@ class Objectify {
 		}
 
 		$image_50px = '';
+		$imageLink = '';
 		if (!empty($row['user_image'])) {
 			$image_50px = \Phpfox_Image_Helper::instance()->display([
 				'user' => $row,
@@ -58,14 +59,22 @@ class Objectify {
 			]);
 		}
 
+		$imageLink = \Phpfox_Image_Helper::instance()->display([
+			'user' => $row,
+			'suffix' => '_120_square'
+		]);
+
+		$link = \Phpfox_Url::instance()->makeUrl($row['user_name']);
 		return [
 			'id' => (int) $row['user_id'],
 			'name' => $row['full_name'],
-			'url' => \Phpfox_Url::instance()->makeUrl($row['user_name']),
+			'name_link' => '<span class="user_profile_link_span"><a href="' . $link . '">' . $row['full_name'] . '</a></span>',
+			'url' => $link,
 			'gender' => [
 				'id' => $row['gender'],
 				'name' => \User_Service_User::instance()->gender($row['gender'])
 			],
+			'photo_link' => $imageLink,
 			'photo' => [
 				'50px' => $image_50px,
 				'120px' => str_replace('_50_square', '_120_square', $image_50px),

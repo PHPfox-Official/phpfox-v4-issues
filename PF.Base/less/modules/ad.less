@@ -4,7 +4,7 @@
 
 	position:absolute;
 	right:-(@columnWidth + 20);
-	top:0px;
+	top:50px;
 	width:@columnWidth;
 	background:@blockBg;
 }
@@ -40,6 +40,22 @@
 
 .ad_unit_multi_ad {
 	border-bottom:1px darken(@blockBg, 6%) solid;
+	padding:5px;
+}
+
+#left, #right {
+	.ad_unit_multi_ad {
+		padding:0px 10px;
+	}
+
+	#js_block_border_ad_display {
+		#js_block_bottom_link_1, #js_block_bottom_link_1:hover {
+			border:0px;
+			padding:10px 0px;
+			color:#808080;
+			text-align:right;
+		}
+	}
 }
 
 #left, #right {
@@ -76,5 +92,12 @@
 	#js_block_border_ad_display {
 		position:fixed;
 		top:@headerHeight + 5;
+	}
+}
+
+#page_ad_add {
+	#content {
+		width:@contentWidth;
+		display:block;
 	}
 }

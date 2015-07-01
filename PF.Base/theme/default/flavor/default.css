@@ -9889,7 +9889,7 @@ a.marketplace_contact_seller:hover {
   text-indent: 0px;
   position: absolute;
   right: -320px;
-  top: 0px;
+  top: 50px;
   width: 300px;
   background: #ffffff;
 }
@@ -9934,6 +9934,20 @@ a.marketplace_contact_seller:hover {
 }
 .ad_unit_multi_ad {
   border-bottom: 1px #f0f0f0 solid;
+  padding: 5px;
+}
+#left .ad_unit_multi_ad,
+#right .ad_unit_multi_ad {
+  padding: 0px 10px;
+}
+#left #js_block_border_ad_display #js_block_bottom_link_1,
+#right #js_block_border_ad_display #js_block_bottom_link_1,
+#left #js_block_border_ad_display #js_block_bottom_link_1:hover,
+#right #js_block_border_ad_display #js_block_bottom_link_1:hover {
+  border: 0px;
+  padding: 10px 0px;
+  color: #808080;
+  text-align: right;
 }
 #left #js_block_border_ad_display.block,
 #right #js_block_border_ad_display.block {
@@ -9964,6 +9978,10 @@ a.marketplace_contact_seller:hover {
 .ad_is_fixed #js_block_border_ad_display {
   position: fixed;
   top: 45px;
+}
+#page_ad_add #content {
+  width: 600px;
+  display: block;
 }
 @media (max-device-width: 1430px), (max-width: 1430px) {
   .holder {

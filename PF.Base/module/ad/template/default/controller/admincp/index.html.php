@@ -110,6 +110,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</table>
 		<div class="table_clear"></div>
 	</form>
+	{pager}
 	{else}
 	<div class="extra_info">
 	{if $bIsSearch}
@@ -119,6 +120,4 @@ defined('PHPFOX') or exit('NO DICE!');
 	{/if}
 	</div>
 	{/if}
-
-	{pager}
 </div>

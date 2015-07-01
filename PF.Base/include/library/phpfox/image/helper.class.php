@@ -338,7 +338,7 @@ class Phpfox_Image_Helper
 			$sAlt = html_entity_decode(Phpfox::getPhrase($aParams['alt_phrase']), null, 'UTF-8');
 			unset($aParams['alt_phrase']);
 		}
-		
+
 		if (isset($aParams['class']) && $aParams['class'] == 'js_hover_title')
 		{
 			$aParams['title'] = Phpfox::getLib('parse.output')->shorten($aParams['title'], 100, '...');
@@ -384,7 +384,7 @@ class Phpfox_Image_Helper
 			}
 
 			$aParams['class'] = ' _image_' . $size . ' ' . ($isObject ? 'image_object' : 'image_deferred') . ' ' . (isset($aParams['class']) ? ' ' . $aParams['class'] : '');
-			$sImage .= ' data-src="' . $sSrc . (isset($aParams['time_stamp']) ? '?t=' . uniqid() : '') . '" src="' . Phpfox_Template::instance()->getStyle('image', 'misc/defer_holder.gif') . '" ';
+			$sImage .= ' data-src="' . $sSrc . (isset($aParams['time_stamp']) ? '?t=' . uniqid() : '') . '" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" ';
 		}
 		else
 		{

@@ -10,6 +10,7 @@ namespace Core;
  * @method Db from($table)
  * @method Db order($order)
  * @method Db get()
+ * @method Db join()
  * @method Db where(array $where)
  * @method Db limit($limit)
  * @method Db all()

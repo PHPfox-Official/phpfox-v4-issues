@@ -20,8 +20,8 @@ class Theme extends Model {
 			else {
 				self::$_active = $this->db->select('t.*, ts.folder AS flavor_folder')
 					->from(':theme', 't')
-					->join(':theme_style', 'ts', ['t.theme_id' => ['=' => 'ts.theme_id'], 'ts.is_default' => 1])
-					->where(($cookie ? ['t.theme_id' => (int) $cookie] : ['t.is_default' => 1]))
+					->join(':theme_style', 'ts', ['t.theme_id' => ['=' => 'ts.theme_id']])
+					->where(['t.is_default' => 1])
 					->get();
 			}
 

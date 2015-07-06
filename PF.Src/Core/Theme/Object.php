@@ -200,7 +200,7 @@ class Object extends \Core\Objectify {
 	}
 
 	public function merge() {
-		$flavorId = $this->flavor_id;
+		$flavorId = $this->flavor_folder;
 		if (!$flavorId) {
 			throw new \Exception('Cannot merge a theme without a flavor.');
 		}

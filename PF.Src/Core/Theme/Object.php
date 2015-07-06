@@ -201,6 +201,10 @@ class Object extends \Core\Objectify {
 
 	public function merge() {
 		$flavorId = $this->flavor_id;
+		if (!$flavorId) {
+			throw new \Exception('Cannot merge a theme without a flavor.');
+		}
+
 		$id = $this->theme_id;
 		$path = PHPFOX_DIR_SITE . 'themes/' . $id . '/';
 		$File = \Phpfox_File::instance();

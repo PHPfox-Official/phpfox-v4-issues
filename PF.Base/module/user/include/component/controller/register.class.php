@@ -72,8 +72,8 @@ class User_Component_Controller_Register extends Phpfox_Component
 							Phpfox_Error::set(Phpfox::getPhrase('user.email_s_do_not_match'));
 						}
 					}
-				}	
-				
+				}
+
 				(($sPlugin = Phpfox_Plugin::get('user.component_controller_register_2')) ? eval($sPlugin) : false);
 				if ($oValid->isValid($aVals))
 				{

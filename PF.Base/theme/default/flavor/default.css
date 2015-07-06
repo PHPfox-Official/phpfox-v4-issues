@@ -2493,6 +2493,13 @@ a.global_view_more:hover {
   top: 10px;
   left: 10px;
 }
+#page_core_index-visitor .block {
+  display: none;
+}
+#page_core_index-visitor #js_block_border_user_register.block,
+#page_core_index-visitor #js_block_border_user_login-block.block {
+  display: block;
+}
 input[type="text"],
 input[type="email"],
 input[type="password"],

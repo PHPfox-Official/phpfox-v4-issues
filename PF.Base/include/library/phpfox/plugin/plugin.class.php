@@ -87,7 +87,28 @@ class Phpfox_Plugin
 					$aPlugins[$aRow['call_name']] = self::_cleanPhp($aRow['php_code']) . " ";
 				}
 			}
-			
+
+			foreach ((new Core\App())->all() as $app) {
+				$dir = $app->path . 'hooks/';
+				if (is_dir($dir)) {
+					foreach (scandir($dir) as $file) {
+						if (substr($file, -4) == '.php') {
+							$code = self::_cleanPhp(file_get_contents($dir . $file));
+							$name = substr_replace($file, '', -4);
+
+							if (isset($aPlugins[$name]))
+							{
+								$aPlugins[$name] .= $code . " ";
+							}
+							else
+							{
+								$aPlugins[$name] = $code . " ";
+							}
+						}
+					}
+				}
+			}
+
 			$aModules = Phpfox_Module::instance()->getModules();
 			foreach ($aModules as $sModule => $iModuleId)
 			{
@@ -171,7 +192,7 @@ class Phpfox_Plugin
 				}
 				$oCache->close($iPluginCacheId);
 			}
-			
+
 			$oCache->save($iCacheId, self::$_aPlugins);	
 		}
 	}

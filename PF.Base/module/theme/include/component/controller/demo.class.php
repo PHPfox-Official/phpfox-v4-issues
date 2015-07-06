@@ -2,6 +2,8 @@
 
 class Theme_Component_Controller_Demo extends Phpfox_Component {
 	public function process() {
+		$this->url()->send('');
+
 		if (!defined('PHPFOX_ALLOW_MODE')) {
 			exit;
 		}

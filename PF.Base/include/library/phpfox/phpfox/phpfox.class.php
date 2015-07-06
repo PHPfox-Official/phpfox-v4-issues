@@ -265,6 +265,10 @@ class Phpfox
 	 */
 	public static function getParam($sVar)
 	{
+		if ($sVar == 'core.cache_plugins' && PHPFOX_DEBUG) {
+			return false;
+		}
+
 		return Phpfox::getLib('setting')->getParam($sVar);
 	}
 	

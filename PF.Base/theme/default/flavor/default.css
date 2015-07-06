@@ -9430,6 +9430,9 @@ ul.activity_feed_form_attach li a:hover {
 #page_profile_index #container {
   margin-left: 290px;
 }
+#page_profile_index #panels #right {
+  right: -300px;
+}
 #page_profile_index #main {
   margin-top: -40px;
 }

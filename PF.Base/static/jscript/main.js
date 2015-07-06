@@ -641,7 +641,8 @@ $Behavior.globalInit = function()
 {
 	$('.js_pager_view_more_link:not(.built)').each(function() {
 		var t = $(this),
-			isInView = false;
+			isInView = false,
+			url = t.find('.next_page').attr('href');
 
 		t.addClass('built');
 		$(window).scroll(function() {
@@ -649,13 +650,19 @@ $Behavior.globalInit = function()
 				if (t.find('.next_page').length) {
 					t.find('.next_page').addClass('focus');
 					$.ajax({
-						url: t.find('.next_page').attr('href'),
+						url: url,
 						contentType: 'application/json',
-						data: 'core[ajax]=true',
+						data: 'core[ajax]=true' + (t.data('pagination') ? '&pagination=1' : ''),
 						success: function(e) {
 							if (typeof(e.content) == 'string') {
-								t.before(e.content);
-								t.remove();
+								if (t.data('pagination')) {
+									var pager = t.parents('.pagination');
+									pager.replaceWith(e.content);
+								} else {
+									t.before(e.content);
+									t.remove();
+								}
+
 								$Core.loadInit();
 							}
 							else {

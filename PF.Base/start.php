@@ -72,7 +72,6 @@ if (!defined('PHPFOX_NO_RUN')) {
 
 		Phpfox::run();
 	} catch (\Exception $e) {
-
 		if (\Core\Route\Controller::$isApi) {
 			http_response_code(400);
 			$content = [
@@ -99,6 +98,23 @@ if (!defined('PHPFOX_NO_RUN')) {
 		}
 
 		header('Content-type: text/html');
+
+		if (!PHPFOX_DEBUG) {
+			new Core\Route('*', function(Core\Controller $controller) {
+				http_response_code(400);
+
+				return $controller->render('@Base/layout.html', [
+					'content' => '<div class="error_message">Something went wrong here. We have notified the village elders about the issue.</div>'
+				]);
+			});
+
+			if (($View = (new Core\Route\Controller())->get())) {
+				echo $View->getContent();
+			}
+
+			exit;
+		}
+
 		throw new Exception($e->getMessage(), $e->getCode(), $e);
 	}
 }

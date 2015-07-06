@@ -37,6 +37,27 @@ class View {
 			return '';
 		}));
 
+		$this->_env->addFunction(new \Twig_SimpleFunction('pager', function() {
+			$u = \Phpfox_Url::instance();
+			if (!isset($_GET['page'])) {
+				$_GET['page'] = 1;
+			}
+			$_GET['page']++;
+			$u->setParam('page', $_GET['page']);
+			$url = $u->current();
+
+			$html = '
+				<div class="js_pager_view_more_link">
+					<a href="' . $url . '" class="next_page">
+						<i class="fa fa-spin fa-circle-o-notch"></i>
+						<span>View More</span>
+					</a>
+				</div>
+			';
+
+			return $html;
+		}));
+
 		$this->_env->addFunction(new \Twig_SimpleFunction('_p', function() {
 			return call_user_func_array('_p', func_get_args());
 		}));
@@ -86,6 +107,8 @@ class View {
 
 		$params = $this->_render['params'];
 		$params['ActiveUser'] = (\Phpfox::isUser() ? (array) (new \Api\User())->get(\Phpfox::getUserBy()) : []);
+		$params['isPager'] = (isset($_GET['page']) ? true : false);
+
 		$params['content'] = $this->_env->render($this->_render['name'], $params);
 		if (PHPFOX_IS_AJAX_PAGE) {
 			$content = (string) new View\Functions('content', $params['content']);

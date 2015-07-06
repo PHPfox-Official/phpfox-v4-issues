@@ -24,11 +24,14 @@ class Controller {
 		$uri = trim($this->_request->uri(), '/');
 		$uriParts = explode('/', $uri);
 
-		// d($routes); exit;
-
+		// d($routes);
 		// d($uriParts); exit;
 		foreach ($routes as $key => $route) {
 			$key = trim($key, '/');
+
+			if (is_string($key) && $key == '*') {
+				$routes[$uri] = $route;
+			}
 
 			if (strpos($key, ':')) {
 				$parts = explode('/', $key);

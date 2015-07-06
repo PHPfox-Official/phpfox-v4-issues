@@ -15,7 +15,7 @@
 	{section_menu_js}
 </div>
 
-{if $sPublicMessage && !is_bool($sPublicMessage)}
+{if isset($sPublicMessage) && $sPublicMessage && !is_bool($sPublicMessage)}
 <div class="public_message" id="public_message">
 	{$sPublicMessage}
 </div>
@@ -28,7 +28,7 @@
 {/if}
 <div id="pem"><a href="#"></a></div>
 <div id="core_js_messages">
-	{if count($aErrors)}
+	{if isset($aErrors) && count($aErrors)}
 	{foreach from=$aErrors item=sErrorMessage}
 	<div class="error_message">{$sErrorMessage}</div>
 	{/foreach}

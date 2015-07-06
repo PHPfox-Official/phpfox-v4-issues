@@ -5,8 +5,21 @@ namespace Core;
 class Theme extends Model {
 	private static $_active;
 
-	public function __construct() {
+	public function __construct($flavorId = null) {
 		parent::__construct();
+
+		if ($flavorId !== null) {
+			self::$_active = $this->db->select('t.*, ts.folder AS flavor_folder')
+				->from(':theme_style', 'ts')
+				->join(':theme', 't', ['t.theme_id' => ['=' => 'ts.theme_id']])
+				->where(['ts.style_id' => (int) $flavorId])
+				->get();
+
+			if (!self::$_active) {
+				throw new \Exception('Not a valid flavor.');
+			}
+		}
+
 		if (!self::$_active) {
 			$cookie = \Phpfox::getCookie('flavor_id');
 
@@ -177,6 +190,14 @@ class Theme extends Model {
 	 */
 	public function get($id = null) {
 		$data = self::$_active;
+		if ($id === null && !$data) {
+			$data = $this->db->select('t.*, ts.style_id AS flavor_id, ts.folder AS flavor_folder')
+				->from(':theme', 't')
+				->join(':theme_style', 'ts', ['t.theme_id' => ['=' => 'ts.theme_id']])
+				->where(['t.is_default' => 1])
+				->get();
+		}
+
 		if ($id !== null) {
 			$data = $this->db->select('t.*, ts.style_id AS flavor_id, ts.folder AS flavor_folder')
 				->from(':theme', 't')

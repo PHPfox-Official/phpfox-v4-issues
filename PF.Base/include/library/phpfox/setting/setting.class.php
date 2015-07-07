@@ -424,7 +424,7 @@ class Phpfox_Setting
 	 */
 	public function getParam($mVar, $sDef = '')
 	{
-		if ($mVar == 'core.branding' && Phpfox::isPackage(array('premium', 'ultimate')))
+		if ($mVar == 'core.branding' && PHPFOX_LICENSE_ID != 'techie')
 		{
 			return true;
 		}

@@ -11,6 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{if !PHPFOX_IS_AJAX}
 {if $sView == 'my' && count($aPhotos)}
 		<div class="item_bar">
 			<div class="item_bar_action_holder">				
@@ -23,6 +24,8 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 <div id="js_actual_photo_content">
 	<div id="js_album_outer_content">
+{/if}
+
 		{if count($aPhotos)}
 		    {if isset($bIsEditMode)}
 		    <form method="post" action="#" onsubmit="$('#js_photo_multi_edit_image').show(); $('#js_photo_multi_edit_submit').hide(); $(this).ajaxCall('photo.massUpdate'{if $bIsMassEditUpload}, 'is_photo_upload=1'{/if}); return false;">
@@ -59,17 +62,23 @@ defined('PHPFOX') or exit('NO DICE!');
 				</article>
 				{/foreach}
 			</div>
+			{pager}
 
+			{/if}
+
+		{else}
+			{if !PHPFOX_IS_AJAX}
+			<div class="extra_info">
+				{phrase var='photo.no_photos_found'}
+			</div>
+			{/if}
+		{/if}
+
+
+		{if !PHPFOX_IS_AJAX}
 			{if Phpfox::getUserParam('photo.can_approve_photos') || Phpfox::getUserParam('photo.can_delete_other_photos')}
 			    {moderation}
 			{/if}
-		    {/if}
-		{else}
-		    <div class="extra_info">
-			    {phrase var='photo.no_photos_found'}			
-		    </div>
-		{/if}	
-		
 	</div>
-    
 </div>
+{/if}

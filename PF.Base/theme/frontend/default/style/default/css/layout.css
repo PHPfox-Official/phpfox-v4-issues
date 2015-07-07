@@ -2212,6 +2212,13 @@ ul.block_listing li {
   padding-bottom: 10px;
   position: relative;
 }
+ul.block_listing li > a,
+ul.block_listing li > a:hover,
+ul.block_listing li > span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+}
 ul.block_listing li .block_listing_image {
   float: left;
 }

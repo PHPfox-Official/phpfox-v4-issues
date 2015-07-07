@@ -38,7 +38,7 @@ window.onbeforeunload = function()
  * @param	string	sFunction	Name of the function we plan to use
  * @param	string	sId	Form ID
  */
-$.fn.ajaxCall = function(sCall, sExtra, bNoForm, sType)
+$.fn.ajaxCall = function(sCall, sExtra, bNoForm, sType, callback)
 {	
 	if (empty(sType))
 	{
@@ -80,14 +80,19 @@ $.fn.ajaxCall = function(sCall, sExtra, bNoForm, sType)
 		sParams += '&' + getParam('sGlobalTokenName') + '[profile_user_id]=' + (oCore['profile.user_id'] ? oCore['profile.user_id'] : '0');
 	}
 
-	oCacheAjaxRequest = $.ajax(
-	{
-			type: sType,
-		  	url: sUrl,
-		  	dataType: "script",	
-			data: sParams			
-		}
-	);
+	var params = {
+		type: sType,
+		url: sUrl,
+		dataType: "script",
+		data: sParams
+	};
+	var self = this;
+	if (typeof(callback) == 'function') {
+		params.success = function(e) {
+			callback(e, self);
+		};
+	}
+	oCacheAjaxRequest = $.ajax(params);
 	return oCacheAjaxRequest;
 };
 

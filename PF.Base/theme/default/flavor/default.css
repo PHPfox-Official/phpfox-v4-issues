@@ -8736,6 +8736,35 @@ ul.activity_feed_form_attach li a:hover {
 #page_profile_index #container {
   width: auto;
 }
+#page_photo_index .item_bar {
+  position: relative;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+#page_photo_index .item_bar_action_holder ul {
+  left: 0px;
+  right: auto;
+}
+#page_photo_index a.item_bar_action,
+#page_photo_index a.item_bar_action:hover {
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  color: #808080;
+  background: #d8d8d8;
+  height: auto;
+  padding: 10px 20px;
+}
+#page_photo_index a.item_bar_action > span,
+#page_photo_index a.item_bar_action:hover > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+#page_photo_index a.item_bar_action::before {
+  position: static;
+  display: inline-block;
+  vertical-align: middle;
+}
 #page_photo_index .mosaicflow_load {
   min-height: 1000px;
 }
@@ -8757,6 +8786,7 @@ ul.activity_feed_form_attach li a:hover {
 #page_photo_index #content {
   width: auto;
   margin: 0px;
+  max-width: none;
 }
 #page_photo_index #content,
 #page_photo_index #panel {
@@ -9098,6 +9128,38 @@ ul.activity_feed_form_attach li a:hover {
 }
 #js_main_photo img {
   /*max-width:400px;*/
+}
+.tagFriendChooser {
+  overflow: hidden;
+  width: auto;
+  height: 50px;
+  line-height: 50px;
+  padding: 0px 0px 0px 10px;
+}
+.tagFriendChooser ._size__32 > span,
+.tagFriendChooser ._size__32:hover > span,
+.tagFriendChooser ._size__30 > span,
+.tagFriendChooser ._size__30:hover > span {
+  top: 0px;
+}
+.tagFriendChooser > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.tagFriendChooser .tagFriendChooserImage {
+  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+#js_feed_content > h2 {
+  font-size: 24px;
+  color: #808080;
+  font-weight: 200;
+  margin-bottom: 10px;
 }
 .profiles_banner_bg > .cover_bg {
   position: absolute;

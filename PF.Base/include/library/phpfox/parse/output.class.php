@@ -30,7 +30,12 @@ class Phpfox_Parse_Output
 	private $_aRegEx = array(
 		'url_to_link' => '~(?>[a-z+]{2,}://|www\.)(?:[a-z0-9]+(?:\.[a-z0-9]+)?@)?(?:(?:[a-z](?:[a-z0-9]|(?<!-)-)*[a-z0-9])(?:\.[a-z](?:[a-z0-9]|(?<!-)-)*[a-z0-9])+|(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))(?:/[^\\/:?*"<>|\n]*[a-z0-9])*/?(?:\?[a-z0-9_.%]+(?:=[a-z0-9_.%:/+-]*)?(?:&[a-z0-9_.%]+(?:=[a-z0-9_.%:/+-]*)?)*)?(?:#[a-z0-9_%.]+)?~is',
 		'email' => '/[-a-zA-Z0-9._]+@[-a-zA-Z0-9._]+(\.[-a-zA-Z0-9._]+)/is'
-	);	
+	);
+
+	private $_regex = [
+		'hash_tags' => '/[^\w](#[\wa-zA-Z0-9\[\]\/]+)/u',
+		'mentions' => '/[^\w](@[\wa-zA-Z0-9-\[\]\/]+)/u'
+	];
 	
 	/**
 	 * Parsing settings for images.
@@ -98,8 +103,6 @@ class Phpfox_Parse_Output
 
 		$sTxt = $this->parseUrls($sTxt);
 
-		// $sTxt = preg_replace_callback('/<object(.*?)>(.*?)<\/object>/is', array($this, '_embedWmode'), $sTxt);
-		
 		$sTxt = preg_replace_callback('/\[PHPFOX_PHRASE\](.*?)\[\/PHPFOX_PHRASE\]/i', array($this, '_getPhrase'), $sTxt);
 
 		if (Phpfox::getParam('tag.enable_hashtag_support'))
@@ -109,59 +112,26 @@ class Phpfox_Parse_Output
 
 		$sTxt = str_replace("\n\r\n\r", "", $sTxt);
 		$sTxt = str_replace("\n\r", "", $sTxt);
-		// $sTxt = str_replace("\n\r\n\r", "\n", $sTxt);
-		// $sTxt = nl2br($sTxt);
 		$sTxt = str_replace("\n", "<div class=\"newline\"></div>", $sTxt);
-		// $sTxt = str_replace("<br>\n<br>", "", $sTxt);
 
-		/*
-		if (preg_match_all("/\[quote(.*?)\]/i", $sTxt, $aSample) && isset($aSample[0]))
-		{
-			for ($i = 0; $i < count($aSample[0]); $i++)
-			{
-				$sTxt = preg_replace_callback("/\[quote(.*?)\](.*?)\[\/quote\]/is", function($aMatches) {
-					$bData = false;
-					$bLink = true;
-
-					$sDetail = null;
-					$sTxt = $aMatches[1];
-					if (isset($aMatches[2])) {
-						$sDetail = $aMatches[1];
-						$sTxt = $aMatches[2];
-					}
-
-					if (!empty($sDetail))
-					{
-						$bData = true;
-						$sDetail = substr_replace($sDetail, '', 0, 1);
-						$sDetail = Phpfox::getLib('parse.input')->jsClean(trim($sDetail));
-
-						$aUser = Phpfox::getService('user')->getUser($sDetail,'u.user_id, u.user_name, u.full_name');
-
-						if (empty($aUser))
-						{
-							$bLink = false;
-						}
-					}
-
-					$sTxt = stripslashes($sTxt);
-					// $sTxt = Phpfox::getLib('parse.input')->prepare($sTxt);
-
-					(($sPlugin = Phpfox_Plugin::get('parse_bbcode_quote_start')) ? eval($sPlugin) : false);
-
-					$sTxt = '<div class="new_quote">' . ($bData ? '<div class="new_quote_header">' . ($bLink ? '<a href="' . Phpfox_Url::instance()->makeUrl('profile', $aUser['user_name']) . '">' : '') . ($bLink ? $aUser['full_name'] : $sDetail) . ($bLink ? '</a>' : '') . '</div>' : '') . '<div class="new_quote_content_holder"><div class="new_quote_content">' . $sTxt . '</div></div></div>';
-
-					(($sPlugin = Phpfox_Plugin::get('parse_bbcode_quote_end')) ? eval($sPlugin) : false);
-
-					return $sTxt;
-				}, $sTxt);
-			}
-		}
-		*/
 		$sTxt = Phpfox_Parse_Bbcode::instance()->parse($sTxt);
+		$sTxt = preg_replace_callback($this->_regex['mentions'], array($this, '_replaceMentions'), $sTxt);
 
 		return $sTxt;
-	}	
+	}
+
+	private function _clean($str) {
+		$str = strip_tags($str);
+		$str = str_replace(array('"', "'", ' '), '', $str);
+		return $str;
+	}
+
+	private function _replaceMentions($matches) {
+		$tag_search = substr_replace($this->_clean($matches[0]), '', 0, 1);
+		$text = '<a href="' . Phpfox_Url::instance()->makeUrl($tag_search) . '">' . strip_tags($matches[0]) . '</a>';
+
+		return $text;
+	}
 
 	private function _replaceHashTags($aMatches)
 	{

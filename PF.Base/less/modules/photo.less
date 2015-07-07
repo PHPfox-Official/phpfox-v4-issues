@@ -55,6 +55,38 @@
 }
 
 #page_photo_index {
+	.item_bar {
+		position:relative;
+		margin-left:@blockContentPadding;
+		margin-bottom:20px;
+	}
+
+	.item_bar_action_holder ul {
+		left:0px;
+		right:auto;
+	}
+
+	a.item_bar_action, a.item_bar_action:hover {
+		width:auto;
+		display:inline-block;
+		vertical-align:middle;
+		color:@textColor;
+		background:darken(@bodyBg, 5%);
+		height:auto;
+		padding:10px 20px;
+	}
+
+	a.item_bar_action > span, a.item_bar_action:hover > span {
+		display:inline-block;
+		vertical-align:middle;
+	}
+
+	a.item_bar_action::before {
+		position:static;
+		display:inline-block;
+		vertical-align:middle;
+	}
+
 	.mosaicflow_load {
 		min-height:1000px;
 	}
@@ -80,6 +112,7 @@
 	#content {
 		width:auto;
 		margin:0px;
+		max-width:none;
 	}
 
 	#content, #panel {
@@ -439,5 +472,41 @@
 
 	img {
 		/*max-width:400px;*/
+	}
+}
+
+.tagFriendChooser {
+	overflow:hidden;
+	width:auto;
+	height:50px;
+	line-height:50px;
+	padding:0px 0px 0px 10px;
+
+	._size__32 > span, ._size__32:hover > span, ._size__30 > span, ._size__30:hover > span {
+		top:0px;
+	}
+
+	> span {
+		display:inline-block;
+		vertical-align:middle;
+	}
+
+	.tagFriendChooserImage {
+		margin-right:10px;
+		width:32px;
+		height:32px;
+		float:none;
+		display:inline-block;
+		vertical-align:middle;
+		position:relative;
+	}
+}
+
+#js_feed_content {
+	> h2 {
+		font-size:24px;
+		color:@textColor;
+		font-weight:200;
+		margin-bottom:10px;
 	}
 }

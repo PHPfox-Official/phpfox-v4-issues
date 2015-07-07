@@ -652,7 +652,11 @@ $Behavior.activityFeedLoader = function()
 		}		
 		
 		$(this).parent().parent().find('.js_feed_comment_process_form:first').show(); 
-		$(this).ajaxCall('comment.add'); 
+		$(this).ajaxCall('comment.add', null, null, null, function(e, self) {
+			$(self).find('textarea').blur();
+			isAddingComment = false;
+		});
+
 		$(this).find('.error_message').remove();
 		$(this).find('textarea:first').removeClass('dont-unbind');
 			
@@ -702,6 +706,7 @@ $Behavior.activityFeedLoader = function()
 	
 }
 
+var isAddingComment = false;
 $Core.commentFeedTextareaClick = function($oObj)
 {
 	$($oObj).addClass('dont-unbind');
@@ -710,13 +715,19 @@ $Core.commentFeedTextareaClick = function($oObj)
 	});
 	$($oObj).keydown(function(e)
 	{
+		if (isAddingComment) {
+			p('adding comment. Please wait...');
+			return false;
+		}
 		if (e.which == 13) {
+
 			e.preventDefault();
 			$($oObj).parents('form:first').trigger('submit');
 			$($oObj).removeClass('dont-unbind');
 			// $($oObj).unbind();
 			$Core.loadInit();
 			p('is added...');
+			isAddingComment = true;
 
 			return false;
 		}
@@ -827,7 +838,7 @@ function attachFunctionTagger(sSelector)
 						
 						aFoundFriends.push({user_id: $Cache.friends[i]['user_id'], full_name: $Cache.friends[i]['full_name'], user_image: $Cache.friends[i]['user_image']});
 				
-						sOut += '<div class="tagFriendChooser" onclick="$(\''+ $(this).data('selector') +'\').val(sToReplace + \'\' + (getParam(\'bEnableMicroblogSite\') ? \'@' + $Cache.friends[i]['user_name'] + '\' : \'[x=' + $Cache.friends[i]['user_id'] + ']' + $Cache.friends[i]['full_name'].replace(/\&#039;/g,'\\\'') +'[/x]\') + \' \').putCursorAtEnd();$(\''+$(this).data('selector')+'\').siblings(\'.chooseFriend\').remove();"><div class="tagFriendChooserImage"><img style="vertical-align:middle;width:25px; height:25px;" src="'+$Cache.friends[i]['user_image'] + '"> </div><span>' + (($Cache.friends[i]['full_name'].length > 25) ?($Cache.friends[i]['full_name'].substr(0,25) + '...') : $Cache.friends[i]['full_name']) + '</span></div>';
+						sOut += '<div class="tagFriendChooser" onclick="$(\''+ $(this).data('selector') +'\').val(sToReplace + \'\' + (true ? \'@' + $Cache.friends[i]['user_name'] + '\' : \'[x=' + $Cache.friends[i]['user_id'] + ']' + $Cache.friends[i]['full_name'].replace(/\&#039;/g,'\\\'') +'[/x]\') + \' \').putCursorAtEnd();$(\''+$(this).data('selector')+'\').siblings(\'.chooseFriend\').remove();"><div class="tagFriendChooserImage">' + $Cache.friends[i]['user_image'] + '</div><span>' + (($Cache.friends[i]['full_name'].length > 25) ?($Cache.friends[i]['full_name'].substr(0,25) + '...') : $Cache.friends[i]['full_name']) + '</span></div>';
 						/* just delete the fancy choose your friend and recreate it */
 						sOut = sOut.replace("\n", '').replace("\r", '');						
 					}

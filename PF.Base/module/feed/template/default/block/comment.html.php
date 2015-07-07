@@ -94,7 +94,7 @@
 		    {/if}
 		{/if}		
 		{if isset($aFeed.comments) && count($aFeed.comments)}
-			{if true || isset($sFeedType) &&  $sFeedType == 'view' && $aFeed.total_comment > Phpfox::getParam('comment.comment_page_limit')}
+			{if isset($sFeedType) &&  $sFeedType == 'view' && $aFeed.total_comment > Phpfox::getParam('comment.comment_page_limit')}
 			<div id="js_feed_comment_pager_{$aFeed.feed_id}">
 				<a href="{url link='feed.comments'}?type={$aFeed.type_id}&id={$aFeed.item_id}&page=2" class="load_more_comments ajax"  onclick="$(this).addClass('active');"><i class="fa fa-spin fa-circle-o-notch"></i><span>View Previous Comments</span></a>
 			</div>

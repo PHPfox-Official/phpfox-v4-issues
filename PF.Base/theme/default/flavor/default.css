@@ -9107,6 +9107,7 @@ ul.activity_feed_form_attach li a:hover {
   width: 120px;
   text-align: center;
   vertical-align: middle;
+  padding: 0px 8px;
 }
 .photos_stream > div > a:hover {
   background: #000;

@@ -111,15 +111,26 @@ ul.table_clear_button li {
 	}
 }
 
+.table_hover_action {
+	text-align:center;
+
+	input.button {
+		border-color:darken(@bodyBg, 4%);
+	}
+}
+
+input.button.disabled {
+	opacity:0.2;
+}
+
 input.button, a.button_off_link {
 	background:@bodyBg;
 	color:@textColor;
 	padding:14px 20px;
-	font-size:@fontSizeBase + 1;
+	font-size:@fontSizeBase;
 	font-weight:300;
 	letter-spacing:1px;
-	text-transform:uppercase;
-	border:3px @brandPrimary solid;
+	border:1px @brandPrimary solid;
 	box-shadow:none;
 }
 
@@ -231,12 +242,23 @@ ul.action {
 .pager_outer {
 	height:40px;
 	line-height:40px;
+	text-align:center;
+	margin:40px 0px;
+}
+
+.pager li.pager_total {
+	display:none;
+}
+
+.pager {
+	position:relative;
 }
 
 .pager li {
 	height:40px;
 	line-height:40px;
-	display:block;
+	display:inline-block;
+	float:none;
 }
 
 .pager li.first a {

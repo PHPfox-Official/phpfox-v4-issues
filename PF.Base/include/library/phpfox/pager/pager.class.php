@@ -277,123 +277,129 @@ class Phpfox_Pager
      */
     private function _getInfo()
     {
-	    /*
-		if($this->getTotalPages() == 0)
-		{
-			return false;
-		}
-		
-        $sParams = '';
-        if (count($this->_aParams))
-        {
-	        foreach ($this->_aParams as $iKey => $sValue)
-	        {
-	        	if (in_array($iKey, array(
-	        				'phpfox',
-	        				Phpfox::getTokenName(),
-	        				'page',
-	        				PHPFOX_GET_METHOD,
-	        				'ajax_page_display'
-	        			)
-	        		)
-	        	)
-	        	{
-	        		continue;
-	        	}
-				
-				if (is_array($sValue))
-				{
-					foreach ($sValue as $sKey => $sNewValue)
-					{
-						if (is_numeric($sKey))
-						{
-							continue;
-						}
-						
-						$sParams .= '&amp;' . $iKey . '[' . $sKey . ']=' . $sNewValue;
-					}
-				}
-	        	else
-				{
-					if (PHPFOX_IS_AJAX && $iKey == 'feed' && Phpfox::isModule('comment') && Phpfox::getParam('comment.load_delayed_comments_items'))
-					{
-						continue;
-					}
-					$sParams .= '&amp;' . $iKey . '=' . $sValue;
-				}
-	        }        
-        }
-    	$aInfo = array(
-            'totalPages' => $this->_iPagesCount,
-            'totalRows'  => $this->_iCnt,
-            'current'    => $this->_iPage,
-            'fromRow'    => $this->_iFirstRow+1,
-            'toRow'      => $this->_iLastRow,
-            'displaying' => ($this->_iCnt <= ($this->_iPageSize * $this->_iPage) ? $this->_iCnt : ($this->_iPageSize * $this->_iPage)),
-            'sParams' => $sParams,
-            'phrase' => $this->_sPhrase,
-            'icon' => $this->_sIcon
-        );        
+	    if (Phpfox::isAdminPanel()) {
+		    if($this->getTotalPages() == 0)
+		    {
+			    return false;
+		    }
 
-        list($nStart, $nEnd) = $this->_getPos();        
-        
-        $oUrl = Phpfox_Url::instance();
-        $oUrl->clearParam('page');
-        
-        if ($this->_iPage != 1)
-        {
-        	$oUrl->setParam($this->_sUrlKey, 1);
-        	$aInfo['firstAjaxUrl'] = 1;
-        	$aInfo['firstUrl'] = $oUrl->getFullUrl();
-    
-        	$oUrl->setParam($this->_sUrlKey, $this->_iPage-1);
-        	$aInfo['prevAjaxUrl'] = ($this->_iPage-1);
-            $aInfo['prevUrl'] = $oUrl->getFullUrl();        
-			Phpfox_Template::instance()->setHeader('<link rel="prev" href="' . $aInfo['prevUrl'] . '" />');
-        }        
-       
-        for ($i = $nStart; $i <= $nEnd; $i++)
-        {
-            if ($this->_iPage == $i)
-            {
-                $oUrl->setParam($this->_sUrlKey, $i); 
-            	$aInfo['urls'][$oUrl->getFullUrl()] = $i;
-            }
-            else
-            {
-            	$oUrl->setParam($this->_sUrlKey, $i);            	
-            	$aInfo['urls'][$oUrl->getFullUrl()] = $i;
-            }
-        }
-        
-        $oUrl->setParam($this->_sUrlKey, ($this->_iPage + 1));  
-        $aInfo['nextAjaxUrlPager'] = $oUrl->getFullUrl();  
-        
-        if ($this->_iPagesCount != $this->_iPage)
-        {
-       		$oUrl->setParam($this->_sUrlKey, ($this->_iPage + 1));       		
-       		$aInfo['nextAjaxUrl'] = ($this->_iPage + 1);       		
-       		$aInfo['nextUrl'] = $oUrl->getFullUrl();             
-			Phpfox_Template::instance()->setHeader('<link rel="next" href="' . $aInfo['nextUrl'] . '" />');
-       		
-            $oUrl->setParam($this->_sUrlKey, $this->_iPagesCount);
-            $aInfo['lastUrl']= $oUrl->getFullUrl();       		
-            $aInfo['lastAjaxUrl'] = $this->_iPagesCount;
-        }   
-		
-		$aInfo['sParamsAjax'] = str_replace("'", "\\'", $aInfo['sParams']);
-	    */
+		    $sParams = '';
+		    if (count($this->_aParams))
+		    {
+			    foreach ($this->_aParams as $iKey => $sValue)
+			    {
+				    if (in_array($iKey, array(
+						    'phpfox',
+						    Phpfox::getTokenName(),
+						    'page',
+						    PHPFOX_GET_METHOD,
+						    'ajax_page_display'
+					    )
+				    )
+				    )
+				    {
+					    continue;
+				    }
 
-	    $sNextPage = ((int) Phpfox_Request::instance()->get('page', 1) + 1);
-	    Phpfox_Url::instance()->clearParam('page');
-	    $_GET['page'] = $sNextPage;
-        Phpfox_Template::instance()->assign(array(
-        		// 'aPager' => $aInfo,
-        		// 'sAjax' => $this->_sAjax,
-		        'sCurrentUrl' => Phpfox_Url::instance()->makeUrl('current'),
-		        'sNextIteration' => $sNextPage
-        	)
-        );
+				    if (is_array($sValue))
+				    {
+					    foreach ($sValue as $sKey => $sNewValue)
+					    {
+						    if (is_numeric($sKey))
+						    {
+							    continue;
+						    }
+
+						    $sParams .= '&amp;' . $iKey . '[' . $sKey . ']=' . $sNewValue;
+					    }
+				    }
+				    else
+				    {
+					    if (PHPFOX_IS_AJAX && $iKey == 'feed' && Phpfox::isModule('comment') && Phpfox::getParam('comment.load_delayed_comments_items'))
+					    {
+						    continue;
+					    }
+					    $sParams .= '&amp;' . $iKey . '=' . $sValue;
+				    }
+			    }
+		    }
+		    $aInfo = array(
+			    'totalPages' => $this->_iPagesCount,
+			    'totalRows'  => $this->_iCnt,
+			    'current'    => $this->_iPage,
+			    'fromRow'    => $this->_iFirstRow+1,
+			    'toRow'      => $this->_iLastRow,
+			    'displaying' => ($this->_iCnt <= ($this->_iPageSize * $this->_iPage) ? $this->_iCnt : ($this->_iPageSize * $this->_iPage)),
+			    'sParams' => $sParams,
+			    'phrase' => $this->_sPhrase,
+			    'icon' => $this->_sIcon
+		    );
+
+		    list($nStart, $nEnd) = $this->_getPos();
+
+		    $oUrl = Phpfox_Url::instance();
+		    $oUrl->clearParam('page');
+
+		    if ($this->_iPage != 1)
+		    {
+			    $oUrl->setParam($this->_sUrlKey, 1);
+			    $aInfo['firstAjaxUrl'] = 1;
+			    $aInfo['firstUrl'] = $oUrl->getFullUrl();
+
+			    $oUrl->setParam($this->_sUrlKey, $this->_iPage-1);
+			    $aInfo['prevAjaxUrl'] = ($this->_iPage-1);
+			    $aInfo['prevUrl'] = $oUrl->getFullUrl();
+			    Phpfox_Template::instance()->setHeader('<link rel="prev" href="' . $aInfo['prevUrl'] . '" />');
+		    }
+
+		    for ($i = $nStart; $i <= $nEnd; $i++)
+		    {
+			    if ($this->_iPage == $i)
+			    {
+				    $oUrl->setParam($this->_sUrlKey, $i);
+				    $aInfo['urls'][$oUrl->getFullUrl()] = $i;
+			    }
+			    else
+			    {
+				    $oUrl->setParam($this->_sUrlKey, $i);
+				    $aInfo['urls'][$oUrl->getFullUrl()] = $i;
+			    }
+		    }
+
+		    $oUrl->setParam($this->_sUrlKey, ($this->_iPage + 1));
+		    $aInfo['nextAjaxUrlPager'] = $oUrl->getFullUrl();
+
+		    if ($this->_iPagesCount != $this->_iPage)
+		    {
+			    $oUrl->setParam($this->_sUrlKey, ($this->_iPage + 1));
+			    $aInfo['nextAjaxUrl'] = ($this->_iPage + 1);
+			    $aInfo['nextUrl'] = $oUrl->getFullUrl();
+			    Phpfox_Template::instance()->setHeader('<link rel="next" href="' . $aInfo['nextUrl'] . '" />');
+
+			    $oUrl->setParam($this->_sUrlKey, $this->_iPagesCount);
+			    $aInfo['lastUrl']= $oUrl->getFullUrl();
+			    $aInfo['lastAjaxUrl'] = $this->_iPagesCount;
+		    }
+
+		    $aInfo['sParamsAjax'] = str_replace("'", "\\'", $aInfo['sParams']);
+
+		    Phpfox_Template::instance()->assign(array(
+				    'aPager' => $aInfo,
+				    'sAjax' => $this->_sAjax
+			    )
+		    );
+	    }
+	    else {
+		    $sNextPage = ((int) Phpfox_Request::instance()->get('page', 1) + 1);
+		    Phpfox_Url::instance()->clearParam('page');
+		    $_GET['page'] = $sNextPage;
+
+	        Phpfox_Template::instance()->assign(array(
+			        'sCurrentUrl' => Phpfox_Url::instance()->makeUrl('current'),
+			        'sNextIteration' => $sNextPage
+	            )
+	        );
+	    }
     }	
 }
 

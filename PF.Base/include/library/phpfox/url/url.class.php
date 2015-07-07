@@ -361,6 +361,7 @@ class Phpfox_Url
         			$sName = $iKey;
         		}
 
+	            unset($_GET[$sName]);
             	unset($this->_aParams[$sName]);
             }
         }

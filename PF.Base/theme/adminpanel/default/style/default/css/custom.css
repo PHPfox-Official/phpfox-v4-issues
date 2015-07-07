@@ -1007,16 +1007,24 @@ ul.table_clear_button li {
   background: transparent;
   color: #808080;
 }
+.table_hover_action {
+  text-align: center;
+}
+.table_hover_action input.button {
+  border-color: #dbdbdb;
+}
+input.button.disabled {
+  opacity: 0.2;
+}
 input.button,
 a.button_off_link {
   background: #e5e5e5;
   color: #808080;
   padding: 14px 20px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 1px;
-  text-transform: uppercase;
-  border: 3px #f4645f solid;
+  border: 1px #f4645f solid;
   box-shadow: none;
 }
 input.button:hover {
@@ -1157,11 +1165,20 @@ ul.action {
 .pager_outer {
   height: 40px;
   line-height: 40px;
+  text-align: center;
+  margin: 40px 0px;
+}
+.pager li.pager_total {
+  display: none;
+}
+.pager {
+  position: relative;
 }
 .pager li {
   height: 40px;
   line-height: 40px;
-  display: block;
+  display: inline-block;
+  float: none;
 }
 .pager li.first a {
   border: 0px;

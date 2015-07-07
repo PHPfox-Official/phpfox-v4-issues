@@ -25,29 +25,42 @@ class Core_Component_Controller_Index_Visitor extends Phpfox_Component
 			eval($sPlugin);
 	    }
 
-		$photo = [];
+		$image = [];
 		list($total, $featured) = Photo_Service_Photo::instance()->getFeatured();
 		if (is_array($featured) && isset($featured[0])) {
 			$photo = $featured[0];
+			$url = Phpfox_Image_Helper::instance()->display([
+				'server_id' => $photo['server_id'],
+				'path' => 'photo.url_photo',
+				'file' => $photo['destination'],
+				'suffix' => '_1024',
+				'return_url' => true
+			]);
+			$image = [
+				'image' => $url,
+				'info' => strip_tags($photo['title']) . ' by ' . $photo['full_name']
+			];
 		}
 
-		$images = [
-			'create-a-community-for-musicians.jpg' => 'Creating communities for Musicians',
-			'create-a-community-for-athletes.jpg' => 'Creating communities for Athletes',
-			'create-a-community-for-photographers.jpg' => 'Creating communities for Photographers',
-			'create-a-social-network-for-fine-cooking.jpg' => 'Creating communities for Fine Cooking'
-		];
-		$total = rand(1, (count($images)));
-		$image = [];
-		$cnt = 0;
-		foreach ($images as $image => $info) {
-			$cnt++;
-			$image = [
-				'image' => 'http://bg.m9.io/' . $image,
-				'info' => $info
+		if (!$image) {
+			$images = [
+				'create-a-community-for-musicians.jpg' => 'Creating communities for Musicians',
+				'create-a-community-for-athletes.jpg' => 'Creating communities for Athletes',
+				'create-a-community-for-photographers.jpg' => 'Creating communities for Photographers',
+				'create-a-social-network-for-fine-cooking.jpg' => 'Creating communities for Fine Cooking'
 			];
-			if ($cnt === $total) {
-				break;
+			$total = rand(1, (count($images)));
+			$image = [];
+			$cnt = 0;
+			foreach ($images as $image => $info) {
+				$cnt++;
+				$image = [
+					'image' => 'http://bg.m9.io/' . $image,
+					'info' => $info
+				];
+				if ($cnt === $total) {
+					break;
+				}
 			}
 		}
 

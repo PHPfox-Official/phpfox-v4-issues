@@ -597,6 +597,10 @@ class Phpfox_Installer
 			$this->_pass('license');	
 		}
 		*/
+		$byPass = false;
+		if ($this->_bUpgrade && defined('PHPFOX_LICENSE_ID') && defined('PHPFOX_LICENSE_KEY')) {
+			$byPass = true;
+		}
 
 		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => array(
 					'license_id' => 'Provide a license ID.',
@@ -605,8 +609,13 @@ class Phpfox_Installer
 			)
 		);
 
-		if ($aVals = $this->_oReq->getArray('val'))
+		if (($aVals = $this->_oReq->getArray('val')) || $byPass)
 		{
+			if ($byPass) {
+				$aVals['license_id'] = PHPFOX_LICENSE_ID;
+				$aVals['license_key'] = PHPFOX_LICENSE_KEY;
+			}
+
 			$response = new stdClass();
 			// $response->valid = true;
 			if ($oValid->isValid($aVals))
@@ -632,7 +641,7 @@ class Phpfox_Installer
 				{
 					// $this->_pass('license');
 					$data = "<?php define('PHPFOX_LICENSE_ID', '{$aVals['license_id']}'); define('PHPFOX_LICENSE_KEY', '{$aVals['license_key']}');";
-					if ($aVals['is_trial']) {
+					if (isset($aVals['is_trial']) && $aVals['is_trial']) {
 						$data .= " define('PHPFOX_TRIAL', '" . Phpfox::getTime() . "');";
 					}
 					file_put_contents(PHPFOX_DIR_SETTINGS . 'license.php', $data);

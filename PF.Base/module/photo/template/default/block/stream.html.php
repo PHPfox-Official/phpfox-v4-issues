@@ -3,12 +3,13 @@
 	<i class="fa fa-spin fa-circle-o-notch"></i>
 </div>
 <div class="photos_view" data-photo-id="{$aForms.photo_id}">
-	{img id='js_photo_view_image' server_id=$aForms.server_id path='photo.url_photo' file=$aForms.destination suffix='_1024' title=$aForms.title}
+	<div class="image_load_holder" data-image-src="{img id='js_photo_view_image' server_id=$aForms.server_id path='photo.url_photo' file=$aForms.destination suffix='_1024' title=$aForms.title return_url=true}"></div>
+
 	{literal}
 	<script>
 		var preLoadImages = false;
 		$Ready(function() {
-			if ($('#js_photo_view_image').length && !preLoadImages) {
+			if ($('.image_load_holder').length && !preLoadImages) {
 				preLoadImages = true;
 				if (cacheCurrentBody !== null && typeof(cacheCurrentBody.contentObject) == 'string' && !$('.photos_stream').length) {
 					var images = '';
@@ -26,18 +27,27 @@
 					}
 				}
 
+				/*
 				$('#js_photo_view_image').load(function() {
 					$('body').addClass('photo_is_active');
 
 					$Core.loadInit();
 				});
+				*/
+				var img = new Image(), src = $('.image_load_holder').data('image-src');
+				img.onload = function() {
+					$('.image_load_holder').html('<img src="' + src + '" id="js_photo_view_image">');
+					$('body').addClass('photo_is_active');
+					$Core.loadInit();
+				};
+				img.src = src;
 			}
 
-			if (!$('#js_photo_view_image').length) {
+			if (!$('.image_load_holder').length) {
 				$('.photos_stream').remove();
 			}
 
-			if ($('.photos_stream').length && $('#js_photo_view_image').length) {
+			if ($('.photos_stream').length && $('.image_load_holder').length) {
 				$('.photos_stream a.active').removeClass('active');
 				if ($('.photos_view').data('photo-id')) {
 					$('.photos_stream a[data-photo-id="' + $('.photos_view').data('photo-id') + '"]').addClass('active');

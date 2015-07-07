@@ -8669,21 +8669,29 @@ ul.activity_feed_form_attach li a:hover {
   padding-left: 80px;
   min-height: 70px;
 }
-#js_block_border_event_rsvp form > .p_2 {
+#js_block_border_event_rsvp.block {
+  background: #ffffff;
+  padding: 0px 10px;
+  margin-top: 50px;
+}
+#js_block_border_event_rsvp.block > .title {
+  margin-bottom: 10px;
+}
+#js_block_border_event_rsvp.block form > .p_2 {
   display: block;
   padding: 10px 0px;
   cursor: pointer;
   border: 1px transparent solid;
   border-radius: 30px;
 }
-#js_block_border_event_rsvp form > .p_2 input[type="checkbox"],
-#js_block_border_event_rsvp form > .p_2 input[type="radio"] {
+#js_block_border_event_rsvp.block form > .p_2 input[type="checkbox"],
+#js_block_border_event_rsvp.block form > .p_2 input[type="radio"] {
   visibility: hidden;
 }
-#js_block_border_event_rsvp form > .p_2:hover {
+#js_block_border_event_rsvp.block form > .p_2:hover {
   color: #4d4d4d;
 }
-#js_block_border_event_rsvp form > .p_2.active {
+#js_block_border_event_rsvp.block form > .p_2.active {
   border-color: #298ada;
   color: #4d4d4d;
 }

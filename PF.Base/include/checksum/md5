@@ -1,5 +1,5 @@
 b41e07ec10d99cc5f9a83db7c3488e6e composer.lock
-cbb823785624425baffbbccfd19aa7d3 include/checksum/md5
+665ef1248f75851e955e858a31acb131 include/checksum/md5
 d7f7e3d45fa8602bec28e7a51c902110 include/cron/exec.php
 68b329da9893e34099c7d8ad5cb9c940 include/cron/index.html
 68b329da9893e34099c7d8ad5cb9c940 include/index.html
@@ -50,14 +50,14 @@ b601d00d7d8e8b382faa19f2c9bc796f include/library/phpfox/image/library/gd.class.p
 1b8d11d01dfb9948f4969ab7be9ce0c9 include/library/phpfox/mail/interface.class.php
 5d2bc1c379af42d1eeff44539b27624e include/library/phpfox/mail/mail.class.php
 e5996459eca40b423b0eed8beb3e2741 include/library/phpfox/module/component.class.php
-7a08ec10094e4442f7802fff71c9a499 include/library/phpfox/module/module.class.php
+c12c24edb549e5273651cd932c7608ea include/library/phpfox/module/module.class.php
 bddf59ff4bb4637b2f6c5e5ba35a6ee2 include/library/phpfox/module/service.class.php
-6a5c8fc25c243928deb37103f5804f05 include/library/phpfox/pager/pager.class.php
+a68850c669aeabb6657524909a62c13d include/library/phpfox/pager/pager.class.php
 2516e65af54d2cf1ab40286787a349a8 include/library/phpfox/parse/bbcode.class.php
 296875a31326e60ff5adb0109df6c83e include/library/phpfox/parse/css.class.php
 69a801d2acc82716915922cf7ecfbad8 include/library/phpfox/parse/format.class.php
 0e424ac777025dc52d30561bf5730f80 include/library/phpfox/parse/input.class.php
-f50485f8f7f56cfbbcfa4ef169287862 include/library/phpfox/parse/output.class.php
+6316d8613e71a56d0664858a6e73c1f2 include/library/phpfox/parse/output.class.php
 9c2cbf710df26baebd4dc9a5d915e1c3 include/library/phpfox/parse/wiki.class.php
 31204c13d87c066123abba90adfda243 include/library/phpfox/phpfox/api.class.php
 e66633ac904181e322fb290ce458059f include/library/phpfox/phpfox/phpfox.class.php
@@ -80,7 +80,7 @@ eff29e521393c0c13a689a6e391d1c26 include/library/phpfox/session/storage/cookie.c
 0945d5886cfa5c2f3fed116512fb2d8a include/library/phpfox/spam/spam.class.php
 b6f9a74a6759cda807973e2ff1fcc212 include/library/phpfox/template/cache.class.php
 f591f204929776b3be48abf8a9ad72be include/library/phpfox/template/template.class.php
-907396c2695de37956fa13a08f52c4ca include/library/phpfox/url/url.class.php
+2c89f59b0905349654c68aa485b725e0 include/library/phpfox/url/url.class.php
 1e1d3a058d92e140ab1b38b86172985e include/library/phpfox/validator/validator.class.php
 473b39139507b9f3f3e1a683f3b9554d include/library/phpfox/xml/builder.class.php
 6aa7e3af70b7ec662dffb6b0bbbab20c include/library/phpfox/xml/parser.class.php
@@ -117,7 +117,7 @@ a1de6e2f02c2ca57239755b5948763d6 less/helpers.less
 abc6004d38a679d568a55f787c41a155 less/modules/ad.less
 fb16a81e6f431507e314054480cd09de less/modules/browse.less
 d6c709caba1a1a6b1bb124410db5231e less/modules/core.less
-b9016e4b3cba917871853cd111d8d13c less/modules/event.less
+68cd6ab8e7e62b78cc4e1d18bf34c645 less/modules/event.less
 c8075c6896a15360ff01f20f6ece13d4 less/modules/feed.less
 7cfb564f826b54cea205d21e562a2fee less/modules/forum.less
 c4c62fdd30c21caeed7d641a24b85c7e less/modules/friend.less
@@ -125,7 +125,7 @@ c4c62fdd30c21caeed7d641a24b85c7e less/modules/friend.less
 02bedc3facdc9a7c2ae1d2faca777db9 less/modules/marketplace.less
 779eca297b51d75075c02079343a8224 less/modules/music.less
 0de6a82dbd43ae2490397e3e15452daa less/modules/pages.less
-32edb0ba8ff2a8f47217d8cc9aafe0d1 less/modules/photo.less
+84782ce289228b2a2b498cd2983f710e less/modules/photo.less
 ee5a35921dd4eaf438e6ee2e8a7e7c36 less/modules/poll.less
 11d3c70eda68c75e0ea4b2b73e28785e less/modules/profile.less
 7c9e9b8f3059ed1580dd334de1e75103 less/modules/quiz.less
@@ -138,7 +138,7 @@ c35a6ff7e40780a42966005d14b82af0 less/notifications.less
 8504f58b8e5bce9a365484f31c9cdac5 less/panel.less
 f05cc9a58fa3aa18f5ead323c713ec6c less/reset.less
 0cef1657cf7801296c954578f245cc29 less/responsive.less
-f2dae62fa3077d3ba4e4afbe355913d9 less/rows.less
+66c69e454500501c303aabda93f41a50 less/rows.less
 cdf9f79cd6376abf440ff6bc648b26cf less/table.less
 d41d8cd98f00b204e9800998ecf8427e less/variables.css
 2b412d77656031db6eeae5153617c269 less/variables.less
@@ -1284,7 +1284,7 @@ a5f93ecb86acb83450f1fdb68d16a755 module/event/include/service/event.class.php
 2177ef5389de807c9e6e43799fb0f331 module/event/include/service/process.class.php
 68b329da9893e34099c7d8ad5cb9c940 module/event/index.html
 68b329da9893e34099c7d8ad5cb9c940 module/event/install/index.html
-023e1516f49e95dae5a932d9acc0a3cc module/event/install/phpfox.xml.php
+09e02819c450c39652e91497f47e02a6 module/event/install/phpfox.xml.php
 81bac8a6be44017a536eb436946e3569 module/event/install/version/2.0.0.xml.php
 9125f5f7b3dac80666a8a2391535c488 module/event/install/version/2.0.0rc10.xml.php
 25b662ed26f4e4a480ac200018e3bae4 module/event/install/version/2.0.0rc11.xml.php
@@ -1324,6 +1324,7 @@ c428332ff4d6d6ee49af4b1e0f34ddc4 module/event/install/version/3.5.0rc1.xml.php
 eba7d6fbe103565c058d79ab3289a81c module/event/install/version/3.6.0rc1.xml.php
 3cd46c38158ba1009e8acd5e26619963 module/event/install/version/3.7.6rc1.xml.php
 3ac1d8261ed1643d3d1ac9f5702faad8 module/event/install/version/4.0.0rc1.xml.php
+36d327cd48f4632dd52d4444d35be83f module/event/install/version/4.0.0rc2.xml.php
 68b329da9893e34099c7d8ad5cb9c940 module/event/install/version/index.html
 b0e4954d2174fb1d36503a39887c3e9c module/event/install/version/install.xml.php
 83168e6cb289d732cc78427b51f93153 module/event/install/version/v3.phpfox
@@ -1452,7 +1453,7 @@ e10c7cf44a3370143b83179caa549748 module/facebook/template/default/controller/log
 19a04def35c4b4f8fc15762d207f77cb module/feed/include/component/ajax/ajax.class.php
 68b329da9893e34099c7d8ad5cb9c940 module/feed/include/component/ajax/index.html
 b15a22e749c8e1b9e693d2194afc1bd8 module/feed/include/component/block/comment.class.php
-02d80120d61397c5f6f480f1828493ad module/feed/include/component/block/display.class.php
+411d38bca04db1f1f1742020a33f0844 module/feed/include/component/block/display.class.php
 008ebbb80d10fafd20b22519bdcac0b8 module/feed/include/component/block/form.class.php
 67b3c09b507164a06e63cb07b912dcf2 module/feed/include/component/block/form2.class.php
 80486289e197d967b9d0a745ffbc6ca2 module/feed/include/component/block/like-list.class.php
@@ -1532,11 +1533,11 @@ ba338bb0fdceba3e0ebe76a5a843fc9b module/feed/install/version/3.7.5.xml.php
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/css/index.html
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/image/index.html
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/index.html
-9d07a7b450d32efeaf8c791c56764a33 module/feed/static/jscript/feed.js
+3d3fd59f9daaca5f251706dc06673898 module/feed/static/jscript/feed.js
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/jscript/index.html
 f96b0c23ccb68cd01bff81eb9ad4b28e module/feed/static/jscript/places.js
 d3b06d937f63c243989ae8ddf8d1f4ec module/feed/template/default/block/checkin.html.php
-6f9ed14a50954ae1e6c24bed7994b772 module/feed/template/default/block/comment.html.php
+492f223607dff0993a37647eebbe90a9 module/feed/template/default/block/comment.html.php
 46d71d30288582c4e909d54874449624 module/feed/template/default/block/content.html.php
 0ebb6f949166b4d2105fba08a2072480 module/feed/template/default/block/display.html.php
 c2450770a3862d76b087dbad71ccd238 module/feed/template/default/block/entry-mobile.html.php
@@ -1676,7 +1677,7 @@ aa600351d380598a6247927c2756f4e3 module/forum/template/default/controller/read.h
 f53b028fff548f33b3921e6bd0393d62 module/forum/template/default/controller/rss.html.php
 67b9501b54f75b625fcbf568582bfa8b module/forum/template/default/controller/search.html.php
 0795be1a1e7b76bbf879a99431886a49 module/forum/template/default/controller/tag.html.php
-5a9bf78d8620292e81c499988b0ec59b module/forum/template/default/controller/thread.html.php
+4c236376a8c453df8af8b3c6b7c853ba module/forum/template/default/controller/thread.html.php
 68b329da9893e34099c7d8ad5cb9c940 module/forum/template/default/index.html
 68b329da9893e34099c7d8ad5cb9c940 module/forum/template/index.html
 2e41257501fde738a9500b33cdee54ff module/friend/include/component/ajax/ajax.class.php
@@ -2764,7 +2765,7 @@ b1fecb6d9c05ad5606bd04bc49877193 module/photo/template/default/block/profile.htm
 c53587e41860d1fd19e1ca91f81c7522 module/photo/template/default/block/specialmenu.html.php
 6b6c3316021a1ccc96ccae6062b480dc module/photo/template/default/block/sponsored.html.php
 acddc0abf20f6765079d7714f59c37bc module/photo/template/default/block/stat.html.php
-a4f732952528c7e25077fc7b473b4b3b module/photo/template/default/block/stream.html.php
+47285c91dfa5b4fd06af6b9e5e77f171 module/photo/template/default/block/stream.html.php
 34807ae961c80813d6c00c0af6cd478c module/photo/template/default/block/warning.html.php
 8c14154145704724dfe1e6b628ea0a9e module/photo/template/default/controller/add.html.php
 2279b622e6ff28ec7f871a45e05ae7eb module/photo/template/default/controller/admincp/index.html.php
@@ -2777,7 +2778,7 @@ c209dc0add2d9dc45b10bc8447db5cfe module/photo/template/default/controller/edit-a
 848fb6dcd73e5af3a94e3428fb62d556 module/photo/template/default/controller/frame.html.php
 c2502770a5d38ed631b30dad3a5a4035 module/photo/template/default/controller/group.html.php
 68b329da9893e34099c7d8ad5cb9c940 module/photo/template/default/controller/index.html
-904018d158761da83bee992dacfdcbf9 module/photo/template/default/controller/index.html.php
+e2ef9ca7b5de2895e4cbcddc5829f64c module/photo/template/default/controller/index.html.php
 1de8f0e69d180736e88c55b2d7fd83f4 module/photo/template/default/controller/profile.html.php
 08ba7bc9dcc4e53015e02c5882b67326 module/photo/template/default/controller/public-album.html.php
 3be09f4a1620cd86ea012278c2f12d97 module/photo/template/default/controller/rate.html.php
@@ -3768,7 +3769,7 @@ a2aba57173041afde945ae6e33d12cf4 static/image/font/HECK.TTF
 68b329da9893e34099c7d8ad5cb9c940 static/index.html
 169d354cc1906696630c1f0cc54eb738 static/jscript/admin.js
 d41d8cd98f00b204e9800998ecf8427e static/jscript/admin_ie6.js
-f11991a17f97534d6d01c05abea1dc91 static/jscript/ajax.js
+a3c0a47853e0a9f9c5c94c71eea0bb23 static/jscript/ajax.js
 d41d8cd98f00b204e9800998ecf8427e static/jscript/api.js
 3a74280b092ff5f1914384b24aebe791 static/jscript/colorpicker/colpick.jquery.json
 9274fde32a67b7b1770dd814287b8008 static/jscript/colorpicker/css/colpick.css
@@ -3833,7 +3834,7 @@ dfbb941c7fb7f7737ce8a4b9e21062cb static/upgrade.html
 0fde334a45fec82d893ae1a9a73ced6d theme/adminpanel/default/style/default/css/colorpicker.css
 0211176698b92659fc1b4852d7392ba4 theme/adminpanel/default/style/default/css/comment.css
 b91cf83ac01ff78f83187bf86d697635 theme/adminpanel/default/style/default/css/common.css
-1207497c1cd94360e49915d6f5ea25fe theme/adminpanel/default/style/default/css/custom.css
+4b00de876e64c4944e3706f8e0337322 theme/adminpanel/default/style/default/css/custom.css
 2c805545b104901e941b520eaf1b8913 theme/adminpanel/default/style/default/css/custom.less
 fa5146e4f051db91657cd64e42e6eb2d theme/adminpanel/default/style/default/css/debug.css
 36ef4e8835caddde806838fffe797148 theme/adminpanel/default/style/default/css/drag.css
@@ -3913,7 +3914,7 @@ fcb66d262982daa3c55a6f77e1f50861 theme/adminpanel/default/style/default/jscript/
 95d26b5bdb3f2fad3fe1fcfdfce737a6 theme/adminpanel/default/style/default/less/body.less
 18441aa65748a8f39630f1a238e24e26 theme/adminpanel/default/style/default/less/box.less
 f08a19f18d0521dac8b30cacb667630d theme/adminpanel/default/style/default/less/colors.less
-cec961ff314c52eb5f224abbf2f14a25 theme/adminpanel/default/style/default/less/forms.less
+1646086c484e5aa944fc709ef2ed02e8 theme/adminpanel/default/style/default/less/forms.less
 4be2f8e659c93004204cb9c60ecb869b theme/adminpanel/default/style/default/less/login.less
 a29a9db50eb904bec8ec6baf51ee3b6d theme/adminpanel/default/style/default/less/mixins.less
 5339f8f27076b464d6b3e01c55533f20 theme/adminpanel/default/style/default/less/modules/apps.less
@@ -3924,11 +3925,11 @@ ea95b2f0c527bf8a763f2ad83f42f159 theme/adminpanel/default/style/default/less/nan
 15f208723fa0ab2c8f8e2bdc5be002f6 theme/adminpanel/default/template/block.html.php
 8671527b38073e5a09f341bce4510430 theme/adminpanel/default/template/email.html.php
 7b8c275eabd71373f89305c1b85d41f9 theme/adminpanel/default/template/error.html.php
-27f322032e3422e95cdef90347d39a0d theme/adminpanel/default/template/pager.html.php
+56705c3de10e467ea8eab59b2ca3bef5 theme/adminpanel/default/template/pager.html.php
 1a5c794018106cbc0c3d6716c9a539b3 theme/adminpanel/default/template/template.html.php
 68b329da9893e34099c7d8ad5cb9c940 theme/adminpanel/index.html
 bbd5eb10fd276b38c7d235093c75441e theme/default/assets/autoload.js
-5b1520fc3d42c2cc1c2eedec241383cd theme/default/flavor/default.css
+445434f50c04ccf3021182d1c5081694 theme/default/flavor/default.css
 3ec1ef9bdb944951f3aa8452e8348aa4 theme/default/flavor/default.less
 157a7e23807a282544d184507d4b09a0 theme/default/html/blank.html
 3a7390617d19c66aadc0b05ccf338949 theme/default/html/layout.html
@@ -3954,8 +3955,8 @@ e87f3bf8e6f9aaf3bb98bd71e59a4f42 theme/frontend/default/style/default/css/imgnot
 68b329da9893e34099c7d8ad5cb9c940 theme/frontend/default/style/default/css/index.html
 b107ad09acb3881528e95d05f89ab2df theme/frontend/default/style/default/css/jquery.css
 ddab7def0e2f852ecb1b2ece722b2870 theme/frontend/default/style/default/css/jquery.rating.css
-f96153905bf5a6ed66834ce4b9ca51ab theme/frontend/default/style/default/css/layout.css
-9c2e487c3c4379116493f48e5926abb9 theme/frontend/default/style/default/css/layout.less
+809870bd5ee0a25c934d2a8bb6b8c11e theme/frontend/default/style/default/css/layout.css
+d799c8af65a0f80def187404d02e863f theme/frontend/default/style/default/css/layout.less
 4cd15a8638d620306c7720e24ac1e0c7 theme/frontend/default/style/default/css/mail.css
 4ebd8d430c41957178d525e82c6e9df8 theme/frontend/default/style/default/css/mobile.css
 9ff3b992d30d0bbb08626f618cd4fe80 theme/frontend/default/style/default/css/pager.css

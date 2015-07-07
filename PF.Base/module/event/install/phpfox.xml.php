@@ -28,7 +28,7 @@
 			<source_code />
 			<source_parsed />
 		</block>
-		<block type_id="0" m_connection="event.view" module_id="event" component="rsvp" location="3" is_active="1" ordering="4" disallow_access="" can_move="0">
+		<block type_id="0" m_connection="event.view" module_id="event" component="rsvp" location="1" is_active="1" ordering="4" disallow_access="" can_move="0">
 			<title></title>
 			<source_code />
 			<source_parsed />

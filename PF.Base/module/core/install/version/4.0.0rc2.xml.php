@@ -21,7 +21,7 @@
 			<parent_var_name />
 			<m_connection>main</m_connection>
 			<var_name>menu_core_videos_fad58de7366495db4650cfefac2fcd61</var_name>
-			<ordering>130</ordering>
+			<ordering>131</ordering>
 			<url_value>/videos</url_value>
 			<version_id>4.0.0rc2</version_id>
 			<disallow_access />

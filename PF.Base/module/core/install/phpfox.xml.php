@@ -17,6 +17,7 @@
 		<menu module_id="core" parent_var_name="" m_connection="" var_name="menu_log_out" ordering="10" url_value="user.logout" version_id="2.0.0alpha1" disallow_access="a:1:{i:0;s:1:&quot;3&quot;;}" module="core" />
 		<menu module_id="core" parent_var_name="" m_connection="friend.index" var_name="menu_core_create_a_list_a441eadc1389cdf0ffe6c4f8babdd66e" ordering="101" url_value="#friend-add-list" version_id="3.0.0beta1" disallow_access="" module="core" />
 		<menu module_id="core" parent_var_name="" m_connection="main" var_name="menu_core_videos_fad58de7366495db4650cfefac2fcd61" ordering="130" url_value="/videos" version_id="4.0.0rc2" disallow_access="" module="core" mobile_icon="video-camera" />
+		<menu module_id="core" parent_var_name="" m_connection="main" var_name="menu_core_videos_fad58de7366495db4650cfefac2fcd61" ordering="131" url_value="/videos" version_id="4.0.0rc2" disallow_access="" module="core" mobile_icon="video-camera" />
 	</menus>
 	<setting_groups>
 		<name module_id="core" version_id="2.0.0alpha1" var_name="setting_group_cookie">cookie</name>

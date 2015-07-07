@@ -14,10 +14,10 @@
 		<setting group="" module_id="captcha" is_hidden="0" type="integer" var_name="captcha_limit" phrase_var_name="setting_captcha_limit" ordering="2" version_id="2.0.0alpha1">5</setting>
 		<setting group="" module_id="captcha" is_hidden="0" type="boolean" var_name="captcha_use_font" phrase_var_name="setting_captcha_use_font" ordering="3" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="captcha" is_hidden="0" type="string" var_name="captcha_font" phrase_var_name="setting_captcha_font" ordering="4" version_id="2.0.0alpha1">HECK.TTF</setting>
-		<setting group="" module_id="captcha" is_hidden="0" type="boolean" var_name="recaptcha" phrase_var_name="setting_recaptcha" ordering="1" version_id="2.0.0rc12">0</setting>
-		<setting group="" module_id="captcha" is_hidden="0" type="string" var_name="recaptcha_public_key" phrase_var_name="setting_recaptcha_public_key" ordering="2" version_id="2.0.0rc12" />
-		<setting group="" module_id="captcha" is_hidden="0" type="string" var_name="recaptcha_private_key" phrase_var_name="setting_recaptcha_private_key" ordering="3" version_id="2.0.0rc12" />
-		<setting group="" module_id="captcha" is_hidden="0" type="large_string" var_name="recaptcha_header" phrase_var_name="setting_recaptcha_header" ordering="4" version_id="2.0.0rc12" />
+		<setting group="" module_id="captcha" is_hidden="1" type="boolean" var_name="recaptcha" phrase_var_name="setting_recaptcha" ordering="1" version_id="2.0.0rc12">0</setting>
+		<setting group="" module_id="captcha" is_hidden="1" type="string" var_name="recaptcha_public_key" phrase_var_name="setting_recaptcha_public_key" ordering="2" version_id="2.0.0rc12" />
+		<setting group="" module_id="captcha" is_hidden="1" type="string" var_name="recaptcha_private_key" phrase_var_name="setting_recaptcha_private_key" ordering="3" version_id="2.0.0rc12" />
+		<setting group="" module_id="captcha" is_hidden="1" type="large_string" var_name="recaptcha_header" phrase_var_name="setting_recaptcha_header" ordering="4" version_id="2.0.0rc12" />
 	</settings>
 	<hooks>
 		<hook module_id="captcha" hook_type="component" module="captcha" call_name="captcha.component_block_form_process" added="1231838390" version_id="2.0.0alpha1" />

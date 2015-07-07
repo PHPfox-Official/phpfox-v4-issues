@@ -707,7 +707,7 @@ class Phpfox_Module
 			$aBlocks[$iId] = true;
 		}
 
-		if ($iId == '3') {
+		if ($iId == '3' && !Phpfox::isAdminPanel()) {
 			// \Phpfox::getBlock('ad.display', array('block_id' => 3));
 			$aBlocks[$iId][] = 'ad.display';
 		}

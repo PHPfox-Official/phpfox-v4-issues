@@ -39,8 +39,12 @@
 	var runStep = function(step, type, timeout, data) {
 		$('#installer .error').remove();
 		setTimeout(function() {
+			var isUpgrade = '';
+			if ($('#is-upgrade').length) {
+				isUpgrade = '&phpfox-upgrade=1';
+			}
 			$.ajax({
-				url: BasePath + '?step=' + step,
+				url: BasePath + '?step=' + step + isUpgrade,
 				type: (type ? type : 'GET'),
 				data: data,
 				error: function(e) {

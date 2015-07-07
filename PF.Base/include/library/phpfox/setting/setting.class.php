@@ -245,18 +245,20 @@ class Phpfox_Setting
 			{
 				if (md5(Phpfox::VERSION) != md5($aRow['value_actual']))
 				{
-					define('PHPFOX_NO_PLUGINS', true);
-					define('PHPFOX_NO_USER_SESSION', true);
-					define('PHPFOX_NO_CSRF', true);
-					define('PHPFOX_INSTALLER', true);
-					define('PHPFOX_INSTALLER_NO_TMP', true);
-					define('PHPFOX_NO_RUN', true);
-					define('PHPFOX_IS_UPGRADE', true);
+					if (isset($_GET['phpfox-upgrade'])) {
+						define('PHPFOX_NO_PLUGINS', true);
+						define('PHPFOX_NO_USER_SESSION', true);
+						define('PHPFOX_NO_CSRF', true);
+						define('PHPFOX_INSTALLER', true);
+						define('PHPFOX_INSTALLER_NO_TMP', true);
+						define('PHPFOX_NO_RUN', true);
+						define('PHPFOX_IS_UPGRADE', true);
 
-					require(PHPFOX_DIR . 'install/include/installer.class.php');
+						require(PHPFOX_DIR . 'install/include/installer.class.php');
 
-					(new Phpfox_Installer())->run();
-					exit;
+						(new Phpfox_Installer())->run();
+						exit;
+					}
 
 					$sMessage = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
 					$sMessage .= '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">';
@@ -412,7 +414,11 @@ class Phpfox_Setting
 				$this->_aParams['core.phpfox_grouply_members'] = (int) $aSettingParts[1];
 				$this->_aParams['core.phpfox_grouply_admins'] = (int) $aSettingParts[2];
 			}
-		}		
+		}
+
+		if (isset($_GET['phpfox-upgrade'])) {
+			Phpfox_Url::instance()->send('');
+		}
 	}
 	
 	/**

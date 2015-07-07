@@ -143,26 +143,8 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="thread_view_holder">
 			<section class="thread_starter">
 				{template file='forum.block.post'}
-				{literal}
-				<script>
-					$Ready(function() {
-						if ($('#page_forum_thread').length
-							&& $('#js_block_border_ad_display').length
-							&& !$('#page_forum_thread').hasClass('ad_created')
-							) {
-							$('#page_forum_thread').addClass('ad_created');
-							$('.thread_starter').append($('#js_block_border_ad_display'));
-							p('test...');
-						}
-					});
-				</script>
-				{/literal}
 			</section>
 			<section class="thread_replies">
-				{*
-				<h1>Latest Replies</h1>
-				<a href="{url link='forum.thread.replies' id=$aThread.thread_id}" class="thread_view_all popup" data-custom-class="forum_popup_replies">View All Replies<span>{$iTotalPosts}</span></a>
-				*}
 		{/if}
 				{foreach from=$aThread.posts name=posts item=aPost}
 					{plugin call='forum.template_controller_post_1'}

@@ -15,9 +15,6 @@ defined('PHPFOX') or exit('NO DICE!');
  */
 ?>
 {if count($aAnnouncements)}
-<div class="table_header">
-	{phrase var='announcement.announcements'}	
-</div>
 <div id="js_announcements">
 	{module name='announcement.manage' sLanguage=$sDefaultLanguage}
 </div>

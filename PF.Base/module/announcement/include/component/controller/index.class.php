@@ -37,8 +37,9 @@ class Announcement_Component_Controller_Index extends Phpfox_Component
 			$aAnnouncements = reset($aAnnouncements);
 			$sSubject = $aAnnouncements['subject_var'];
 			
-			$this->template()->setBreadcrumb(Phpfox::getPhrase('announcement.announcements'), $this->url()->makeUrl('announcement.view'))
-				->setBreadcrumb(Phpfox::getPhrase($sSubject), null, true)
+			$this->template()
+				->setBreadcrumb(Phpfox::getPhrase('announcement.announcements'), $this->url()->makeUrl('announcement.view'))
+				->setBreadcrumb(Phpfox::getPhrase($sSubject), $this->url()->current(), true)
 				->setTitle(Phpfox::getPhrase($sSubject))
 				->assign(array('aAnnouncements' => array($aAnnouncements)));
 

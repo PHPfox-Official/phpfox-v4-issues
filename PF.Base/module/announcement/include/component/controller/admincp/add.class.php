@@ -90,6 +90,7 @@ class Announcement_Component_Controller_Admincp_Add extends Phpfox_Component
 
 	$this->template()->setTitle(Phpfox::getPhrase('announcement.add_an_announcement'))
 	    ->setBreadcrumb(Phpfox::getPhrase('announcement.announcements'), $this->url()->makeUrl('admincp.announcement'))
+		->setSectionTitle(Phpfox::getPhrase('announcement.announcements'))
 	    ->setEditor()
 	    ->setPhrase(array(
 		'announcement.min_age_cannot_be_higher_than_max_age',

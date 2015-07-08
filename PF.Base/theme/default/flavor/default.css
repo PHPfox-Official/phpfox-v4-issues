@@ -2430,12 +2430,37 @@ h3 {
 #page_core_index-visitor._is_guest_user .site_menu {
   display: none;
 }
-#page_core_index-member #header,
 #page_core_index-member #top {
+  min-height: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+#page_core_index-member #header {
   display: none;
 }
 #page_core_index-member #main {
   padding-top: 10px;
+}
+div#announcement .js_announcement_close {
+  margin: 0px;
+}
+div#announcement {
+  padding: 10px;
+  margin: -10px 0px 0px 0px;
+  background: #f5f5f5;
+  color: #999999;
+  border: 0px;
+  border-left: 1px #f0f0f0 solid;
+}
+div#announcement .js_announcement_content {
+  margin: 0px;
+}
+div#announcement div.announcement_date {
+  margin-right: 20px;
+}
+#announcements_holder .article {
+  padding: 10px;
+  background: #ffffff;
 }
 #page_search_index .main_search_bar {
   position: relative;

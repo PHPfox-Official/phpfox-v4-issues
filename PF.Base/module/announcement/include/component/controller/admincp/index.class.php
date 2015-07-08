@@ -45,6 +45,13 @@ class Announcement_Component_Controller_Admincp_Index extends Phpfox_Component
 
 		$this->template()->setTitle(Phpfox::getPhrase('announcement.announcements'))
 			->setBreadcrumb(Phpfox::getPhrase('announcement.announcements'), $this->url()->makeUrl('admincp.announcement'))
+			->setSectionTitle(Phpfox::getPhrase('announcement.announcements'))
+			->setActionMenu([
+				'New Announcement' => [
+					'class' => '',
+					'url' => $this->url()->makeUrl('admincp.announcement.add')
+				]
+			])
 			->assign(array(
 				'aLanguages' => $aLanguages,
 				'sDefaultLanguage' => $sDefLanguage,

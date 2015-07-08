@@ -12,7 +12,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {$sCreateJs}
-<form method="post" action="{url link='admincp.page.add'}" id="js_form" onsubmit="{$sGetJsForm}">
+<form method="post" action="{url link='admincp.page.add'}" id="js_form_new_page">
 	<div><input type="hidden" name="val[attachment]" id="js_attachment" value="{value type='input' id='attachment'}" /></div>
 	{if $bIsEdit}
 	<div><input type="hidden" name="page_id" value="{$aForms.page_id}" /></div>
@@ -26,12 +26,9 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="page_editor_data">
 		<div>
 			<div class="table">
-				<div class="table_left">
-					{phrase var='page.page_title'}:
-				</div>
 				<div class="table_right">
-					<input type="text" name="val[title]" id="title" value="{value type='input' id='title'}" size="40" onblur="if ($('#title_url').val() == '' && this.value != '') $.ajaxCall('page.admincp.addUrl', 'title=' + this.value);" tabindex="1" />
-					<div class="p_4">
+					<input placeholder="{phrase var='page.page_title'}" type="text" name="val[title]" id="title" value="{value type='input' id='title'}" size="40" onblur="if ($('#title_url').val() == '' && this.value != '') $.ajaxCall('page.admincp.addUrl', 'title=' + this.value);" tabindex="1" />
+					<div class="p_4" style="display:none;">
 						{phrase var='page.phrase_from_language_package'}
 						<label><input type="radio" name="val[is_phrase]" id="is_phrase" value="1"{value type='radio' id='is_phrase' default='1'}/> {phrase var='admincp.yes'}</label>
 						<label><input type="radio" name="val[is_phrase]" id="is_phrase" value="0"{value type='radio' id='is_phrase' default='0' selected=true}/> {phrase var='admincp.no'}</label>
@@ -168,3 +165,23 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="ace_editor" data-ace-mode="html">{if $bIsEdit}{$aForms.text}{/if}</div>
 	</div>
 </form>
+<script>
+	{literal}
+	$Ready(function() {
+		$('#js_form_new_page').submit(function() {
+			var t = $(this);
+
+			$.ajax({
+				url: t.attr('action'),
+				type: 'POST',
+				data: t.serialize() + '&val[text]=' + encodeURIComponent($AceEditor.obj.getSession().getValue()) + '&core[ajax]=true',
+				success: function(e) {
+					window.location.href = e.redirect;
+				}
+			});
+
+			return false;
+		});
+	});
+	{/literal}
+</script>

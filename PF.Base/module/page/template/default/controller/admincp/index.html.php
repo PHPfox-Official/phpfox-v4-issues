@@ -33,7 +33,4 @@ defined('PHPFOX') or exit('NO DICE!');
 </form>
 {else}
 {phrase var='page.no_pages_have_been_added'}
-<ul class="action">
-	<li><a href="{url link='admincp.page.add'}">{phrase var='page.create_a_new_page'}</a></li>
-</ul>
 {/if}

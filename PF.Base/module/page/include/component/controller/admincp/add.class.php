@@ -65,7 +65,7 @@ class Page_Component_Controller_Admincp_Add extends Phpfox_Component
 		}		
 		
 		if ($aVals = $this->request()->getArray('val'))
-		{			
+		{
 			Phpfox::getLib('parse.input')->allowTitle(Phpfox::getLib('parse.input')->cleanTitle($aVals['title_url']), Phpfox::getPhrase('page.invalid_title'));	
 			
 			if ($oValid->isValid($aVals))
@@ -85,14 +85,9 @@ class Page_Component_Controller_Admincp_Add extends Phpfox_Component
 				
 				if ($sReturn)
 				{
-					if ($aVals['add_menu'])
-					{
-						$this->url()->send('admincp.menu.add', array('page' => $sReturn), Phpfox::getPhrase('page.page_added_continue'));
-					}
-					else 
-					{
-						$this->url()->send($sReturn, $aUrl, $sMessage);
-					}
+					return [
+						'redirect' => $this->url()->makeUrl($sReturn)
+					];
 				}
 			}
 		}		

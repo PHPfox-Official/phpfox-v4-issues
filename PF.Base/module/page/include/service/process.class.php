@@ -166,11 +166,13 @@ class Page_Service_Process extends Phpfox_Service
 			$this->database()->process($aSqlText, $aVals)->update(Phpfox::getT('page_text'), 'page_id = ' . (int) $aVals['page_id']);
 			
 			Phpfox::getService('page.log.process')->add($iId, Phpfox::getUserId());
-			
+
+			/*
 			if (Phpfox::isModule('tag'))
 			{
 				Phpfox::getService('tag.process')->update('page', $iId, $iUserId, (!Phpfox::getLib('parse.format')->isEmpty($aVals['tag_list']) ? $aVals['tag_list'] : null));				
 			}
+			*/
 			
 			if (isset($aVals['menu_id']) && $aVals['menu_id'] > 0)
 			{

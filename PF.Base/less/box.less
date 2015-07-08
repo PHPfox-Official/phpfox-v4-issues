@@ -61,6 +61,11 @@
 	z-index:100000;
 	display:block;
 
+	.js_box_title {
+		height:40px;
+		line-height:40px;
+	}
+
 	.js_box_content {
 		position:absolute;
 		left:0px;
@@ -95,8 +100,17 @@
 	color:@blockColor;
 	overflow:auto;
 
+	.table_header {
+		display:none;
+	}
+
 	.table {
-		padding:10px;
+		padding:5px;
+		margin:0px;
+
+		.table_left {
+			padding-top:5px;
+		}
 	}
 
 	> div {

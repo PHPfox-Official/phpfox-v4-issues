@@ -5433,6 +5433,10 @@ a.not_active:hover {
   z-index: 100000;
   display: block;
 }
+.js_box_full .js_box_title {
+  height: 40px;
+  line-height: 40px;
+}
 .js_box_full .js_box_content {
   position: absolute;
   left: 0px;
@@ -5463,8 +5467,15 @@ a.not_active:hover {
   color: #999999;
   overflow: auto;
 }
+.page_editor_data .table_header {
+  display: none;
+}
 .page_editor_data .table {
-  padding: 10px;
+  padding: 5px;
+  margin: 0px;
+}
+.page_editor_data .table .table_left {
+  padding-top: 5px;
 }
 .page_editor_data > div {
   padding: 10px;

@@ -19,7 +19,7 @@
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="comment_feed_cutoff" phrase_var_name="setting_comment_feed_cutoff" ordering="1" version_id="2.0.0alpha3">4</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="cache_timeout" phrase_var_name="setting_feedcache_timeout" ordering="1" version_id="2.0.6">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="total_likes_to_display" phrase_var_name="setting_total_likes_to_display" ordering="1" version_id="3.0.0Beta1">3</setting>
-		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="group_duplicate_feeds" phrase_var_name="setting_group_duplicate_feeds" ordering="1" version_id="3.0.0Beta1">2</setting>
+		<setting group="" module_id="feed" is_hidden="1" type="integer" var_name="group_duplicate_feeds" phrase_var_name="setting_group_duplicate_feeds" ordering="1" version_id="3.0.0Beta1">2</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="refresh_activity_feed" phrase_var_name="setting_refresh_activity_feed" ordering="1" version_id="3.0.0beta1">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="feed_limit_days" phrase_var_name="setting_feed_limit_days" ordering="1" version_id="3.0.0beta3">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="string" var_name="twitter_share_via" phrase_var_name="setting_twitter_share_via" ordering="1" version_id="3.0.0rc1">YourSite</setting>

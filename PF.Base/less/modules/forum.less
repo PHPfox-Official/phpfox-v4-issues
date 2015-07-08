@@ -261,16 +261,64 @@ div.forum_mini_new, div.forum_mini_old, div.forum_mini_closed {
 		opacity:0.6;
 		font-style:italic;
 	}
+
+	.js_feed_comment_border {
+		background:transparent;
+		border-bottom:1px darken(@blockBg, 6%) solid;
+	}
 }
 
 div.forum_outer div.forum_user_info_holder {
 	height:70px;
 }
 
+div.forum_outer:hover {
+	div.comment_mini_content_border, .forum_quote {
+		opacity:1;
+	}
+}
+
 div.forum_outer {
 	background:@blockBg;
-	margin-bottom:@blockMarginBottom;
+	margin-bottom:0px;
 	position:relative;
+
+	.feed_options, .feed_like_link > ul > li > a, .feed_options:hover, .feed_like_link > ul > li > a:hover  {
+		/*background:transparent;*/
+		width:35px;
+		height:35px;
+		border-radius:50%;
+	}
+
+	.feed_like_link {
+		left:10px;
+	}
+
+	.feed_options::before, .feed_like_link > ul > li > a::before {
+		font-size:15px;
+		top:8px;
+	}
+
+	.feed_options::before {
+		top:10px;
+	}
+
+	.feed_options, .feed_options:hover {
+		right:auto;
+		left:50px;
+	}
+
+	div.comment_mini_content_border {
+		padding-bottom:8px;
+		opacity:0.6;
+	}
+
+	.activity_like_holder {
+		margin-left:130px;
+		padding-left:0px;
+		text-align:right;
+		padding-right:10px;
+	}
 }
 
 .forum_thread_photo {
@@ -317,28 +365,40 @@ div.forum_content {
 
 .forum_quote {
 	display:block;
-	height:30px;
+	height:40px;
 	position:relative;
-	visibility:hidden;
+	opacity:0.6;
 
 	a, a:hover {
 		display:block;
-		right:10px;
-		top:5px;
+		left:92px;
+		bottom:-36px;
 		position:absolute;
-		width:20px;
-		height:20px;
+		width:35px;
+		height:35px;
 		text-indent:-1000px;
 		overflow:hidden;
-		color:@blockColor;
+		color:lighten(@blockColor, 10%);
+		background:darken(@blockBg, 8%);
+		border-radius:50%;
+		z-index:1000;
+		text-align:center;
+	}
+
+	a:hover {
+		background:@brandPrimary;
+		color:@brandPrimaryColor;
 	}
 
 	a:before {
 		.fa('\f10d');
 		position:absolute;
-		right:0px;
-		top:0px;
-		font-size:20px;
+		left:50%;
+		top:50%;
+		margin-left:-7px;
+		margin-top:-7px;
+		font-size:15px;
+		display:block;
 	}
 }
 

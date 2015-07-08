@@ -414,7 +414,7 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 		}
 
 		if (!$iPage) {
-			$iPageSize = 4;
+			$iPageSize = 100;
 			$sOrder = 'fp.time_stamp DESC';
 		}
 
@@ -429,6 +429,10 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 
 		if (!count($aThread['posts'])) {
 			throw error('no_items');
+		}
+
+		if (!$iPage) {
+			$aThread['posts'] = array_reverse($aThread['posts']);
 		}
 
 		if (isset($aThread['post_starter'])) {

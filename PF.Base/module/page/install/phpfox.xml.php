@@ -9,9 +9,6 @@
 		<phrase_var_name>module_page</phrase_var_name>
 		<writable />
 	</data>
-	<menus>
-		<menu module_id="page" parent_var_name="" m_connection="footer" var_name="menu_terms" ordering="14" url_value="terms" version_id="2.0.0alpha1" disallow_access="" module="page" />
-	</menus>
 	<hooks>
 		<hook module_id="page" hook_type="controller" module="page" call_name="page.component_controller_admincp_index_clean" added="1231838390" version_id="2.0.0alpha1" />
 		<hook module_id="page" hook_type="controller" module="page" call_name="page.component_controller_admincp_add_clean" added="1231838390" version_id="2.0.0alpha1" />

@@ -104,19 +104,39 @@ a.row_edit_bar_action:hover:before {
 }
 
 .moderation_holder ul {
-	left:@blockContentPadding;
+	left:0px;
+	border:0px;
+	background:@blockBg;
+	color:@blockColor;
 }
 
 .moderation_holder {
-	position:relative;
-	background:@blockBg;
-	padding:@blockContentPadding;
+	position:fixed;
+	background:@navBg;
+	bottom:0px;
+	left:@navWidth;
+	right:0px;
+	z-index:100;
+	padding:0px;
+	height:30px;
+	line-height:30px;
+	border-left:1px darken(@navBg, 10%) solid;
+	font-size:12px !important;
 }
 
 a.moderation_action, a.moderation_action:hover {
 	position:absolute;
-	right:12px;
-	top:12px;
+	right:100px;
+	top:0px;
+}
+
+a.moderation_drop, a.moderation_drop:hover {
+	height:30px;
+	line-height:30px;
+	border:0px;
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+	text-indent:5px;
 }
 
 a.moderation_action:hover, a.moderation_action_unselect {
@@ -125,10 +145,7 @@ a.moderation_action:hover, a.moderation_action_unselect {
 }
 
 a.not_active, a.not_active:hover {
-	border-color:transparent;
-	background:transparent;
-	font-weight:normal;
-	opacity:0.6;
+	opacity:0.2;
 }
 
 .item_is_active, .item_is_not_active {

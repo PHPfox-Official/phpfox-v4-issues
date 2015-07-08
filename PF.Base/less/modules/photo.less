@@ -7,11 +7,36 @@
 			display:block;
 			cursor:pointer;
 		}
+
+		a.moderate_link {
+			display:block !important;
+		}
 	}
 
 	.photos_row {
 		display:block;
 		position:relative;
+
+		._moderator a.moderate_link_active {
+			background:rgba(0, 0, 0, 0.4);
+			display:block !important;
+		}
+
+		a.moderate_link {
+			display:none !important;
+			padding:0px 10px;
+		}
+
+		._moderator a.moderate_link_active i::before, ._moderator a.moderate_link_active:hover i::before {
+			color:#fff;
+		}
+
+		._moderator {
+			position:absolute;
+			top:0px;
+			left:-6px;
+			border:0px;
+		}
 
 		header {
 			display:none;

@@ -3430,7 +3430,7 @@ div#right div.menu ul li.active {
 #pf_admin {
   position: fixed;
   bottom: 0px;
-  right: 10px;
+  right: 0px;
   background: #0c0c0c;
   color: #808080;
   z-index: 10000;
@@ -5046,18 +5046,38 @@ a.moderation_action:hover {
   text-indent: 0px;
 }
 .moderation_holder ul {
-  left: 10px;
+  left: 0px;
+  border: 0px;
+  background: #ffffff;
+  color: #999999;
 }
 .moderation_holder {
-  position: relative;
+  position: fixed;
   background: #ffffff;
-  padding: 10px;
+  bottom: 0px;
+  left: 200px;
+  right: 0px;
+  z-index: 100;
+  padding: 0px;
+  height: 30px;
+  line-height: 30px;
+  border-left: 1px #e6e6e6 solid;
+  font-size: 12px !important;
 }
 a.moderation_action,
 a.moderation_action:hover {
   position: absolute;
-  right: 12px;
-  top: 12px;
+  right: 100px;
+  top: 0px;
+}
+a.moderation_drop,
+a.moderation_drop:hover {
+  height: 30px;
+  line-height: 30px;
+  border: 0px;
+  background: #298ada;
+  color: #ffffff;
+  text-indent: 5px;
 }
 a.moderation_action:hover,
 a.moderation_action_unselect {
@@ -5066,10 +5086,7 @@ a.moderation_action_unselect {
 }
 a.not_active,
 a.not_active:hover {
-  border-color: transparent;
-  background: transparent;
-  font-weight: normal;
-  opacity: 0.6;
+  opacity: 0.2;
 }
 .item_is_active,
 .item_is_not_active {
@@ -8702,9 +8719,30 @@ ul.activity_feed_form_attach li a:hover {
   display: block;
   cursor: pointer;
 }
+#content .photos_row:hover a.moderate_link {
+  display: block !important;
+}
 #content .photos_row {
   display: block;
   position: relative;
+}
+#content .photos_row ._moderator a.moderate_link_active {
+  background: rgba(0, 0, 0, 0.4);
+  display: block !important;
+}
+#content .photos_row a.moderate_link {
+  display: none !important;
+  padding: 0px 10px;
+}
+#content .photos_row ._moderator a.moderate_link_active i::before,
+#content .photos_row ._moderator a.moderate_link_active:hover i::before {
+  color: #fff;
+}
+#content .photos_row ._moderator {
+  position: absolute;
+  top: 0px;
+  left: -6px;
+  border: 0px;
 }
 #content .photos_row header {
   display: none;

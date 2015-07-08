@@ -27,7 +27,8 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 
 		{if count($aPhotos)}
-		    {if isset($bIsEditMode)}
+
+		     {if isset($bIsEditMode)}
 		    <form method="post" action="#" onsubmit="$('#js_photo_multi_edit_image').show(); $('#js_photo_multi_edit_submit').hide(); $(this).ajaxCall('photo.massUpdate'{if $bIsMassEditUpload}, 'is_photo_upload=1'{/if}); return false;">
 			    {foreach from=$aPhotos item=aForms}
 				    {template file='photo.block.edit-photo'}
@@ -49,7 +50,13 @@ defined('PHPFOX') or exit('NO DICE!');
 
 			<div class="clearfix mosaicflow_load" data-width="300">
 				{foreach from=$aPhotos item=aPhoto}
-				<article class="photos_row" data-photo-id="{$aPhoto.photo_id}">
+				<article class="photos_row" data-photo-id="{$aPhoto.photo_id}" id="js_photo_id_{$aPhoto.photo_id}">
+					{if Phpfox::getUserParam('photo.can_approve_photos') || Phpfox::getUserParam('photo.can_delete_other_photos')}
+					<div class="_moderator">
+						<a href="#{$aPhoto.photo_id}" class="moderate_link built" rel="photo"><i class="fa"></i></a>
+					</div>
+					{/if}
+
 					<header class="_a" data-href="{$aPhoto.link}">
 						<h1><a href="{$aPhoto.link}">{$aPhoto.title|clean}</a></h1>
 						<ul class="photos_row_info">
@@ -66,6 +73,10 @@ defined('PHPFOX') or exit('NO DICE!');
 
 			{/if}
 
+			{if Phpfox::getUserParam('photo.can_approve_photos') || Phpfox::getUserParam('photo.can_delete_other_photos')}
+				{moderation}
+			{/if}
+
 		{else}
 			{if !PHPFOX_IS_AJAX}
 			<div class="extra_info">
@@ -76,9 +87,6 @@ defined('PHPFOX') or exit('NO DICE!');
 
 
 		{if !PHPFOX_IS_AJAX}
-			{if Phpfox::getUserParam('photo.can_approve_photos') || Phpfox::getUserParam('photo.can_delete_other_photos')}
-			    {moderation}
-			{/if}
 	</div>
 </div>
 {/if}

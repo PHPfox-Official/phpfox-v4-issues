@@ -135,7 +135,8 @@ class Phpfox_Installer
 		'3.8.0',
 
 		'4.0.0rc1',
-		'4.0.0rc2'
+		'4.0.0rc2',
+		'4.0.0'
 	);
 	
 	private $_sTempDir = '';

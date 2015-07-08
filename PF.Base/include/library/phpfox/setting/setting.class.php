@@ -430,9 +430,17 @@ class Phpfox_Setting
 	 */
 	public function getParam($mVar, $sDef = '')
 	{
-		if ($mVar == 'core.branding' && PHPFOX_LICENSE_ID != 'techie')
+		if ($mVar == 'core.branding')
 		{
-			return true;
+			if (!defined('PHPFOX_LICENSE_ID')) {
+				return true;
+			}
+
+			if (PHPFOX_LICENSE_ID == 'techie') {
+				return true;
+			}
+
+			return false;
 		}
 
 		if ($mVar == 'im.enable_im_in_footer_bar' && Phpfox::isMobile())

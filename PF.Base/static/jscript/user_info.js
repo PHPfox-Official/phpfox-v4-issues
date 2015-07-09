@@ -71,7 +71,7 @@ $Core.showUserToolTip = function(sUser)
 
 $Behavior.userHoverToolTip = function()
 {	
-	$('#main_content_holder .user_profile_link_span a').mouseover(function()
+	$('.user_profile_link_span a').mouseover(function()
 	{	
 		$Core.userInfoLog('----------------------------- START -----------------------------');
                 
@@ -118,7 +118,7 @@ $Behavior.userHoverToolTip = function()
 		}		
 	});
 	
-	$('#main_content_holder .user_profile_link_span a').mouseout(function()
+	$('.user_profile_link_span a').mouseout(function()
 	{
 		$bUserToolTipIsHover = false;		
 

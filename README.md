@@ -24,7 +24,7 @@ git clone https://github.com/moxi9/phpfox.git .
 
 Give **write** access to the following 2 folders.
 ```
-chmod 0777 PF.Base/file/
+chmod 0777 PF.Base/
 ```
 ```
 chmod 0777 PF.Site/

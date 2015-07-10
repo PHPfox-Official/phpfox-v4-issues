@@ -26,9 +26,11 @@ defined('PHPFOX') or exit('NO DICE!');
 		{if $aThread.is_closed}
 		<div class="sub_menu_bar_main"><a href="#" onclick="return false;">{phrase var='forum.closed'}</a></div>
 		{else}
-		{if (Phpfox::getUserParam('forum.can_reply_to_own_thread') && $aThread.user_id == Phpfox::getUserId()) || Phpfox::getUserParam('forum.can_reply_on_other_threads') || Phpfox::getService('forum.moderate')->hasAccess('' . $aThread.forum_id . '', 'can_reply')}
-		<div class="sub_menu_bar_main"><a href="#" onclick="$Core.box('forum.reply', 800, 'id={$aThread.thread_id}'); return false;">{phrase var='forum.new_reply'}</a></div>
-		{/if}
+		<div class="sub_menu_bar_main">
+			{if (Phpfox::getUserParam('forum.can_reply_to_own_thread') && $aThread.user_id == Phpfox::getUserId()) || Phpfox::getUserParam('forum.can_reply_on_other_threads') || Phpfox::getService('forum.moderate')->hasAccess('' . $aThread.forum_id . '', 'can_reply')}
+				<a href="#" onclick="$Core.box('forum.reply', 800, 'id={$aThread.thread_id}'); return false;">{phrase var='forum.new_reply'}</a>
+			{/if}
+		</div>
 		{/if}
 
 		{if $aThread.view_id}

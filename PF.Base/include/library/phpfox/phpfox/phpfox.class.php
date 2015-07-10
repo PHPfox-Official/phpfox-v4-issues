@@ -1109,7 +1109,7 @@ class Phpfox
 			exit;
 		}
 
-		$aStaticFolders = ['file', 'static', 'module', 'apps', 'themes'];
+		$aStaticFolders = ['file', 'static', 'module', 'apps', 'Apps', 'themes'];
 		if (in_array($oReq->segment(1), $aStaticFolders) ||
 			(
 				$oReq->segment(1) == 'theme' && $oReq->segment(2) != 'demo'
@@ -1137,7 +1137,7 @@ class Phpfox
 			$HTTPCache->checkCache();
 
 			$sDir = PHPFOX_DIR;
-			if ($oReq->segment(1) == 'apps' || $oReq->segment(1) == 'themes') {
+			if ($oReq->segment(1) == 'Apps' || $oReq->segment(1) == 'apps' || $oReq->segment(1) == 'themes') {
 				$sDir = PHPFOX_DIR_SITE;
 			}
 			$sPath = $sDir . ltrim($sUri, '/');

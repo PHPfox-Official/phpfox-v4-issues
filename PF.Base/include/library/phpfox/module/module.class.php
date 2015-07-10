@@ -252,7 +252,11 @@ class Phpfox_Module
 	 * @return bool TRUE if it exists, FALSE if it does not.
 	 */
 	public function isModule($sModule)
-	{			
+	{
+		if (in_array($sModule, ['input'])) {
+			return false;
+		}
+
 		$sModule = strtolower($sModule);
 		if (isset($this->_aModules[$sModule]))
 		{

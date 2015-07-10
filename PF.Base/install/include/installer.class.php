@@ -6,8 +6,8 @@
 defined('PHPFOX') or exit('NO DICE!');
 
 /**
- * 
- * 
+ *
+ *
  * @copyright		[PHPFOX_COPYRIGHT]
  * @author			Raymond Benc
  * @package 		Phpfox
@@ -20,16 +20,16 @@ class Phpfox_Installer
 	private $_sUrl = 'install';
 	private $_sStep = 'start';
 	private $_bUpgrade = false;
-	
+
 	private static $_aPhrases = array();
-	
+
 	private $_aSteps = array(
 		'start',
 		'key',
 		'license',
 		'requirement',
 		'configuration',
-		'process',		
+		'process',
 		'import',
 		'update',
 		'language',
@@ -38,11 +38,11 @@ class Phpfox_Installer
 		'final',
 		'completed'
 	);
-	
+
 	private $_aModuleInstalls = array(
 		'video'
 	);
-	
+
 	private $_aVersions = array(
 		'1.6.21',
 		'2.0.0rc1',
@@ -71,8 +71,8 @@ class Phpfox_Installer
 		'2.1.0beta2',
 		'2.1.0rc1',
 		'2.1.0',
-		
-		
+
+
 		'3.0.0beta1',
 		'3.0.0beta2',
 		'3.0.0beta3',
@@ -84,33 +84,33 @@ class Phpfox_Installer
 		'3.0.0',
 		'3.0.1',
 		'3.0.2',
-		
-		
+
+
 		'3.1.0beta1',
 		'3.1.0rc1',
-		'3.1.0',		
-		
+		'3.1.0',
+
 		'3.2.0beta1',
 		'3.2.0rc1',
 		'3.2.0',
-		
+
 		'3.3.0beta1',
 		'3.3.0beta2',
 		'3.3.0rc1',
 		'3.3.0',
-		
+
 		'3.4.0beta1',
 		'3.4.0beta2',
 		'3.4.0rc1',
 		'3.4.0',
 		'3.4.1',
-			
+
 		'3.5.0beta1',
 		'3.5.0beta2',
 		'3.5.0rc1',
 		'3.5.0',
 		'3.5.1',
-			
+
 		'3.6.0beta1',
 		'3.6.0beta2',
 		'3.6.0beta3',
@@ -126,36 +126,36 @@ class Phpfox_Installer
 		'3.7.3',
 		'3.7.4',
 		'3.7.5',
-		
+
 		'3.7.6beta1',
 		'3.7.6rc1',
 		'3.7.6',
 		'3.7.7',
-		
+
 		'3.8.0',
 
 		'4.0.0rc1',
 		'4.0.0rc2',
 		'4.0.0'
 	);
-	
+
 	private $_sTempDir = '';
-	
+
 	private $_sSessionFile = '';
-	
+
 	private $_hFile = null;
-	
+
 	private $_aOldConfig = array();
-	
+
 	private $_sPage = '';
-	
+
 	private static $_sSessionId = null;
 
 	/**
 	 * @var Phpfox_Database_Driver_Mysql
 	 */
 	public $db;
-	
+
 	public function __construct()
 	{
 		header('Cache-Control: no-cache');
@@ -166,23 +166,23 @@ class Phpfox_Installer
 		$this->_oTpl = Phpfox_Template::instance();
 		$this->_oReq = Phpfox_Request::instance();
 		$this->_oUrl = Phpfox_Url::instance();
-		
+
 		$this->_sTempDir = Phpfox_File::instance()->getTempDir();
-		
-		$this->_sPage = $this->_oReq->get('page');		
+
+		$this->_sPage = $this->_oReq->get('page');
 		$this->_sUrl = ($this->_oReq->get('req1') == 'upgrade' ? 'upgrade' : 'install');
 		self::$_sSessionId = ($this->_oReq->get('sessionid') ? $this->_oReq->get('sessionid') : uniqid());
 
 		if (defined('PHPFOX_IS_UPGRADE'))
 		{
 			$this->_oTpl->assign('bIsUprade', true);
-			$this->_bUpgrade = true;			
-			
+			$this->_bUpgrade = true;
+
 			if (file_exists(PHPFOX_DIR . 'include' . PHPFOX_DS . 'settings' . PHPFOX_DS . 'server.sett.php'))
 			{
 				$_CONF = [];
 				require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'settings' . PHPFOX_DS . 'server.sett.php');
-				
+
 				$this->_aOldConfig = $_CONF;
 			}
 		}
@@ -191,36 +191,36 @@ class Phpfox_Installer
 		{
 			if (PHPFOX_SAFE_MODE)
 			{
-				$this->_sTempDir = PHPFOX_DIR_FILE . 'log' . PHPFOX_DS;	
+				$this->_sTempDir = PHPFOX_DIR_FILE . 'log' . PHPFOX_DS;
 				if (!Phpfox_File::instance()->isWritable($this->_sTempDir))
 				{
-					exit('Unable to write to temporary folder: ' . $this->_sTempDir);		
+					exit('Unable to write to temporary folder: ' . $this->_sTempDir);
 				}
 			}
-			else 
+			else
 			{
 				exit('Unable to write to temporary folder: ' . $this->_sTempDir);
 			}
 		}
-		
-		$this->_sSessionFile = $this->_sTempDir . 'installer_' . ($this->_bUpgrade ? 'upgrade_' : '') . '_' . self::$_sSessionId . '_' . 'phpfox.log';		
-			
+
+		$this->_sSessionFile = $this->_sTempDir . 'installer_' . ($this->_bUpgrade ? 'upgrade_' : '') . '_' . self::$_sSessionId . '_' . 'phpfox.log';
+
 		$this->_hFile = fopen($this->_sSessionFile, 'a');
 
 		if ($this->_sUrl == 'install' && $this->_oReq->get('req2') == '')
-		{			
+		{
 			if (file_exists(PHPFOX_DIR_SETTING . 'server.sett.php'))
 			{
 				require(PHPFOX_DIR_SETTING . 'server.sett.php');
-				
+
 				if (isset($_CONF['core.is_installed']) && $_CONF['core.is_installed'] === true)
 				{
 					$this->_oUrl->forward('../install/index.php?' . PHPFOX_GET_METHOD . '=/upgrade/');
 				}
 			}
-			
+
 			if (file_exists(PHPFOX_DIR . 'include' . PHPFOX_DS . 'settings' . PHPFOX_DS . 'server.sett.php'))
-			{				
+			{
 				$this->_oUrl->forward('../install/index.php?' . PHPFOX_GET_METHOD . '=/upgrade/');
 			}
 		}
@@ -278,12 +278,12 @@ class Phpfox_Installer
 		}
 		*/
 	}
-	
+
 	public static function getSessionId()
 	{
 		return self::$_sSessionId;
 	}
-	
+
 	public static function getHostPath()
 	{
 		$parts = explode('index.php', $_SERVER['PHP_SELF']);
@@ -291,45 +291,45 @@ class Phpfox_Installer
 
 		return $url;
 	}
-	
+
 	public static function getPhrase($sVar)
-	{		
+	{
 		return (isset(self::$_aPhrases[$sVar]) ? self::$_aPhrases[$sVar] : '');
 	}
 
 	public function run()
 	{
-		if ($this->_bUpgrade 
-				&& (int) substr($this->_getCurrentVersion(), 0, 1) < 2
-				&& file_exists(PHPFOX_DIR . '.htaccess')
-			)
+		if ($this->_bUpgrade
+			&& (int) substr($this->_getCurrentVersion(), 0, 1) < 2
+			&& file_exists(PHPFOX_DIR . '.htaccess')
+		)
 		{
 			$sHtaccessContent = file_get_contents(PHPFOX_DIR . '.htaccess');
 			if (preg_match('/RewriteEngine/i', $sHtaccessContent))
 			{
 				exit('In order for us to continue with the upgrade you will need to rename or remove the file ".htaccess".');
 			}
-		}		
-		
+		}
+
 		$sStep = ($this->_oReq->get('step') ? strtolower($this->_oReq->get('step')) : 'start');
 
 		// $this->_oTpl->setTitle(self::getPhrase('phpfox_installer'))->setBreadcrumb(self::getPhrase('phpfox_installer'));
-		
+
 		$bPass = false;
 		if (!in_array($sStep, $this->_aSteps))
 		{
 			if (in_array($sStep, $this->_aModuleInstalls))
 			{
-				$bPass = true;	
+				$bPass = true;
 			}
-			else 
+			else
 			{
 				exit('Invalid step.');
 			}
 		}
 
 		$sMethod = '_' . $sStep;
-		
+
 		$iStep = 0;
 		foreach ($this->_aSteps as $iKey => $sMyStep)
 		{
@@ -338,21 +338,21 @@ class Phpfox_Installer
 				$iStep = ($iKey - 1);
 				break;
 			}
-		}		
+		}
 
 		if ($bPass === false && isset($this->_aSteps[$iStep]) && !$this->_isPassed($this->_aSteps[$iStep]))
 		{
 			$this->_oUrl->forward($this->_step($this->_aSteps[$iStep]));
 		}
-		
+
 		$this->_sStep = $sStep;
 
 		$this->_oTpl->assign([
 			'sUrl' => $this->_sUrl
 		]);
-		
+
 		if (method_exists($this, $sMethod))
-		{			
+		{
 			$data = call_user_func(array(&$this, $sMethod));
 			if (!Phpfox_Error::isPassed()) {
 				$data = [
@@ -372,17 +372,17 @@ class Phpfox_Installer
 				echo json_encode($data);
 				exit;
 			}
-		}	
-		else 
+		}
+		else
 		{
 			$sStep = 'start';
 		}
-		
+
 		if (!file_exists($this->_oTpl->getLayoutFile($sStep)))
 		{
 			$sStep = 'default';
 		}
-	
+
 		list($aBreadCrumbs, $aBreadCrumbTitle) = $this->_oTpl->getBreadCrumb();
 
 		/*
@@ -397,41 +397,41 @@ class Phpfox_Installer
 
 		$base = self::getHostPath() . 'PF.Base/';
 		$this->_oTpl->setHeader(array(
-					'<script>var BasePath = \'' . self::getHostPath() . '\';</script>',
-					'<link href="' . $base . 'theme/install/default/style/default/css/layout.css" rel="stylesheet">',
-					'<link href="' . $base . 'static/css/font-awesome.min.css" rel="stylesheet">',
-					'<script src="' . $base . 'static/jscript/jquery/jquery.js"></script>',
-					'<script src="' . $base . 'static/jscript/install.js"></script>'
-				)
+				'<script>var BasePath = \'' . self::getHostPath() . '\';</script>',
+				'<link href="' . $base . 'theme/install/default/style/default/css/layout.css" rel="stylesheet">',
+				'<link href="' . $base . 'static/css/font-awesome.min.css" rel="stylesheet">',
+				'<script src="' . $base . 'static/jscript/jquery/jquery.js"></script>',
+				'<script src="' . $base . 'static/jscript/install.js"></script>'
 			)
+		)
 			->assign(array(
-				'sTemplate' => $sStep,
-				'sLocaleDirection' => 'ltr',
-				'sLocaleCode' => 'en',
-				'sUrl' => $this->_sUrl,
-				'aErrors' => Phpfox_Error::get(),
-				'sPublicMessage' => Phpfox::getMessage(),
-				'aBreadCrumbs' => $aBreadCrumbs,
-				'aBreadCrumbTitle' => $aBreadCrumbTitle,
-				'aSteps' => $this->_getSteps(),
-				'sCurrentVersion' => Phpfox::getVersion()
-			)
-		);
-		
+					'sTemplate' => $sStep,
+					'sLocaleDirection' => 'ltr',
+					'sLocaleCode' => 'en',
+					'sUrl' => $this->_sUrl,
+					'aErrors' => Phpfox_Error::get(),
+					'sPublicMessage' => Phpfox::getMessage(),
+					'aBreadCrumbs' => $aBreadCrumbs,
+					'aBreadCrumbTitle' => $aBreadCrumbTitle,
+					'aSteps' => $this->_getSteps(),
+					'sCurrentVersion' => Phpfox::getVersion()
+				)
+			);
+
 		if ($this->_bUpgrade)
 		{
 			$this->_oTpl->setTitle('Upgrading from: ' . $this->_getCurrentVersion());
 		}
 
 		$this->_oTpl->getLayout('template');
-		
+
 		Phpfox::clearMessage();
-	}	
-	
+	}
+
 	########################
 	# Special Module Install Routines
 	########################	
-	
+
 	private function _video($bInstall = false)
 	{
 		$sFfmpeg = '';
@@ -440,60 +440,60 @@ class Phpfox_Installer
 		if (!PHPFOX_SAFE_MODE)
 		{
 			if (($aVals = $this->_oReq->getArray('val')))
-			{						
+			{
 				if (!empty($aVals['ffmpeg']))
 				{
 					exec($aVals['ffmpeg'] . ' 2>&1', $aOutput);
-					
+
 					if (preg_match("/FFmpeg version/", $aOutput[0]))
 					{
 						if ($bInstall === true)
 						{
 							$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => $aVals['ffmpeg']), 'module_id = \'video\' AND var_name = \'ffmpeg_path\'');
 						}
-						else 
+						else
 						{
 							$_SESSION[Phpfox::getParam('core.session_prefix')]['installer_ffmpeg'] = $aVals['ffmpeg'];
 						}
-						
+
 						$iPass++;
 					}
-					else 
+					else
 					{
 						Phpfox_Error::set($aOutput[0]);
 					}
 					unset($aOutput);
 				}
-				
+
 				if (!empty($aVals['mencoder']))
 				{
 					exec($aVals['mencoder'] . ' 2>&1', $aOutput);
-					
+
 					if (preg_match("/MPlayer Team/", $aOutput[0]))
 					{
 						if ($bInstall === true)
 						{
 							$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => $aVals['mencoder']), 'module_id = \'video\' AND var_name = \'mencoder_path\'');
 						}
-						else 
+						else
 						{
 							$_SESSION[Phpfox::getParam('core.session_prefix')]['installer_mencoder'] = $aVals['mencoder'];
 						}
-						
+
 						$iPass++;
 					}
-					else 
+					else
 					{
 						Phpfox_Error::set($aOutput[0]);
-					}				
+					}
 					unset($aOutput);
-				}			
+				}
 			}
-			
+
 			if (PHP_OS == 'Linux' && !preg_match('/shell_exec/', ini_get('disable_functions')))
 			{
-				$sOutput = shell_exec('whereis ffmpeg 2>&1');			
-				$aOutput = explode("\n", $sOutput);	
+				$sOutput = shell_exec('whereis ffmpeg 2>&1');
+				$aOutput = explode("\n", $sOutput);
 				if (isset($aOutput[0]))
 				{
 					$aParts = explode('ffmpeg:', $aOutput[0]);
@@ -506,12 +506,12 @@ class Phpfox_Installer
 							{
 								$sFfmpeg = $aSubParts[0];
 							}
-							
+
 						}
-					}				
+					}
 				}
 				unset($aOutput);
-				
+
 				$sOutput = shell_exec('whereis mencoder 2>&1');
 				$aOutput = explode("\n", $sOutput);
 				if (isset($aOutput[0]))
@@ -526,32 +526,32 @@ class Phpfox_Installer
 							{
 								$sMencoder = $aSubParts[0];
 							}
-							
+
 						}
-					}				
+					}
 				}
-				unset($aOutput);			
+				unset($aOutput);
 			}
 		}
-		
+
 		if (!empty($_SESSION[Phpfox::getParam('core.session_prefix')]['installer_ffmpeg']))
 		{
-			$sFfmpeg = $_SESSION[Phpfox::getParam('core.session_prefix')]['installer_ffmpeg'];			
-		}		
-		
+			$sFfmpeg = $_SESSION[Phpfox::getParam('core.session_prefix')]['installer_ffmpeg'];
+		}
+
 		if (!empty($_SESSION[Phpfox::getParam('core.session_prefix')]['installer_mencoder']))
 		{
-			$sMencoder = $_SESSION[Phpfox::getParam('core.session_prefix')]['installer_mencoder'];			
-		}			
-		
+			$sMencoder = $_SESSION[Phpfox::getParam('core.session_prefix')]['installer_mencoder'];
+		}
+
 		$aForms = array(
 			'ffmpeg' => $sFfmpeg,
 			'mencoder' => $sMencoder
 		);
-		
+
 		return $aForms;
 	}
-	
+
 	########################
 	# Install/Upgrade Steps
 	########################
@@ -579,7 +579,7 @@ class Phpfox_Installer
 			];
 		}
 	}
-	
+
 	private function _key()
 	{
 		/*
@@ -608,9 +608,9 @@ class Phpfox_Installer
 		*/
 
 		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => array(
-					'license_id' => 'Provide a license ID.',
-					'license_key' => 'Provide a license key.'
-				)
+				'license_id' => 'Provide a license ID.',
+				'license_key' => 'Provide a license key.'
+			)
 			)
 		);
 
@@ -665,7 +665,7 @@ class Phpfox_Installer
 						'next' => 'configuration'
 					];
 				}
-				else 
+				else
 				{
 					if (!is_object($response)) {
 						$info = $response;
@@ -677,7 +677,7 @@ class Phpfox_Installer
 					$this->_oTpl->assign(array(
 							'sError' => $response->error
 						)
-					);					
+					);
 				}
 			}
 		}
@@ -686,24 +686,24 @@ class Phpfox_Installer
 		$this->_oTpl->assign(array(
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(),
-				'bHasCurl' => (function_exists('curl_init') ? true : false)		
+				'bHasCurl' => (function_exists('curl_init') ? true : false)
 			)
-		);	
+		);
 	}
-	
+
 	private function _license()
-	{		
+	{
 		if ($this->_oReq->get('agree'))
 		{
 			$this->_pass('requirement');
 		}
-		
+
 		$this->_oTpl->assign(array(
 				'bIsUpgrade' => ($this->_sUrl == 'upgrade' ? true : false)
 			)
 		);
 	}
-	
+
 	private function _requirement()
 	{
 		$errors = [];
@@ -712,15 +712,15 @@ class Phpfox_Installer
 			'<a href="http://php.net/manual/en/book.xml.php" target="_blank">XML Parser</a>' => (function_exists('xml_set_element_handler') ? true : false),
 			'<a href="http://php.net/manual/en/book.image.php" target="_blank">PHP GD</a>' => ((extension_loaded('gd') && function_exists('gd_info')) ? true : false)
 		);
-				
+
 		foreach ($aVerify as $sCheck => $bPassed)
 		{
 			if ($bPassed === false)
 			{
 				$errors[] = 'PHP module "' . $sCheck . '" is missing.';
 			}
-		}				
-		
+		}
+
 		$aDrivers = Phpfox::getLib('database.support')->getSupported();
 		$aDbChecks = array();
 		$iDbs = 0;
@@ -731,8 +731,8 @@ class Phpfox_Installer
 			{
 				$iDbs++;
 			}
-		}		
-		
+		}
+
 		if (!$iDbs)
 		{
 			$errors[] = 'No database driver found.';
@@ -800,7 +800,7 @@ class Phpfox_Installer
 
 		return true;
 	}
-	
+
 	/**
 	 * @todo Oracle is not required to have a host name so we need a fix to check
 	 * the host name only if its not oracle.
@@ -809,70 +809,70 @@ class Phpfox_Installer
 	private function _configuration()
 	{
 		Phpfox::getLib('cache')->remove();
-		
+
 		$aExists = array();
 		$aForms = array();
-		
+
 		if (defined('PHPFOX_INSTALL_HOST'))
 		{
 			$aForms['host'] = PHPFOX_INSTALL_HOST;
 			$aForms['name'] = PHPFOX_INSTALL_NAME;
 			$aForms['user_name'] = PHPFOX_INSTALL_USER;
 		}
-		
+
 		// Get supported database drivers
 		$aDrivers = Phpfox::getLib('database.support')->getSupported(true);
 
 		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => array(
-					'prefix' => 'No database prefix provided.'
-				)
+				'prefix' => 'No database prefix provided.'
 			)
-		);			
-		
+			)
+		);
+
 		if ($aVals = $this->_oReq->getArray('val'))
 		{
 			if ($oValid->isValid($aVals))
-			{	
+			{
 				Phpfox::getLibClass('phpfox.database.dba');
-				
+
 				$sDriver = 'phpfox.database.driver.' . strtolower(preg_replace("/\W/i", "", $aVals['driver']));
 				if (Phpfox::getLibClass($sDriver))
 				{
 					$oDb = Phpfox::getLib($sDriver);
-					
+
 					if ($oDb->connect($aVals['host'], $aVals['user_name'], $aVals['password'], $aVals['name']))
 					{
-						Phpfox::getLib('session')->set('installer_db', $aVals);					
+						Phpfox::getLib('session')->set('installer_db', $aVals);
 						// Drop database tables, only if user allows us too
 						if (isset($aVals['drop']) && ($aDrops = $this->_oReq->getArray('table')))
-						{							
-							$oDb->dropTables($aDrops, $aVals);											
-						}						
-				
-						$oDbSupport = Phpfox::getLib('database.support');						
-						
+						{
+							$oDb->dropTables($aDrops, $aVals);
+						}
+
+						$oDbSupport = Phpfox::getLib('database.support');
+
 						$aTables = $oDbSupport->getTables($aVals['driver'], $oDb);
-						
+
 						$aSql = Phpfox_Module::instance()->getModuleTables($aVals['prefix']);
-								
+
 						foreach ($aSql as $sSql)
 						{
 							if (in_array($sSql, $aTables))
 							{
 								$aExists[] = $sSql;
-							}							
-						}						
-						
+							}
+						}
+
 						if (count($aExists))
 						{
 							Phpfox_Error::set('We have found that the following table(s) already exist:');
 						}
-						else 
-						{						
+						else
+						{
 							$aForms = array_merge($this->_video(), $aForms);
-							
+
 							if (Phpfox_Error::isPassed())
-							{								
+							{
 								// Cache modules we need to install
 								$sCacheModules = PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'installer_modules.php';
 								if (file_exists($sCacheModules))
@@ -885,9 +885,9 @@ class Phpfox_Installer
 								$sData .= ";\n?>";
 								Phpfox_File::instance()->write($sCacheModules, $sData);
 								unset($aVals['module']);
-								
+
 								if ($this->_saveSettings($aVals))
-								{								
+								{
 									// $this->_pass('process');
 									return [
 										'message' => 'Installing app tables',
@@ -896,19 +896,19 @@ class Phpfox_Installer
 								}
 							}
 						}
-					}					
+					}
 				}
 			}
-		}		
-		else 
-		{
-			$aForms = array_merge($this->_video(), $aForms);			
 		}
-		
+		else
+		{
+			$aForms = array_merge($this->_video(), $aForms);
+		}
+
 		$aModules = Phpfox_Module::instance()->getModuleFiles();
 		sort($aModules['core']);
 		sort($aModules['plugin']);
-		
+
 		$this->_oTpl->setTitle('Configuration')
 			->setBreadcrumb('Configuration')
 			->assign(array(
@@ -919,17 +919,17 @@ class Phpfox_Installer
 					'aModules' => $aModules,
 					'aForms' => $aForms
 				)
-			);		
+			);
 	}
-	
+
 	private function _process()
 	{
 		Phpfox::getLibClass('phpfox.database.dba');
-		
+
 		if ( strtolower(preg_replace("/\W/i", "", Phpfox::getParam(array('db', 'driver')))) == 'database_driver')
 		{
 			$aVals = Phpfox::getLib('session')->get('installer_db');
-			
+
 			if (isset($aVals['driver']))
 			{
 				unset($aVals['module']);
@@ -939,25 +939,25 @@ class Phpfox_Installer
 				$aT = array();
 				$aT['db'] = $aVals;
 				Phpfox::getLib('setting')->setParam( $aT );
-				unset($aT);				
+				unset($aT);
 			}
 			unset($aVals);
 			Phpfox::getLib('session')->remove('installer_db');
 		}
 		$sDriver = 'phpfox.database.driver.' . strtolower(preg_replace("/\W/i", "", Phpfox::getParam(array('db', 'driver'))));
-		
+
 		if (Phpfox::getLibClass($sDriver))
 		{
 			$oDb = Phpfox::getLib($sDriver);
-			
+
 			if ($oDb->connect(Phpfox::getParam(array('db', 'host')), Phpfox::getParam(array('db', 'user')), Phpfox::getParam(array('db', 'pass')), Phpfox::getParam(array('db', 'name'))))
 			{
 
-			}					
-		}		
-		
+			}
+		}
+
 		$oDbSupport = Phpfox::getLib('database.support');
-		
+
 		$sCacheModules = PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'installer_modules.php';
 		if (!file_exists($sCacheModules))
 		{
@@ -966,9 +966,9 @@ class Phpfox_Installer
 
 		$aModules = [];
 		require_once($sCacheModules);
-		
+
 		$oModuleProcess = Phpfox::getService('admincp.module.process');
-		
+
 		foreach ($aModules as $iKey => $sModule)
 		{
 			if ($sModule == 'core')
@@ -976,28 +976,28 @@ class Phpfox_Installer
 				unset($aModules[$iKey]);
 			}
 		}
-		
-		$aModules = array_merge(array('core'), $aModules);		
-				
+
+		$aModules = array_merge(array('core'), $aModules);
+
 		foreach ($aModules as $sModule)
 		{
 			if ($sModule == 'phpfoxsample' || $sModule == 'phpfox')
 			{
 				continue;
-			}			
-			
+			}
+
 			$oModuleProcess->install($sModule, array(
 					'table' => true
 				)
 			);
 		}
-		
+
 		$sModuleLog = PHPFOX_DIR_CACHE . 'installer_completed_modules.log';
 		if (file_exists($sModuleLog))
 		{
 			unlink($sModuleLog);
 		}
-		
+
 		// $this->_pass();
 		/*
 		$this->_oTpl->assign(array(
@@ -1011,12 +1011,12 @@ class Phpfox_Installer
 			'next' => 'import'
 		];
 	}
-		
+
 	private function _import()
 	{
 		Phpfox::getLib('phpfox.process')->import(Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_XML . 'version' . PHPFOX_XML_SUFFIX));
 		PhpFox::getService('core.country.process')->importForInstall(Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_XML . 'country' . PHPFOX_XML_SUFFIX));
-		
+
 		// $this->_pass();
 		/*
 		$this->_oTpl->assign(array(
@@ -1028,12 +1028,12 @@ class Phpfox_Installer
 			'message' => 'Importing language package',
 			'next' => 'language'
 		];
-	}	
-	
+	}
+
 	private function _language()
-	{		
-		$this->_db()->insert(Phpfox::getT('language'), array(		
-				'language_id' => 'en',		
+	{
+		$this->_db()->insert(Phpfox::getT('language'), array(
+				'language_id' => 'en',
 				'title' => 'English (US)',
 				'user_select' => '1',
 				'language_code' => 'en',
@@ -1046,7 +1046,7 @@ class Phpfox_Installer
 				'is_default' => '1',
 				'is_master' => '1'
 			)
-		);	
+		);
 		// Phpfox::getService('language.process')->import(Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_XML . 'installer' . PHPFOX_XML_SUFFIX), 'phpfox_installer', true, true);
 
 		$themeId = $this->_db()->insert(Phpfox::getT('theme'), [
@@ -1086,9 +1086,9 @@ class Phpfox_Installer
 			'next' => 'module'
 		];
 	}
-	
+
 	private function _module()
-	{				
+	{
 		// Load the cached module list
 		$sCacheModules = PHPFOX_DIR_FILE . 'log' . PHPFOX_DS . 'installer_modules.php';
 		if (!file_exists($sCacheModules))
@@ -1106,7 +1106,7 @@ class Phpfox_Installer
 			foreach ($aLines as $sLine)
 			{
 				$sLine = trim($sLine);
-		
+
 				if (empty($sLine))
 				{
 					continue;
@@ -1118,7 +1118,7 @@ class Phpfox_Installer
 
 		$bInstallAll = (defined('PHPFOX_INSTALL_ALL_MODULES') ? true : false);
 		$oModuleProcess = Phpfox::getService('admincp.module.process');
-		$hFile = fopen($sModuleLog, 'a+');	
+		$hFile = fopen($sModuleLog, 'a+');
 		$iCnt = 0;
 		$sMessage = '';
 		$sInstalledModule = '';
@@ -1140,12 +1140,12 @@ class Phpfox_Installer
 				continue;
 			}
 
-			$iCnt++;			
+			$iCnt++;
 			$sInstalledModule .= $sModule . "\n";
 			$sMessage .= "<li>" . $sModule . "</li>";
 
 			$oModuleProcess->install($sModule, array('insert' => true));
-		
+
 			if ($bInstallAll === false && $iCnt == 5)
 			{
 				break;
@@ -1154,7 +1154,7 @@ class Phpfox_Installer
 		fwrite($hFile, $sInstalledModule);
 		fclose($hFile);
 		// $leftToInstall = ($totalModules - $installedModules);
-		
+
 		if ($this->_bUpgrade)
 		{
 			return ($iCnt === 0 ? true : false);
@@ -1164,7 +1164,7 @@ class Phpfox_Installer
 		if ($iCnt === 0 || defined('PHPFOX_INSTALL_ALL_MODULES'))
 		{
 			$this->_pass();
-			
+
 			unlink($sModuleLog);
 			/*
 			$this->_oTpl->assign(array(
@@ -1178,7 +1178,7 @@ class Phpfox_Installer
 				'next' => 'post'
 			];
 		}
-		else 
+		else
 		{
 			/*
 			$this->_oTpl->assign(array(
@@ -1193,7 +1193,7 @@ class Phpfox_Installer
 			];
 		}
 	}
-	
+
 	private function _post()
 	{
 		$aModules = [];
@@ -1202,14 +1202,14 @@ class Phpfox_Installer
 		if (!file_exists($sCacheModules))
 		{
 			// Something went wrong...
-		}		
-		require_once($sCacheModules);		
-		
-		$oModuleProcess = Phpfox::getService('admincp.module.process');		
+		}
+		require_once($sCacheModules);
+
+		$oModuleProcess = Phpfox::getService('admincp.module.process');
 		foreach ($aModules as $sModule)
-		{		
-			$oModuleProcess->install($sModule, array('post_install' => true));			
-		}		
+		{
+			$oModuleProcess->install($sModule, array('post_install' => true));
+		}
 
 		/*
 		$this->_pass();
@@ -1223,7 +1223,7 @@ class Phpfox_Installer
 			'next' => 'final'
 		];
 	}
-	
+
 	private function _final()
 	{
 		$aForms = array();
@@ -1248,16 +1248,16 @@ class Phpfox_Installer
 				'def' => 'username',
 				'title' => 'Provide a valid user name.'
 			)
-		);		
-		
+		);
+
 		$oValid = Phpfox_Validator::instance()->set(array('sFormName' => 'js_form', 'aParams' => $aValidation));
-		
+
 		if ($aVals = $this->_oReq->getArray('val'))
-		{			
+		{
 			Phpfox::getService('user.validate')->user($aVals['user_name'])->email($aVals['email']);
-			
+
 			if ($oValid->isValid($aVals))
-			{				
+			{
 				if (($iUserId = Phpfox::getService('user.process')->add($aVals, ADMIN_USER_ID)))
 				{
 					list($bLogin, $aUser) = User_Service_Auth::instance()->login($aVals['email'], $aVals['password'], true, 'email');
@@ -1267,7 +1267,7 @@ class Phpfox_Installer
 						User_Service_Auth::instance()->setUserId($iUserId);
 						$this->_db()->update(Phpfox::getT('user_field'), array('in_admincp' => PHPFOX_TIME), 'user_id = ' . $iUserId);
 						$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => Phpfox::getVersion()), 'var_name = \'phpfox_version\'');
-						
+
 						$this->_video(true);
 
 						User_Service_Process::instance()->updateStatus([
@@ -1281,20 +1281,20 @@ class Phpfox_Installer
 					}
 				}
 			}
-		}					
-		else 
-		{
-			$aForms = array_merge($this->_video(), $aForms);			
 		}
-		
+		else
+		{
+			$aForms = array_merge($this->_video(), $aForms);
+		}
+
 		$this->_oTpl->assign(array(
 				'sCreateJs' => $oValid->createJS(),
 				'sGetJsForm' => $oValid->getJsForm(false),
 				'aForms' => $aForms
 			)
-		);		
+		);
 	}
-	
+
 	private function _update()
 	{
 		// d($this->_getCurrentVersion());
@@ -1349,94 +1349,53 @@ class Phpfox_Installer
 		return [
 			'next' => 'completed'
 		];
-	}	
-	
+	}
+
 	private function _completed()
-	{		
+	{
 		if (Phpfox_File::instance()->isWritable(PHPFOX_DIR_SETTINGS . 'server.sett.php'))
 		{
 			$sContent = file_get_contents(PHPFOX_DIR_SETTINGS . 'server.sett.php');
 			$sContent = preg_replace("/\\\$_CONF\['core.is_installed'\] = (.*?);/i", "\\\$_CONF['core.is_installed'] = true;", $sContent);
 			if ($hServerConf = @fopen(PHPFOX_DIR_SETTINGS . 'server.sett.php', 'w'))
 			{
-	            fwrite($hServerConf, $sContent);
-	            fclose($hServerConf);
-			}			
+				fwrite($hServerConf, $sContent);
+				fclose($hServerConf);
+			}
 		}
 
 		$license = file_get_contents(PHPFOX_DIR_SETTINGS . 'license.php');
 		file_put_contents(PHPFOX_DIR_SETTINGS . 'license.sett.php', $license);
 		unlink(PHPFOX_DIR_SETTINGS . 'license.php');
 
-		/*
-		if (!defined('PHPFOX_SKIP_INSTALL_KEY'))
-		{
-			$oApi = Phpfox::getLib('phpfox.api');
-			if ($oApi->send('brandingRemoval'))
-			{
-				Phpfox_Database::instance()->update(Phpfox::getT('setting'), array('value_actual' => '1'), "var_name = 'branding'");
-			}		
+		$old = PHPFOX_DIR. '../include/setting/server.sett.php';
+		if (file_exists($old)) {
+			unlink($old);
 		}
-		*/
-		
-		$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => Phpfox::getVersion()), 'var_name = \'phpfox_version\'');
-		$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => date('j/n/Y', PHPFOX_TIME)), 'var_name = \'official_launch_of_site\'');
+
+		file_put_contents(PHPFOX_DIR_SETTINGS . 'version.sett.php', "<?php\nreturn " . var_export(['version' => Phpfox::getVersion(), 'timestamp' => PHPFOX_TIME], true) . ";\n");
+
 		$this->_db()->update(Phpfox::getT('module'), array('is_active' => '0'), 'module_id = \'microblog\'');
 		$this->_db()->update(Phpfox::getT('user_group_setting'), array('is_hidden' => '1'), 'name = \'custom_table_name\'');
-		
-		if ($this->_bUpgrade)
-		{			
-			$iCurrentVersion = $this->_getCurrentVersion();
-			
-			if (!$this->_db()->select('COUNT(*)')
-				->from(Phpfox::getT('install_log'))
-				->where('is_upgrade = 1 AND version_id = \'' . $iCurrentVersion . '\' AND upgrade_version_id = \'' . Phpfox::getVersion() . '\'')
-				->execute('getField')
-			)
-			{			
-				$this->_db()->insert(Phpfox::getT('install_log'), array(
-						'is_upgrade' => '1',
-						'version_id' => $this->_getCurrentVersion(),
-						'upgrade_version_id' => Phpfox::getVersion(),
-						'time_stamp' => PHPFOX_TIME,
-						'ip_address' => Phpfox::getIp()
-					)
-				);
-			}
-		}
-		else 
-		{
-			// $this->_db()->update(Phpfox::getT('theme_style'), array('is_default' => '0'), 'style_id > 0');
-			// $this->_db()->update(Phpfox::getT('theme_style'), array('is_default' => '1'), 'folder = \'nebula\'');
 
-			if (!$this->_db()->select('COUNT(*)')
-				->from(Phpfox::getT('install_log'))
-				->where('is_upgrade = 0 AND version_id = \'' . Phpfox::getVersion() . '\' AND ' . $this->_db()->isNull('upgrade_version_id') . '')
-				->execute('getField')
-			)
-			{
-				$this->_db()->insert(Phpfox::getT('install_log'), array(
-						'version_id' => Phpfox::getVersion(),
-						'time_stamp' => PHPFOX_TIME,
-						'ip_address' => Phpfox::getIp()
-					)
-				);			
-			}
+		if (!$this->_bUpgrade)
+		{
+			$this->_db()->update(Phpfox::getT('setting'), array('value_actual' => date('j/n/Y', PHPFOX_TIME)), 'var_name = \'official_launch_of_site\'');
 		}
-		
-		Phpfox::getLib('cache')->remove();	
-		
+
+		Phpfox::getLib('cache')->remove();
+
 		$this->_oTpl->assign(array(
 				'bIsUpgrade' => $this->_bUpgrade,
 				'sUpgradeVersion' => Phpfox::getVersion()
 			)
-		);		
-	}	
-	
+		);
+	}
+
 	########################
 	# Private Methods
 	########################
-	
+
 	private function _getCurrentVersion()
 	{
 		static $sVersion = null;
@@ -1486,10 +1445,10 @@ class Phpfox_Installer
 
 		return Phpfox_Error::set('Unknown version.', E_USER_ERROR);
 	}
-	
+
 	/**
-	* @todo We need to work on this routine, not working very well.
-	*/	
+	 * @todo We need to work on this routine, not working very well.
+	 */
 	private function _isPassed($sStep)
 	{
 		return true;
@@ -1497,71 +1456,71 @@ class Phpfox_Installer
 		$aFile = file($this->_sSessionFile);
 		foreach ($aFile as $sLine)
 		{
-			$sLine = trim($sLine);			
-			
+			$sLine = trim($sLine);
+
 			if (empty($sLine))
 			{
 				continue;
 			}
-			
+
 			if ($sLine == $sStep)
 			{
 				return true;
 			}
 		}
-		
+
 		exit('Failed');
-		
-		return false;		
+
+		return false;
 	}
-	
+
 	private function _pass($sForward = null)
 	{
 		fwrite($this->_hFile, "\n" . $this->_sStep);
-		
+
 		if ($sForward !== null)
 		{
 			fclose($this->_hFile);
-			
+
 			$this->_oUrl->forward($this->_step($sForward));
 		}
-		
+
 		fclose($this->_hFile);
-		
+
 		return true;
 	}
-	
+
 	private function _getOldT($sTable)
 	{
 		return (isset($this->_aOldConfig['db']['prefix']) ? $this->_aOldConfig['db']['prefix'] : '') . $sTable;
 	}
-	
+
 	private function _db()
 	{
 		return Phpfox_Database::instance();
 	}
-	
+
 	private function _step($aParams)
 	{
 		if (is_array($aParams))
 		{
 			$aParams['sessionid'] = self::$_sSessionId;
 		}
-		else 
+		else
 		{
 			$aParams = array($aParams, 'sessionid' => self::$_sSessionId);
 		}
 
 		// d($this->_oUrl->makeUrl($this->_sUrl, $aParams)); exit;
-		
+
 		return $this->_oUrl->makeUrl($this->_sUrl, $aParams);
 	}
-	
+
 	private function _saveSettings($aVals)
 	{
 		// Get sub-folder
 		$sSubfolder = str_replace(['index.php/', 'index.php'], '', $_SERVER['PHP_SELF']);
-		
+
 		// Get the settings content
 		$sContent = file_get_contents(PHPFOX_DIR_SETTING . 'server.sett.php.new');
 
@@ -1570,50 +1529,50 @@ class Phpfox_Installer
 		{
 			$aVals[$iKey] = addslashes(trim($sVal));
 		}
-		
+
 		$aFind = array(
 			"/\\\$_CONF\['db'\]\['driver'\] = (.*?);/i",
 			"/\\\$_CONF\['db'\]\['host'\] = (.*?);/i",
 			"/\\\$_CONF\['db'\]\['user'\] = (.*?);/i",
-			"/\\\$_CONF\['db'\]\['pass'\] = (.*?);/i",					
-			"/\\\$_CONF\['db'\]\['name'\] = (.*?);/i",				
+			"/\\\$_CONF\['db'\]\['pass'\] = (.*?);/i",
+			"/\\\$_CONF\['db'\]\['name'\] = (.*?);/i",
 			"/\\\$_CONF\['db'\]\['prefix'\] = (.*?);/i",
-			"/\\\$_CONF\['db'\]\['port'\] = (.*?);/i",			
+			"/\\\$_CONF\['db'\]\['port'\] = (.*?);/i",
 			"/\\\$_CONF\['core.host'\] = (.*?);/i",
 			"/\\\$_CONF\['core.folder'\] = (.*?);/i",
 			"/\\\$_CONF\['core.url_rewrite'\] = (.*?);/i",
 			"/\\\$_CONF\['core.salt'\] = (.*?);/i",
 			"/\\\$_CONF\['core.cache_suffix'\] = (.*?);/i"
 		);
-		
+
 		$aReplace = array(
 			"\\\$_CONF['db']['driver'] = '{$aVals['driver']}';",
 			"\\\$_CONF['db']['host'] = '{$aVals['host']}';",
 			"\\\$_CONF['db']['user'] = '{$aVals['user_name']}';",
 			"\\\$_CONF['db']['pass'] = '{$aVals['password']}';",
-			"\\\$_CONF['db']['name'] = '{$aVals['name']}';",	
+			"\\\$_CONF['db']['name'] = '{$aVals['name']}';",
 			"\\\$_CONF['db']['prefix'] = '" . (!empty($aVals['prefix']) ? $aVals['prefix'] : 'phpfox_') . "';",
-			"\\\$_CONF['db']['port'] = '{$aVals['port']}';",			
+			"\\\$_CONF['db']['port'] = '{$aVals['port']}';",
 			"\\\$_CONF['core.host'] = '{$_SERVER['HTTP_HOST']}';",
 			"\\\$_CONF['core.folder'] = '{$sSubfolder}';",
 			"\\\$_CONF['core.url_rewrite'] = '" . ((isset($aVals['rewrite']) && $aVals['rewrite'] === true) ? '1' : '2') . "';",
 			"\\\$_CONF['core.salt'] = '" . md5(uniqid(rand(), true)) . "';",
 			"\\\$_CONF['core.cache_suffix'] = '.php';"
 		);
-		
+
 		$sContent = preg_replace($aFind, $aReplace, $sContent);
 
 		if ($hServerConf = @fopen(PHPFOX_DIR_SETTINGS . 'server.sett.php', 'w'))
 		{
-            fwrite($hServerConf, $sContent);
-            fclose($hServerConf);
-            
-            return true;
-		}	
-		
+			fwrite($hServerConf, $sContent);
+			fclose($hServerConf);
+
+			return true;
+		}
+
 		return Phpfox_Error::set('Unable to open config file.');
 	}
-	
+
 	private function _getSteps()
 	{
 		$aSteps = array();
@@ -1628,16 +1587,16 @@ class Phpfox_Installer
 					break;
 				case 'license':
 					$sStepName = 'License Agreement';
-					break;	
+					break;
 				case 'requirement':
 					$sStepName = 'Requirement Check';
-					break;	
+					break;
 				case 'update':
 					$sStepName = 'Updates';
-					break;	
+					break;
 				case 'completed':
 					$sStepName = 'Completed';
-					break;	
+					break;
 				case 'configuration':
 					$sStepName = 'Configuration';
 					break;
@@ -1649,36 +1608,36 @@ class Phpfox_Installer
 					break;
 				case 'language':
 					$sStepName = 'Installing Default Language';
-					break;	
+					break;
 				case 'module':
 					$sStepName = 'Installing Modules';
-					break;		
+					break;
 				case 'post':
 					$sStepName = 'Checking Install';
-					break;	
+					break;
 				case 'final':
 					$sStepName = 'Create an Admin';
-					break;	
+					break;
 			}
-			
+
 			$iCnt++;
 			$aSteps[] = array(
 				'name' => $sStepName,
 				'is_active' => ($this->_sStep == $sStep ? true : false),
 				'count' => $iCnt
-			);	
-		}		
-		
+			);
+		}
+
 		return $aSteps;
 	}
-	
+
 	private function _upgradeDatabase($sVersion, $reset = false)
 	{
 		if ((int) substr($this->_getCurrentVersion(), 0, 1) <= 1)
 		{
 			return;
 		}
-		
+
 		if (!defined('PHPFOX_UPGRADE_MODULE_XML'))
 		{
 			define('PHPFOX_UPGRADE_MODULE_XML', true);
@@ -1687,7 +1646,7 @@ class Phpfox_Installer
 		if ($reset) {
 			define('PHPFOX_PRODUCT_UPGRADE_CHECK', true);
 		}
-		
+
 		$hDir = opendir(PHPFOX_DIR_MODULE);
 		while ($sModule = readdir($hDir))
 		{
@@ -1695,46 +1654,46 @@ class Phpfox_Installer
 			{
 				continue;
 			}
-			
+
 			if ($sModule == 'phpfox')
 			{
 				continue;
 			}
-			
+
 			if (file_exists(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . 'install' . PHPFOX_DS . 'phpfox.xml.php'))
 			{
 				$aModule = Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . 'install' . PHPFOX_DS . 'phpfox.xml.php');
-				
+
 				if (isset($aModule['tables']))
 				{
 					$oPhpfoxDatabaseExport = Phpfox::getLib('database.support');
-					$aTables = unserialize(trim($aModule['tables']));		
+					$aTables = unserialize(trim($aModule['tables']));
 					$sQueries = Phpfox::getLib('database.export')->process(Phpfox::getParam(array('db', 'driver')), $aTables);
 					$aDriver = $oPhpfoxDatabaseExport->getDriver(Phpfox::getParam(array('db', 'driver')));
-					
+
 					$sQueries = preg_replace('#phpfox_#i', Phpfox::getParam(array('db', 'prefix')), $sQueries);
-						
+
 					if ($aDriver['comments'] == 'remove_comments')
 					{
 						$oPhpfoxDatabaseExport->removeComments($sQueries);
 					}
-					else 
+					else
 					{
 						$oPhpfoxDatabaseExport->removeRemarks($sQueries);
 					}
-						
-					$aSql = $oPhpfoxDatabaseExport->splitSqlFile($sQueries, $aDriver['delim']);		
-					
+
+					$aSql = $oPhpfoxDatabaseExport->splitSqlFile($sQueries, $aDriver['delim']);
+
 					foreach ($aSql as $sSql)
 					{
-						$sSql = preg_replace('/CREATE TABLE/', 'CREATE TABLE IF NOT EXISTS', $sSql);						
-						
+						$sSql = preg_replace('/CREATE TABLE/', 'CREATE TABLE IF NOT EXISTS', $sSql);
+
 						$this->_db()->query($sSql);
-					}			
-				}				
+					}
+				}
 			}
 		}
-		
+
 		$hDir = opendir(PHPFOX_DIR_MODULE);
 		while ($sModule = readdir($hDir))
 		{
@@ -1742,12 +1701,12 @@ class Phpfox_Installer
 			{
 				continue;
 			}
-			
+
 			if ($sModule == 'phpfox')
 			{
 				continue;
 			}
-			
+
 			$bIsNewModule = false;
 			if (file_exists(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . 'install' . PHPFOX_DS . 'phpfox.xml.php'))
 			{
@@ -1756,14 +1715,14 @@ class Phpfox_Installer
 					Admincp_Service_Module_Process::instance()->install($sModule, array('insert' => true), 'phpfox', $aModule);
 					continue;
 				}
-				
+
 				if (isset($aModule['data']['module_id']))
 				{
 					$iIsModule = $this->_db()->select('COUNT(*)')
 						->from(Phpfox::getT('module'))
 						->where('module_id = \'' . $this->_db()->escape($aModule['data']['module_id']) . '\'')
 						->execute('getField');
-					
+
 					if (!$iIsModule)
 					{
 						$bIsNewModule = true;
@@ -1780,39 +1739,39 @@ class Phpfox_Installer
 						Admincp_Service_Module_Process::instance()->install(null, array('insert' => true), 'phpfox', $aModule);
 					}
 				}
-				
+
 				if (!empty($aModule['data']['menu']))
 				{
 					$aModuleCheck = $this->_db()->select('module_id, menu')
 						->from(Phpfox::getT('module'))
 						->where('module_id = \'' . $this->_db()->escape($aModule['data']['module_id']) . '\'')
 						->execute('getRow');
-						
+
 					if (isset($aModuleCheck['module_id']) && $aModuleCheck['menu'] != $aModule['data']['menu'])
 					{
 						$this->_db()->update(Phpfox::getT('module'), array('menu' => $aModule['data']['menu']), 'module_id = \'' . $this->_db()->escape($aModuleCheck['module_id']) . '\'');
 					}
 				}
 			}
-			
+
 			if (file_exists(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . 'install' . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.xml.php'))
 			{
-				$aUpgradeModule = Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . 'install' . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.xml.php');		
-				
+				$aUpgradeModule = Phpfox::getLib('xml.parser')->parse(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DS . 'install' . PHPFOX_DS . 'version' . PHPFOX_DS . $sVersion . '.xml.php');
+
 				if (isset($aUpgradeModule['sql']))
 				{
 					$sSqlQuery = Phpfox::getLib('database.export')->processAlter(Phpfox::getParam(array('db', 'driver')), unserialize($aUpgradeModule['sql']), false, true);
 					// $sSqlQuery = preg_replace('#phpfox_#i', Phpfox::getParam(array('db', 'prefix')), $sSqlQuery);
 					$aDriver = $oPhpfoxDatabaseExport->getDriver(Phpfox::getParam(array('db', 'driver')));
-	
-					$aSql = $oPhpfoxDatabaseExport->splitSqlFile($sSqlQuery, $aDriver['delim']);	
-					
+
+					$aSql = $oPhpfoxDatabaseExport->splitSqlFile($sSqlQuery, $aDriver['delim']);
+
 					foreach ($aSql as $sSql)
-					{						
+					{
 						$this->_db()->query($sSql);
 					}
 				}
-				
+
 				if ($bIsNewModule === false)
 				{
 					Phpfox::getService('admincp.module.process')->install(null, array('insert' => true), 'phpfox', $aUpgradeModule);
@@ -1823,4 +1782,3 @@ class Phpfox_Installer
 	}
 }
 
-?>

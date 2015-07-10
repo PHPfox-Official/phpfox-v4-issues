@@ -1,7 +1,7 @@
 <?php
 /**
  * [PHPFOX_HEADER]
- * 
+ *
  * @copyright		[PHPFOX_COPYRIGHT]
  * @author			Raymond Benc
  * @package 		Phpfox
@@ -35,13 +35,24 @@ if (file_exists(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'de
 
 require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'constant.sett.php');
 
-if (!file_exists(PHPFOX_DIR_SETTINGS . 'license.sett.php')) {
+$old = PHPFOX_DIR. '../include/setting/server.sett.php';
+if (!file_exists(PHPFOX_DIR_SETTINGS . 'license.sett.php')
+	|| !file_exists(PHPFOX_DIR_SETTINGS . 'server.sett.php')
+	|| file_exists($old)
+
+) {
 	define('PHPFOX_NO_PLUGINS', true);
 	define('PHPFOX_NO_USER_SESSION', true);
 	define('PHPFOX_NO_CSRF', true);
 	define('PHPFOX_INSTALLER', true);
 	define('PHPFOX_INSTALLER_NO_TMP', true);
 	define('PHPFOX_NO_RUN', true);
+
+	if (file_exists($old)
+		&& !defined('PHPFOX_IS_UPGRADE')
+		&& !class_exists('Phpfox_Installer', false)) {
+		define('PHPFOX_IS_UPGRADE', true);
+	}
 }
 else {
 	require(PHPFOX_DIR_SETTINGS . 'license.sett.php');
@@ -119,6 +130,22 @@ date_default_timezone_set('GMT');
 define('PHPFOX_TIME', time());
 
 Phpfox::getLib('setting')->set();
+
+if (defined('PHPFOX_INSTALLER')) {
+	if (isset($_GET['phpfox-upgrade'])) {
+		require(PHPFOX_DIR . 'install/include/installer.class.php');
+		(new Phpfox_Installer())->run();
+		exit;
+	}
+
+	$sMessage = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
+	$sMessage .= '<html xmlns="http://www.w3.org/1999/xhtml" lang="en">';
+	$sMessage .= '<head><title>Upgrade Taking Place</title><meta http-equiv="Content-Type" content="text/html;charset=utf-8" /><style type="text/css">body{font-family:verdana; color:#000; font-size:9pt; margin:5px; background:#fff;} img{border:0px;}</style></head><body>';
+	$sMessage .= file_get_contents(PHPFOX_DIR . 'static' . PHPFOX_DS . 'upgrade.html');
+	$sMessage .= '</body></html>';
+	echo $sMessage;
+	exit;
+}
 
 if (!defined('PHPFOX_NO_PLUGINS')) {
 	Phpfox_Plugin::set();

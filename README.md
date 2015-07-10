@@ -1,8 +1,5 @@
 # PHPfox Developers Build
 
-Version: **4.0.0rc2**
-Stable: **No**
-
 ## License
 This build is intended for developers working with creating apps, modules, themes and language packages for [PHPfox](http://www.phpfox.com/).
 

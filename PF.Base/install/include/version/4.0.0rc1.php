@@ -6,6 +6,7 @@ return function(Phpfox_Installer $Installer) {
 	$Installer->db->delete(':block_source', 'block_id > 0');
 	$Installer->db->delete(':theme', 'theme_id > 0');
 	$Installer->db->delete(':theme_style', 'style_id > 0');
+	$Installer->db->delete(':product', 'product_id > 0');
 
 	if (!$Installer->db->select('COUNT(*)')->from(':product')->where(['product_id' => 'phpfox'])->execute('getField')) {
 		$Installer->db->insert(':product', [
@@ -26,6 +27,14 @@ return function(Phpfox_Installer $Installer) {
 			'is_default' => 1,
 			'is_master' => 1
 		]);
+	}
+
+	$modules = $Installer->db->select('*')->from(':module')->all();
+	foreach ($modules as $module) {
+		$dir = PHPFOX_DIR_MODULE . $module['module_id'] . '/';
+		if (!is_dir($dir)) {
+			$Installer->db->delete(':module', ['module_id' => $module['module_id']]);
+		}
 	}
 
 	$themeId = $Installer->db->insert(Phpfox::getT('theme'), [

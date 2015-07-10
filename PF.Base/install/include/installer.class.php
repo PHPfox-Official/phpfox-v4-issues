@@ -396,6 +396,10 @@ class Phpfox_Installer
 		*/
 
 		$base = self::getHostPath() . 'PF.Base/';
+		$version = Phpfox::getVersion();
+		if ($this->_bUpgrade) {
+			$version = 'Upgrading from ' . $this->_getCurrentVersion() . ' to ' . $version;
+		}
 		$this->_oTpl->setHeader(array(
 				'<script>var BasePath = \'' . self::getHostPath() . '\';</script>',
 				'<link href="' . $base . 'theme/install/default/style/default/css/layout.css" rel="stylesheet">',
@@ -414,7 +418,7 @@ class Phpfox_Installer
 					'aBreadCrumbs' => $aBreadCrumbs,
 					'aBreadCrumbTitle' => $aBreadCrumbTitle,
 					'aSteps' => $this->_getSteps(),
-					'sCurrentVersion' => Phpfox::getVersion()
+					'sCurrentVersion' => $version
 				)
 			);
 

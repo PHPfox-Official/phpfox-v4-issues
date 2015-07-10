@@ -113,15 +113,22 @@ class Phpfox_Setting
 		if (defined('PHPFOX_IS_UPGRADE')) {
 			$old = PHPFOX_DIR . '../include/setting/server.sett.php';
 			if (file_exists($old)) {
-				copy($old, PHPFOX_DIR_SETTINGS . 'server.sett.php');
+				if (is_dir(PHPFOX_DIR_SETTINGS)) {
+					copy($old, PHPFOX_DIR_SETTINGS . 'server.sett.php');
+				} else {
+					$_CONF = [];
+					require($old);
+				}
 			}
 		}
 
-		if (file_exists(PHPFOX_DIR_SETTINGS . 'server.sett.php'))
+		if (file_exists(PHPFOX_DIR_SETTINGS . 'server.sett.php') || count($_CONF))
 		{
-			$_CONF = array();
+			if (!count($_CONF)) {
+				$_CONF = array();
 
-			require(PHPFOX_DIR_SETTINGS . 'server.sett.php');
+				require(PHPFOX_DIR_SETTINGS . 'server.sett.php');
+			}
 
 			if (!defined('PHPFOX_INSTALLER'))
 			{

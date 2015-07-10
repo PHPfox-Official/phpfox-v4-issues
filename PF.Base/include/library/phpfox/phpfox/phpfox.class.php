@@ -1153,21 +1153,17 @@ class Phpfox
 			$sType = Phpfox_File::instance()->mime($sUri);
 			$sExt = Phpfox_File::instance()->extension($sUri);
 
-			if (false && !file_exists($sPath) && strpos($sPath, 'file/pic/user')) {
-				$parts = explode('pic/user/', $sPath);
-				$sub = explode('_', $parts[1]);
-				$sPath = $parts[0] . 'pic/user/' . $sub[0] . '.' . $sExt;
-			}
-
 			if (!file_exists($sPath)) {
-
+				$sPath = str_replace('PF.Base', 'PF.Base/..', $sPath);
 				// header('Content-type: ' . $sType);
-				header("HTTP/1.0 404 Not Found");
-				header('Content-type: application/json');
-				echo json_encode([
-					'error' => 404
-				]);
-				exit;
+				if (!file_exists($sPath)) {
+					header("HTTP/1.0 404 Not Found");
+					header('Content-type: application/json');
+					echo json_encode([
+						'error' => 404
+					]);
+					exit;
+				}
 			}
 
 			// header('Content-type: ' . $sType);

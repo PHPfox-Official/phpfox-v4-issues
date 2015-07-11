@@ -241,7 +241,7 @@ class Phpfox_Setting
 		$oCache = Phpfox::getLib('cache');
 		$iId = $oCache->set('setting');
 
-		if (!($aRows = $oCache->get($iId)) || true)
+		if (!($aRows = $oCache->get($iId)))
 		{
 			$aRows = Phpfox_Database::instance()->select('s.type_id, s.var_name, s.value_actual, m.module_id AS module_name')
 				->from(Phpfox::getT('setting'), 's')

@@ -276,7 +276,8 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		}
 		
 		// http://www.phpfox.com/tracker/view/15392/
-		$sIsHashTagSearchValue = urldecode(strip_tags((($this->request()->get('hashtagsearch') ? $this->request()->get('hashtagsearch') : ($this->request()->get('req1') == 'hashtag' ? $this->request()->get('req2') : '')))));
+		$sIsHashTagSearchValue = strip_tags($this->request()->get('req2'));
+		/*
 		if(preg_match_all('/[0-9]+/', $sIsHashTagSearchValue, $aMatches))
 		{
 			$sIsHashTagSearchValue = '';
@@ -285,6 +286,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 				$sIsHashTagSearchValue .= preg_replace('/[0-9]+/', '&#$0;', $sMatch);
 			}
 		}
+		*/
 
 		$this->template()->assign(array(
 				'bUseFeedForm' => $bUseFeedForm,

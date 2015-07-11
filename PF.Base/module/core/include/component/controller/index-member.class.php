@@ -26,7 +26,10 @@ class Core_Component_Controller_Index_Member extends Phpfox_Component
 		{
 		    eval($sPlugin);
 		}
-		Phpfox::isUser(true);
+
+		if ($this->request()->segment(1) != 'hashtag') {
+			Phpfox::isUser(true);
+		}
 		
 		if ($this->request()->get('req3') == 'customize')
 		{				

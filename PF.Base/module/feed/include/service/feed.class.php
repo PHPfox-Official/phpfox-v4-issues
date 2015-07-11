@@ -429,7 +429,10 @@ class Feed_Service_Feed extends Phpfox_Service
 			}
 			else
 			{
-				if (Phpfox::getParam('feed.feed_only_friends') && !isset($params['is_api']))
+				if (Phpfox::getParam('feed.feed_only_friends')
+					&& !isset($params['is_api'])
+					&& $oReq->segment(1) != 'hashtag'
+				)
 				{
 					if (Phpfox::isModule('friend'))
 					{

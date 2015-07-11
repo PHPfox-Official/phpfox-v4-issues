@@ -10251,9 +10251,32 @@ a.marketplace_contact_seller:hover {
   #header_menu > nav > ul {
     overflow: hidden;
   }
+  .guest_login {
+    display: none;
+  }
+  #main-banner {
+    left: 0px;
+  }
+  #page_core_index-visitor._is_guest_user #header,
+  #page_core_index-visitor._is_guest_user #top {
+    display: block;
+  }
+  #page_core_index-visitor._is_guest_user .site_menu {
+    display: block;
+  }
+  #page_core_index-visitor._is_guest_user .register_menu {
+    display: none;
+  }
+  #page_core_index-visitor._is_guest_user #panels {
+    max-width: 400px;
+  }
+  #page_core_index-visitor._is_guest_user #panels,
+  #page_core_index-visitor._is_guest_user #container {
+    display: block;
+    width: auto;
+  }
   #main_header {
     width: 35px;
-    /*overflow:hidden;*/
   }
   #page_forum_thread div.sub_menu_bar_main,
   #page_forum_thread #content ._block_h1 {
@@ -10303,6 +10326,9 @@ a.marketplace_contact_seller:hover {
   }
 }
 @media (max-device-width: 700px), (max-width: 700px) {
+  #page_photo_index #panel {
+    display: none;
+  }
   .demo-buttons > ul li.tab {
     display: none;
   }
@@ -10397,6 +10423,8 @@ a.marketplace_contact_seller:hover {
   }
   #content {
     width: auto;
+    max-width: 0px;
+    padding: 0px;
   }
   #container,
   #main_footer_holder {

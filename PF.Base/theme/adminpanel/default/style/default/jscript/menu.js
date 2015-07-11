@@ -3,7 +3,7 @@ var bIsAdminMenuClickSet = false;
 $Behavior.adminMenuClick = function()
 {
 	if ($('#phpfox_store_load').length && !$('#phpfox_store').length) {
-		var url = 'http://store.phpfox.com/';
+		var url = 'https://store.phpfox.us/';
 
 		// url = 'http://localhost/moxi9/moxi9.com/';
 		$('body').prepend('<iframe src="' + url + $('#phpfox_store_load').data('load') + '?iframe-mode=' + $('#phpfox_store_load').data('token') + '" id="phpfox_store"></iframe>');
@@ -31,7 +31,7 @@ $Behavior.adminMenuClick = function()
 	var storeFeatured = $('.phpfox_store_featured');
 	if (storeFeatured.length && !storeFeatured.hasClass('is_built')) {
 		var parentUrl = $('.phpfox_store_view_more').attr('href');
-		var url = 'http://store.phpfox.com/featured';
+		var url = 'https://store.phpfox.us/featured';
 
 		storeFeatured.addClass('is_built');
 		// url = 'http://localhost/moxi9/moxi9.com/featured';

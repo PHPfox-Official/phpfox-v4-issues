@@ -1116,7 +1116,7 @@ class Phpfox_Template
 			if (!defined('PHPFOX_INSTALLER'))
 			{
 				$aJsVars['bWysiwyg'] = ((Phpfox::getParam('core.wysiwyg') != 'default' && Phpfox::getParam('core.allow_html')) ? true : false);
-				$aJsVars['sEditor'] = Phpfox::getParam('core.wysiwyg');	
+				$aJsVars['sEditor'] = Phpfox::getParam('core.wysiwyg');
 				$aJsVars['sJsCookiePath'] = Phpfox::getParam('core.cookie_path');
 				$aJsVars['sJsCookieDomain'] = Phpfox::getParam('core.cookie_domain');
 				$aJsVars['sJsCookiePrefix'] = Phpfox::getParam('core.session_prefix');	

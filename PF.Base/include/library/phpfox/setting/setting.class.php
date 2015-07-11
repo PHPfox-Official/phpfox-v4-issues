@@ -241,7 +241,7 @@ class Phpfox_Setting
 		$oCache = Phpfox::getLib('cache');
 		$iId = $oCache->set('setting');
 
-		if (!($aRows = $oCache->get($iId)))
+		if (!($aRows = $oCache->get($iId)) || true)
 		{
 			$aRows = Phpfox_Database::instance()->select('s.type_id, s.var_name, s.value_actual, m.module_id AS module_name')
 				->from(Phpfox::getT('setting'), 's')
@@ -250,6 +250,10 @@ class Phpfox_Setting
 
 			foreach ($aRows as $iKey => $aRow)
 			{
+				if (in_array($aRow['var_name'], ['wysiwyg'])) {
+					continue;
+				}
+
 				// Remove unactive module settings
 				if (!empty($aRow['module_name']) && !Phpfox::isModule($aRow['module_name']))
 				{
@@ -365,23 +369,6 @@ class Phpfox_Setting
 
 		$this->_aParams['core.theme_session_prefix'] = '';
 		$this->_aParams['core.load_jquery_from_google_cdn'] = false;
-
-		if (defined('PHPFOX_IS_HOSTED_SCRIPT') && isset($this->_aParams['core.phpfox_max_users_online']))
-		{
-			if (defined('PHPFOX_GROUPLY_TEST'))
-			{
-				$this->_aParams['core.phpfox_grouply_space'] = (int) (50 * 1073741824);
-				$this->_aParams['core.phpfox_grouply_members'] = 100;
-				$this->_aParams['core.phpfox_grouply_admins'] = 2;
-			}
-			else
-			{
-				$aSettingParts = explode('|', $this->_aParams['core.phpfox_max_users_online']);
-				$this->_aParams['core.phpfox_grouply_space'] = (int) ($aSettingParts[0] * 1073741824);
-				$this->_aParams['core.phpfox_grouply_members'] = (int) $aSettingParts[1];
-				$this->_aParams['core.phpfox_grouply_admins'] = (int) $aSettingParts[2];
-			}
-		}
 
 		if (isset($_GET['phpfox-upgrade'])) {
 			Phpfox_Url::instance()->send('');

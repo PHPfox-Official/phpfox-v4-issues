@@ -218,6 +218,12 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 		$aCacheSetting = array();
 		foreach ($aRows as $iKey => $aRow)
 		{
+			if (in_array($aRow['var_name'], ['wysiwyg'])) {
+				unset($aRows[$iKey]);
+
+				continue;
+			}
+
 			if (isset($aCacheSetting[$aRow['var_name']]))
 			{
 				unset($aRows[$iKey]);
@@ -249,17 +255,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 				
 				// Make sure an editor is valid before we display it
 				if ($aRow['var_name'] == 'wysiwyg')
-				{					
-					/*
-					foreach ($aArray['values'] as $iSubKey => $sSubValue)
-					{
-						if (!in_array($sSubValue, $aWysiwygs))
-						{
-							unset($aArray['values'][$iSubKey]);
-						}
-					}
-					*/
-					
+				{
 					$aArray['values'] = $aWysiwygs;					
 					$aRows[$iKey]['values'] = $aArray;					
 					$aRows[$iKey]['value_actual'] = implode(',', $aRows[$iKey]['values']['values']);					
@@ -328,7 +324,8 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 				$aRows[$iKey]['type_id'] = 'drop_with_key';
 				$aRows[$iKey]['values'] = $aUserArray;		
 			}
-			
+
+			/*
 			if ($aRow['var_name'] == 'cdn_service')
 			{
 				$aRows[$iKey]['type_id'] = 'drop';
@@ -338,6 +335,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 				);
 				$aRows[$iKey]['value_actual'] = implode(',', $aCdns);				
 			}
+			*/
 			
 			if ($aRow['var_name'] == 'captcha_font')
 			{

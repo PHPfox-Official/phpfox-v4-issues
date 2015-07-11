@@ -265,6 +265,10 @@ class Phpfox
 	 */
 	public static function getParam($sVar)
 	{
+		if ($sVar == 'core.wysiwyg') {
+			return 'default';
+		}
+
 		if ($sVar == 'core.cache_plugins' && PHPFOX_DEBUG) {
 			return false;
 		}

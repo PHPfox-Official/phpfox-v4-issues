@@ -30,7 +30,7 @@ class Admincp_Component_Controller_Login extends Phpfox_Component
 		{
 			if (!empty($aVals['email']) && !empty($aVals['password']))
 			{
-				if (Phpfox::getService('user.auth')->loginAdmin($aVals['email'], $aVals['password']))
+				if (User_Service_Auth::instance()->loginAdmin($aVals['email'], $aVals['password']))
 				{
 					$this->url()->send('current');
 				}

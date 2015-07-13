@@ -275,12 +275,22 @@ class User_Service_Auth extends Phpfox_Service
 			
 			return Phpfox_Error::set(Phpfox::getPhrase('user.email_does_not_match_the_one_that_is_currently_in_use'));
 		}
-		
-		if (Phpfox::getLib('hash')->setHash($sPassword, $aRow['password_salt']) != $aRow['password'])
-		{
-			$this->_logAdmin(3);
-			
-			return Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
+
+		if (strlen($aRow['password']) > 32) {
+			$Hash = new Core\Hash();
+			if (!$Hash->check($sPassword, $aRow['password'])) {
+				$this->_logAdmin(3);
+
+				return Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
+			}
+		}
+		else {
+			if (Phpfox::getLib('hash')->setHash($sPassword, $aRow['password_salt']) != $aRow['password'])
+			{
+				$this->_logAdmin(3);
+
+				return Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
+			}
 		}
 		
 		$this->database()->update(Phpfox::getT('user_field'), array('in_admincp' => PHPFOX_TIME), 'user_id = ' . $aRow['user_id']);

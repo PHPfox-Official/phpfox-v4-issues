@@ -32,6 +32,8 @@ class Report_Component_Block_Profile extends Phpfox_Component
 		{
 			return false;
 		}
+
+		$this->template()->assign('aUser', $aUser);
 	}
 	
 	/**

@@ -214,9 +214,19 @@ class App {
 			file_put_contents($zip, file_get_contents($zipUrl));
 		}
 
+		$fromWindows = false;
 		$archive = new \ZipArchive();
 		$archive->open($zip);
 		$json = $archive->getFromName('/app.json');
+
+		if (!$json) {
+			$json = $archive->getFromName('app.json');
+		}
+
+		if (!$json) {
+			$json = $archive->getFromName('\\app.json');
+			$fromWindows = true;
+		}
 
 		$json = json_decode($json);
 		if (!isset($json->id)) {
@@ -240,6 +250,11 @@ class App {
 		register_shutdown_function(function() use($appPath) {
 			unlink($appPath);
 		});
+
+		$check = $base . 'app.json';
+		if (!file_exists($check)) {
+			throw new \Exception('App was unable to install.');
+		}
 
 		$lockPath = $base . 'app.lock';
 		if (!$isUpgrade && file_exists($lockPath)) {

@@ -111,6 +111,8 @@ class Object extends \Core\Objectify {
 			if ($file instanceof \SplFileInfo) {
 				$filePath = $file->getRealPath();
 				$name = str_replace($directory->getRealPath(), '', $filePath);
+				$name = str_replace('\\', '/', $name);
+
 				$zipArchive->addFile($filePath, $name);
 			}
 		}

@@ -376,10 +376,11 @@ class User_Service_Process extends Phpfox_Service
 			}
 		}
 
+		$password = (new Core\Hash())->make($aVals['password']);
 		$aInsert = array(
 			'user_group_id' => ($iUserGroupId === null ? NORMAL_USER_ID : $iUserGroupId),
 			'full_name' => $oParseInput->clean($aVals['full_name'], 255),
-			'password' => Phpfox::getLib('hash')->setHash($aVals['password'], $sSalt),
+			'password' => $password, //, Phpfox::getLib('hash')->setHash($aVals['password'], $sSalt),
 			'password_salt' => $sSalt,
 			'email' => $aVals['email'],
 			'joined' => PHPFOX_TIME,

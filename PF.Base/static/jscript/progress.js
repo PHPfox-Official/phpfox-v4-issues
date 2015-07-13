@@ -36,7 +36,7 @@ function completeProgress()
 
 	$Core.loadInit();
 
-    if (bIsHTML5ProgressUpload && iTotalUploadedFiles <= 0 && iTotalImagesToBeUploaded <= 0)
+    if (bIsHTML5ProgressUpload && hasUploaded)
     {
 	    window.location.href = sCurrentProgressLocation + sImages;
     }
@@ -228,7 +228,12 @@ $Core.progressBarInit = function()
 		$.ajaxCall('user.checkSpaceUsage', 'holder=' + oProgressBar['holder'].replace('#', ''), 'GET');
 
         if (bIsHTML5ProgressUpload){
-            $('.js_uploader_files_input')[0].addEventListener("change", function(e){
+            $('.js_uploader_files_input')[0].addEventListener("change", function(e) {
+	            $(oProgressBar['holder']).hide();
+				$('html, body').animate({
+					scrollTop: $(oProgressBar['uploader']).scrollTop()
+				});
+
                 var files = e.target.files || e.dataTransfer.files;
                 iTotalImagesToBeUploaded = files.length;
                 for (var i = 0, f; f = files[i]; i++) {
@@ -278,6 +283,7 @@ function ParseFile(file, iCnt) {
 
 var iTotalUploadedFiles = 0;
 var sCustomMessageString = '';
+var hasUploaded = 0;
 function UploadFile(file, iCnt) {
 
     var xhr = new XMLHttpRequest();
@@ -299,11 +305,13 @@ function UploadFile(file, iCnt) {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200){
                    iTotalUploadedFiles++;
+	                hasUploaded++;
                    eval(xhr.responseText);
                 } else {
-                    $(oProgressBar['holder']).show();
-                    eval(xhr.responseText.replace(/window.parent./g, ''));
-                    $('.js_tmp_upload_bar').remove();
+	                $('#js_tmp_upload_' + iCnt + '').addClass('has_failed').find('.js_tmp_upload_bar_content').prepend('FAILED: ');
+                   //  $(oProgressBar['holder']).show();
+                    // eval(xhr.responseText.replace(/window.parent./g, ''));
+                    // $('.js_tmp_upload_bar').remove();
                 }
             }
 

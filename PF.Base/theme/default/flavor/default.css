@@ -2846,9 +2846,8 @@ a.page_section_menu_link:hover {
   padding-top: 0px;
 }
 .js_tmp_upload_bar {
-  border: 0px;
   background: #ffffff;
-  border-bottom: 1px #3f96de solid;
+  border: 0px;
   height: 40px;
   line-height: 40px;
   width: auto;
@@ -2857,7 +2856,8 @@ a.page_section_menu_link:hover {
 .js_tmp_upload_bar_upload {
   height: 40px;
   line-height: 40px;
-  background: #298ada;
+  background: #3bd27a;
+  color: #fff;
 }
 .js_tmp_upload_bar_content {
   color: #fff;
@@ -2876,6 +2876,9 @@ a.page_section_menu_link:hover {
   right: 5px;
   top: 5px;
   z-index: 10;
+}
+.has_failed .js_tmp_upload_bar_upload {
+  background: #d9534f;
 }
 code {
   font-family: monospace;

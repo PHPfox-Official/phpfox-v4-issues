@@ -95,7 +95,7 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 			{				
 				// Output JavaScript	
 				echo '<script type="text/javascript">';
-				if (!$bIsInline)
+				if (!isset($bIsInline))
 				{		
 					echo 'window.parent.document.getElementById(\'js_progress_cache_holder\').style.display = \'none\';';
 					echo 'window.parent.document.getElementById(\'js_photo_form_holder\').style.display = \'block\';';
@@ -375,9 +375,9 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 
 			if (!$bIsInline)
 			{
-				echo 'window.parent.$(\'#js_progress_cache_holder\').hide();';
-				echo 'window.parent.document.getElementById(\'js_photo_form_holder\').style.display = \'block\';';
-				echo 'window.parent.document.getElementById(\'js_upload_error_message\').innerHTML = \'<div class="error_message">' . implode('', Phpfox_Error::get()) . '</div>\';';				
+				// echo 'window.parent.$(\'#js_progress_cache_holder\').hide();';
+				// echo 'window.parent.document.getElementById(\'js_photo_form_holder\').style.display = \'block\';';
+				// echo 'window.parent.document.getElementById(\'js_upload_error_message\').innerHTML = \'<div class="error_message">' . implode('', Phpfox_Error::get()) . '</div>\';';
 			}
 			else
 			{

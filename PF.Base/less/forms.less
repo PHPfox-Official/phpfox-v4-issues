@@ -295,9 +295,8 @@ a.page_section_menu_link:hover {
 }
 
 .js_tmp_upload_bar {
-	border:0px;
 	background:@blockBg;
-	border-bottom:1px lighten(@brandPrimary, 5%) solid;
+	border:0px;
 	height:40px;
 	line-height:40px;
 	width:auto;
@@ -307,7 +306,8 @@ a.page_section_menu_link:hover {
 .js_tmp_upload_bar_upload {
 	height:40px;
 	line-height:40px;
-	background:@brandPrimary;
+	background:#3bd27a;
+	color:#fff;
 }
 
 .js_tmp_upload_bar_content {
@@ -328,6 +328,10 @@ a.page_section_menu_link:hover {
 	right:5px;
 	top:5px;
 	z-index:10;
+}
+
+.has_failed .js_tmp_upload_bar_upload {
+	background:@brandDanger;
 }
 
 code {

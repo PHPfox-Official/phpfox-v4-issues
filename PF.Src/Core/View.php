@@ -106,8 +106,9 @@ class View {
 		}
 
 		$params = $this->_render['params'];
-		$params['ActiveUser'] = (\Phpfox::isUser() ? (array) (new \Api\User())->get(\Phpfox::getUserBy()) : []);
+		$params['ActiveUser'] = (\Phpfox::isUser() ? (new \Api\User())->get(\Phpfox::getUserBy()) : []);
 		$params['isPager'] = (isset($_GET['page']) ? true : false);
+		$params['Is'] = new Is();
 
 		$params['content'] = $this->_env->render($this->_render['name'], $params);
 		if (PHPFOX_IS_AJAX_PAGE) {

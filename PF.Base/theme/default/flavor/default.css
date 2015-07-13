@@ -10308,6 +10308,9 @@ a.marketplace_contact_seller:hover {
   #main {
     margin-left: 35px;
   }
+  .moderation_holder {
+    left: 35px;
+  }
   #container {
     margin-left: 20px;
   }
@@ -10332,6 +10335,45 @@ a.marketplace_contact_seller:hover {
 @media (max-device-width: 1000px), (max-width: 1000px) {
   #container {
     width: auto;
+  }
+  #show-side-panel {
+    position: fixed;
+    top: 50%;
+    right: 0px;
+    width: 20px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: -20px;
+    z-index: 20000;
+    background: rgba(0, 0, 0, 0.6);
+    border: 3px;
+    cursor: pointer;
+  }
+  #show-side-panel > span::before {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+    text-indent: 0px !important;
+    content: '\f104';
+    font-size: 20px;
+    line-height: 40px;
+    color: #808080;
+  }
+  .show-side-panel-mode #panels {
+    display: block;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 10000;
+    background: #ffffff;
+    border-left: 1px #ebebeb solid;
+    padding: 20px;
   }
   #panels {
     display: none;
@@ -10545,5 +10587,10 @@ a.marketplace_contact_seller:hover {
   }
   .moderation_holder {
     left: 0px;
+  }
+  .show-side-panel-mode #panels {
+    left: 0px;
+    right: 0px;
+    width: auto;
   }
 }

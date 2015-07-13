@@ -1914,6 +1914,8 @@ class Phpfox_Template
 	}
 
 	public function getFooter() {
+		$this->_sFooter .= '<div id="show-side-panel"><span></span></div>';
+
 		if (Phpfox::isAdmin() && !Phpfox::isAdminPanel()) {
 			$Url = Phpfox_Url::instance();
 			$this->_sFooter .= '<div id="pf_admin">';

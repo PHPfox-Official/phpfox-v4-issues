@@ -86,6 +86,16 @@ $.ajaxProcess = function(sMessage, sSize)
 
 $Behavior.imageHoverHolder = function()
 {
+	$('#show-side-panel').click(function() {
+		var b = $('body');
+		if (b.hasClass('show-side-panel-mode')) {
+			b.removeClass('show-side-panel-mode');
+			return;
+		}
+
+		b.addClass('show-side-panel-mode');
+	});
+
 	$('body').click(function(){
 		$('.image_hover_menu_link').each(function() {
 			if ($(this).hasClass('image_hover_active'))

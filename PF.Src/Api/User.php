@@ -46,7 +46,7 @@ class User extends \Core\Api {
 	 */
 	public function get($userId = null) {
 		if ($userId !== null && !$userId) {
-			return false;
+			return new User\Object(false);
 		}
 
 		$where = [];

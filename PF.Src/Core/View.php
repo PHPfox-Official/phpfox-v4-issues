@@ -106,7 +106,7 @@ class View {
 		}
 
 		$params = $this->_render['params'];
-		$params['ActiveUser'] = (\Phpfox::isUser() ? (new \Api\User())->get(\Phpfox::getUserBy()) : []);
+		$params['ActiveUser'] = (new \Api\User())->get(\Phpfox::getUserBy());
 		$params['isPager'] = (isset($_GET['page']) ? true : false);
 		$params['Is'] = new Is();
 

@@ -316,7 +316,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				Phpfox::getPhrase('admincp.counters') => 'admincp.maintain.counter',
 				Phpfox::getPhrase('admincp.check_modified_files') => 'admincp.checksum.modified',
 				Phpfox::getPhrase('admincp.check_unknown_files') => 'admincp.checksum.unknown',
-				Phpfox::getPhrase('admincp.find_missing_settings') => 'admincp.setting.missing'
+				Phpfox::getPhrase('admincp.find_missing_settings') => 'admincp.setting.missing',
+				'Toggle Modules' => $this->url()->makeUrl('admincp.module', ['view' => 'all'])
 			),
 			'<i class="fa fa-ban"></i>Ban Filters' => array(
 				Phpfox::getPhrase('ban.ban_filter_username') => 'admincp.ban.username',

@@ -19,12 +19,7 @@ class Admincp_Component_Controller_Module_Index extends Phpfox_Component
 	 * Controller
 	 */
 	public function process()
-	{		
-		if (Phpfox::getParam('core.phpfox_is_hosted'))
-		{
-			$this->url()->send('admincp');
-		}
-		
+	{
 		Phpfox::getUserParam('admincp.can_manage_modules', true);
 		
 		if ($aVals = $this->request()->getArray('val'))

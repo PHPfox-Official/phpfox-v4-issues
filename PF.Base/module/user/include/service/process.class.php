@@ -1003,7 +1003,7 @@ class User_Service_Process extends Phpfox_Service
 				   
 			}
 		}
-		
+
 		if (true)
 		{			
 			if ($bForce)
@@ -1016,8 +1016,10 @@ class User_Service_Process extends Phpfox_Service
 					{
 						$oImage->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sFileName, ''), Phpfox::getParam('core.dir_user') . sprintf($sFileName, '_' . $iSize), $iSize, $iSize);
 					}
+
 					$oImage->createThumbnail(Phpfox::getParam('core.dir_user') . sprintf($sFileName, ''), Phpfox::getParam('core.dir_user') . sprintf($sFileName, '_' . $iSize . '_square'), $iSize, $iSize, false);
-				
+
+					/*
 					if (defined('PHPFOX_IS_HOSTED_SCRIPT') || (Phpfox::getParam('core.allow_cdn') && !Phpfox::getParam('core.keep_files_in_server')))
 					{
 						if(file_exists(Phpfox::getParam('core.dir_user') . sprintf($sFileName, '_' . $iSize)))
@@ -1029,7 +1031,8 @@ class User_Service_Process extends Phpfox_Service
 							unlink(Phpfox::getParam('core.dir_user') . sprintf($sFileName, '_' . $iSize . '_square'));
 						}
 					}
-				}				
+					*/
+				}
 			
 				if (defined('PHPFOX_IS_HOSTED_SCRIPT'))
 				{

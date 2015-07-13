@@ -459,6 +459,7 @@ class Phpfox_Image_Library_Gd extends Phpfox_Image_Abstract
 				@rename($sDestination, $sDestination . '_' . rand(10,99));
 			}
 		}
+
 		switch ($this->sType)
         {
         	case 'gif':

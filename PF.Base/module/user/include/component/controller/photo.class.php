@@ -58,7 +58,7 @@ class User_Component_Controller_Photo extends Phpfox_Component
 					$iUserId = (int) $aVals['user_id'];	
 				}
 				
-				if (($aImage = Phpfox::getService('user.process')->uploadImage($iUserId, (isset($aVals['is_iframe']) ? true : (Phpfox::getUserParam('user.force_cropping_tool_for_photos') ? false : true)))) !== false)
+				if (($aImage = User_Service_Process::instance()->uploadImage($iUserId, true)) !== false)
 				{				
 					if (isset($aVals['is_iframe']))
 					{

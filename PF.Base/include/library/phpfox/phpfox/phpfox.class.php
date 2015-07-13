@@ -106,8 +106,8 @@ class Phpfox
 		{
 			return self::VERSION;
 		}
-		
-		return Phpfox::getParam('core.phpfox_version');
+
+		return self::VERSION;
 	}
 
 	public static function isTrial()

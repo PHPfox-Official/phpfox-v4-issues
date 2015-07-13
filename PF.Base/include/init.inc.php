@@ -129,6 +129,21 @@ date_default_timezone_set('GMT');
 
 define('PHPFOX_TIME', time());
 
+$version = PHPFOX_DIR_SETTINGS . 'version.sett.php';
+if (file_exists($version)) {
+	$version = require($version);
+
+	if (version_compare(Phpfox::VERSION, $version['version'], '>')) {
+		define('PHPFOX_NO_PLUGINS', true);
+		define('PHPFOX_NO_USER_SESSION', true);
+		define('PHPFOX_NO_CSRF', true);
+		define('PHPFOX_INSTALLER', true);
+		define('PHPFOX_INSTALLER_NO_TMP', true);
+		define('PHPFOX_NO_RUN', true);
+		define('PHPFOX_IS_UPGRADE', true);
+	}
+}
+
 Phpfox::getLib('setting')->set();
 
 if (defined('PHPFOX_INSTALLER')) {

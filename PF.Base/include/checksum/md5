@@ -1,9 +1,9 @@
 b41e07ec10d99cc5f9a83db7c3488e6e composer.lock
-93e515e0c23dddcdbffc89d3a3120a3d include/checksum/md5
+79a3c51effb0af4c3ee7b3f810384272 include/checksum/md5
 d7f7e3d45fa8602bec28e7a51c902110 include/cron/exec.php
 68b329da9893e34099c7d8ad5cb9c940 include/cron/index.html
 68b329da9893e34099c7d8ad5cb9c940 include/index.html
-9b99a32bbf229f53c57374f45dd19dd5 include/init.inc.php
+cb0bdcccb1935c6e034159f69127c5a3 include/init.inc.php
 cf57358d45a4976b04a13263b0cef587 include/library/phpfox/ajax/ajax.class.php
 445031e5ef434aa50ecbdae0d2227fa2 include/library/phpfox/archive/archive.class.php
 d63d21a24a753e4f01878a6a043f6a5a include/library/phpfox/archive/export.class.php
@@ -60,7 +60,7 @@ a68850c669aeabb6657524909a62c13d include/library/phpfox/pager/pager.class.php
 6316d8613e71a56d0664858a6e73c1f2 include/library/phpfox/parse/output.class.php
 9c2cbf710df26baebd4dc9a5d915e1c3 include/library/phpfox/parse/wiki.class.php
 31204c13d87c066123abba90adfda243 include/library/phpfox/phpfox/api.class.php
-358cc4fb367b323922794cda8b094d8a include/library/phpfox/phpfox/phpfox.class.php
+bb6b843fd680c7330a2a3eaa8d9af978 include/library/phpfox/phpfox/phpfox.class.php
 ee2cf709f67660926da5a6a3dbfccbe2 include/library/phpfox/phpfox/process.class.php
 521d959a82644ecc774ce6fc9f1bec80 include/library/phpfox/plugin/plugin.class.php
 dd703a5a358450f9dad42f3d224edc56 include/library/phpfox/request/request.class.php
@@ -727,6 +727,7 @@ e67162dd21f8c754d01c66a54d867aba module/captcha/install/version/3.1.0beta1.xml.p
 2cdd8136f4c3cc590d27cd7511f7d0f8 module/captcha/install/version/4.0.0.xml.php
 e4fb0fe76da33973e5e4383908a8cfac module/captcha/install/version/4.0.0rc1.xml.php
 2cdd8136f4c3cc590d27cd7511f7d0f8 module/captcha/install/version/4.0.0rc2.xml.php
+2cdd8136f4c3cc590d27cd7511f7d0f8 module/captcha/install/version/4.0.1.xml.php
 83168e6cb289d732cc78427b51f93153 module/captcha/install/version/v3.phpfox
 68b329da9893e34099c7d8ad5cb9c940 module/captcha/static/css/index.html
 68b329da9893e34099c7d8ad5cb9c940 module/captcha/static/image/index.html
@@ -1007,6 +1008,7 @@ be4fb9cd9c59e506cc4d7dc1518383b1 module/core/install/version/3.7.0rc1.xml.php
 b9487e841b4ddd37c77129914eb55539 module/core/install/version/3.7.6rc1.xml.php
 e5b9e895c74aaf0263a3a163863cf1cc module/core/install/version/4.0.0.xml.php
 7101d86b05889ded656186b5225cf039 module/core/install/version/4.0.0rc1.xml.php
+e5b9e895c74aaf0263a3a163863cf1cc module/core/install/version/4.0.1.xml.php
 a08f5814ac2ee1db9633fe8bfdcd337c module/core/install/version/install.xml.php
 83168e6cb289d732cc78427b51f93153 module/core/install/version/v3.phpfox
 68b329da9893e34099c7d8ad5cb9c940 module/core/static/css/index.html
@@ -1327,6 +1329,7 @@ eba7d6fbe103565c058d79ab3289a81c module/event/install/version/3.6.0rc1.xml.php
 36d327cd48f4632dd52d4444d35be83f module/event/install/version/4.0.0.xml.php
 3ac1d8261ed1643d3d1ac9f5702faad8 module/event/install/version/4.0.0rc1.xml.php
 36d327cd48f4632dd52d4444d35be83f module/event/install/version/4.0.0rc2.xml.php
+36d327cd48f4632dd52d4444d35be83f module/event/install/version/4.0.1.xml.php
 68b329da9893e34099c7d8ad5cb9c940 module/event/install/version/index.html
 b0e4954d2174fb1d36503a39887c3e9c module/event/install/version/install.xml.php
 83168e6cb289d732cc78427b51f93153 module/event/install/version/v3.phpfox
@@ -1532,6 +1535,7 @@ ba338bb0fdceba3e0ebe76a5a843fc9b module/feed/install/version/3.7.5.xml.php
 779606bde902dce3a19502fdbdefb5a2 module/feed/install/version/4.0.0.xml.php
 1ca6ac051a46b24243eb0d1129e41eac module/feed/install/version/4.0.0rc1.xml.php
 86079206df4eeac8c59d79a9ea6501c5 module/feed/install/version/4.0.0rc2.xml.php
+779606bde902dce3a19502fdbdefb5a2 module/feed/install/version/4.0.1.xml.php
 83168e6cb289d732cc78427b51f93153 module/feed/install/version/v3.phpfox
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/css/index.html
 68b329da9893e34099c7d8ad5cb9c940 module/feed/static/image/index.html
@@ -1641,6 +1645,7 @@ ceef59b5e299698ba8827e185e4841b2 module/forum/install/version/3.5.0rc1.xml.php
 884b8b65a89ba385d5085d624d6e1117 module/forum/install/version/4.0.0.xml.php
 118118ddc73ad9907ffc397ebdd6c11a module/forum/install/version/4.0.0rc1.xml.php
 884b8b65a89ba385d5085d624d6e1117 module/forum/install/version/4.0.0rc2.xml.php
+884b8b65a89ba385d5085d624d6e1117 module/forum/install/version/4.0.1.xml.php
 68b329da9893e34099c7d8ad5cb9c940 module/forum/install/version/index.html
 cac936ea86bf9955464b212a841fa128 module/forum/install/version/install.xml.php
 83168e6cb289d732cc78427b51f93153 module/forum/install/version/v3.phpfox

@@ -603,6 +603,7 @@ span.forum_tag_sticky {
 	*/
 
 	.thread_replies {
+		/*
 		> h1 {
 			background:@blockBg;
 			border-bottom:1px darken(@blockBg, 8%) solid;
@@ -612,6 +613,12 @@ span.forum_tag_sticky {
 			font-weight:500;
 			font-size:12px;
 			text-transform:uppercase;
+		}
+		*/
+
+		> div > h1 {
+			color:darken(@bodyBg, 20%);
+			font-weight:300;
 		}
 	}
 }
@@ -811,6 +818,9 @@ span.forum_tag_sticky {
 }
 
 #page_forum_thread {
+	.table_info {
+		margin-top:20px;
+	}
 
 	/*
 	#content ._block_h1 {
@@ -873,4 +883,38 @@ span.forum_tag_sticky {
 		}
 	}
 	*/
+}
+
+.thread_replies {
+	position:relative;
+
+	> div.tr_view_all {
+		min-height:50px;
+		line-height:50px;
+		text-align:center;
+	}
+
+	> div > i {
+		color:@brandPrimary;
+	}
+}
+
+.view_all_previous, .view_all_previous:hover {
+	color:@textColor;
+	font-size:@fontSizeBase - 2;
+	opacity:0.7;
+	height:50px;
+	line-height:50px;
+	display:block;
+	text-align:center;
+}
+
+.view_all_previous:hover {
+	color:darken(@textColor, 10%);
+	opacity:1;
+	transition:@transition;
+}
+
+.view_all_previous.is-clicked, .view_all_previous.is-clicked:hover {
+	display:none;
 }

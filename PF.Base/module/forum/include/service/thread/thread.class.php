@@ -414,7 +414,10 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 		}
 
 		if (!$iPage) {
-			$iPageSize = 100;
+			$iPageSize = 20;
+			if (Phpfox_Request::instance()->get('is_ajax_get')) {
+				$iPageSize = 1000;
+			}
 			$sOrder = 'fp.time_stamp DESC';
 		}
 
@@ -432,7 +435,7 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 		}
 
 		if (!$iPage) {
-			$aThread['posts'] = array_reverse($aThread['posts']);
+			// $aThread['posts'] = array_reverse($aThread['posts']);
 		}
 
 		if (isset($aThread['post_starter'])) {

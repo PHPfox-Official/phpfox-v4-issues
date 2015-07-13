@@ -11,9 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-{if PHPFOX_IS_AJAX}
-
-{else}
 	{if isset($isReplies)}
 		{foreach from=$aThread.posts name=posts item=aPost}
 			{plugin call='forum.template_controller_post_1'}
@@ -22,19 +19,6 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/foreach}
 	{else}
 		{if $sPermaView === null}
-
-{*
-		{if $aThread.is_closed}
-		<div class="sub_menu_bar_main"><a href="#" onclick="return false;">{phrase var='forum.closed'}</a></div>
-		{else}
-		<div class="sub_menu_bar_main">
-			{if (Phpfox::getUserParam('forum.can_reply_to_own_thread') && $aThread.user_id == Phpfox::getUserId()) || Phpfox::getUserParam('forum.can_reply_on_other_threads') || Phpfox::getService('forum.moderate')->hasAccess('' . $aThread.forum_id . '', 'can_reply')}
-				<a href="#" onclick="$Core.box('forum.reply', 800, 'id={$aThread.thread_id}'); return false;">{phrase var='forum.new_reply'}</a>
-			{/if}
-		</div>
-		{/if}
-*}
-
 		{if $aThread.view_id}
 		<div class="message">
 			{phrase var='forum.thread_is_pending_approval'}
@@ -152,13 +136,19 @@ defined('PHPFOX') or exit('NO DICE!');
 					{template file='forum.block.post'}
 				</section>
 				<section class="thread_replies">
-					<h1>Replies</h1>
+					{if ($iTotalPosts > 20)}
+					<div class="tr_view_all">
+						<a href="{permalink module='forum.thread' id=$aThread.thread_id title=$aThread.title view=all}" class="ajax view_all_previous" data-add-class="is-clicked" data-add-spin="true">View All Previous Posts</a>
+					</div>
+					{/if}
 			{/if}
-					{foreach from=$aThread.posts name=posts item=aPost}
-						{plugin call='forum.template_controller_post_1'}
-						{template file='forum.block.post'}
-						{plugin call='forum.template_controller_post_2'}
-					{/foreach}
+					<div class="tr_content">
+						{foreach from=$aThread.posts name=posts item=aPost}
+							{plugin call='forum.template_controller_post_1'}
+							{template file='forum.block.post'}
+							{plugin call='forum.template_controller_post_2'}
+						{/foreach}
+					</div>
 
 			{if isset($aThread.post_starter)}
 					<div id="js_post_new_thread"></div>
@@ -170,4 +160,3 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}
 		</div>
 	{/if}
-{/if}

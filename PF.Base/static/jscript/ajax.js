@@ -184,6 +184,11 @@ $Core.processPostForm = function(e, obj) {
 		$Core.loadInit();
 	}
 
+	if (typeof(e.html) == 'object') {
+		$(e.html.to).html(e.html.with);
+		$Core.loadInit();
+	}
+
 	if (typeof(e.error) == 'string') {
 		obj.prepend(e.error);
 	}
@@ -248,6 +253,14 @@ $Behavior.onAjaxSubmit = function() {
 	$('a.ajax').click(function() {
 		var t = $(this),
 			url = (t.data('url') ? t.data('url') : t.attr('href'));
+
+		if (t.data('add-class')) {
+			t.addClass(t.data('add-class'));
+		}
+
+		if (t.data('add-spin')) {
+			t.parent().prepend('<i class="fa fa-spin fa-circle-o-notch"></i>');
+		}
 
 		$.ajax({
 			url: url,

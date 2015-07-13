@@ -23,6 +23,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	{else}
 		{if $sPermaView === null}
 
+{*
 		{if $aThread.is_closed}
 		<div class="sub_menu_bar_main"><a href="#" onclick="return false;">{phrase var='forum.closed'}</a></div>
 		{else}
@@ -32,6 +33,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}
 		</div>
 		{/if}
+*}
 
 		{if $aThread.view_id}
 		<div class="message">

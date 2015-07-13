@@ -1,20 +1,27 @@
-<?php 
+<?php
 /**
  * [PHPFOX_HEADER]
- * 
+ *
  * @copyright		[PHPFOX_COPYRIGHT]
  * @author  		Raymond_Benc
  * @package 		Phpfox
  * @version 		$Id: controller.html.php 64 2009-01-19 15:05:54Z Raymond_Benc $
  */
- 
-defined('PHPFOX') or exit('NO DICE!'); 
+
+defined('PHPFOX') or exit('NO DICE!');
 
 ?>
-	{if (!$bIsUsersProfilePage && count($aSubMenus)) || !Phpfox::isUser()}
+	{if (!$bIsUsersProfilePage && (count($aSubMenus) || isset($customMenu))) || !Phpfox::isUser()}
 	<div class="breadcrumbs_menu">
 		<ul>
 			{if Phpfox::isUser()}
+				{if (isset($customMenu))}
+				<li>
+					<a href="{$customMenu.url}" {$customMenu.extra}>
+						{$customMenu.title}
+					</a>
+				</li>
+				{/if}
 				{foreach from=$aSubMenus key=iKey name=submenu item=aSubMenu}
 				<li>
 					<a href="{url link=$aSubMenu.url)}">
@@ -28,4 +35,4 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/if}
 		</ul>
 	</div>
-	{/if}	
+	{/if}

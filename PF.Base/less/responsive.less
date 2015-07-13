@@ -56,6 +56,7 @@
 
 	#page_forum_thread div.sub_menu_bar_main, #page_forum_thread #content ._block_h1 {
 		left:35px;
+		padding-left:5px;
 	}
 
 	#main {
@@ -303,7 +304,30 @@
 		left:0px;
 	}
 
-	#page_profile_index #header {
+	#page_profile_index #header, #page_core_index-member #header {
 		display:block;
+	}
+
+    #page_core_index-member {
+	    #main {
+		    margin-top:@headerHeight;
+	    }
+    }
+
+	#page_forum_thread #content ._block_h1 {
+		position:relative;
+		top:auto;
+		left:auto;
+		z-index:1;
+		margin-bottom:5px;
+	}
+
+	.forum_header_menu {
+		position:static;
+		margin-bottom:20px;
+	}
+
+	.moderation_holder {
+		left:0px;
 	}
 }

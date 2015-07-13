@@ -271,6 +271,10 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 			Phpfox_Module::instance()->appendPageClass('single_mode');
 		}
 
+		if (Phpfox::isUser()) {
+				$this->template()->menu('Reply', '#', 'onclick="$Core.box(\'forum.reply\', 800, \'id=' . $aThread['thread_id'] . '\'); return false;"');
+		}
+
 		$this->template()->setTitle($aThread['title'])						
 			->setBreadcrumb($aThread['title'], $this->url()->permalink('forum.thread', $aThread['thread_id'], $aThread['title']), true)
 			->setMeta('description', $aThread['title'] . ' - ' . $aForum['name'])

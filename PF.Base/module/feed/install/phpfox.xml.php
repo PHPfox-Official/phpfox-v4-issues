@@ -19,7 +19,6 @@
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="comment_feed_cutoff" phrase_var_name="setting_comment_feed_cutoff" ordering="1" version_id="2.0.0alpha3">4</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="cache_timeout" phrase_var_name="setting_feedcache_timeout" ordering="1" version_id="2.0.6">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="total_likes_to_display" phrase_var_name="setting_total_likes_to_display" ordering="1" version_id="3.0.0Beta1">3</setting>
-		<setting group="" module_id="feed" is_hidden="1" type="integer" var_name="group_duplicate_feeds" phrase_var_name="setting_group_duplicate_feeds" ordering="1" version_id="3.0.0Beta1">2</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="refresh_activity_feed" phrase_var_name="setting_refresh_activity_feed" ordering="1" version_id="3.0.0beta1">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="integer" var_name="feed_limit_days" phrase_var_name="setting_feed_limit_days" ordering="1" version_id="3.0.0beta3">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="string" var_name="twitter_share_via" phrase_var_name="setting_twitter_share_via" ordering="1" version_id="3.0.0rc1">YourSite</setting>
@@ -30,6 +29,7 @@
 		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="enable_check_in" phrase_var_name="setting_enable_check_in" ordering="1" version_id="3.5.0beta1">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="force_ajax_on_load" phrase_var_name="setting_force_ajax_on_load" ordering="1" version_id="3.6.0rc1">0</setting>
 		<setting group="" module_id="feed" is_hidden="0" type="boolean" var_name="cache_each_feed_entry" phrase_var_name="setting_cache_each_feed_entry" ordering="2" version_id="3.6.0rc1">0</setting>
+		<setting group="" module_id="feed" is_hidden="1" type="integer" var_name="group_duplicate_feeds" phrase_var_name="setting_group_duplicate_feeds" ordering="1" version_id="3.0.0Beta1">2</setting>
 		<setting group="" module_id="feed" is_hidden="1" type="drop" var_name="feed_time_layout" phrase_var_name="setting_feed_time_layout" ordering="0" version_id="2.0.0alpha1"><![CDATA[a:2:{s:7:"default";s:4:"days";s:6:"values";a:4:{i:0;s:4:"days";i:1;s:7:"minutes";i:2;s:5:"hours";i:3;s:6:"months";}}]]></setting>
 		<setting group="" module_id="feed" is_hidden="1" type="boolean" var_name="integrate_comments_into_feeds" phrase_var_name="setting_integrate_comments_into_feeds" ordering="1" version_id="2.0.0rc2">0</setting>
 		<setting group="" module_id="feed" is_hidden="1" type="boolean" var_name="allow_comments_on_feeds" phrase_var_name="setting_allow_comments_on_feeds" ordering="1" version_id="2.0.0alpha3">1</setting>

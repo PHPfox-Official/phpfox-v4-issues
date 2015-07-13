@@ -1,5 +1,5 @@
 <upgrade>
-	<settings>
+	<phpfox_update_settings>
 		<setting>
 			<group />
 			<module_id>feed</module_id>
@@ -11,5 +11,6 @@
 			<version_id>3.0.0Beta1</version_id>
 			<value>2</value>
 		</setting>
-	</settings>
+	</phpfox_update_settings>
+	<sql><![CDATA[a:1:{s:9:"ADD_FIELD";a:1:{s:11:"phpfox_feed";a:1:{s:7:"content";a:4:{i:0;s:4:"TEXT";i:1;N;i:2;s:0:"";i:3;s:3:"YES";}}}}]]></sql>
 </upgrade>

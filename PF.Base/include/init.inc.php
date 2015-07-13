@@ -132,7 +132,7 @@ define('PHPFOX_TIME', time());
 Phpfox::getLib('setting')->set();
 
 if (defined('PHPFOX_INSTALLER')) {
-	if (isset($_GET['phpfox-upgrade'])) {
+	if (isset($_GET['phpfox-upgrade']) || !defined('PHPFOX_IS_UPGRADE')) {
 		require(PHPFOX_DIR . 'install/include/installer.class.php');
 		(new Phpfox_Installer())->run();
 		exit;

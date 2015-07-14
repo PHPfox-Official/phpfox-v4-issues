@@ -5283,6 +5283,9 @@ a.not_active:hover {
   box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.4);
   font-size: 12px;
 }
+.parsed_image {
+  max-width: 560px;
+}
 .comment_mini .pager_view_more_link a,
 .comment_mini .pager_view_more_link a:hover,
 .pager_view_more_link a,

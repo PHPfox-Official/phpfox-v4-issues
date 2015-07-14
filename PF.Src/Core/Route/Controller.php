@@ -129,6 +129,12 @@ class Controller {
 						->header('API_ENDPOINT', \Phpfox_Url::instance()->makeUrl('api'))
 						->call($_SERVER['REQUEST_METHOD']);
 
+					if (is_object($response)) {
+						header('Content-type: application/json');
+						echo json_encode($response, JSON_PRETTY_PRINT);
+						exit;
+					}
+
 					if (empty($response)) {
 						return false;
 					}

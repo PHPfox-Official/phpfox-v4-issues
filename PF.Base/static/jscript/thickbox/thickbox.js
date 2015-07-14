@@ -529,6 +529,11 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 						return;
 					}
 
+					if (typeof(e.error) == 'string') {
+						$oNew.find('.js_box_content').html('<div class="error_message">' + e.error + '</div>');
+						return;
+					}
+
 					$oNew.find('.js_box_title:first').html(e.h1_clean);
 					$oNew.find('.js_box_content').html('');
 					$oNew.find('.js_box_content').html(e.content);

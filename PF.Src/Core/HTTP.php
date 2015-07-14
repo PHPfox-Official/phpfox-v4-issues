@@ -81,7 +81,7 @@ class HTTP {
 		}
 		$post = http_build_query($this->_params);
 
-		$curl_url = (($this->_method == 'GET' && !empty($post)) ? $url . '?' . ltrim($post, '&') : $url);
+		$curl_url = (($this->_method == 'GET' && !empty($post)) ? $url . (strpos($url, '?') ? '&' : '?') . ltrim($post, '&') : $url);
 
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $curl_url);

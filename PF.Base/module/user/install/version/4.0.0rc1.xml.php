@@ -9,7 +9,7 @@
 			<phrase_var_name>setting_disable_username_on_sign_up</phrase_var_name>
 			<ordering>14</ordering>
 			<version_id>2.0.5dev1</version_id>
-			<value>0</value>
+			<value>1</value>
 		</setting>
 		<setting>
 			<group />

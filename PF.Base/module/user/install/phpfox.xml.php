@@ -58,7 +58,7 @@
 		<setting group="" module_id="user" is_hidden="0" type="integer" var_name="min_count_for_top_rating" phrase_var_name="setting_min_count_for_top_rating" ordering="1" version_id="2.0.0">0</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="approve_users" phrase_var_name="setting_approve_users" ordering="13" version_id="2.0.5">0</setting>
 		<setting group="" module_id="user" is_hidden="0" type="drop" var_name="display_or_full_name" phrase_var_name="setting_display_or_full_name" ordering="1" version_id="2.0.5"><![CDATA[a:2:{s:7:"default";s:9:"full_name";s:6:"values";a:2:{i:0;s:9:"full_name";i:1;s:12:"display_name";}}]]></setting>
-		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="disable_username_on_sign_up" phrase_var_name="setting_disable_username_on_sign_up" ordering="14" version_id="2.0.5dev1">0</setting>
+		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="disable_username_on_sign_up" phrase_var_name="setting_disable_username_on_sign_up" ordering="14" version_id="2.0.5dev1">1</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="check_promotion_system" phrase_var_name="setting_check_promotion_system" ordering="1" version_id="2.0.5dev2">0</setting>
 		<setting group="registration" module_id="user" is_hidden="0" type="boolean" var_name="allow_user_registration" phrase_var_name="setting_allow_user_registration" ordering="0" version_id="2.0.7">1</setting>
 		<setting group="" module_id="user" is_hidden="0" type="boolean" var_name="enable_user_tooltip" phrase_var_name="setting_enable_user_tooltip" ordering="1" version_id="2.1.0Beta1">1</setting>

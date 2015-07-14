@@ -28,7 +28,17 @@ class App {
 				continue;
 			}
 
-			$data = json_decode(file_get_contents($path . 'app.json'));
+			$jsonData = file_get_contents($path . 'app.json');
+			$jsonData = preg_replace_callback('/{{ ([a-zA-Z0-9_]+) }}/is', function($matches) use($jsonData) {
+				$_data = json_decode($jsonData);
+				if (!isset($_data->{$matches[1]})) {
+					return $matches[0];
+				}
+
+				return $_data->{$matches[1]};
+			}, $jsonData);
+
+			$data = json_decode($jsonData);
 			$data->path = $path;
 
 			if (isset($data->routes)) {

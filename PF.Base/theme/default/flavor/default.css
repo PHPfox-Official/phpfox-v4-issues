@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,600);
 ._image__50_square {
   width: 50px;
   height: 50px;
@@ -2103,7 +2104,7 @@ body {
   background: #e5e5e5;
   color: #808080;
   font-size: 14px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
   line-height: 1.5;
 }
 a,
@@ -2276,7 +2277,7 @@ a.activity_feed_content_link_title:hover,
 #content div.row_title_info h1 a.link:hover {
   font-size: 16px;
   color: #222222 !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 #content div.row_title_info h1 a.link:hover,
 a.activity_feed_content_link_title:hover {
@@ -2286,7 +2287,7 @@ a.activity_feed_content_link_title:hover {
 .user_profile_link_span > a,
 .user_profile_link_span > a:hover {
   color: #222222 !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 .user_profile_link_span > a:hover {
   color: #298ada !important;
@@ -2540,7 +2541,7 @@ select {
   padding: 10px 0px;
   text-indent: 10px;
   outline: 0px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   -webkit-appearance: none !important;
 }
@@ -3367,7 +3368,7 @@ div#right div.menu ul li.active {
   right: 10px;
   top: 11px;
   font-size: 8px;
-  font-weight: 500;
+  font-weight: 600;
   background: #298ada;
   color: #ffffff;
   padding: 2px 4px;
@@ -3719,7 +3720,7 @@ div#right div.menu ul li.active {
   color: #999999;
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   padding: 10px;
   padding-top: 20px;
 }
@@ -4007,7 +4008,7 @@ div#right div.menu ul li.active {
   float: none;
   text-indent: 0px;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 11px;
 }
 #left #js_block_border_pages_like.block > .content,
@@ -4772,7 +4773,6 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
   position: fixed;
   top: 5px;
   right: 10px;
-  /* :last-of-type */
 }
 .breadcrumbs_menu li {
   display: inline-block;
@@ -4785,18 +4785,22 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
   display: block;
   background: transparent;
   color: #fff;
-  border: 2px #fff solid;
+  border: 2px transparent solid;
   padding: 0px 10px;
   font-size: 10px;
   text-transform: uppercase;
   font-weight: 300;
   letter-spacing: 1px;
   transition: all 0.5s ease;
-  border-radius: 30px;
+  border-radius: 3px;
+  margin-left: 8px;
 }
 .breadcrumbs_menu li a:hover {
   background: #fff;
   color: #222;
+}
+.breadcrumbs_menu li:last-of-type a {
+  border-color: #fff;
 }
 ._block_menu_sub {
   display: inline-block;
@@ -4939,7 +4943,7 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
 }
 b,
 strong {
-  font-weight: 500;
+  font-weight: 600;
 }
 .image_load {
   background-repeat: no-repeat;
@@ -5650,7 +5654,7 @@ a.not_active:hover {
 }
 .panel_rows li .panel_focus .drop_data_user {
   color: #222222;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 12px;
 }
 .panel_rows li .panel_rows_image {
@@ -5681,7 +5685,7 @@ a.not_active:hover {
   color: #ffffff;
   text-transform: uppercase;
   padding: 4px 8px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 10px !important;
   cursor: pointer;
 }
@@ -6106,7 +6110,7 @@ table.default_table {
 table.default_table th {
   background: transparent;
   color: #808080;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   font-size: 11px;
 }
@@ -6491,7 +6495,7 @@ a.comment_mini_link_block:hover {
 div.comment_mini_content .user_profile_link_span > a,
 div.comment_mini_content .user_profile_link_span > a:hover {
   color: #6f6f6f !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 .js_comment_feed_form div.comment_mini_content {
   margin: 0px !important;
@@ -6913,7 +6917,7 @@ div.comment_mini_end {
   display: block;
   color: #676767;
   text-align: center;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 12px;
 }
 .feed_show_more_content:hover {
@@ -7072,7 +7076,7 @@ div.sub_menu_bar_main a:hover {
   display: block;
   font-size: 8px;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
   position: absolute;
   left: 0;
@@ -7129,7 +7133,7 @@ div.sub_menu_bar_main a:hover {
 .table_row.forum_row .forum_totals > span > em {
   font-style: normal;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 9px;
   position: absolute;
   bottom: 6px;
@@ -7618,7 +7622,7 @@ span.forum_tag_sticky {
   font-size: 12px;
   display: block;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   opacity: 0.6;
 }
 .thread_view_all > span,
@@ -8300,7 +8304,7 @@ span.forum_tag_sticky {
 #left #js_block_border_user_filter.block > .content .table .table_left {
   font-size: 11px;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   color: #b3b3b3;
 }
 #page_pages_add #js_pages_add_holder > .extra_info,
@@ -8949,7 +8953,7 @@ ul.activity_feed_form_attach li a:hover {
 #content .photos_row h1 a,
 #content .photos_row h1 a:hover {
   color: #fff;
-  font-weight: 500;
+  font-weight: 600;
 }
 #content .photos_row .photos_row_info {
   font-size: 11px;

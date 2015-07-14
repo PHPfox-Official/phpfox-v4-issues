@@ -247,25 +247,31 @@ div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_d
 		vertical-align:top;
 	}
 
-	/* :last-of-type */
 	li {
 		a, a:hover {
 			display:block;
 			background:transparent;
 			color:#fff;
-			border:2px #fff solid;
+			border:2px transparent solid;
 			padding:0px 10px;
 			font-size:@fontSizeBase - 4;
 			text-transform:uppercase;
 			font-weight:300;
 			letter-spacing:1px;
 			transition:@transition;
-			border-radius:30px;
+			border-radius:3px;
+			margin-left:8px;
 		}
 
 		a:hover {
 			background:#fff;
 			color:#222;
+		}
+	}
+
+	li:last-of-type {
+		a {
+			border-color:#fff;
 		}
 	}
 }

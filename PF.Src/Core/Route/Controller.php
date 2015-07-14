@@ -123,8 +123,12 @@ class Controller {
 					};
 
 					$Template = \Phpfox_Template::instance();
-					$response = (new \Core\HTTP($r['url']))
-						->auth($App->auth->id, $App->auth->key)
+
+					$http = new \Core\HTTP($r['url']);
+
+					\Core\Event::trigger('external_controller', $http);
+
+					$response = $http->auth($App->auth->id, $App->auth->key)
 						->using($this->_request->all())
 						->header('API_ENDPOINT', \Phpfox_Url::instance()->makeUrl('api'))
 						->call($_SERVER['REQUEST_METHOD']);

@@ -220,8 +220,6 @@ class Forum_Service_Forum extends Phpfox_Service
 		);
 		
 		$aFilters = array(
-
-
 			'display' => array(
 				'type' => 'select',
 				'options' => $aDisplays,
@@ -288,7 +286,7 @@ class Forum_Service_Forum extends Phpfox_Service
 					'field' => array('ft.title')
 				),
 				'sort' => array(
-					'latest' => array('ft.time_stamp', Phpfox::getPhrase('blog.latest')),
+					'latest' => array('ft.time_update', Phpfox::getPhrase('blog.latest')),
 					// 'most-viewed' => array('blog.total_view', Phpfox::getPhrase('blog.most_viewed')),
 					// 'most-liked' => array('blog.total_like', Phpfox::getPhrase('blog.most_liked')),
 					// 'most-talked' => array('blog.total_comment', Phpfox::getPhrase('blog.most_discussed'))

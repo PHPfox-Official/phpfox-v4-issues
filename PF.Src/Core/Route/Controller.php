@@ -77,8 +77,8 @@ class Controller {
 			}
 		}
 
-		if (isset($routes[$uri])) {
-			$routes[$uri] = (array) $routes[$uri];
+		if (isset($routes[$uri]) || isset($routes['/' . $uri])) {
+			$routes[$uri] = (array) (!isset($routes['/' . $uri]) ? $routes[$uri] : $routes['/' . $uri]);
 			$r = $routes[$uri];
 
 			$r['route'] = $uri;
@@ -125,14 +125,18 @@ class Controller {
 					$Template = \Phpfox_Template::instance();
 					$response = (new \Core\HTTP($r['url']))
 						->auth($App->auth->id, $App->auth->key)
+						->using($this->_request->all())
 						->header('API_ENDPOINT', \Phpfox_Url::instance()->makeUrl('api'))
 						->call($_SERVER['REQUEST_METHOD']);
+
+					if (empty($response)) {
+						return false;
+					}
 
 					$doc = new \DOMDocument();
 					libxml_use_internal_errors(true);
 					$doc->loadHTML($response);
 					$xml = $doc->saveXML($doc);
-
 
 					$xml = @simplexml_load_string($xml);
 					if ($xml === false) {
@@ -175,9 +179,16 @@ class Controller {
 						}
 					}
 
-					$content = $Controller->render('@Base/blank.html', [
-						'content' => (is_string($xml->body) ? $xml->body : $innerHTML($xml->body))
-					]);
+					$thisContent = (is_string($xml->body) ? $xml->body : $innerHTML($xml->body));
+					if ($this->_request->isPost()) {
+						echo $thisContent;
+						exit;
+					}
+					else {
+						$content = $Controller->render('@Base/blank.html', [
+							'content' => $thisContent
+						]);
+					}
 				}
 				else if (isset($r['call'])) {
 					$parts = explode('@', $r['call']);

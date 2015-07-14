@@ -11,6 +11,7 @@ namespace Core;
  * @method segment($number)
  * @method method()
  * @method uri()
+ * @method all()
  */
 class Request {
 	private static $_object = null;
@@ -23,7 +24,9 @@ class Request {
 
 	public function __call($method, $args) {
 		switch ($method) {
-
+			case 'all':
+				$method = 'getRequests';
+				break;
 		}
 
 		return call_user_func_array([self::$_object, $method], $args);

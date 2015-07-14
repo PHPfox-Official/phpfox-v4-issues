@@ -32,7 +32,12 @@ class App {
 			$data->path = $path;
 
 			if (isset($data->routes)) {
-				self::$routes = array_merge(self::$routes, (array) $data->routes);
+				foreach ((array) $data->routes as $key => $route) {
+					$route = (array) $route;
+					$route['id'] = $data->id;
+
+					Route::$routes = array_merge(Route::$routes, [$key => $route]);
+				}
 			}
 
 			$this->_apps[$data->id] = $data;

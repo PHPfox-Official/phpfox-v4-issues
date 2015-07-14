@@ -57,6 +57,7 @@ class Route {
 			self::$_active = $route;
 		}
 
+		/*
 		$apps = \Core\App::$routes;
 		if ($apps) {
 			$_routes = [];
@@ -66,6 +67,7 @@ class Route {
 			// d(self::$routes); exit;
 			self::$routes = array_merge(self::$routes, (array) $_routes);
 		}
+		*/
 
 		// d(self::$routes); exit;
 	}

@@ -89,6 +89,24 @@ class Phpfox_Plugin
 			}
 
 			foreach ((new Core\App())->all() as $app) {
+				if (isset($app->webhooks)) {
+					foreach ($app->webhooks as $hook => $url) {
+						if (preg_match('/plugin:(.*)/i', $hook, $matches) && isset($matches[1])) {
+							$name = $matches[1];
+							$code = "(new \\Core\\Webhook('{$hook}', '{$url}'));";
+
+							if (isset($aPlugins[$name]))
+							{
+								$aPlugins[$name] .= $code . " ";
+							}
+							else
+							{
+								$aPlugins[$name] = $code . " ";
+							}
+						}
+					}
+				}
+
 				$dir = $app->path . 'hooks/';
 				if (is_dir($dir)) {
 					foreach (scandir($dir) as $file) {

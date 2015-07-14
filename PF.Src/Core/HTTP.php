@@ -118,7 +118,8 @@ class HTTP {
 		if (substr($data, 0, 1) == '{' || substr($data, 0, 1) == '[') {
 			$data = json_decode($data);
 			if (isset($data->error)) {
-				throw Error($data->error);
+				// throw Error($data->error);
+				\Phpfox_Error::set($data->error);
 			}
 		}
 

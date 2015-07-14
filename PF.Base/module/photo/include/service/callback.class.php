@@ -1816,6 +1816,8 @@ class Photo_Service_Callback extends Phpfox_Service
 		{
 			$sPhrase = Phpfox::getPhrase('photo.user_name_liked_span_class_drop_data_user_full_name_s_span_photo_album_title',array('user_name' => Phpfox::getService('notification')->getUsers($aNotification), 'full_name' => $aRow['full_name'], 'title' => Phpfox::getLib('parse.output')->shorten($aRow['name'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ), '...')));
 		}
+
+		$sPhrase = preg_replace('/{phrase var=\'photo\.profile_pictures\'}/i', Phpfox::getPhrase('photo.profile_pictures'), $sPhrase);
 			
 		return array(
 			'link' => Phpfox_Url::instance()->permalink('photo.album', $aRow['album_id'], $aRow['name']),

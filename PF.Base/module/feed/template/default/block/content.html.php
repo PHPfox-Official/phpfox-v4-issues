@@ -101,11 +101,14 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/if}			
 				{if !empty($aFeed.feed_content)}
 					<div class="activity_feed_content_display">
+						{*
 						{if strpos($aFeed.feed_content, '<br />') >= 200}
 							{$aFeed.feed_content|feed_strip|shorten:200:'...'|split:55|max_line}
 						{else}
 							{$aFeed.feed_content|feed_strip|split:55|max_line|shorten:200:'...'}
 						{/if}
+						*}
+						{$aFeed.feed_content|feed_strip}
 					</div>
 				{/if}
 				{if !empty($aFeed.feed_custom_html)}

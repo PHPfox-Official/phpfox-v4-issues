@@ -237,6 +237,16 @@ $Core.resetFeedForm = function(f) {
 
 $Behavior.activityFeedProcess = function() {
 
+	$('.activity_feed_content_display:not(.is_built)').each(function() {
+		var t = $(this);
+
+		t.addClass('is_built');
+		if (t.outerHeight() > 300) {
+			t.css('position', 'relative');
+			t.prepend('<a href="#" class="feed_show_more_content no_ajax" onclick="$(this).parent().css(\'max-height\', \'none\'); $(this).remove(); return false;">Show More</a>');
+		}
+	});
+
 	/*
 	$('.load_more_comments').click(function() {
 		$.ajax({

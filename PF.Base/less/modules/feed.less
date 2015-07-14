@@ -554,3 +554,30 @@ div.comment_mini_end {
 		display:none;
 	}
 }
+
+.activity_feed_content_display {
+	max-height:300px;
+	overflow:hidden;
+}
+
+.feed_show_more_content, .feed_show_more_content:hover {
+	position:absolute;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	height:40px;
+	line-height:40px;
+	background:rgba(255, 255, 255, 0.7);
+	z-index:100;
+	display:block;
+	color:darken(#808080, 10%);
+	text-align:center;
+	font-weight:500;
+	font-size:@fontSizeBase - 2;
+}
+
+.feed_show_more_content:hover {
+	background:#fff;
+	color:#222;
+	transition:@transition;
+}

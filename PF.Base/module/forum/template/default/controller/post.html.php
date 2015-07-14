@@ -63,6 +63,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="table">
 		<div class="table_right" id="js_forum_new_post">
 			{editor id='text' placeholder='Your reply...'}
+			{if !isset($iForumId)}
 			{literal}
 			<script>
 				$Ready(function() {
@@ -72,6 +73,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				});
 			</script>
 			{/literal}
+			{/if}
 		</div>
 	</div>
 

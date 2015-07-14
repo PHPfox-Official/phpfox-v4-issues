@@ -10501,7 +10501,7 @@ a.marketplace_contact_seller:hover {
     margin-left: -50px;
   }
   #page_profile_index #container {
-    margin-left: 20px;
+    display: block;
   }
   .mobile_menu {
     display: block;
@@ -10558,7 +10558,8 @@ a.marketplace_contact_seller:hover {
   }
   #content {
     width: auto;
-    max-width: 0px;
+    display: block;
+    max-width: none;
     padding: 0px;
   }
   #container,

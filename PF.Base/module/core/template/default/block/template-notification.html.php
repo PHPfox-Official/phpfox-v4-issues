@@ -38,6 +38,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<a href="#" class="_panel" data-open="{url link='mail.panel'}">
 				<i class="fa fa-envelope"></i>
 				Messages
+				<span id="js_total_new_messages"></span>
 			</a>
 		</li>
 	</ul>

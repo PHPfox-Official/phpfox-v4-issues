@@ -212,11 +212,6 @@ class Mail_Service_Callback extends Phpfox_Service
 
 	public function getGlobalNotifications()
 	{
-		if (Phpfox::isMobile())
-		{
-			return false;
-		}
-		
 		$iTotal = Mail_Service_Mail::instance()->getUnseenTotal();
 		if ($iTotal > 0)
 		{

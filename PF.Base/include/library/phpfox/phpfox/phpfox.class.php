@@ -1288,7 +1288,7 @@ class Phpfox
 		{			
 			Phpfox::getService('log.session')->verifyToken();	
 		}
-		
+
 		(($sPlugin = Phpfox_Plugin::get('run')) ? eval($sPlugin) : false);
 	
 		if (!self::isAdminPanel())

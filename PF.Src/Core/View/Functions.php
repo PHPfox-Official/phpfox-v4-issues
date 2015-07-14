@@ -103,9 +103,15 @@ class Functions {
 
 		} catch (\Exception $e) {
 			// throw new \Exception($e->getMessage(), $e->getCode(), $e);
+			/*
 			ob_clean();
 			echo $e->getMessage();
 			exit;
+			*/
+			register_shutdown_function(function() use($e) {
+				ob_clean();
+				throw new \Exception($e->getMessage(), $e->getCode(), $e);
+			});
 		}
 
 		return '';

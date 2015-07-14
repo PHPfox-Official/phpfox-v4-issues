@@ -30,7 +30,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/foreach}
 	</ul>
 	{/if}
-	{if Phpfox::isUser()}
+	{if Phpfox::isUser() && isset($pages)}
 	<div class="nav_pages_holder">
 		<div class="nav_title">
 			<a href="{url link='pages'}" class="browse">

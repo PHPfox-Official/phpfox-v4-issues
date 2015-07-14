@@ -387,14 +387,14 @@ class Phpfox_Setting
 		if ($mVar == 'core.branding')
 		{
 			if (!defined('PHPFOX_LICENSE_ID')) {
-				return true;
+				return false;
 			}
 
 			if (PHPFOX_LICENSE_ID == 'techie') {
-				return true;
+				return false;
 			}
 
-			return false;
+			return true;
 		}
 
 		if ($mVar == 'im.enable_im_in_footer_bar' && Phpfox::isMobile())

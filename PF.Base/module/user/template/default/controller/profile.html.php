@@ -40,7 +40,7 @@ defined('PHPFOX') or exit('NO DICE!');
 <div class="js_custom_groups js_custom_group_basic">
 	<div class="table">
 			<div class="table_left">
-				<label for="country_iso">{required}{phrase var='user.location'}:</label>
+				<label for="country_iso">{phrase var='user.location'}:</label>
 			</div>
 			<div class="table_right">
 				{select_location}
@@ -73,7 +73,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{if Phpfox::getUserParam('user.can_edit_dob')}
 		<div class="table">
 			<div class="table_left">
-				{required}{phrase var='user.date_of_birth'}:
+				{phrase var='user.date_of_birth'}:
 			</div>
 			<div class="table_right">
 				{select_date start_year=$sDobStart end_year=$sDobEnd field_separator='' field_order='MDY' bUseDatepicker=false sort_years='DESC'}
@@ -84,7 +84,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{if Phpfox::getUserParam('user.can_edit_gender_setting')}
 		<div class="table">
 			<div class="table_left">
-				<label for="gender">{required}{phrase var='user.gender'}:</label>
+				<label for="gender">{phrase var='user.gender'}:</label>
 			</div>
 			<div class="table_right">
 				{select_gender}
@@ -195,7 +195,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{foreach from=$aSettings item=aSetting}
 			<div class="table js_custom_groups js_custom_group_{$aSetting.group_id}" style="display:none;">
 				<div class="table_left">
-				{if $aSetting.is_required}{required}{/if}{phrase var=$aSetting.phrase_var_name}:
+				{if $aSetting.is_required}{/if}{phrase var=$aSetting.phrase_var_name}:
 				</div>
 				<div class="table_right">
 					{template file='custom.block.form'}

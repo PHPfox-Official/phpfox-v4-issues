@@ -119,6 +119,7 @@ class Custom_Component_Ajax_Ajax extends Phpfox_Ajax
 				define('PHPFOX_IS_CUSTOM_FIELD_UPDATE', true);
 				
 				// http://www.phpfox.com/tracker/view/15441/
+				/*
 				$aUserFieldsRequired = 
 					array(
 						'location' => array('user.location' => $aUser['country_iso']),
@@ -138,6 +139,7 @@ class Custom_Component_Ajax_Ajax extends Phpfox_Ajax
 						}
 					}
 				}
+				*/
 				
 				$bReturnUser = false;
 				if(Phpfox_Error::isPassed())

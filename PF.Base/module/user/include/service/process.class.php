@@ -679,11 +679,13 @@ class User_Service_Process extends Phpfox_Service
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('user.not_a_valid_name'));
 		}
-				
+
+		/*
 		if (!$bIsAccount && Phpfox::getUserParam('user.can_edit_dob') && (empty($aVals['day']) || empty($aVals['month']) || empty($aVals['year'])))
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('user.please_enter_your_date_of_birth'));	
 		}
+		*/
 
 		if (isset($aVals['relation']) && Phpfox::getUserParam('custom.can_have_relationship') 
 			&& ($aVals['relation'] != $aVals['previous_relation_type'] || $aVals['relation_with'] != $aVals['previous_relation_with'])
@@ -713,15 +715,18 @@ class User_Service_Process extends Phpfox_Service
 				$aCountryChildren = Phpfox::getService('core.country')->getChildren($aVals['country_iso']);
 				$bHasCountryChildren = !empty($aCountryChildren);
 			}
-			
-			//$aInsert['birthday'] = (Phpfox::getUserParam('user.can_edit_dob') && isset($aVals['day']) && isset($aVals['month']) && isset($aVals['year']) ? Phpfox::getService('user')->buildAge($aVals['day'], $aVals['month'], $aVals['year']) : null);
-			$aInsert['birthday_search'] = (Phpfox::getUserParam('user.can_edit_dob') && isset($aVals['day']) && isset($aVals['month']) && isset($aVals['year']) ? Phpfox::getLib('date')->mktime(0, 0, 0, $aVals['month'], $aVals['day'], $aVals['year']) : 0);
-			// http://www.phpfox.com/tracker/view/14726/
-			// if ($aInsert['birthday_search'] > 0)
-			if (isset($aInsert['birthday_search']))
-			{
-				$aInsert['birthday'] = date('mdY', $aInsert['birthday_search']);
+
+			if (isset($aVals['day']) && $aVals['day'] > 0) {
+				//$aInsert['birthday'] = (Phpfox::getUserParam('user.can_edit_dob') && isset($aVals['day']) && isset($aVals['month']) && isset($aVals['year']) ? Phpfox::getService('user')->buildAge($aVals['day'], $aVals['month'], $aVals['year']) : null);
+				$aInsert['birthday_search'] = (Phpfox::getUserParam('user.can_edit_dob') && isset($aVals['day']) && isset($aVals['month']) && isset($aVals['year']) ? Phpfox::getLib('date')->mktime(0, 0, 0, $aVals['month'], $aVals['day'], $aVals['year']) : 0);
+				// http://www.phpfox.com/tracker/view/14726/
+				// if ($aInsert['birthday_search'] > 0)
+				if (isset($aInsert['birthday_search']))
+				{
+					$aInsert['birthday'] = date('mdY', $aInsert['birthday_search']);
+				}
 			}
+
 			if (Phpfox::getUserParam('user.can_edit_gender_setting') && isset($aVals['gender']))
 			{
 				$aInsert['gender'] = (int) $aVals['gender'];

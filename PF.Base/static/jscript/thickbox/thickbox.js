@@ -529,7 +529,7 @@ function tb_show(caption, url, thisObject, sForceMessage, bForceNoCilck, sType)
 						return;
 					}
 
-					if (typeof(e.error) == 'string') {
+					if (typeof(e.error) == 'string' && typeof(e.content) != 'string') {
 						$oNew.find('.js_box_content').html('<div class="error_message">' + e.error + '</div>');
 						return;
 					}

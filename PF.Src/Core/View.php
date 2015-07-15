@@ -15,7 +15,13 @@ class View {
 		$this->_loader->addPath(PHPFOX_DIR . 'theme/default/html', 'Theme');
 		$this->_loader->addPath(PHPFOX_DIR . 'views', 'Base');
 
+		/*
 		$this->_env = new \Twig_Environment($this->_loader, array(
+			'cache' => false,
+			'autoescape' => false
+		));
+		*/
+		$this->_env = new View\Environment($this->_loader, array(
 			'cache' => false,
 			'autoescape' => false
 		));
@@ -106,10 +112,6 @@ class View {
 		}
 
 		$params = $this->_render['params'];
-		$params['ActiveUser'] = (new \Api\User())->get(\Phpfox::getUserBy());
-		$params['isPager'] = (isset($_GET['page']) ? true : false);
-		$params['Is'] = new Is();
-
 		$params['content'] = $this->_env->render($this->_render['name'], $params);
 		if (PHPFOX_IS_AJAX_PAGE) {
 			$content = (string) new View\Functions('content', $params['content']);

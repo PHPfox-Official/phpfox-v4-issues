@@ -204,7 +204,11 @@ class Phpfox_Image_Helper
 		}		
 
 		if (empty($aParams['file']))
-			{			
+			{
+				if (isset($aParams['return_url']) && $aParams['return_url']) {
+					return '';
+				}
+
 				$iWidth = 80;			
 				$iHeight = 70;
 				if (isset($aParams['path'])

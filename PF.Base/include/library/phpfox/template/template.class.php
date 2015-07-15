@@ -1944,6 +1944,12 @@ class Phpfox_Template
 				'suffix' => '_50_square',
 				'return_url' => true
 			]);
+
+			if (strpos($image, 'no_image_user')) {
+				$image = htmlspecialchars($image);
+				$image = str_replace(['<', '>'], ['&lt;', '&gt;'], $image);
+			}
+
 			$this->_sFooter .= '<div id="auth-user" data-id="' . Phpfox::getUserId() . '" data-name="' . Phpfox::getUserBy('full_name') . '" data-image="' . $image . '"></div>';
 		}
 

@@ -1,13 +1,18 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
+
 //== Main
-@bodyBg:                   #e5e5e5; // Body background color
-@textColor:                #808080; // Main text color
-@fontFamilyBase:          "Helvetica Neue", Helvetica, Arial, sans-serif; // Font family
-@fontSizeBase:            14px; // Base font size
-@lineHeightBase:          1.5; // Base line height
+@logoUrl: '//da1a3suzxtd3z.cloudfront.net/logos/phpfox.png'; // Logo
+@bodyBg:                   #e5e5e5; // Body background color | color
+@textColor:                #808080; // Main text color | color
+@fontFamilyBase:          'Open Sans', sans-serif; // Font family
+@fontSizeBase:            14px; // Base font size | size
+@lineHeightBase:          1.5; // Base line height |
+@lineHeightComputed:      floor((@fontSizeBase * @lineHeightBase));
 
 //== Containers
-@containerMaxWidth:       1190px; // Container/Holder width
-@containerBg:              transparent; // Background color for container
+@containerMaxWidth: 920px; // Container/Holder width
+@containerMaxWidthFull: 1190;
+@containerBg:              transparent; // Background color for container | color
 @contentWidth: 600px;
 
 //== Helpers
@@ -25,7 +30,7 @@
 @linkFocusHover: @brandPrimary;
 
 //== Brand
-@brandPrimary: #298ADA;
+@brandPrimary:             #298ADA;
 @brandPrimaryColor: #fff;
 
 @brandSuccess:             #5cb85c;
@@ -39,7 +44,7 @@
 
 //== Navs
 @navBg: #fff;
-@navColor: #808080;
+@navColor: lighten(#808080, 10%);
 @navWidth: 200px;
 
 //== Header
@@ -58,15 +63,15 @@
 
 @blockTitleBg: darken(@blockBg, 2%);
 @blockTitlePadding: 10px;
-@blockTitleColor: darken(@blockColor, 10%);
-@blockTitleSize: 16px;
+@blockTitleColor: #222;
+@blockTitleSize: 18px;
 
 @blockContentPadding: 10px;
 @blockContentSize: @fontSizeBase - 1;
 
-@hoverCategories: false;
+@hoverCategories: true;
 
 //== Forms
 @formBg: @blockBg;
 @formColor: @blockColor;
-@formBorder: 1px #dfdfdf solid;
+@formBorder: 1px transparent solid;

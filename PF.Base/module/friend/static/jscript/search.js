@@ -175,7 +175,7 @@ $Core.searchFriendsInput =
 		}
 		
 		if ($iFound)
-		{		
+		{
 			if (this._get('global_search')) {
 				$sHtml += '<li><a href="#" class="holder_notify_drop_link" onclick="$(this).parents(\'form:first\').submit(); return false;">' + oTranslations['friend.show_more_results_for_search_term'].replace('{search_term}',htmlspecialchars($oObj.value)) + '</a></li>';
 			}

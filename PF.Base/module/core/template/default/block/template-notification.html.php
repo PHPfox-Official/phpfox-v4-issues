@@ -14,7 +14,7 @@ defined('PHPFOX') or exit('NO DICE!');
 {if Phpfox::isUser()}
 <nav class="notifications">
 	<ul>
-		<li>
+		<li class="_panel_search">
 			<a href="#" class="_panel" data-open="{url link='search.panel'}">
 				<i class="fa fa-search"></i>
 				Search

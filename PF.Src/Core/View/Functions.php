@@ -17,8 +17,20 @@ class Functions {
 			$Template = \Phpfox_Template::instance();
 
 			switch($this->_method) {
+				case 'search':
+					\Phpfox::getBlock('search.panel');
+					break;
 				case 'footer':
 					\Phpfox::getBlock('core.template-menufooter');
+					break;
+				case 'share':
+					\Phpfox::getBlock('feed.form2', ['menu' => true]);
+					break;
+				case 'notify':
+					\Phpfox::getBlock('core.template-notification');
+					break;
+				case 'menu':
+					\Phpfox::getBlock('core.template-menu');
 					break;
 				case 'nav':
 					\Phpfox::getBlock('feed.form2', ['menu' => true]);

@@ -123,6 +123,12 @@ class View {
 		$params['title'] = $Template->getTitle();
 		$params['js'] = $Template->getFooter();
 		$params['nav'] = new View\Functions('nav');
+
+		$params['menu'] = new View\Functions('menu');
+		$params['share'] = new View\Functions('share');
+		$params['notify'] = new View\Functions('notify');
+		$params['search'] = new View\Functions('search');
+
 		$params['footer'] = new View\Functions('footer');
 		$params['errors'] = new View\Functions('errors');
 		$params['top'] = new View\Functions('top');

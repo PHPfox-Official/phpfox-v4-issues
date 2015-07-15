@@ -60,6 +60,12 @@ class Design extends \Core\Model {
 					// $type = 'font';
 				}
 
+				if (substr($line, 0, 8) == '@logoUrl') {
+					$info = str_replace('// Logo', '', trim($parts[1]));
+					$title = 'Logo';
+					$type = '<input type="text" name="design[' . $var . ']" value="' . htmlspecialchars($info) . '">';
+				}
+
 				$design[] = [
 					'var' => $var . ':',
 					'value' => rtrim($value, ';'),

@@ -1,5 +1,7 @@
 
 var PF = {
+	events: {},
+
 	url: {
 		make: function(url) {
 			url = getParam('sJsHome') + trim(url, '/');
@@ -15,6 +17,25 @@ var PF = {
 			}
 
 			history.pushState(null, null, url);
+		}
+	},
+
+	event: {
+		trigger: function(name) {
+			if (typeof(PF.events[name]) != 'object') {
+				return;
+			}
+
+			$.each(PF.events[name], function(name, callbacks) {
+				this(this);
+			});
+		},
+
+		on: function(name, callback) {
+			if (typeof(PF.events[name]) != 'array') {
+				PF.events[name] = new Array();
+			}
+			PF.events[name].push(callback);
 		}
 	}
 };
@@ -614,6 +635,9 @@ $Core.openPanel = function(obj) {
 		$('#panel').removeClass(lastClassName).attr('style', '');
 		lastClassName = null;
 	}
+
+	PF.event.trigger('openPanel', obj);
+
 	if (obj instanceof jQuery) {
 		if (obj.hasClass('active')) {
 			obj.removeClass('active');

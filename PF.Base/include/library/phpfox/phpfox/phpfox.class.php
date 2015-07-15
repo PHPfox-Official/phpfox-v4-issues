@@ -27,7 +27,7 @@ class Phpfox
 	/**
  	* Product Version : major.minor.maintenance [alphaX, betaX or rcX]
  	*/
-	const VERSION = '4.0.1';
+	const VERSION = '4.0.2';
 	
 	/**
 	 * Product Code Name

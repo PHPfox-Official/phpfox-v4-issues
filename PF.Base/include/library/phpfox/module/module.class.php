@@ -475,6 +475,9 @@ class Phpfox_Module
 		if (defined('PHPFOX_IS_PAGES_VIEW')) {
 			$class .= ' _is_pages_view ';
 		}
+		if (defined('PHPFOX_IS_USER_PROFILE')) {
+			$class .= ' _is_profile_view ';
+		}
 		if (!Phpfox::isUser()) {
 			$class .= ' _is_guest_user ';
 		}
@@ -722,6 +725,11 @@ class Phpfox_Module
 			d($this->blocks[$sController][$iId]); exit;
 		}
 		*/
+		
+		if (isset($this->blocks['*']) && isset($this->blocks['*'][$iId])) {
+			$aBlocks[$iId] = array_merge($aBlocks[$iId], (array) $this->blocks['*'][$iId]);
+		}
+
 		if (isset($this->blocks[$sController]) && isset($this->blocks[$sController][$iId])) {
 			$aBlocks[$iId] = array_merge($aBlocks[$iId], (array) $this->blocks[$sController][$iId]);
 		}

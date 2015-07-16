@@ -15,9 +15,11 @@ class Theme_Component_Controller_Demo extends Phpfox_Component {
 
 			$this->url()->send('');
 		}
+		/*
 		else {
 			$this->url()->send('');
 		}
+		*/
 
 		Core\View::$template = 'blank';
 		$Themes = new Core\Theme();

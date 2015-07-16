@@ -725,7 +725,7 @@ class Phpfox_Module
 			d($this->blocks[$sController][$iId]); exit;
 		}
 		*/
-		
+
 		if (isset($this->blocks['*']) && isset($this->blocks['*'][$iId])) {
 			$aBlocks[$iId] = array_merge($aBlocks[$iId], (array) $this->blocks['*'][$iId]);
 		}

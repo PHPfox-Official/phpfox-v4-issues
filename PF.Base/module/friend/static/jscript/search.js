@@ -160,7 +160,10 @@ $Core.searchFriendsInput =
 				$iFound++;								
 				
 				$Core.searchFriendsInput.storeUser($aUser['user_id'], $aUser);
-				
+
+				if ($aUser['user_image'].substr(0, 5) == 'http:') {
+					$aUser['user_image'] = '<img src="' + $aUser['user_image'] + '">';
+				}
 				$sHtml += '<li><div rel="' + $aUser['user_id'] + '" class="js_friend_search_link ' + (($iFound === 1 && !$Core.searchFriendsInput._get('global_search')) ? 'js_temp_friend_search_form_holder_focus' : '') + '" onclick="return $Core.searchFriendsInput.processClick(this, \'' + $aUser['user_id'] + '\');"><span class="image">' + $aUser['user_image'] + '</span><span class="user">' + $aUser['full_name'] + '</span></div></li>';
 				if ($iFound > $Core.searchFriendsInput._get('max_search'))
 				{					

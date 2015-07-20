@@ -8049,6 +8049,10 @@ span.forum_tag_sticky {
 #sFriendImage {
   border: 1px #298ada dashed;
 }
+#sFriendImage img {
+  max-width: 30px;
+  max-height: 30px;
+}
 #sFriendInput {
   background: #f2f2f2;
   color: #999999;

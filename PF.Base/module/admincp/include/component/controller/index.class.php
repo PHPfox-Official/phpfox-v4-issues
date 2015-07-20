@@ -560,6 +560,10 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 		$aSkipModules = ['api', 'apps', 'announcement', 'ban', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment', 'theme'];
 
+		if ($is_settings && in_array($app, $aSkipModules)) {
+			$this->url()->send('admincp');
+		}
+
 		if ($app && Phpfox::isModule($app) && !in_array($app, $aSkipModules)) {
 			$app = Phpfox_Module::instance()->get($app);
 

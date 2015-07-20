@@ -108,7 +108,18 @@ class Phpfox_Setting
 		'core.disable_hash_bang_support' => false,
 		'core.build_format' => 'Y/m',
 		'core.build_file_dir' => true,
-		'core.csrf_protection_level' => 'low'
+		'core.csrf_protection_level' => 'low',
+		'user.randomize_featured_members' => false,
+		'user.remove_users_hidden_age' => false,
+		'user.min_count_for_top_rating' => 0,
+		'user.no_show_activity_points' => true,
+		'user.split_full_name' => false,
+		'user.cache_featured_users' => false
+	];
+
+	public $hide = [
+		'user.user_pic_sizes',
+		'user.how_many_featured_members'
 	];
 
 	/**

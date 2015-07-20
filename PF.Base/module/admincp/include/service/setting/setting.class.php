@@ -169,7 +169,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 				continue;
 			}
 
-			if (in_array($aRow['module_id'] . '.' . $aRow['var_name'], $aNotAllowedToEdit))
+			if (in_array($aRow['module_id'] . '.' . $aRow['var_name'], $aNotAllowedToEdit) || in_array($aRow['module_id'] . '.' . $aRow['var_name'], Phpfox_Setting::instance()->hide))
 			{
 				unset($aRows[$iKey]);
 

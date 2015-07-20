@@ -282,11 +282,12 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				*/
 
 				'User',
+				'Settings' => $this->url()->makeUrl('admincp.setting.edit', ['module-id' => 'user']),
 				'Relationship Statues' => 'admincp.custom.relationships',
 				'Cancellation Options' => 'admincp.user.cancellations.manage',
 				'Subscription Packages' => 'admincp.subscribe',
 				'E-Gifts' => 'admincp.egift.categories',
-				'Registration' => $this->url()->makeUrl('admincp.setting.edit', ['group-id' => 'registration']),
+				// 'Registration' => $this->url()->makeUrl('admincp.setting.edit', ['group-id' => 'registration']),
 				/*
 				'SEO',
 				'admincp.custom_elements' => 'admincp.seo.meta',
@@ -487,6 +488,12 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 						case 'contact':
 							$name = '"Contact Us" Form';
 							break;
+						/*
+						case 'user':
+							$goSettings = true;
+							$name = 'User';
+							break;
+						*/
 						case 'feed':
 							$goSettings = true;
 							$name = 'Activity Feed';
@@ -560,7 +567,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 		$aSkipModules = ['api', 'apps', 'announcement', 'ban', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment', 'theme'];
 
-		if ($is_settings && in_array($app, $aSkipModules)) {
+		if ($is_settings && in_array($app, $aSkipModules) && $app != 'user') {
 			$this->url()->send('admincp');
 		}
 

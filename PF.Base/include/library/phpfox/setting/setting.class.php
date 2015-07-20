@@ -114,7 +114,8 @@ class Phpfox_Setting
 		'user.min_count_for_top_rating' => 0,
 		'user.no_show_activity_points' => true,
 		'user.split_full_name' => false,
-		'user.cache_featured_users' => false
+		'user.cache_featured_users' => false,
+		'user.cache_user_inner_joins' => false
 	];
 
 	public $hide = [

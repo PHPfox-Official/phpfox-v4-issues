@@ -139,7 +139,7 @@ class Theme extends Model {
 		*/
 		$id = $this->db->insert(':theme', [
 			'name' => $val['name'],
-			// 'folder' => $val['folder'],
+			'folder' => '__',
 			'website' => (isset($val['extra']) ? $val['extra'] : null),
 			'created' => PHPFOX_TIME,
 			'is_active' => 1

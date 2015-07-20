@@ -79,7 +79,7 @@
 	width:auto;
 }
 
-#page_photo_index {
+#page_photo_index:not(._is_pages_view) {
 	.item_bar {
 		position:relative;
 		margin-left:@blockContentPadding;
@@ -111,6 +111,10 @@
 		display:inline-block;
 		vertical-align:middle;
 	}
+}
+
+#page_photo_index {
+
 
 	.mosaicflow_load {
 		min-height:1000px;

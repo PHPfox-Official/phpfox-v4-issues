@@ -379,16 +379,6 @@ class Link_Service_Callback extends Phpfox_Service
 		);
 	}
 	
-	public function getPagePerms()
-	{
-		$aPerms = array();
-		
-		$aPerms['link.share_links'] = Phpfox::getPhrase('link.who_can_share_a_link');
-		$aPerms['link.view_browse_links'] = Phpfox::getPhrase('link.who_can_view_browse_links');
-		
-		return $aPerms;
-	}
-	
 	public function canViewPageSection($iPage)
 	{
 		if (!Phpfox::getService('pages')->hasPerm($iPage, 'link.view_browse_links'))

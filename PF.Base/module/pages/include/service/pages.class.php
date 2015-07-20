@@ -513,10 +513,8 @@ class Pages_Service_Pages extends Phpfox_Service
 	
 	public function getMenu($aPage)
 	{
-		$sHomeUrl = Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']);
-		$sCurrentModule = Phpfox_Module::instance()->getModuleName();
-		
 		$aMenus = array();
+
 		if ($this->isAdmin($aPage))
 		{
 			$iTotalPendingMembers = $this->database()->select('COUNT(*)')
@@ -526,11 +524,19 @@ class Pages_Service_Pages extends Phpfox_Service
 			
 			if ($iTotalPendingMembers > 0)
 			{
+				/*
 				$aMenus[] = array(
 					'phrase' => '' . Phpfox::getPhrase('pages.pending_memberships') . '<span class="pending">' . $iTotalPendingMembers . '</span>',
 					'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'pending/',
 					'icon' => 'misc/comment.png'	
 				);
+				*/
+				Phpfox_Template::instance()->assign('aSubMenus', [
+					[
+						'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'pending/',
+						'title' => Phpfox::getPhrase('pages.pending_memberships') . '<span class="pending">' . $iTotalPendingMembers . '</span>'
+					]
+				]);
 			}
 		}
 		
@@ -540,100 +546,33 @@ class Pages_Service_Pages extends Phpfox_Service
 			'icon' => 'misc/comment.png',
 			'landing' => ''
 		);
-		/*
-		$aMenus[] = array(
-			'phrase' => Phpfox::getPhrase('pages.info'),
-			'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'info/',
-			'icon' => 'misc/application_view_list.png',
-			'landing' => 'info'
-		);
-		*/
-		
-		$aModuleCalls = Phpfox::massCallback('getPageMenu', $aPage);
-		foreach ($aModuleCalls as $sModule => $aModuleCall)
-		{			
-			if (!is_array($aModuleCall))
-			{
-				continue;
-			}
-			$aMenus[] = $aModuleCall[0];
+
+		if (Phpfox::isModule('forum')) {
+			$aMenus[] = array(
+				'phrase' => 'Discussions',
+				'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'forum/'
+			);
+		}
+
+		if (Phpfox::isModule('photo')) {
+			$aMenus[] = array(
+				'phrase' => 'Photos',
+				'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'photo/'
+			);
+		}
+
+		if (Phpfox::isModule('event')) {
+			$aMenus[] = array(
+				'phrase' => 'Events',
+				'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'event/'
+			);
 		}
 		
 		if (count($this->_aWidgetMenus))
 		{
 			$aMenus = array_merge($aMenus, $this->_aWidgetMenus);
 		}
-		
-		// http://www.phpfox.com/tracker/view/15190/
-		if(!empty($aMenus) && is_array($aMenus))
-		{
-			foreach ($aMenus as $iKey => $aMenu)
-			{
-				$sSubUrl = rtrim(str_replace($sHomeUrl, '', $aMenu['url']), '/');
-				if(!empty($sSubUrl))
-				{
-					$aMenus[$iKey]['url'] = $sHomeUrl . Phpfox_Url::instance()->doRewrite($sSubUrl) . PHPFOX_DS;
-				}
-			}
-		}
-		
-		if ($sCurrentModule == 'pages')
-		{
-			foreach ($aMenus as $iKey => $aMenu)
-			{
-				$sSubUrl = rtrim(str_replace($sHomeUrl, '', $aMenu['url']), '/');			
-								
-				if ((Phpfox_Request::instance()->get('req3') == 'info' || Phpfox_Request::instance()->get('req2') == 'info') && $sSubUrl == 'info')
-				{
-					$aMenus[$iKey]['is_selected'] = true;
-					break;					
-				}
-				
-				if ((Phpfox_Request::instance()->get('req3') == 'wall' || Phpfox_Request::instance()->get('req2') == 'wall') && $sSubUrl == 'wall')
-				{
-					$aMenus[$iKey]['is_selected'] = true;
-					break;					
-				}				
-				
-				if ((Phpfox_Request::instance()->get('req3') == 'pending' || Phpfox_Request::instance()->get('req2') == 'pending') && $sSubUrl == 'pending')
-				{
-					$aMenus[$iKey]['is_selected'] = true;
-					break;					
-				}				
-				
-				if (empty($sSubUrl) && Phpfox_Request::instance()->get((empty($aPage['vanity_url']) ? 'req3' : 'req2')) == '')
-				{
-					$aMenus[$iKey]['is_selected'] = true;
-					break;										
-				}
-				
-				if ($sSubUrl == 'info' && $aPage['landing_page'] == 'info' && Phpfox_Request::instance()->get((empty($aPage['vanity_url']) ? 'req3' : 'req2')) == '')
-				{
-					$aMenus[$iKey]['is_selected'] = true;
-					break;										
-				}			
-				
-				if (!empty($sSubUrl) && $sSubUrl == Phpfox_Request::instance()->get((empty($aPage['vanity_url']) ? 'req3' : 'req2')))
-				{
-					$aMenus[$iKey]['is_selected'] = true;
-					break;						
-				}
-			}
-		}
-		else
-		{			
-			foreach ($aMenus as $iKey => $aMenu)
-			{
-				$sSubUrl = rtrim(str_replace($sHomeUrl, '', $aMenu['url']), '/');			
 
-				if ($sCurrentModule == $sSubUrl)
-				{
-					$aMenus[$iKey]['is_selected'] = true;
-					break;
-				}
-			}
-		}
-		
 		return $aMenus;	
 	}	
 	
@@ -792,7 +731,7 @@ class Pages_Service_Pages extends Phpfox_Service
 			->join(Phpfox::getT('user'), 'u', 'u.user_id = ps.user_id')
 			->where('ps.page_id = ' . (int) $iPage)
 			->execute('getSlaveRows');
-		
+
 		return $aUsers;
 	}
 	

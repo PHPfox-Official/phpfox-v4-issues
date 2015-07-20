@@ -1361,35 +1361,6 @@ class Blog_Service_Callback extends Phpfox_Service
 		);
 	}
 	
-	public function getPagePerms()
-	{
-		$aPerms = array();
-		
-		$aPerms['blog.share_blogs'] = Phpfox::getPhrase('mail.who_can_share_blogs');
-		$aPerms['blog.view_browse_blogs'] = Phpfox::getPhrase('mail.who_can_view_blogs');
-		
-		return $aPerms;
-	}
-	
-	public function getPageMenu($aPage)
-	{
-		return false;
-
-		if (!Phpfox::getService('pages')->hasPerm($aPage['page_id'], 'blog.view_browse_blogs'))
-		{
-			return null;
-		}		
-		
-		$aMenus[] = array(
-			'phrase' => Phpfox::getPhrase('blog.blogs'),
-			'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'blog/',
-			'icon' => 'module/blog.png',
-			'landing' => 'blog'
-		);
-		
-		return $aMenus;
-	}
-	
 	public function getPageSubMenu($aPage)
 	{
 		if (!Phpfox::getService('pages')->hasPerm($aPage['page_id'], 'blog.share_blogs'))

@@ -1512,17 +1512,7 @@ Phpfox::getPhrase('music.full_name_commented_on_other_full_name_s_album_a_href_l
 				'url' => Phpfox_Url::instance()->makeUrl('music.upload', array('module' => 'pages', 'item' => $aPage['page_id']))
 			)
 		);
-	}	
-	
-	public function getPagePerms()
-	{
-		$aPerms = array();
-		
-		$aPerms['music.share_music'] = Phpfox::getPhrase('music.who_can_share_songs');
-		$aPerms['music.view_browse_music'] = Phpfox::getPhrase('music.who_can_view_browse_songs');
-		
-		return $aPerms;
-	}	
+	}
 	
 	public function getCommentNotificationSongTag($aNotification)
 	{

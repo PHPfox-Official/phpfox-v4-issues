@@ -2586,7 +2586,6 @@ select {
   font-size: 15px;
   color: #999999;
   font-weight: 300;
-  letter-spacing: 1px;
 }
 .table .table_right {
   position: relative;
@@ -4823,6 +4822,18 @@ div.header_bar_menu ul.header_bar_drop li a:hover {
   border-radius: 3px;
   margin-left: 8px;
 }
+.breadcrumbs_menu li a > span.pending,
+.breadcrumbs_menu li a:hover > span.pending {
+  display: inline-block;
+  background: #298ada;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-bottom: 4px;
+  margin-left: 10px;
+}
 .breadcrumbs_menu li a:hover {
   background: #fff;
   color: #222;
@@ -5053,6 +5064,39 @@ a.row_edit_bar_action:before {
 a.row_edit_bar_action:hover:before {
   color: #298ada;
   transition: all 0.5s ease;
+}
+.user_rows > ._moderator {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 30px;
+  height: auto;
+  line-height: normal;
+  background: transparent;
+  border: 0px;
+}
+.user_rows > ._moderator a.moderate_link,
+.user_rows > ._moderator a.moderate_link:hover {
+  opacity: 0;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.6);
+}
+.user_rows > ._moderator a.moderate_link_active,
+.user_rows > ._moderator a.moderate_link:hover {
+  opacity: 1;
+}
+.user_rows > ._moderator i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
 }
 ._moderator {
   background: #ffffff;
@@ -8475,6 +8519,7 @@ span.forum_tag_sticky {
   top: 0px;
   right: 0px;
   left: 0px;
+  min-height: 100px;
   /*
 	.pages_like_join {
 		position:absolute;
@@ -8518,17 +8563,21 @@ span.forum_tag_sticky {
   max-height: 100px;
   background-size: cover;
 }
-.pages_header_fixed .pages_header_info {
-  position: fixed;
-  width: 1180px;
-  right: auto;
-  top: 0px;
-  left: 50%;
-  margin-left: -490px;
+/*
+.pages_header_fixed {
+	.pages_header_info {
+		position:fixed;
+		width:@pagesWidth;
+		right:auto;
+		top:0px;
+		left:50%;
+		margin-left:-((@pagesWidth - (@navWidth))/2);
+	}
 }
+*/
 .pages_menu {
   position: absolute;
-  right: 10px;
+  right: 20px;
   bottom: 15px;
   z-index: 10;
 }
@@ -8555,41 +8604,51 @@ span.forum_tag_sticky {
 .pages_header_cover {
   display: none;
 }
-#page_pages_view .pages_header_cover {
+#page_pages_view .pages_header_cover,
+._is_pages_view .pages_header_cover {
   display: block;
 }
-#page_pages_view .pages_header {
+#page_pages_view .pages_header,
+._is_pages_view .pages_header {
   /*height:420px;*/
   background: inherit;
   margin: auto;
 }
 #page_pages_view #panels,
-#page_pages_view #content {
+._is_pages_view #panels,
+#page_pages_view #content,
+._is_pages_view #content {
   display: table-cell;
   vertical-align: top;
 }
-#page_pages_view #container {
+#page_pages_view #container,
+._is_pages_view #container {
   display: table;
   width: 1180px;
 }
-#page_pages_view #panels {
+#page_pages_view #panels,
+._is_pages_view #panels {
   padding-left: 20px;
   width: auto;
 }
-#page_pages_view #content {
+#page_pages_view #content,
+._is_pages_view #content {
   width: 600px;
 }
-#page_pages_view #content {
+#page_pages_view #content,
+._is_pages_view #content {
   margin-left: 0px;
 }
-#page_pages_view #panels {
+#page_pages_view #panels,
+._is_pages_view #panels {
   position: static;
 }
 ._is_pages_view .breadcrumbs_menu {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 20px;
+  top: 20px;
   z-index: 200;
+  bottom: auto;
 }
 ._is_pages_view div.header_bar_menu {
   width: 1180px;
@@ -8632,10 +8691,20 @@ span.forum_tag_sticky {
   margin-top: 20px;
 }
 ._is_pages_view .item_bar {
-  top: 10px;
-  right: 10px;
+  display: none;
+  top: auto;
+  bottom: 50px;
+  right: auto;
+  left: 50px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   z-index: 100;
+}
+._is_pages_view .item_bar_action_holder ul {
+  right: auto;
+  left: 0px;
+}
+._is_pages_view .pages_header_info:hover .item_bar {
+  display: block;
 }
 ul.activity_feed_form_attach li a,
 ul.activity_feed_form_attach li a:hover,
@@ -9024,17 +9093,17 @@ ul.activity_feed_form_attach li a:hover {
 #page_profile_index #container {
   width: auto;
 }
-#page_photo_index .item_bar {
+#page_photo_index:not(._is_pages_view) .item_bar {
   position: relative;
   margin-left: 10px;
   margin-bottom: 20px;
 }
-#page_photo_index .item_bar_action_holder ul {
+#page_photo_index:not(._is_pages_view) .item_bar_action_holder ul {
   left: 0px;
   right: auto;
 }
-#page_photo_index a.item_bar_action,
-#page_photo_index a.item_bar_action:hover {
+#page_photo_index:not(._is_pages_view) a.item_bar_action,
+#page_photo_index:not(._is_pages_view) a.item_bar_action:hover {
   width: auto;
   display: inline-block;
   vertical-align: middle;
@@ -9043,12 +9112,12 @@ ul.activity_feed_form_attach li a:hover {
   height: auto;
   padding: 10px 20px;
 }
-#page_photo_index a.item_bar_action > span,
-#page_photo_index a.item_bar_action:hover > span {
+#page_photo_index:not(._is_pages_view) a.item_bar_action > span,
+#page_photo_index:not(._is_pages_view) a.item_bar_action:hover > span {
   display: inline-block;
   vertical-align: middle;
 }
-#page_photo_index a.item_bar_action::before {
+#page_photo_index:not(._is_pages_view) a.item_bar_action::before {
   position: static;
   display: inline-block;
   vertical-align: middle;

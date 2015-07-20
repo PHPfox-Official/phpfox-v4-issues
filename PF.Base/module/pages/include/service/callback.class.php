@@ -907,7 +907,7 @@ class Pages_Service_Callback extends Phpfox_Service
 	public function getPagePerms()
 	{
 		$aPerms = array();
-		
+
 		$aPerms['pages.share_updates'] = Phpfox::getPhrase('pages.who_can_post_a_comment');
 		$aPerms['pages.view_browse_updates'] = Phpfox::getPhrase('pages.who_can_view_browse_comments');
 		$aPerms['pages.view_browse_widgets'] = Phpfox::getPhrase('pages.can_view_widgets');

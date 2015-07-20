@@ -168,7 +168,7 @@ class Pages_Component_Controller_View extends Phpfox_Component
 			$bCanPostComment = true;
 			if ($sCurrentModule == 'pending')
 			{
-				$this->template()->assign('aPendingUsers', Phpfox::getService('pages')->getPendingUsers($aPage['page_id']));
+				$this->template()->assign('aPendingUsers', Pages_Service_Pages::instance()->getPendingUsers($aPage['page_id']));
 				$this->setParam('global_moderation', array(
 						'name' => 'pages',
 						'ajax' => 'pages.moderation',

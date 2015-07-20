@@ -30,15 +30,16 @@ defined('PHPFOX') or exit('NO DICE!');
 	{elseif $sCurrentModule == 'pending'}
 		{if count($aPendingUsers)}
 			{foreach from=$aPendingUsers name=pendingusers item=aPendingUser}
-				<div id="js_pages_user_entry_{$aPendingUser.signup_id}" class="row1{if $phpfox.iteration.pendingusers == 1} row_first{/if}">
-					<div class="go_left" style="width:50px;">
-						{img user=$aPendingUser suffix='_50_square' max_width='50' max_height='50'}
-						<a href="#{$aPendingUser.signup_id}" class="moderate_link" rel="pages">{phrase var='pages.moderate'}</a>
+				<div id="js_pages_user_entry_{$aPendingUser.signup_id}" class="user_rows">
+					{if Phpfox::getUserParam('photo.can_approve_photos') || Phpfox::getUserParam('photo.can_delete_other_photos')}
+					<div class="_moderator">
+						<a href="#{$aPendingUser.signup_id}" class="moderate_link built" rel="pages"><i class="fa"></i></a>
 					</div>
-					<div style="margin-left:55px">
-						<span class="row_title_link">{$aPendingUser|user|shorten:50:'...'}</span>
+					{/if}
+					<div class="user_rows_image">
+						{img user=$aPendingUser suffix='_120_square' max_width='120' max_height='120'}
 					</div>
-					<div class="clear"></div>
+					{$aPendingUser|user|shorten:50:'...'}
 				</div>
 			{/foreach}
 			{moderation}

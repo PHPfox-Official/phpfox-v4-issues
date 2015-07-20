@@ -165,7 +165,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div id="js_pages_block_permissions" class="js_pages_block page_section_menu_holder" style="display:none;">
 			<div id="privacy_holder_table">
 				{if $bIsEdit}
-				<div class="table">
+				<div class="table" style="display:none;">
 					<div class="table_left">
 						{phrase var='pages.page_privacy'}:
 					</div>
@@ -177,6 +177,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					</div>			
 				</div>				
 				{/if}
+
 				{if $bIsEdit && $aForms.page_type == '1'}
 				<div class="table">
 					<div class="table_left">

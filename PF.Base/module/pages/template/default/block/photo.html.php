@@ -63,7 +63,11 @@ defined('PHPFOX') or exit('NO DICE!');
 				{foreach from=$aSubMenus key=iKey name=submenu item=aSubMenu}
 				<li>
 					<a href="{url link=$aSubMenu.url)}">
+						{if (isset($aSubMenu.title))}
+						{$aSubMenu.title}
+						{else}
 						{phrase var=$aSubMenu.module'.'$aSubMenu.var_name}
+						{/if}
 					</a>
 				</li>
 				{/foreach}

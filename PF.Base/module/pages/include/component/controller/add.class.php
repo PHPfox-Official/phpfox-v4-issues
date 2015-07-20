@@ -148,7 +148,7 @@ class Pages_Component_Controller_Add extends Phpfox_Component
 			)
 			->setHeader(array('<script type="text/javascript">$Behavior.pagesProgressBarSettings = function(){ if ($Core.exists(\'#js_pages_block_customize_holder\')) { oProgressBar = {holder: \'#js_pages_block_customize_holder\', progress_id: \'#js_progress_bar\', uploader: \'#js_progress_uploader\', add_more: false, max_upload: 1, total: 1, frame_id: \'js_upload_frame\', file_id: \'image\'}; $Core.progressBarInit(); } }</script>'))			
 			->assign(array(
-					'aPermissions' => (isset($aPage) ? Phpfox::getService('pages')->getPerms($aPage['page_id']) : array()),
+					'aPermissions' => (isset($aPage) ? Pages_Service_Pages::instance()->getPerms($aPage['page_id']) : array()),
 					'aTypes' => Phpfox::getService('pages.type')->get(),
 					'bIsEdit' => $bIsEdit,
 					'iMaxFileSize' => Phpfox::getLib('phpfox.file')->filesize((Phpfox::getUserParam('pages.max_upload_size_pages') / 1024) * 1048576),

@@ -727,7 +727,7 @@ class Photo_Component_Ajax_Ajax extends Phpfox_Ajax
 				    }
 			    }
 		
-			    $this->call('completeProgress();');
+			    $this->call('hasUploaded++; completeProgress();');
 		    }
 		}
 		else

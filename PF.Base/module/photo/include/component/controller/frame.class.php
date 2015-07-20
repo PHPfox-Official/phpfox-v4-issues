@@ -371,6 +371,7 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 			{
 				unlink($sHTML5TempFile);
 				header('HTTP/1.1 500 Internal Server Error');
+				echo 'hasErrors++;';
 			}
 
 			if (!$bIsInline)

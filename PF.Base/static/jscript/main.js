@@ -674,7 +674,7 @@ $Core.loadStaticFiles = function($aFiles)
 					}
 				}
 				d.getElementsByTagName('head')[0].appendChild(js);*/
-				$.ajax($sFile).always(function(){
+				$.ajax($sFile + '?v=' + getParam('sStaticVersion') + '').always(function(){
 					$Core.dynamic_js_files--;
 				});
 			}

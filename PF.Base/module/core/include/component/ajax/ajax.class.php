@@ -87,7 +87,7 @@ class Core_Component_Ajax_Ajax extends Phpfox_Ajax
 		// Clean and shorten the photo name.
 		$aStatus['filename'] = substr(htmlspecialchars(addslashes($aStatus['filename'])), 0, 10) . (strlen($aStatus['filename']) > 10 ? '...' : '');
 
-		$this->call('percent = "' . $iPercent . '"; document.getElementById("js_progress_inner").style.width = percent+"%"; $(\'#js_progress_percent_value\').html(\'' . $aStatus['filename'] . ': ' . round($iPercent) . '\'); if (percent < 100){setTimeout("getProgress(\'' . $this->get('progress_key') . '\')", 100);}else{completeProgress();}');
+		$this->call('percent = "' . $iPercent . '"; document.getElementById("js_progress_inner").style.width = percent+"%"; $(\'#js_progress_percent_value\').html(\'' . $aStatus['filename'] . ': ' . round($iPercent) . '\'); if (percent < 100){setTimeout("getProgress(\'' . $this->get('progress_key') . '\')", 100);}else{ completeProgress(); }');
 	}
 
 	public function updateDesign()

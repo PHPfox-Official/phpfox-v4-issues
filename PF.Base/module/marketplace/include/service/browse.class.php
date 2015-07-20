@@ -153,7 +153,6 @@ class Marketplace_Service_Browse extends Phpfox_Service
 	{
 		$this->database()->select('mt.description_parsed AS description, ')->join(Phpfox::getT('marketplace_text'), 'mt', 'mt.listing_id = l.listing_id');
 
-
 		if (Phpfox::isUser() && Phpfox::isModule('like'))
 		{
 			$this->database()->select('lik.like_id AS is_liked, ')
@@ -163,7 +162,7 @@ class Marketplace_Service_Browse extends Phpfox_Service
 	
 	public function getQueryJoins($bIsCount = false, $bNoQueryFriend = false)
 	{
-		if (Phpfox_Search::instance()->isSearch() && $bIsCount)
+		if (Phpfox_Search::instance()->isSearch())
 		{
 			$this->database()->leftJoin(Phpfox::getT('marketplace_text'), 'mt', 'mt.listing_id = l.listing_id');
 		}

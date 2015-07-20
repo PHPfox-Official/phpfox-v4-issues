@@ -242,8 +242,8 @@ class Marketplace_Component_Controller_Index extends Phpfox_Component
 		{
 			$iExpireTime = (PHPFOX_TIME - (Phpfox::getParam('marketplace.days_to_expire_listing') * 86400));
 			$this->search()->setCondition(' AND l.time_stamp >=' . $iExpireTime );
-		}	
-		
+		}
+
 		$this->search()->browse()->params($aBrowseParams)->execute();		
 		
 		// if its a user trying to buy sponsor space he should get only his own listings

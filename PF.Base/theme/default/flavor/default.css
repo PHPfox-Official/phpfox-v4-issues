@@ -4581,6 +4581,9 @@ a.item_bar_action:before {
   background: #ffffff;
   color: #999999;
 }
+.header_bar_menu.focus .header_bar_search_holder {
+  border-bottom: 1px #f5f5f5 solid;
+}
 .header_bar_search .txt_input,
 .header_bar_search .txt_input:focus {
   background: #dbdbdb;
@@ -4628,6 +4631,29 @@ div.header_bar_menu ul.action_drop li a:hover {
   color: #999999;
   background: transparent;
 }
+div.header_bar_menu ul.action_drop li a:hover {
+  background: #f2f2f2;
+}
+div.header_bar_menu ul.action_drop li a.is_default,
+div.header_bar_menu ul.action_drop li a.is_default:hover {
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 10px 10px;
+  border-bottom: 1px #f2f2f2 solid;
+  cursor: default;
+  background: transparent;
+  position: relative;
+}
+div.header_bar_menu ul.action_drop li a.is_default i,
+div.header_bar_menu ul.action_drop li a.is_default:hover i {
+  position: absolute;
+  right: 5px;
+  top: 15px;
+}
+div.header_bar_menu ul.action_drop li a.active {
+  background: #298ada;
+  color: #ffffff;
+}
 div.header_bar_menu ul.action_drop {
   background: transparent;
   border-radius: 0px;
@@ -4647,6 +4673,8 @@ div.header_bar_menu ul.action_drop {
   text-indent: 0px;
   background: #ffffff;
   box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.4);
+  max-height: 300px;
+  overflow: auto;
 }
 div.header_bar_float:hover {
   background: #d6d6d6;

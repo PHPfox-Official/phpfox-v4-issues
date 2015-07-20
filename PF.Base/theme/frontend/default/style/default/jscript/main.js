@@ -287,7 +287,11 @@ $Behavior.globalThemeInit = function()
 	* ###############################
 	* Global section search tool
 	* ###############################
-	*/	
+	*/
+	var v = window.location;
+	if ($('.header_bar_menu').length && typeof(v.search) == 'string' && v.search.substring(0, 4) == '?s=1') {
+		$('.header_bar_menu:first').addClass('focus');
+	}
 	$('.header_bar_search .txt_input').focus(function()
 	{
 		$(this).parents('.header_bar_menu:first').addClass('focus');

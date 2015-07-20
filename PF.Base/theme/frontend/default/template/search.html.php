@@ -17,7 +17,9 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="header_bar_search">
 				<form method="GET" action="{$aSearchTool.search.action|clean}" onbeforesubmit="$Core.Search.checkDefaultValue(this,\'{$aSearchTool.search.default_value}\');">
 					<div>
-						<input type="hidden" name="search[submit]" value="1" />
+						{if (isset($aSearchTool.search.hidden))}
+						{$aSearchTool.search.hidden}
+						{/if}
 					</div>
 					<div class="header_bar_search_holder">
 						<div class="header_bar_search_default">{$aSearchTool.search.default_value}</div>
@@ -47,10 +49,13 @@ defined('PHPFOX') or exit('NO DICE!');
 								</ul>
 								<div class="clear"></div>
 								<div class="action_drop_holder">
-									<ul class="action_drop"{if isset($aSearchFilters.height)} style="height:{$aSearchFilters.height}; overflow:auto;"{/if}>
+									<ul class="action_drop">
+									{if (isset($aSearchFilters.default))}
+										<li><a href="{$aSearchFilters.default.url}" class="is_default">{$aSearchFilters.default.phrase}</a></li>
+									{/if}
 									{foreach from=$aSearchFilters.data item=aSearchFilter}
 										<li>
-											<a href="{$aSearchFilter.link}" class="ajax_link {if isset($aSearchFilter.is_active)}active{/if}"{if isset($aSearchFilters.width)} style="width:{$aSearchFilters.width};"{/if} {if isset($aSearchFilter.nofollow)}rel="nofollow"{/if}>
+											<a href="{$aSearchFilter.link}" class="ajax_link {if isset($aSearchFilter.is_active)}active{/if}" {if isset($aSearchFilter.nofollow)}rel="nofollow"{/if}>
 												{$aSearchFilter.phrase}
 											</a>
 										</li>

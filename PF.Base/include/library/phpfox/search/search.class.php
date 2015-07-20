@@ -380,16 +380,30 @@ class Phpfox_Search
 				if ($sSearchKey == 'filters')
 				{
 					foreach ($aSearchToolArray as $sFilterName => $aData)
-					{						
+					{
+						if (isset($aData['param']) && Phpfox_Request::instance()->get($aData['param'])) {
+							$default = Phpfox_Url::instance()->makeUrl('current');
+							$default = preg_replace('/page=([0-9]+)/i', '', $default);
+							$default = preg_replace('/&' . $aData['param'] . '=([a-zA-Z0-9]+)/i', '', $default);
+							$this->_aSearchTool[$sSearchKey][$sFilterName]['default'] = [
+								'url' => $default,
+								'phrase' => 'Reset <i class="fa fa-undo"></i>'
+							];
+						}
+
 						if (isset($aData['data']))
 						{
 							foreach ($aData['data'] as $iDataKey => $aLink)
 							{
 								$sLink = Phpfox_Url::instance()->makeUrl('current');
-								$sLink = preg_replace('/page_(.*?)\//i', '', $sLink);
-								$sLink = str_replace('' . $aData['param'] . '_' . Phpfox_Request::instance()->get($aData['param']) . '/', '', $sLink);
+								$sLink = preg_replace('/page=([0-9]+)/i', '', $sLink);
+								$parts = explode('/?s=1', $sLink);
+
+								$sLink = $parts[0] . '/?s=1' . (isset($parts[1]) ? '' . $parts[1] : '');
+								$sLink = str_replace('&' . $aData['param'] . '=' . Phpfox_Request::instance()->get($aData['param']) . '', '', $sLink);
+
 								$sLink = $sLink . '&' . $aData['param'] . '=' . $aLink['link'];
-								
+							//	d($sLink); exit;
 								$this->_aSearchTool[$sSearchKey][$sFilterName]['data'][$iDataKey]['link'] = $sLink;
 								
 								if (Phpfox_Request::instance()->get($aData['param']) == $aLink['link'])
@@ -423,7 +437,51 @@ class Phpfox_Search
 				{
 					$this->setCondition('AND (' . Phpfox_Database::instance()->searchKeywords($this->_aSearchTool['search']['field'], $this->_aSearchTool['search']['actual_value']) . ')');
 				}
-			}		
+			}
+
+			if (isset($this->_aSearchTool['search']) && isset($this->_aSearchTool['search']['action'])) {
+				$newUrl = '';
+				$orig = $this->_aSearchTool['search']['action'];
+				$current = Phpfox_Url::instance()->current();
+				$url = explode('/', $orig);
+				foreach ($url as $part) {
+					if (substr($part, 0, 1) == '?') {
+						break;
+					}
+
+					$newUrl .= $part . '/';
+				}
+
+				/*
+				$final = str_replace($newUrl, '', $orig);
+				$final = trim($final, '?');
+				$final = $newUrl . '?s=1&' . str_replace('s=1', '', $final);
+				*/
+				$final = str_replace($newUrl, '', $orig);
+
+				$hidden = '';
+				$params = explode('&', trim(str_replace($newUrl, '', $current), '?'));
+				if ($final) {
+					$finalParams = explode('&', trim($final, '?'));
+					if ($finalParams) {
+						$params = array_merge($finalParams, $params);
+					}
+				}
+
+				$hidden .= '<input type="hidden" name="s" value="1">';
+				foreach ($params as $param) {
+					$part = explode('=', $param);
+					if (!isset($part[1])) {
+						$part[1] = '';
+					}
+
+					$part[1] = htmlspecialchars($part[1]);
+					$hidden .= '<input type="hidden" name="' . $part[0] . '" value="' . $part[1] . '">';
+				}
+
+				$this->_aSearchTool['search']['action'] = $newUrl;
+				$this->_aSearchTool['search']['hidden'] = $hidden;
+			}
 			
 			Phpfox_Template::instance()->assign(array(
 					'aSearchTool' => $this->_aSearchTool
@@ -549,32 +607,6 @@ class Phpfox_Search
 			return true;
 		}
 		return false;
-
-		if (isset($this->_aSearch['submit']) && isset($this->_aParams['search']))
-		{
-			if (is_array($this->_aParams['search']))
-			{
-				foreach ($this->_aParams['search'] as $sSearchKey)
-				{
-					if ($this->_getVar($sSearchKey))
-					{
-						return true;
-					}
-				}
-			}
-			else
-			{
-				if ($this->_getVar($this->_aParams['search']))
-				{
-					return true;
-				}
-			}
-			return false;
-		}
-		else
-		{
-			return (isset($this->_aSearch['submit']) ? true : false);
-		}
 	}	
 	
 	/**

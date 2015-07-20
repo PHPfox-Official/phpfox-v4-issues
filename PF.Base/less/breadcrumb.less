@@ -40,6 +40,12 @@
 	color:@blockColor;
 }
 
+.header_bar_menu.focus {
+	.header_bar_search_holder {
+		border-bottom:1px darken(@blockBg, 4%) solid;
+	}
+}
+
 .header_bar_search .txt_input, .header_bar_search .txt_input:focus {
 	background:darken(@bodyBg, 4%);
 	color:lighten(@textColor, 10%);
@@ -91,10 +97,37 @@ div.header_bar_menu ul.action_drop li a, div.header_bar_menu ul.action_drop li a
 	background:transparent;
 }
 
+div.header_bar_menu ul.action_drop li a:hover {
+	background:darken(@blockBg, 5%);
+}
+
+div.header_bar_menu ul.action_drop li a.is_default, div.header_bar_menu ul.action_drop li a.is_default:hover {
+	text-transform:uppercase;
+	font-weight:600;
+	padding:10px 10px;
+	border-bottom:1px darken(@blockBg, 5%) solid;
+	cursor: default;
+	background:transparent;
+	position:relative;
+
+	i {
+		position:absolute;
+		right:5px;
+		top:15px;
+	}
+}
+
+div.header_bar_menu ul.action_drop li a.active {
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+}
+
 div.header_bar_menu ul.action_drop {
 	.reset();
 	background:@blockBg;
 	box-shadow:@blockBoxShadow;
+	max-height:300px;
+	overflow:auto;
 }
 
 div.header_bar_float:hover {

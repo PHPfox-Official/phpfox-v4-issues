@@ -2014,17 +2014,7 @@ class Phpfox_File
      * @return bool TRUE if mime type checked out and FALSE if there is no mime type
      */
 	private function _verify($sFileName)
-	{		
-		if (Phpfox::getParam('core.enable_getid3_check'))
-		{		
-			$aMeta = $this->getMeta($this->_aFile['tmp_name']);
-			
-			if (!isset($aMeta['mime_type']))
-			{
-				return Phpfox_Error::set(Phpfox::getPhrase('core.uploaded_file_is_not_valid'));
-			}
-		}		
-		
+	{
 		return true;
 	}
 }

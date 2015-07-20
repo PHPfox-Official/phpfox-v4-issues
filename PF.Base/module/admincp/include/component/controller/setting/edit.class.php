@@ -81,7 +81,7 @@ class Admincp_Component_Controller_Setting_Edit extends Phpfox_Component
 			}
 		}
 		
-		$aSettings = Phpfox::getService('admincp.setting')->get($aCond);
+		$aSettings = Admincp_Service_Setting_Setting::instance()->get($aCond);
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{

@@ -39,56 +39,6 @@ class Log_Service_Session extends Phpfox_Service
 	public function verifyToken()
 	{
 		return;
-
-	    $aCheck = array('/video/frame/', '/subscribe/complete/', '/ad/complete/', '/music/upload/');
-	    
-	    if ($sPlugin = Phpfox_Plugin::get('log.service_session___verifyToken_start'))
-	    {
-			eval($sPlugin);
-	    }
-	    
-	    if (defined('PHPFOX_SKIP_POST_PROTECTION'))
-	    {
-	    	return;
-	    }
-	    
-		if (isset($_GET[PHPFOX_GET_METHOD])
-			&& (in_array($_GET[PHPFOX_GET_METHOD], 
-					$aCheck
-				) || (preg_match('/\/api\/gateway\/callback\/(.*?)\//', $_GET[PHPFOX_GET_METHOD], $aMatches))
-			)	
-		)
-		{
-			return;
-		}
-
-		// CSRF
-		if (Phpfox::getParam('core.csrf_protection_level') != 'low' && isset($_SERVER['REQUEST_METHOD']) && strtolower($_SERVER['REQUEST_METHOD']) == 'post')
-		{
-			if (!isset($_POST[Phpfox::getTokenName()]['security_token']))
-			{
-				$this->_log(Phpfox::getPhrase('error.csrf_token_set'));
-			}
-			
-			if (Phpfox::getParam('core.csrf_protection_level') == 'high')
-			{
-				$sToken = Phpfox::getLib('session')->get('security_token');
-				
-				if (!$sToken)
-				{
-					$this->_log(Phpfox::getPhrase('error.csrf_session_token'));
-				}
-			}
-			else 
-			{
-				$sToken = $this->getToken();
-			}
-
-			if ($sToken != $_POST[Phpfox::getTokenName()]['security_token'])
-			{			
-				$this->_log(Phpfox::getPhrase('error.csrf_detected'));
-			}
-		}		
 	}
 		
 	public function getToken()

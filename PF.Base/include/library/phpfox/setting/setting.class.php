@@ -99,6 +99,18 @@ class Phpfox_Setting
 		'video.convert_servers_enable' => false
 	);
 
+	public $override = [
+		'core.site_wide_ajax_browsing' => false,
+		'core.use_gzip' => true,
+		'core.gzip_level' => 1,
+		'core.cache_js_css' => false,
+		'core.enable_getid3_check' => false,
+		'core.disable_hash_bang_support' => false,
+		'core.build_format' => 'Y/m',
+		'core.build_file_dir' => true,
+		'core.csrf_protection_level' => 'low'
+	];
+
 	/**
 	 * Class constructor. We run checks here to make sure the server setting file
 	 * is in place and this is where we can judge if the script has been installed
@@ -202,6 +214,13 @@ class Phpfox_Setting
 				$this->_aParams['db']['driver'] = 'mysql';
 			}
 		}
+	}
+
+	/**
+	 * @return Phpfox_Setting
+	 */
+	public static function instance() {
+		return Phpfox::getLib('setting');
 	}
 
 	/**
@@ -369,6 +388,13 @@ class Phpfox_Setting
 
 		$this->_aParams['core.theme_session_prefix'] = '';
 		$this->_aParams['core.load_jquery_from_google_cdn'] = false;
+
+		/**
+		 * Override
+		 */
+		foreach ($this->override as $key => $value) {
+			$this->_aParams[$key] = $value;
+		}
 
 		if (isset($_GET['phpfox-upgrade'])) {
 			Phpfox_Url::instance()->send('');

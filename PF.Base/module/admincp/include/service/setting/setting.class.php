@@ -147,72 +147,10 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 		// Load all the editors that are valid
 		$aWysiwygs = array();				
 		$aTimezones = Phpfox::getService('core')->getTimeZones();
-		
-		if (defined('PHPFOX_IS_HOSTED_SCRIPT') && !defined('PHPFOX_GROUPLY_TEST'))
-		{
-			$aNotAllowedToEdit = array(
-					'core.allow_cdn',
-					'core.amazon_access_key',
-					'core.amazon_secret_key',
-					'core.amazon_bucket',
-					'core.amazon_bucket_created',
-					'core.cdn_cname',
-					'core.cdn_amazon_https',
-					'core.cdn_service',
-					'core.enable_amazon_expire_urls',
-					'core.amazon_s3_expire_url_timeout',
-					'core.rackspace_username',
-					'core.rackspace_key',
-					'core.rackspace_container',
-					'core.rackspace_url',
-					'core.unzip_path',
-					'core.tar_path',
-					'core.zip_path',
-					'core.session_prefix',
-					'core.cookie_path',
-					'core.cookie_domain',
-					'core.admin_debug_mode',
-					'core.log_missing_images',
-					'core.cache_plugins',
-					'core.ftp_enabled',
-					'core.ftp_host',
-					'core.ftp_username',
-					'core.ftp_password',
-					'core.ftp_dir_path',
-					'log.active_session',
-					'core.build_format',
-					'core.log_site_activity',
-					'core.cache_js_css',
-					'core.enable_getid3_check',
-					'core.force_https_secure_pages',
-					'core.disable_hash_bang_support',
-					'core.site_wide_ajax_browsing',
-					'core.mail_smtp_password',
-					'core.use_dnscheck',
-					'core.mail_smtp_port',
-					'core.mail_smtp_username',
-					'core.mail_smtp_authentication',
-					'core.mailsmtphost',
-					'core.method',
-					'apps.openssl_config_path',
-					'apps.token_keep_alive',
-					'video.allow_video_uploading',
-				'video.params_for_ffmpeg',
-				'video.params_for_mencoder',
-				'video.params_for_mencoder_fallback',
-				'video.enable_flvtool2',
-				'video.params_for_flvtool2',
-				'video.flvtool2_path',
-				'video.vidly_support',
-				'video.vidly_user_key',
-				'video.vidly_api_key',
-				'video.mencoder_path',
-				'video.ffmpeg_path',
-				'photo.rename_uploaded_photo_names',
-				'photo.delete_original_after_resize',
-				'core.build_file_dir',
-				'core.allow_html_in_activity_feed'
-			);
+
+		$aNotAllowedToEdit = [];
+		foreach (Phpfox_Setting::instance()->override as $key => $value) {
+			$aNotAllowedToEdit[] = $key;
 		}
 		
 		$aCacheSetting = array();
@@ -229,18 +167,15 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 				unset($aRows[$iKey]);
 				
 				continue;
-			}			
-			
-			if (defined('PHPFOX_IS_HOSTED_SCRIPT') && !defined('PHPFOX_SHOW_HIDDEN') && !defined('PHPFOX_GROUPLY_TEST'))
-			{				
-				if (in_array($aRow['module_id'] . '.' . $aRow['var_name'], $aNotAllowedToEdit))
-				{
-					unset($aRows[$iKey]);
-					
-					continue;
-				}	
 			}
-			
+
+			if (in_array($aRow['module_id'] . '.' . $aRow['var_name'], $aNotAllowedToEdit))
+			{
+				unset($aRows[$iKey]);
+
+				continue;
+			}
+
 			$aCacheSetting[$aRow['var_name']] = true;
 			
 			if (!empty($aRow['language_var_name']))

@@ -6,8 +6,9 @@ class Admincp_Component_Controller_Store_index extends Phpfox_Component {
 		$Home = new Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY);
 		$response = $Home->admincp(['return' => $this->url()->makeUrl('admincp.app.add')]);
 		if (!isset($response->token)) {
-			var_dump($response);
-			exit;
+			// throw error($response->error);
+			// return Phpfox_Error::set($response->error);
+			exit($response->error);
 		}
 
 		$load = $this->request()->get('load');

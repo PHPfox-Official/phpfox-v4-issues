@@ -189,7 +189,8 @@ class Marketplace_Service_Browse extends Phpfox_Service
 			$this->database()
 				->select('mc.name AS category_name, ')
 				->leftJoin(Phpfox::getT('marketplace_category_data'), 'mcd', 'mcd.listing_id = l.listing_id')
-				->leftJoin(Phpfox::getT('marketplace_category'), 'mc', 'mc.category_id = mcd.category_id');
+				->leftJoin(Phpfox::getT('marketplace_category'), 'mc', 'mc.category_id = mcd.category_id')
+				->group('l.listing_id');
 		}
 
 		if ($this->_bIsSeen !== false)

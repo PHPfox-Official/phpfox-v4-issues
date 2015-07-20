@@ -292,10 +292,10 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 		$this->search()->browse()->params($aBrowseParams)->execute();
 		
 		$aItems = $this->search()->browse()->getRows();
-		
+
 		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
 		
-		Phpfox::getService('blog')->getExtra($aItems, 'user_profile');
+		Blog_Service_Blog::instance()->getExtra($aItems, 'user_profile');
 
 		(($sPlugin = Phpfox_Plugin::get('blog.component_controller_index_process_middle')) ? eval($sPlugin) : false);
 		

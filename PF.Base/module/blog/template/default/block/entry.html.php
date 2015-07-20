@@ -70,6 +70,12 @@ defined('PHPFOX') or exit('NO DICE!');
 			{if isset($aItem.tag_list)}			
 			{module name='tag.item' sType=$sTagType sTags=$aItem.tag_list iItemId=$aItem.blog_id iUserId=$aItem.user_id sMicroKeywords='keywords'}			
 			{/if}
+
+			{if !isset($bBlogView) && isset($aItem.categories)}
+			<div class="blog-category">
+				Posted in: {$aItem.categories}
+			</div>
+			{/if}
 			
 			{if !isset($bBlogView)}
 				{module name='feed.comment' aFeed=$aItem.aFeed}

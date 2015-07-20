@@ -21,7 +21,8 @@ class Blog_Component_Block_Add_Category_List extends Phpfox_Component
 	public function process()
 	{		
 		$iUserId = ($this->getParam('user_id') ? $this->getParam('user_id') : Phpfox::getUserId());
-		if ($iBlogId = $this->request()->get('blog_id'))
+		/*
+		if ($iBlogId = $this->request()->get('id'))
 		{
 			$aBlog = Phpfox::getService('blog')->getBlogForEdit($iBlogId);
 			if (isset($aBlog['blog_id']) && ($aBlog['user_id'] == Phpfox::getUserId() && Phpfox::getUserParam('blog.can_delete_own_blog_category')) || Phpfox::getUserParam('blog.can_delete_other_blog_category'))
@@ -29,6 +30,7 @@ class Blog_Component_Block_Add_Category_List extends Phpfox_Component
 				$iUserId = $aBlog['user_id'];
 			}
 		}
+		*/
 		
 		if (Phpfox::getUserParam('blog.blog_add_categories'))
 		{		
@@ -56,9 +58,21 @@ class Blog_Component_Block_Add_Category_List extends Phpfox_Component
 			$sCond = 'AND c.user_id IN(0)';
 			$sOrder = 'added DESC';			
 		}
-		
-		$aItems = Phpfox::getService('blog.category')->getCategories(array($sCond), $sOrder);		
-				
+
+		$aItems = Phpfox::getService('blog.category')->getCategories(array($sCond), $sOrder);
+		$selected = $this->getParam('aSelectedCategories');
+		if ($selected) {
+			$check = [];
+			foreach ($selected as $select) {
+				$check[] = $select['category_id'];
+			}
+			foreach ($aItems as $key => $item) {
+				if (in_array($item['category_id'], $check)) {
+					$aItems[$key]['is_active'] = true;
+				}
+			}
+		}
+
 		$this->template()->assign(array(
 			'aItems' => $aItems
 		));	

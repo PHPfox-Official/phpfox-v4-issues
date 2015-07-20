@@ -44,7 +44,11 @@ defined('PHPFOX') or exit('NO DICE!');
 	{/if}
 	
 	{template file='blog.block.entry'}
-	
+	{if (isset($sCategories) && $sCategories)}
+	<div class="blog-category">
+		Posted in: {$sCategories}
+	</div>
+	{/if}
 	{plugin call='blog.template_controller_view_end'}
 	<div {if $aItem.is_approved != 1}style="display:none;" class="js_moderation_on"{/if}>
 		{module name='feed.comment'}

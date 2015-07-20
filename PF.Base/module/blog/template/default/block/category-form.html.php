@@ -8,6 +8,6 @@
 	</span>
 	<div class="clear"></div>
 	{else}
-	<input value="{$aItem.category_id}" type="checkbox" name="val[category][]" id="js_category{$aItem.category_id}" class="checkbox v_middle" onclick="if (this.checked) $('#js_selected_categories').val($('#js_selected_categories').val() + this.value + ','); else $('#js_selected_categories').val($('#js_selected_categories').val().replace(this.value + ',', ''));" /> {$aItem.name|convert|clean}
+	<input {if (isset($aItem.is_active))} checked="checked"{/if} value="{$aItem.category_id}" type="checkbox" name="val[category][]" id="js_category{$aItem.category_id}" class="checkbox v_middle" onclick="if (this.checked) $('#js_selected_categories').val($('#js_selected_categories').val() + this.value + ','); else $('#js_selected_categories').val($('#js_selected_categories').val().replace(this.value + ',', ''));" /> {$aItem.name|convert|clean}
 	{/if}
 </label>

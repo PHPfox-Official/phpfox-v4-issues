@@ -82,7 +82,8 @@ class Blog_Component_Controller_Add extends Phpfox_Component
 			}			
 			$aRow['selected_categories'] = $sCategories;							
 					
-			$bIsEdit = true;			
+			$bIsEdit = true;
+			$this->setParam('aSelectedCategories', (isset($aCategories[$aRow['blog_id']]) ? $aCategories[$aRow['blog_id']] : []));
 			$this->template()->assign(array(
 					'aForms' => $aRow					
 				)

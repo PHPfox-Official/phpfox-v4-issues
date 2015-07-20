@@ -135,6 +135,7 @@ class Blog_Component_Controller_View extends Phpfox_Component
 			}
 		}
 
+		$sCategories = '';
 		if (isset($aCategories[$aItem['blog_id']]))
 		{
 			$sCategories = '';
@@ -205,7 +206,7 @@ class Blog_Component_Controller_View extends Phpfox_Component
 			$this->setParam('sTagListParentModule', $aItem['module_id']);
 			$this->setParam('iTagListParentId', (int) $aItem['item_id']);
 		}
-		
+
 		$this->template()->setTitle($aItem['title'])
 		 	->setBreadCrumb(Phpfox::getPhrase('blog.blogs_title'), $sBreadcrumb)			
 		 	->setBreadCrumb($aItem['title'], $this->url()->permalink('blog', $aItem['blog_id'], $aItem['title']), true)
@@ -219,7 +220,8 @@ class Blog_Component_Controller_View extends Phpfox_Component
 					'bIsProfile' => $bIsProfile,
 					'sTagType' => ($bIsProfile === true ? 'blog_profile' : 'blog'),
 					'iShorten' => Phpfox::getParam('blog.length_in_index'),
-					'sMicroPropType' => 'BlogPosting'
+					'sMicroPropType' => 'BlogPosting',
+					'sCategories' => $sCategories
 				)
 			)->setHeader('cache', array(
 				'jquery/plugin/jquery.highlightFade.js' => 'static_script',

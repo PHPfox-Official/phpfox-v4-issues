@@ -6407,6 +6407,17 @@ table.default_table td {
   padding: 0px;
   margin-bottom: 20px;
 }
+.blog-category {
+  padding: 10px;
+  font-size: 11px;
+  color: #999999;
+  display: inline-block;
+  background: #f5f5f5;
+  margin: 0px 0px 10px 10px;
+}
+.blog-category a {
+  color: #999999;
+}
 .js_comment_like_holder {
   min-height: 40px;
 }

@@ -218,6 +218,8 @@ class Blog_Service_Blog extends Phpfox_Service
 				}
 				$sCategories = trim(ltrim($sCategories, ','));
 
+				$aItems[$iKey]['categories'] = $sCategories;
+
 				$aItems[$iKey]['info'] = Phpfox::getPhrase('blog.posted_x_by_x_in_x', array('date' => Phpfox::getTime(Phpfox::getParam('blog.blog_time_stamp'), $aValue['time_stamp']), 'link' => Phpfox_Url::instance()->makeUrl($aValue['user_name']), 'user' => $aValue, 'categories' => $sCategories));
 			}
 			else 

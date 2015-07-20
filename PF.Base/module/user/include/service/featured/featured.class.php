@@ -77,7 +77,7 @@ class User_Service_Featured_Featured extends Phpfox_Service
 			$users = $this->database()
 				->select('u.*')
 				->from(':user', 'u')
-				->where(['gender' => $gender])
+				->where(['u.profile_page_id' => 0, 'u.view_id' => 0, 'u.gender' => $gender])
 				->limit(12)
 				->order('RAND()')
 				->all();
@@ -95,6 +95,7 @@ class User_Service_Featured_Featured extends Phpfox_Service
 			$users = $this->database()
 				->select('u.*')
 				->from(':user', 'u')
+				->where(['u.profile_page_id' => 0, 'u.view_id' => 0])
 				->limit(12)
 				->order('u.joined DESC')
 				->all();

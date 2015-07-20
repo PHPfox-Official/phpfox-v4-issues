@@ -56,7 +56,8 @@ class Run {
 				$Theme = new \Core\Theme();
 				$Theme->import($zip, [
 					'image' => $response->image,
-					'id' => $response->internal_id
+					'id' => $response->internal_id,
+					'version' => $response->internal_version
 				]);
 
 				$Url->send('admincp/theme', null, 'Theme successfully installed!');

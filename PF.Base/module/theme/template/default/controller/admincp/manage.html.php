@@ -1,7 +1,10 @@
+{if ($theme.internal_id)}
+<div class="phpfox-product" data-internal-id="{$theme.internal_id}" data-version="{$theme.version}"></div>
+{/if}
 <div class="admincp_manager">
 	<div class="am_top">
 		<a href="{url link='admincp.theme'}" class="title no_ajax">
-			{$theme.name|clean}
+			{$theme.name|clean}<span class="am_version">v{$theme.version}</span>
 		</a>
 		<ul>
 			<li><a href="#" class="no_ajax active">Design</a></li>

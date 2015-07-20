@@ -708,6 +708,12 @@ div.sortable ul li:hover ul li:hover a:hover {
   z-index: 199;
   background: transparent;
 }
+.am_version {
+  font-size: 11px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
 div#admincp_site_link {
   text-align: left;
   background: transparent;
@@ -6336,6 +6342,23 @@ i._zz {
   margin-bottom: 10px;
   color: #999999;
 }
+.new_installs {
+  background: #ffffff;
+  margin-bottom: 50px;
+}
+.new_installs > h1 {
+  height: 40px;
+  line-height: 40px;
+  text-indent: 10px;
+  font-weight: 300;
+  color: #808080;
+  font-size: 16px;
+  background: #f8f8f8;
+}
+.new_installs .admincp_apps,
+.new_installs .themes {
+  padding: 10px 10px 0px 10px;
+}
 .admincp_apps {
   /*
 	display:table;
@@ -6412,4 +6435,24 @@ i._zz {
 		color:@brandPrimaryColor;
 		*/
   color: #fff;
+}
+.upgrade-product a,
+.upgrade-product a:hover {
+  display: block;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 0px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 200;
+  color: #fff;
+  border: 1px #fff solid;
+  border-radius: 3px;
+}
+.upgrade-product a:hover {
+  background: #f4645f;
+  color: #ffffff;
+  border-color: #f4645f;
 }

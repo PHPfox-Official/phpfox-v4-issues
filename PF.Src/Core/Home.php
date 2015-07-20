@@ -11,6 +11,7 @@ namespace Core;
  * @method Home install()
  * @method Home vendor($name)
  * @method Home admincp()
+ * @method Home downloads()
  * @method Home key()
  * @method Home sync()
  * @method Home user()
@@ -47,8 +48,16 @@ class Home {
 		exit;
 	}
 
+	public static function store() {
+		return (defined('PHPFOX_API_URL') ? PHPFOX_STORE_URL : 'https://store.phpfox.us/');
+	}
+
+	public static function url() {
+		return (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'http://api.phpfox.com/');
+	}
+
 	public function __call($method, $args) {
-		$url = (defined('PHPFOX_API_URL') ? PHPFOX_API_URL : 'http://api.phpfox.com/') . $method;
+		$url = self::url() . $method;
 		$Http = new HTTP($url);
 		$Http->auth($this->_id, $this->_key);
 		if (\Phpfox::isTrial()) {

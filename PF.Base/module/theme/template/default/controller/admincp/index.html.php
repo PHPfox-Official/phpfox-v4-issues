@@ -1,5 +1,24 @@
 
 <div class="admincp_apps_holder">
+
+	{if ($newInstalls)}
+	<section class="new_installs">
+		<h1>Pending Installs</h1>
+		<div class="themes">
+			{foreach from=$newInstalls item=install}
+			<article data-src="{$install.icon}" class="image_load">
+			<h1>
+				<a href="{url link='admincp.store' install=$install.id}">
+					<span>{$install.name|clean}</span>
+					<em>Install</em>
+				</a>
+			</h1>
+			</article>
+			{/foreach}
+		</div>
+	</section>
+	{/if}
+
 	<section>
 		<div class="themes">
 		{foreach from=$themes item=theme}

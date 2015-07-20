@@ -13,6 +13,22 @@ $Behavior.adminMenuClick = function()
 		});
 	}
 
+	if ($('.phpfox-product').length) {
+		$('.phpfox-product').each(function() {
+			var t = $(this);
+
+			var url = 'https://store.phpfox.us/product/' + t.data('internal-id') + '/';
+			$.ajax({
+				url: url + 'view.json',
+				success: function(e) {
+					if (PF.tools.versionCompare(e.version, t.data('version'), '>')) {
+						$('.am_top').append('<div class="upgrade-product"><a href="' + getParam('sJsHome') + 'admincp/store/?upgrade=' + t.data('internal-id') + '">Upgrade Product</a></div>');
+					}
+				}
+			});
+		});
+	}
+
 	$('.apps_menu ul li a').click(function() {
 		if ($('.active_app').length) {
 			$.ajax({

@@ -39,6 +39,9 @@ class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 		}
 
 		if ($this->request()->get('type') == 'theme') {
+
+			$product = json_decode($this->request()->get('product'));
+
 			$dir = PHPFOX_DIR_FILE . 'static/' . uniqid() . '/';
 			mkdir($dir);
 			$file = $dir . 'import.zip';
@@ -47,10 +50,10 @@ class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 				Phpfox_File::instance()->delete_directory($dir);
 			});
 
-			Phpfox::addMessage('Theme successfully installed.');
-			$id = $Theme->import($file);
+			// Phpfox::addMessage('Theme successfully installed.');
+			$id = $Theme->import($file, $product);
 			// $this->url()->send('admincp.theme');
-			echo '<script>window.top.location.href = \'' . $this->url()->makeUrl('admincp.theme') . '\';</script>';
+			echo '<script>window.top.location.href = \'' . $this->url()->makeUrl('admincp.theme.manage', ['id' => (is_numeric($id) ? $id : $id->theme_id)]) . '\';</script>';
 			exit;
 		}
 
@@ -66,13 +69,6 @@ class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 			return [
 				'redirect' => $this->url()->makeUrl('admincp.app', ['id' => $App->id])
 			];
-		}
-
-		if ($token = $this->request()->get('m9token')) {
-			(new Core\App())->vendor($token);
-
-			d($token);
-			exit;
 		}
 
 		if (($val = $this->request()->getArray('val'))) {

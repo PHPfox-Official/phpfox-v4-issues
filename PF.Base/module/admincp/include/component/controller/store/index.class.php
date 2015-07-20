@@ -15,6 +15,14 @@ class Admincp_Component_Controller_Store_index extends Phpfox_Component {
 		if (($open = $this->request()->get('open'))) {
 			$token .= '&search=' . $open;
 		}
+		if (($upgrade = $this->request()->get('upgrade'))) {
+			header('Location: ' . Core\Home::store() . 'product/' . $upgrade . '/install.json/installing?iframe-mode=' . $token . '&is-upgrade=true');
+			exit;
+		}
+		if (($upgrade = $this->request()->get('install'))) {
+			header('Location: ' . Core\Home::store() . 'product/' . $upgrade . '/install.json/installing?iframe-mode=' . $token);
+			exit;
+		}
 		$this->template()->setSectionTitle('<a href="' . $this->url()->current() . '">Store</a>');
 		$this->template()->assign([
 			'token' => $token,

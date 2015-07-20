@@ -13,6 +13,7 @@ class Object extends \Core\Objectify {
 	public $created;
 	public $image;
 	public $internal_id;
+	public $version;
 
 	protected $website;
 
@@ -131,7 +132,7 @@ class Object extends \Core\Objectify {
 			->where(['theme_id' => $this->theme_id])
 			->all();
 		foreach ($flavors as $flavor) {
-			$export['flavors'][$flavor['style_id']] = $flavor['name'];
+			$export['flavors'][$flavor['folder']] = $flavor['name'];
 		}
 
 		$files = \Phpfox_File::instance()->getAllFiles($this->getPath());

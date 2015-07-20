@@ -22,6 +22,7 @@ class Object extends \Core\Objectify {
 	public $head = [];
 	public $js = [];
 	public $map = [];
+	public $internal_id;
 
 	public function __construct($keys) {
 		parent::__construct($keys);
@@ -44,6 +45,7 @@ class Object extends \Core\Objectify {
 
 		if (!$this->is_module) {
 			$file = PHPFOX_DIR_SETTINGS . md5($this->id . \Phpfox::getParam('core.salt')) . '.php';
+			/*
 			if (!file_exists($file)) {
 				$id = md5(uniqid());
 				$key = md5(uniqid() . rand(0, 10000));
@@ -55,7 +57,11 @@ class Object extends \Core\Objectify {
 				$paste = "<?php\n// @app ' . $this->id . ' \nreturn " . var_export((array) $response, true) . ';';
 				file_put_contents($file, $paste);
 			}
-			$this->auth = (object) require($file);
+			*/
+			if (file_exists($file)) {
+				$this->auth = (object) require($file);
+				$this->internal_id = $this->auth->internal_id;
+			}
 		}
 	}
 

@@ -192,12 +192,14 @@ class App {
 		return $Object;
 	}
 
-	public function makeKey(App\Object $App, $id, $key) {
+	public function makeKey(App\Object $App, $id, $key, $internalId = 0) {
 		$file = PHPFOX_DIR_SETTINGS . md5($App->id . \Phpfox::getParam('core.salt')) . '.php';
 
 		$response = [
 			'id' => $id,
-			'key' => $key
+			'key' => $key,
+			'version' => $App->version,
+			'internal_id' => $internalId
 		];
 		$paste = "<?php\nreturn " . var_export((array) $response, true) . ';';
 
@@ -296,7 +298,12 @@ class App {
 
 		if ($isNew) {
 			$Request = \Phpfox_Request::instance();
-			$this->makeKey($Object, $Request->get('auth_id'), $Request->get('auth_key'));
+			$internalId = 0;
+			if ($Request->get('product')) {
+				$product = json_decode($Request->get('product'));
+				$internalId = $product->id;
+			}
+			$this->makeKey($Object, $Request->get('auth_id'), $Request->get('auth_key'), $internalId);
 		}
 
 		return $Object;

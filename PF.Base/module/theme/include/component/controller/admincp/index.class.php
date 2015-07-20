@@ -23,7 +23,23 @@ class Theme_Component_Controller_Admincp_Index extends Phpfox_Component {
 				$this->url()->send('admincp.theme', null, Phpfox::getPhrase('theme.theme_successfully_deleted'));
 			}
 		}
-		
+
+		$themes = $this->template()->theme()->all();
+		$Home = new Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY);
+		$products = $Home->downloads(['type' => 2]);
+		$newInstalls = [];
+		if (is_object($products)) {
+			foreach ($products as $product) {
+				foreach ($themes as $theme) {
+					if ($theme->internal_id == $product->id) {
+						continue 2;
+					}
+				}
+
+				$newInstalls[] = (array) $product;
+			}
+		}
+
 		$this->template()->setTitle(Phpfox::getPhrase('theme.themes'))
 			->setSectionTitle('Themes')
 			->setActionMenu([
@@ -34,7 +50,8 @@ class Theme_Component_Controller_Admincp_Index extends Phpfox_Component {
 			])
 			->setBreadcrumb(Phpfox::getPhrase('theme.themes'), $this->url()->makeUrl('admincp.theme'))
 			->assign(array(
-					'themes' => $this->template()->theme()->all()
+					'newInstalls' => $newInstalls,
+					'themes' => $themes
 				)
 			);
 	}

@@ -27,11 +27,28 @@ class Admincp_Component_Controller_Apps_index extends Phpfox_Component {
 			]);
 		}
 
+		$allApps = $Apps->all('__remove_core');
+		$Home = new Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY);
+		$products = $Home->downloads(['type' => 0]);
+		$newInstalls = [];
+		if (is_object($products)) {
+			foreach ($products as $product) {
+				foreach ($allApps as $app) {
+					if ($app->internal_id == $product->id) {
+						continue 2;
+					}
+				}
+
+				$newInstalls[] = (array) $product;
+			}
+		}
+
 		$this->template()->setSectionTitle('Apps');
 		$this->template()->assign([
 			// 'modules' => $Apps->all('__core'),
-			'apps' => $Apps->all('__remove_core'),
-			'aNewProducts' => Admincp_Service_Product_Product::instance()->getNewProductsForInstall(),
+			'apps' => $allApps,
+			'newInstalls' => $newInstalls
+			// 'aNewProducts' => Admincp_Service_Product_Product::instance()->getNewProductsForInstall(),
 			// 'appsV4' => $Apps->all()
 		]);
 	}

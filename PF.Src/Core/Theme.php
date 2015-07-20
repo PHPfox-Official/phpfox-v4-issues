@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Core\Theme\Object;
+
 class Theme extends Model {
 	private static $_active;
 
@@ -55,6 +57,30 @@ class Theme extends Model {
 		if ($zip === null) {
 			$zip = $file . 'import.zip';
 			file_put_contents($zip, file_get_contents('php://input'));
+		}
+
+		$exists = false;
+		if ($extra !== null && isset($extra->id)) {
+			foreach ($this->all() as $theme) {
+				if ($theme->internal_id == $extra->id) {
+					$exists = $theme;
+
+					break;
+				}
+			}
+		}
+
+		if ($exists instanceof Object) {
+			$Zip = new \ZipArchive();
+			$Zip->open($zip);
+			$Zip->extractTo($file);
+			$Zip->close();
+
+			$this->db->update(':theme', ['website' => json_encode($extra)], ['theme_id' => $exists->theme_id]);
+			$this->db->update(':setting', array('value_actual' => ((int) \Phpfox::getParam('core.css_edit_id') + 1)), 'var_name = \'css_edit_id\'');
+			$this->cache->del('setting');
+
+			return $exists;
 		}
 
 		$Zip = new \ZipArchive();

@@ -6014,6 +6014,8 @@ i._zz {
   top: 10px;
   left: 2px;
 }
+.i_size_32,
+.i_size_32:hover,
 ._size__32,
 ._size__32:hover,
 ._size__30,
@@ -6021,6 +6023,8 @@ i._zz {
   width: 32px;
   height: 32px;
 }
+.i_size_32 > span,
+.i_size_32:hover > span,
 ._size__32 > span,
 ._size__32:hover > span,
 ._size__30 > span,

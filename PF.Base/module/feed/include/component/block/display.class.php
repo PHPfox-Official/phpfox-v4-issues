@@ -169,7 +169,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 				$sCustomViewType = Phpfox::getPhrase('feed.feed');
 			}
 		}
-		
+
 		if ((!isset($aFeedCallback['item_id']) || $aFeedCallback['item_id'] == 0))
 		{
 			$aFeedCallback['item_id'] = ((int)$this->request()->get('amp;callback_item_id')) > 0 ? $this->request()->get('amp;callback_item_id') : $this->request()->get('callback_item_id');

@@ -257,19 +257,11 @@ class Feed_Service_Feed extends Phpfox_Service
 			{
 				$aNewCond[] = 'AND feed.feed_id = ' . (int) $iFeedId . ' AND feed.user_id = ' . (int) $iUserid;	
 			}
-			
-			$iTimelineYear = 0;
-			if (($iTimelineYear = Phpfox_Request::instance()->get('year')) && !empty($iTimelineYear))
-			{
-				$iMonth = 12;
-				$iDay = 31;
-				if (($iTimelineMonth = Phpfox_Request::instance()->get('month')) && !empty($iTimelineMonth))
-				{
-					$iMonth = $iTimelineMonth;
-					$iDay = Phpfox::getLib('date')->lastDayOfMonth($iMonth, $iTimelineYear);
-				}
-				$aNewCond[] = 'AND feed.time_stamp <= \'' . mktime(0, 0, 0, $iMonth, $iDay, $iTimelineYear) . '\'';
-			}			
+
+			if ($iUserid === null && $iFeedId !== null) {
+				$aNewCond = [];
+				$aNewCond[] = 'AND feed.feed_id = ' . (int) $iFeedId;
+			}
 
 			$aRows = $this->database()->select('feed.*, ' . Phpfox::getUserField() .', u.view_id')
 				->from(Phpfox::getT($this->_aCallback['table_prefix'] . 'feed'), 'feed')			

@@ -17,7 +17,16 @@ class Feed_Component_Controller_Stream extends Phpfox_Component {
 			exit;
 		}
 
-		$aFeed = Feed_Service_Feed::instance()->get(null, $this->request()->get('id'));
+		$aFeedCallback = [];
+		if ($module = $this->request()->get('module')) {
+			$aFeedCallback = [
+				'module' => $this->request()->get('module'),
+				'table_prefix' => $this->request()->get('module') . '_',
+				'item_id' => $this->request()->get('item_id')
+			];
+		}
+
+		$aFeed = Feed_Service_Feed::instance()->callback($aFeedCallback)->get(null, $this->request()->get('id'));
 
 		header('Content-type: application/javascript');
 
@@ -31,10 +40,15 @@ class Feed_Component_Controller_Stream extends Phpfox_Component {
 
 		$this->template()->assign('aGlobalUser', (Phpfox::isUser() ? Phpfox::getUserBy(null) : array()));
 		$this->template()->assign('aFeed', $aFeed[0]);
+		$url = $this->url()->makeUrl('feed.stream', ['id' => $this->request()->get('id')]);
+		if ($aFeedCallback) {
+			$this->template()->assign('aFeedCallback', $aFeedCallback);
+			$url = $this->url()->makeUrl('feed.stream', ['id' => $this->request()->get('id'), 'module' => $this->request()->get('module'), 'item_id' => $this->request()->get('item_id')]);
+		}
 		$this->template()->getTemplate('feed.block.entry');
 
 		echo ';__(' . json_encode([
-				'url' => $this->url()->makeUrl('feed.stream', ['id' => $this->request()->get('id')]),
+				'url' => $url,
 				'content' => ob_get_clean()
 		]) . ');';
 		exit;

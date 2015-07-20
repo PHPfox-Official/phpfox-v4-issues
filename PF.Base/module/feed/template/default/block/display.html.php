@@ -54,7 +54,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 	{if isset($bStreamMode) && $bStreamMode}
 	{foreach from=$aFeeds item=aFeed}
-	<div class="feed_stream" data-feed-url="{url link='feed.stream' id=$aFeed.feed_id}"></div>
+		<div class="feed_stream" data-feed-url="{if (isset($aFeedCallback.module))}{url link='feed.stream' id=$aFeed.feed_id module=$aFeedCallback.module item_id=$aFeedCallback.item_id}{else}{url link='feed.stream' id=$aFeed.feed_id}{/if}"></div>
 	{/foreach}
 
 	{else}

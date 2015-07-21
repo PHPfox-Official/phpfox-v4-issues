@@ -136,7 +136,10 @@ class Phpfox_Installer
 
 		'4.0.0rc1',
 		'4.0.0rc2',
-		'4.0.0'
+		'4.0.0',
+		'4.0.1',
+		'4.0.2',
+		'4.0.3'
 	);
 
 	private $_sTempDir = '';
@@ -1409,7 +1412,7 @@ class Phpfox_Installer
 			return $sVersion;
 		}
 
-		$newFile = PHPFOX_DIR_SETTING . 'version.sett.php';
+		$newFile = PHPFOX_DIR_SETTINGS . 'version.sett.php';
 		if (file_exists($newFile)) {
 			$object = (object) require($newFile);
 			if (isset($object->version)) {

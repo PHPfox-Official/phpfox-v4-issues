@@ -1409,6 +1409,16 @@ class Phpfox_Installer
 			return $sVersion;
 		}
 
+		$newFile = PHPFOX_DIR_SETTING . 'version.sett.php';
+		if (file_exists($newFile)) {
+			$object = (object) require($newFile);
+			if (isset($object->version)) {
+				$sVersion = $object->version;
+
+				return $sVersion;
+			}
+		}
+
 		$bIsLegacy = true;
 		if (file_exists(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'server.sett.php'))
 		{

@@ -39,10 +39,12 @@ class Mail_Component_Controller_Thread extends Phpfox_Component
 				)
 			)->getTemplate('mail.block.entry');
 
+			$content = ob_get_contents();
+			ob_clean();
 			return [
 				'append' => [
 					'to' => '#mail_threaded_new_message',
-					'with' => ob_get_clean()
+					'with' => $content
 				]
 			];
 		}

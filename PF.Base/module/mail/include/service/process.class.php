@@ -291,8 +291,8 @@ class Mail_Service_Process extends Phpfox_Service
 					'text' => $oFilter->prepare($aVals['message']),
 					'is_mobile' => (Phpfox::isMobile() ? '1' : '0')
 				)
-			);	
-			
+			);
+
 			$this->database()->update(Phpfox::getT('mail_thread'), array('last_id' => (int) $iTextId), 'thread_id = ' . (int) $iId);
 			
 			// Send the user an email
@@ -310,7 +310,7 @@ class Mail_Service_Process extends Phpfox_Service
 				{
 					continue;
 				}
-				
+
 				Phpfox::getLib('mail')->to($aThreadUser['user_id'])
 					->subject(array('mail.full_name_sent_you_a_message_on_site_title', array('full_name' => Phpfox::getUserBy('full_name'), 'site_title' => Phpfox::getParam('core.site_title')), false, null, $aThreadUser['language_id']))
 					->message(array('mail.full_name_sent_you_a_message_no_subject', array(
@@ -321,17 +321,17 @@ class Mail_Service_Process extends Phpfox_Service
 						)
 					)
 					->notification('mail.new_message')
-					->send();				
+					->send();
 			}
-			
+
 			// If we uploaded any attachments make sure we update the 'item_id'
 			if ($bHasAttachments)
 			{
 				Phpfox::getService('attachment.process')->updateItemId($aVals['attachment'], Phpfox::getUserId(), $iTextId);
 				
 				$this->database()->update(Phpfox::getT('mail_thread_text'), array('total_attachment' => Phpfox::getService('attachment')->getCountForItem($iTextId, 'mail')), 'message_id = ' . (int) $iTextId);
-			}			
-			
+			}
+
 			if (isset($aVals['forward_thread_id']) && !empty($aVals['forwards']))
 			{
 				$bHasForward = false;
@@ -351,7 +351,7 @@ class Mail_Service_Process extends Phpfox_Service
 						)
 					);
 				}
-				
+
 				if ($bHasForward)
 				{
 					$this->database()->update(Phpfox::getT('mail_thread_text'), array('has_forward' => '1'), 'message_id = ' . (int) $iTextId);
@@ -380,7 +380,7 @@ class Mail_Service_Process extends Phpfox_Service
 					'text_parsed' => $oFilter->prepare($aVals['message'])
 				)
 			);
-			
+
 			// Send the user an email
 			$sLink = Phpfox_Url::instance()->makeUrl('mail.view', array('id' => $iId));
 			Phpfox::getLib('mail')->to($aVals['user_id'])
@@ -401,14 +401,14 @@ class Mail_Service_Process extends Phpfox_Service
 			{
 				Phpfox::getService('attachment.process')->updateItemId($aVals['attachment'], Phpfox::getUserId(), $iId);
 			}			
-		}			
-		
+		}
+
 		(($sPlugin = Phpfox_Plugin::get('mail.service_process_add')) ? eval($sPlugin) : false);
 
 		if (\Core\Route\Controller::$isApi) {
 			return $iTextId;
 		}
-		
+
 		return $iId;
 	}	
 	

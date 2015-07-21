@@ -1489,7 +1489,7 @@ class Phpfox
 
 			$controller = Phpfox_Module::instance()->getFullControllerName();
 			$data = json_encode([
-				'content' => Phpfox_Parse_Input::instance()->convert($content),
+				'content' => str_replace(['&#039;'], ["'"], Phpfox_Parse_Input::instance()->convert($content)),
 				'title' => html_entity_decode($oTpl->instance()->getTitle()),
 				'phrases' => Phpfox_Template::instance()->getPhrases(),
 				'files' => $aLoadFiles,
@@ -1506,7 +1506,7 @@ class Phpfox
 				'controller_e' => (Phpfox::isAdmin() ? Phpfox_Url::instance()->makeUrl('admincp.element.edit', ['controller' => base64_encode(Phpfox_Module::instance()->getFullControllerName())]) : null),
 				'meta' => Phpfox_Template::instance()->getPageMeta(),
 				'keep_body' => Phpfox_Template::instance()->keepBody(),
-			], JSON_UNESCAPED_UNICODE);
+			]);
 
 			// header("Content-length: " . strlen($data));
 

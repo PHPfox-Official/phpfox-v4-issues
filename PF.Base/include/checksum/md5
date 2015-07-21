@@ -1,5 +1,5 @@
 b41e07ec10d99cc5f9a83db7c3488e6e composer.lock
-1adbc3c27a05ebc4a84ba410e061971b include/checksum/md5
+9e5aef59e333fe7631c768d5d1f0cb12 include/checksum/md5
 d7f7e3d45fa8602bec28e7a51c902110 include/cron/exec.php
 68b329da9893e34099c7d8ad5cb9c940 include/cron/index.html
 68b329da9893e34099c7d8ad5cb9c940 include/index.html
@@ -60,7 +60,7 @@ a0d780293d0cc137e5b3a36417568bb8 include/library/phpfox/parse/input.class.php
 6316d8613e71a56d0664858a6e73c1f2 include/library/phpfox/parse/output.class.php
 9c2cbf710df26baebd4dc9a5d915e1c3 include/library/phpfox/parse/wiki.class.php
 31204c13d87c066123abba90adfda243 include/library/phpfox/phpfox/api.class.php
-3a48e15bb5b1b6676f367dcbbaa1e1b1 include/library/phpfox/phpfox/phpfox.class.php
+d49ef3813ea6d599231ca9e5c2512b5a include/library/phpfox/phpfox/phpfox.class.php
 ee2cf709f67660926da5a6a3dbfccbe2 include/library/phpfox/phpfox/process.class.php
 6f979c415396c9a1a3fa3da9f86941de include/library/phpfox/plugin/plugin.class.php
 dd703a5a358450f9dad42f3d224edc56 include/library/phpfox/request/request.class.php

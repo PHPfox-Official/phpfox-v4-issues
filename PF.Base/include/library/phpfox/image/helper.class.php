@@ -262,6 +262,7 @@ class Phpfox_Image_Helper
 					// if (isset($aParams['user'])) {
 					$name = (isset($aParams['user']) ? $aParams['user'][$sSuffix . 'full_name'] : (isset($aParams['title']) ? $aParams['title'] : ''));
 					if (function_exists('iconv')) {
+						setlocale(LC_ALL, 'en_US.UTF-8');
 						$name = iconv('UTF-8', 'ASCII//TRANSLIT', $name);
 					}
 

@@ -1,5 +1,5 @@
 b41e07ec10d99cc5f9a83db7c3488e6e composer.lock
-9e5aef59e333fe7631c768d5d1f0cb12 include/checksum/md5
+2d142d76a6fc9d0cda8f2eef40377523 include/checksum/md5
 d7f7e3d45fa8602bec28e7a51c902110 include/cron/exec.php
 68b329da9893e34099c7d8ad5cb9c940 include/cron/index.html
 68b329da9893e34099c7d8ad5cb9c940 include/index.html
@@ -40,7 +40,7 @@ b08d2f63b215aaf497d7a4c1ef48cf8d include/library/phpfox/gateway/api/paypal.class
 dd4e2190987a486d8b35d2cfc652874a include/library/phpfox/gateway/interface.class.php
 79c0da7df4a513170e7d314bb8071c5b include/library/phpfox/hash/hash.class.php
 36bdedda9a68f4621dd0e97db0e00d98 include/library/phpfox/image/abstract.class.php
-09454aa987d47d23689ca96658c0e875 include/library/phpfox/image/helper.class.php
+0126c6971f7fe9dff6a703818d172b86 include/library/phpfox/image/helper.class.php
 036a261ee5a80c4e3c5e45859767b567 include/library/phpfox/image/image.class.php
 2cf125c456e95c1a1d00fc8914ebb4e6 include/library/phpfox/image/interface.class.php
 612fb5216cfe0a3a34f7b2571cd7510c include/library/phpfox/image/library/gd.class.php

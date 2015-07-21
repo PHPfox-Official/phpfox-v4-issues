@@ -38,6 +38,13 @@ class Functions {
 					\Phpfox::getBlock('core.template-menu');
 					break;
 				case 'content':
+					$isSearch = (\Phpfox_Request::instance()->get('page') ? true : false);
+					if ($isSearch && PHPFOX_IS_AJAX_PAGE) {
+						\Phpfox_Module::instance()->getControllerTemplate();
+						$content = ob_get_contents(); ob_clean();
+						return $content;
+					}
+
 					if (!PHPFOX_IS_AJAX_PAGE) {
 						echo '<div class="_block_' . $this->_method . '">';
 					}

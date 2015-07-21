@@ -46,7 +46,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="profile_header_inner{if Profile_Service_Profile::instance()->timeline()} profile_header_timeline{/if}">
 				<div id="section_menu">
 					{if defined('PHPFOX_IS_USER_PROFILE_INDEX') || defined('PHPFOX_PROFILE_PRIVACY') || Phpfox_Module::instance()->getFullControllerName() == 'profile.info'}
-					<ul>						
+					<ul>
 						{if Phpfox::getUserId() == $aUser.user_id}
 						    {if Phpfox::getUserParam('profile.can_change_cover_photo')}
 								<li>

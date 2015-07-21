@@ -23,12 +23,21 @@
 	min-height:155px;
 	max-height:500px;
 	position:relative;
+	background:lighten(#0c0c0c, 10%);
 
 	.cover > img {
 		background-size:cover;
 		height:100%;
 		width:100%;
 		max-height:500px;
+	}
+
+	h1 a, h1 a:hover, .h1 a, .h1 a:hover {
+		color:#fff;
+	}
+
+	.profiles_extra_info {
+		color:darken(#fff, 25%);
 	}
 }
 
@@ -377,3 +386,20 @@
 	}
 }
 */
+
+._is_profile_view {
+	#top {
+		margin-top:0px;
+	}
+
+	#header {
+		display:none;
+	}
+
+	.profiles_banner .breadcrumbs_menu {
+		top:auto;
+		position:absolute;
+		bottom:15px;
+		right:10px;
+	}
+}

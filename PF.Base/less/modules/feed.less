@@ -364,15 +364,35 @@ div.comment_mini_end {
 
 .feed_form_menu {
 	display:none;
-	padding-bottom:10px;
+	margin-left:-@blockContentPadding;
+	margin-right:-@blockContentPadding;
+	margin-top:-@blockContentPadding;
 	margin-bottom:10px;
 	border-bottom:1px darken(@blockBg, 7%) solid;
 	font-size:@fontSizeBase - 1;
+	background:@headerBg;
 
 	a, a:hover {
 		display:block;
-		padding:4px 0px;
+		padding:8px 0px;
 		text-indent:10px;
+		color:darken(@headerColor, 12%);
+
+		i {
+			text-indent:0px;
+			margin-right:10px;
+			font-size:@fontSizeBase;
+			color:darken(@headerColor, 12%);
+		}
+	}
+
+	a:hover {
+		color:@headerColor;
+		background:darken(@headerBg, 6%);
+
+		i {
+			color:@headerColor;
+		}
 	}
 }
 

@@ -113,7 +113,8 @@ class Friend_Component_Controller_Profile extends Phpfox_Component
 		$this->template()->setMeta('description', Phpfox::getPhrase('friend.sign_up_on_site_title_and_connect_with_full_name_message_full_name_or_add_full_name_as_you', array('site_title' => Phpfox::getParam('core.site_title'), 'full_name' => $aUser['full_name'])));
 
 		if (Phpfox::getUserId() == $aUser['user_id']) {
-			$this->template()->assign('lists', Friend_Service_List_List::instance()->get());
+			// $this->template()->assign('lists', Friend_Service_List_List::instance()->get());
+			$this->template()->menu('Manage Friends', $this->url()->makeUrl('friend'));
 		}
 
 		$this->template()->setTitle(Phpfox::getPhrase('friend.full_name_s_friends', array('full_name' => $aUser['full_name'])))

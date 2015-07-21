@@ -12,6 +12,13 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 <div class="profiles_banner">
+	{if (isset($customMenu))}
+	<div class="breadcrumbs_menu">
+		<ul>
+			<li><a href="{$customMenu.url}">{$customMenu.title}</a></li>
+		</ul>
+	</div>
+	{/if}
 	{if isset($aCoverPhoto.server_id)}
 	<div class="profiles_banner_bg">
 	<div class="cover_bg"></div>
@@ -42,8 +49,10 @@ defined('PHPFOX') or exit('NO DICE!');
 			{/foreach}
 			{/if}
 			{if Phpfox::getParam('user.enable_relationship_status') && isset($sRelationship) && $sRelationship != ''}&middot; {$sRelationship} {/if}
-
 			{if isset($aUser.category_name)}{$aUser.category_name|convert}{/if}
+			{if (isset($aUser.is_friend_request) && $aUser.is_friend_request)}
+			<div><span class="pending-friend-request">Pending Friend Request</span></div>
+			{/if}
 		</div>
 	</div>
 
@@ -115,18 +124,6 @@ defined('PHPFOX') or exit('NO DICE!');
 						{if !empty($aUser.cover_photo)}
 						<li><a href="#" onclick="$('#cover_section_menu_drop').hide(); $.ajaxCall('user.removeLogo'); return false;">Remove Cover Photo</a></li>
 						{/if}
-						{*
-						<div id="cover_section_menu_drop">
-							<ul>
-								<li><a href="{url link='profile.photo'}">{phrase var='user.choose_from_photos'}</a></li>
-								<li><a href="#" onclick="$('#cover_section_menu_drop').hide(); $Core.box('profile.logo', 500); return false;">{phrase var='user.upload_photo'}</a></li>
-								{if !empty($aUser.cover_photo)}
-								<li><a href="{url link='profile' coverupdate='1'}">{phrase var='user.reposition'}</a></li>
-								<li><a href="#" onclick="$('#cover_section_menu_drop').hide(); $.ajaxCall('user.removeLogo'); return false;">{phrase var='user.remove'}</a></li>
-								{/if}
-							</ul>
-						</div>
-						*}
 					</li>
 					{/if}
 					<li><a href="{url link='user.profile'}">{phrase var='profile.edit_profile'}</a></li>
@@ -163,17 +160,6 @@ defined('PHPFOX') or exit('NO DICE!');
 			</li>
 			{/if}
 			{plugin call='profile.template_block_menu_more'}
-
-			{*
-			{if (Phpfox::getUserParam('user.can_block_other_members') && isset($aUser.user_group_id) && Phpfox::getUserGroupParam('' . $aUser.user_group_id . '', 'user.can_be_blocked_by_others'))
-			|| (isset($aUser.is_online) && $aUser.is_online && Phpfox::isModule('im') && Phpfox::getParam('im.enable_im_in_footer_bar') && $aUser.is_friend == 1)
-			|| (Phpfox::getUserParam('user.can_feature'))
-			|| (isset($bPassMenuMore))
-			|| (Phpfox::getUserParam('core.can_gift_points'))
-			}
-			<li><a href="#" id="section_menu_more" class="js_hover_title"><span class="section_menu_more_image"></span><span class="js_hover_info">{phrase var='profile.more'}</span></a></li>
-			{/if}
-			*}
 		</ul>
 
 		{/if}

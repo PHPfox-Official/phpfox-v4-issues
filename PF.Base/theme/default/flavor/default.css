@@ -6796,16 +6796,34 @@ div.comment_mini_end {
 }
 .feed_form_menu {
   display: none;
-  padding-bottom: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: -10px;
   margin-bottom: 10px;
   border-bottom: 1px #ededed solid;
   font-size: 13px;
+  background: #595959;
 }
 .feed_form_menu a,
 .feed_form_menu a:hover {
   display: block;
-  padding: 4px 0px;
+  padding: 8px 0px;
   text-indent: 10px;
+  color: #c6c6c6;
+}
+.feed_form_menu a i,
+.feed_form_menu a:hover i {
+  text-indent: 0px;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #c6c6c6;
+}
+.feed_form_menu a:hover {
+  color: #e5e5e5;
+  background: #494949;
+}
+.feed_form_menu a:hover i {
+  color: #e5e5e5;
 }
 .parent_item_feed .js_feed_comment_border ul,
 .item_view .js_feed_comment_border ul {
@@ -8105,6 +8123,104 @@ span.forum_tag_sticky {
   background: #f2f2f2;
   color: #999999;
 }
+.pending-friend-request {
+  opacity: 0.8;
+  background: rgba(41, 138, 218, 0.8);
+  color: #ffffff;
+  font-size: 10px;
+  display: inline-block;
+  padding: 2px 4px;
+}
+.friend_action {
+  position: static;
+}
+.friend_action_edit_list_holder {
+  left: 5px;
+  right: 5px;
+  top: 5px;
+}
+a.friend_action_edit_list,
+a.friend_action_edit_list:hover,
+a.friend_action_edit_list_active,
+a.friend_action_edit_list_active:hover {
+  width: auto;
+  background: #ffffff;
+  border: 0px;
+  box-shadow: none;
+  color: #999999;
+  font-weight: normal;
+  margin: 0px;
+  font-size: 11px;
+  text-indent: 25px;
+}
+a.friend_action_edit_list:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  text-indent: 0px !important;
+  content: '\f078';
+  position: absolute;
+  left: 7px;
+  top: 7px;
+  font-size: 11px;
+}
+ul.friend_action_drop_down {
+  left: 0px;
+  right: 0px;
+  width: auto;
+}
+#page_friend_index .user_rows {
+  overflow: visible;
+  position: relative;
+}
+.friend_action_holder {
+  width: auto;
+  position: static;
+}
+ul.friend_action_drop_down {
+  border: 0px;
+  border-top: 1px #ebebeb solid;
+  background: #ffffff;
+}
+ul.friend_action_drop_down li a,
+ul.friend_action_drop_down li a:hover {
+  border: 0px;
+  font-size: 11px;
+  font-weight: normal;
+  background: transparent;
+  padding: 2px 0px;
+  text-indent: 5px;
+  color: #999999;
+}
+ul.friend_action_drop_down li a:hover {
+  color: #808080;
+  background: #f5f5f5;
+}
+ul.friend_action_drop_down li a.active,
+ul.friend_action_drop_down li a.active:hover {
+  background: #298ada;
+  color: #ffffff;
+  font-weight: normal;
+}
+a.friend_action_delete,
+a.friend_action_delete:hover {
+  display: none;
+  top: auto;
+  right: 5px;
+  bottom: 35px;
+  background-color: #dd4444;
+}
+.user_rows:hover a.friend_action_delete {
+  display: block;
+}
+ul.friend_action_drop_down li a.active span,
+ul.friend_action_drop_down li a.active:hover span {
+  display: none;
+}
 #page_user_browse #site_content {
   text-align: center;
 }
@@ -8558,6 +8674,11 @@ span.forum_tag_sticky {
   margin-left: 10px;
   margin-bottom: -6px;
 }
+.pages_header_info .pages_header_image {
+  min-width: 100px;
+  min-height: 100px;
+  background: #fff;
+}
 .pages_header_info .pages_header_image img {
   max-width: 100px;
   max-height: 100px;
@@ -8695,7 +8816,7 @@ span.forum_tag_sticky {
   top: auto;
   bottom: 50px;
   right: auto;
-  left: 50px;
+  left: 30px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   z-index: 100;
 }
@@ -9540,12 +9661,22 @@ ul.activity_feed_form_attach li a:hover {
   min-height: 155px;
   max-height: 500px;
   position: relative;
+  background: #262626;
 }
 .profiles_banner .cover > img {
   background-size: cover;
   height: 100%;
   width: 100%;
   max-height: 500px;
+}
+.profiles_banner h1 a,
+.profiles_banner h1 a:hover,
+.profiles_banner .h1 a,
+.profiles_banner .h1 a:hover {
+  color: #fff;
+}
+.profiles_banner .profiles_extra_info {
+  color: #bfbfbf;
 }
 .profile_image {
   background: #ffffff;
@@ -9866,6 +9997,41 @@ ul.activity_feed_form_attach li a:hover {
   font-size: 30px;
   margin-left: -15px;
   margin-top: -15px;
+}
+/*
+.profile_image_holder {
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+
+	span {
+		display:block;
+		position:absolute;
+		top:0px;
+		left:0px;
+		right:0px;
+		bottom:0px;
+
+		> span {
+			width:100%;
+			height:100%;
+		}
+	}
+}
+*/
+._is_profile_view #top {
+  margin-top: 0px;
+}
+._is_profile_view #header {
+  display: none;
+}
+._is_profile_view .profiles_banner .breadcrumbs_menu {
+  top: auto;
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
 }
 .listing_row {
   background: #ffffff;

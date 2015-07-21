@@ -44,15 +44,16 @@ defined('PHPFOX') or exit('NO DICE!');
 	{/if}
 	<div id="js_friend_sort_holder">
 {/if}
+	{if ($aFriends)}
 		{foreach from=$aFriends item=aFriend name=friend}		
-		<div id="js_friend_{$aFriend.friend_id}" class="friend_row_holder js_selector_class_{$aFriend.friend_id} {if is_int($phpfox.iteration.friend/2)}row1{else}row2{/if}{if $phpfox.iteration.friend == 1 && !PHPFOX_IS_AJAX} row_first{/if}">
+		<div id="js_friend_{$aFriend.friend_id}" class="friend_row_holder js_selector_class_{$aFriend.friend_id} user_rows">
 			<div><input type="hidden" name="friend_id[]" value="{$aFriend.friend_user_id}" class="js_friend_actual_user_id" /></div>
-			<div class="friend_image" id="js_image_div_{$aFriend.friend_id}">	
-				{img id='sJsUserImage_'$aFriend.friend_id'' user=$aFriend suffix='_50_square' max_width=50 max_height=50}
+			<div class="user_rows_image" id="js_image_div_{$aFriend.friend_id}">
+				{img id='sJsUserImage_'$aFriend.friend_id'' user=$aFriend suffix='_120_square' max_width=120 max_height=120}
 			</div>
-			<div class="friend_user_name">
-				{$aFriend|user:'':'':50} 
-			</div>
+
+			{$aFriend|user:'':'':50}
+
 			<div class="friend_action">
 				<div class="js_friend_sort_handler js_friend_edit_order"></div>
 				<div class="friend_action_holder">
@@ -71,8 +72,10 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>			
 		</div>
 		{/foreach}
+		{pager}
+	{/if}
 	{if !PHPFOX_IS_AJAX}
-	<div id="js_view_more_friends"></div>		
+	<div id="js_view_more_friends"></div>
 	{/if}	
 {if !PHPFOX_IS_AJAX}
 	</div>	
@@ -85,9 +88,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>	
 </form>
 {/if}
-{pager}
 {else}
-
 <div class="extra_info">
 	{phrase var='friend.no_friends'}
 </div>

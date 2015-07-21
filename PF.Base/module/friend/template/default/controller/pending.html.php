@@ -13,13 +13,11 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 {if count($aPendingRequests)}
 {foreach from=$aPendingRequests name=friend item=aFriend}
-		<div class="friend_row_holder {if is_int($phpfox.iteration.friend/2)}row1{else}row2{/if}{if $phpfox.iteration.friend == 1 && !PHPFOX_IS_AJAX} row_first{/if}">
-			<div class="friend_image">	
-				{img user=$aFriend suffix='_50_square' max_width=50 max_height=50}
+		<div class="friend_row_holder user_rows">
+			<div class="user_rows_image">
+				{img user=$aFriend suffix='_120_square' max_width=120 max_height=120}
 			</div>
-			<div class="friend_user_name">
-				{$aFriend|user} 
-			</div>
+			{$aFriend|user}
 			<div class="friend_action">
 				<div class="js_friend_sort_handler js_friend_edit_order"></div>
 				<div class="friend_action_holder">

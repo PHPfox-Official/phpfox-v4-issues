@@ -14,10 +14,11 @@
 		{if $bShowMenu}
 		<div class="feed_form_menu">
 			<div>
-				<a href="{url link='user.setting'}">Account Settings</a>
-				<a href="{url link='user.profile'}">Edit Profile</a>
-				<a href="{url link='user.privacy'}">Privacy</a>
-				<a href="{url link='user.logout'}" class="no_ajax logout">Logout</a>
+				<a href="{url link='user.setting'}"><i class="fa fa-cog"></i>Account Settings</a>
+				<a href="{url link='user.profile'}"><i class="fa fa-edit"></i>Edit Profile</a>
+				<a href="{url link='user.friend'}"><i class="fa fa-group"></i>Manage Friends</a>
+				<a href="{url link='user.privacy'}"><i class="fa fa-shield"></i>Privacy Settings</a>
+				<a href="{url link='user.logout'}" class="no_ajax logout"><i class="fa fa-toggle-off"></i>Logout</a>
 			</div>
 		</div>
 		{/if}

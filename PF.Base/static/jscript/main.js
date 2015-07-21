@@ -890,7 +890,7 @@ $Behavior.globalInit = function()
 	$('.feed_form_toggle').click(function() {
 
 		$(this).toggleClass('is_toggle_mode');
-		$('.feed_form_menu').toggle();
+		$('.feed_form_menu').slideToggle('fast');
 	});
 
 	$('.feed_form_share:not(.active)').click(function() {

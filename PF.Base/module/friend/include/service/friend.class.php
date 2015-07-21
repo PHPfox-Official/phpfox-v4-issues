@@ -131,7 +131,7 @@ class Friend_Service_Friend extends Phpfox_Service
 			if ((int) $iListId > 0)
 			{
 				$this->database()->innerJoin(Phpfox::getT('friend_list_data'), 'fld', 'fld.list_id = ' . (int) $iListId . ' AND fld.friend_user_id = friend.friend_user_id');								
-			}			
+			}
 
 			$aRows = $this->database()->select('uf.dob_setting, friend.friend_id, friend.friend_user_id, friend.is_top_friend, friend.time_stamp, ' . Phpfox::getUserField())  
 				->from($this->_sTable, 'friend')
@@ -141,8 +141,8 @@ class Friend_Service_Friend extends Phpfox_Service
 				->limit($iPage, $sLimit, $iCnt)
 				->order($sSort)
 				->group('u.user_id')
-				->execute('getSlaveRows'); 		
-				
+				->execute('getSlaveRows');
+
 			if ($bAddDetails === true)
 			{
 				$oUser = Phpfox::getService('user');

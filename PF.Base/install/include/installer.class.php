@@ -745,20 +745,19 @@ class Phpfox_Installer
 			$errors[] = 'No database driver found.';
 		}
 
-		$parent = dirname(dirname(dirname(dirname(__FILE__))));
-		$dirs = [PHPFOX_DIR, PHPFOX_DIR_SITE];
-		foreach ($dirs as $dir) {
-			if (@!is_writable($dir)) {
-				$dir = str_replace($parent, '', $dir);
-				$dir = str_replace('/PF.Base/../', '/', $dir);
-				// $dir = str_replace('../', '', $dir);
-				/*
-				if (substr($dir, 0, 4) == 'file') {
-					$dir = 'PF.Base/' . $dir;
-				}
-				*/
+		if ($this->_bUpgrade && version_compare($this->_getCurrentVersion(), '4.0.0', '>')) {
 
-				$errors[] = "Directory needs to be writable: {$dir}";
+		}
+		else {
+			$parent = dirname(dirname(dirname(dirname(__FILE__))));
+			$dirs = [PHPFOX_DIR, PHPFOX_DIR_SITE];
+			foreach ($dirs as $dir) {
+				if (@!is_writable($dir)) {
+					$dir = str_replace($parent, '', $dir);
+					$dir = str_replace('/PF.Base/../', '/', $dir);
+
+					$errors[] = "Directory needs to be writable: {$dir}";
+				}
 			}
 		}
 

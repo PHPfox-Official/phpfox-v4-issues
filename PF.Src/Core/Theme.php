@@ -108,7 +108,9 @@ class Theme extends Model {
 						'theme_id' => $themeId,
 						'name' => $flavorName,
 						'folder' => $flavorId,
-						'is_default' => ($iteration === 1 ? '1' : '0')
+						'is_default' => ($iteration === 1 ? '1' : '0'),
+						'is_active' => 1,
+						'created' => PHPFOX_TIME
 					]);
 				}
 			}

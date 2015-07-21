@@ -9658,7 +9658,7 @@ ul.activity_feed_form_attach li a:hover {
   color: #bfbfbf;
 }
 .profiles_banner {
-  min-height: 155px;
+  min-height: 250px;
   max-height: 500px;
   position: relative;
   background: #262626;

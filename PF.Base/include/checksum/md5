@@ -1,5 +1,5 @@
 b41e07ec10d99cc5f9a83db7c3488e6e composer.lock
-b30487334b67af1e5fdd680fa01871a3 include/checksum/md5
+1adbc3c27a05ebc4a84ba410e061971b include/checksum/md5
 d7f7e3d45fa8602bec28e7a51c902110 include/cron/exec.php
 68b329da9893e34099c7d8ad5cb9c940 include/cron/index.html
 68b329da9893e34099c7d8ad5cb9c940 include/index.html
@@ -40,7 +40,7 @@ b08d2f63b215aaf497d7a4c1ef48cf8d include/library/phpfox/gateway/api/paypal.class
 dd4e2190987a486d8b35d2cfc652874a include/library/phpfox/gateway/interface.class.php
 79c0da7df4a513170e7d314bb8071c5b include/library/phpfox/hash/hash.class.php
 36bdedda9a68f4621dd0e97db0e00d98 include/library/phpfox/image/abstract.class.php
-525562a7ae39c37dc1d18b530cecb5c7 include/library/phpfox/image/helper.class.php
+09454aa987d47d23689ca96658c0e875 include/library/phpfox/image/helper.class.php
 036a261ee5a80c4e3c5e45859767b567 include/library/phpfox/image/image.class.php
 2cf125c456e95c1a1d00fc8914ebb4e6 include/library/phpfox/image/interface.class.php
 612fb5216cfe0a3a34f7b2571cd7510c include/library/phpfox/image/library/gd.class.php
@@ -56,11 +56,11 @@ a68850c669aeabb6657524909a62c13d include/library/phpfox/pager/pager.class.php
 2516e65af54d2cf1ab40286787a349a8 include/library/phpfox/parse/bbcode.class.php
 296875a31326e60ff5adb0109df6c83e include/library/phpfox/parse/css.class.php
 69a801d2acc82716915922cf7ecfbad8 include/library/phpfox/parse/format.class.php
-0e424ac777025dc52d30561bf5730f80 include/library/phpfox/parse/input.class.php
+a0d780293d0cc137e5b3a36417568bb8 include/library/phpfox/parse/input.class.php
 6316d8613e71a56d0664858a6e73c1f2 include/library/phpfox/parse/output.class.php
 9c2cbf710df26baebd4dc9a5d915e1c3 include/library/phpfox/parse/wiki.class.php
 31204c13d87c066123abba90adfda243 include/library/phpfox/phpfox/api.class.php
-d0ef723938674135df94cef7ad4d9b66 include/library/phpfox/phpfox/phpfox.class.php
+3a48e15bb5b1b6676f367dcbbaa1e1b1 include/library/phpfox/phpfox/phpfox.class.php
 ee2cf709f67660926da5a6a3dbfccbe2 include/library/phpfox/phpfox/process.class.php
 6f979c415396c9a1a3fa3da9f86941de include/library/phpfox/plugin/plugin.class.php
 dd703a5a358450f9dad42f3d224edc56 include/library/phpfox/request/request.class.php
@@ -129,7 +129,7 @@ c4ff51654cadeedc383cd18edc46d6c4 less/modules/forum.less
 a98757378d0dd239c0925926a54d275c less/modules/pages.less
 5b39140d653853f1ab8842d34db4c469 less/modules/photo.less
 ee5a35921dd4eaf438e6ee2e8a7e7c36 less/modules/poll.less
-7e802e4d838e189277c724d79a2082c5 less/modules/profile.less
+fc6ca430ee7651d8abf3a15ec0e11fda less/modules/profile.less
 7c9e9b8f3059ed1580dd334de1e75103 less/modules/quiz.less
 db8f69a679c80fc8fa8a9041524e5805 less/modules/report.less
 9fdd864c9ef85bed74ca25efbddc6b99 less/nano.less
@@ -2059,7 +2059,7 @@ c6a703507640e78d2c16da1130c544a6 module/mail/include/component/controller/compos
 2b6dd4dc64381101c365f32bad5e40c0 module/mail/include/component/controller/index.class.php
 9c18c964f016dc8681c94a53e77acf00 module/mail/include/component/controller/panel.class.php
 c5a46740470b954b78594328f54cbec7 module/mail/include/component/controller/sentbox.class.php
-e8ae610f5376d19ab3f95bd1ed036f33 module/mail/include/component/controller/thread.class.php
+5621f2330c15bdf35c46785ad960c597 module/mail/include/component/controller/thread.class.php
 b5ce8ead48587763cff89a5a3940e048 module/mail/include/component/controller/trash.class.php
 97b9f8f850c58e349a809cb6979e7513 module/mail/include/component/controller/view-mobile.class.php
 3ee138a19a53c9e3a08ba0614cad0738 module/mail/include/component/controller/view.class.php
@@ -2070,7 +2070,7 @@ f488186a601ed6fcfb521a6db4349362 module/mail/include/service/api.class.php
 8c15458fdffdb36643512650a9370d67 module/mail/include/service/folder/folder.class.php
 3b3716f6570193544b51c97c6391d27e module/mail/include/service/folder/process.class.php
 958cf7e5ebe8548a1f8a7a3b087248b6 module/mail/include/service/mail.class.php
-ad77e28f630c0cfdd4079c878176441d module/mail/include/service/process.class.php
+f16a15134fea280221365951fb16cee5 module/mail/include/service/process.class.php
 a79d39d5049f00cadf73139b011e878d module/mail/install/phpfox.xml.php
 4779ffea8b1e5921f170ce5ed37c26ae module/mail/install/version/2.0.0.xml.php
 1e6303f337fc4658bbeb75f881400045 module/mail/install/version/2.0.0rc10.xml.php
@@ -3707,7 +3707,7 @@ f9b33da2cdab349123e55a278a66072e module/user/include/component/controller/privac
 dc21c2569b71a93015ac4403cb27721a module/user/include/component/controller/promotion.class.php
 abfe63af8e81ec06bb0c5a415813e908 module/user/include/component/controller/register.class.php
 d367fc8d5289f093245b592cc249eb0d module/user/include/component/controller/remove.class.php
-b7f87a56fd219ed5f78b3c99befa992f module/user/include/component/controller/setting.class.php
+3a8cb80aa6b4c82cd9d37227546d1d8e module/user/include/component/controller/setting.class.php
 b665eaa8b8b33fb8a7d3f9245ebdfd04 module/user/include/component/controller/verify.class.php
 251bc6b53ff368ebd53a5b8cdaa87209 module/user/include/phpfox.class.php
 3b54990634d6fe042c7ece44268d81ea module/user/include/plugin/feed.service_process_deletefeed.php
@@ -4069,7 +4069,7 @@ ea95b2f0c527bf8a763f2ad83f42f159 theme/adminpanel/default/style/default/less/nan
 1a5c794018106cbc0c3d6716c9a539b3 theme/adminpanel/default/template/template.html.php
 68b329da9893e34099c7d8ad5cb9c940 theme/adminpanel/index.html
 bbd5eb10fd276b38c7d235093c75441e theme/default/assets/autoload.js
-243ff5849f19ab7f923bf73420ad9df9 theme/default/flavor/default.css
+bf7c75a5714928503e801dd7a4a8b2d0 theme/default/flavor/default.css
 04eb0ee63ae341a7a7b004122b15c58d theme/default/flavor/default.less
 157a7e23807a282544d184507d4b09a0 theme/default/html/blank.html
 cfe706cdae5576242cb1d5280988a5cb theme/default/html/layout.html

@@ -260,8 +260,12 @@ class Phpfox_Image_Helper
 					// $sSrc = Phpfox_Template::instance()->getStyle('image', 'noimage/' . $sGender . 'profile' . $sImageSuffix . '.png');
 					$sImageSize = $sImageSuffix;
 					// if (isset($aParams['user'])) {
-						$name = (isset($aParams['user']) ? $aParams['user'][$sSuffix . 'full_name'] : (isset($aParams['title']) ? $aParams['title'] : ''));
-						$parts = explode(' ', $name);
+					$name = (isset($aParams['user']) ? $aParams['user'][$sSuffix . 'full_name'] : (isset($aParams['title']) ? $aParams['title'] : ''));
+					if (function_exists('iconv')) {
+						$name = iconv('UTF-8', 'ASCII//TRANSLIT', $name);
+					}
+
+					$parts = explode(' ', $name);
 					$first = '';
 					$last = '';
 						if (strlen($name) > 2) {

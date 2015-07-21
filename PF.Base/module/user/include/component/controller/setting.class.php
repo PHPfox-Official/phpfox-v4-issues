@@ -105,7 +105,7 @@ class User_Component_Controller_Setting extends Phpfox_Component
 					}					
 				}
 				
-				if ($bAllowed && ($iId = Phpfox::getService('user.process')->update(Phpfox::getUserId(), $aVals, array(
+				if ($bAllowed && ($iId = User_Service_Process::instance()->update(Phpfox::getUserId(), $aVals, array(
 								'changes_allowed' => Phpfox::getUserParam('user.total_times_can_change_user_name'),
 								'total_user_change' => $aUser['total_user_change'],
 								'full_name_changes_allowed' => Phpfox::getUserParam('user.total_times_can_change_own_full_name'),

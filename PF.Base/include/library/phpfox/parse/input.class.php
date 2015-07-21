@@ -173,10 +173,8 @@ class Phpfox_Parse_Input
 		$sTxt = Phpfox::getLib('parse.output')->htmlspecialchars($sTxt);
 
 		// Parse for language package
-		/*
-		$sTxt = $this->_utf8ToUnicode($sTxt);
-		$sTxt = str_replace('\\', '&#92;', $sTxt);
-		*/
+		// $sTxt = $this->_utf8ToUnicode($sTxt);
+		// $sTxt = str_replace('\\', '&#92;', $sTxt);
 		
 		if ($iShorten !== null)
 		{			
@@ -410,6 +408,9 @@ class Phpfox_Parse_Input
 		$sTxt = str_replace('<br /></table>', '</table>', $sTxt);		
 		$sTxt = str_replace('<br /></ol>', '</ol>', $sTxt);
 		*/
+
+		// $sTxt = $this->_utf8ToUnicode($sTxt);
+		// $sTxt = str_replace('\\', '&#92;', $sTxt);
 		
 		return Phpfox_Parse_Output::instance()->htmlspecialchars($sTxt);
 	}

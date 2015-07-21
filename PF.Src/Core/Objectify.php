@@ -68,7 +68,7 @@ class Objectify {
 		return [
 			'id' => (int) $row['user_id'],
 			'name' => $row['full_name'],
-			'name_link' => '<span class="user_profile_link_span"><a href="' . $link . '">' . $row['full_name'] . '</a></span>',
+			'name_link' => '<span id="js_user_name_link_' . $row['user_name'] . '" class="user_profile_link_span"><a href="' . $link . '">' . $row['full_name'] . '</a></span>',
 			'url' => $link,
 			'gender' => [
 				'id' => $row['gender'],

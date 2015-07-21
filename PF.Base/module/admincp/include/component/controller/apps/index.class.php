@@ -34,7 +34,7 @@ class Admincp_Component_Controller_Apps_index extends Phpfox_Component {
 		if (is_object($products)) {
 			foreach ($products as $product) {
 				foreach ($allApps as $app) {
-					if ($app->internal_id == $product->id) {
+					if (isset($app->internal_id) && isset($product->id) && $app->internal_id == $product->id) {
 						continue 2;
 					}
 				}

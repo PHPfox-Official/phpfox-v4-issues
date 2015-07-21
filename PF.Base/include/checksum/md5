@@ -1,5 +1,5 @@
 b41e07ec10d99cc5f9a83db7c3488e6e composer.lock
-a55bd3f40861a228409767b4eecf4cda include/checksum/md5
+b30487334b67af1e5fdd680fa01871a3 include/checksum/md5
 d7f7e3d45fa8602bec28e7a51c902110 include/cron/exec.php
 68b329da9893e34099c7d8ad5cb9c940 include/cron/index.html
 68b329da9893e34099c7d8ad5cb9c940 include/index.html
@@ -255,7 +255,7 @@ ce6a71faae0f45de8238b9d7bc9aa137 module/admincp/include/component/block/product/
 7694dd0a44ac685c6fcbaaf523aecf44 module/admincp/include/component/controller/app/add.class.php
 0b11c89f6d1badaaaace2f75bc687074 module/admincp/include/component/controller/app/index.class.php
 442bbbeb697852e363c4bb5a89fb1f42 module/admincp/include/component/controller/app/ping.class.php
-d7302a0943a3bdc2f6a5589b8dca0481 module/admincp/include/component/controller/apps/index.class.php
+1da9012325ce9aab965da28b7a68e422 module/admincp/include/component/controller/apps/index.class.php
 720e873b5680d553beb0dd1d5882ca23 module/admincp/include/component/controller/block/add.class.php
 d1983d0905d5391bab58e2ee2478efb8 module/admincp/include/component/controller/block/index.class.php
 722040368270ba9a9345355a624e16c0 module/admincp/include/component/controller/checksum/modified.class.php
@@ -3551,7 +3551,7 @@ f7887325bc0631d5f936c83ec7f01610 module/theme/include/component/controller/admin
 cdb8089e1b84797e16f04a8829e0ec43 module/theme/include/component/controller/admincp/export.class.php
 5ba7c8b9909cf0f4ed55b8f8e0e78af8 module/theme/include/component/controller/admincp/flavor.class.php
 d7fa6e6a7e9d38b5d5a3be865d123e26 module/theme/include/component/controller/admincp/import.class.php
-ff7589e06e13663c6656bc6c7f9276cb module/theme/include/component/controller/admincp/index.class.php
+c3ed17e6209bd5279fe9a4b4ad6dfaf2 module/theme/include/component/controller/admincp/index.class.php
 fa6700311d0e3bba7ad6bb06c61ade1c module/theme/include/component/controller/admincp/manage.class.php
 49a83ed98a4957c3d961a8fe6d858b4e module/theme/include/component/controller/admincp/style/add.class.php
 bb8bc780129818b4d53af0326e3265a4 module/theme/include/component/controller/admincp/style/css/add.class.php

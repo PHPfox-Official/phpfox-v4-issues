@@ -31,7 +31,7 @@ class Theme_Component_Controller_Admincp_Index extends Phpfox_Component {
 		if (is_object($products)) {
 			foreach ($products as $product) {
 				foreach ($themes as $theme) {
-					if ($theme->internal_id == $product->id) {
+					if (isset($theme->internal_id) && isset($product->id) && $theme->internal_id == $product->id) {
 						continue 2;
 					}
 				}

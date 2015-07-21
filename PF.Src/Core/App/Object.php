@@ -60,7 +60,7 @@ class Object extends \Core\Objectify {
 			*/
 			if (file_exists($file)) {
 				$this->auth = (object) require($file);
-				$this->internal_id = $this->auth->internal_id;
+				$this->internal_id = (isset($this->auth->internal_id) ? $this->auth->internal_id : 0);
 			}
 		}
 	}

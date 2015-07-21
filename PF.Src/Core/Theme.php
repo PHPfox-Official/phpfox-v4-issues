@@ -166,7 +166,8 @@ class Theme extends Model {
 			'is_active' => 1,
 			'is_default' => 1,
 			'name' => 'Default',
-			// 'folder' => 'default'
+			'created' => PHPFOX_TIME,
+			'folder' => '__'
 		]);
 		$this->db->update(':theme_style', ['folder' => $flavorId], ['style_id' => $flavorId]);
 

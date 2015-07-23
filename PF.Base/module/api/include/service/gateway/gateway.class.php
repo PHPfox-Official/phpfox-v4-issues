@@ -87,7 +87,7 @@ class Api_Service_Gateway_Gateway extends Phpfox_Service
 			->from($this->_sTable, 'ag')
 			->where('ag.is_active = 1')
 			->execute('getRows');
-		
+
 		foreach ($aGateways as $iKey => $aGateway)
 		{
 			if (isset($aGatewayData['fail_' . $aGateway['gateway_id']]) && $aGatewayData['fail_' . $aGateway['gateway_id']] === true)
@@ -98,14 +98,14 @@ class Api_Service_Gateway_Gateway extends Phpfox_Service
 			}
 			
 			if (!($oGateway = Phpfox::getLib('gateway')->load($aGateway['gateway_id'], array_merge($aGateway, $aGatewayData))))
-			{				
+			{
 				unset($aGateways[$iKey]);
 				
 				continue;
 			}
 			
 			if (($aGateways[$iKey]['form'] = $oGateway->getForm()) === false)
-			{				
+			{
 				unset($aGateways[$iKey]);
 			}
 		}

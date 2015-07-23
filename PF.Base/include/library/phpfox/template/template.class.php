@@ -1327,6 +1327,23 @@ class Phpfox_Template
             $aCacheCSS = array();
             
             $this->_sFooter = '';
+
+
+		if (Phpfox::isUser()) {
+			$image = Phpfox_Image_Helper::instance()->display([
+				'user' => Phpfox::getUserBy(),
+				'suffix' => '_50_square',
+				// 'return_url' => true
+			]);
+
+			// if (strpos($image, 'no_image_user')) {
+			$image = htmlspecialchars($image);
+			$image = str_replace(['<', '>'], ['&lt;', '&gt;'], $image);
+			// }
+
+			$this->_sFooter .= '<div id="auth-user" data-user-name="' . Phpfox::getUserBy('user_name') . '" data-id="' . Phpfox::getUserId() . '" data-name="' . Phpfox::getUserBy('full_name') . '" data-image="' . $image . '"></div>';
+		}
+
             $sJs .= "\t\t\t" . 'var $Behavior = {}, $Ready = $Ready = function(callback) {$Behavior[callback.toString().length] = callback;}, $Events = {}, $Event = function(callback) {$Events[callback.toString().length] = callback;};' . "\n";
             $sJs .= "\t\t\t" .'var $Core = {};' . "\n";
 			$aCustomCssFile = array();
@@ -1914,6 +1931,7 @@ class Phpfox_Template
 	}
 
 	public function getFooter() {
+
 		$this->_sFooter .= '<div id="show-side-panel"><span></span></div>';
 
 		if (Phpfox::isAdmin() && !Phpfox::isAdminPanel()) {
@@ -1936,21 +1954,6 @@ class Phpfox_Template
 					$this->_sFooter .= '<script src="' . $js . '"></script>';
 				}
 			}
-		}
-
-		if (Phpfox::isUser()) {
-			$image = Phpfox_Image_Helper::instance()->display([
-				'user' => Phpfox::getUserBy(),
-				'suffix' => '_50_square',
-				'return_url' => true
-			]);
-
-			if (strpos($image, 'no_image_user')) {
-				$image = htmlspecialchars($image);
-				$image = str_replace(['<', '>'], ['&lt;', '&gt;'], $image);
-			}
-
-			$this->_sFooter .= '<div id="auth-user" data-id="' . Phpfox::getUserId() . '" data-name="' . Phpfox::getUserBy('full_name') . '" data-image="' . $image . '"></div>';
 		}
 
 		return $this->_sFooter;

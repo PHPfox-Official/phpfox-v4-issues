@@ -27,10 +27,12 @@ class User_Service_Featured_Process extends Phpfox_Service
 	 * This function features a member and clears the cache
 	 * @return bool for success
 	 */
-	public function feature($iUser)
+	public function feature($iUser, $byPass = false)
 	{
 		// check for permissions on featuring
-		if (!Phpfox::getUserParam('user.can_feature'))	return false;
+		if (!$byPass) {
+			if (!Phpfox::getUserParam('user.can_feature'))	return false;
+		}
 		
 		(($sPlugin = Phpfox_Plugin::get('user.service_featured_feature_start')) ? eval($sPlugin) : false);
 		$iUser = (int)$iUser;

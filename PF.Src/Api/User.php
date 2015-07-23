@@ -3,7 +3,6 @@
 namespace Api;
 
 class User extends \Core\Api {
-
 	public function put($userId) {
 		$requests = $this->accept([
 			'name' => 'full_name',

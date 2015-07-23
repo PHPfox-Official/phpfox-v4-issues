@@ -24,9 +24,9 @@ class Api_Component_Block_Gateway_Form extends Phpfox_Component
 		
 		// http://www.phpfox.com/tracker/view/15093/
 		$bIsThickBox = $this->getParam('bIsThickBox');
-		
+
 		$this->template()->assign(array(
-				'aGateways' => Phpfox::getService('api.gateway')->get($aGatewayData),
+				'aGateways' => Api_Service_Gateway_Gateway::instance()->get($aGatewayData),
 				'aGatewayData' => $aGatewayData,
 				// http://www.phpfox.com/tracker/view/15093/
 				'bIsThickBox' => $bIsThickBox

@@ -1793,6 +1793,8 @@ if (substr(window.location.hash, 0, 2) == '#!')
 }
 
 $Core.page = function(url) {
+	PF.event.trigger('on_page_change_start');
+
 	// p(url);
 	$.ajax({
 		url: url,
@@ -1903,6 +1905,8 @@ $Core.show_page = function($aParams)
 	$('._block_content').html('' + $aParams['content'] + '');
 
 	$('body').css('cursor', 'auto');
+
+	PF.event.trigger('on_page_change_end');
 	
 	// $oEventHistory[($Core.hasPushState() ? $Core.getRequests(window.location, true) : window.location.hash.replace('#!', ''))] = $aParams['content'];
 	

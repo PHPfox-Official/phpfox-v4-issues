@@ -264,16 +264,21 @@ class Phpfox_Gateway_Api_Paypal implements Phpfox_Gateway_Interface
 		if ($bVerified === true)
 		{
 			Phpfox::log('Callback OK');
-			
+
+			$isApp = false;
 			$aParts = explode('|', $this->_aParam['item_number']);
+			if (substr($aParts[0], 0, 5) == '@App/') {
+				$isApp = true;
+				Phpfox::log('Is an APP.');
+			}
 			
 			Phpfox::log('Attempting to load module: ' . $aParts[0]);
 			
-			if (Phpfox::isModule($aParts[0]))
+			if ($isApp || Phpfox::isModule($aParts[0]))
 			{
 				Phpfox::log('Module is valid.');
 				Phpfox::log('Checking module callback for method: paymentApiCallback');
-				if (Phpfox::hasCallback($aParts[0], 'paymentApiCallback'))
+				if ($isApp || (Phpfox::isModule($aParts[0]) && Phpfox::hasCallback($aParts[0], 'paymentApiCallback')))
 				{
 					Phpfox::log('Module callback is valid.');
 					Phpfox::log('Building payment status: ' . (isset($this->_aParam['payment_status']) ? $this->_aParam['payment_status'] : '') . ' (' . (isset($this->_aParam['txn_type']) ? $this->_aParam['txn_type'] : '') . ')');
@@ -312,14 +317,23 @@ class Phpfox_Gateway_Api_Paypal implements Phpfox_Gateway_Interface
 					if ($sStatus !== null)
 					{
 						Phpfox::log('Executing module callback');
-						Phpfox::callback($aParts[0] . '.paymentApiCallback', array(
-								'gateway' => 'paypal',
-								'ref' => $this->_aParam['txn_id'],						
-								'status' => $sStatus,
-								'item_number' => $aParts[1],
-								'total_paid' => (isset($this->_aParam['mc_gross']) ? $this->_aParam['mc_gross'] : null)
-							)
+
+						$params = array(
+							'gateway' => 'paypal',
+							'ref' => $this->_aParam['txn_id'],
+							'status' => $sStatus,
+							'item_number' => $aParts[1],
+							'total_paid' => (isset($this->_aParam['mc_gross']) ? $this->_aParam['mc_gross'] : null)
 						);
+
+						if ($isApp) {
+							$callback = str_replace('@App/', '', $aParts[0]);
+							Phpfox::log('Running app callback on: ' . $callback);
+							\Core\Payment\Trigger::event($callback, $params);
+						}
+						else {
+							Phpfox::callback($aParts[0] . '.paymentApiCallback', $params);
+						}
 						
 						header('HTTP/1.1 200 OK');				
 					}

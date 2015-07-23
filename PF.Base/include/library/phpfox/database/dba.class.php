@@ -435,6 +435,10 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	public function all() {
 		return $this->execute('getSlaveRows');
 	}
+
+	public function count() {
+		return $this->execute('getField');
+	}
 	
 	/**
 	 * Performs the final SQL query with all the information we have gathered from various

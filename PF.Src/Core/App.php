@@ -5,7 +5,7 @@ namespace Core;
 class App {
 	public static $routes = [];
 
-	private $_apps = [];
+	private static $_apps = null;
 
 	public function __construct() {
 		if (defined('PHPFOX_NO_APPS')) {
@@ -17,6 +17,11 @@ class App {
 			return;
 		}
 
+		if (self::$_apps !== null) {
+			return;
+		}
+
+		self::$_apps = [];
 		foreach (scandir($base) as $app) {
 			if ($app == '.' || $app == '..') {
 				continue;
@@ -50,7 +55,7 @@ class App {
 				}
 			}
 
-			$this->_apps[$data->id] = $data;
+			self::$_apps[$data->id] = $data;
 
 			\Core\Route\Controller::$active = $data->path;
 			\Core\Route\Controller::$activeId = $data->id;
@@ -70,7 +75,7 @@ class App {
 			}
 		}
 
-		// d($this->_apps); exit;
+		// d(self::$_apps); exit;
 	}
 
 	public function vendor() {
@@ -345,11 +350,11 @@ class App {
 			];
 		}
 		else {
-			if (!isset($this->_apps[$id])) {
+			if (!isset(self::$_apps[$id])) {
 				throw new \Exception('App not found "' . $id . '".');
 			}
 
-			$app = $this->_apps[$id];
+			$app = self::$_apps[$id];
 		}
 
 		return new App\Object($app);
@@ -398,7 +403,7 @@ class App {
 			}
 		}
 
-		foreach ($this->_apps as $app) {
+		foreach (self::$_apps as $app) {
 			$apps[] = new App\Object($app);
 		}
 

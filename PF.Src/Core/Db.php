@@ -14,6 +14,8 @@ namespace Core;
  * @method Db where(array $where)
  * @method Db limit($limit)
  * @method Db all()
+ * @method Db count()
+ * @method delete($table, array $set)
  * @method insert($table, array $set)
  * @method update($table, array $set, array $where)
  */

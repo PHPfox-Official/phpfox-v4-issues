@@ -6,4 +6,8 @@ class User {
 	public function isLoggedIn() {
 		return (\Phpfox::isUser() ? true : false);
 	}
+
+	public function membersOnly() {
+		\Phpfox::isUser(true);
+	}
 }

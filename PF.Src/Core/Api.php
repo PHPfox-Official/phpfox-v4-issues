@@ -25,7 +25,7 @@ abstract class Api {
 		$this->db = \Phpfox_Database::instance();
 		$this->request = \Phpfox_Request::instance();
 
-		if ($this->request->segment(1) == 'api') {
+		if ($this->request->segment(1) == 'api' && $this->request->segment(2) != 'gateway') {
 			\Core\Route\Controller::$isApi = true;
 
 			if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {

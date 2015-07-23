@@ -20,7 +20,7 @@ class Api_Component_Controller_Gateway_Callback extends Phpfox_Component
 	 */
 	public function process()
 	{
-		if (!($oGateway = Phpfox::getService('api.gateway')->callback($this->request()->get('req4'))))
+		if (!($oGateway = Api_Service_Gateway_Gateway::instance()->callback($this->request()->get('req4'))))
 		{
 		
 		}

@@ -26,6 +26,10 @@ class View {
 			return \Phpfox_Url::instance()->makeUrl($url, $params);
 		}));
 
+		$this->_env->addFunction(new \Twig_SimpleFunction('setting', function() {
+			return call_user_func_array('setting', func_get_args());
+		}));
+
 		$this->_env->addFunction(new \Twig_SimpleFunction('phrase', function() {
 			return call_user_func_array('phrase', func_get_args());
 		}));
@@ -33,6 +37,24 @@ class View {
 		$this->_env->addFunction(new \Twig_SimpleFunction('comments', function() {
 
 			\Phpfox::getBlock('feed.comment');
+
+			return '';
+		}));
+
+		$this->_env->addFunction(new \Twig_SimpleFunction('payment', function($params) {
+			$params = new \Core\Object($params);
+
+			\Phpfox::getBlock('api.gateway.form', ['gateway_data' => [
+				'item_number' => '@App/' . $params->callback . '|' . $params->id,
+				'currency_code' => 'USD',
+				'amount' => $params->amount,
+				'item_name' => $params->name,
+				'return' => $params->return,
+				'recurring' => '',
+				'recurring_cost' => '',
+				'alternative_cost' => '',
+				'alternative_recurring_cost' => ''
+			]]);
 
 			return '';
 		}));

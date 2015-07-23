@@ -27,7 +27,7 @@ class Api_Service_Gateway_Process extends Phpfox_Service
 	{
 		$this->database()->insert(Phpfox::getT('api_gateway_log'), array(
 				'gateway_id' => $sGateway,
-				'log_data' => serialize($aLogData),
+				'log_data' => json_encode($aLogData),
 				'ip_address' => Phpfox::getIp(),
 				'time_stamp' => PHPFOX_TIME
 			)

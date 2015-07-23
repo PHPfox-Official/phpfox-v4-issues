@@ -1,7 +1,7 @@
 {if $aMessages}
 <ul class="panel_rows">
 	{foreach from=$aMessages item=aMail}
-	<li><a href="{url link='mail.thread' id=$aMail.thread_id}" class="popup {if $aMail.viewer_is_new} is_new{/if}" data-custom-class="mail_thread">
+	<li><a onclick="$(this).removeClass('is_new');" href="{url link='mail.thread' id=$aMail.thread_id}" class="popup {if $aMail.viewer_is_new} is_new{/if}" data-custom-class="mail_thread">
 			<div class="panel_rows_image">
 				{if $aMail.user_id == Phpfox::getUserId()}
 				{img user=$aMail suffix='_50_square' max_width=50 max_height=50 no_link=true}

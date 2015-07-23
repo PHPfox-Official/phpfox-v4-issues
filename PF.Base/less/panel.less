@@ -75,12 +75,17 @@
 			position:relative;
 		}
 
+		> a.is_new .panel_focus:before {
+			.fa('\f111');
+			color:@brandPrimary;
+		}
+
 		.panel_rows_time {
 			margin-top:5px;
 		}
 
 		.panel_focus {
-			.drop_data_user {
+			.drop_data_user, > span {
 				color:@linkFocus;
 				font-weight:600;
 				font-size:@fontSizeBase - 2;

@@ -5725,10 +5725,23 @@ a.not_active:hover {
   border-bottom: 1px #ebebeb solid;
   position: relative;
 }
+.panel_rows li > a.is_new .panel_focus:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  text-indent: 0px !important;
+  content: '\f111';
+  color: #298ada;
+}
 .panel_rows li .panel_rows_time {
   margin-top: 5px;
 }
-.panel_rows li .panel_focus .drop_data_user {
+.panel_rows li .panel_focus .drop_data_user,
+.panel_rows li .panel_focus > span {
   color: #222222;
   font-weight: 600;
   font-size: 12px;

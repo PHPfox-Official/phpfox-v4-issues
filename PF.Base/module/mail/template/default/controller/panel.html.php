@@ -33,3 +33,6 @@
 	No new messages
 </div>
 {/if}
+<div class="panel_actions">
+	<a href="{url link='mail.compose'}" class="popup js_hover_title"><i class="fa fa-pencil-square"></i><span class="js_hover_info">Compose</span></a>
+</div>

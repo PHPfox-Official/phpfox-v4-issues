@@ -5695,6 +5695,27 @@ a.not_active:hover {
   left: 200px;
   transition: all 0.5s ease;
 }
+.panel_is_active .panel_actions {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  height: 50px;
+  text-align: center;
+  background: #f7f7f7;
+}
+.panel_is_active .panel_actions i {
+  font-size: 20px;
+  line-height: 50px;
+}
+.panel_is_active #panel:not(.is_feed) .panel_rows {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 50px;
+  overflow: auto;
+}
 .panel_is_active #panel.is_feed {
   z-index: 2000;
   bottom: auto;
@@ -5736,6 +5757,7 @@ a.not_active:hover {
   text-indent: 0px !important;
   content: '\f111';
   color: #298ada;
+  margin-right: 5px;
 }
 .panel_rows li .panel_rows_time {
   margin-top: 5px;

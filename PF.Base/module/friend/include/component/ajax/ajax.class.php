@@ -298,7 +298,10 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 		foreach ($aUsers as $aUser)
 		{
 			$iFound++;
-			$sHtml .= '<li><a rel="' . $aUser['user_id'] . '" class="js_friend_search_link ' . (($iFound == 1) ? 'js_temp_friend_search_form_holder_focus' : '') . '" href="#" onclick="return $Core.searchFriendsInput.processClick(this, \'' . $aUser['user_id'] . '\');"><img src="' . $aUser['user_image'] . '" alt="" style="width:25px; height:25px;" />' . $aUser['full_name'] . '<div class="clear"></div></a></li>';			
+			if (substr($aUser['user_image'], 0, 5) == 'http:') {
+				$aUser['user_image'] = '<img src="' . $aUser['user_image'] . '">';
+			}
+			$sHtml .= '<li><div rel="' . $aUser['user_id'] . '" class="js_friend_search_link ' . (($iFound == 1) ? 'js_temp_friend_search_form_holder_focus' : '') . '" href="#" onclick="return $Core.searchFriendsInput.processClick(this, \'' . $aUser['user_id'] . '\');"><span class="image">' . $aUser['user_image'] . '</span><span class="user">' . $aUser['full_name'] . '</span></div></li>';
 			$sStoreUser .= '$Core.searchFriendsInput.storeUser('.$aUser['user_id'].', JSON.parse('. json_encode(json_encode($aUser)) .'));';
 			
 			if ($iFound > $this->get('total_search'))
@@ -307,7 +310,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 			}
 		}
 		// find('.js_temp_friend_search_form')
-		$sHtml = '<div class="js_temp_friend_search_form_holder" style="width:' . $this->get('width') . ';"><ul>' . $sHtml . '</ul></div>';
+		$sHtml = '<div class="js_temp_friend_search_form_holder"><ul>' . $sHtml . '</ul></div>';
 		$this->call($sStoreUser);
 		$this->call('$("#'.$this->get('parent_id') . '").parent().find(".js_temp_friend_search_form").html(\''. str_replace("'", "\\'",$sHtml) .'\').show();');
 	}

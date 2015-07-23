@@ -41,6 +41,33 @@
 	}
 	*/
 
+	.panel_actions {
+		position:absolute;
+		left:0px;
+		bottom:0px;
+		right:0px;
+		height:50px;
+		text-align:center;
+
+		i {
+			font-size:20px;
+			line-height:50px;
+		}
+
+		background:darken(@blockBg, 3%)
+	}
+
+	#panel:not(.is_feed) {
+		.panel_rows {
+			position:absolute;
+			top:0px;
+			left:0px;
+			right:0px;
+			bottom:50px;
+			overflow:auto;
+		}
+	}
+
 	#panel.is_feed {
 		z-index:2000;
 		bottom:auto;
@@ -78,6 +105,7 @@
 		> a.is_new .panel_focus:before {
 			.fa('\f111');
 			color:@brandPrimary;
+			margin-right:5px;
 		}
 
 		.panel_rows_time {

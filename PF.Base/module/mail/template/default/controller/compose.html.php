@@ -33,11 +33,8 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div><input type="hidden" name="val[to][]" value="{$aUser.user_id}" /></div>
 	{else}
 		<div class="table">
-			<div class="table_left">
-				{phrase var='mail.to'}:
-			</div>
 			<div class="table_right">					
-				<div id="js_mail_search_friend_placement" style="width:410px;"></div>
+				<div id="js_mail_search_friend_placement"></div>
 				<div id="js_mail_search_friend"></div>
 				<script type="text/javascript">
 				var bRun = true;
@@ -103,7 +100,10 @@ defined('PHPFOX') or exit('NO DICE!');
 <script>
 	$Ready(function() {
 		if ($('#js_compose_new_message #message').length) {
-			$('#js_compose_new_message #message').focus().parents('form:first').submit(function() {
+			if (!$('#js_mail_search_friend').length) {
+				$('#js_compose_new_message #message').focus();
+			}
+			$('#js_compose_new_message #message').parents('form:first').submit(function() {
 				$Core.processForm('#js_mail_compose_submit');
 				$(this).ajaxCall('mail.composeProcess');
 				return false;

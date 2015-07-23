@@ -10618,6 +10618,13 @@ a.marketplace_contact_seller:hover {
   display: block;
 }
 @media (max-device-width: 1430px), (max-width: 1430px) {
+  #page_profile_index #container {
+    margin-left: inherit;
+  }
+  #page_profile_index #right,
+  #page_profile_index #left {
+    position: static;
+  }
   .holder {
     width: auto;
   }

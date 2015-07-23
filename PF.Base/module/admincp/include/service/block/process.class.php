@@ -158,10 +158,12 @@ class Admincp_Service_Block_Process extends Phpfox_Service
 		if ($aVals['type_id'] > 0 && isset($aVals['source_code']))
 		{
 			$aVals['source_parsed'] = $aVals['source_code'];
+			/*
 			if (!empty($aVals['source_code']) && $aVals['type_id'] == '2')
 			{
 				$aVals['source_parsed'] = Phpfox::getLib('template.cache')->parse($aVals['source_code']);
 			}
+			*/
 						
 			$this->database()->delete(Phpfox::getT('block_source'), 'block_id = ' . (int) $iId);
 			$this->database()->insert(Phpfox::getT('block_source'), array(

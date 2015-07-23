@@ -7,7 +7,7 @@ class App {
 
 	private static $_apps = null;
 
-	public function __construct() {
+	public function __construct($refresh = false) {
 		if (defined('PHPFOX_NO_APPS')) {
 			return;
 		}
@@ -17,7 +17,7 @@ class App {
 			return;
 		}
 
-		if (self::$_apps !== null) {
+		if (self::$_apps !== null && !$refresh) {
 			return;
 		}
 
@@ -298,7 +298,7 @@ class App {
 			file_put_contents($lockPath, $lock);
 		}
 
-		$CoreApp = new \Core\App();
+		$CoreApp = new \Core\App(true);
 		$Object = $CoreApp->get($json->id);
 
 		if ($isNew) {

@@ -46,7 +46,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{module name='privacy.form' privacy_name='privacy' privacy_info='photo.control_who_can_see_this_photo_album_and_any_photos_associated_with_it' privacy_custom_id='js_custom_privacy_input_holder_album'}
 		</div>			
 	</div>
-	<div class="table">
+	<div class="table" style="display:none;">
 		<div class="table_left">
 			{phrase var='photo.comment_privacy'}:
 		</div>

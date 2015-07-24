@@ -9278,6 +9278,14 @@ ul.activity_feed_form_attach li a:hover {
   display: inline-block;
   vertical-align: middle;
 }
+#page_photo_album .mosaicflow_load {
+  margin-bottom: 50px;
+  visibility: hidden;
+}
+#js_album_description {
+  padding: 10px 10px 0px 10px;
+  font-size: 13px;
+}
 #page_photo_index .mosaicflow_load {
   min-height: 1000px;
 }

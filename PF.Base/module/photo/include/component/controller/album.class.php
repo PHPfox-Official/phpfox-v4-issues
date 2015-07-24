@@ -162,22 +162,7 @@ class Photo_Component_Controller_Album extends Phpfox_Component
 				)
 				->setEditor()
 				->setHeader('cache', array(
-					'jquery/plugin/jquery.highlightFade.js' => 'static_script',	
-					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
-					'jquery/plugin/imgnotes/jquery.tag.js' => 'static_script',						
-					'quick_edit.js' => 'static_script',
-					'comment.css' => 'style_css',
-					'pager.css' => 'style_css',
-					'view.js' => 'module_photo',
-					'photo.js' => 'module_photo',
-					'switch_legend.js' => 'static_script',
-					'switch_menu.js' => 'static_script',
-					'index.css' => 'module_photo',
-					'view.css' => 'module_photo',
-					'feed.js' => 'module_feed',
-					'browse.css' => 'module_photo',
-					'edit.css' => 'module_photo',
-					'index.js' => 'module_photo'					
+					'jquery/plugin/jquery.mosaicflow.min.js' => 'static_script'
 				)
 			)
 			->assign(array(

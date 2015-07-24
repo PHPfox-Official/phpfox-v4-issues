@@ -11,8 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!');
 
 ?>
-
-
 {if count($aPhotos) < 1}
 <div class="extra_info">
 	{phrase var='photo.no_photos_have_been_added_yet'}
@@ -20,8 +18,6 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 
 {foreach from=$aPhotos item=aPhoto name=photos}
-
-
 
 <div class="{if $aPhoto.view_id == 1 && !isset($bIsInApproveMode)} row_moderate_image{/if} {if $aPhoto.is_sponsor && !Phpfox::getParam('photo.show_info_on_mouseover')} row_sponsored_image{/if}{if isset($sView) && $sView == 'featured'}{else}{if $aPhoto.is_featured && !Phpfox::getParam('photo.show_info_on_mouseover')} row_featured_image{/if}{/if} photo_row {if !Phpfox::getParam('photo.show_info_on_mouseover')}photo_row_small{else}photo_row_dynamic_view{/if}{if isset($iPhotosPerRow)} photos_per_page_{$iPhotosPerRow}{/if}" id="js_photo_id_{$aPhoto.photo_id}">
 	<div class="js_outer_photo_div js_mp_fix_holder photo_row_holder"{if !Phpfox::getParam('photo.show_info_on_mouseover')} style="display: inline-block;"{/if}>

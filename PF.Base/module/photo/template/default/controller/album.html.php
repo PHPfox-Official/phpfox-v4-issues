@@ -11,6 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{if !PHPFOX_IS_AJAX}
 <div class="item_view">
 	<div class="item_info">
 		{$aForms.time_stamp|convert_time} {phrase var='photo.by_lowercase'} {$aForms|user:'':'':50}
@@ -36,7 +37,33 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	
 	<div id="js_album_content">
-		{template file='photo.block.photo-entry'}
+		<div class="clearfix mosaicflow_load" data-width="300">
+{/if}
+		{if $aPhotos}
+			{foreach from=$aPhotos item=aPhoto}
+			<article class="photos_row" data-photo-id="{$aPhoto.photo_id}" id="js_photo_id_{$aPhoto.photo_id}">
+				{if Phpfox::getUserParam('photo.can_approve_photos') || Phpfox::getUserParam('photo.can_delete_other_photos')}
+				<div class="_moderator">
+					<a href="#{$aPhoto.photo_id}" class="moderate_link built" rel="photo"><i class="fa"></i></a>
+				</div>
+				{/if}
+
+				<header class="_a" data-href="{$aPhoto.link}">
+					<h1><a href="{$aPhoto.link}">{$aPhoto.title|clean}</a></h1>
+					<ul class="photos_row_info">
+						<li>by {$aPhoto|user}</li>
+					</ul>
+				</header>
+				<a href="{$aPhoto.link}">
+					{img server_id=$aPhoto.server_id path='photo.url_photo' file=$aPhoto.destination suffix='_500' title=$aPhoto.title}
+				</a>
+			</article>
+			{/foreach}
+			{pager}
+		{/if}
+
+{if !PHPFOX_IS_AJAX}
+		</div>
 		{if Phpfox::getUserParam('photo.can_approve_photos') || Phpfox::getUserParam('photo.can_delete_other_photos')}
 		{moderation}
 		{/if}
@@ -47,3 +74,4 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>	
 
 </div>
+{/if}

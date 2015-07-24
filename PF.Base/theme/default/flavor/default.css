@@ -9282,6 +9282,38 @@ ul.activity_feed_form_attach li a:hover {
   margin-bottom: 50px;
   visibility: hidden;
 }
+#photo_selector {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+}
+#photo_selector input {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 100%;
+  padding: 0px;
+  height: 50px;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+}
+#photo_selector_button {
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: #298ada;
+  color: #ffffff;
+  font-weight: 200;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+}
 #js_album_description {
   padding: 10px 10px 0px 10px;
   font-size: 13px;

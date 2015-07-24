@@ -28,23 +28,39 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div><input type="hidden" name="val[callback_item_id]" value="{$iItem}" /></div>
 		<div><input type="hidden" name="val[group_id]" value="{$iItem}" /></div>
 		<div><input type="hidden" name="val[parent_user_id]" value="{$iItem}" /></div>
-	{/if}		
-		
+	{/if}
+		<div class="table">
+			<div class="table_right">
+				<div id="photo_selector">
+					<div id="photo_selector_button">Select photos(s)</div>
+					<div id="js_photo_upload_input"></div>
+				</div>
+				<div class="extra_info">
+					{phrase var='photo.you_can_upload_a_jpg_gif_or_png_file'}
+					{if $iMaxFileSize !== null}
+					<br />
+					{phrase var='photo.the_file_size_limit_is_file_size_if_your_upload_does_not_work_try_uploading_a_smaller_picture' file_size=$iMaxFileSize|filesize}
+					{/if}
+				</div>
+			</div>
+		</div>
+
+	<div class="_form_extra">
 		{plugin call='photo.template_controller_upload_form'}
 		{if Phpfox::getUserParam('photo.can_create_photo_album')}
 			<div class="table" id="album_table">
 				<div class="table_left">
 					{phrase var='photo.photo_album'}
 				</div>
-				<div class="table_right_text">
+				<div class="table_right table_right_text">
 					<span id="js_photo_albums"{if !count($aAlbums)} style="display:none;"{/if}>
-						<select name="val[album_id]" id="js_photo_album_select" style="width:200px;" onchange="if (empty(this.value)) {l} $('#js_photo_privacy_holder').slideDown(); {r} else {l} $('#js_photo_privacy_holder').slideUp(); {r}">
+						<select name="val[album_id]" id="js_photo_album_select" onchange="if (empty(this.value)) {l} $('#js_photo_privacy_holder').slideDown(); {r} else {l} $('#js_photo_privacy_holder').slideUp(); {r}">
 							<option value="">{phrase var='photo.select_an_album'}:</option>
 								{foreach from=$aAlbums item=aAlbum}
 									<option value="{$aAlbum.album_id}"{if $iAlbumId == $aAlbum.album_id} selected="selected"{/if}>{$aAlbum.name|clean}</option>
 								{/foreach}
 						</select>
-					</span>&nbsp;(<a href="#" onclick="$Core.box('photo.newAlbum', 500, 'module={$sModuleContainer}&amp;item={$iItem}'); return false;">{phrase var='photo.create_a_new_photo_album'}</a>)
+					</span> <a href="#" class="js_hover_title" onclick="$Core.box('photo.newAlbum', 500, 'module={$sModuleContainer}&amp;item={$iItem}'); return false;"><i class="fa fa-plus-square fa-2x"></i><span class="js_hover_info">{phrase var='photo.create_a_new_photo_album'}</span></a>
 				</div>
 			</div>		
 		{/if}		
@@ -60,7 +76,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>		
 		{/if}
 		
-		<div id="js_photo_privacy_holder" {if $iAlbumId} style="display:none;"{/if}>
+		<div class="table" id="js_photo_privacy_holder" {if $iAlbumId} style="display:none;"{/if}>
 			{if $sModuleContainer}
 			<div><input type="hidden" id="privacy" name="val[privacy]" value="0" /></div>
 			<div><input type="hidden" id="privacy_comment" name="val[privacy_comment]" value="0" /></div>
@@ -84,24 +100,9 @@ defined('PHPFOX') or exit('NO DICE!');
 					</div>		
 				{/if}
 			{/if}
-		</div>		
+		</div>
 
-			<div class="table">
-				<div class="table_left">
-					{phrase var='photo.select_photo_s'}:
-				</div>
-				<div class="table_right">
-					<div id="js_photo_upload_input"></div>
-					
-					<div class="extra_info">
-						{phrase var='photo.you_can_upload_a_jpg_gif_or_png_file'}
-						{if $iMaxFileSize !== null}
-						<br />
-						{phrase var='photo.the_file_size_limit_is_file_size_if_your_upload_does_not_work_try_uploading_a_smaller_picture' file_size=$iMaxFileSize|filesize}
-						{/if}				
-					</div>
-				</div>
-			</div>
+</div>
 
 		
 	</form>

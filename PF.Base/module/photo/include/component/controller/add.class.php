@@ -153,8 +153,8 @@ class Photo_Component_Controller_Add extends Phpfox_Component
 		
 		$this->template()->setTitle(Phpfox::getPhrase('photo.upload_photos'))	
 			->setFullSite()	
-			->setBreadcrumb(Phpfox::getPhrase('photo.photo'), $this->url()->makeUrl(($sModule !== false ? $sModule .'.': '') . ($iItem !== false ? $iItem .'.': '') . 'photo'))
-			->setBreadcrumb(Phpfox::getPhrase('photo.upload_photos'), $this->url()->makeUrl('photo.add'), true)
+			//->setBreadcrumb(Phpfox::getPhrase('photo.photo'), $this->url()->makeUrl(($sModule !== false ? $sModule .'.': '') . ($iItem !== false ? $iItem .'.': '') . 'photo'))
+			->setBreadcrumb(Phpfox::getPhrase('photo.upload_photos'), $this->url()->makeUrl('photo.add'))
 			->setHeader('cache', array(
 					'progress.js' => 'static_script'
 				)

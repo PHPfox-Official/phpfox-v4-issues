@@ -6,7 +6,7 @@ namespace Core;
  * Class Request
  * @package Core
  *
- * @method get($var)
+ * @method get($var = null)
  * @method isPost()
  * @method segment($number)
  * @method method()

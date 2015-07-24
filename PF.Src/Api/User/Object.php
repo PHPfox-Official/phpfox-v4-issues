@@ -12,6 +12,7 @@ class Object extends \Core\Objectify {
 	public $location;
 	public $gender;
 	public $dob;
+	public $group;
 
 	public function perm($perm) {
 		return \Phpfox::getUserParam($perm);

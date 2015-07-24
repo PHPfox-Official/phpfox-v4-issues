@@ -67,6 +67,9 @@ class Objectify {
 		$link = \Phpfox_Url::instance()->makeUrl($row['user_name']);
 		return [
 			'id' => (int) $row['user_id'],
+			'group' => (object) [
+				'id' => (int) $row['user_group_id']
+			],
 			'name' => $row['full_name'],
 			'name_link' => '<span id="js_user_name_link_' . $row['user_name'] . '" class="user_profile_link_span"><a href="' . $link . '">' . $row['full_name'] . '</a></span>',
 			'url' => $link,

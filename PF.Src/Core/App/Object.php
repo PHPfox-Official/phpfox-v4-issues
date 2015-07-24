@@ -15,7 +15,7 @@ class Object extends \Core\Objectify {
 		'id' => '',
 		'key' => ''
 	];
-	public $admincpMenu;
+	public $admincp_menu;
 	public $settings = [];
 	public $webhooks = [];
 	public $routes = [];
@@ -23,6 +23,7 @@ class Object extends \Core\Objectify {
 	public $js = [];
 	public $map = [];
 	public $internal_id;
+	public $user_group_settings = [];
 
 	public function __construct($keys) {
 		parent::__construct($keys);

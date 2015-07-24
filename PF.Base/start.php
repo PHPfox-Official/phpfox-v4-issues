@@ -50,6 +50,15 @@ function setting($key, $default = null) {
 	return $Setting->get($key, $default);
 }
 
+function user($key = null, $default = null, $userGroupId = null) {
+	if ($key === null) {
+		return (new \Api\User())->get(\Phpfox::getUserId());
+	}
+
+	$Setting = new \Core\User\Setting();
+	return $Setting->get($key, $default, $userGroupId);
+}
+
 function phrase() {
 	$Reflect = (new ReflectionClass('Phpfox_Locale'))->newInstanceWithoutConstructor();
 

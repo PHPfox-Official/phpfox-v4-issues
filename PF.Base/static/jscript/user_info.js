@@ -14,7 +14,8 @@ $Core.userInfoLog = function(sLog){
 };
 
 $Core.loadUserToolTip = function($sUserName)
-{	   
+{
+	$Core.loadInit();
 	setTimeout('$Core.showUserToolTip(\'' + $sUserName + '\');', $iUserToolTipWaitTime);
 };
 

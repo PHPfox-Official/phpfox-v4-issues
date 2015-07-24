@@ -340,7 +340,7 @@ class User_Service_Group_Setting_Setting extends Phpfox_Service
 
 			$aRows = $this->database()->select('m.module_id, user_group_setting.name, user_group_setting.type_id, user_group_setting.default_admin, user_group_setting.default_user, user_group_setting.default_guest, user_group_setting.default_staff, user_setting.value_actual AS value_actual')
 				->from($this->_sTable, 'user_group_setting')
-				->join(Phpfox::getT('module'), 'm', 'm.module_id = user_group_setting.module_id')
+				->leftJoin(Phpfox::getT('module'), 'm', 'm.module_id = user_group_setting.module_id')
 				->leftJoin(Phpfox::getT('user_setting'), 'user_setting', "user_setting.user_group_id = '" . $iUserId . "' AND user_setting.setting_id = user_group_setting.setting_id")
 				->execute('getSlaveRows');				
 
@@ -348,8 +348,10 @@ class User_Service_Group_Setting_Setting extends Phpfox_Service
 			foreach ($aRows as $aRow)
 			{				
 				$this->_setType($aRow, $sVar);
-				
-				$aParams[$aRow['module_id'] . '.' . $aRow['name']] = $aRow['value_actual'];
+
+				$key = (Phpfox::isModule($aRow['module_id']) ? $aRow['module_id'] . '.' : '') . $aRow['name'];
+
+				$aParams[$key] = $aRow['value_actual'];
 			}			
 
 			$this->cache()->save($sCacheId, $aParams);

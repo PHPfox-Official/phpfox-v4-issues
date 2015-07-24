@@ -132,12 +132,16 @@ class Phpfox_Request
      * @param string $sCommand is any extra commands we need to execute
      * @return string parameter value
      */
-    public function get($sName = '', $mDef = '')
+    public function get($sName = null, $mDef = '')
     {
     	if ($this->_sName)
     	{
     		$sName = $this->_sName;
     	}
+
+	    if ($sName === null) {
+		    return (object) $this->_aArgs;
+	    }
     	
     	(($sPlugin = Phpfox_Plugin::get('request_get')) ? eval($sPlugin) : false);
     	

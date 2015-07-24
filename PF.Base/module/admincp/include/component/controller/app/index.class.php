@@ -27,23 +27,34 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 				];
 			}
 
+			if (($settings = $this->request()->get('user_group_setting'))) {
+				$UserGroupSetting = new Core\User\Setting();
+				$UserGroupSetting->save($App, $settings);
+
+				return [
+					'updated' => true
+				];
+			}
+
 			if ($this->request()->get('export')) {
 				$App->export();
 				exit;
 			}
 
 			$menus = [];
-			if ($App->admincpMenu) {
-				foreach ($App->admincpMenu as $key => $value) {
+			if ($App->admincp_menu) {
+				foreach ($App->admincp_menu as $key => $value) {
 					$menus[$key] = [
-						'url' => $this->url()->makeUrl('admincp/' . $value)
+						'url' => $this->url()->makeUrl('admincp/' . trim($value, '/'))
 					];
 				}
 			}
 
+			/*
 			$menus['Uninstall'] = [
 				'url' => $this->url()->makeUrl('admincp/app', ['id' => $App->id, 'uninstall' => 'yes'])
 			];
+			*/
 
 			$settings = [];
 			foreach ($App->settings as $key => $value) {
@@ -66,11 +77,43 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 				];
 			}
 
+			$userGroups = User_Service_Group_Group::instance()->get();
+			$userGroupSettings = [];
+			foreach ($userGroups as $group) {
+
+				$userGroupSettings[$group['user_group_id']] = [
+					'id' => $group['user_group_id'],
+					'name' => $group['title'],
+					'settings' => []
+				];
+
+				foreach ($App->user_group_settings as $key => $value) {
+					if (!isset($value->type)) {
+						$value->type = 'input:text';
+					}
+
+					if (!isset($value->value)) {
+						$value->value = '';
+					}
+
+					if (user($key) !== null) {
+						$value->value = user($key, null, $group['user_group_id']);
+					}
+
+					$userGroupSettings[$group['user_group_id']]['settings'][$key] = [
+						'info' => $value->info,
+						'value' => $value->value,
+						'type' => $value->type
+					];
+				}
+			}
+
 			$this->template()->assign([
 				'sSectionTitle' => $App->name,
 				'aSectionAppMenus' => $menus,
 				'ActiveApp' => $App,
-				'settings' => $settings
+				'settings' => $settings,
+				'userGroupSettings' => $userGroupSettings
 			]);
 
 			if (defined('PHPFOX_IS_TECHIE') && PHPFOX_IS_TECHIE) {

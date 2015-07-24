@@ -188,7 +188,9 @@ class App {
 		$lock = json_encode(['installed' => PHPFOX_TIME, 'version' => 0], JSON_PRETTY_PRINT);
 		file_put_contents($lockPath, $lock);
 
-		$App = new App();
+		(new \Core\Cache())->purge();
+
+		$App = new App(true);
 
 		$Object = $App->get($name);
 

@@ -30,6 +30,10 @@ class View {
 			return call_user_func_array('setting', func_get_args());
 		}));
 
+		$this->_env->addFunction(new \Twig_SimpleFunction('user', function() {
+			return call_user_func_array('user', func_get_args());
+		}));
+
 		$this->_env->addFunction(new \Twig_SimpleFunction('phrase', function() {
 			return call_user_func_array('phrase', func_get_args());
 		}));

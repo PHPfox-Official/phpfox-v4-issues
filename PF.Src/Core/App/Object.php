@@ -3,27 +3,126 @@
 namespace Core\App;
 
 class Object extends \Core\Objectify {
+
+	/**
+	 * App ID. Can only be alpanumeric and may contain the underscore
+	 * @var int
+	 */
 	public $id;
+
+	/**
+	 * Name of the app
+	 * @var string
+	 */
 	public $name;
-	public $vendor;
+
+	/**
+	 * Full path to the app. This is built by the system
+	 * @var string
+	 */
 	public $path;
+
+	/**
+	 * Define if this is an old school module or app
+	 * @var bool
+	 */
 	public $is_module = false;
+
+	/**
+	 * Full path to icon anywhere on the internet(s)
+	 * @var string
+	 */
 	public $icon;
+
+	/**
+	 * Version of the app
+	 * @var string
+	 */
 	public $version = '1';
+
+	/**
+	 * Actual version of the app. This is created by the system
+	 * @var string
+	 */
 	public $currentVersion;
+
+	/**
+	 * If an app is external, these are the auth ID/key
+	 * @var object
+	 */
 	public $auth = [
 		'id' => '',
 		'key' => ''
 	];
-	public $admincp_menu;
+
+	/**
+	 * Attach a menu to the AdminCP for your app
+	 * @var array
+	 */
+	public $admincp_menu = [];
+
+	/**
+	 * When admins view your app connect to a custom route
+	 * @var string
+	 */
+	public $admincp_route;
+
+	/**
+	 * Global settings for your app and for admins to edit
+	 * @var array
+	 */
 	public $settings = [];
+
+	/**
+	 * Webhooks you wish to attach an event to
+	 * @var array
+	 */
 	public $webhooks = [];
+
+	/**
+	 * List of external routes, only needed if route is using API
+	 * @var array
+	 */
 	public $routes = [];
+
+	/**
+	 * Attach anything to each page of the sites <head></head>
+	 * @var array
+	 */
 	public $head = [];
+
+	/**
+	 * Attach JavaScript files. Full links to the JS file itself
+	 * @var array
+	 */
 	public $js = [];
+
+
 	public $map = [];
+
+	/**
+	 * Internal PHPfox app id. Created by the system. Move along.
+	 * @var int
+	 */
 	public $internal_id;
+
+	/**
+	 * User group settings your app may need and for admins to edit
+	 * @var array
+	 */
 	public $user_group_settings = [];
+
+	/**
+	 * Define if your app requires another app or a specific PHP version or PHP lib
+	 * @var array
+	 */
+	public $requires = [];
+
+	/**
+	 * Using open source code? Sharing is caring.
+	 * @var array
+	 */
+	public $credits = [];
 
 	public function __construct($keys) {
 		parent::__construct($keys);

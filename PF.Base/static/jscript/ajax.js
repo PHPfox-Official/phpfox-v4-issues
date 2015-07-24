@@ -279,12 +279,22 @@ $Behavior.onAjaxSubmit = function() {
 			callback = t.data('callback'),
 			data = t.serialize();
 
+		t.find('.form-spin-it').remove();
+		var b = t.find('.button');
+		if (t.data('add-spin')) {
+			b.before('<span class="form-spin-it"><i class="fa fa-spin fa-circle-o-notch"></i></span>');
+			b.hide();
+		}
+
 		t.find('.error_message').remove();
 		$.ajax({
 			url: t.attr('action'),
 			type: 'POST',
 			data: data + '&is_ajax_post=1',
 			success: function(e) {
+				b.show();
+				t.find('.form-spin-it').remove();
+
 				$Core.processPostForm(e, t);
 				if (callback) {
 					window[callback](e, t, t.serializeArray());

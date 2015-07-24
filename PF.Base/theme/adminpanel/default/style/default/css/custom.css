@@ -1034,7 +1034,7 @@ ul.table_clear_button li {
 }
 .table_clear {
   padding: 0px;
-  text-align: right;
+  text-align: left;
   position: relative;
   margin-bottom: 40px;
 }

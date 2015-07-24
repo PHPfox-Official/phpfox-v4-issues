@@ -79,32 +79,34 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 
 			$userGroups = User_Service_Group_Group::instance()->get();
 			$userGroupSettings = [];
-			foreach ($userGroups as $group) {
+			if ($App->user_group_settings) {
+				foreach ($userGroups as $group) {
 
-				$userGroupSettings[$group['user_group_id']] = [
-					'id' => $group['user_group_id'],
-					'name' => $group['title'],
-					'settings' => []
-				];
-
-				foreach ($App->user_group_settings as $key => $value) {
-					if (!isset($value->type)) {
-						$value->type = 'input:text';
-					}
-
-					if (!isset($value->value)) {
-						$value->value = '';
-					}
-
-					if (user($key) !== null) {
-						$value->value = user($key, null, $group['user_group_id']);
-					}
-
-					$userGroupSettings[$group['user_group_id']]['settings'][$key] = [
-						'info' => $value->info,
-						'value' => $value->value,
-						'type' => $value->type
+					$userGroupSettings[$group['user_group_id']] = [
+						'id' => $group['user_group_id'],
+						'name' => $group['title'],
+						'settings' => []
 					];
+
+					foreach ($App->user_group_settings as $key => $value) {
+						if (!isset($value->type)) {
+							$value->type = 'input:text';
+						}
+
+						if (!isset($value->value)) {
+							$value->value = '';
+						}
+
+						if (user($key) !== null) {
+							$value->value = user($key, null, $group['user_group_id']);
+						}
+
+						$userGroupSettings[$group['user_group_id']]['settings'][$key] = [
+							'info' => $value->info,
+							'value' => $value->value,
+							'type' => $value->type
+						];
+					}
 				}
 			}
 
@@ -126,14 +128,10 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 			}
 		}
 
-		$customContent = '';
-		// if ($App->storeId) {
-			// $customContent = '<iframe src="http://store.phpfox.com/product/' . $App->storeId . '/go" frameborder="0" class="acp_frame_product"></iframe>';
-		// }
+		$customContent = $App->admincp_route;
 
 		$this->template()
 			->setTitle($App->name)
-			// ->setSectionTitle($App->name)
 			->assign([
 				'App' => $App,
 				'uninstall' => $this->request()->get('uninstall'),

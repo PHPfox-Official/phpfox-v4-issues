@@ -24,6 +24,30 @@
 		</div>
 	</form>
 {else}
+	{if $customContent}
+	<div id="custom-app-content"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+	<script>
+		var customContent = '{url link=$customContent}', contentIsLoaded = false;
+	{literal}
+		$Ready(function() {
+			if (contentIsLoaded) {
+				return;
+			}
+
+			contentIsLoaded = true;
+			$.ajax({
+				url: customContent,
+				contentType: 'application/json',
+				success: function(e) {
+					$('#custom-app-content').html(e.content);
+					$Core.loadInit();
+				}
+			});
+		});
+	{/literal}
+	</script>
+	{/if}
+
 	{if isset($settings) && $settings}
 	<section class="app_grouping">
 		<h1>App Settings</h1>

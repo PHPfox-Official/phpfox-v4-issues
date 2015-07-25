@@ -2,6 +2,8 @@
 
 class Feed_Component_Controller_Stream extends Phpfox_Component {
 	public function process() {
+		define('PHPFOX_FEED_STREAM_MODE', true);
+
 		if (($val = $this->request()->get('val'))) {
 			Phpfox::isUser(true);
 

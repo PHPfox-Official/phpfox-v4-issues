@@ -11,7 +11,7 @@ class Feed_Component_Controller_Comments extends Phpfox_Component {
 		Phpfox::getBlock('feed.comment');
 
 		$out = "var comment = " . json_encode(['html' => ob_get_contents()]) . "; ";
-		$out .= "$('#js_feed_comment_pager_{$this->request()->get('id')}').prepend(comment.html); \$Core.loadInit();";
+		$out .= "$('#js_feed_comment_pager_{$feed['type_id']}{$feed['item_id']}').prepend(comment.html); \$Core.loadInit();";
 		$out .= "obj.remove();";
 		ob_clean();
 

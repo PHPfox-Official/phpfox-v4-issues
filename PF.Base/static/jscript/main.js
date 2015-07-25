@@ -887,9 +887,7 @@ $Behavior.globalInit = function()
 		$('body').removeClass('panel_is_active');
 	});
 
-	$('.feed_form_toggle').click(function() {
-
-		$(this).toggleClass('is_toggle_mode');
+	$('.feed_form_toggle').unbind().click(function() {
 		$('.feed_form_menu').slideToggle('fast');
 	});
 

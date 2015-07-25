@@ -290,11 +290,11 @@ ul#breadcrumb_menu li.active a, ul#breadcrumb_menu li.active a:hover {
 }
 
 #table_hover_action_holder:hover {
-	transition:@transition;
+	/*transition:@transition;*/
 	opacity:1;
 	input.button, a.button_off_link {
 		opacity:1;
-		transition:@transition;
+		/*transition:@transition;*/
 	}
 }
 
@@ -784,4 +784,17 @@ div.sortable ul li ul, div.sortable ul li:hover ul {
 			opacity:0.6;
 		}
 	}
+}
+
+.is_checked {
+
+}
+
+.checkRow {
+	transition:all 0.5s ease;
+}
+
+.is_processed, .is_processed:hover {
+	background:fade(#40d47e, 80%);
+	transition:all 0.5s ease;
 }

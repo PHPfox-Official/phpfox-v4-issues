@@ -312,13 +312,13 @@ ul#breadcrumb_menu li.active a:hover {
   background: #000000;
 }
 #table_hover_action_holder:hover {
-  transition: all 0.5s ease;
+  /*transition:@transition;*/
   opacity: 1;
 }
 #table_hover_action_holder:hover input.button,
 #table_hover_action_holder:hover a.button_off_link {
   opacity: 1;
-  transition: all 0.5s ease;
+  /*transition:@transition;*/
 }
 #table_hover_action_holder {
   left: 200px;
@@ -799,6 +799,14 @@ div.sortable ul li:hover ul li:hover a:hover {
 .app-copyright .app-credits a:hover {
   color: #808080;
   opacity: 0.6;
+}
+.checkRow {
+  transition: all 0.5s ease;
+}
+.is_processed,
+.is_processed:hover {
+  background: rgba(64, 212, 126, 0.8);
+  transition: all 0.5s ease;
 }
 div#admincp_site_link {
   text-align: left;

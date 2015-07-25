@@ -135,23 +135,38 @@ defined('PHPFOX') or exit('NO DICE!');
 <div class="block_content">
 	{literal}
 	<script>
+		function process_admincp_browse() {
+			$('input.button').hide();
+			$('#table_hover_action_holder, .table_hover_action').prepend('<div class="t_center admincp-browse-fa"><i class="fa fa-circle-o-notch fa-spin"></i></div>');
+		}
+
 		function delete_users(response, form, data) {
 			// p(form);
+			$('.admincp-browse-fa').remove();
+			$('input.button').show();
 			for (var i in data) {
 				var e = data[i];
-				if (e.name == 'delete') {
 					// p('is delete...');
 					form.find('input[type="checkbox"]').each(function() {
 						if ($(this).is(':checked')) {
-							$('#js_user_' + $(this).val()).remove();
+							if (e.name == 'delete') {
+								$('#js_user_' + $(this).val()).remove();
+							}
+							else {
+								$(this).prop('checked', false);
+								var thisClass = $('#js_user_' + $(this).val());
+								thisClass.removeClass('is_checked').addClass('is_processed');
+								setTimeout(function() {
+									thisClass.removeClass('is_processed');
+								}, 600);
+							}
 						}
 					});
-				}
 			}
 		};
 	</script>
 	{/literal}
-	<form method="post" action="{url link='current'}" class="ajax_post" data-callback="delete_users">
+	<form method="post" action="{url link='admincp.user.browse'}" class="ajax_post" data-include-button="true" data-callback-start="process_admincp_browse" data-callback="delete_users">
 {/if}
 		{if $aUsers}
 		<table cellpadding="0" cellspacing="0" {if !Phpfox::getParam('user.randomize_featured_members') && isset($bShowFeatured) && $bShowFeatured == 1} id="js_drag_drop"{/if}>

@@ -274,9 +274,15 @@ $Behavior.onAjaxSubmit = function() {
 		return false;
 	});
 
+	$('.button').click(function() {
+		$('.button.last_clicked_button').removeClass('last_clicked_button');
+		$(this).addClass('last_clicked_button');
+	});
 	$('.ajax_post').submit(function() {
 		var t = $(this),
 			callback = t.data('callback'),
+			callbackStart = t.data('callback-start'),
+			includeButton = t.data('include-button'),
 			data = t.serialize();
 
 		t.find('.form-spin-it').remove();
@@ -286,12 +292,21 @@ $Behavior.onAjaxSubmit = function() {
 			b.hide();
 		}
 
+		if (includeButton) {
+			data += '&' + $('.button.last_clicked_button').attr('name') + '=1';
+		}
+
+		if (callbackStart) {
+			window[callbackStart](t);
+		}
+
 		t.find('.error_message').remove();
 		$.ajax({
 			url: t.attr('action'),
 			type: 'POST',
 			data: data + '&is_ajax_post=1',
 			success: function(e) {
+				$('.button.last_clicked_button').removeClass('last_clicked_button');
 				b.show();
 				t.find('.form-spin-it').remove();
 

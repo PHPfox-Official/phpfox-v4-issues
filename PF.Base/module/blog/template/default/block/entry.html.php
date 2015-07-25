@@ -58,7 +58,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					{$aItem.text|parse|highlight:'search'|split:55}
 					{else}
 					<div class="extra_info">
-						{$aItem.text|strip_tags|highlight:'search'|split:55|shorten:$iShorten'...'}
+						{$aItem.text|parse|highlight:'search'|split:55}
 					</div>
 				{/if}
 				</div>			

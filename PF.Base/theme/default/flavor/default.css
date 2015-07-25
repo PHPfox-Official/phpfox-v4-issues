@@ -10693,6 +10693,17 @@ a.marketplace_contact_seller:hover {
   display: block;
 }
 @media (max-device-width: 1430px), (max-width: 1430px) {
+  #page_pages_view #container,
+  ._is_pages_view #container,
+  #page_pages_view .pages_header,
+  ._is_pages_view .pages_header {
+    margin-left: auto;
+    width: 920px;
+  }
+  #page_pages_view #panels,
+  ._is_pages_view #panels {
+    width: 300px;
+  }
   #page_profile_index #container {
     margin-left: inherit;
   }

@@ -75,8 +75,8 @@ $Behavior.userHoverToolTip = function()
 	$('.user_profile_link_span a').mouseover(function()
 	{	
 		$Core.userInfoLog('----------------------------- START -----------------------------');
-                
-		var $sUserName = $(this).parent().attr('id').replace('js_user_name_link_', '');		
+
+		var $sUserName = $(this).parent().attr('id').replace('js_user_name_link_', '');
 		
 		if (empty($sUserName))
 		{
@@ -121,7 +121,7 @@ $Behavior.userHoverToolTip = function()
 	
 	$('.user_profile_link_span a').mouseout(function()
 	{
-		$bUserToolTipIsHover = false;		
+		$bUserToolTipIsHover = false;
 
 		oCloseObject = $(this).parent().attr('id').replace('js_user_name_link_', '');
 		

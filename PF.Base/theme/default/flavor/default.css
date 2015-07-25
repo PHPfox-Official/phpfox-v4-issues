@@ -2284,11 +2284,14 @@ a.activity_feed_content_link_title:hover {
   color: #298ada !important;
   transition: all 0.5s ease;
 }
+.pages_link_span > a,
 .user_profile_link_span > a,
+.pages_link_span > a:hover,
 .user_profile_link_span > a:hover {
   color: #222222 !important;
   font-weight: 600 !important;
 }
+.pages_link_span > a:hover,
 .user_profile_link_span > a:hover {
   color: #298ada !important;
   transition: all 0.5s ease;
@@ -4293,10 +4296,14 @@ a.item_bar_action:before {
   margin: 0px -1px -1px 0px;
   border-color: #ffffff;
 }
+.user_rows_mini .user_rows .pages_link_span > a,
+.user_rows_mini .user_rows .pages_link_span > a:hover,
 .user_rows_mini .user_rows .user_profile_link_span > a,
 .user_rows_mini .user_rows .user_profile_link_span > a:hover {
   background: #ffffff;
 }
+.user_rows:hover .pages_link_span > a,
+.user_rows:hover .pages_link_span > a:hover,
 .user_rows:hover .user_profile_link_span > a,
 .user_rows:hover .user_profile_link_span > a:hover {
   color: #298ada !important;
@@ -4317,6 +4324,8 @@ a.item_bar_action:before {
   height: 100%;
   background-size: contain;
 }
+.user_rows .pages_link_span > a,
+.user_rows .pages_link_span > a:hover,
 .user_rows .user_profile_link_span > a,
 .user_rows .user_profile_link_span > a:hover {
   position: absolute;
@@ -8847,20 +8856,12 @@ ul.friend_action_drop_down li a.active:hover span {
   margin-top: 20px;
 }
 ._is_pages_view .item_bar {
-  display: none;
-  top: auto;
-  bottom: 50px;
-  right: auto;
-  left: 30px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-  z-index: 100;
-}
-._is_pages_view .item_bar_action_holder ul {
-  right: auto;
-  left: 0px;
-}
-._is_pages_view .pages_header_info:hover .item_bar {
   display: block;
+  top: auto;
+  bottom: -50px;
+  right: 10px;
+  left: auto;
+  z-index: 100;
 }
 ul.activity_feed_form_attach li a,
 ul.activity_feed_form_attach li a:hover,
@@ -10691,6 +10692,9 @@ a.marketplace_contact_seller:hover {
 #page_ad_add #content {
   width: 600px;
   display: block;
+}
+.user_block_toggle {
+  display: none;
 }
 @media (max-device-width: 1430px), (max-width: 1430px) {
   #page_pages_view #container,

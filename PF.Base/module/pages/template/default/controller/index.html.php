@@ -24,7 +24,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="user_rows_image">
 					<a href="{$aPage.link}">{img server_id=$aPage.profile_server_id title=$aPage.title path='pages.url_image' file=$aPage.image_path suffix='_120' max_width='120' max_height='120' is_page_image=true}</a>
 				</div>
-				<span class="user_profile_link_span"><a href="{$aPage.link}" class="link">{$aPage.title|clean}</a></span>
+				<span class="pages_link_span"><a href="{$aPage.link}" class="link">{$aPage.title|clean}</a></span>
 			</div>
 			{/foreach}
 		</div>

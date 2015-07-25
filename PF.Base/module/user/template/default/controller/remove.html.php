@@ -17,7 +17,7 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 
 <div class="main_break">
-	{phrase var='user.are_you_sure_you_want_to_delete_your_account'}
+	<div class="error_message">{phrase var='user.are_you_sure_you_want_to_delete_your_account'}</div>
 	{if Phpfox::isModule('friend')}
 		<table width="100%">
 			<tr>
@@ -35,7 +35,7 @@ defined('PHPFOX') or exit('NO DICE!');
 <div class="clear"></div>
 <div class="main_break">
 	<form action="{url link='user.remove.confirm'}" method="post">
-	<div class="table" style="margin-top: 15px;">
+	<div class="table">
 		{if !empty($aReasons)}
 		<div class="table_left"> {phrase var='user.why_are_you_deleting_your_account'} {required} </div>
 		<div class="table_right">
@@ -50,23 +50,27 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/if}
 
 		<div class="table_clear"></div>
-		<div class="table" style="margin-top: 15px;">
+		<div class="table">
 			<div class="table_left"> {phrase var='user.please_tell_us_why'}:</div>
 			<div class="table_right">
 				<textarea cols="40" rows="4" name="val[feedback_text]"></textarea>
 			</div>
 		</div>
 		{if !Phpfox::getUserBy('fb_user_id') && !Phpfox::getUserBy('janrain_user_id')}
-		<div class="table_left"  style="margin-top:15px;" >
-			{phrase var='user.enter_your_password'}:
-		</div>
-		<div class="table_right" style="margin-top:15px;">
-			<input type="password" name="val[password]" size="20" />
+		<div class="table">
+			<div class="table_left">
+				{phrase var='user.enter_your_password'}:
+			</div>
+			<div class="table_right">
+				<input type="password" name="val[password]" size="20" />
+			</div>
 		</div>
 		{/if}		
-		<div class="table_right" style="margin-top:15px;">			
-			<input type="submit" onclick="return confirm('{phrase var='user.are_you_absolutely_sure_this_operation_cannot_be_undone' phpfox_squote=true}');" class="button_warning" value="{phrase var='user.delete_my_account'}" />
-			<input type="button" class="button" onclick="window.location='{url link='user.setting'}'" value="{phrase var='user.cancel_uppercase'}" />
+		<div class="table_clear table_clear_button">
+			<ul class="table_clear_button">
+				<li><input type="submit" onclick="return confirm('{phrase var='user.are_you_absolutely_sure_this_operation_cannot_be_undone' phpfox_squote=true}');" class="button button_warning" value="{phrase var='user.delete_my_account'}" /></li>
+				<li><input type="button" class="button button_off" onclick="window.location='{url link='user.setting'}'" value="{phrase var='user.cancel_uppercase'}" /></li>
+			</ul>
 		</div>
 	</div>
 

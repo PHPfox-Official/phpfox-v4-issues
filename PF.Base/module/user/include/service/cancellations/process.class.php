@@ -134,10 +134,27 @@ class User_Service_Cancellations_Process extends Phpfox_Service
 			->where('user_id = ' . Phpfox::getUserId())
 			->execute('getSlaveRow');
 		
-		if (!Phpfox::getUserBy('fb_user_id') && !Phpfox::getUserBy('janrain_user_id') && Phpfox::getLib('hash')->setHash($aVal['password'], $aRow['password_salt']) != $aRow['password'])
+		if (!Phpfox::getUserBy('fb_user_id') && !Phpfox::getUserBy('janrain_user_id'))
 		{
+			$error = false;
+			if (strlen($aRow['password']) > 32) {
+				$Hash = new Core\Hash();
+				if (!$Hash->check($aVal['password'], $aRow['password'])) {
+					Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
+					$error = true;
+				}
+			}
+			else {
+				if (!Phpfox::getLib('hash')->setHash($aVal['password'], $aRow['password_salt']) != $aRow['password']) {
+					$error = true;
+				}
+			}
+
 			if ($sPlugin = Phpfox_Plugin::get('user.service_cancellations_process_cancelaccount_invalid_password')){eval($sPlugin);}
-			return Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
+
+			if ($error) {
+				return Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
+			}
 		}
 		Phpfox::getService('user.cancellations.process')->feedbackCancellation($aVal);
 		

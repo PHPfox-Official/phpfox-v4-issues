@@ -38,7 +38,7 @@ class User_Component_Controller_Remove extends Phpfox_Component
 			if (($aVals = $this->request()->getArray('val')))
 			{				
 				// user inputted password, no turning back now...
-				if (Phpfox::getService('user.cancellations.process')->cancelAccount($aVals))
+				if (User_Service_Cancellations_Process::instance()->cancelAccount($aVals))
 				{
 					// redirect is in the cancelAccoutn because of the logout
 				}

@@ -50,7 +50,7 @@ class Admincp_Component_Controller_Product_File extends Phpfox_Component
 					else 
 					{
 						if ($sPlugin = Phpfox_Plugin::get('admincp.component_controller_product_file_3')){eval($sPlugin);if (isset($mReturnFromPlugin)){return $mReturnFromPlugin;}}
-						$this->url()->send('admincp', array('product', 'file'), Phpfox::getPhrase('admincp.product_successfully_installed'));	
+						$this->url()->send('admincp', array('product'), Phpfox::getPhrase('admincp.product_successfully_installed'));
 					}
 				}
 			}

@@ -295,6 +295,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'admincp.rewrite_url' => 'admincp.seo.rewrite'
 				*/
 			],
+			'<i class="fa fa-th-large"></i>Modules' => 'admincp.product',
 			'<i class="fa fa-bullhorn"></i>Announcements' => 'admincp.announcement',
 			'<i class="fa fa-newspaper-o"></i>Newsletter' => 'admincp.newsletter.manage',
 			'<i class="fa fa-info"></i>Status' => array(
@@ -633,7 +634,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			)->setTitle(Phpfox::getPhrase('admincp.admin_cp'));
 
 
-		if (in_array($app, ['plugin', 'module', 'product', 'component'])) {
+		if (in_array($app, ['plugin', 'module', 'component'])) {
 			$this->template()->setSectionTitle('Techie: ' . ucwords($app));
 			$this->template()->setActionMenu([
 				'New ' . ucwords($app) => [

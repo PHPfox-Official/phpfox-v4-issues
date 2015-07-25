@@ -57,8 +57,8 @@ class Admincp_Component_Controller_Product_Index extends Phpfox_Component
 			}
 		}
 
-		$this->template()->setTitle(Phpfox::getPhrase('admincp.manage_products'))
-			->setBreadcrumb(Phpfox::getPhrase('admincp.manage_products'))
+		$this->template()->setTitle('Modules')
+			->setSectionTitle('Modules')
 			->assign(array(
 					'aProducts' => $aProducts
 				)

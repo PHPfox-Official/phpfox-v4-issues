@@ -41,6 +41,6 @@ defined('PHPFOX') or exit('NO DICE!');
 
 {else}
 <div class="extra_info">
-	{phrase var='admincp.no_products_have_been_added'}
+	No modules have been installed.
 </div>
 {/if}

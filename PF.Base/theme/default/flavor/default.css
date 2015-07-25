@@ -7977,6 +7977,9 @@ span.forum_tag_sticky {
 .view_all_previous.is-clicked:hover {
   display: none;
 }
+#page_forum_post #panels {
+  visibility: hidden;
+}
 #panel .js_friend_search_link {
   border-bottom: 1px #f0f0f0 solid;
   padding: 4px 0px;

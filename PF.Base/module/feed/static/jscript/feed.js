@@ -526,11 +526,11 @@ $Behavior.activityFeedProcess = function() {
 					|| (!$bButtonSubmitActive && $bHasDefaultValue)
 				)
 				{
-					$oCustomTextarea.val($sCustomPhrase).css({height: $sCssHeight});
+					$oCustomTextarea.attr('placeholder', $sCustomPhrase).css({height: $sCssHeight});
 				}
 				else if ($sStatusUpdateTextarea != $sStatusUpdateValue && $bButtonSubmitActive && !empty($sStatusUpdateTextarea))
 				{
-					$oCustomTextarea.val($sStatusUpdateTextarea);
+					$oCustomTextarea.attr('placeholder', $sStatusUpdateTextarea);
 				}								
 				
 				$('.activity_feed_form_button .button').addClass('button_not_active');

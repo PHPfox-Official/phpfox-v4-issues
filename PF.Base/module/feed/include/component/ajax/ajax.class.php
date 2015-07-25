@@ -93,9 +93,12 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 			'parent_module_id' => $aPost['parent_module_id']
 		);		
 		
-		if (($iId = Phpfox::getService('user.process')->updateStatus($aVals)))
+		if (($iId = User_Service_Process::instance()->updateStatus($aVals)))
 		{
 			$this->call('$(\'#\' + tb_get_active()).find(\'.js_box_content:first\').html(\'<div class="message">' . str_replace("'", "\\'", Phpfox::getPhrase('feed.successfully_shared_this_item')) . '</div>\'); setTimeout(\'tb_remove();\', 2000);');
+		}
+		else {
+			$this->call("$('#btnShareFeed').attr('disabled', false); $('#imgShareFeedLoading').hide();");
 		}
 	}
 	

@@ -102,7 +102,7 @@
 							</ul>
 
 							<div class="apps_version">
-								©{$ActiveApp.vendor}<span>v{$ActiveApp.version}</span>
+								v{$ActiveApp.version}
 							</div>
 						</div>
 						<div class="apps_content">

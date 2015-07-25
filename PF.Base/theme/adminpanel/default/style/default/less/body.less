@@ -723,3 +723,65 @@ div.sortable ul li ul, div.sortable ul li:hover ul {
 		border-top:1px darken(@bodyBg, 6%) solid;
 	}
 }
+
+#app-content-holder {
+	min-height:500px;
+}
+
+#app-details {
+	border-top:1px darken(@bodyBg, 8%) solid;
+	margin-top:50px;
+	padding-top:10px;
+	min-height:100px;
+	font-size:@fontSizeBase - 1;
+	position:relative;
+
+	> ul {
+		position:absolute;
+		right:0px;
+		z-index:100;
+		top:10px;
+
+		> li {
+			display:inline-block;
+
+			a, a:hover {
+				display:block;
+				background:@bodyBg;
+				color:@textColor;
+				height:40px;
+				line-height:40px;
+				padding:0px 15px;
+				border-radius:3px;
+				font-weight:200;
+				font-size:@fontSizeBase - 1;
+				border:1px darken(@bodyBg, 8%) solid;
+				letter-spacing:1px;
+			}
+
+			a:hover {
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+				border-color:@brandPrimary;
+			}
+		}
+	}
+}
+
+.app-copyright {
+	.app-credits {
+		font-size:@fontSizeBase - 3;
+		margin-top:10px;
+
+		> div {
+			text-transform:uppercase;
+			font-weight:600;
+			opacity:0.8;
+		}
+
+		a, a:hover {
+			color:@textColor;
+			opacity:0.6;
+		}
+	}
+}

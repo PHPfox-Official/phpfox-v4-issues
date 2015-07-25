@@ -1,3 +1,5 @@
 /.idea/
 dev
 .htaccess
+phpfox.php
+phpfox.json

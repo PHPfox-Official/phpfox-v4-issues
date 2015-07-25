@@ -747,6 +747,59 @@ div.sortable ul li:hover ul li:hover a:hover {
   margin-top: 30px;
   border-top: 1px #d6d6d6 solid;
 }
+#app-content-holder {
+  min-height: 500px;
+}
+#app-details {
+  border-top: 1px #d1d1d1 solid;
+  margin-top: 50px;
+  padding-top: 10px;
+  min-height: 100px;
+  font-size: 13px;
+  position: relative;
+}
+#app-details > ul {
+  position: absolute;
+  right: 0px;
+  z-index: 100;
+  top: 10px;
+}
+#app-details > ul > li {
+  display: inline-block;
+}
+#app-details > ul > li a,
+#app-details > ul > li a:hover {
+  display: block;
+  background: #e5e5e5;
+  color: #808080;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 15px;
+  border-radius: 3px;
+  font-weight: 200;
+  font-size: 13px;
+  border: 1px #d1d1d1 solid;
+  letter-spacing: 1px;
+}
+#app-details > ul > li a:hover {
+  background: #f4645f;
+  color: #ffffff;
+  border-color: #f4645f;
+}
+.app-copyright .app-credits {
+  font-size: 11px;
+  margin-top: 10px;
+}
+.app-copyright .app-credits > div {
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.8;
+}
+.app-copyright .app-credits a,
+.app-copyright .app-credits a:hover {
+  color: #808080;
+  opacity: 0.6;
+}
 div#admincp_site_link {
   text-align: left;
   background: transparent;
@@ -1057,10 +1110,10 @@ input.button.disabled {
 }
 input.button,
 a.button_off_link {
-  background: #e5e5e5;
-  color: #808080;
+  background: #f4645f;
+  color: #ffffff;
   padding: 14px 20px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 300;
   letter-spacing: 1px;
   border: 1px #f4645f solid;

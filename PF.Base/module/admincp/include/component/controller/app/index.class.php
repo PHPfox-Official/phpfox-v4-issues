@@ -135,6 +135,9 @@ class Admincp_Component_Controller_App_Index extends Phpfox_Component {
 			->assign([
 				'App' => $App,
 				'uninstall' => $this->request()->get('uninstall'),
+				'uninstallUrl' => $this->url()->makeUrl('admincp/app', ['id' => $App->id, 'uninstall' => 'yes']),
+				'disableUrl' => $this->url()->makeUrl('admincp/app', ['id' => $App->id, 'disable' => 'yes']),
+				'enableUrl' => $this->url()->makeUrl('admincp/app', ['id' => $App->id, 'enable' => 'yes']),
 				'customContent' => $customContent
 			]);
 	}

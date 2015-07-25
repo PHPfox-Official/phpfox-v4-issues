@@ -107,6 +107,13 @@ class Object extends \Core\Objectify {
 	public $internal_id;
 
 	/**
+	 * Company that created the app
+	 *
+	 * @var string
+	 */
+	public $vendor;
+
+	/**
 	 * User group settings your app may need and for admins to edit
 	 * @var array
 	 */
@@ -141,7 +148,7 @@ class Object extends \Core\Objectify {
 		else {
 			$this->icon = '<div class="app_icons image_load" data-src="' . $this->icon . '"></div>';
 		}
-		$this->vendor = explode('/', $this->id)[0];
+		// $this->vendor = explode('/', $this->id)[0];
 
 		if (!$this->is_module) {
 			$file = PHPFOX_DIR_SETTINGS . md5($this->id . \Phpfox::getParam('core.salt')) . '.php';

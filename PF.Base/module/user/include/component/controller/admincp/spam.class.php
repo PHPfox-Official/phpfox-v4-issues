@@ -55,6 +55,7 @@ class User_Component_Controller_Admincp_Spam extends Phpfox_Component
 		$this->template()
 				->setBreadCrumb(Phpfox::getPhrase('user.anti_spam_security_questions'))
 				->setTitle(Phpfox::getPhrase('user.anti_spam_security_questions'))
+				->setSectionTitle('Anti-SPAM Questions')
 				->assign(array('sSiteUsePhrase' => $this->url()->makeUrl('admincp.language.phrase.add', array('last-module' => 'user'))))
 				->setHeader(array(
 					'admin.spam.js' => 'module_user',

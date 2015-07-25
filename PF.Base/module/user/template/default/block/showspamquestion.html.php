@@ -11,7 +11,6 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-
 {foreach from=$aQuestions item=aQuestion}
 	<div class="table">
 		<div class="table_left">
@@ -22,7 +21,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<img src="{$aQuestion.image_path}" />
 			{/if}
 			<div>
-				<input type="text" name="val[spam][{$aQuestion.question_id}]" value="" />
+				<input type="text" name="val[spam][{$aQuestion.question_id}]" value="" placeholder="Your answer..." />
 			</div>
 		</div>
 	</div>

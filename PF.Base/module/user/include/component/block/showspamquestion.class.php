@@ -39,7 +39,11 @@ class User_Component_Block_ShowSpamQuestion extends Phpfox_Component
 			
 			if (!empty($aQuestion['image_path']))
 			{
-				$aQuestions[$iKey]['image_path'] = Phpfox::getParam('core.url_static') . 'image.php?pq=' .$sHash;
+				$image = Phpfox::getParam('user.dir_user_spam') . $aQuestions[$iKey]['image_path'];
+				$data = getimagesize($image);
+
+				$aQuestions[$iKey]['image_path'] = 'data:' . $data['mime'] . ';base64,' . base64_encode(file_get_contents($image));
+				// $aQuestions[$iKey]['image_path'] = Phpfox::getParam('core.url_static') . 'image.php?pq=' .$sHash;
 			}
 			
 		}

@@ -1508,6 +1508,44 @@ a.delete_link:hover {
   font-weight: normal;
   opacity: 0.8;
 }
+.valid_answer.table {
+  border: 0px;
+  padding: 0px;
+}
+#div_add_answer {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+}
+#div_add_answer i {
+  margin-right: 10px;
+}
+#div_add_answer:hover {
+  color: #f4645f;
+}
+#div_add_answer:hover i {
+  color: #f4645f;
+}
+.valid_answer_action {
+  position: relative;
+}
+.valid_answer_action i {
+  position: absolute;
+  right: 5px;
+  top: 20px;
+  z-index: 10;
+  cursor: pointer;
+}
+.valid_answer_action i:hover {
+  color: #f4645f;
+}
+#div_edit_image_imge img,
+.question_image img {
+  max-width: 200px;
+  border: 1px #dfdfdf solid;
+}
 #js_block_border_core_site-stat .p_4,
 #js_block_border_core_site-stat div.info_right,
 div.info_right,

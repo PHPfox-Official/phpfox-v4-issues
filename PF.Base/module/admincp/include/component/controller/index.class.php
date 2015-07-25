@@ -287,6 +287,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 				'Cancellation Options' => 'admincp.user.cancellations.manage',
 				'Subscription Packages' => 'admincp.subscribe',
 				'E-Gifts' => 'admincp.egift.categories',
+				'Anti-SPAM Questions' => 'admincp.user.spam',
 				// 'Registration' => $this->url()->makeUrl('admincp.setting.edit', ['group-id' => 'registration']),
 				/*
 				'SEO',

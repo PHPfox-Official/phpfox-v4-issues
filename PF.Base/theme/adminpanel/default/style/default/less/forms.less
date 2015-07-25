@@ -477,3 +477,51 @@ a.delete_link, a.delete_link:hover {
 		opacity:0.8;
 	}
 }
+
+.valid_answer.table {
+	border:0px;
+	padding:0px;
+}
+
+#div_add_answer {
+	display:block;
+	font-size:@fontSizeBase - 2;
+	text-transform:uppercase;
+	font-weight:600;
+	cursor:pointer;
+
+	i {
+		margin-right:10px;
+	}
+}
+
+#div_add_answer:hover {
+	color:@brandPrimary;
+
+	i {
+		color:@brandPrimary;
+	}
+}
+
+.valid_answer_action {
+	position:relative;
+
+	i {
+		position:absolute;
+		right:5px;
+		top:20px;
+		z-index:10;
+		cursor:pointer;
+	}
+
+	i:hover {
+		color:@brandPrimary
+	}
+}
+
+#div_edit_image_imge, .question_image {
+	img {
+		max-width:200px;
+		border:1px #dfdfdf solid;
+	}
+}

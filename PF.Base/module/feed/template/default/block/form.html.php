@@ -90,12 +90,6 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="global_attachment_holder_section" id="global_attachment_status" style="display:block;">
 				<div id="global_attachment_status_value" style="display:none;">{if isset($aFeedCallback.module) || defined('PHPFOX_IS_USER_PROFILE')}{phrase var='feed.write_something'}{else}{phrase var='feed.what_s_on_your_mind'}{/if}</div>
 				<textarea {if isset($aPage)} id="pageFeedTextarea" {else} {if isset($aEvent)} id="eventFeedTextarea" {else} {if isset($bOwnProfile) && $bOwnProfile == false}id="profileFeedTextarea" {/if}{/if}{/if} cols="60" rows="8" name="val[user_status]" placeholder="{if isset($aFeedCallback.module) || defined('PHPFOX_IS_USER_PROFILE')}{phrase var='feed.write_something'}{else}{phrase var='feed.what_s_on_your_mind'}{/if}"></textarea>
-                {if isset($bLoadCheckIn) && $bLoadCheckIn == true}
-                    <script type="text/javascript">
-                        oTranslations['feed.at_location'] = "{phrase var='feed.at_location'}";
-                    </script>
-                    <div id="js_location_feedback"></div>
-                {/if}
 			</div>
 			
 			{foreach from=$aFeedStatusLinks item=aFeedStatusLink}

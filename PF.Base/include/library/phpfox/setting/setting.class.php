@@ -115,7 +115,8 @@ class Phpfox_Setting
 		'user.no_show_activity_points' => true,
 		'user.split_full_name' => false,
 		'user.cache_featured_users' => false,
-		'user.cache_user_inner_joins' => false
+		'user.cache_user_inner_joins' => false,
+		'feed.enable_check_in' => false
 	];
 
 	public $hide = [

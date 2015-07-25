@@ -1,3 +1,4 @@
+<span class="user_block_toggle"><i class="fa"></i></span>
 <div class="user_block">
 	<div class="content">
 		<div class="feed_form_user">

@@ -882,6 +882,10 @@ $Behavior.globalInit = function()
 		});
 	}
 
+	$('.user_block_toggle').click(function() {
+		$('body').toggleClass('user_block_is_active');
+	});
+
 	$('.mobile_menu').click(function() {
 		$('body').toggleClass('show_mobile_menu');
 		$('body').removeClass('panel_is_active');

@@ -149,7 +149,7 @@ defined('PHPFOX') or exit('NO DICE!');
 								'default_value': {/literal}{if isset($aForms.with_user) && $aForms.with_user.with_user_id > 0}'{$aForms.with_user.full_name}' {else} '{phrase var='user.search_friends_by_their_name'}'{/if}{literal},
 								'search_input_id' : 'sFriendInput',
 								'onclick': function()
-								{																	
+								{
 									return false;
 								},
 								'onBeforePrepend' : function()
@@ -162,13 +162,12 @@ defined('PHPFOX') or exit('NO DICE!');
 									}
 									$('#sFriendImage').html('' + $Core.searchFriendsInput.aFoundUser['user_image'] + '');
 									$('#js_custom_search_friend_placement').hide();
-									
-									/* Make sure there's only one input with the name 
-									 * -safe check for when user doesnt reload the page like in ajax browsing- */
+
 									if ($('#relation_with_input_hidden').length > 0)
 									{
 										$('#relation_with_input_hidden').remove();
 									}
+
 									if ($('#relation_with_input_hidden').length < 1)
 									{
 										$('#sFriendImage').after('<input type="hidden" id="relation_with_input_hidden" name="val[relation_with]" value="' + $Core.searchFriendsInput.aFoundUser['user_id'] + '">');
@@ -178,8 +177,8 @@ defined('PHPFOX') or exit('NO DICE!');
 										$('#relation_with_input_hidden').val($Core.searchFriendsInput.aFoundUser['user_id']);
 									}
 								}
-							});	
-						}
+							});
+						};
 						</script>
 						{/literal}
 					

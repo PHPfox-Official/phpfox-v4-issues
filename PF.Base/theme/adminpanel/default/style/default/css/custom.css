@@ -748,7 +748,7 @@ div.sortable ul li:hover ul li:hover a:hover {
   border-top: 1px #d6d6d6 solid;
 }
 #app-content-holder {
-  min-height: 500px;
+  min-height: 400px;
 }
 #app-details {
   border-top: 1px #d1d1d1 solid;
@@ -761,7 +761,7 @@ div.sortable ul li:hover ul li:hover a:hover {
 #app-details > ul {
   position: absolute;
   right: 0px;
-  z-index: 100;
+  z-index: 10;
   top: 10px;
 }
 #app-details > ul > li {

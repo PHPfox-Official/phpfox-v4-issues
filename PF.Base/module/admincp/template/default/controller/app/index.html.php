@@ -115,27 +115,26 @@
 			</form>
 		</section>
 		{/if}
+	</div>
+	<div id="app-details">
+		<ul>
+			<li><a href="{$uninstallUrl}">Uninstall</a></li>
+		</ul>
 
-		<div id="app-details">
-			<ul>
-				<li><a href="{$uninstallUrl}">Uninstall</a></li>
-			</ul>
-
-			<div class="app-copyright">
-				{if $ActiveApp.vendor}
-				©{$ActiveApp.vendor}
-				{/if}
-				{if $ActiveApp.credits}
-				<div class="app-credits">
-					<div>Credits</div>
-					{foreach from=$ActiveApp.credits item=url key=name}
-					<ul>
-						<li><a href="{$url}">{$name|clean}</a></li>
-					</ul>
-					{/foreach}
-				</div>
-				{/if}
+		<div class="app-copyright">
+			{if $ActiveApp.vendor}
+			©{$ActiveApp.vendor}
+			{/if}
+			{if $ActiveApp.credits}
+			<div class="app-credits">
+				<div>Credits</div>
+				{foreach from=$ActiveApp.credits item=url key=name}
+				<ul>
+					<li><a href="{$url}">{$name|clean}</a></li>
+				</ul>
+				{/foreach}
 			</div>
+			{/if}
 		</div>
 	</div>
 {/if}

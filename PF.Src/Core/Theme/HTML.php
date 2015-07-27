@@ -13,6 +13,11 @@ class HTML extends \Core\Model {
 
 	public function set($content) {
 
+		$dir = $this->_theme->getPath() . 'html/';
+		if (!is_dir($dir)) {
+			mkdir($dir);
+		}
+
 		$path = $this->_theme->getPath() . 'html/layout.html';
 		file_put_contents($path, $content);
 

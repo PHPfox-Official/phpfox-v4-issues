@@ -13,6 +13,10 @@ class JS extends \Core\Model {
 
 	public function set($content) {
 
+		$path = $this->_theme->getPath() . 'assets/';
+		if (!is_dir($path)) {
+			mkdir($path);
+		}
 		file_put_contents($this->_theme->getPath() . 'assets/autoload.js', $content);
 		/*
 		if ($this->_get()) {
@@ -40,9 +44,12 @@ class JS extends \Core\Model {
 	}
 
 	public function get() {
-		$html = $this->_theme->getPath() . 'assets/autoload.js';
-		$html = file_get_contents($html);
+		$path = $this->_theme->getPath() . 'assets/autoload.js';
+		if (!file_exists($path)) {
+			$path = $this->_theme->basePath() . 'assets/autoload.js';
+		}
+		$content = file_get_contents($path);
 
-		return $html;
+		return $content;
 	}
 }

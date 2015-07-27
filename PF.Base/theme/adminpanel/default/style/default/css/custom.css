@@ -1448,25 +1448,27 @@ a.delete_link:hover {
   float: none;
   text-indent: 0px;
 }
+#page_theme_admincp_manage .ajax_processing {
+  min-width: 0px;
+}
 .ajax_processing,
 #global_ajax_message {
   position: fixed;
   top: 0px;
   right: 0px;
   z-index: 100000000;
-  min-width: 200px;
   height: 40px;
   line-height: 40px;
   text-align: right;
-  background: #3f3f3f;
+  /*background:@topBg;*/
   left: auto;
 }
 .ajax_processing i,
 #global_ajax_message i {
   display: inline-block;
-  font-size: 18px;
-  color: #f2f2f2;
-  margin-right: 20px;
+  font-size: 20px;
+  color: #f4645f;
+  margin-right: 10px;
   vertical-align: middle;
 }
 .js_item_is_active,
@@ -6252,8 +6254,12 @@ i._zz {
   font-weight: 300;
   display: block;
   padding: 6px 0px;
-  text-indent: 10px;
+  text-indent: 5px;
   font-size: 15px;
+}
+.admincp_manager .am_top > ul li a i,
+.admincp_manager .am_top > ul li a:hover i {
+  margin-right: 10px;
 }
 .admincp_manager .am_top > ul li a:hover {
   background: #000000;
@@ -6264,6 +6270,10 @@ i._zz {
 .admincp_manager .am_top > ul li a.active:hover {
   background: #f4645f;
   color: #ffffff;
+}
+.admincp_manager .am_top > ul li a.active i,
+.admincp_manager .am_top > ul li a.active:hover i {
+  color: #fff;
 }
 .admincp_manager .am_content {
   /*
@@ -6303,9 +6313,16 @@ i._zz {
   border-top: 1px #f0f0f0 solid;
   font-size: 12px;
 }
+.admincp_manager .am_content .admincp_design_info .theme_actions ul li a i,
+.admincp_manager .am_content .admincp_design_info .theme_actions ul li a:hover i {
+  margin-right: 10px;
+}
 .admincp_manager .am_content .admincp_design_info .theme_actions ul li a:hover {
   background: #f5f5f5;
   transition: all 0.5s ease;
+}
+.admincp_manager .am_content .admincp_design_info .theme_actions ul li a:hover i {
+  color: #f4645f;
 }
 .admincp_manager .am_content .admincp_design {
   margin-left: 330px;

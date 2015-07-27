@@ -262,11 +262,18 @@ $Behavior.onAjaxSubmit = function() {
 			t.parent().prepend('<i class="fa fa-spin fa-circle-o-notch"></i>');
 		}
 
+		if (t.data('add-process')) {
+			$Core.processing();
+		}
+
 		$.ajax({
 			url: url,
 			contentType: 'application/json',
 			data: 'is_ajax_get=1',
 			success: function(e) {
+				if (t.data('add-process')) {
+					$Core.processingEnd();
+				}
 				$Core.processPostForm(e, t);
 			}
 		});

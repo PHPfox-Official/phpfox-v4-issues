@@ -7,10 +7,10 @@
 			{$theme.name|clean}<span class="am_version">v{$theme.version}</span>
 		</a>
 		<ul>
-			<li><a href="#" class="no_ajax active">Design</a></li>
-			<li><a href="#" data-url="{url link='admincp.theme.manage' id=$theme.theme_id load='html'}" class="ajax">HTML</a></li>
-			<li><a href="#" data-url="{url link='admincp.theme.manage' id=$theme.theme_id load='javascript'}" class="ajax">JavaScript</a></li>
-			<li><a href="#" data-url="{url link='admincp.theme.manage' id=$theme.theme_id load='css'}" class="ajax">CSS</a></li>
+			<li><a href="#" class="no_ajax active"><i class="fa fa-cog"></i>Settings</a></li>
+			<li><a href="#" data-url="{url link='admincp.theme.manage' id=$theme.theme_id load='html'}" class="ajax"><i class="fa fa-html5"></i>HTML</a></li>
+			<li><a href="#" data-url="{url link='admincp.theme.manage' id=$theme.theme_id load='javascript'}" class="ajax"><i class="fa fa-code"></i>JavaScript</a></li>
+			<li><a href="#" data-url="{url link='admincp.theme.manage' id=$theme.theme_id load='css'}" class="ajax"><i class="fa fa-css3"></i>CSS</a></li>
 		</ul>
 	</div>
 	<div class="am_content">
@@ -25,12 +25,12 @@
 			</div>
 			<div class="theme_actions">
 				<ul>
-					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id default=$theme.flavor_id}" class="ajax">Set as default</a></li>
-					<li><a href="{url link='admincp.theme.flavor' theme=$theme.theme_id}" class="popup">New Flavor</a></li>
-					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id export=1}" target="_blank" class="no_ajax">Export theme</a></li>
-					<li><a href="{url link='admincp.theme.delete' id=$theme.theme_id sure='yes'}" class="sJsConfirm is_delete">Remove theme</a></li>
+					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id default=$theme.flavor_id}" class="ajax" data-add-process="true"><i class="fa fa-check"></i>Set as default</a></li>
+					<li><a href="{url link='admincp.theme.flavor' theme=$theme.theme_id}" class="popup"><i class="fa fa-diamond"></i>New Flavor</a></li>
+					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id export=1}" target="_blank" class="no_ajax"><i class="fa fa-download"></i>Export theme</a></li>
+					<li><a href="{url link='admincp.theme.delete' id=$theme.theme_id sure='yes'}" class="sJsConfirm is_delete"><i class="fa fa-remove"></i>Remove theme</a></li>
 					{if $theme.name == 'Neutron'}
-					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id merge='yes'}" class="ajax">Revert theme</a></li>
+					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id merge='yes'}" class="ajax" data-add-process="true"><i class="fa fa-rotate-left"></i>Revert theme</a></li>
 					{/if}
 				</ul>
 			</div>

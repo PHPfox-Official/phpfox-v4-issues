@@ -422,24 +422,29 @@ a.delete_link, a.delete_link:hover {
 	.reset();
 }
 
+#page_theme_admincp_manage {
+	.ajax_processing {
+		min-width:0px;
+	}
+}
+
 .ajax_processing, #global_ajax_message {
 	position:fixed;
 	top:0px;
 	right:0px;
 	z-index:100000000;
-	min-width:200px;
 	height:@topHeight;
 	line-height:@topHeight;
 	text-align:right;
-	background:@topBg;
+	/*background:@topBg;*/
 	left:auto;
 
 
 	i {
 		display:inline-block;
-		font-size:18px;
-		color:@topColor;
-		margin-right:20px;
+		font-size:20px;
+		color:@brandPrimary;
+		margin-right:10px;
 		vertical-align:middle;
 	}
 }

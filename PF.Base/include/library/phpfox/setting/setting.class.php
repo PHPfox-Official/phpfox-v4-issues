@@ -126,7 +126,8 @@ class Phpfox_Setting
 		'feed.timeline_optional' => false,
 		'feed.add_feed_for_comments' => false,
 		'feed.force_ajax_on_load' => false,
-		'feed.cache_each_feed_entry' => false
+		'feed.cache_each_feed_entry' => false,
+		'like.show_user_photos' => false
 	];
 
 	public $hide = [

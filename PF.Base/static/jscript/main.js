@@ -2192,6 +2192,23 @@ $Core.reloadPage = function()
 
 $Behavior.addModerationListener = function()
 {
+	var m = $('#public_message');
+	if (m.length) {
+		var h = m.html().length;
+		if (h) {
+			m.show();
+			m.animate({
+				'margin-bottom': '0px'
+			}, 'fast', function() {
+				setTimeout(function() {
+					m.animate({'margin-bottom': '-50px'}, 'fast', function() {
+						m.html('').hide();
+					});
+				}, 1100);
+			});
+		}
+	}
+
 	$(window).on('moderation_ended', function(){
 		/* Search for moderation rows */
 		if ($('.moderation_row:visible').length < 1)

@@ -21,7 +21,7 @@ class Language_Component_Controller_Admincp_Index extends Phpfox_Component
 	public function process()
 	{	
 		Phpfox::getUserParam('language.can_manage_lang_packs', true);
-		
+
 		if (($sExportId = $this->request()->get('export')))
 		{
 			$oArchiveExport = Phpfox::getLib('archive.export')->set(array('zip'));
@@ -43,14 +43,14 @@ class Language_Component_Controller_Admincp_Index extends Phpfox_Component
 			}
 		}
 
-		if (PHPFOX_IS_TECHIE) {
+		// if (PHPFOX_IS_TECHIE) {
 			$this->template()->setActionMenu([
 				'New Language' => [
 					'url' => $this->url()->makeUrl('admincp.language.add'),
 					'class' => 'popup'
 				]
 			]);
-		}
+		// }
 		
 		$this->template()->assign(array(
 			'aLanguages' => $aLanguages

@@ -25,6 +25,8 @@
 	$('#public_message').show();
 	{r};
 </script>
+{else}
+<div class="public_message" id="public_message"></div>
 {/if}
 <div id="pem"><a href="#"></a></div>
 <div id="core_js_messages">

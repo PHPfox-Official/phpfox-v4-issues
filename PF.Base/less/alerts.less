@@ -1,5 +1,5 @@
 
-div.public_message, div.message, div.error_message, .valid_message {
+div.message, div.error_message, .valid_message {
 	background:@brandInfo;
 	color:@brandPrimaryColor;
 	font-size:@fontSizeBase + 2;
@@ -14,4 +14,43 @@ div.error_message {
 
 .valid_message {
 	background:@brandSuccess;
+}
+
+div.public_message {
+	.reset();
+
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	height:50px;
+	line-height:50px;
+	margin-bottom:-50px;
+	display:none;
+	z-index:1000000;
+	background:fade(#2ecc71, 80%);
+	color:#fff;
+	font-size:18px;
+	font-weight:200;
+	text-align:center;
+}
+
+.ajax_processing {
+	position:fixed;
+	top:5px;
+	right:0px;
+	z-index:100000000;
+	height:@headerHeight;
+	text-align:right;
+	/*background:@topBg;*/
+	left:auto;
+
+
+	i {
+		display:inline-block;
+		font-size:20px;
+		color:@brandPrimary;
+		margin-right:10px;
+		vertical-align:middle;
+	}
 }

@@ -1,5 +1,5 @@
 
-.error_message, div.public_message, div.message {
+.error_message, div.message {
 	.reset();
 	.alert();
 
@@ -12,6 +12,25 @@
 	}
 }
 
-div.public_message, div.message {
+div.message {
 	background:@brandInfo;
+}
+
+div.public_message {
+	.reset();
+
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	height:50px;
+	line-height:50px;
+	margin-bottom:-50px;
+	display:none;
+	z-index:1000000;
+	background:fade(#2ecc71, 80%);
+	color:#fff;
+	font-size:18px;
+	font-weight:200;
+	text-align:center;
 }

@@ -150,13 +150,12 @@ class Custom_Component_Ajax_Ajax extends Phpfox_Ajax
 				
 				if ($bReturnCustom && $bReturnUser)
 				{
-					$this->call('$(\'#js_custom_submit_button\').attr(\'disabled\', false).removeClass(\'disabled\'); $(\'#js_custom_update_info\').html(\''.str_replace("'", "\\'", Phpfox::getPhrase('user.done')).'\').fadeOut(5000);')
-					->slideDown('#js_custom_public_message');
+					$this->call('$(\'#public_message\').html(\'Profile successfully updated!\'); $Core.processingEnd(); $Core.loadInit();');
 					return true;
 				}
 			}
 			
-			$this->call('$(\'#js_custom_submit_button\').attr(\'disabled\', false).removeClass(\'disabled\'); $(\'#js_custom_update_info\').hide();');			
+			$this->call('$(\'#js_custom_submit_button\').attr(\'disabled\', false).removeClass(\'disabled\'); $Core.processingEnd();');
 			
 		}		
 	}

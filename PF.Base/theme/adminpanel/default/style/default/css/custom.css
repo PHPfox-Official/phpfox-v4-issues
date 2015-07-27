@@ -936,7 +936,6 @@ select:focus {
 }
 .js_box .table {
   padding: 0px;
-  margin-bottom: 10px;
   border: 0px;
 }
 .js_box .table_clear {
@@ -1774,7 +1773,6 @@ div#main div.block div.bottom ul li a:hover {
   opacity: 1;
 }
 .error_message,
-div.public_message,
 div.message {
   text-align: left;
   background: transparent;
@@ -1800,17 +1798,47 @@ div.message {
   color: #ffffff;
 }
 .error_message a,
-div.public_message a,
 div.message a,
 .error_message a:hover,
-div.public_message a:hover,
 div.message a:hover {
   color: #ffffff !important;
   text-decoration: underline;
 }
-div.public_message,
 div.message {
   background: #5bc0de;
+}
+div.public_message {
+  text-align: left;
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: -50px;
+  display: none;
+  z-index: 1000000;
+  background: rgba(46, 204, 113, 0.8);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 200;
+  text-align: center;
 }
 i._aa {
   background: #2980b9;

@@ -27,13 +27,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="clear"></div>
 </div>
 
-
-
-	<div id="js_custom_public_message" class="public_message" style="margin-bottom:10px;">
-		<a href="{url link='profile'}">{phrase var='user.view_your_updated_profile'}</a>
-	</div>
-
-	<form method="post" action="{url link='user.profile'}"{if !$bIsEdit} onsubmit="{plugin call='user.template_controller_profile_form_onsubmit'} $('#js_custom_public_message').hide(); $('#js_custom_submit_button').attr('disabled', true).addClass('disabled'); $('#js_custom_update_info').html($.ajaxProcess('{phrase var='user.updating_profile' phpfox_squote=true}')).show(); $(this).ajaxCall('custom.updateFields'); return false;"{/if}>
+	<form method="post" action="{url link='user.profile'}"{if !$bIsEdit} onsubmit="{plugin call='user.template_controller_profile_form_onsubmit'} $Core.processing(); $('#js_custom_submit_button').attr('disabled', true).addClass('disabled'); $(this).ajaxCall('custom.updateFields'); return false;"{/if}>
 	{if isset($iUserId)}
 		<div><input type="hidden" name="id" value="{$iUserId}" /></div>
 	{/if}

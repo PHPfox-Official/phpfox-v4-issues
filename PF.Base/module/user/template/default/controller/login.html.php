@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<form class="content" method="post" action="{url link="user.login"}" id="js_login_form" onsubmit="{$sGetJsForm}">
 		<div class="table">
 			<div class="table_right">
-				<input placeholder="{if Phpfox::getParam('user.login_type') == 'user_name'}{phrase var='user.user_name'}{elseif Phpfox::getParam('user.login_type') == 'email'}{phrase var='user.email'}{else}{phrase var='user.login'}{/if}:" type="email" name="val[login]" id="login" value="{$sDefaultEmailInfo}" size="40" />
+				<input placeholder="{if Phpfox::getParam('user.login_type') == 'user_name'}{phrase var='user.user_name'}{elseif Phpfox::getParam('user.login_type') == 'email'}Email{else}{phrase var='user.login'}{/if}:" type="{if Phpfox::getParam('user.login_type') == 'email'}email{else}text{/if}" name="val[login]" id="login" value="{$sDefaultEmailInfo}" size="40" />
 			</div>
 			<div class="clear"></div>
 		</div>

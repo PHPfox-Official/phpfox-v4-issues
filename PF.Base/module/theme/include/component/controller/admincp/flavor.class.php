@@ -7,7 +7,10 @@ class Theme_Component_Controller_Admincp_Flavor extends Phpfox_Component {
 		if ($this->request()->isPost()) {
 			$val = $this->request()->getArray('val');
 
-			return $Service->flavor()->make($val);
+			$flavorId = $Service->flavor()->make($val);
+			return [
+				'redirect' => $this->url()->makeUrl('admincp.theme.manage', ['id' => $Theme->theme_id, 'flavor' => $flavorId])
+			];
 		}
 
 		$this->template()->setBreadcrumb('New Flavor', $this->url()->makeUrl('current'), true);

@@ -1,10 +1,10 @@
 
-input[type="text"], input[type="email"], input[type="password"], textarea, input:focus, textarea:focus, select, select:focus {
+input[type="text"], input[type="email"], input[type="password"], textarea, input[text="text"]:focus, textarea:focus, select, select:focus {
 	background:@formBg;
 	color:@formColor;
 	border:@formBorder;
 	padding:12px 0px;
-	text-indent:10px;
+	text-indent:0px;
 	outline:0px;
 	font-family:@fontFamilyBase;
 	font-size:@fontSizeBase;
@@ -45,6 +45,10 @@ select, select:focus {
 
     .table_right, .table_right_text, .row_right {
 	    .reset();
+
+	    background:@formBg;
+	    border:@formBorder;
+	    padding:8px 12px;
 	    position:relative;
 
 		input[type="text"], input[type="password"], textarea, textarea:focus {
@@ -55,6 +59,8 @@ select, select:focus {
 
 	    select {
 		    width:100%;
+		    border:0px;
+		    outline:none;
 	    }
 
 	    .extra_info {
@@ -123,15 +129,17 @@ input.button.disabled {
 	opacity:0.2;
 }
 
-input.button, a.button_off_link {
+input.button:focus, input.button:active, input.button, a.button_off_link {
 	background:@brandPrimary;
 	color:@brandPrimaryColor;
-	padding:14px 20px;
+	padding:14px 20px !important;
 	font-size:@fontSizeBase + 1;
 	font-weight:300;
 	letter-spacing:1px;
-	border:1px @brandPrimary solid;
+	border:1px @brandPrimary solid !important;
 	box-shadow:none;
+	text-indent:0px !important;
+	outline:none !important;
 }
 
 input.button:hover {

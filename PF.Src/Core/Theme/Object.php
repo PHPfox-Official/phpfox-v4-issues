@@ -176,6 +176,10 @@ class Object extends \Core\Objectify {
 			->where(['style_id' => $id])
 			->get();
 
+		if (!isset($flavor['style_id'])) {
+			return false;
+		}
+
 		$this->flavor_id = $flavor['style_id'];
 		$this->flavor_folder = $flavor['folder'];
 	}

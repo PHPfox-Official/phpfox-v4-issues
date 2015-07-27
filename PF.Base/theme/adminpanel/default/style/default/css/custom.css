@@ -915,7 +915,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea,
-input:focus,
+input[text="text"]:focus,
 textarea:focus,
 select,
 select:focus {
@@ -923,7 +923,7 @@ select:focus {
   color: #808080;
   border: 1px #e4e4e4 solid;
   padding: 12px 0px;
-  text-indent: 10px;
+  text-indent: 0px;
   outline: 0px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -996,6 +996,9 @@ select:focus {
   width: auto;
   float: none;
   text-indent: 0px;
+  background: #f6f6f6;
+  border: 1px #e4e4e4 solid;
+  padding: 8px 12px;
   position: relative;
 }
 .table .table_right input[type="text"],
@@ -1022,13 +1025,13 @@ select:focus {
 .table3 .table_right_text textarea:focus,
 .table .row_right textarea:focus,
 .table3 .row_right textarea:focus {
-  background: #f6f6f6;
+  background: transparent;
   color: #808080;
-  border: 1px #e4e4e4 solid;
+  border: 0px;
   padding: 10px 0px;
   width: 100%;
   outline: none;
-  text-indent: 10px;
+  text-indent: 0px;
   /*padding:10px 0px;*/
 }
 .table .table_right select,
@@ -1038,6 +1041,8 @@ select:focus {
 .table .row_right select,
 .table3 .row_right select {
   width: 100%;
+  border: 0px;
+  outline: none;
 }
 .table .table_right .extra_info,
 .table3 .table_right .extra_info,
@@ -1116,16 +1121,20 @@ ul.table_clear_button li {
 input.button.disabled {
   opacity: 0.2;
 }
+input.button:focus,
+input.button:active,
 input.button,
 a.button_off_link {
   background: #f4645f;
   color: #ffffff;
-  padding: 14px 20px;
+  padding: 14px 20px !important;
   font-size: 15px;
   font-weight: 300;
   letter-spacing: 1px;
-  border: 1px #f4645f solid;
+  border: 1px #f4645f solid !important;
   box-shadow: none;
+  text-indent: 0px !important;
+  outline: none !important;
 }
 input.button:hover {
   background: #f7928f;

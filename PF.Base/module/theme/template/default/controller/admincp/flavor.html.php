@@ -15,7 +15,7 @@
 		<div class="table_right">
 			<select name="val[clone]">
 			{foreach from=$flavors item=flavor}
-				<option value="{$flavor.style_id}">{$flavor.name}</option>
+				<option value="{$flavor.folder}">{$flavor.name}</option>
 			{/foreach}
 			</select>
 		</div>

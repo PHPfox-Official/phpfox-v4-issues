@@ -399,7 +399,7 @@ class Phpfox_Ajax
 		
 		if ($this->get('global_ajax_message'))
 		{
-			$this->slideUp('#global_ajax_message');
+			$this->hide('#global_ajax_message');
 		}
 		
 		if (empty($this->_aRequest))

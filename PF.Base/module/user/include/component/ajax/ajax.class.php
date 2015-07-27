@@ -873,7 +873,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if (Phpfox::getService('user.group.setting.process')->update($this->get('id'), $aVals))
 		{
-			$this->slideUp('#global_ajax_message');
+			$this->hide('#global_ajax_message');
 		}
 	}
 	

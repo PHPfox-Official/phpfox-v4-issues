@@ -5371,6 +5371,46 @@ a.not_active:hover {
 .parsed_image {
   max-width: 560px;
 }
+a.item_bar_approve,
+a.item_bar_approve:hover {
+  background: transparent;
+  border-radius: 0px;
+  box-shadow: none;
+  color: inherit;
+  height: auto;
+  line-height: normal;
+  position: static;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  width: auto;
+  float: none;
+  text-indent: 0px;
+  display: block;
+  text-align: center;
+  border: 1px #298ada solid;
+  height: 30px;
+  line-height: 30px;
+  padding: 0px 10px;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 13px !important;
+  letter-spacing: 1px;
+  color: #298ada;
+  position: absolute;
+  right: 10px;
+  top: 52px;
+  background: #298ada;
+  color: #ffffff;
+}
+a.item_bar_approve:hover {
+  transition: all 0.5s ease;
+  background: #ffffff;
+  color: #298ada;
+}
 .comment_mini .pager_view_more_link a,
 .comment_mini .pager_view_more_link a:hover,
 .pager_view_more_link a,

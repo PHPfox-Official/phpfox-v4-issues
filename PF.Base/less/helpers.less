@@ -364,3 +364,20 @@ a.not_active, a.not_active:hover {
 .parsed_image {
 	max-width:@contentWidth - 40;
 }
+
+a.item_bar_approve, a.item_bar_approve:hover {
+	.reset();
+	.button();
+
+	position:absolute;
+	right:10px;
+	top:52px;
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+}
+
+a.item_bar_approve:hover {
+	transition:@transition;
+	background:@brandPrimaryColor;
+	color:@brandPrimary;
+}

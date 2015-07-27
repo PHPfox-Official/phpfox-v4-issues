@@ -6,11 +6,11 @@ class Setting extends \Core\Model {
 	private static $_settings = null;
 
 	public function __construct() {
-		if (self::$_settings === null) {
+		//if (self::$_settings === null) {
 			parent::__construct();
 
-			self::$_settings = $this->cache->get('app_settings');
-			if (is_bool(self::$_settings)) {
+			// self::$_settings = $this->cache->get('app_settings');
+			// if (is_bool(self::$_settings)) {
 				$App = new \Core\App();
 				foreach ($App->all() as $_app) {
 					if ($_app->settings) {
@@ -25,10 +25,10 @@ class Setting extends \Core\Model {
 					}
 				}
 
-				$this->cache->set('app_settings', self::$_settings);
-				self::$_settings = $this->cache->get('app_settings');
-			}
-		}
+				// $this->cache->set('app_settings', self::$_settings);
+				// self::$_settings = $this->cache->get('app_settings');
+			// }
+		// }
 	}
 
 	public function get($key, $default = null) {

@@ -101,6 +101,7 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 		}
 
 		if ($aParentModule === null) {
+
 			Phpfox_Search::instance()->set(array(
 				'type' => 'forum',
 				// 'filters' => $aFilters,

@@ -469,6 +469,10 @@ class Phpfox_Search
 				}
 
 				$hidden .= '<input type="hidden" name="s" value="1">';
+				if (isset($this->_aSearchTool['search']['hidden'])) {
+					$hidden = $this->_aSearchTool['search']['hidden'];
+				}
+
 				foreach ($params as $param) {
 					$part = explode('=', $param);
 					if (!isset($part[1])) {
@@ -476,10 +480,15 @@ class Phpfox_Search
 					}
 
 					$part[1] = htmlspecialchars($part[1]);
+					if (substr($part[0], 0, 7) == 'http://' || substr($part[0], 0, 8) == 'https://') {
+						continue;
+					}
+
 					$hidden .= '<input type="hidden" name="' . $part[0] . '" value="' . $part[1] . '">';
 				}
 
-				$this->_aSearchTool['search']['action'] = $newUrl;
+				$this->_aSearchTool['search']['action'] = rtrim($newUrl, '/');
+
 				$this->_aSearchTool['search']['hidden'] = $hidden;
 			}
 			

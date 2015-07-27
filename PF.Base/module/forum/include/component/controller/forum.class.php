@@ -24,7 +24,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		{
 			return Phpfox_Module::instance()->setController('forum.index');
 		}
-		
+
 		Phpfox::getUserParam('forum.can_view_forum', true);
 		
 		$aParentModule = $this->getParam('aParentModule');
@@ -53,12 +53,15 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			}			
 		}
 
-		$oSearch = Forum_Service_Forum::instance()->getSearchFilter($this->getParam('bIsSearchQuery', false));
+		$oSearch = Forum_Service_Forum::instance()->getSearchFilter($this->getParam('bIsSearchQuery', false), ($this->request()->get('forum_id') ? $this->request()->get('forum_id') : $this->request()->getInt('req2')));
 
 		if ($oSearch->isSearch() && $this->request()->getInt('req2') == 'search')
 		{
 			$aIds = [];
-			$aForums = Forum_Service_Forum::instance()->live()->getForums();
+			$aForums = ($this->request()->get('forum_id') ? Forum_Service_Forum::instance()->id($this->request()->get('forum_id'))->live()->getForums() : Forum_Service_Forum::instance()->live()->getForums());
+			if ($this->request()->get('forum_id')) {
+				$aIds[] = $this->request()->get('forum_id');
+			}
 			foreach ($aForums as $aForum) {
 				$aIds[] = $aForum['forum_id'];
 
@@ -69,119 +72,6 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			}
 
 			$oSearch->setCondition('AND ft.forum_id IN(' . implode(',', $aIds) . ')');
-			/*
-			$aSearch = $this->request()->getArray('search');	
-
-			if (!empty($aSearch['forum']) && is_array($aSearch['forum']))
-			{
-				$sForumIds = '';
-				foreach ($aSearch['forum'] as $iSearchForum)
-				{
-					if (!is_numeric($iSearchForum))
-					{
-						continue;
-					}
-					
-					if (empty($aSearch['group_id']))
-					{
-						if (!Forum_Service_Forum::instance()->hasAccess($iSearchForum, 'can_view_forum'))
-						{
-							continue;
-						}
-					}
-					
-					$sForumIds .= $iSearchForum . ',';
-				}
-				$sForumIds = rtrim($sForumIds, ',');				
-				
-				if (!empty($sForumIds))
-				{
-					$oSearch->setCondition('AND ft.forum_id IN(' . $sForumIds . ')');
-				}
-			}
-			else 
-			{
-				if (empty($aSearch['group_id']))
-				{
-					$sForums = Forum_Service_Forum::instance()->getCanViewForumAccess('can_view_forum');
-					if ($sForums !== false)
-					{
-						$oSearch->setCondition('AND ft.forum_id NOT IN(' . $sForums . ')');	
-					}
-				}
-			}
-			
-			if (!empty($aSearch['user']))
-			{
-				$oSearch->search('like%', 'u.full_name', $aSearch['user']);
-			}
-			
-			if (($sCustomModule = $this->request()->get('module')) && ($iCustomId = $this->request()->getInt('item')))
-			{
-				$oSearch->setCondition('AND ft.group_id = ' . (int) $iCustomId);
-			}
-			else
-			{
-				$oSearch->setCondition('AND ft.group_id = 0');
-			}
-			
-			if (($this->request()->get('view') == 'pending-post' && Phpfox::getUserParam('forum.can_approve_forum_post')))
-			{
-				$aSearch['result'] = '1';
-				$oSearch->setCondition('AND fp.view_id = 1');
-				$this->url()->clearParam('view');
-			}
-			
-			if (empty($aSearch['result']))
-			{
-				if (!empty($aSearch['keyword']))
-				{
-					$oSearch->search('like%', array('ft.title'), $aSearch['keyword']);
-				}
-				
-				if (!empty($aSearch['days_prune']) && $aSearch['days_prune'] != '-1')
-				{
-					$oSearch->setCondition('AND ft.time_stamp >= ' . (PHPFOX_TIME - ($aSearch['days_prune'] * 86400)));					
-				}		
-				
-				$aSearchResults = Forum_Service_Thread_Thread::instance()->getSearch($oSearch->getConditions(), $oSearch->getSort());
-			}
-			else 
-			{
-				if (!empty($aSearch['keyword']))
-				{
-					$oSearch->search('like%', array('fp.title', 'fpt.text'), $aSearch['keyword']);
-				}				
-				
-				if (!empty($aSearch['days_prune']) && $aSearch['days_prune'] != '-1')
-				{
-					$oSearch->setCondition('AND fp.time_stamp >= ' . (PHPFOX_TIME - ($aSearch['days_prune'] * 86400)));					
-				}
-				
-				if (empty($aSearch['group_id']))
-				{
-					$sForums = Forum_Service_Forum::instance()->getCanViewForumAccess('can_view_thread_content');
-					if ($sForums !== false)
-					{
-						$oSearch->setCondition('AND ft.forum_id NOT IN(' . $sForums . ')');	
-					}					
-				}				
-				
-				$aSearchResults = Phpfox::getService('forum.post')->getSearch($oSearch->getConditions(), $oSearch->getSort());										
-			}				
-
-			if ((!count($aSearchResults)) || (count($aSearchResults) && !$oSearch->cacheResults(array('keyword', 'user'), $aSearchResults)))
-			{
-				if (is_array($aCallback) && isset($aCallback['group_id']))
-				{
-					$this->url()->send('forum.search', array('module' => 'pages', 'item' => $aCallback['group_id']), Phpfox::getPhrase('forum.no_results_found'));
-				}
-				else 
-				{
-					$this->url()->send('forum.search', null, Phpfox::getPhrase('forum.no_results_found'));
-				}
-			}
-			*/
 		}					
 		
 		define('PHPFOX_PAGER_FORCE_COUNT', true);

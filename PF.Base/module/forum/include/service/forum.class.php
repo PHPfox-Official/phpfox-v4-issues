@@ -202,7 +202,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			->execute('getRow');
 	}
 	
-	public function getSearchFilter($bIsSearchQuery = false)		
+	public function getSearchFilter($bIsSearchQuery = false, $forumId = 0)
 	{
 		$aPages = array(20, 25, 30, 35, 40, 45, 50);
 		$aDisplays = array();
@@ -280,7 +280,8 @@ class Forum_Service_Forum extends Phpfox_Service
 			'search_tool' => array(
 				'table_alias' => 'ft',
 				'search' => array(
-					'action' => '',
+					'action' => Phpfox_Url::instance()->makeUrl('forum.search'),
+					'hidden' => '<input type="hidden" name="forum_id" value="' . $forumId . '">',
 					'default_value' => 'Search this forum...',
 					'name' => 'search',
 					'field' => array('ft.title')

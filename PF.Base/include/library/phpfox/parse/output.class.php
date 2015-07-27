@@ -93,11 +93,16 @@ class Phpfox_Parse_Output
 			return $sTxt;
 		}
 
-		if ($sPlugin = Phpfox_Plugin::get('phpfox_parse_output_parse__start')){eval($sPlugin);}
-
 		$sTxt = ' ' . $sTxt;
 
-		$sTxt = $this->htmlspecialchars($sTxt);
+		(($sPlugin = Phpfox_Plugin::get('parse_output_parse')) ? eval($sPlugin) : null);
+
+		if (isset($override) && is_callable($override)) {
+			$sTxt = call_user_func($override, $sTxt);
+		}
+		else {
+			$sTxt = $this->htmlspecialchars($sTxt);
+		}
 
 		$sTxt = Phpfox::getService('ban.word')->clean($sTxt);
 

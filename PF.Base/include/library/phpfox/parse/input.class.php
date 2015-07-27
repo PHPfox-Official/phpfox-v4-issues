@@ -372,45 +372,11 @@ class Phpfox_Parse_Input
 	 */
 	public function prepare($sTxt, $bNoClean = false)
 	{
-		/*
-		// Parse Emoticons
-		if (Phpfox::isModule('emoticon'))
-		{		
-			$sTxt = Phpfox::getService('emoticon')->parse($sTxt);
+		(($sPlugin = Phpfox_Plugin::get('parse_input_prepare')) ? eval($sPlugin) : null);
+
+		if (isset($override) && is_callable($override)) {
+			return call_user_func($override, $sTxt);
 		}
-		
-		$sTxt = str_replace('\\', '&#92;', $sTxt);
-		$sTxt = str_replace(array('&lt;', '&gt;'), array('<', '>'), $sTxt);
-		$sTxt = str_replace('[*]', '<li>', $sTxt);
-		
-		$oFilterBbcode = Phpfox::getLib('parse.bbcode');		
-
-		$sTxt = $oFilterBbcode->preParse($sTxt);		
-
-		// Parse for language package
-		$sTxt = $this->_utf8ToUnicode($sTxt);
-		$sTxt = str_replace('\\', '&#92;', $sTxt);
-		
-		// Clean out the HTML
-		if (!$bNoClean)
-		{
-			$sTxt = $this->_cleanHtml($sTxt);
-		}
-
-		// Parse BBCode
-		$sTxt = $oFilterBbcode->parse($sTxt);		
-		
-		$sTxt = str_replace('<br /><li>', '<li>', $sTxt);
-		$sTxt = str_replace('<br /></ul>', '</ul>', $sTxt);	
-		$sTxt = str_replace('<br /><tr>', '<tr>', $sTxt);
-		$sTxt = str_replace('<br /><td>', '<td>', $sTxt);
-		$sTxt = str_replace('<br /></tr>', '</tr>', $sTxt);
-		$sTxt = str_replace('<br /></table>', '</table>', $sTxt);		
-		$sTxt = str_replace('<br /></ol>', '</ol>', $sTxt);
-		*/
-
-		// $sTxt = $this->_utf8ToUnicode($sTxt);
-		// $sTxt = str_replace('\\', '&#92;', $sTxt);
 		
 		return Phpfox_Parse_Output::instance()->htmlspecialchars($sTxt);
 	}

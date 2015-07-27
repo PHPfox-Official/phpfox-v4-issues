@@ -1060,6 +1060,17 @@ select:focus {
 .table3 .row_right .p_4 {
   position: relative;
 }
+.table .table_right > .p_4,
+.table3 .table_right > .p_4,
+.table .table_right_text > .p_4,
+.table3 .table_right_text > .p_4,
+.table .row_right > .p_4,
+.table3 .row_right > .p_4 {
+  background: #ffffff;
+  color: #999999;
+  padding: 8px;
+  font-size: 13px;
+}
 .table .table_right .currency,
 .table3 .table_right .currency,
 .table .table_right_text .currency,

@@ -77,6 +77,7 @@ $Behavior.adminMenuClick = function()
 								icon = '';
 								break;
 							case 'apps':
+							case 'language':
 								icon = '<div class="app_icons image_load" data-src="' + t.icon + '"></div>';
 								break;
 						}

@@ -116,7 +116,17 @@ class Phpfox_Setting
 		'user.split_full_name' => false,
 		'user.cache_featured_users' => false,
 		'user.cache_user_inner_joins' => false,
-		'feed.enable_check_in' => false
+		'feed.enable_check_in' => false,
+		'feed.cache_timeout' => '0',
+		'feed.refresh_activity_feed' => '0',
+		'feed.feed_limit_days' => '0',
+		'feed.twitter_share_via' => '',
+		'feed.force_timeline' => false,
+		'feed.can_add_past_dates' => false,
+		'feed.timeline_optional' => false,
+		'feed.add_feed_for_comments' => false,
+		'feed.force_ajax_on_load' => false,
+		'feed.cache_each_feed_entry' => false
 	];
 
 	public $hide = [

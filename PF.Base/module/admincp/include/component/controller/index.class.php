@@ -498,7 +498,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 						*/
 						case 'feed':
 							$goSettings = true;
-							$name = 'Activity Feed';
+							$this->template()->setSectionTitle('Activity Feed');
 							break;
 						case 'forum':
 							$name = 'Forums';
@@ -567,9 +567,9 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			$is_settings = true;
 		}
 
-		$aSkipModules = ['api', 'apps', 'announcement', 'ban', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment', 'theme'];
+		$aSkipModules = ['api', 'feed', 'apps', 'announcement', 'ban', 'facebook', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment', 'theme'];
 
-		if ($is_settings && in_array($app, $aSkipModules) && $app != 'user') {
+		if ($is_settings && in_array($app, $aSkipModules) && $app != 'user' && $app != 'feed') {
 			$this->url()->send('admincp');
 		}
 

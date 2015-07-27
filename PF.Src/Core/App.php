@@ -369,7 +369,7 @@ class App {
 		$apps = [];
 		if ($includeModules) {
 			$modules = \Phpfox_Module::instance()->all();
-			$skip = ['friend', 'like', 'announcement', 'notification', 'poke', 'poll', 'quiz', 'egift', 'newsletter', 'subscribe', 'comment', 'captcha', 'attachment', 'admincp', 'api', 'apps', 'ban', 'core', 'custom', 'emoticon', 'error', 'favorite', 'help', 'im', 'input', 'invite', 'language', 'link', 'log', 'mobile', 'page', 'privacy', 'profile', 'rate', 'report', 'request', 'rss', 'search', 'share', 'tag', 'theme', 'track', 'user'];
+			$skip = ['friend', 'like', 'facebook', 'announcement', 'notification', 'poke', 'poll', 'quiz', 'egift', 'newsletter', 'subscribe', 'comment', 'captcha', 'attachment', 'admincp', 'api', 'apps', 'ban', 'core', 'custom', 'emoticon', 'error', 'favorite', 'help', 'im', 'input', 'invite', 'language', 'link', 'log', 'mobile', 'page', 'privacy', 'profile', 'rate', 'report', 'request', 'rss', 'search', 'share', 'tag', 'theme', 'track', 'user'];
 			foreach ($modules as $module_id) {
 				if (in_array($module_id, $skip)) {
 					continue;

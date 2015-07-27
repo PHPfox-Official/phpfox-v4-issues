@@ -9283,7 +9283,10 @@ ul.activity_feed_form_attach li a:hover {
 }
 #content .photos_row {
   display: block;
+  margin: 0px 5px 5px 0px;
   position: relative;
+  background: #ffffff;
+  border: 1px #ebebeb solid;
 }
 #content .photos_row ._moderator a.moderate_link_active {
   background: rgba(0, 0, 0, 0.4);

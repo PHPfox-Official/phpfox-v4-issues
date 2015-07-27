@@ -16,7 +16,7 @@ class Service extends \Core\Model {
 		file_put_contents($file, "<?php\nreturn " . var_export($settings, true) . ";");
 
 		foreach ($settings as $key => $value) {
-			$this->db->delete(':setting', ['product_id' => $this->_app->id, 'var_name' => $key]);
+			$this->db->delete(':setting', ['var_name' => $key]);
 			$this->db->insert(':setting', [
 				'module_id' => 'app_' . $this->_app->id,
 				'product_id' => $this->_app->id,

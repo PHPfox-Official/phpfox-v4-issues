@@ -16,7 +16,7 @@ class Setting extends \Core\Model {
 					if ($_app->settings) {
 						foreach ($_app->settings as $key => $value) {
 							$thisValue = (isset($value->value) ? $value->value : null);
-							$value = $this->db->select('*')->from(':setting')->where(['product_id' => $_app->id, 'var_name' => $key])->get();
+							$value = $this->db->select('*')->from(':setting')->where(['var_name' => $key])->get();
 							if (isset($value['value_actual'])) {
 								$thisValue = $value['value_actual'];
 							}

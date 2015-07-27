@@ -1902,7 +1902,7 @@ $Core.show_page = function($aParams)
 		}
 	}
 	
-	document.title = $aParams['title'];
+	document.title = $aParams['title'].replace(new RegExp('&#039;s', 'g'), "'");
 	
 	$('._block_content').html('' + $aParams['content'] + '');
 

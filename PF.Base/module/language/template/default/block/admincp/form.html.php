@@ -14,12 +14,7 @@ defined('PHPFOX') or exit('NO DICE!');
 <div class="lang_table">
 {foreach from=$aLanguages item=aLanguage}
 {if $sType == 'text'}
-	<div class="lang_value">
-		<input type="text" name="val[{$sId}]{if isset($aLanguage.phrase_var_name)}[{$aLanguage.phrase_var_name}]{/if}[{$aLanguage.language_id}]{if isset($sMode)}[{$sMode}]{/if}" value="{$aLanguage.post_value|htmlspecialchars}" />
-	</div>
-	<div class="lang_title">
-		{$aLanguage.title}
-	</div>
+	<input type="text" name="val[{$sId}]{if isset($aLanguage.phrase_var_name)}[{$aLanguage.phrase_var_name}]{/if}[{$aLanguage.language_id}]{if isset($sMode)}[{$sMode}]{/if}" value="{$aLanguage.post_value|htmlspecialchars}" placeholder="{$aLanguage.title}" />
 {elseif $sType == 'label'}
 	{if $aLanguage.post_value != ''}
 		<div class="lang_title">

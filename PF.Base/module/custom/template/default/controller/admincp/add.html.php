@@ -1,14 +1,14 @@
-<?php 
+<?php
 /**
  * [PHPFOX_HEADER]
- * 
+ *
  * @copyright		[PHPFOX_COPYRIGHT]
  * @author  		Raymond Benc
  * @package 		Phpfox
  * @version 		$Id: add.html.php 4731 2012-09-24 07:21:33Z Raymond_Benc $
  */
- 
-defined('PHPFOX') or exit('NO DICE!'); 
+
+defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if !$bIsEdit}
@@ -19,7 +19,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_clear">
 			<input type="submit" value="{phrase var='custom.add_group'}" class="button" />
 			<input type="button" value="{phrase var='custom.cancel_uppercase'}" class="button" id="js_cancel_new_group" />
-		</div>	
+		</div>
 	</form>
 </div>
 {/if}
@@ -33,7 +33,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/if}
 
 		<div class="block_content">
-			
+
 			<div{if $bShowUserGroups == false} style="display:none;"{/if}>
 				<div class="table">
 					<div class="table_left">
@@ -42,9 +42,9 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div class="table_right">
 						<select name="val[user_group_id]">
 							<option value="">{phrase var='custom.select'}:</option>
-						{foreach from=$aUserGroups key=iKey item=aGroup}
-							<option value="{$aGroup.user_group_id}" {if $bIsEdit && $aGroup.user_group_id == $aForms.user_group_id} selected="selected"{/if}>{$aGroup.title}</option>
-						{/foreach}
+							{foreach from=$aUserGroups key=iKey item=aGroup}
+								<option value="{$aGroup.user_group_id}" {if $bIsEdit && $aGroup.user_group_id == $aForms.user_group_id} selected="selected"{/if}>{$aGroup.title}</option>
+							{/foreach}
 						</select>
 						<div class="extra_info">
 							{phrase var='custom.select_only_if_you_want_a_specific_user_group_to_have_special_custom_fields'}
@@ -61,9 +61,9 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="table_right">
 					<select name="val[type_id]" class="type_id">
 						<option value="">{phrase var='custom.select'}:</option>
-					{foreach from=$aTypes key=sVar item=sPhrase}
+						{foreach from=$aTypes key=sVar item=sPhrase}
 						<option value="{$sVar}"{value type='select' id='type_id' default=$sVar}>{$sPhrase}</option>
-					{/foreach}
+						{/foreach}
 					</select>
 				</div>
 			</div>
@@ -91,59 +91,78 @@ defined('PHPFOX') or exit('NO DICE!');
 				</div>
 				<div class="table_right">
 
-				{if $bIsEdit && isset($aForms.name) && Phpfox_Locale::instance()->isPhrase('$aForms.name')}
+					{if $bIsEdit && isset($aForms.name) && Phpfox::getLib('locale')->isPhrase('$aForms.name')}
 					{module name='language.admincp.form' type='text' id='name' mode='text' value=$aForms.name}
-				{else}
-					{if isset($aForms.name) && is_array($aForms.name)}
-						{foreach from=$aForms.name key=sPhrase item=aValues}
-							{module name='language.admincp.form' type='text' id='name' mode='text' value=$aForms.name}
-						{/foreach}
 					{else}
-						{module name='language.admincp.form' type='text' id='name' mode='text'}
+					{if isset($aForms.name) && is_array($aForms.name)}
+					{foreach from=$aForms.name key=sPhrase item=aValues}
+					{module name='language.admincp.form' type='text' id='name' mode='text' value=$aForms.name}
+					{/foreach}
+					{else}
+					{module name='language.admincp.form' type='text' id='name' mode='text'}
 					{/if}
-				{/if}
+					{/if}
 				</div>
 			</div>
 
 			{if $bIsEdit && isset($aForms.option)}
-			    <div class="table" id="tbl_edit">
-				    <div class="table_left">
-					    {phrase var='custom.current_values'}:
-				    </div>
-				    <div class="table_right">
-					{foreach from=$aForms.option name=options key=iKey item=aOptions}
-						<div class="p_4 js_current_value js_option_holder" id="js_current_value_{$iKey}">
-							<b>{phrase var='custom.option_count' count=$phpfox.iteration.options}:</b> <a href="#?id={$iKey}" class="js_delete_current_option">{img theme='misc/delete.png' alt='' class='v_middle'}</a>
-							<div class="p_4">
-								{module name='language.admincp.form' type='text' id='current' value=$aOptions mode='text'}
-							</div>
-						</div>
-					{/foreach}
-				    </div>
-			    </div>
+			<div class="table_header">
+				{phrase var='custom.current_values'}:
+			</div>
+			{foreach from=$aForms.option name=options key=iKey item=aOptions}
+			<div class="table js_current_value js_option_holder" id="js_current_value_{$iKey}">
+				<div class="table_left">{phrase var='custom.option_count' count=$phpfox.iteration.options}:</b> <a href="#?id={$iKey}" class="js_delete_current_option"><i class="fa fa-remove"></i></a></div>
+				<div class="table_right">
+					{module name='language.admincp.form' type='text' id='current' value=$aOptions mode='text'}
+				</div>
+			</div>
+			{/foreach}
 			{/if}
 
+			{* This next block is used as a template *}
+			<div class="table_header">
+				{if $bIsEdit}Extra Values{else}{phrase var='custom.values'}{/if}:
+			</div>
+
+			{*
 			<div class="table" id="js_multi_select"{if $bHideOptions || $bIsEdit} style="display:none;"{/if}>
 				<div class="table_left">
 					{if $bIsEdit}Extra Values{else}{phrase var='custom.values'}{/if}:
 				</div>
-				<div class="table_right">
-					<div id="js_sample_option">
-						<div class="js_option_holder">
-							<div class="p_4">
-								<b>{phrase var='custom.option_html_count'}:</b> <span class="js_option_delete"></span>
-								<div class="p_4">
-									{foreach from=$aLanguages item=aLang}
-									<div>
-									    <input type="text" name="val[option][#][{$aLang.language_code}][text]" value="" /> {$aLang.title}
-									</div>
-									{/foreach}
+			<div class="table_right">
+			*}
+				<div id="js_sample_option" style="display:none;">
+					<div class="js_option_holder">
+						<div class="table">
+							<div class="table_left">{phrase var='custom.option_html_count'}:</b> <span class="js_option_delete"></span></div>
+							<div class="table_right">
+								{foreach from=$aLanguages item=aLang}
+								<div>
+									<input type="text" name="val[option][#][{$aLang.language_code}][text]" value="" placeholder="{$aLang.title}" />
 								</div>
+								{/foreach}
 							</div>
 						</div>
 					</div>
 				</div>
+
+			{*
 			</div>
+			</div>
+			*}
+			{if $bIsEdit == true && ($aForms.var_type == 'textarea' || $aForms.var_type == 'text')}
+			<!--
+			{/if}
+
+			<div class="_table" id="tbl_option_holder">
+				<div id="js_option_holder"></div>
+			</div>
+			<div class="table_clear_more_options" id="tbl_add_custom_option">
+				<a href="#" class="js_add_custom_option">{phrase var='custom.add_new_option'}</a>
+			</div>
+			{if $bIsEdit == true && ($aForms.var_type == 'textarea' || $aForms.var_type == 'text')}
+			-->
+			{/if}
 
 			<div class="table_clear">
 				<input type="submit" value="{if $bIsEdit}{phrase var='custom.update'}{else}{phrase var='custom.add'}{/if}" class="button" />
@@ -151,7 +170,6 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 
 		<div class="block_search">
-
 			<div{if $bIsEdit} style="display:none;"{/if}>
 				{module name='admincp.product.form' class=true}
 			</div>
@@ -167,9 +185,7 @@ defined('PHPFOX') or exit('NO DICE!');
 						{/foreach}
 					</select>
 					{if !$bIsEdit}
-					<div class="table_form_action">
-						<a href="#" id="js_create_new_group">{phrase var='custom.create_a_new_group'}</a>
-					</div>
+					<div class="table_clear_more_options"><a href="#" id="js_create_new_group">{phrase var='custom.create_a_new_group'}</a></div>
 					{/if}
 				</div>
 			</div>
@@ -194,9 +210,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				</div>
 			</div>
 
-
 		</div>
-
 
 	</form>
 </div>

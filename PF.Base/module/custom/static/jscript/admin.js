@@ -423,7 +423,7 @@ $Core.custom =
 			
 			if ((iCnt - 1) > $Core.custom.iDefault)
 			{
-				$(this).find('.js_option_delete').html('<a href="#" onclick="return $Core.custom.remove(this);"><img src="' + getParam('sImagePath') + 'misc/delete.png" alt="" /></option>');				
+				$(this).find('.js_option_delete').html('<a href="#" onclick="return $Core.custom.remove(this);"><i class="fa fa-remove"></i></option>');
 			}
 		});		
 	},
@@ -560,7 +560,7 @@ $Core.custom =
 }
 
 $Behavior.custom_admin_init = function()
-{	
+{
 	$('.js_drop_down').click(function()
 	{		
 		eleOffset = $(this).offset();
@@ -602,7 +602,6 @@ $Behavior.custom_admin_init = function()
 	$('.var_type').change(function()
 	{
 		$('#js_multi_select').hide();
-		
 		switch (this.value)
 		{
 			case 'select':

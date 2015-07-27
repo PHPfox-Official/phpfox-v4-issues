@@ -159,3 +159,87 @@ div#main div.block {
 		}
 	}
 }
+
+.admincp_search_settings_results {
+	position:absolute;
+	top:51px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	overflow:auto;
+	z-index:1000;
+	display:none;
+	background:lighten(@headerBg, 10%);
+}
+
+.admincp_search_settings.is_active {
+	background:lighten(@headerBg, 10%);
+	border-bottom:1px lighten(@headerBg, 30%) solid;
+
+	span.remove {
+		display:block;
+	}
+}
+
+.admincp_search_settings.is_active:before {
+	color:#fff;
+}
+
+.admincp_search_settings:before {
+	position:absolute;
+	top:24px;
+	left:20px;
+	z-index:100;
+	color:darken(@headerColor, 10%);
+
+	.fa('\f002');
+}
+
+.admincp_search_settings {
+	height:40px;
+	line-height:40px;
+	padding:10px 10px 0px 10px;
+
+	span.remove {
+		position:absolute;
+		top:20px;
+		right:20px;
+		cursor:pointer;
+		display:none;
+		line-height:normal;
+		z-index:200;
+	}
+
+	a, a:hover {
+		display:block;
+		color:@headerColor;
+		padding:10px 0px 10px 10px;
+		border-bottom:1px lighten(@headerBg, 20%) solid;
+		font-size:@fontSizeBase - 2;
+		line-height:normal;
+		height:auto;
+
+		mark {
+			background:@brandPrimary;
+			color:@brandPrimaryColor;
+		}
+	}
+
+	a:hover {
+		background:lighten(@headerBg, 20%);
+		color:#fff;
+	}
+
+	input, input:focus, input:active {
+		padding:0px;
+		width:100%;
+		height:40px;
+		line-height:40px;
+		border:0px;
+		background:lighten(@headerBg, 10%);
+		border-radius:3px;
+		color:@headerColor;
+		text-indent:30px;
+		font-size:@fontSizeBase - 2;
+	}
+}

@@ -35,6 +35,13 @@
 						{if count($sLink)}
 						<li class="main_menu_link_li"><a class="main_menu_link" href="#">{$sPhrase}</a>
 							<div class="main_sub_menu">
+								{if strpos($sPhrase, 'fa-cog')}
+								<div class="admincp_search_settings">
+									<span class="remove"><i class="fa fa-remove"></i></span>
+									<input type="text" name="setting" placeholder="Search settings..." autocomplete="off">
+									<div class="admincp_search_settings_results"></div>
+								</div>
+								{/if}
 								<ul>
 								{foreach from=$sLink key=sPhrase2 item=sLink2}
 									{if is_array($sLink2)}

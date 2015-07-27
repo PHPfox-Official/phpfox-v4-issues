@@ -941,6 +941,26 @@ select:focus {
 .js_box .table_clear {
   margin-bottom: 0px;
 }
+.table3.settings .table_right,
+.table.settings .table_right,
+.table3.settings .table_right_text,
+.table.settings .table_right_text,
+.table3.settings .row_right,
+.table.settings .row_right {
+  background: transparent;
+  border: 0px;
+  padding: 0px;
+}
+.table3.settings .table_right input[type="text"],
+.table.settings .table_right input[type="text"],
+.table3.settings .table_right_text input[type="text"],
+.table.settings .table_right_text input[type="text"],
+.table3.settings .row_right input[type="text"],
+.table.settings .row_right input[type="text"] {
+  background: #f6f6f6;
+  padding: 15px 0px;
+  text-indent: 10px;
+}
 .table,
 .table3 {
   background: #ffffff;
@@ -1782,6 +1802,90 @@ div#main div.block div.bottom ul li a:hover {
 .block_search .table_clear input.button:hover,
 .block_search .table_clear a.button_off_link:hover {
   opacity: 1;
+}
+.admincp_search_settings_results {
+  position: absolute;
+  top: 51px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: auto;
+  z-index: 1000;
+  display: none;
+  background: #262626;
+}
+.admincp_search_settings.is_active {
+  background: #262626;
+  border-bottom: 1px #595959 solid;
+}
+.admincp_search_settings.is_active span.remove {
+  display: block;
+}
+.admincp_search_settings.is_active:before {
+  color: #fff;
+}
+.admincp_search_settings:before {
+  position: absolute;
+  top: 24px;
+  left: 20px;
+  z-index: 100;
+  color: #676767;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  text-indent: 0px !important;
+  content: '\f002';
+}
+.admincp_search_settings {
+  height: 40px;
+  line-height: 40px;
+  padding: 10px 10px 0px 10px;
+}
+.admincp_search_settings span.remove {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  display: none;
+  line-height: normal;
+  z-index: 200;
+}
+.admincp_search_settings a,
+.admincp_search_settings a:hover {
+  display: block;
+  color: #808080;
+  padding: 10px 0px 10px 10px;
+  border-bottom: 1px #3f3f3f solid;
+  font-size: 12px;
+  line-height: normal;
+  height: auto;
+}
+.admincp_search_settings a mark,
+.admincp_search_settings a:hover mark {
+  background: #f4645f;
+  color: #ffffff;
+}
+.admincp_search_settings a:hover {
+  background: #3f3f3f;
+  color: #fff;
+}
+.admincp_search_settings input,
+.admincp_search_settings input:focus,
+.admincp_search_settings input:active {
+  padding: 0px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border: 0px;
+  background: #262626;
+  border-radius: 3px;
+  color: #808080;
+  text-indent: 30px;
+  font-size: 12px;
 }
 .error_message,
 div.message {

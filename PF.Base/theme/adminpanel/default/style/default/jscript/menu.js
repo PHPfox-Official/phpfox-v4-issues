@@ -92,16 +92,68 @@ $Behavior.adminMenuClick = function()
 		});
 	}
 
-	$('body').click(function(){
-		
+	/*
+	$('body').click(function() {
 		$('.main_menu_link').each(function(){
-			if ($(this).hasClass('active')){
+			if ($(this).hasClass('active')) {
 				$(this).parent().find('.main_sub_menu:first').hide();
 				$(this).removeClass('active');
 				bIsAdminMenuClickSet = false;
 			}			
 		});
 		
+	});
+	*/
+	var options = {
+		keys: ['title'],
+		includeScore: false
+	}
+
+	$('.admincp_search_settings span.remove').click(function() {
+		$('.admincp_search_settings').removeClass('is_active');
+		$('.admincp_search_settings_results').html('').hide();
+		$('.main_sub_menu > ul').show();
+		$('.admincp_search_settings input').val('');
+	});
+
+	fuse = new Fuse(admincpSettings, options);
+	$('.admincp_search_settings input').keydown(function() {
+		var t = $(this);
+
+		var word = t.val().split(' ');
+		var result = fuse.search(t.val());
+		var html = '';
+		var mainOutput = $('.admincp_search_settings_results');
+
+		if (t.val().length <= 1) {
+			$('.admincp_search_settings').removeClass('is_active');
+			mainOutput.html(html).hide();
+			$('.main_sub_menu > ul').show();
+			return;
+		}
+
+		if (result) {
+
+			for (var i in result) {
+				var term = result[i]
+
+				var title = term.title;
+				for (var w in word) {
+					if (!word[w]) {
+						continue;
+					}
+
+					var pattern = new RegExp("("+word[w]+")", "gi");
+					title = title.replace(pattern, "<mark>$1</mark>");
+				}
+
+				html += '<a href="' + term.link + '">' + title + '</a>';
+			}
+
+			$('.admincp_search_settings').addClass('is_active');
+			mainOutput.html(html).show();
+			$('.main_sub_menu > ul').hide();
+		}
 	});
 	
 	$('.main_menu_link').click(function(){

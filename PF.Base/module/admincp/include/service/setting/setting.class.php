@@ -23,7 +23,7 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 		$this->_sTable = Phpfox::getT('setting');
 	}
 	
-	public function getForSearch()
+	public function getForSearch($aSkipModules = [])
 	{
 		$aRows = $this->database()->select('s.*, lp.text AS language_var_name')
 			->from($this->_sTable, 's')
@@ -34,16 +34,31 @@ class Admincp_Service_Setting_Setting extends Phpfox_Service
 					"AND lp.var_name = s.phrase_var_name"
 				)
 			)			
-			->execute('getSlaveRows');		
-		
+			->execute('getSlaveRows');
+
+		$aNotAllowedToEdit = [];
+		foreach (Phpfox_Setting::instance()->override as $key => $value) {
+			$aNotAllowedToEdit[] = $key;
+		}
+
 		$aReturn = array();
 		foreach ($aRows as $iKey => $aRow)
 		{
 			if (!empty($aRow['language_var_name']))
 			{
+				if ($aSkipModules && in_array($aRow['module_id'], $aSkipModules)) {
+					continue;
+				}
+
+				if (in_array($aRow['module_id'] . '.' . $aRow['var_name'], $aNotAllowedToEdit) || in_array($aRow['module_id'] . '.' . $aRow['var_name'], Phpfox_Setting::instance()->hide))
+				{
+					continue;
+				}
+
 				$aParts = explode('</title><info>', $aRow['language_var_name']);
 				$aReturn[] = array(
-					'link' => Phpfox_Url::instance()->makeUrl('admincp.setting.edit', array('setting-id' => $aRow['setting_id'])),
+					'module_id' => $aRow['module_id'],
+					'link' => Phpfox_Url::instance()->makeUrl('admincp.setting.edit', array('module-id' => $aRow['module_id'])) . '#' . $aRow['var_name'],
 					'type' => 'Global Setting',
 					'title' => str_replace('<title>', '', $aParts[0])
 				);

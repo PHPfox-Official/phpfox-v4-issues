@@ -15,6 +15,7 @@ class View {
 
 		$this->_loader = new View\Loader();
 		$this->_loader->addPath($Template->theme()->get()->getPath() . 'html', 'Theme');
+		$this->_loader->addPath(PHPFOX_DIR . 'theme/default/html', 'Theme');
 
 		$this->_loader->addPath(PHPFOX_DIR . 'views', 'Base');
 

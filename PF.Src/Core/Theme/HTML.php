@@ -21,6 +21,11 @@ class HTML extends \Core\Model {
 		$path = $this->_theme->getPath() . 'html/layout.html';
 		file_put_contents($path, $content);
 
+		$twig = PHPFOX_DIR_FILE . 'cache/twig/';
+		if (is_dir($twig)) {
+			\Phpfox_File::instance()->delete_directory($twig);
+		}
+
 		/*
 		if ($this->_get()) {
 			$this->db->update(':theme_template', [

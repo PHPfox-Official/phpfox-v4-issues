@@ -138,11 +138,13 @@ class Object extends \Core\Objectify {
 		$files = \Phpfox_File::instance()->getAllFiles($this->getPath());
 		foreach ($files as $file) {
 			$name = str_replace($this->getPath(), '', $file);
+			if (substr($name, 0, 4) == '.git') {
+				continue;
+			}
 
 			$export['files'][$name] = file_get_contents($file);
 			// p($name);
 		}
-		// d($export);
 
 		file_put_contents($zipFile . '.json', json_encode($export, JSON_PRETTY_PRINT));
 

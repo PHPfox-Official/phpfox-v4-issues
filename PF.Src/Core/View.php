@@ -16,7 +16,7 @@ class View {
 		$this->_loader->addPath(PHPFOX_DIR . 'views', 'Base');
 
 		$this->_env = new View\Environment($this->_loader, array(
-			'cache' => ((defined('PHPFOX_IS_TECHIE') && PHPFOX_IS_TECHIE) ? false : PHPFOX_DIR_FILE . 'cache/twig/'),
+			'cache' => (((defined('PHPFOX_IS_TECHIE') && PHPFOX_IS_TECHIE) || defined('PHPFOX_NO_TEMPLATE_CACHE')) ? false : PHPFOX_DIR_FILE . 'cache/twig/'),
 			'autoescape' => false
 		));
 

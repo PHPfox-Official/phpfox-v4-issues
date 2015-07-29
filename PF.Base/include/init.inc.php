@@ -114,7 +114,7 @@ if (PHPFOX_DEBUG)
 {
 	require_once(PHPFOX_DIR_LIB_CORE . 'debug' . PHPFOX_DS . 'debug.class.php');
 	$handler = new Whoops\Handler\PrettyPageHandler();
-	$handler->setEditor('textmate');
+	$handler->setEditor('phpstorm');
 
 	$whoops = new Whoops\Run;
 	$whoops->pushHandler($handler);

@@ -28,9 +28,15 @@ define('PHPFOX_TIME_START', array_sum(explode(' ', microtime())));
 header('Content-type: text/html; charset=utf-8');
 
 // Require the needed setting and class files
+/*
+ * @depreciated 4.0.5
 if (file_exists(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'dev.sett.php') && !defined('PHPFOX_DEBUG'))
 {
 	require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'dev.sett.php');
+}
+*/
+if (file_exists(PHPFOX_DIR . 'file/settings/debug.sett.php') && !defined('PHPFOX_DEBUG')) {
+	require(PHPFOX_DIR . 'file/settings/debug.sett.php');
 }
 
 require_once(PHPFOX_DIR . 'include' . PHPFOX_DS . 'setting' . PHPFOX_DS . 'constant.sett.php');
@@ -110,8 +116,7 @@ require(PHPFOX_DIR_LIB_CORE . 'module' . PHPFOX_DS . 'service.class.php');
 require(PHPFOX_DIR_LIB_CORE . 'module' . PHPFOX_DS . 'component.class.php');
 
 // No need to load the debug class if the debug is disabled
-if (PHPFOX_DEBUG)
-{
+if (PHPFOX_DEBUG) {
 	require_once(PHPFOX_DIR_LIB_CORE . 'debug' . PHPFOX_DS . 'debug.class.php');
 	$handler = new Whoops\Handler\PrettyPageHandler();
 	$handler->setEditor('phpstorm');
@@ -119,6 +124,9 @@ if (PHPFOX_DEBUG)
 	$whoops = new Whoops\Run;
 	$whoops->pushHandler($handler);
 	$whoops->register();
+}
+else {
+
 }
 
 // set_error_handler(array('Phpfox_Error', 'errorHandler'));

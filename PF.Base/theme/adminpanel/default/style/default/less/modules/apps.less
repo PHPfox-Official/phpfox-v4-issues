@@ -110,11 +110,13 @@
 	*/
 
 	article {
-		width:100px;
-		height:120px;
+		width:130px;
+		height:130px;
 		display:inline-block;
 		margin:0px 15px 20px 0px;
 		position:relative;
+		text-align:center;
+		background:@blockBg;
 
 		a, a:hover {
 			display:block;
@@ -127,13 +129,14 @@
 
 			span {
 				position:absolute;
-				bottom:-20px;
-				left:0px;
-				right:0px;
+				bottom:-16px;
+				left:4px;
+				right:4px;
 				font-size:12px;
 				overflow:hidden;
 				text-overflow:ellipsis;
 				white-space:nowrap;
+				text-align:center;
 			}
 		}
 	}
@@ -141,12 +144,11 @@
 
 .app_icons {
 	display:block;
-	width:100px;
-	height:100px;
+	width:95px;
+	height:95px;
 	position:relative;
-	margin:auto;
+	margin:7px auto 0px auto;
 	background-size:contain;
-	border:1px lighten(#dfdfdf, 5%) solid;
 
 	i {
 		font-style:normal;

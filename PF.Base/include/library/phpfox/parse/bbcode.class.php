@@ -217,11 +217,10 @@ class Phpfox_Parse_Bbcode
 	{
 		foreach ($this->_aDefault as $sBbcode => $mValue)
 		{
-			/*
 			$sTxt = preg_replace("/\[" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '').''", $sTxt);
 			$sTxt = preg_replace("/\[\/" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'suffix').''", $sTxt);
 			$sTxt = preg_replace("/\[" . $sBbcode . "=(.*?)\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'prefix', true, '$1').''", $sTxt);
-			*/
+
 			$sTxt = preg_replace_callback("/\[" . $sBbcode . "\]/is", function() use ($sBbcode) {
 				return $this->_replaceBbCode('' . $sBbcode . '');
 			}, $sTxt);
@@ -729,8 +728,8 @@ class Phpfox_Parse_Bbcode
 			return $sTxt;
 		}
 		
-		$sTxt = str_replace(array('{value}'), array($sTxt), $this->_aDefault[$sBbcode]);		
-		
+		$sTxt = str_replace(array('{value}'), array($sTxt), $this->_aDefault[$sBbcode]);
+
 		/*
 		foreach ($this->_aDefault as $sBbcode => $mValue)
 		{		
@@ -1060,9 +1059,11 @@ class Phpfox_Parse_Bbcode
 				return '[' . ($sType == 'suffix' ? '/' : '') . $sBbCode . '=' . stripslashes($sOption) . ']';
 			}
 
-			$sOption = str_replace("&#039;", '', $sOption);
+			$sOption = trim($sOption);
+			$sOption = str_replace(["&#039;", "&quot;"], '', $sOption);
+			$sOption = trim(trim(stripslashes($sOption), '"'), "'");
 
-			return str_replace('{option}', trim(trim(stripslashes($sOption), '"'), "'"), $this->_aDefault[$sBbCode][$sType]);
+			return str_replace('{option}', $sOption, $this->_aDefault[$sBbCode][$sType]);
 		}
 		
 		if (!isset($this->_aDefault[$sBbCode][$sType]))

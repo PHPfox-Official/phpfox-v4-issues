@@ -120,6 +120,7 @@ class Phpfox_Parse_Output
 		$sTxt = str_replace("\n", "<div class=\"newline\"></div>", $sTxt);
 
 		$sTxt = Phpfox_Parse_Bbcode::instance()->parse($sTxt);
+		ob_clean(); d($sTxt); exit;
 		$sTxt = preg_replace_callback($this->_regex['mentions'], array($this, '_replaceMentions'), $sTxt);
 
 		return $sTxt;

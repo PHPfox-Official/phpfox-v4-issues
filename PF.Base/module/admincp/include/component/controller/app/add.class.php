@@ -34,6 +34,8 @@ class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 
 			\Language_Service_Process::instance()->installPackFromFolder($pack, $path);
 
+			Phpfox_Cache::instance()->remove();
+
 			echo '<script>window.top.location.href = \'' . $this->url()->makeUrl('admincp.language.import', ['dir' => base64_encode($path)]) . '\';</script>';
 			exit;
 		}
@@ -53,6 +55,8 @@ class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 			// Phpfox::addMessage('Theme successfully installed.');
 			$id = $Theme->import($file, $product);
 			// $this->url()->send('admincp.theme');
+			Phpfox_Cache::instance()->remove();
+
 			echo '<script>window.top.location.href = \'' . $this->url()->makeUrl('admincp.theme.manage', ['id' => (is_numeric($id) ? $id : $id->theme_id)]) . '\';</script>';
 			exit;
 		}
@@ -60,6 +64,7 @@ class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 		if (isset($_SERVER['HTTP_X_FILE_NAME']) || $this->request()->get('download')) {
 			$App = (new Core\App())->import($this->request()->get('download'), ($this->request()->get('download') ? true : false));
 
+			Phpfox_Cache::instance()->remove();
 			if ($this->request()->get('download')) {
 				// $this->url()->send('admincp.app', ['id' => $App->id]);
 				echo '<script>window.top.location.href = \'' . $this->url()->makeUrl('admincp.app', ['id' => $App->id]) . '\';</script>';
@@ -75,6 +80,8 @@ class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 			$App = (new Core\App())->make($val['name']);
 
 			Phpfox::addMessage('App successfully created.');
+			Phpfox_Cache::instance()->remove();
+
 			return [
 				'redirect' => $this->url()->makeUrl('admincp.app', ['id' => $App->id])
 			];

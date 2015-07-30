@@ -78,7 +78,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		
 		$iPage = $this->request()->getInt('page');
 		$iPageSize = $oSearch->getDisplay();
-		
+
 		$sViewId = 'ft.view_id = 0';
 		if ($aCallback === null)
 		{			

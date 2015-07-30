@@ -51,7 +51,7 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 		}
 		
 		$iId = $this->request()->getInt('id');
-		$aAccess = Phpfox::getService('forum')->getUserGroupAccess($iId, Phpfox::getUserBy('user_group_id'));
+		$aAccess = Forum_Service_Forum::instance()->getUserGroupAccess($iId, Phpfox::getUserBy('user_group_id'));
 		if ($aAccess['can_view_thread_content']['value'] != true)
 		{
 			return Phpfox_Error::display(Phpfox::getPhrase('forum.unable_to_view_this_item_due_to_privacy_settings'));
@@ -131,7 +131,7 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 					return Phpfox_Error::display(Phpfox::getPhrase('forum.forum_is_closed'));
 				}				
 			}
-			
+
 			if (!$bIsEdit)
 			{
 				$bPass = false;		
@@ -144,7 +144,12 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 				{
 					return Phpfox_Error::display(Phpfox::getPhrase('forum.insufficient_permission_to_reply_to_this_thread'));
 				}
-			}			
+			}
+
+			if (!Forum_Service_Forum::instance()->hasAccess($iId, 'can_start_thread'))
+			{
+				return Phpfox_Error::display('You are unable to create a new post in this forum.');
+			}
 			
 			$aValidation = array(
 				'title' => Phpfox::getPhrase('forum.provide_a_title_for_your_thread'),

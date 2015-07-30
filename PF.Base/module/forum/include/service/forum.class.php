@@ -342,6 +342,10 @@ class Forum_Service_Forum extends Phpfox_Service
 	public function getAccess()
 	{
 		$aPerms = array(
+			'can_start_thread' => [
+				'phrase' => 'Can start a new discussion?',
+				'value' => true
+			],
 			'can_view_forum' => array(
 				'phrase' => Phpfox::getPhrase('forum.can_view_forum'),
 				'value' => true
@@ -489,7 +493,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			return $bForceReturn;
 		}
 		
-		return $aForumPerms[$iForumId][Phpfox::getUserBy('user_group_id')][$sVar];
+		return (isset($aForumPerms[$iForumId][Phpfox::getUserBy('user_group_id')][$sVar]) ? $aForumPerms[$iForumId][Phpfox::getUserBy('user_group_id')][$sVar] : true);
 	}
 	
 	public function buildMenu()
@@ -815,8 +819,9 @@ class Forum_Service_Forum extends Phpfox_Service
 	{
 		$aForums = $this->database()->select('forum_id')
 			->from(Phpfox::getT('forum_access'))
-			->where('var_value = 0 AND user_group_id = ' . Phpfox::getUserBy('user_group_id'))
+			->where('var_value = 0 AND var_name = \'can_view_forum\' AND user_group_id = ' . Phpfox::getUserBy('user_group_id'))
 			->execute('getSlaveRows');
+
 		if (empty($aForums))
 		{
 			return array();

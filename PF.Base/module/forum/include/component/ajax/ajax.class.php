@@ -699,6 +699,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 				->show('#js_save_perms')
 				->html('#js_form_perm_group', $aUserGroup['title'])
 				->html('#js_display_list_perms', $this->getContent(false));
+			$this->call('$Core.loadInit();');
 		}
 	}
 	

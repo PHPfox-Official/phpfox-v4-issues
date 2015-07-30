@@ -53,6 +53,13 @@ class Phpfox_Date
 	{
 		
 	}
+
+	/**
+	 * @return Phpfox_Date
+	 */
+	public static function instance() {
+		return Phpfox::getLib('date');
+	}
 	
 	/**
 	 * Gets the current time zone for a person browsing the site. If

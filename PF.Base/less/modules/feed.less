@@ -487,6 +487,35 @@ div.comment_mini_end {
 
 	.activity_feed_form_button_position_button {
 		margin:0px;
+
+		#activity_feed_submit {
+			display:inline-block;
+			vertical-align:middle;
+		}
+
+		> i, > i:hover {
+			width:35px;
+			height:35px;
+			margin-left:10px;
+			cursor:pointer;
+			position:relative;
+			vertical-align:middle;
+			display:inline-block;
+			color:@blockColor;
+			border-radius:3px;
+			font-size:@fontSizeBase + 1;
+		}
+
+		> i:hover {
+			background:@brandPrimary;
+			color:@brandPrimaryColor;
+		}
+
+		> i::before {
+			position:absolute;
+			left:10px;
+			top:10px;
+		}
 	}
 
 	.activity_feed_form_button_position {

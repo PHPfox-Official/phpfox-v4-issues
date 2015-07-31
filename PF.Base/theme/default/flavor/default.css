@@ -7066,6 +7066,32 @@ div.comment_mini_end {
 #panel .activity_feed_form_button_position_button {
   margin: 0px;
 }
+#panel .activity_feed_form_button_position_button #activity_feed_submit {
+  display: inline-block;
+  vertical-align: middle;
+}
+#panel .activity_feed_form_button_position_button > i,
+#panel .activity_feed_form_button_position_button > i:hover {
+  width: 35px;
+  height: 35px;
+  margin-left: 10px;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  display: inline-block;
+  color: #999999;
+  border-radius: 3px;
+  font-size: 15px;
+}
+#panel .activity_feed_form_button_position_button > i:hover {
+  background: #298ada;
+  color: #ffffff;
+}
+#panel .activity_feed_form_button_position_button > i::before {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
 #panel .activity_feed_form_button_position {
   border-top: 1px #e6e6e6 solid;
   margin-top: 10px;

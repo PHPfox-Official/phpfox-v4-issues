@@ -98,7 +98,7 @@ defined('PHPFOX') or exit('NO DICE!');
 							<a href="{$aFeed.feed_title_extra_link}" target="_blank"{if Phpfox::getParam('core.no_follow_on_external_links')} rel="nofollow"{/if}>{$aFeed.feed_title_extra|clean}</a>
 						</div>
 					{/if}
-				{/if}			
+				{/if}
 				{if !empty($aFeed.feed_content)}
 					<div class="activity_feed_content_display">
 						{*
@@ -120,7 +120,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{if !empty($aFeed.app_content)}
 					{$aFeed.app_content}
 				{/if}
-				
+
 				{if !empty($aFeed.parent_module_id)}
 					{module name='feed.mini' parent_feed_id=$aFeed.parent_feed_id parent_module_id=$aFeed.parent_module_id}
 				{/if}

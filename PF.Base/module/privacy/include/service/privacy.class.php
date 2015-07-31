@@ -15,6 +15,10 @@ defined('PHPFOX') or exit('NO DICE!');
  */
 class Privacy_Service_Privacy extends Phpfox_Service 
 {
+	public $service;
+	public $isCount = false;
+	public $condition = [];
+
 	/**
 	 * Class constructor
 	 */	
@@ -193,6 +197,10 @@ class Privacy_Service_Privacy extends Phpfox_Service
 		$bIsCount = (isset($aCond['count']) ? true : false);
 		
 		$oObject = Phpfox::getService($aCond['service']);
+
+		$this->service = $oObject;
+		$this->isCount = $bIsCount;
+		$this->condition = $aCond;
 
 		if ($sPlugin = Phpfox_Plugin::get('privacy.service_privacy_buildprivacy')) {
 			eval($sPlugin);

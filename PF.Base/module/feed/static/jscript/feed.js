@@ -235,6 +235,18 @@ $Core.resetFeedForm = function(f) {
 	$('.feed_form_textarea textarea').removeClass('dont-unbind');
 };
 
+window.onerror = function(e) {
+	var l = $('.feed_stream:not(.built)').length;
+	if (l) {
+		$('.feed_stream.built').each(function() {
+			if ($(this).data('feed-url')) {
+				$(this).replaceWith('<div class="error_message">' + e + '</div>');
+				$Core.loadInit();
+			}
+		});
+	}
+};
+
 $Behavior.activityFeedProcess = function() {
 
 	$('.activity_feed_content_display:not(.is_built)').each(function() {
@@ -262,13 +274,13 @@ $Behavior.activityFeedProcess = function() {
 	*/
 
 	$('.feed_stream:not(.built)').each(function() {
-		var t = $(this),
-			s = document.createElement('script');
-			t.addClass('built');
+		var t = $(this);
 
+		t.addClass('built');
+
+		var s = document.createElement('script');
 		s.type = 'application/javascript';
 		s.src = t.data('feed-url');
-
 		document.head.appendChild(s);
 
 		/*

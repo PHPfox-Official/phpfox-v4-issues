@@ -914,7 +914,7 @@ class User_Service_Callback extends Phpfox_Service
 		{
 			return false;
 		}
-		
+		/*
 		if (!empty($aItem['content']))
 		{
 			if (!empty($aItem['content']))
@@ -935,7 +935,8 @@ class User_Service_Callback extends Phpfox_Service
 			}
 			
 			return false;
-		}		
+		}
+		*/
 		
 		$sLink = Phpfox_Url::instance()->makeUrl($aItem['user_name'], array('status-id' => $aRow['status_id']));
 			

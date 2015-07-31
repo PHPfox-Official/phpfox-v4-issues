@@ -7083,7 +7083,8 @@ div.comment_mini_end {
   border-radius: 3px;
   font-size: 15px;
 }
-#panel .activity_feed_form_button_position_button > i:hover {
+#panel .activity_feed_form_button_position_button > i:hover,
+#panel .activity_feed_form_button_position_button > i.active {
   background: #298ada;
   color: #ffffff;
 }
@@ -7101,7 +7102,7 @@ div.comment_mini_end {
   float: none;
   position: absolute;
   right: 0px;
-  bottom: 5px;
+  top: 5px;
 }
 #global_attachment_status.global_attachment_holder_section {
   background: transparent;

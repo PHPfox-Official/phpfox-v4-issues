@@ -526,7 +526,7 @@ class Feed_Service_Feed extends Phpfox_Service
 		{
 			$bFirstCheckOnComments = true;	
 		}
-		
+
 		$aFeeds = array();
 		$aParentFeeds = array();
 		foreach ($aRows as $sKey => $aRow)
@@ -1261,7 +1261,8 @@ class Feed_Service_Feed extends Phpfox_Service
 	}		
 	
 	private function _processFeed($aRow, $sKey, $iUserid, $bFirstCheckOnComments)
-	{			
+	{
+		$original = $aRow['content'];
 		switch ($aRow['type_id'])
 		{
 			case 'comment_profile':
@@ -1460,8 +1461,12 @@ class Feed_Service_Feed extends Phpfox_Service
 		    $aFeed['bShowEnterCommentBlock'] = true;
 		}
 		$aOut = array_merge($aRow, $aFeed);
-		
-		
+		$aOut['_content'] = $original;
+
+		if (($sPlugin = Phpfox_Plugin::get('feed.service_feed_processfeed'))) {
+			eval($sPlugin);
+		}
+
 		return $aOut;		
 	}
 }

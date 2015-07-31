@@ -194,6 +194,14 @@ class Privacy_Service_Privacy extends Phpfox_Service
 		
 		$oObject = Phpfox::getService($aCond['service']);
 
+		if ($sPlugin = Phpfox_Plugin::get('privacy.service_privacy_buildprivacy')) {
+			eval($sPlugin);
+		}
+
+		if (isset($callback) && is_callable($callback)) {
+			return call_user_func($callback, $this);
+		}
+
 		/*
 		if (Phpfox::getUserParam('core.can_view_private_items'))
 		{

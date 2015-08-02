@@ -1901,8 +1901,14 @@ $Core.show_page = function($aParams)
 			// $('body').append()
 		}
 	}
-	
-	document.title = $aParams['title'].replace(new RegExp('&#039;s', 'g'), "'");
+
+	var pageTitle = $aParams['title'].replace(new RegExp('&#039;s', 'g'), "'");
+	if (self == top) {
+		document.title = pageTitle;
+	}
+	else {
+		window.parent.document.title = pageTitle;
+	}
 	
 	$('._block_content').html('' + $aParams['content'] + '');
 
@@ -2050,7 +2056,13 @@ $Behavior.linkClickAll = function()
 		if (cacheCurrentBody === null) {
 			lastPushState = window.location.href;
 		}
-		history.pushState(null, null, $sLink);
+
+		if (self == top) {
+			history.pushState(null, null, $sLink);
+		}
+		else {
+			window.parent.history.pushState(null, null, $sLink);
+		}
 
 		$Core.page($sLink);
 					

@@ -100,6 +100,8 @@ class Object extends \Core\Objectify {
 
 	public $map = [];
 
+	public $footer = [];
+
 	/**
 	 * Internal PHPfox app id. Created by the system. Move along.
 	 * @var int
@@ -173,10 +175,16 @@ class Object extends \Core\Objectify {
 	}
 
 	public function delete() {
+		(new \Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY))->uninstall([
+			'product_id' => $this->internal_id
+		]);
+
 		$path = $this->path;
 		if (is_dir($path)) {
 			\Phpfox_File::instance()->delete_directory($path);
 		}
+
+		\Phpfox_Cache::instance()->remove();
 	}
 
 	/**

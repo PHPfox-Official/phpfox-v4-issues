@@ -15,6 +15,7 @@ namespace Core;
  * @method Home key()
  * @method Home sync()
  * @method Home user()
+ * @method Home uninstall($product_id)
  */
 class Home {
 	private $_id;
@@ -49,7 +50,7 @@ class Home {
 	}
 
 	public static function store() {
-		return (defined('PHPFOX_API_URL') ? PHPFOX_STORE_URL : 'https://store.phpfox.us/');
+		return (defined('PHPFOX_STORE_URL') ? PHPFOX_STORE_URL : 'https://store.phpfox.us/');
 	}
 
 	public static function url() {

@@ -1930,9 +1930,15 @@ class Phpfox_Template
 		return $sData;
 	}
 
+	public $footer = '';
+
 	public function getFooter() {
 
 		$this->_sFooter .= '<div id="show-side-panel"><span></span></div>';
+
+		Core\Event::trigger('lib_phpfox_template_getfooter', $this);
+
+		$this->_sFooter .= $this->footer;
 
 		if (Phpfox::isAdmin() && !Phpfox::isAdminPanel()) {
 			$Url = Phpfox_Url::instance();
@@ -1949,6 +1955,12 @@ class Phpfox_Template
 		// $this->_sFooter .= '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>';
 
 		foreach ((new Core\App())->all() as $App) {
+			if ($App->footer && is_array($App->footer)) {
+				foreach ($App->footer as $footer) {
+					$this->_sFooter .= $footer;
+				}
+			}
+
 			if ($App->js && is_array($App->js)) {
 				foreach ($App->js as $js) {
 					$this->_sFooter .= '<script src="' . $js . '"></script>';

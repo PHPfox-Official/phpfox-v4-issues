@@ -719,6 +719,10 @@ $Core.openPanel = function(obj) {
 	PF.event.trigger('openPanel', obj);
 
 	if (obj instanceof jQuery) {
+		if (obj.find('span').length) {
+			obj.find('span').html('').hide();
+		}
+
 		if (obj.hasClass('active')) {
 			obj.removeClass('active');
 			$('body').removeClass('panel_is_active');

@@ -127,7 +127,11 @@ class Phpfox_Setting
 		'feed.add_feed_for_comments' => false,
 		'feed.force_ajax_on_load' => false,
 		'feed.cache_each_feed_entry' => false,
-		'like.show_user_photos' => false
+		'like.show_user_photos' => false,
+		'ad.ad_cache_limit' => 60,
+		'ad.ad_ajax_refresh' => false,
+		'ad.ad_ajax_refresh_time' => 2,
+		'ad.how_many_ads_per_location' => 1
 	];
 
 	public $hide = [

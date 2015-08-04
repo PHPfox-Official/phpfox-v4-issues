@@ -156,6 +156,12 @@ class Custom_Service_Relation_Relation extends Phpfox_Service
 		/* plug in maybe? not very used now though */
 		return $aRequest;
 	}
+
+	public function getRelationName($id) {
+		$row = $this->database()->select('*')->from(':custom_relation')->where(['relation_id' => $id])->get();
+
+		return Phpfox::getPhrase($row['phrase_var_name']);
+	}
 }
 
 ?>

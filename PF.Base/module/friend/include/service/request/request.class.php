@@ -62,9 +62,10 @@ class Friend_Service_Request_Request extends Phpfox_Service
 			->where($aCond)
 			->execute('getSlaveField');			
 		
-		$aRows = $this->database()->select('fr.request_id, fr.is_seen, fr.message, fr.friend_user_id, fr.time_stamp, fr.relation_data_id , ' . Phpfox::getUserField())
+		$aRows = $this->database()->select('fr.request_id, fr.is_seen, fr.message, fr.friend_user_id, fr.time_stamp, fr.relation_data_id, crd.relation_id, ' . Phpfox::getUserField())
 			->from($this->_sTable, 'fr')
 			->leftJoin(Phpfox::getT('user'), 'u', 'u.user_id = fr.friend_user_id')
+			->leftJoin(':custom_relation_data', 'crd', 'crd.relation_data_id = fr.relation_data_id')
 			->where($aCond)
 			->limit($iPage, $iLimit, $iCnt)
 			->order('fr.is_seen ASC, fr.time_stamp DESC')

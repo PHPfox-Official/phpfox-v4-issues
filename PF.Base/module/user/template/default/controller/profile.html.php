@@ -127,7 +127,7 @@ defined('PHPFOX') or exit('NO DICE!');
 										<input type="hidden" name="val[previous_relation_with]" value="{if isset($aForms.with_user.user_id)}{$aForms.with_user.user_id}{else}0{/if}">
 										<input type="hidden" name="val[previous_relation_type]" value="{if isset($aForms.relation_id)}{$aForms.relation_id}{else}0{/if}">
 										{if isset($aForms.with_user.status_id) && $aForms.with_user.status_id == 1}
-										<div style="margin-left:60px;">{phrase var='user.pending_confirmation'}</div>
+										<div class="message">{phrase var='user.pending_confirmation'}</div>
 										{/if}
 						</div>
 						{literal}

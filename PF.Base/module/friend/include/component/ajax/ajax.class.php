@@ -121,14 +121,14 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			if (Phpfox::getService('friend.process')->add(Phpfox::getUserId(), $this->get('user_id'), (isset($aVal['list_id']) ? (int) $aVal['list_id'] : 0)))
 			{
-				$this->html('#drop_down_' . $this->get('request_id'), Phpfox::getPhrase('friend.confirmed'));
+				$this->hide('#drop_down_' . $this->get('request_id'));
 			}
 		}
 		else 
 		{
 			if (Phpfox::getService('friend.process')->deny(Phpfox::getUserId(), $this->get('user_id')))
 			{
-				$this->html('#drop_down_' . $this->get('request_id'), Phpfox::getPhrase('friend.denied'));
+				$this->hide('#drop_down_' . $this->get('request_id'));
 			}			
 		}
 		

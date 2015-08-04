@@ -10,6 +10,7 @@ namespace Core;
  * @method isPost()
  * @method segment($number)
  * @method method()
+ * @method set($params)
  * @method uri()
  * @method all()
  */

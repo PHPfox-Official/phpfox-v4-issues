@@ -13,12 +13,26 @@ class Storage extends Model {
 		return $id;
 	}
 
-	public function get($key) {
-		$object = $this->db->select('*')->from(':cache')->where(['file_name' => $key])->get();
-		if (isset($object->action_id)) {
-			return json_decode($object->cache_data);
+	/**
+	 * @param $key
+	 * @return Storage\Object[]
+	 */
+	public function all($key) {
+		$return = [];
+		$objects = $this->db->select('*')->from(':cache')->where(['file_name' => $key])->all();
+		foreach ($objects as $object) {
+			/*
+			$row = new \stdClass();
+			$row->id = $object['cache_id'];
+			$row->content = json_decode($object['cache_data']);
+			*/
+
+			$return[] = new Storage\Object([
+				'id' => $object['cache_id'],
+				'value' => json_decode($object['cache_data'])
+			]);
 		}
 
-		return null;
+		return $return;
 	}
 }

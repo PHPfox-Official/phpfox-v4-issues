@@ -187,11 +187,7 @@ $Core.searchFriendsInput =
 		}
 		else
 		{
-			if (this._get('global_search')) {
-				obj.html('<div class="js_temp_friend_search_form_holder"><div class="message">No results found.</div><ul><li><a href="#" class="holder_notify_drop_link" onclick="$(\'#header_search_form\').submit(); return false;">Try a global search...</a></li></ul></div>').show();
-			} else {
-				obj.html('').hide();
-			}
+			obj.html('').hide();
 		}
 	},
 	

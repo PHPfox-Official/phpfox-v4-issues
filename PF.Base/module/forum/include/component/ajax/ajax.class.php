@@ -140,7 +140,7 @@ class Forum_Component_Ajax_Ajax extends Phpfox_Ajax
 			
 			Phpfox::getService('forum.thread.process')->updateTrack($aThread['thread_id']);			
 			
-			$aPost['count'] = ($aVals['total_post'] + 1);
+			$aPost['count'] = ($aVals['total_post'] + 2);
 			$this->template()->assign(array(
 					'aPost' => $aPost,
 					'aThread' => Forum_Service_Thread_Thread::instance()->getActualThread($aPost['thread_id']),

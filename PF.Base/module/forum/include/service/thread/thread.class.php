@@ -458,7 +458,7 @@ class Forum_Service_Thread_Thread extends Phpfox_Service
 			}
 			*/
 
-			$aThread['posts'][$iKey]['count'] = ($sPermaView === null ? $iTotal : Phpfox::getService('forum.post')->getPostCount());
+			$aThread['posts'][$iKey]['count'] = (($sPermaView === null ? $iTotal : Phpfox::getService('forum.post')->getPostCount()) - 1);
 			$aThread['posts'][$iKey]['forum_id'] = $aThread['forum_id'];
 			$aThread['posts'][$iKey]['last_update_on'] = Phpfox::getPhrase('forum.last_update_on_time_stamp_by_update_user', array(
 					'time_stamp' => Phpfox::getTime(Phpfox::getParam('forum.forum_time_stamp'), $aPost['update_time']),

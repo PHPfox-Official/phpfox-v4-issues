@@ -77,6 +77,7 @@ class Profile_Component_Block_Pic extends Phpfox_Component
 			'path' => 'core.url_user',
 			'file' => $aUser['user_image'],
 			'suffix' => '_200_square',
+			'max_width' => 200,
 			'no_default' => (Phpfox::getUserId() == $aUser['user_id'] ? false : true),
 			'thickbox' => true,
 			'class' => 'profile_user_image',

@@ -6355,6 +6355,16 @@ i._zz {
   top: 36px;
   font-size: 30px;
 }
+._size__200,
+._size__200:hover {
+  width: 200px;
+  height: 200px;
+}
+._size__200 > span,
+._size__200:hover > span {
+  top: 46px;
+  font-size: 30px;
+}
 .no_image_item {
   display: inline-block;
   background: #fafafa;

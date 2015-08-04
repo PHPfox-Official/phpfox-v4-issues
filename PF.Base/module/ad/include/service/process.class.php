@@ -206,7 +206,7 @@ class Ad_Service_Process extends Phpfox_Service
 		
 		$aSql = array(
 			'name' => $this->preParse()->clean($aVals['name'], 150),
-			'url_link' => ($aVals['type_id'] == 1 ? $aVals['url_link'] : null),
+			'url_link' => $aVals['url_link'],
 			'start_date' => $iStartTime,
 			'end_date' => ($aVals['end_option'] > 0 ? Phpfox::getLib('date')->mktime($aVals['end_hour'], $aVals['end_minute'], 0, $aVals['end_month'], $aVals['end_day'], $aVals['end_year']) : 0),
 			'total_view' => (isset($aVals['total_view']) ? (int) $aVals['total_view'] : 0),

@@ -1015,9 +1015,11 @@ select:focus {
   width: auto;
   float: none;
   text-indent: 0px;
-  background: #f6f6f6;
-  border: 1px #e4e4e4 solid;
-  padding: 8px 12px;
+  /*
+	    background:@formBg;
+	    border:@formBorder;
+	    */
+  padding: 0px;
   position: relative;
 }
 .table .table_right input[type="text"],
@@ -1044,14 +1046,28 @@ select:focus {
 .table3 .table_right_text textarea:focus,
 .table .row_right textarea:focus,
 .table3 .row_right textarea:focus {
-  background: transparent;
+  background: #f6f6f6;
   color: #808080;
   border: 0px;
-  padding: 10px 0px;
+  padding: 14px 0px;
   width: 100%;
   outline: none;
   text-indent: 0px;
   /*padding:10px 0px;*/
+}
+.table .table_right input[type="text"],
+.table3 .table_right input[type="text"],
+.table .table_right_text input[type="text"],
+.table3 .table_right_text input[type="text"],
+.table .row_right input[type="text"],
+.table3 .row_right input[type="text"],
+.table .table_right input[type="password"],
+.table3 .table_right input[type="password"],
+.table .table_right_text input[type="password"],
+.table3 .table_right_text input[type="password"],
+.table .row_right input[type="password"],
+.table3 .row_right input[type="password"] {
+  text-indent: 10px;
 }
 .table .table_right select,
 .table3 .table_right select,
@@ -1593,6 +1609,17 @@ a.delete_link:hover {
 .question_image img {
   max-width: 200px;
   border: 1px #dfdfdf solid;
+}
+#js_age_to {
+  padding: 10px 0px 0px 0px;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #222;
+  font-size: 12px;
+}
+#js_age_to > select {
+  margin-top: 10px;
 }
 #js_block_border_core_site-stat .p_4,
 #js_block_border_core_site-stat div.info_right,

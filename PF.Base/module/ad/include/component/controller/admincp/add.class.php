@@ -41,7 +41,6 @@ class Ad_Component_Controller_Admincp_Add extends Phpfox_Component
 					$aAd['c_ad_title'] = $aCustomAd['title'];
 					$aAd['c_ad_body'] = $aCustomAd['body'];
 				}
-				
 				$this->template()->assign('aForms', $aAd);
 				$this->template()->assign('aAccess', $aAd['user_group']);
 				
@@ -103,7 +102,7 @@ class Ad_Component_Controller_Admincp_Add extends Phpfox_Component
 			{
 				if ($bIsEdit)
 				{
-					if (Phpfox::getService('ad.process')->update($aAd['ad_id'], $aVals))
+					if (Ad_Service_Process::instance()->update($aAd['ad_id'], $aVals))
 					{
 						$this->url()->send('admincp.ad.add', array('id' => $aAd['ad_id']), Phpfox::getPhrase('ad.ad_successfully_updated'));
 					}				

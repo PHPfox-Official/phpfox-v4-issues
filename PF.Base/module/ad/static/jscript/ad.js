@@ -95,7 +95,7 @@ $Behavior.ad_ad = function()
 			$('#js_end_option').show();
 		}
 	});
-	
+
 	if ($('#type_id').val() == 1)
 	{
 		$('#js_type_image').show();

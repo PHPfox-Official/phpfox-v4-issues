@@ -58,9 +58,11 @@ select, select:focus {
     .table_right, .table_right_text, .row_right {
 	    .reset();
 
+	    /*
 	    background:@formBg;
 	    border:@formBorder;
-	    padding:8px 12px;
+	    */
+	    padding:0px;
 	    position:relative;
 
 		input[type="text"], input[type="password"], textarea, textarea:focus {
@@ -68,6 +70,10 @@ select, select:focus {
 
 			/*padding:10px 0px;*/
 		}
+
+	    input[type="text"], input[type="password"] {
+		    text-indent:10px;
+	    }
 
 	    select {
 		    width:100%;
@@ -554,5 +560,18 @@ a.delete_link, a.delete_link:hover {
 	img {
 		max-width:200px;
 		border:1px #dfdfdf solid;
+	}
+}
+
+#js_age_to {
+	padding:10px 0px 0px 0px;
+	display:block;
+	text-transform:uppercase;
+	font-weight:600;
+	color:#222;
+	font-size:12px;
+
+	> select {
+		margin-top:10px;
 	}
 }

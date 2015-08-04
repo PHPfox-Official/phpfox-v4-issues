@@ -17,10 +17,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div><input type="hidden" name="val[type_id]" value="{$aForms.type_id}" id="type_id" /></div>
 	<div><input type="hidden" name="id" value="{$aForms.ad_id}" /></div>
 {/if}
-	<div class="table_header">
-		{phrase var='ad.media'}
-	</div>
-	<div class="table">
+	<div class="table" style="display:none;">
 		<div class="table_left">
 			{required}{phrase var='ad.banner_type'}:
 		</div>
@@ -98,8 +95,8 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 		</div>
 		<div class="clear"></div>
-	</div>	
-	<div class="table" id="js_type_image_link" style="display:none;">
+	</div>
+	<div class="table">
 		<div class="table_left">
 		{required}{phrase var='ad.banner_link'}:
 		</div>

@@ -329,6 +329,18 @@ class App {
 		}
 	}
 
+	/**
+	 * @param $id
+	 * @return App\Object
+	 */
+	public function getByInternalId($id) {
+		foreach ($this->all() as $app) {
+			if ($app->internal_id == $id) {
+				return $app;
+			}
+		}
+	}
+
 	public function get($id) {
 		$app = [];
 		if (substr($id, 0, 9) == '__module_') {

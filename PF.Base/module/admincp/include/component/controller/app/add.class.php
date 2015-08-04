@@ -6,6 +6,14 @@ class Admincp_Component_Controller_App_Add extends Phpfox_Component {
 
 		$file = null;
 
+		if ($this->request()->get('type') == 'in-app') {
+			$product = json_decode($this->request()->get('product'));
+			$app = (new Core\App())->getByInternalId($this->request()->get('parent_id'));
+
+			$this->url()->send('admincp.app', ['id' => $app->id, 'child_id' => $product->id]);
+			exit;
+		}
+
 		if ($this->request()->get('type') == 'language') {
 			$dir = PHPFOX_DIR_FILE . 'static/' . uniqid() . '/';
 			mkdir($dir);

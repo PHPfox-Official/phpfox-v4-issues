@@ -7,10 +7,10 @@ namespace Core;
  * @package Core
  *
  * @method Db select($select)
- * @method Db from($table)
+ * @method Db from($table, $alias = null)
  * @method Db order($order)
  * @method Db get()
- * @method Db join()
+ * @method Db join($table, $alias, $where)
  * @method Db where(array $where)
  * @method Db limit($limit)
  * @method Db all()

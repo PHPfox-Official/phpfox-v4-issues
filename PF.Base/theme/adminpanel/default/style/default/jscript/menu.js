@@ -5,7 +5,7 @@ $Behavior.adminMenuClick = function()
 	if ($('#phpfox_store_load').length && !$('#phpfox_store').length) {
 		var url = 'https://store.phpfox.us/';
 
-		// url = 'http://localhost/moxi9/moxi9.com/';
+		url = 'http://81.170.225.46/moxi9/moxi9.com/';
 		$('body').prepend('<iframe src="' + url + $('#phpfox_store_load').data('load') + '?iframe-mode=' + $('#phpfox_store_load').data('token') + '" id="phpfox_store"></iframe>');
 		$('#phpfox_store').addClass('built').css({
 			width: $(window).width() - 200,

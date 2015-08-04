@@ -12,6 +12,7 @@
 
 	<div class="admincp_apps_holder">
 
+		{*
 		{if ($newInstalls)}
 		<section class="new_installs">
 			<h1>Pending Installs</h1>
@@ -29,6 +30,7 @@
 			</div>
 		</section>
 		{/if}
+		*}
 
 		<section>
 			<div class="admincp_apps">

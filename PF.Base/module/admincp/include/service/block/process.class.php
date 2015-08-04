@@ -30,8 +30,6 @@ class Admincp_Service_Block_Process extends Phpfox_Service
 			return Phpfox_Error::set(Phpfox::getPhrase('admincp.select_component'));
 		}
 
-		d($aVals);
-		
 		// Find the user groups we disallowed
 		$aDisallow = array();
 		$aUserGroups = Phpfox::getService('user.group')->get();

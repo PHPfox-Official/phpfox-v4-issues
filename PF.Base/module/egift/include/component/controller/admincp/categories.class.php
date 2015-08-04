@@ -27,7 +27,7 @@ class Egift_Component_Controller_Admincp_Categories extends Phpfox_Component
 		if ( ($aVals = $this->request()->getArray('cat')))
 		{
 			$aVals = array_merge($aVals, $this->request()->getArray('val'));
-			if ($aVals['do_schedule'])
+			if (isset($aVals['do_schedule']))
 			{
 				// no values? Create them based on the datepicker values
 				if (empty($aVals['start_month']) && empty($aVals['start_day']) && empty($aVals['end_month']) && empty($aVals['end_day']))
@@ -96,7 +96,7 @@ class Egift_Component_Controller_Admincp_Categories extends Phpfox_Component
 		/* Editing categories */
 		else if($aVal = $this->request()->getArray('val'))
 		{
-			if ($aVal['do_schedule'])
+			if (isset($aVal['do_schedule']))
 			{
 				// no values? Create them based on the datepicker values
 				if (empty($aVal['start_month']) && empty($aVal['start_day']) && empty($aVal['end_month']) && empty($aVal['end_day']))

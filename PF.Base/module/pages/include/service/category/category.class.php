@@ -76,17 +76,18 @@ class Pages_Service_Category_Category extends Phpfox_Service
 		return $aRow;
 	}
 
-	public function getLatestPages($iId) {
+	public function getLatestPages($iId, $userId = null) {
+		$userId = null;
 		return $this->database()->select('pages.*, pu.vanity_url, ' . Phpfox::getUserField('u2', 'profile_'))
 			->from(Phpfox::getT('pages'), 'pages')
 			->join(Phpfox::getT('user'), 'u2', 'u2.profile_page_id = pages.page_id')
 			->leftJoin(Phpfox::getT('pages_url'), 'pu', 'pu.page_id = pages.page_id')
 			->limit(8)
 			->order('pages.time_stamp DESC')
-			->where('pages.type_id = ' . (int) $iId)->execute('getSlaveRows');
+			->where('pages.type_id = ' . (int) $iId . ($userId ? ' AND pages.user_id = ' . (int) $userId : ''))->execute('getSlaveRows');
 	}
 	
-	public function getForBrowse($iCategoryId = null, $bIncludePages = false)
+	public function getForBrowse($iCategoryId = null, $bIncludePages = false, $userId = null)
 	{		
 		// $sCacheId = $this->cache()->set('pages_category_browse' . ($iCategoryId === null ? '' : '_' . $iCategoryId));
 		$aCategories = array();
@@ -115,7 +116,7 @@ class Pages_Service_Category_Category extends Phpfox_Service
 		foreach ($aCategories as $iKey => $aCategory)
 		{
 			if ($bIncludePages) {
-				$aCategories[$iKey]['pages'] = $this->getLatestPages($aCategory['type_id']);
+				$aCategories[$iKey]['pages'] = $this->getLatestPages($aCategory['type_id'], $userId);
 				foreach ($aCategories[$iKey]['pages'] as $iSubKey => $aRow)
 				{
 					$aCategories[$iKey]['pages'][$iSubKey]['link'] = Phpfox::getService('pages')->getUrl($aRow['page_id'], $aRow['title'], $aRow['vanity_url']);

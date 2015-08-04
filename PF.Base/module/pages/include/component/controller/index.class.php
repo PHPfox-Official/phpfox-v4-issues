@@ -214,7 +214,7 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 		}
 		else {
 			$bShowCategories = true;
-			$aCategories = Phpfox::getService('pages.category')->getForBrowse(0, true);
+			$aCategories = Phpfox::getService('pages.category')->getForBrowse(0, true, ($bIsProfile ? $aUser['user_id'] : null));
 		}
 
 		$this->template()->setHeader('cache', array(

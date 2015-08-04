@@ -152,7 +152,6 @@ class Phpfox_Image_Helper
 		// Check if this is a users profile image
 		$bIsOnline = false;
 		$sSuffix = '';
-		
 		if (isset($aParams['user']))
 		{
 			if (isset($aParams['user_suffix']))
@@ -213,7 +212,7 @@ class Phpfox_Image_Helper
 				$iWidth = 80;			
 				$iHeight = 70;
 				if (isset($aParams['path'])
-					&& $aParams['path'] == 'core.url_user'
+					&& ($aParams['path'] == 'core.url_user' || $aParams['path'] == 'pages.url_image')
 					// && !isset($aParams['is_page_image'])
 					// && isset($aParams['user'])
 				)

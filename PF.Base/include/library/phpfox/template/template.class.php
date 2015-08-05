@@ -1053,20 +1053,21 @@ class Phpfox_Template
 
 		// $this->setHeader('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">');
 
-		Core\Event::trigger('lib_phpfox_template_getheader', $this);
-
-		foreach ((new Core\App())->all() as $App) {
-			if ($App->head && is_array($App->head)) {
-				foreach ($App->head as $head) {
-					$this->setHeader($head);
+		if (!defined('PHPFOX_INSTALLER')) {
+			Core\Event::trigger('lib_phpfox_template_getheader', $this);
+			foreach ((new Core\App())->all() as $App) {
+				if ($App->head && is_array($App->head)) {
+					foreach ($App->head as $head) {
+						$this->setHeader($head);
+					}
 				}
-			}
 
-			if ($App->settings) {
-				$Setting = new Core\Setting();
-				foreach ($App->settings as $key => $setting) {
-					if (isset($setting->js_variable)) {
-						$this->setHeader('<script>var ' . $key . ' = "' . $Setting->get($key) . '";</script>');
+				if ($App->settings) {
+					$Setting = new Core\Setting();
+					foreach ($App->settings as $key => $setting) {
+						if (isset($setting->js_variable)) {
+							$this->setHeader('<script>var ' . $key . ' = "' . $Setting->get($key) . '";</script>');
+						}
 					}
 				}
 			}
@@ -1953,17 +1954,18 @@ class Phpfox_Template
 		}
 
 		// $this->_sFooter .= '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>';
-
-		foreach ((new Core\App())->all() as $App) {
-			if ($App->footer && is_array($App->footer)) {
-				foreach ($App->footer as $footer) {
-					$this->_sFooter .= $footer;
+		if (!defined('PHPFOX_INSTALLER')) {
+			foreach ((new Core\App())->all() as $App) {
+				if ($App->footer && is_array($App->footer)) {
+					foreach ($App->footer as $footer) {
+						$this->_sFooter .= $footer;
+					}
 				}
-			}
 
-			if ($App->js && is_array($App->js)) {
-				foreach ($App->js as $js) {
-					$this->_sFooter .= '<script src="' . $js . '"></script>';
+				if ($App->js && is_array($App->js)) {
+					foreach ($App->js as $js) {
+						$this->_sFooter .= '<script src="' . $js . '"></script>';
+					}
 				}
 			}
 		}

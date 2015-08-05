@@ -77,7 +77,6 @@ class Pages_Service_Category_Category extends Phpfox_Service
 	}
 
 	public function getLatestPages($iId, $userId = null) {
-		$userId = null;
 		return $this->database()->select('pages.*, pu.vanity_url, ' . Phpfox::getUserField('u2', 'profile_'))
 			->from(Phpfox::getT('pages'), 'pages')
 			->join(Phpfox::getT('user'), 'u2', 'u2.profile_page_id = pages.page_id')

@@ -655,7 +655,7 @@ class Phpfox_Module
 				}				
 			}	
 			
-			if (isset($this->_aModuleBlocks[''][$iId]))
+			if (isset($this->_aModuleBlocks[''][$iId]) && !Phpfox::isAdminPanel())
 			{
 				foreach ($this->_aModuleBlocks[''][$iId] as $mKey => $mData)
 				{

@@ -58,6 +58,9 @@ if (!file_exists(PHPFOX_DIR_SETTINGS . 'license.sett.php')
 		&& !defined('PHPFOX_IS_UPGRADE')
 		&& !class_exists('Phpfox_Installer', false)) {
 		define('PHPFOX_IS_UPGRADE', true);
+		if (!defined('PHPFOX_DEBUG')) {
+			define('PHPFOX_DEBUG', true);
+		}
 	}
 }
 else {

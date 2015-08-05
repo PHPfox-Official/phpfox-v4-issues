@@ -249,6 +249,38 @@ window.onerror = function(e) {
 
 $Behavior.activityFeedProcess = function() {
 
+	$('.comment-limit:not(.is_checked)').each(function() {
+		var t = $(this);
+		t.addClass('is_checked');
+		var total = t.find('.js_mini_feed_comment').length;
+		var limit = t.data('limit');
+		var iteration = total;
+		var totalHidden = 0;
+		t.find('.js_mini_feed_comment').each(function() {
+			var l = $(this);
+			iteration--;
+			if (iteration < limit) {
+				return false;
+			}
+
+			totalHidden++;
+			l.hide();
+		});
+
+		if (totalHidden) {
+			var cHolder = t.parent().find('.comment_pager_holder:first');
+			cHolder.hide();
+			var viewMore = $('<a href="#" class="load_more_comments dont-unbind">View Previous Comments</a>');
+			cHolder.before(viewMore);
+			viewMore.click(function() {
+				t.find('.js_mini_feed_comment').show();
+				$(this).remove();
+				cHolder.show();
+				return false;
+			});
+		}
+	});
+
 	$('.activity_feed_content_display:not(.is_built)').each(function() {
 		var t = $(this);
 

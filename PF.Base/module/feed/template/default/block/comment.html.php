@@ -69,47 +69,46 @@
 		    <div id="js_feed_comment_post_{$aFeed.feed_id}" class="js_feed_comment_view_more_holder">
 
 		{if isset($sFeedType) &&  $sFeedType == 'view'}
-		
+
 		{else}
 			{*
 		    {if isset($aFeed.comment_type_id) && isset($aFeed.total_comment) && (isset($sFeedType) &&  $sFeedType == 'mini' ? $aFeed.total_comment > 0 : $aFeed.total_comment > Phpfox::getParam('comment.total_comments_in_activity_feed'))}
 			    <div class="comment_mini comment_mini_link_holder" id="js_feed_comment_view_more_link_{$aFeed.feed_id}">
 				    <div class="comment_mini_link_image">
-					    {img theme='misc/comment.png' class='v_middle'}				
+					    {img theme='misc/comment.png' class='v_middle'}
 				    </div>
 				    <div class="comment_mini_link_loader" id="js_feed_comment_ajax_link_{$aFeed.feed_id}" style="display:none;">{img theme='ajax/add.gif' class='v_middle'}</div>
 				    <div class="comment_mini_link">
 					    <a href="#" class="comment_mini_link_block comment_mini_link_block_hidden" style="display:none;" onclick="return false;">{phrase var='feed.loading'}</a>
-					    <a href="{if isset($aFeed.feed_link_comment)}{$aFeed.feed_link_comment}{else}{$aFeed.feed_link}{/if}comment/"{if isset($sFeedType) &&  $sFeedType == 'mini'}{else}{if Phpfox::getParam('comment.total_amount_of_comments_to_load') > $aFeed.total_comment}onclick="$('#js_feed_comment_ajax_link_{$aFeed.feed_id}').show(); $(this).parent().find('.comment_mini_link_block_hidden').show(); $(this).hide(); $.ajaxCall('comment.viewMoreFeed', 'comment_type_id={$aFeed.comment_type_id}&amp;item_id={$aFeed.item_id}&amp;feed_id={$aFeed.feed_id}', 'GET'); return false;"{/if}{/if} class="comment_mini_link_block no_ajax_link">{phrase var='comment.view_all_total_left_comments' total_left=$aFeed.total_comment}</a>					
+					    <a href="{if isset($aFeed.feed_link_comment)}{$aFeed.feed_link_comment}{else}{$aFeed.feed_link}{/if}comment/"{if isset($sFeedType) &&  $sFeedType == 'mini'}{else}{if Phpfox::getParam('comment.total_amount_of_comments_to_load') > $aFeed.total_comment}onclick="$('#js_feed_comment_ajax_link_{$aFeed.feed_id}').show(); $(this).parent().find('.comment_mini_link_block_hidden').show(); $(this).hide(); $.ajaxCall('comment.viewMoreFeed', 'comment_type_id={$aFeed.comment_type_id}&amp;item_id={$aFeed.item_id}&amp;feed_id={$aFeed.feed_id}', 'GET'); return false;"{/if}{/if} class="comment_mini_link_block no_ajax_link">{phrase var='comment.view_all_total_left_comments' total_left=$aFeed.total_comment}</a>
 				    </div>
 			    </div>
-		    {/if}		
+		    {/if}
 		    {if isset($aFeed.total_comment) && !isset($aFeed.comment_type_id) && $aFeed.total_comment > 0}
 			    <div class="comment_mini comment_mini_link_holder" id="js_feed_comment_view_more_link_{$aFeed.feed_id}">
 				    <div class="comment_mini_link_image">
-					    {img theme='misc/comment.png' class='v_middle'}				
-				    </div>	
-				    <div class="comment_mini_link">	
-					    <a href="{if isset($aFeed.feed_link_comment)}{$aFeed.feed_link_comment}{else}{$aFeed.feed_link}{/if}comment/" class="comment_mini_link_block">{phrase var='comment.view_all_total_left_comments' total_left=$aFeed.total_comment}</a>					
+					    {img theme='misc/comment.png' class='v_middle'}
+				    </div>
+				    <div class="comment_mini_link">
+					    <a href="{if isset($aFeed.feed_link_comment)}{$aFeed.feed_link_comment}{else}{$aFeed.feed_link}{/if}comment/" class="comment_mini_link_block">{phrase var='comment.view_all_total_left_comments' total_left=$aFeed.total_comment}</a>
 				    </div>
 			    </div>
 		    {/if}
 			*}
 		{/if}
-
 		{if isset($aFeed.comments) && count($aFeed.comments)}
-			{if $aFeed.total_comment > Phpfox::getParam('comment.comment_page_limit')}
-			<div id="js_feed_comment_pager_{$aFeed.type_id}{$aFeed.item_id}">
+		<div>
+			<div class="comment_pager_holder" id="js_feed_comment_pager_{$aFeed.type_id}{$aFeed.item_id}">
+				{if $aFeed.total_comment > Phpfox::getParam('comment.comment_page_limit')}
 				<a href="{url link='feed.comments'}?type={$aFeed.type_id}&id={$aFeed.item_id}&page=2{if defined('PHPFOX_FEED_STREAM_MODE')}&stream-mode=1{/if}" class="load_more_comments ajax"  onclick="$(this).addClass('active');"><i class="fa fa-spin fa-circle-o-notch"></i><span>View Previous Comments</span></a>
+				{/if}
 			</div>
-			{/if}
-			<div id="js_feed_comment_view_more_{$aFeed.feed_id}">
-			{parse_image width=200 height=200}
+			<div id="js_feed_comment_view_more_{$aFeed.feed_id}"{if defined('PHPFOX_FEED_STREAM_MODE')} class="comment-limit" data-limit="{if ($thisLimit = Phpfox::getParam('comment.total_comments_in_activity_feed'))}{$thisLimit}{/if}"{/if}>
 			{foreach from=$aFeed.comments name=comments item=aComment}
 				{template file='comment.block.mini'}
 			{/foreach}
-			{parse_image clear=true}
-			</div><!-- // #js_feed_comment_view_more_{$aFeed.feed_id} -->		
+			</div><!-- // #js_feed_comment_view_more_{$aFeed.feed_id} -->
+		</div>
 		{else}
 			<div id="js_feed_comment_view_more_{$aFeed.feed_id}"></div><!-- // #js_feed_comment_view_more_{$aFeed.feed_id} -->
 		{/if}

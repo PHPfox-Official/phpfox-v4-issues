@@ -567,7 +567,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			$is_settings = true;
 		}
 
-		$aSkipModules = ['api', 'feed', 'apps', 'announcement', 'ban', 'facebook', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment', 'theme'];
+		$aSkipModules = ['api', 'comment', 'feed', 'apps', 'announcement', 'ban', 'facebook', 'user', 'core', 'custom', 'admincp', 'page', 'language', 'attachment', 'theme'];
 
 		$searchSettings = Admincp_Service_Setting_Setting::instance()->getForSearch($aSkipModules);
 		$this->template()->setHeader('<script>var admincpSettings = ' . json_encode($searchSettings) . ';</script>');

@@ -156,7 +156,7 @@ class App {
 				chdir(PHPFOX_DIR);
 			}
 
-			$this->processJson($json);
+			$this->processJson($json, $appBase);
 		}
 		catch (\Exception $e) {
 			if ($e->getMessage() != 'not_git') {
@@ -294,7 +294,7 @@ class App {
 		else {
 			$isNew = true;
 
-			$this->processJson($json);
+			$this->processJson($json, $base);
 
 			$lock = json_encode(['installed' => PHPFOX_TIME, 'version' => $json->version], JSON_PRETTY_PRINT);
 			file_put_contents($lockPath, $lock);
@@ -316,7 +316,7 @@ class App {
 		return $Object;
 	}
 
-	public function processJson($json) {
+	public function processJson($json, $base) {
 		if (isset($json->menu)) {
 			\Admincp_Service_Menu_Process::instance()->add([
 				'm_connection' => 'main',
@@ -326,6 +326,13 @@ class App {
 				'url_value' => $json->menu->url,
 				'text' => ['en' => $json->menu->name]
 			]);
+		}
+
+		if (file_exists($base . 'installer.php')) {
+			\Core\App\Installer::$method = 'onInstall';
+			\Core\App\Installer::$basePath = $base;
+
+			require_once($base . 'installer.php');
 		}
 	}
 

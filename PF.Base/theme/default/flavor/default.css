@@ -7116,6 +7116,7 @@ div.comment_mini_end {
   color: #999999;
   border-radius: 3px;
   font-size: 15px;
+  text-align: center;
 }
 #panel .activity_feed_form_button_position_button > i:hover,
 #panel .activity_feed_form_button_position_button > i.active {
@@ -7123,9 +7124,8 @@ div.comment_mini_end {
   color: #ffffff;
 }
 #panel .activity_feed_form_button_position_button > i::before {
-  position: absolute;
-  left: 10px;
-  top: 10px;
+  margin-top: 10px;
+  display: block;
 }
 #panel .activity_feed_form_button_position {
   border-top: 1px #e6e6e6 solid;

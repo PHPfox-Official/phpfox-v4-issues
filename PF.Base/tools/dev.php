@@ -96,6 +96,81 @@ if (isset($_POST['cmd'])) {
 					unlink($touch);
 				}
 
+
+
+				foreach (scandir($themes) as $theme) {
+					$path = $themes . $theme . '/';
+					$json = $path . 'theme.json';
+					if (file_exists($json)) {
+						$json = json_decode(file_get_contents($json));
+
+						chdir($path);
+						l('<div class="panel panel-default"><div class="panel-heading">[theme]: ' . $json->name . '</div>');
+						l('<div class="panel-body">');
+						// l('Changed to directory: ' . $path);
+						$old = $json->version;
+						$new = number_format($old, 1);
+						$new = $new + 1 * 0.1;
+
+						$json->version = $new;
+						file_put_contents($path . 'theme.json', json_encode($json, JSON_PRETTY_PRINT));
+
+						if ($exportPath) {
+							$dir = $exportPath . str_replace(' ', '_', $json->name) . '/';
+							if (!is_dir($dir)) {
+								mkdir($dir);
+							}
+
+							$zipFile = $dir . $new . '.zip';
+							// l('Working to ZIP: ' . $zipFile);
+
+							$zipArchive = new \ZipArchive();
+
+							if (!$zipArchive->open($zipFile, \ZIPARCHIVE::CREATE | \ZIPARCHIVE::OVERWRITE)) {
+								throw new \Exception('Unable to create ZIP archive.');
+							}
+
+							$directory = new \SplFileInfo($path);
+							$exclude = array('.git');
+							$filter = function ($file, $key, $iterator) use ($exclude) {
+								if ($file->getFileName() == 'app.lock' || $file->getFileName() == 'composer.phar') {
+									return false;
+								}
+
+								if ($iterator->hasChildren() && !in_array($file->getFilename(), $exclude)) {
+									return true;
+								}
+								return $file->isFile();
+							};
+							$innerIterator = new \RecursiveDirectoryIterator(
+								$directory->getRealPath(),
+								\RecursiveDirectoryIterator::SKIP_DOTS
+							);
+							$files = new \RecursiveIteratorIterator(
+								new \RecursiveCallbackFilterIterator($innerIterator, $filter)
+							);
+
+							foreach ($files as $name => $file) {
+								if ($file instanceof \SplFileInfo) {
+									$filePath = $file->getRealPath();
+									$name = str_replace($directory->getRealPath(), '', $filePath);
+									$name = str_replace('\\', '/', $name);
+
+									$zipArchive->addFile($filePath, $name);
+								}
+							}
+
+							$zipArchive->close();
+
+							if (file_exists($zipFile)) {
+								l('ZIP created: ' . $zipFile);
+							}
+						}
+
+						l('</div></div>');
+					}
+				}
+
 				$exclude = array('.git');
 				$filter = function ($file, $key, $iterator) use ($exclude) {
 					if ($file->getFileName() == 'app.lock' || $file->getFileName() == 'composer.phar') {

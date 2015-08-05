@@ -11,57 +11,57 @@
 defined('PHPFOX') or exit('NO DICE!');
 
 ?>
-<form method="post" action="{url link='admincp.ad.sponsor'}">
-	<div class="table_header">
-		{phrase var='ad.ad_filter'}
-	</div>
-	<div class="table">
-		<div class="table_left">
-			{phrase var='ad.type'}:
+<div class="block_search">
+	<form method="post" action="{url link='admincp.ad.sponsor'}">
+		<div class="table_header">
+			{phrase var='ad.ad_filter'}
 		</div>
-		<div class="table_right">
-			{$aFilters.status}
+		<div class="table">
+			<div class="table_left">
+				{phrase var='ad.type'}:
+			</div>
+			<div class="table_right">
+				{$aFilters.status}
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="clear"></div>
-	</div>
-	<div class="table">
-		<div class="table_left">
-			{phrase var='ad.display'}:
+		<div class="table">
+			<div class="table_left">
+				{phrase var='ad.display'}:
+			</div>
+			<div class="table_right">
+				{$aFilters.display}
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="table_right">
-			{$aFilters.display}
+		<div class="table">
+			<div class="table_left">
+				{phrase var='ad.sort_by'}:
+			</div>
+			<div class="table_right">
+				{$aFilters.sort} {$aFilters.sort_by}
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="clear"></div>
-	</div>
-	<div class="table">
-		<div class="table_left">
-			{phrase var='ad.sort_by'}:
+		<div class="table_clear">
+			<input type="submit" name="search[submit]" value="{phrase var='core.submit'}" class="button" />
+			<input type="submit" name="search[reset]" value="{phrase var='core.reset'}" class="button" />
 		</div>
-		<div class="table_right">
-			{$aFilters.sort} {$aFilters.sort_by}
-		</div>
-		<div class="clear"></div>
-	</div>
-	<div class="table_clear">
-		<input type="submit" name="search[submit]" value="{phrase var='core.submit'}" class="button" />
-		<input type="submit" name="search[reset]" value="{phrase var='core.reset'}" class="button" />
-	</div>
-</form>
-
-<br />
-
-{pager}
-
-{if $iPendingCount > 0 && $sView != 'pending'}
-<div class="message">
-	{phrase var='ad.there_are_pending_ads_that_require_your_attention_view_all_pending_ads_a_href_link_here_a' link=$sPendingLink}
+	</form>
 </div>
-{/if}
-<div class="table_header">
-	{phrase var='ad.ads'}
-</div>
-<form method="post" action="{url link='admincp.ad'}">
+
+<div class="block_content">
+	{if $iPendingCount > 0 && $sView != 'pending'}
+	<div class="message">
+		{phrase var='ad.there_are_pending_ads_that_require_your_attention_view_all_pending_ads_a_href_link_here_a' link=$sPendingLink}
+	</div>
+	{/if}
+
 	{if count($aAds)}
+	<div class="table_header">
+		Sponsorships
+	</div>
+	<form method="post" action="{url link='admincp.ad'}">
 	<table>
 	<tr>
 		<th style="width:20px;"></th>
@@ -108,19 +108,16 @@ defined('PHPFOX') or exit('NO DICE!');
 	</tr>
 	{/foreach}
 	</table>
-	<div class="table_clear"></div>
+	</form>
+	{pager}
+
 	{else}
 	<div class="extra_info">
 	{if $bIsSearch}
 		{phrase var='ad.no_search_results_were_found'}
 	{else}
 		{phrase var='ad.no_ads_have_been_created'}
-		<ul class="action">
-			<li><a href="{url link='admincp.ad.add'}">{phrase var='ad.add_a_new_add'}</a></li>
-		</ul>
 	{/if}
 	</div>
 	{/if}
-</form>
-
-{pager}
+</div>

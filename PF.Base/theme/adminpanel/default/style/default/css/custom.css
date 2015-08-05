@@ -930,6 +930,9 @@ select:focus {
   box-shadow: none;
   resize: none;
 }
+textarea {
+  padding-left: 10px !important;
+}
 select,
 select:focus {
   text-indent: 4px;

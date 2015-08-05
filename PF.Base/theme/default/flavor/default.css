@@ -2146,7 +2146,7 @@ li {
   width: 200px;
   height: 40px;
   line-height: 40px;
-  text-indent: 35px;
+  text-indent: 45px;
   font-weight: 200;
   color: #e5e5e5;
   background: #3f3f3f;
@@ -2165,6 +2165,19 @@ li {
   width: 20px;
   height: 20px;
   background-size: contain;
+}
+#logo > span > i,
+#logo:hover > span > i {
+  background: url('//da1a3suzxtd3z.cloudfront.net/logos/phpfox.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  text-indent: 0px;
 }
 #logo:hover {
   color: #ffffff;

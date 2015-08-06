@@ -10,4 +10,8 @@ class User {
 	public function membersOnly() {
 		\Phpfox::isUser(true);
 	}
+
+	public function isAdmin() {
+		return \Phpfox::isAdmin();
+	}
 }

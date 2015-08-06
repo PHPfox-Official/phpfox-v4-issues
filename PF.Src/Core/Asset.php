@@ -12,6 +12,9 @@ class Asset {
 			if (substr($asset, 0, 7) == '@static') {
 				\Phpfox_Template::instance()->delayedHeaders[] = [str_replace('@static/', '', $asset) => 'static_script'];
 			}
+			else {
+				\Phpfox_Template::instance()->setHeader($asset);
+			}
 		}
 	}
 }

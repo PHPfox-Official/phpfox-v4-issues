@@ -23,10 +23,13 @@ class Model {
 	 */
 	protected $active;
 
+	protected $storage;
+
 	public function __construct() {
 		$this->db = new Db();
 		$this->cache = new Cache();
 		$this->active = (new \Api\User())->get(\Phpfox::getUserId());
 		$this->url = new Url();
+		$this->storage = new Storage();
 	}
 }

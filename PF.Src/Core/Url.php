@@ -7,9 +7,10 @@ namespace Core;
  * @package Core
  *
  * @method make($route)
- * @method send($route)
+ * @method send($route, $params = [], $message = null)
  * @method current()
  * @method uri()
+ * @method clean($title)
  */
 class Url {
 
@@ -35,6 +36,9 @@ class Url {
 				break;
 			case 'current':
 				$method = 'current';
+				break;
+			case 'clean':
+				$method = 'cleanTitle';
 				break;
 		}
 

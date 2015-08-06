@@ -9,7 +9,11 @@ class Feed extends \Core\Api {
 			'content'
 		]);
 
-		$this->db->update(':feed', ['content' => $_REQUEST['content']], ['feed_id' => $id]);
+		$content = $this->request->get('content');
+		if (!is_string($content)) {
+			$content = json_encode($content);
+		}
+		$this->db->update(':feed', ['content' => $content], ['feed_id' => $id]);
 
 		return $this->get($id);
 	}

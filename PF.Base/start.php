@@ -50,6 +50,13 @@ function setting($key, $default = null) {
 	return $Setting->get($key, $default);
 }
 
+/**
+ * @param null $key
+ * @param null $default
+ * @param null $userGroupId
+ * @return \Api\User\Object|\Api\User\Object[]
+ * @throws Exception
+ */
 function user($key = null, $default = null, $userGroupId = null) {
 	if ($key === null) {
 		return (new \Api\User())->get(\Phpfox::getUserId());

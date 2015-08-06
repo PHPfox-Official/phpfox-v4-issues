@@ -872,7 +872,7 @@ class Phpfox_Url
 
 		if (Phpfox_Request::instance()->get('is_ajax_post')) {
 			header('Content-type: application/json');
-			echo json_encode(['process' => 'complete']);
+			echo json_encode(['redirect' => $sUrl]);
 			exit;
 		}
 		

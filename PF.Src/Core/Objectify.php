@@ -13,7 +13,12 @@ class Objectify {
 
 		if ($objects) {
 			if (property_exists($this, 'user')) {
-				$this->user = (object) $this->_build($objects);
+				if (is_object($objects) && isset($objects->user) && is_object($objects->user)) {
+					$this->user = $objects->user;
+				}
+				else {
+					$this->user = (object) $this->_build($objects);
+				}
 			}
 			else if ((is_array($objects) && isset($objects['user_id']) && isset($objects['full_name']))) {
 				$objects = $this->_build($objects);
@@ -39,7 +44,7 @@ class Objectify {
 			$row = $row['user'];
 		}
 
-		$age = $row['birthday'];
+		$age = (isset($row['birthday']) ? $row['birthday'] : null);
 		$day = '';
 		$month = '';
 		$year = '';

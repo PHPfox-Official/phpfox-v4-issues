@@ -203,6 +203,10 @@ $Core.processPostForm = function(e, obj) {
 		window.location.href = e.redirect;
 	}
 
+	if (typeof(e.push) == 'string') {
+		history.pushState(null, null, e.redirect);
+	}
+
 	if (typeof(e.run) == 'string') {
 		eval(e.run);
 	}
@@ -289,8 +293,7 @@ $Behavior.onAjaxSubmit = function() {
 		var t = $(this),
 			callback = t.data('callback'),
 			callbackStart = t.data('callback-start'),
-			includeButton = t.data('include-button'),
-			data = t.serialize();
+			includeButton = t.data('include-button');
 
 		t.find('.form-spin-it').remove();
 		var b = t.find('.button');
@@ -299,12 +302,13 @@ $Behavior.onAjaxSubmit = function() {
 			b.hide();
 		}
 
-		if (includeButton) {
-			data += '&' + $('.button.last_clicked_button').attr('name') + '=1';
-		}
-
 		if (callbackStart) {
 			window[callbackStart](t);
+		}
+
+		var data = t.serialize();
+		if (includeButton) {
+			data += '&' + $('.button.last_clicked_button').attr('name') + '=1';
 		}
 
 		t.find('.error_message').remove();

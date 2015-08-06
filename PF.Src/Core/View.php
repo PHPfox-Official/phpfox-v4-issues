@@ -14,7 +14,11 @@ class View {
 		$Template = \Phpfox_Template::instance();
 
 		$this->_loader = new View\Loader();
-		$this->_loader->addPath($Template->theme()->get()->getPath() . 'html', 'Theme');
+
+		$dir = $Template->theme()->get()->getPath() . 'html';
+		if (is_dir($dir)) {
+			$this->_loader->addPath($dir, 'Theme');
+		}
 		$this->_loader->addPath(PHPFOX_DIR . 'theme/default/html', 'Theme');
 
 		$this->_loader->addPath(PHPFOX_DIR . 'views', 'Base');

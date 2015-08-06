@@ -236,7 +236,15 @@ class Controller {
 					$content = ['error' => $errors];
 				}
 				else {
-					throw new \Exception($e->getMessage(), $e->getCode(), $e);
+					if (!$e->getCode()) {
+						$Controller = new \Core\Controller();
+						$content = $Controller->render('@Base/blank.html', [
+							'content' => '<div class="error_message">' . $e->getMessage() . '</div>'
+						]);
+					}
+					else {
+						throw new \Exception($e->getMessage(), $e->getCode(), $e);
+					}
 				}
 			}
 

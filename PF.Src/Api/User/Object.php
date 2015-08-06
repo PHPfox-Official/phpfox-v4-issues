@@ -17,4 +17,8 @@ class Object extends \Core\Objectify {
 	public function perm($perm) {
 		return \Phpfox::getUserParam($perm);
 	}
+
+	public function isAdmin() {
+		return \Phpfox::isAdmin();
+	}
 }

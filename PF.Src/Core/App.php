@@ -9,11 +9,13 @@ class App {
 
 	public function __construct($refresh = false) {
 		if (defined('PHPFOX_NO_APPS')) {
+			self::$_apps = [];
 			return;
 		}
 
 		$base = PHPFOX_DIR_SITE . 'Apps/';
 		if (!is_dir($base)) {
+			self::$_apps = [];
 			return;
 		}
 

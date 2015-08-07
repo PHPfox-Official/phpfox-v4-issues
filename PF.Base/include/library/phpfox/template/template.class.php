@@ -1337,12 +1337,18 @@ class Phpfox_Template
 				// 'return_url' => true
 			]);
 
+			$imageUrl = Phpfox_Image_Helper::instance()->display([
+				'user' => Phpfox::getUserBy(),
+				'suffix' => '_50_square',
+				'return_url' => true
+			]);
+
 			// if (strpos($image, 'no_image_user')) {
 			$image = htmlspecialchars($image);
 			$image = str_replace(['<', '>'], ['&lt;', '&gt;'], $image);
 			// }
 
-			$this->_sFooter .= '<div id="auth-user" data-user-name="' . Phpfox::getUserBy('user_name') . '" data-id="' . Phpfox::getUserId() . '" data-name="' . Phpfox::getUserBy('full_name') . '" data-image="' . $image . '"></div>';
+			$this->_sFooter .= '<div id="auth-user" data-image-url="' . $imageUrl . '" data-user-name="' . Phpfox::getUserBy('user_name') . '" data-id="' . Phpfox::getUserId() . '" data-name="' . Phpfox::getUserBy('full_name') . '" data-image="' . $image . '"></div>';
 		}
 
             $sJs .= "\t\t\t" . 'var $Behavior = {}, $Ready = $Ready = function(callback) {$Behavior[callback.toString().length] = callback;}, $Events = {}, $Event = function(callback) {$Events[callback.toString().length] = callback;};' . "\n";

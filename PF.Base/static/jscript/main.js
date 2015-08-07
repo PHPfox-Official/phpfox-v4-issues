@@ -740,7 +740,7 @@ $Core.openPanel = function(obj) {
 
 		$('.notifications a.active').removeClass('active');
 		obj.addClass('active');
-		$('body').addClass('panel_is_active');
+		$('body').addClass('panel_is_active').removeClass('user_block_is_active');
 
 		$('#panel').html('<i class="fa fa-spin fa-circle-o-notch"></i>');
 
@@ -933,23 +933,8 @@ $Behavior.globalInit = function()
 		t.parents('form:first').addClass('active');
 	});
 
-	/*
-	$('._search').click(function() {
-		var t = $(this);
-
-		$('.notifications a.active').removeClass('active');
-		$Core.openPanel();
-		t.hide().addClass('active');
-		// t.addClass('active');
-		$('#header_search_form').show();
-		$('#header_search_form input').focus();
-
-
-		return false;
-	});
-	*/
-
 	$('._panel').click(function() {
+		p('clicked!');
 		$Core.openPanel($(this));
 
 		return false;

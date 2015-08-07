@@ -185,7 +185,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		}
 
 		if (defined('PHPFOX_IS_USER_PROFILE')) {
-			if (!User_Service_Privacy_Privacy::instance()->hasAccess(PHPFOX_CURRENT_USER_PROFILE, 'feed.share_on_wall')) {
+			if (!User_Service_Privacy_Privacy::instance()->hasAccess(($this->request()->get('profile_user_id') ? $this->request()->get('profile_user_id') : PHPFOX_CURRENT_USER_PROFILE), 'feed.share_on_wall')) {
 				// $bUseFeedForm = false;
 			}
 		}

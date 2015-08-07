@@ -69,8 +69,12 @@ class App {
 				$callback = require_once($data->path . 'start.php');
 				if (is_callable($callback)) {
 					$View = new \Core\View();
-					$View->loader()->addPath($data->path . 'views/', $data->id);
-					call_user_func($callback, $this->get($data->id), $View->env());
+					$viewEnv = null;
+					if (is_dir($data->path . 'views/')) {
+						$View->loader()->addPath($data->path . 'views/', $data->id);
+						$viewEnv = $View->env();
+					}
+					call_user_func($callback, $this->get($data->id), $viewEnv);
 				}
 			}
 		}

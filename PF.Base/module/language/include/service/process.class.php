@@ -157,7 +157,7 @@ class Language_Service_Process extends Phpfox_Service
 	
 	public function add($aVals)
 	{
-		$oFilter = Phpfox::getLib('parse.input');
+		$oFilter = Phpfox_Parse_Input::instance();
 		
 		$aCheck = array(
 			'parent_id' => array(
@@ -251,7 +251,7 @@ class Language_Service_Process extends Phpfox_Service
 		$this->database()->insert($this->_sTable, array(				
 				'language_id' => $sLanguageId,
 				'parent_id' => $aVals['parent_id'],
-				'title' => $oFilter->clean($aVals['title'], 255) . ($iTotal > 0 ? '(' . ($iTotal + 1) . ')' : ''),
+				'title' => $oFilter->convert($aVals['title']) . ($iTotal > 0 ? '(' . ($iTotal + 1) . ')' : ''),
 				'user_select' => (int) $aVals['user_select'],
 				'language_code' => $aVals['language_code'],
 				// 'charset' => $aVals['charset'],
@@ -344,8 +344,9 @@ class Language_Service_Process extends Phpfox_Service
 		if (!Phpfox_Error::isPassed())
 		{
 			return false;
-		}			
+		}
 
+		$aData['settings']['title'] = Phpfox_Parse_Input::instance()->convert($aData['settings']['title']);
 		$aData['settings']['language_id'] = $sPack;
 		$aData['settings']['time_stamp'] = PHPFOX_TIME;
 		

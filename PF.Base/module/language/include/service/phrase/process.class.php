@@ -57,7 +57,7 @@ class Language_Service_Phrase_Process extends Phpfox_Service
 	public function add($aVals, $bClean = false)
 	{	
 		$sPhrase = $this->prepare($aVals['var_name']);
-		$oParseInput = Phpfox::getLib('parse.input');		
+		$oParseInput = Phpfox_Parse_Input::instance();
 		
 		if (isset($aVals['module']))
 		{

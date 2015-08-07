@@ -253,14 +253,14 @@ class Phpfox_Locale
 		{
 			if (($sLanguageId = Phpfox::getLib('session')->get('language_id')))
 			{
-				
+
 			}
 			else 
 			{
 				$sLanguageId = $this->autoLoadLanguage();
 			}
 		}
-		
+
 		if (!isset($this->_aLanguages[$sLanguageId]))
 		{
 			$sLanguageId = 'en';

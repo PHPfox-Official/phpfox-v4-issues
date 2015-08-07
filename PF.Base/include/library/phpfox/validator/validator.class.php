@@ -574,7 +574,8 @@ class Phpfox_Validator
 	{
 		$sStr = "\n" . '<div id="' . $this->_sName . '_msg"></div>';
 		$sStr .= "\n" . '<script type="text/javascript">' . "\n";
-	 	$sStr .= "function " . $this->sFormName . "()\n{\n";
+	 	$sStr .= "function " . $this->sFormName . "()\n{ return true; }\n</script>";
+		/*
 	 	$sStr .= "\t" . '$(\'#' . $this->_sName . '_msg\').hide(\'\');' . "\n";
 	 	$sStr .= "\t" . '$(\'#' . $this->_sName . '_msg\').html(\'\');' . "\n";
 	 	$sStr .= "\t" . "var bIsValid = true;\n";	 	
@@ -588,6 +589,7 @@ class Phpfox_Validator
 		
 		$sStr .= "\t" . "if (bReturn) return false;\n\t if ( bIsValid ) { return true; } \$('#" . $this->_sName . "_msg').show(); window.location.hash = '#pem'; return false;\n";
 		$sStr .= '}' . "\n</script>\n";
+		*/
 
 		return $sStr;
 	}

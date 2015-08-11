@@ -172,6 +172,10 @@ class Object extends \Core\Objectify {
 				$this->internal_id = (isset($this->auth->internal_id) ? $this->auth->internal_id : 0);
 			}
 		}
+
+		if (is_array($this->auth)) {
+			$this->auth = (object) $this->auth;
+		}
 	}
 
 	public function delete() {

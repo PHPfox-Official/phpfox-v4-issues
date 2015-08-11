@@ -11288,3 +11288,17 @@ a.marketplace_contact_seller:hover {
     width: auto;
   }
 }
+.app-block {
+  background: #ffffff;
+  color: #999999;
+}
+.app-block-padding {
+  padding: 10px;
+}
+.app-block-border {
+  border: 1px #f2f2f2 solid;
+}
+.app-form {
+  background: #ffffff;
+  color: #999999;
+}

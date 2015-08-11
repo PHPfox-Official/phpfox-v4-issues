@@ -32,6 +32,16 @@ class Controller {
 			if (is_string($key) && $key == '*') {
 				$routes[$uri] = $route;
 			}
+			else {
+				if (strpos($key, '*')) {
+					$parts = explode('/', trim($uri, '/'));
+					$sub = explode('/', $key);
+					if ($parts[0] == $sub[0]) {
+						$routes[$uri] = $route;
+						break;
+					}
+				}
+			}
 
 			if (strpos($key, ':')) {
 				$parts = explode('/', $key);
@@ -117,7 +127,7 @@ class Controller {
 							if ($child->nodeName == 'api') {
 								continue;
 							}
-							$innerXML .= $child->ownerDocument->saveXML($child);
+							$innerXML .= $child->ownerDocument->saveHTML($child);
 						}
 						return $innerXML;
 					};
@@ -130,11 +140,64 @@ class Controller {
 
 					$response = $http->auth($App->auth->id, $App->auth->key)
 						->using($this->_request->all())
+						->header('API_CLIENT_ID', PHPFOX_LICENSE_ID)
+						->header('API_HOME', \Phpfox_Url::instance()->makeUrl(''))
 						->header('API_ENDPOINT', \Phpfox_Url::instance()->makeUrl('api'))
+						->header('API_URI', \Phpfox_Url::instance()->getUri())
+						->header('API_USER', json_encode((\Phpfox::isUser() ? user() : [])))
 						->call($_SERVER['REQUEST_METHOD']);
+
+					$parse = function($thisContent, $isJson = false) {
+						$thisContent = preg_replace_callback('/<user-([a-z\-]+) ([a-zA-Z\-0-9="\' ]+)><\/user-\\1>/is', function($matches) use($isJson) {
+							$type = str_replace('-', '_', trim($matches[1]));
+							$parts = explode(' ', trim($matches[2]));
+							$keys = [];
+							foreach ($parts as $part) {
+								$part = trim($part);
+								if (substr($part, 0, 5) != 'data-') {
+									continue;
+								}
+
+								$sub = explode('=', str_replace('data-', '', $part));
+								$keys[$sub[0]] = (isset($sub[1]) ? trim(trim($sub[1], '"'), "'") : '');
+							}
+
+							if (!isset($keys['id'])) {
+								return '';
+							}
+
+							$userId = $keys['id'];
+							try {
+								$user = (new \Api\User())->get($userId);
+							} catch (\Exception $e) {
+								return '';
+							}
+
+							if (property_exists($user, $type)) {
+								$return = $user->{$type};
+								if ($isJson) {
+									$return = str_replace('"', "'", $return);
+								}
+
+								return $return;
+							}
+
+							return '';
+
+						}, $thisContent);
+
+						return $thisContent;
+					};
 
 					if (is_object($response)) {
 						header('Content-type: application/json');
+
+						if (isset($response->run)) {
+
+							$response->run = str_replace('[PF_DOUBLE_QUOTE]', '\'', $response->run);
+							$response->run = $parse($response->run, true);
+						}
+
 						echo json_encode($response, JSON_PRETTY_PRINT);
 						exit;
 					}
@@ -145,10 +208,11 @@ class Controller {
 
 					$doc = new \DOMDocument();
 					libxml_use_internal_errors(true);
-					$doc->loadHTML($response);
+					$doc->loadHTML(mb_convert_encoding($response, 'HTML-ENTITIES', 'UTF-8'));
 					$xml = $doc->saveXML($doc);
 
 					$xml = @simplexml_load_string($xml);
+
 					if ($xml === false) {
 						$xml = new \stdClass();
 						$xml->body = $response;
@@ -180,16 +244,32 @@ class Controller {
 					if (isset($xml->head)) {
 						$Controller->title('' . $xml->head->title);
 
+						$attributes = function($keys) {
+							$attributes = '';
+							foreach ($keys as $key => $value) {
+								$attributes .= ' ' . $key . '="' . $value . '" ';
+							}
+
+							return $attributes;
+						};
 						foreach ((array) $xml->head as $type => $data) {
-							switch ($type) {
+							switch ((string) $type) {
 								case 'style':
 									$Template->setHeader('<' . $type . '>' . (string) $data . '</' . $type . '>');
+									break;
+								case 'link':
+									$Template->delayedHeaders[] = '<' . $type . ' ' . $attributes($data->attributes()) . '>';
 									break;
 							}
 						}
 					}
 
 					$thisContent = (is_string($xml->body) ? $xml->body : $innerHTML($xml->body));
+					$thisContent = $parse($thisContent);
+
+					// d(htmlspecialchars($thisContent)); exit;
+					// echo htmlspecialchars($thisContent); exit;
+
 					if ($this->_request->isPost()) {
 						echo $thisContent;
 						exit;

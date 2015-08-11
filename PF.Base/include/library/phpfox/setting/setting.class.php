@@ -424,7 +424,7 @@ class Phpfox_Setting
 			$this->_aParams[$key] = $value;
 		}
 
-		if (isset($_GET['phpfox-upgrade'])) {
+		if (isset($_GET['phpfox-upgrade']) && !defined('PHPFOX_IS_UPGRADE')) {
 			Phpfox_Url::instance()->send('');
 		}
 	}

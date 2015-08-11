@@ -50,9 +50,12 @@ class App {
 
 			if (isset($data->routes)) {
 				foreach ((array) $data->routes as $key => $route) {
+					$orig = $route;
 					$route = (array) $route;
 					$route['id'] = $data->id;
-
+					if (is_string($orig)) {
+						$route['url'] = $orig;
+					}
 					Route::$routes = array_merge(Route::$routes, [$key => $route]);
 				}
 			}

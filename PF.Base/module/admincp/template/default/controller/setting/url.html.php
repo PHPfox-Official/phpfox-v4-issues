@@ -16,10 +16,14 @@
 &lt;IfModule mod_rewrite.c&gt;
 	RewriteEngine On
 	RewriteBase {param var='core.folder_original'}
+	{literal}
+	RewriteCond %{REQUEST_FILENAME} !-f
+	{/literal}
+    RewriteRule ^(file)/(.*) PF.Base/$1/$2
 
-	RewriteRule ^static/ajax.php index.php
+    RewriteRule ^static/ajax.php index.php
 	RewriteRule ^themes/default/(.*) PF.Base/theme/default/$1
-	RewriteRule ^(file|static|theme|module)/(.*) PF.Base/$1/$2
+	RewriteRule ^(static|theme|module)/(.*) PF.Base/$1/$2
 	RewriteRule ^(Apps|themes)/(.*) PF.Site/$1/$2
 
 	{literal}

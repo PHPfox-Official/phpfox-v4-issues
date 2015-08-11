@@ -26,6 +26,11 @@
 					<option value="{{ key }}"{% if option in params.values or params.value == key %} selected="selected"{% endif %}>{{ option }}</option>
 				{% endfor %}
 			</select>
+			{% if params.info %}
+			<div class="extra_info">
+				{{ params.info }}
+			</div>
+			{% endif %}
 		</div>
 	</div>
 {% endmacro %}

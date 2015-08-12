@@ -596,6 +596,20 @@ div.sortable ul li ul, div.sortable ul li:hover ul {
 				font-size:@fontSizeBase - 2;
 				padding:0px 10px;
 				letter-spacing:1px;
+				transition:@transition;
+			}
+
+			a:hover {
+				opacity:0.8;
+			}
+
+			a.light, a.light:hover {
+				background:transparent;
+				color:#808080;
+			}
+
+			a.light:hover {
+				color:#fff;
 			}
 		}
 	}

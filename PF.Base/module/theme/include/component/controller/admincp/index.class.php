@@ -24,7 +24,20 @@ class Theme_Component_Controller_Admincp_Index extends Phpfox_Component {
 			}
 		}
 
-		$themes = $this->template()->theme()->all();
+		$themes = [];
+		$default = [];
+		$rows = $this->template()->theme()->all();
+		foreach ($rows as $row) {
+			if ($row->is_default) {
+				$default = $row;
+
+				continue;
+			}
+
+			$themes[] = $row;
+		}
+		$themes = array_merge([$default], $themes);
+
 		$Home = new Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY);
 		$products = $Home->downloads(['type' => 2]);
 		$newInstalls = [];
@@ -45,8 +58,12 @@ class Theme_Component_Controller_Admincp_Index extends Phpfox_Component {
 			->setActionMenu([
 				'New Theme' => [
 						'url' => $this->url()->makeUrl('admincp.theme.add'),
-						'class' => 'popup'
-					]
+						'class' => 'popup light'
+					],
+				'Find More Themes' => [
+					'url' => $this->url()->makeUrl('admincp.store', ['load' => 'themes']),
+					'class' => ''
+				]
 			])
 			->setBreadcrumb(Phpfox::getPhrase('theme.themes'), $this->url()->makeUrl('admincp.theme'))
 			->assign(array(

@@ -646,6 +646,18 @@ div.sortable ul li:hover ul li:hover a:hover {
   font-size: 12px;
   padding: 0px 10px;
   letter-spacing: 1px;
+  transition: all 0.5s ease;
+}
+.admin_action_menu ul li a:hover {
+  opacity: 0.8;
+}
+.admin_action_menu ul li a.light,
+.admin_action_menu ul li a.light:hover {
+  background: transparent;
+  color: #808080;
+}
+.admin_action_menu ul li a.light:hover {
+  color: #fff;
 }
 .admincp_user {
   position: relative;
@@ -6544,51 +6556,179 @@ i._zz {
   border-color: #f4645f;
   transition: all 0.5s ease;
 }
+/*
 .preview .themes {
+	text-align:center;
+	margin-top:10px;
+
+	article {
+		width:200px;
+		height:300px;
+		text-align:left;
+		border:1px darken(@blockBg, 6%) solid;
+	}
+}
+*/
+/*
+.themes {
+	.theme_colors {
+		padding-top:40px;
+		text-align:center;
+
+		> span {
+			display:inline-block;
+			width:100px;
+			height:130px;
+			margin:10px;
+			border:1px darken(@blockBg, 10%) solid;
+		}
+	}
+
+	article {
+		width:250px;
+		height:350px;
+		background:@blockBg;
+		color:@blockColor;
+		position:relative;
+		display:inline-block;
+		vertical-align:top;
+		margin:0px 10px 20px 0px;
+		background-size:cover;
+		background-repeat:no-repeat;
+		background-position:center center;
+
+		h1 {
+			a, a:hover {
+				display:block;
+				position:absolute;
+				left:0px;
+				top:0px;
+				bottom:0px;
+				right:0px;
+
+				em {
+					display:none;
+					position:absolute;
+					left:50%;
+					top:50%;
+					margin-left:-40px;
+					padding:6px 20px;
+					text-indent:0px;
+					font-weight:300;
+					text-decoration:none;
+					letter-spacing:1px;
+					text-transform:uppercase;
+					background:@brandPrimary;
+					color:@brandPrimaryColor;
+					font-size:@fontSizeBase + 2;
+				}
+
+				span {
+					position:absolute;
+					left:0px;
+					top:0px;
+					right:0px;
+					background:@topBg;
+					color:@topColor;
+					font-weight:200;
+					font-size:@fontSizeBase + 4;
+					height:40px;
+					line-height:40px;
+					letter-spacing:1px;
+					text-indent:8px;
+				}
+			}
+
+			a:hover {
+				background:rgba(0, 0, 0, 0.4);
+				transition:@transition;
+
+				em {
+					display:block;
+				}
+			}
+		}
+	}
+}
+*/
+.themes {
   text-align: center;
-  margin-top: 10px;
 }
-.preview .themes article {
-  width: 200px;
-  height: 300px;
-  text-align: left;
-  border: 1px #f0f0f0 solid;
+.themes article::before,
+.themes article::after,
+.themes article h1::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 5px;
+  background: rgba(255, 0, 0, 0.6);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
 }
-.themes .theme_colors {
-  padding-top: 40px;
-  text-align: center;
+.themes article::after {
+  left: 18px;
+  background: rgba(255, 255, 0, 0.6);
 }
-.themes .theme_colors > span {
-  display: inline-block;
-  width: 100px;
-  height: 130px;
-  margin: 10px;
-  border: 1px #e6e6e6 solid;
+.themes article h1::before {
+  left: 30px;
+  background: rgba(0, 128, 0, 0.6);
+}
+.themes article#is-default {
+  width: 800px;
+  height: 394px;
 }
 .themes article {
-  width: 250px;
-  height: 350px;
-  background: #ffffff;
-  color: #999999;
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
-  margin: 0px 10px 20px 0px;
+  background: #f2f2f2;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  width: 300px;
+  height: 400px;
+  display: inline-block;
+  margin: 0px 30px 30px 0px;
+  position: relative;
+  vertical-align: top;
 }
-.themes article h1 a,
-.themes article h1 a:hover {
+.themes article {
+  border: 2px #e4e4e4 solid;
+  border-top-width: 20px;
+  width: 550px;
+  height: 271px;
+  border-radius: 3px;
+  position: relative;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  background-position: top center;
+}
+.themes article .color_pattern {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  padding: 3px;
+}
+.themes a,
+.themes a:hover {
   display: block;
   position: absolute;
   left: 0px;
   top: 0px;
-  bottom: 0px;
   right: 0px;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: 1px;
+  transition: all 0.50s ease;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
 }
-.themes article h1 a em,
-.themes article h1 a:hover em {
+.themes a em,
+.themes a:hover em {
   display: none;
   position: absolute;
   left: 50%;
@@ -6604,87 +6744,102 @@ i._zz {
   color: #ffffff;
   font-size: 16px;
 }
-.themes article h1 a span,
-.themes article h1 a:hover span {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  background: #3f3f3f;
-  color: #f2f2f2;
-  font-weight: 200;
-  font-size: 18px;
-  height: 40px;
-  line-height: 40px;
-  letter-spacing: 1px;
-  text-indent: 8px;
+.themes article:hover a,
+.themes article:hover a:hover {
+  height: auto;
+  bottom: 0px;
+  transition: all 0.50s ease;
 }
-.themes article h1 a:hover {
-  background: rgba(0, 0, 0, 0.4);
-  transition: all 0.5s ease;
-}
-.themes article h1 a:hover em {
+.themes article:hover a em,
+.themes article:hover a:hover em {
   display: block;
 }
-.admincp_apps_holder > section:not(.preview) {
-  margin-right: 24%;
+.phpfox_store_featured > i {
+  display: block;
+  margin: 0px auto 40px 0px;
 }
 .admincp_apps_holder > section.preview {
-  width: 20%;
-  background: #ffffff;
-  position: fixed;
-  z-index: 100;
-  right: 0px;
-  bottom: 0px;
-  top: 40px;
+  background: #fff;
+  padding-top: 10px;
+  margin-left: -20px;
+  margin-right: -10px;
 }
 .admincp_apps_holder > section.preview > h1 {
-  height: 40px;
-  line-height: 40px;
-  text-indent: 10px;
-  font-weight: 300;
-  color: #808080;
-  font-size: 16px;
-  background: #f8f8f8;
-}
-.admincp_apps_holder > section.preview .admincp_apps {
-  padding: 10px;
-}
-.admincp_apps_holder > section.preview > a,
-.admincp_apps_holder > section.preview > a:hover {
-  display: block;
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  text-align: center;
-  height: 50px;
-  line-height: 50px;
-  text-transform: uppercase;
-  background: #3f3f3f;
-  color: #f2f2f2;
-  font-weight: 300;
-  letter-spacing: 1px;
-  font-size: 12px;
-}
-.admincp_apps_holder > section.preview > a:hover {
-  transition: all 0.5s ease;
-  background: #f4645f;
-  color: #ffffff;
-}
-.admincp_apps_holder > section.preview > div {
-  position: absolute;
-  top: 40px;
-  right: 0px;
-  bottom: 50px;
-  left: 0px;
-  overflow: auto;
-}
-.admincp_apps_holder > section.preview > div > h1 {
-  font-size: 20px;
+  font-size: 22px;
+  margin-top: 20px;
+  padding-bottom: 30px;
   font-weight: 200;
-  margin-bottom: 10px;
-  color: #999999;
+  text-align: center;
+}
+.admincp_apps_holder {
+  /*
+	> section.preview {
+
+		> h1 {
+			height:40px;
+			line-height:40px;
+			text-indent:10px;
+			font-weight:300;
+			color:#808080;
+			font-size:16px;
+			background:#f8f8f8;
+		}
+
+		.admincp_apps {
+			padding:10px;
+		}
+
+		width:20%;
+		background:@blockBg;
+		position:fixed;
+		z-index:100;
+		right:0px;
+		bottom:0px;
+		top:@topHeight;
+
+		> a, > a:hover {
+			display:block;
+			position:absolute;
+			left:0px;
+			right:0px;
+			bottom:0px;
+			text-align:center;
+			height:50px;
+			line-height:50px;
+			text-transform:uppercase;
+			background:@topBg;
+			color:@topColor;
+			font-weight:300;
+			letter-spacing:1px;
+			font-size:@fontSizeBase - 2;
+		}
+
+		> a:hover {
+			transition:@transition;
+			background:@brandPrimary;
+			color:@brandPrimaryColor;
+		}
+
+		> div {
+			position:absolute;
+			top:40px;
+			right:0px;
+			bottom:50px;
+			left:0px;
+			overflow:auto;
+
+			> h1 {
+				font-size:@fontSizeBase + 6;
+				font-weight:200;
+				margin-bottom:10px;
+				color:@blockColor;
+			}
+		}
+	}
+	*/
+}
+.admincp_apps_holder > section:not(.preview) {
+  /*margin-right:24%;*/
 }
 .new_installs {
   background: #ffffff;
@@ -6704,6 +6859,7 @@ i._zz {
   padding: 10px 10px 0px 10px;
 }
 .admincp_apps {
+  text-align: center;
   /*
 	display:table;
 	table-layout:fixed;
@@ -6723,6 +6879,9 @@ i._zz {
 	}
 	*/
 }
+.admincp_apps article:hover {
+  box-shadow: none;
+}
 .admincp_apps article {
   width: 130px;
   height: 130px;
@@ -6731,6 +6890,9 @@ i._zz {
   position: relative;
   text-align: center;
   background: #ffffff;
+  border: 1px #ececec solid;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
 }
 .admincp_apps article a,
 .admincp_apps article a:hover {

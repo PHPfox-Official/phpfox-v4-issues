@@ -1,6 +1,7 @@
 
 <div class="admincp_apps_holder">
 
+	{*
 	{if ($newInstalls)}
 	<section class="new_installs">
 		<h1>Pending Installs</h1>
@@ -18,11 +19,12 @@
 		</div>
 	</section>
 	{/if}
+	*}
 
 	<section>
 		<div class="themes">
 		{foreach from=$themes item=theme}
-			<article {$theme.image}>
+			<article {if ($theme.is_default)} id="is-default"{/if} {$theme.image}>
 				<h1>
 					<a href="{url link='admincp.theme.manage' id=$theme.theme_id}">
 						<span>{$theme.name|clean}</span>
@@ -36,7 +38,7 @@
 
 	<section class="preview">
 		<h1>Featured Themes</h1>
-		<div class="phpfox_store_featured" data-type="themes"></div>
-		<a href="{url link='admincp.store' load='themes'}" class="phpfox_store_view_more">Find More Themes</a>
+		<div class="phpfox_store_featured" data-type="themes"><i class="fa fa-spin fa-circle-o-notch"></i></div>
+		{*<a href="{url link='admincp.store' load='themes'}" class="phpfox_store_view_more">Find More Themes</a>*}
 	</section>
 </div>

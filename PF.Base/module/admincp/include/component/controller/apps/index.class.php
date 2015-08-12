@@ -22,7 +22,11 @@ class Admincp_Component_Controller_Apps_index extends Phpfox_Component {
 			$this->template()->setActionMenu([
 				'New App' => [
 					'url' => $this->url()->makeUrl('admincp/app/add'),
-					'class' => 'popup'
+					'class' => 'popup light'
+				],
+				'Find More Apps' => [
+					'url' => $this->url()->makeUrl('admincp.store', ['load' => 'apps']),
+					'class' => ''
 				]
 			]);
 		}

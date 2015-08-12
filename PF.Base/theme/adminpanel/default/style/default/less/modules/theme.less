@@ -187,6 +187,7 @@
 	transition:@transition;
 }
 
+/*
 .preview .themes {
 	text-align:center;
 	margin-top:10px;
@@ -198,7 +199,9 @@
 		border:1px darken(@blockBg, 6%) solid;
 	}
 }
+*/
 
+/*
 .themes {
 	.theme_colors {
 		padding-top:40px;
@@ -276,6 +279,140 @@
 					display:block;
 				}
 			}
+		}
+	}
+}
+*/
+.themes {
+	text-align:center;
+}
+
+.themes article::before, .themes article::after, .themes article h1::before {
+	content: '';
+	position:absolute;
+	top:-14px;
+	left:5px;
+	background:fade(red, 60%);
+	width:8px;
+	height:8px;
+	border-radius:50%;
+}
+
+.themes article::after {
+	left:18px;
+	background:fade(yellow, 60%);
+}
+
+.themes	article h1::before {
+	left:30px;
+	background:fade(green, 60%);
+}
+
+.themes article#is-default {
+	width:800px;
+	height:394px;
+}
+
+.themes article {
+	background:#f2f2f2;
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-position:center center;
+	width:300px;
+	height:400px;
+	display:inline-block;
+	margin:0px 30px 30px 0px;
+	position:relative;
+	vertical-align:top;
+}
+
+.themes article {
+	border:2px lighten(#dfdfdf, 2%) solid;
+	border-top-width:20px;
+	width:550px;
+	height:271px;
+	border-radius:3px;
+	position:relative;
+	box-shadow:0 0 10px 0 rgba(0, 0, 0, 0.2);
+	background-position:top center;
+
+	.color_pattern {
+		position:absolute;
+		left:0px;
+		bottom:0px;
+		right:0px;
+		padding:3px;
+	}
+
+}
+
+.themes a, .themes a:hover {
+	display:block;
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	height:40px;
+	line-height:40px;
+	overflow:hidden;
+	text-align:center;
+	background:rgba(0, 0, 0, 0.5);
+	color:#fff;
+	text-decoration:none;
+	font-weight:300;
+	font-size:20px;
+	letter-spacing:1px;
+	transition: all 0.50s ease;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+
+	em {
+		display:none;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-40px;
+		padding:6px 20px;
+		text-indent:0px;
+		font-weight:300;
+		text-decoration:none;
+		letter-spacing:1px;
+		text-transform:uppercase;
+		background:@brandPrimary;
+		color:@brandPrimaryColor;
+		font-size:@fontSizeBase + 2;
+	}
+}
+
+.themes article:hover a, .themes article:hover a:hover {
+	height:auto;
+	bottom:0px;
+	transition: all 0.50s ease;
+
+	em {
+		display:block;
+	}
+}
+
+.phpfox_store_featured {
+	> i {
+		display:block;
+		margin:0px auto 40px 0px;
+	}
+}
+
+.admincp_apps_holder {
+	> section.preview {
+		background:#fff;
+		padding-top:10px;
+		margin-left:-20px;
+		margin-right:-10px;
+
+		> h1 {
+			font-size:22px;
+			margin-top:20px;
+			padding-bottom:30px;
+			font-weight:200;
+			text-align:center;
 		}
 	}
 }

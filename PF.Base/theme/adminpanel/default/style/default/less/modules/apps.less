@@ -1,9 +1,10 @@
 
 .admincp_apps_holder {
 	> section:not(.preview) {
-		margin-right:24%;
+		/*margin-right:24%;*/
 	}
 
+	/*
 	> section.preview {
 
 		> h1 {
@@ -67,6 +68,7 @@
 			}
 		}
 	}
+	*/
 }
 
 .new_installs {
@@ -89,6 +91,7 @@
 }
 
 .admincp_apps {
+	text-align:center;
 
 	/*
 	display:table;
@@ -108,6 +111,9 @@
 		border:0px;
 	}
 	*/
+	article:hover {
+		box-shadow:none;
+	}
 
 	article {
 		width:130px;
@@ -117,6 +123,9 @@
 		position:relative;
 		text-align:center;
 		background:@blockBg;
+		border:1px lighten(#dfdfdf, 5%) solid;
+		box-shadow:0 0 15px 0 rgba(0, 0, 0, 0.1);
+		transition:@transition;
 
 		a, a:hover {
 			display:block;

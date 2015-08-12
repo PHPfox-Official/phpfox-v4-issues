@@ -70,6 +70,7 @@ class Theme extends Model {
 			}
 		}
 
+		/*
 		if ($exists instanceof Object) {
 			$Zip = new \ZipArchive();
 			$Zip->open($zip);
@@ -82,6 +83,7 @@ class Theme extends Model {
 
 			return $exists;
 		}
+		*/
 
 		$Zip = new \ZipArchive();
 		$Zip->open($zip);
@@ -94,10 +96,22 @@ class Theme extends Model {
 			if ($File->extension($f) == 'json') {
 				$data = json_decode(file_get_contents($file . $f));
 
+				$isUpdate = false;
+				if ($exists instanceof Object) {
+					$isUpdate = $exists->theme_id;
+					$this->db->update(':theme', ['website' => json_encode($extra)], ['theme_id' => $exists->theme_id]);
+					$this->db->update(':setting', array('value_actual' => ((int) \Phpfox::getParam('core.css_edit_id') + 1)), 'var_name = \'css_edit_id\'');
+					$this->cache->del('setting');
+				}
+
 				$themeId = $this->make([
 					'name' => $data->name,
 					'extra' => ($extra ? json_encode($extra) : null)
-				], $data->files);
+				], $data->files, $isUpdate);
+
+				if ($isUpdate) {
+					continue;
+				}
 
 				$File->delete_directory($file);
 				$iteration = 0;
@@ -128,7 +142,7 @@ class Theme extends Model {
 	 * @param null $files
 	 * @return Theme\Object
 	 */
-	public function make($val, $files = null) {
+	public function make($val, $files = null, $isUpdate = false) {
 		/*
 		$check = $this->db->select('COUNT(*) AS total')
 			->from(':theme')
@@ -139,14 +153,20 @@ class Theme extends Model {
 			throw error('Folder already exists.');
 		}
 		*/
-		$id = $this->db->insert(':theme', [
-			'name' => $val['name'],
-			'folder' => '__',
-			'website' => (isset($val['extra']) ? $val['extra'] : null),
-			'created' => PHPFOX_TIME,
-			'is_active' => 1
-		]);
-		$this->db->update(':theme', ['folder' => $id], ['theme_id' => $id]);
+
+		if (!$isUpdate) {
+			$id = $this->db->insert(':theme', [
+				'name' => $val['name'],
+				'folder' => '__',
+				'website' => (isset($val['extra']) ? $val['extra'] : null),
+				'created' => PHPFOX_TIME,
+				'is_active' => 1
+			]);
+			$this->db->update(':theme', ['folder' => $id], ['theme_id' => $id]);
+		}
+		else {
+			$id = $isUpdate;
+		}
 
 		if ($files !== null) {
 			foreach ($files as $name => $content) {

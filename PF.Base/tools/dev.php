@@ -4,13 +4,18 @@ set_time_limit(0);
 
 error_reporting(E_ALL);
 
+define('PHPFOX_NO_RUN', true);
+
 $config = __DIR__ . '/phpfox.json';
 $apps = __DIR__ . '/../../PF.Site/Apps/';
 $themes = __DIR__ . '/../../PF.Site/themes/';
+$base = __DIR__ . '/../../PF.Base/';
 
 if (!file_exists($config)) {
 	exit('Missing "phpfox.json" file.');
 }
+
+require($base . 'start.php');
 
 /*
 if (!isset($argv[1])) {
@@ -50,7 +55,7 @@ if (isset($_POST['cmd'])) {
 		if (!file_exists(__DIR__ . '/../file/settings/license.sett.php')) {
 			throw new Exception('PHPfox does not seem to be installed. Odd...');
 		}
-		require(__DIR__ . '/../file/settings/license.sett.php');
+		// require(__DIR__ . '/../file/settings/license.sett.php');
 
 		if ($_POST['license_id'] != PHPFOX_LICENSE_ID) {
 			throw new Exception('License ID does not match.');
@@ -122,8 +127,12 @@ if (isset($_POST['cmd'])) {
 							}
 
 							$zipFile = $dir . $new . '.zip';
+							$themeObject = (new \Core\Theme())->get($theme);
+							$themeObject->export($zipFile);
+							l('ZIP created: ' . $zipFile);
 							// l('Working to ZIP: ' . $zipFile);
 
+							/*
 							$zipArchive = new \ZipArchive();
 
 							if (!$zipArchive->open($zipFile, \ZIPARCHIVE::CREATE | \ZIPARCHIVE::OVERWRITE)) {
@@ -165,6 +174,7 @@ if (isset($_POST['cmd'])) {
 							if (file_exists($zipFile)) {
 								l('ZIP created: ' . $zipFile);
 							}
+							*/
 						}
 
 						l('</div></div>');

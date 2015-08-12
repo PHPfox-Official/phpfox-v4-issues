@@ -110,7 +110,7 @@ class Object extends \Core\Objectify {
 		return ;
 	}
 
-	public function export() {
+	public function export($savePath = null) {
 
 		$zipFile = PHPFOX_DIR_FILE . 'static/' . $this->folder . '.zip';
 		if (file_exists($zipFile)) {
@@ -156,6 +156,12 @@ class Object extends \Core\Objectify {
 		$Zip->close();
 
 		unlink($zipFile . '.json');
+
+		if ($savePath) {
+			copy($zipFile, $savePath);
+
+			return true;
+		}
 
 		$name = \Phpfox_Parse_Input::instance()->cleanFileName($this->name);
 		\Phpfox_File::instance()->forceDownload($zipFile, 'phpfox-theme-' . $name . '.zip');

@@ -609,6 +609,10 @@ class Phpfox_Module
 			$aBlocks[$iId][] = 'profile.pic';
 		}
 
+		if (defined('PHPFOX_IS_USER_PROFILE_INDEX') && $iId == 1) {
+			$aBlocks[$iId][] = 'custom.panel';
+		}
+
 		if (defined('PHPFOX_IS_PAGES_VIEW') && $iId == 11) {
 			$aBlocks[$iId][] = 'pages.photo';
 		}

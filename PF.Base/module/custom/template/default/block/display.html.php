@@ -11,6 +11,11 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{if count($aCustomMain) && $sTemplate == 'info'}
+<div class="block">
+	<div class="content">
+{/if}
+
 {foreach from=$aCustomMain item=aCustom}
 {if $sTemplate == 'info'}
 {if !empty($aCustom.value)}
@@ -27,3 +32,8 @@ defined('PHPFOX') or exit('NO DICE!');
 	{module name='custom.block' data=$aCustom template=$sTemplate edit_user_id=$aUser.user_id}
 {/if}
 {/foreach}
+
+{if count($aCustomMain) && $sTemplate == 'info'}
+	</div>
+</div>
+{/if}

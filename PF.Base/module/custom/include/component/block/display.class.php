@@ -34,7 +34,7 @@ class Custom_Component_Block_Display extends Phpfox_Component
 		if ($iUserGroupId === 0)
 		{
 			$aUser = (PHPFOX_IS_AJAX ? array('user_group_id' => $this->getParam('user_group_id')) : $this->getParam('aUser'));
-		
+
 			$bIsCustom = Phpfox::getService('user.group.setting')->getGroupParam($aUser['user_group_id'], 'custom.has_special_custom_fields');
 			$iUserGroupId = $aUser['user_group_id'];
 		}
@@ -57,8 +57,8 @@ class Custom_Component_Block_Display extends Phpfox_Component
 		else 
 		{
 			$aOutput = $aCustomMain[$this->getParam('type_id')];
-		}		
-		
+		}
+
 		$this->_sTemplate = $this->getParam('template');
 
 		$this->template()->assign(array(

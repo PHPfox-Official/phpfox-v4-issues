@@ -330,6 +330,8 @@ class Phpfox_Image_Helper
 		
 		// Windows slash fix
 		$sSrc = str_replace("\\", '/', $sSrc);
+		$sSrc = str_replace("\"", '\'', $sSrc);
+
 		if (isset($aParams['return_url']) && $aParams['return_url'])
 		{
 			return $sSrc . (isset($aParams['time_stamp']) ? '?t=' . uniqid() : '');

@@ -277,7 +277,7 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function buildCache()
 	{
-		$this->call('$Cache.friends = ' . json_encode(Friend_Service_Friend::instance()->getFromCache($this->get('allow_custom'))) . ';');
+		$this->call('$Cache.friends = ' . json_encode(Friend_Service_Friend::instance()->getFromCache($this->get('allow_custom'))) . '; $Core.loadInit();');
 	}
 	
 	public function getLiveSearch()

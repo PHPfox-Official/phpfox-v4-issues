@@ -217,14 +217,14 @@ class Phpfox_Parse_Bbcode
 	{
 		foreach ($this->_aDefault as $sBbcode => $mValue)
 		{
-			$sTxt = preg_replace("/\[" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '').''", $sTxt);
-			$sTxt = preg_replace("/\[\/" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'suffix').''", $sTxt);
-			$sTxt = preg_replace("/\[" . $sBbcode . "=(.*?)\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'prefix', true, '$1').''", $sTxt);
+			// $sTxt = preg_replace("/\[" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '').''", $sTxt);
+			// $sTxt = preg_replace("/\[\/" . $sBbcode . "\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'suffix').''", $sTxt);
+			// $sTxt = preg_replace("/\[" . $sBbcode . "=(.*?)\]/ise", "''.\$this->_replaceBbCode('' . \$sBbcode . '', 'prefix', true, '$1').''", $sTxt);
 
 			$sTxt = preg_replace_callback("/\[" . $sBbcode . "\]/is", function() use ($sBbcode) {
 				return $this->_replaceBbCode('' . $sBbcode . '');
 			}, $sTxt);
-			$sTxt = preg_replace_callback("/\[" . $sBbcode . "\]/is", function() use ($sBbcode) {
+			$sTxt = preg_replace_callback("/\[\/" . $sBbcode . "\]/is", function() use ($sBbcode) {
 				return $this->_replaceBbCode('' . $sBbcode . '', 'suffix');
 			}, $sTxt);
 

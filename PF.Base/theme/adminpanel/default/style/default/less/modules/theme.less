@@ -416,3 +416,45 @@
 		}
 	}
 }
+
+.design-uploader:hover {
+	border-color:@brandPrimary;
+}
+
+.design-uploader {
+	position:absolute;
+	top:0px;
+	right:0px;
+	width:41px;
+	height:41px;
+	border:2px #dddddd solid;
+	background:@blockBg;
+	overflow:hidden;
+
+	i, i:hover {
+		position:absolute;
+		top:0px;
+		right:0px;
+		width:41px;
+		height:41px;
+		text-align:center;
+		font-size:22px;
+		z-index:1;
+	}
+
+	i::before {
+		display:block;
+		margin-top:10px;
+	}
+
+	input[type="file"] {
+		width:30px;
+		height:30px;
+		position:absolute;
+		top:0px;
+		right:0px;
+		z-index:2;
+		opacity:0;
+		cursor:pointer;
+	}
+}

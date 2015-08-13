@@ -6771,6 +6771,44 @@ i._zz {
   font-weight: 200;
   text-align: center;
 }
+.design-uploader:hover {
+  border-color: #f4645f;
+}
+.design-uploader {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 41px;
+  height: 41px;
+  border: 2px #dddddd solid;
+  background: #ffffff;
+  overflow: hidden;
+}
+.design-uploader i,
+.design-uploader i:hover {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 41px;
+  height: 41px;
+  text-align: center;
+  font-size: 22px;
+  z-index: 1;
+}
+.design-uploader i::before {
+  display: block;
+  margin-top: 10px;
+}
+.design-uploader input[type="file"] {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+}
 .admincp_apps_holder {
   /*
 	> section.preview {

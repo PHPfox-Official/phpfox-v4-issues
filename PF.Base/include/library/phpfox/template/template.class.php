@@ -727,7 +727,7 @@ class Phpfox_Template
 	 * All HTML added here is coded under XHTML standards.
 	 *
 	 * @access public
-	 * @param unknown_type $mHeaders
+	 * @param array $mHeaders
 	 * @return $this
 	 */
 	public function setHeader($mHeaders, $mValue = null)

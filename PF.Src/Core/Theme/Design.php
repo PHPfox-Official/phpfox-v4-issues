@@ -86,10 +86,23 @@ class Design extends \Core\Model {
 				// d($line);
 
 				$parts = explode(':', $line);
-				$var = trim(trim($parts[0]), '@');
-				$sub = explode('//', (isset($parts[1]) ? trim($parts[1]) : ''));
-				$value = rtrim(trim($sub[0]), ';');
-				$title = (isset($sub[1]) ? trim($sub[1]) : $var);
+				preg_match('/^@([a-zA-Z0-9]+): (.*);(.*)$/is', $line, $matches);
+				$matches = array_map('trim', $matches);
+				if (!isset($matches[3])) {
+					continue;
+				}
+
+				// $var = trim(trim($parts[0]), '@');
+				$var = $matches[1];
+				// $sub = explode('//', (isset($parts[1]) ? trim($parts[1]) : ''));
+				// $value = rtrim(trim($sub[0]), ';');
+				$value = $matches[2];
+				// $title = (isset($sub[1]) ? trim($sub[1]) : $var);
+				if (isset($matches[3])) {
+					$matches[3] = str_replace('//', '', $matches[3]);
+				}
+				$title = (empty($matches[3]) ? $var : $matches[3]);
+
 				$subType = '';
 				if (strpos($title, '|')) {
 					list($title, $subType) = array_map('trim', explode('|', $title));
@@ -106,9 +119,13 @@ class Design extends \Core\Model {
 				}
 
 				if (substr($line, 0, 8) == '@logoUrl') {
-					$info = str_replace('// Logo', '', trim($parts[1]));
+					// $info = str_replace('// Logo', '', trim($parts[1]));
 					$title = 'Logo';
-					$type = '<input type="text" name="design[' . $var . ']" value="' . htmlspecialchars($info) . '">';
+					$type = '<input type="text" name="design[' . $var . ']" value="' . htmlspecialchars($value) . '">';
+					$type .= '<div class="design-uploader">';
+					$type .= '<i class="fa fa-upload"></i>';
+					$type .= '<input type="file" name="image" class="ajax_upload" data-url="' . \Phpfox_Url::instance()->makeUrl('admincp.theme.manage', ['id' => $this->_theme->theme_id, 'logo' => 'upload']) . '" />';
+					$type .= '</div>';
 				}
 
 				foreach ($replacements as $_key => $_value) {

@@ -85,7 +85,7 @@
 			});
 		});
 
-		$('.admincp_design input').change(function() {
+		$('.admincp_design input:not(.ajax_upload)').change(function() {
 			var t = $(this);
 
 			$Core.processing();

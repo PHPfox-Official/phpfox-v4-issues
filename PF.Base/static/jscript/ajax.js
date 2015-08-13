@@ -364,6 +364,7 @@ $Core.upload = {
 		}, false);
 
 		f_input.addEventListener("change", function() {
+			$Core.processing();
 			$Core.upload._upload(obj, this);
 		}, false);
 	},
@@ -375,6 +376,7 @@ $Core.upload = {
 
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4) {
+				$Core.processingEnd();
 				$Core.processPostForm($.parseJSON(xhr.responseText), obj);
 			}
 		};

@@ -36,6 +36,24 @@ class Theme_Component_Controller_Admincp_Manage extends Phpfox_Component {
 			];
 		}
 
+		$Request = $this->request();
+		if ($Request->getHeader('X-File-Name')) {
+			$dir = PHPFOX_DIR_FILE . 'logos/';
+			if (!is_dir($dir)) {
+				mkdir($dir);
+			}
+
+			$file = uniqid() . '.' . \Phpfox_File::instance()->extension($Request->getHeader('X-File-Name'));
+			file_put_contents($dir . $file, file_get_contents('php://input'));
+
+			$url = str_replace(['/index.php', 'http://'], ['', '//'], \Phpfox::getParam('core.path')) . 'PF.Base/file/logos/' . $file;
+
+			return [
+				'run' => "\$('input[name=\"design[logoUrl]\"]').val(\"'{$url}'\").trigger('change');"
+			];
+		}
+
+
 		if (($load = $this->request()->get('load'))) {
 			if ($this->request()->isPost()) {
 				$content = $this->request()->get('content');

@@ -32,8 +32,6 @@ class Profile_Component_Controller_Info extends Phpfox_Component
 
 		$this->template()->setTitle(Profile_Service_Profile::instance()->getProfileTitle($aRow));
 		$this->template()->setEditor();
-
-		// $blocks = \Custom_Service_Custom::instance()->getForDisplay();
 	}
 	
 	/**

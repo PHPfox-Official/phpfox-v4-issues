@@ -283,12 +283,13 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 
 				'User',
 				'Settings' => $this->url()->makeUrl('admincp.setting.edit', ['module-id' => 'user']),
+				'Registration' => $this->url()->makeUrl('admincp.setting.edit', ['group-id' => 'registration']),
 				'Relationship Statues' => 'admincp.custom.relationships',
 				'Cancellation Options' => 'admincp.user.cancellations.manage',
 				'Subscription Packages' => 'admincp.subscribe',
 				'E-Gifts' => 'admincp.egift.categories',
 				'Anti-SPAM Questions' => 'admincp.user.spam',
-				// 'Registration' => $this->url()->makeUrl('admincp.setting.edit', ['group-id' => 'registration']),
+
 				/*
 				'SEO',
 				'admincp.custom_elements' => 'admincp.seo.meta',

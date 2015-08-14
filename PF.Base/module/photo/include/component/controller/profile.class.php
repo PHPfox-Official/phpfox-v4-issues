@@ -37,10 +37,10 @@ class Photo_Component_Controller_Profile extends Phpfox_Component
 		    {
 			$bShowPhotos = Phpfox::getParam('photo.in_main_photo_section_show') != 'albums';
 		    }
-		    
-		    
+
+
 		    $this->template()->setHeader(array(
-			'profile.css' => 'module_photo'			
+			'profile.css' => 'module_photo'
 			))
 			    ->assign(array(
 				'aInfo' => $aInfo,
@@ -49,13 +49,13 @@ class Photo_Component_Controller_Profile extends Phpfox_Component
 				'sLinkAlbums' => $this->url()->makeUrl($aUser['user_name'] . '.photo.albums'),
 			    ));
 		}
-		
+
 		if ($this->request()->get('req3') == 'albums')
 		{
 			$this->template()->assign('sReq3', 'albums');
-			Phpfox::getComponent('photo.albums', array('bNoTemplate' => true), 'controller');			
+			Phpfox::getComponent('photo.albums', array('bNoTemplate' => true), 'controller');
 		}
-		else 
+		else
 		{
 			$this->template()->assign('sReq3', 'photo');
 			Phpfox::getComponent('photo.index', array('bNoTemplate' => true), 'controller');

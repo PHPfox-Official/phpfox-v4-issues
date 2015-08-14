@@ -9876,6 +9876,85 @@ ul.activity_feed_form_attach li a:hover {
   font-weight: 200;
   margin-bottom: 10px;
 }
+#main-photo-section {
+  position: relative;
+}
+#main-photo-section .hidden-layer {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+  background: #e5e5e5;
+  z-index: 10000;
+  transition: all 0.5s ease;
+}
+#main-photo-albums {
+  text-align: center;
+}
+#main-photo-albums > i {
+  font-size: 16px;
+}
+.photo-albums {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.photo-albums > article:hover {
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
+}
+.photo-albums > article {
+  transition: all 0.5s ease;
+  display: inline-block;
+  vertical-align: top;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  border: 1px #dbdbdb solid;
+  background-position: center center;
+  position: relative;
+  overflow: hidden;
+  margin: 0px 10px 10px 0px;
+}
+.photo-albums > article > header > h1 {
+  margin: 0px;
+  padding: 0px;
+  font-size: 13px;
+}
+.photo-albums > article > header > h1 a,
+.photo-albums > article > header > h1 a:hover {
+  color: #fff;
+  display: block;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  top: 0px;
+  z-index: 2;
+  font-weight: 600;
+}
+.photo-albums > article > header > h1 a > span.name,
+.photo-albums > article > header > h1 a:hover > span.name {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px;
+  z-index: 1;
+}
+.photo-albums > article > header > h1 a > span.name > span.info,
+.photo-albums > article > header > h1 a:hover > span.name > span.info {
+  display: block;
+  font-size: 11px;
+  font-weight: normal;
+}
+.photo-h1 {
+  margin: auto;
+  text-align: center;
+  padding-bottom: 20px;
+}
 .profiles_banner_bg > .cover_bg {
   position: absolute;
   top: 0px;

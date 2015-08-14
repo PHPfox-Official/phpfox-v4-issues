@@ -11,33 +11,32 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-{if $bSpecialMenu}
-    {template file='photo.block.specialmenu'}
-{/if}
-
-
 {if count($aAlbums)}
-    <div class="albums_container">
-		<div class="albums_container_row">
-			{foreach from=$aAlbums item=aAlbum name=albums}	
-				{template file='photo.block.album-entry'}
-				{if Phpfox::getParam('photo.show_info_on_mouseover') && (is_int($phpfox.iteration.albums/3))}
-					</div>
-					{if $phpfox.iteration.albums < count($aAlbums)}
-						<div class="albums_container_row">
-					{/if}
-				{/if}
-			{/foreach}
-			
-			{if Phpfox::getParam('photo.show_info_on_mouseover') && (!is_int($phpfox.iteration.albums/3))}
-				</div>
-			{/if}			
-		</div>    
-    </div>
-    <div class="clear"></div>
-    {pager}
-{else}
-    <div class="extra_info">
-	    {phrase var='photo.no_albums_found_here'}
-    </div>
+<section class="photo-albums">
+	<h1 class="photo-h1">Albums</h1>
+	{foreach from=$aAlbums item=aAlbum name=albums}
+	<article class="image_load" data-src="{img server_id=$aAlbum.server_id path='photo.url_photo' file=$aAlbum.destination suffix='_500' max_width=500 max_height=500 return_url=true}">
+		<header>
+			<h1>
+				<a href="{$aAlbum.link}">
+					<span class="name">
+						{$aAlbum.name|clean}
+						<span class="info">
+							{if !empty($aAlbum.total_photo)}
+							{if $aAlbum.total_photo == '1'}
+							1 photo
+							{else}
+							{$aAlbum.total_photo|number_format} photos
+							{/if}
+							{/if}
+							{plugin call='photo.template_block_album_entry_extra_info'}
+						</span>
+					</span>
+				</a>
+			</h1>
+		</header>
+	</article>
+	{/foreach}
+</section>
+
 {/if}

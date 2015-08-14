@@ -11,7 +11,17 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
+{if (defined('PHPFOX_IS_USER_PROFILE'))}
+<div id="main-photo-albums" data-url="{url link=''$aUser.user_name'.photo.albums'}">
+	<i class="fa fa-spin fa-circle-o-notch"></i>
+</div>
+<div id="main-photo-section">
+	<div class="hidden-layer"></div>
+	<h1 class="photo-h1">Photos</h1>
+{/if}
+
 {if !PHPFOX_IS_AJAX}
+
 {if $sView == 'my' && count($aPhotos)}
 		<div class="item_bar">
 			<div class="item_bar_action_holder">				
@@ -22,10 +32,10 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>		
 		</div>	    
 {/if}
+
 <div id="js_actual_photo_content">
 	<div id="js_album_outer_content">
 {/if}
-
 		{if count($aPhotos)}
 
 		     {if isset($bIsEditMode)}
@@ -89,4 +99,27 @@ defined('PHPFOX') or exit('NO DICE!');
 		{if !PHPFOX_IS_AJAX}
 	</div>
 </div>
+{/if}
+
+{if (defined('PHPFOX_IS_USER_PROFILE'))}
+</div>
+{literal}
+<script>
+	$Ready(function() {
+		var m = $('#main-photo-section'), a = $('#main-photo-albums');
+		if (m.length && !a.hasClass('built')) {
+			a.addClass('built');
+			$.ajax({
+				url: a.data('url'),
+				contentType: 'application/json',
+				success: function(e) {
+					a.html(e.content);
+					$('.hidden-layer').remove();
+					$Core.loadInit();
+				}
+			});
+		}
+	});
+</script>
+{/literal}
 {/if}

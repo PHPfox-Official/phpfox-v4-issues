@@ -20,8 +20,8 @@ class User_Component_Controller_Photo extends Phpfox_Component
 	 */
 	public function process()
 	{
-		Phpfox::isUser(true);		
-		
+		Phpfox::isUser(true);
+
 		header("Cache-Control: no-cache, must-revalidate");
 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");		
 		

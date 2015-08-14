@@ -47,19 +47,28 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 		{
 			define('PHPFOX_HTML5_PHOTO_UPLOAD', true);
 
-			$sHTML5TempFile = PHPFOX_DIR_CACHE . 'image_' . md5(PHPFOX_DIR_CACHE . $fn . uniqid());
+			if (isset($_FILES['ajax_upload'])) {
+				$_FILES['image'] = [];
+				// $_FILES['image'][] = $_FILES['ajax_upload'];
+				foreach ($_FILES['ajax_upload'] as $key => $value) {
+					$_FILES['image'][$key][0] = $value;
+				}
+			}
+			else {
+				$sHTML5TempFile = PHPFOX_DIR_CACHE . 'image_' . md5(PHPFOX_DIR_CACHE . $fn . uniqid());
 
-			file_put_contents(
-				$sHTML5TempFile,
-				file_get_contents('php://input')
-			);
-			$_FILES['image'] = array(
-				'name' => array($fn),
-				'type' => array('image/jpeg'),
-				'tmp_name' => array($sHTML5TempFile),
-				'error' => array(0),
-				'size' => array(filesize($sHTML5TempFile))
-			);
+				file_put_contents(
+					$sHTML5TempFile,
+					file_get_contents('php://input')
+				);
+				$_FILES['image'] = array(
+					'name' => array($fn),
+					'type' => array('image/jpeg'),
+					'tmp_name' => array($sHTML5TempFile),
+					'error' => array(0),
+					'size' => array(filesize($sHTML5TempFile))
+				);
+			}
 		}
 
 		// If no images were uploaded lets get out of here.
@@ -160,7 +169,7 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 		{
 			$aVals['description'] = $_REQUEST['status_info'];
 		}
-		
+
 		foreach ($_FILES['image']['error'] as $iKey => $sError)
 		{	
 			if ($sError == UPLOAD_ERR_OK) 
@@ -370,7 +379,9 @@ class Photo_Component_Controller_Frame extends Phpfox_Component
 			}
 			else
 			{
-				unlink($sHTML5TempFile);
+				if (isset($sHTML5TempFile) && file_exists($sHTML5TempFile)) {
+					unlink($sHTML5TempFile);
+				}
 				header('HTTP/1.1 500 Internal Server Error');
 				echo 'hasErrors++;';
 			}

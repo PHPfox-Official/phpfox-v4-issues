@@ -370,6 +370,41 @@ $Core.upload = {
 	},
 
 	file: function(obj, file) {
+
+		/**
+		 * xhr.setRequestHeader("X-File-Name", file.name);
+		 xhr.setRequestHeader("X-File-Size", file.size);
+		 xhr.setRequestHeader("X-File-Type", file.type);
+		 */
+
+		var data = new FormData();
+		data.append('ajax_upload', file);
+
+		if (obj.data('onstart')) {
+			var thisFunction = window[obj.data('onstart')];
+			thisFunction();
+		}
+
+		$.ajax({
+			url: obj.data('url'),
+			data: data,
+			cache: false,
+			contentType: false,
+			processData: false,
+			headers: {
+				'X-File-Name': file.name,
+				'X-File-Size': file.size,
+				'X-File-Type': file.type
+			},
+			type: 'POST',
+			success: function(data) {
+				$Core.processingEnd();
+				$Core.processPostForm(data, obj);
+			}
+		});
+
+		return;
+
 		var xhr;
 
 		xhr = new XMLHttpRequest();
@@ -381,14 +416,28 @@ $Core.upload = {
 			}
 		};
 
-		if (obj.data('onstart')) {
-			var thisFunction = window[obj.data('onstart')];
-			thisFunction();
-		}
+
 
 		xhr.open('POST', obj.data('url'), true);
 
 		xhr.setRequestHeader("Content-Type", "multipart/form-data");
+		/*
+		var boundary = Math.random().toString().substr(2), multipart = '';
+		xhr.setRequestHeader("content-type",
+			"multipart/form-data; charset=utf-8; boundary=" + boundary);
+			*/
+		/*
+		// for(var key in args[0].data){
+			multipart += "--" + boundary
+				+ "\r\nContent-Disposition: form-data; name=\"code\""
+				// + "\r\nContent-type: application/octet-stream"
+				// + "\r\n\r\n" + args[0].data[key] + "\r\n";
+		// }
+		multipart += "--"+boundary+"--\r\n";
+		*/
+		// xhr.setRequestHeader('Content-Disposition', "form-data; name=\"code\"");
+		// xhr.setRequestHeader('Content-type', file.type);
+
 		xhr.setRequestHeader("X-File-Name", file.name);
 		xhr.setRequestHeader("X-File-Size", file.size);
 		xhr.setRequestHeader("X-File-Type", file.type);

@@ -25,7 +25,7 @@ class Phpfox_Session_Handler_Default
 	{
 		if(!isset($_SESSION))
 		{
-			session_start();	
+			session_start();
 		}
 	}
 }

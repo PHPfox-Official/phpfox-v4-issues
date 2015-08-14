@@ -44,7 +44,13 @@ class Theme_Component_Controller_Admincp_Manage extends Phpfox_Component {
 			}
 
 			$file = uniqid() . '.' . \Phpfox_File::instance()->extension($Request->getHeader('X-File-Name'));
-			file_put_contents($dir . $file, file_get_contents('php://input'));
+			if (isset($_FILES['ajax_upload'])) {
+				$_FILES['image'] = $_FILES['ajax_upload'];
+				file_put_contents($dir . $file, file_get_contents($_FILES['image']['tmp_name']));
+			}
+			else {
+				file_put_contents($dir . $file, file_get_contents('php://input'));
+			}
 
 			$url = str_replace(['/index.php', 'http://'], ['', '//'], \Phpfox::getParam('core.path')) . 'PF.Base/file/logos/' . $file;
 

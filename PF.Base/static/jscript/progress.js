@@ -108,8 +108,10 @@ $Core.progressBarInit = function()
 		// $(oProgressBar['holder']).hide().after('<div id="js_progress_cache_loader" style="height:' + (iDivHeight <= 0 ? '200' : iDivHeight)  + 'px;">' + $.ajaxProcess('Loading', 'large') + '</div>');
 		
 		$(oProgressBar['holder']).after('<div id="js_progress_cache_loader" style="height:' + (iDivHeight <= 0 ? '200' : iDivHeight)  + 'px; display:none;"></div>');
-		
-		// sInput += '<iframe id="' + oProgressBar['frame_id'] + '" name="' + oProgressBar['frame_id'] + '" height="500" width="500" frameborder="1" style="display:none;"></iframe>';
+
+        if (isset(oProgressBar['frame_id'])) {
+            sInput += '<iframe id="' + oProgressBar['frame_id'] + '" name="' + oProgressBar['frame_id'] + '" height="500" width="500" frameborder="1" style="display:none;"></iframe>';
+        }
 		
 		$(oProgressBar['uploader']).html(sInput);
 		
@@ -176,6 +178,44 @@ function ParseFile(file, iCnt) {
 };
 
 function UploadFile(file, iCnt) {
+
+    var data = new FormData();
+    data.append('ajax_upload', file);
+    $.ajax({
+        xhr: function() {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function(e) {
+                var pc = parseInt((e.loaded / e.total * 100));
+                $('#js_tmp_upload_' + iCnt + '').find('.js_tmp_upload_bar_upload').width(pc + '%').show();
+                if (pc === 100 && iTotalImagesToBeUploaded === (iCnt + 1)) {
+
+                }
+            }, false);
+
+            return xhr;
+        },
+        url: $(oProgressBar['holder']).find('form').attr('action'),
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        headers: {
+            'X-FileName': file.name,
+            'X-File-Size': file.size,
+            'X-File-Type': file.type,
+            'X-Post-Form': $(oProgressBar['holder']).find('form').getForm()
+        },
+        type: 'POST',
+        error: function(error) {
+            eval(error);
+            $('#js_tmp_upload_' + iCnt + '').addClass('has_failed').find('.js_tmp_upload_bar_content').prepend('FAILED: ');
+        },
+        success: function(data) {
+            eval(data);
+        }
+    });
+
+    return;
 
     var xhr = new XMLHttpRequest();
     if (xhr.upload) {

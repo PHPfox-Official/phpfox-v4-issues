@@ -1132,15 +1132,20 @@ class Phpfox_File
 				define('PHPFOX_HTML5_PHOTO_UPLOAD', true);
 			}
 
-			$file = PHPFOX_DIR_FILE . 'static/' . uniqid();
-			file_put_contents($file, file_get_contents('php://input'));
-			$_FILES['image'] = [
-				'tmp_name' => $file,
-				'name' => $Request->getHeader('X-File-Name'),
-				'type' => $Request->getHeader('X-File-Type'),
-				'size' => $Request->getHeader('X-File-Size'),
-				'error' => 0
-			];
+			if (isset($_FILES['ajax_upload'])) {
+				$_FILES['image'] = $_FILES['ajax_upload'];
+			}
+			else {
+				$file = PHPFOX_DIR_FILE . 'static/' . uniqid() . '.' . \Phpfox_File::instance()->extension($Request->getHeader('X-File-Name'));
+				file_put_contents($file, file_get_contents('php://input'));
+				$_FILES['image'] = [
+					'tmp_name' => $file,
+					'name' => $Request->getHeader('X-File-Name'),
+					'type' => $Request->getHeader('X-File-Type'),
+					'size' => $Request->getHeader('X-File-Size'),
+					'error' => 0
+				];
+			}
 		}
 		
 		if (is_string($aSupported))
@@ -1163,7 +1168,7 @@ class Phpfox_File
 		$this->_aSupported = $aSupported;
 		
 		$this->_buildFile($sFormItem);
-		
+
 		if ($iMaxSize !== null)
 		{
 			$this->_iMaxSize = $iMaxSize;

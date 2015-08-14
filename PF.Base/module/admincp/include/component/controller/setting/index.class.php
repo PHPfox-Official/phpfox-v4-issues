@@ -19,7 +19,9 @@ class Admincp_Component_Controller_Setting_Index extends Phpfox_Component
 	 * Controller
 	 */
 	public function process()
-	{	
+	{
+		$this->url()->send('admincp');
+
 		list($aGroups, $aModules, $aProductGroups) = Phpfox::getService('admincp.setting.group')->get();
 
 		$this->template()->setBreadCrumb(Phpfox::getPhrase('admincp.manage_settings'))

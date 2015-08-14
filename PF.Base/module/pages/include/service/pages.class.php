@@ -547,6 +547,13 @@ class Pages_Service_Pages extends Phpfox_Service
 			'landing' => ''
 		);
 
+		$aMenus[] = array(
+			'phrase' => 'Info',
+			'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'info/',
+			'icon' => 'misc/comment.png',
+			'landing' => 'info'
+		);
+
 		if (Phpfox::isModule('forum')) {
 			$aMenus[] = array(
 				'phrase' => 'Discussions',

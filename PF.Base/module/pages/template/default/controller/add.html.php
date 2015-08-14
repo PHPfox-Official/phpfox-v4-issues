@@ -156,7 +156,11 @@ defined('PHPFOX') or exit('NO DICE!');
 		
 		<div id="js_pages_block_info" class="js_pages_block page_section_menu_holder" style="display:none;">
 			{plugin call='pages.template_controller_add_1'}
-			{editor id='text'}
+			<div class="table">
+				<div class="table_right">
+					{editor id='text'}
+				</div>
+			</div>
 			<div class="table_clear p_top_8">
 				<input type="submit" value="{phrase var='pages.update'}" class="button" />
 			</div>			

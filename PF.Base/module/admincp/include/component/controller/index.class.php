@@ -357,7 +357,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 					$n = 'Toggle Site';
 					break;
 				case 'general':
-					$n = 'Name &amp; Copyright';
+					$n = 'Site Settings';
 					break;
 				case 'mail':
 					$n = 'Mail Server';

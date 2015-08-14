@@ -891,7 +891,14 @@ function attachFunctionTagger(sSelector)
 						sToReplace = sNewInput;
 						
 						aFoundFriends.push({user_id: $Cache.friends[i]['user_id'], full_name: $Cache.friends[i]['full_name'], user_image: $Cache.friends[i]['user_image']});
-				
+						if ($Cache.friends[i]['user_image'].substr(0, 5) == 'http:') {
+							PF.event.trigger('urer_image_url', $Cache.friends[i]);
+
+							p($Cache.friends[i]['user_image']);
+
+							$Cache.friends[i]['user_image'] = '<img src="' + $Cache.friends[i]['user_image'] + '" class="_image_32 image_deferred">';
+						}
+
 						sOut += '<div class="tagFriendChooser" onclick="$(\''+ $(this).data('selector') +'\').val(sToReplace + \'\' + (true ? \'@' + $Cache.friends[i]['user_name'] + '\' : \'[x=' + $Cache.friends[i]['user_id'] + ']' + $Cache.friends[i]['full_name'].replace(/\&#039;/g,'\\\'') +'[/x]\') + \' \').putCursorAtEnd();$(\''+$(this).data('selector')+'\').siblings(\'.chooseFriend\').remove();"><div class="tagFriendChooserImage">' + $Cache.friends[i]['user_image'] + '</div><span>' + (($Cache.friends[i]['full_name'].length > 25) ?($Cache.friends[i]['full_name'].substr(0,25) + '...') : $Cache.friends[i]['full_name']) + '</span></div>';
 						/* just delete the fancy choose your friend and recreate it */
 						sOut = sOut.replace("\n", '').replace("\r", '');						

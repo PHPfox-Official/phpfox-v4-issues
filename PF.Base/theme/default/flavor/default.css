@@ -9865,6 +9865,11 @@ ul.activity_feed_form_attach li a:hover {
   vertical-align: middle;
   position: relative;
 }
+.tagFriendChooser .tagFriendChooserImage img {
+  max-width: 32px;
+  max-height: 32px;
+  background-size: cover;
+}
 #js_feed_content > h2 {
   font-size: 24px;
   color: #808080;

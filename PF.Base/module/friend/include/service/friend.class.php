@@ -239,6 +239,13 @@ class Friend_Service_Friend extends Phpfox_Service
 					'return_url' => true
 				)
 			);
+			$aRows[$iKey]['user_image_actual'] = Phpfox::getLib('image.helper')->display(array(
+					'user' => $aRow,
+					'suffix' => '_50_square',
+					'max_height' => 32,
+					'max_width' => 32
+				)
+			);
 		}		
 		
 		return $aRows;

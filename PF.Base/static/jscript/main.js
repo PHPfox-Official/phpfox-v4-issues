@@ -101,13 +101,13 @@ var PF = {
 	},
 
 	event: {
-		trigger: function(name) {
+		trigger: function(name, param) {
 			if (typeof(PF.events[name]) != 'object') {
 				return;
 			}
 
 			$.each(PF.events[name], function(name, callbacks) {
-				this(this);
+				this(this, param);
 			});
 		},
 

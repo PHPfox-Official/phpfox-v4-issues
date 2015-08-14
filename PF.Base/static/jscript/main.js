@@ -934,7 +934,6 @@ $Behavior.globalInit = function()
 	});
 
 	$('._panel').click(function() {
-		p('clicked!');
 		$Core.openPanel($(this));
 
 		return false;

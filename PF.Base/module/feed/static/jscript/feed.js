@@ -862,39 +862,48 @@ $ActivityFeedCompleted.photo = function()
 	$('#global_attachment_photo_file_input').val('');
 }
 
-var sToReplace = '';
-
+var sToReplace = '', buildingCache = false;
 function attachFunctionTagger(sSelector)
 {
-	$(sSelector).data('selector', sSelector).keyup(function(eventObject, sSelector){				
-				var sInput = $($(this).data('selector')).val();
-				
-				var iInputLength = sInput.length;
-				var iAtSymbol = sInput.lastIndexOf('@');
-				
+	if ($(sSelector).length && !buildingCache && (typeof $Cache == 'undefined' || typeof $Cache.friends == 'undefined')) {
+		buildingCache = true;
+		$.ajaxCall('friend.buildCache','','GET');
+	}
+
+	var customSelector = function () {
+		return '_' + Math.random().toString(36).substr(2, 9);
+	};
+	var increment = 0;
+	$(sSelector).keyup(function() {
+		increment++;
+
+		var t = $(this), selector = '_custom_' + customSelector() + '_' + increment;
+		t.addClass(selector);
+		t.data('selector', '.' + selector);
+		var sInput = t.val();
+		var iInputLength = sInput.length;
+		var iAtSymbol = sInput.lastIndexOf('@');
 				if (sInput == '@' || empty(sInput) || iAtSymbol < 0 || iAtSymbol == (iInputLength-1))
 				{
 					$($(this).data('selector')).siblings('.chooseFriend').hide(function(){$(this).remove();});
 					return;
-				}			
+				}
 				
 				var sNameToFind = sInput.substring(iAtSymbol+1, iInputLength);				
 				
 				/* loop through friends */
 				var aFoundFriends = [], sOut = '';
-				
 				for (var i in $Cache.friends)
 				{
 					if ($Cache.friends[i]['full_name'].toLowerCase().indexOf(sNameToFind.toLowerCase()) >= 0)
 					{
 						var sNewInput = sInput.substr(0, iAtSymbol).replace(/\'/g,'&#39;').replace(/\"/g,'&#34;');
 						sToReplace = sNewInput;
-						
 						aFoundFriends.push({user_id: $Cache.friends[i]['user_id'], full_name: $Cache.friends[i]['full_name'], user_image: $Cache.friends[i]['user_image']});
 						if ($Cache.friends[i]['user_image'].substr(0, 5) == 'http:') {
 							PF.event.trigger('urer_image_url', $Cache.friends[i]);
 
-							p($Cache.friends[i]['user_image']);
+							// p($Cache.friends[i]['user_image']);
 
 							$Cache.friends[i]['user_image'] = '<img src="' + $Cache.friends[i]['user_image'] + '" class="_image_32 image_deferred">';
 						}
@@ -904,28 +913,22 @@ function attachFunctionTagger(sSelector)
 						sOut = sOut.replace("\n", '').replace("\r", '');						
 					}
 				}
+
 				$($(this).data('selector')).siblings('.chooseFriend').remove();
 				if (!empty(sOut)){
 					$($(this).data('selector')).after('<div class="chooseFriend" style="width: '+ $(this).parent().width()+'px;">'+sOut+'</div>');
 				}
-				
-			}).focus(function(){
-				if (typeof $Cache == 'undefined' || typeof $Cache.friends == 'undefined')
-				{
-					$.ajaxCall('friend.buildCache','','GET');
-				}
-			});			
+			});
 }
 
 
 $Behavior.tagger = function()
 {		
-	var aSelectors = ['#js_activity_feed_form > .activity_feed_form_holder > #global_attachment_status > textarea','.js_comment_feed_textarea', '.js_comment_feed_textarea_focus'];
-	/*js_comment_feed_textarea js_comment_feed_textarea_focus is_focus
-	 try to replace a class selector for the ids of all of the inputs that it matches*/
+	var selectors = '#js_activity_feed_form > .activity_feed_form_holder > #global_attachment_status > textarea, .js_comment_feed_textarea, .js_comment_feed_textarea_focus';
+	attachFunctionTagger(selectors);
+	/*
 	for (var i in aSelectors)
 	{
-		
 		if ( $(aSelectors[i]).length >= 1)
 		{			
 			var bChanged = false;
@@ -948,28 +951,21 @@ $Behavior.tagger = function()
 	for (var i in aSelectors)
 	{
 		var sSelector = aSelectors[i];
-				
-		/* Dont tag users in feeds in pages, events or profiles other than mine*/
+
 		if (sSelector == '#pageFeedTextarea' || sSelector == '#eventFeedTextarea'  || sSelector == '#profileFeedTextarea') 
 		{
-			
 			continue;
 		}
 		
 		
 		if ($(sSelector).length > 1)
 		{
-			
 			$.each($(sSelector), function(key, value)
-			{				
-				
-				if ($(value).attr('id') != undefined)
-				{
-					attachFunctionTagger('#'+$(value).attr('id'));
-				}					
+			{
+				attachFunctionTagger($(this));
 			});
-			continue;
 		}
 		attachFunctionTagger(sSelector);
 	}
+	*/
 };

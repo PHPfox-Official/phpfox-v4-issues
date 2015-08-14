@@ -874,12 +874,27 @@ function attachFunctionTagger(sSelector)
 		return '_' + Math.random().toString(36).substr(2, 9);
 	};
 	var increment = 0;
-	$(sSelector).keyup(function() {
+	$(sSelector).each(function() {
 		increment++;
-
 		var t = $(this), selector = '_custom_' + customSelector() + '_' + increment;
+		if (t.data('selector')) {
+			t.removeClass(t.data('selector').replace('.', ''));
+		}
 		t.addClass(selector);
 		t.data('selector', '.' + selector);
+	});
+
+	$(sSelector).keyup(function() {
+		/*
+		increment++;
+		var t = $(this), selector = '_custom_' + customSelector() + '_' + increment;
+		if (t.data('selector')) {
+			t.removeClass(t.data('selector').replace('.', ''));
+		}
+
+		t.addClass(selector);
+		*/
+		var t = $(this);
 		var sInput = t.val();
 		var iInputLength = sInput.length;
 		var iAtSymbol = sInput.lastIndexOf('@');

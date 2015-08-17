@@ -719,7 +719,8 @@ class Phpfox_Installer
 		$aVerify = array(
 			'<a href="http://php.net/manual/en/book.mbstring.php" target="_blank">Multibyte String</a>' => (function_exists('mb_substr') ? true : false),
 			'<a href="http://php.net/manual/en/book.xml.php" target="_blank">XML Parser</a>' => (function_exists('xml_set_element_handler') ? true : false),
-			'<a href="http://php.net/manual/en/book.image.php" target="_blank">PHP GD</a>' => ((extension_loaded('gd') && function_exists('gd_info')) ? true : false)
+			'<a href="http://php.net/manual/en/book.image.php" target="_blank">PHP GD</a>' => ((extension_loaded('gd') && function_exists('gd_info')) ? true : false),
+			'<a href="http://php.net/manual/en/function.mysqli-connect.php" target="_blank">PHP Mysqli</a>' => ((function_exists('mysqli_connect')) ? true : false)
 		);
 
 		foreach ($aVerify as $sCheck => $bPassed)

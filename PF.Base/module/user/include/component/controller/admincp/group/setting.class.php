@@ -47,6 +47,10 @@ class User_Component_Controller_Admincp_Group_Setting extends Phpfox_Component
 				}
 			}
 		}
+
+		if (!$this->request()->getInt('id')) {
+			$this->url()->send('admincp');
+		}
 		
 		$aValidation = array(
 			'name' => Phpfox::getPhrase('user.select_varname')

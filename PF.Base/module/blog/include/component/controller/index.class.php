@@ -19,8 +19,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 	 * Controller
 	 */
 	public function process()
-	{	
-		
+	{
 		$aParentModule = $this->getParam('aParentModule');	
 		
 		if ($aParentModule === null && $this->request()->getInt('req2') > 0)
@@ -288,7 +287,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 			);
 		}
 		// END
-		
+
 		$this->search()->browse()->params($aBrowseParams)->execute();
 		
 		$aItems = $this->search()->browse()->getRows();
@@ -319,9 +318,10 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 		 * Here we assign the needed variables we plan on using in the template. This is used to pass
 		 * on any information that needs to be used with the specific template for this component.
 		 */
+		$cnt = $this->search()->browse()->getCount();
 		$this->template()->assign(array(
-					'iCnt' => $this->search()->browse()->getCount(),
-					'aItems' => $aItems,
+					'iCnt' => $cnt,
+					'aBlogs' => $aItems,
 					'sSearchBlock' => Phpfox::getPhrase('blog.search_blogs_'),
 					'bIsProfile' => $bIsProfile,
 					'sTagType' => ($bIsProfile === true ? 'blog_profile' : 'blog'),
@@ -355,7 +355,8 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 				)
 			)
 		);
-		
+
+		/*
 		$iStartCheck = 0;
 		if (isset($bIsValidCategory))
 		{
@@ -390,12 +391,11 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 					'3' => $aRediAllow
 				)
 			);
-		
 		if (Phpfox::getParam('core.force_404_check') && !Phpfox::getService('core.redirect')->check404($aCheckParams))
 		{
 			return Phpfox_Module::instance()->setController('error.404');
 		}			
-				
+		*/
 		(($sPlugin = Phpfox_Plugin::get('blog.component_controller_index_process_end')) ? eval($sPlugin) : false);
 	}
 	

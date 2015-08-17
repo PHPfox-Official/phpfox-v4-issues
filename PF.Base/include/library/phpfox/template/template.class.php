@@ -2165,7 +2165,6 @@ class Phpfox_Template
 			$this->_aVars[$sVar] = $sValue;
 		}
 
-			
 		return $this;
 	}
 	

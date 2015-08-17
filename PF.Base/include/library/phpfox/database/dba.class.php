@@ -362,14 +362,13 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
      * @param bool $bCorrectMax Should we limit searches to valid pages
      * @return $this
      */		
-	public function limit($iPage, $sLimit = null, $iCnt = null, $bReturn = false, $bCorrectMax = true)
+	public function limit($iPage, $sLimit = null, $iCnt = null, $bReturn = false, $bCorrectMax = false)
 	{
-		$bCorrectMax = false;
-
+		// $bCorrectMax = false;
 		if ($sLimit === null && $iCnt === null && $iPage !== null)
 		{
-			$this->_aQuery['limit'] = 'LIMIT ' . $iPage;	
-			
+			$this->_aQuery['limit'] = 'LIMIT ' . $iPage;
+
 			return $this;
 		}
 
@@ -394,7 +393,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	/**
 	 * Build a UNION call.
 	 *
-	 * @return object Return self.
+	 * @return Phpfox_Database_Dba
 	 */
 	public function union()
 	{
@@ -407,7 +406,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 * Build a UNION FROM call.
 	 *
 	 * @param string $sAlias FROM alias name.
-	 * @return object Return self.
+	 * @return Phpfox_Database_Dba
 	 */
 	public function unionFrom($sAlias)
 	{
@@ -419,7 +418,7 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	/**
 	 * Define that this is a joined count
 	 *
-	 * @return object Return self.
+	 * @return Phpfox_Database_Dba
 	 */
 	public function joinCount()
 	{

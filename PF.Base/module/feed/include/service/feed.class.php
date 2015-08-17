@@ -508,12 +508,10 @@ class Feed_Service_Feed extends Phpfox_Service
 						->join(Phpfox::getT('user'), 'u', 'u.user_id = feed.user_id')
 						->order($sOrder)
 						->group('feed.feed_id')
-						->limit($iOffset, $iTotalFeeds)			
+						->limit($iOffset, $iTotalFeeds, null, false, true)
 						->execute('getSlaveRows');
 			}
 		}
-
-		// d($aRows); exit;
 
 		if ($bForceReturn === true)
 		{

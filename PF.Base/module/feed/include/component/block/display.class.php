@@ -193,7 +193,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		if (PHPFOX_IS_AJAX || !$bForceReloadOnPage || $bIsCustomFeedView)
 		{
 			$aRows = Feed_Service_Feed::instance()->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage, $bStreamMode);
-			
+
 			if (empty($aRows))
 			{
 				$iFeedPage++;

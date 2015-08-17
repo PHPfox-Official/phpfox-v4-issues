@@ -10347,6 +10347,7 @@ ul.activity_feed_form_attach li a:hover {
   position: absolute;
   bottom: 15px;
   right: 10px;
+  z-index: 10;
 }
 .listing_row {
   background: #ffffff;

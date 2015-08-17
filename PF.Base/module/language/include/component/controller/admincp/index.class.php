@@ -47,7 +47,11 @@ class Language_Component_Controller_Admincp_Index extends Phpfox_Component
 			$this->template()->setActionMenu([
 				'New Language' => [
 					'url' => $this->url()->makeUrl('admincp.language.add'),
-					'class' => 'popup'
+					'class' => 'popup light'
+				],
+				'Find More Language Packs' => [
+					'url' => $this->url()->makeUrl('admincp.store', ['load' => 'language']),
+					'class' => ''
 				]
 			]);
 		// }

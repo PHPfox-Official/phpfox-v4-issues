@@ -26,10 +26,14 @@ class Custom_Service_Group_Process extends Phpfox_Service
 	public function add($aVals)
 	{
 		Phpfox::getUserParam('custom.can_add_custom_fields_group', true);
-		
+
 		if (!isset($aVals['module_id']))
 		{
 			return Phpfox_Error::set(Phpfox::getPhrase('custom.provide_a_module_for_this_group_to_belong_to'));
+		}
+
+		if (empty($aVals['module_id'])) {
+			$aVals['module_id'] = 'core';
 		}
 		
 		foreach ($aVals['group'] as $sPhrase)

@@ -42,6 +42,6 @@ defined('PHPFOX') or exit('NO DICE!');
 	<section class="preview">
 		<h1>Featured Language Packs</h1>
 		<div class="phpfox_store_featured" data-type="language"></div>
-		<a href="{url link='admincp.store' load='language'}" class="phpfox_store_view_more">Find More Language Packs</a>
+		{* <a href="{url link='admincp.store' load='language'}" class="phpfox_store_view_more">Find More Language Packs</a> *}
 	</section>
 </div>

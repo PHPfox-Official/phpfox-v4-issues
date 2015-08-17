@@ -64,7 +64,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</tr>
 		<tr id="tpl_question_tr">
 			<td class="question_actions">
-				<i class="fa fa-remove" onclick='$Core.User.Spam.deleteQuestion( $(this).data('question_id').question_id );'></i>
+				<i class="fa fa-remove img_delete_question" style="cursor:pointer; margin-right:5px;" onclick="$Core.User.Spam.deleteQuestion($(this).data('question_id'));"></i>
 				<a href="{url link='admincp.user.spam'}" class="a_edit">{phrase var='user.edit'}</a>
 			</td>
 			<td class="question_image">

@@ -276,7 +276,7 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		}
 		
 		// http://www.phpfox.com/tracker/view/15392/
-		$sIsHashTagSearchValue = strip_tags($this->request()->get('req2'));
+		$sIsHashTagSearchValue = urldecode(strip_tags($this->request()->get('req2')));
 		/*
 		if(preg_match_all('/[0-9]+/', $sIsHashTagSearchValue, $aMatches))
 		{

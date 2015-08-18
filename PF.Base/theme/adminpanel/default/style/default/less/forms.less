@@ -459,31 +459,41 @@ a.delete_link, a.delete_link:hover {
 
 .ajax_processing, #global_ajax_message {
 	position:fixed;
-	top:5px;
+	top:auto;
 	right:0px;
+	bottom:0px;
 	z-index:100000000;
-	height:@topHeight;
-	text-align:right;
-	/*background:@topBg;*/
+	height:60px;
+	line-height:60px;
+	text-align:center;
+	/*background:rgba(0, 0, 0, 0.6);*/
+	width:60px;
 	left:auto;
 
 
 	i {
 		display:inline-block;
-		font-size:20px;
+		font-size:25px;
 		color:@brandPrimary;
 		margin-right:10px;
 		vertical-align:middle;
+		box-shadow:@blockBoxShadow;
 	}
 }
 
 .js_item_is_active, .js_item_is_not_active {
-	display:inline-block;
+	display:block;
 	width:60px;
 	height:30px;
 	position:relative;
 	margin:auto;
 	text-align:center;
+
+	.js_item_active_link, .js_item_active_link:hover {
+		display:block;
+		width:60px;
+		height:30px;
+	}
 
 	.js_item_active_link:before, .js_item_active_link:hover:before {
 		.fa('\f205');

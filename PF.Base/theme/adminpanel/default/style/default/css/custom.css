@@ -1515,30 +1515,42 @@ a.delete_link:hover {
 .ajax_processing,
 #global_ajax_message {
   position: fixed;
-  top: 5px;
+  top: auto;
   right: 0px;
+  bottom: 0px;
   z-index: 100000000;
-  height: 40px;
-  text-align: right;
-  /*background:@topBg;*/
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  /*background:rgba(0, 0, 0, 0.6);*/
+  width: 60px;
   left: auto;
 }
 .ajax_processing i,
 #global_ajax_message i {
   display: inline-block;
-  font-size: 20px;
+  font-size: 25px;
   color: #f4645f;
   margin-right: 10px;
   vertical-align: middle;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.4);
 }
 .js_item_is_active,
 .js_item_is_not_active {
-  display: inline-block;
+  display: block;
   width: 60px;
   height: 30px;
   position: relative;
   margin: auto;
   text-align: center;
+}
+.js_item_is_active .js_item_active_link,
+.js_item_is_not_active .js_item_active_link,
+.js_item_is_active .js_item_active_link:hover,
+.js_item_is_not_active .js_item_active_link:hover {
+  display: block;
+  width: 60px;
+  height: 30px;
 }
 .js_item_is_active .js_item_active_link:before,
 .js_item_is_not_active .js_item_active_link:before,

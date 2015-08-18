@@ -1137,7 +1137,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				$sYear .= '<?php endforeach; ?>';
 				$sYear .= "\t\t" . '</select>' . "\n";
 
-				$aSep = $this->_removeQuote($aArgs['field_separator']);
+				$aSep = '<span class="field_separator">' . $this->_removeQuote($aArgs['field_separator']) . '</span>';
 
 				$sReturn = '';
 				switch (Phpfox::getParam('core.date_field_order'))

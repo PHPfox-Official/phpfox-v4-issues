@@ -2948,6 +2948,9 @@ button {
 .label_hover label:hover {
   background: #ebebeb;
 }
+.field_separator {
+  display: none;
+}
 #header_left {
   width: auto;
 }

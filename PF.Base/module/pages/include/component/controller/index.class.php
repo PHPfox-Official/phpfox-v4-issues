@@ -194,6 +194,10 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 		$aPages = [];
 		$aCategories = [];
 		$bShowCategories = false;
+		if ($this->search()->isSearch()) {
+			$bIsValidCategory = true;
+		}
+
 		if ($bIsValidCategory) {
 			$this->search()->browse()->params($aBrowseParams)->execute();
 			$aPages = $this->search()->browse()->getRows();

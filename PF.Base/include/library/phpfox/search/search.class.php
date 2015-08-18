@@ -468,21 +468,30 @@ class Phpfox_Search
 					}
 				}
 
+				// d($params); exit;
+
 				$hidden .= '<input type="hidden" name="s" value="1">';
 				if (isset($this->_aSearchTool['search']['hidden'])) {
-					$hidden = $this->_aSearchTool['search']['hidden'];
+					$hidden .= $this->_aSearchTool['search']['hidden'];
 				}
 
+				$cache = [];
 				foreach ($params as $param) {
 					$part = explode('=', $param);
 					if (!isset($part[1])) {
 						$part[1] = '';
 					}
 
+					if (isset($cache[$part[0]]) || $part[0] == 's' || $part[0] == 'search[search]') {
+						continue;
+					}
+
 					$part[1] = htmlspecialchars($part[1]);
 					if (substr($part[0], 0, 7) == 'http://' || substr($part[0], 0, 8) == 'https://') {
 						continue;
 					}
+
+					$cache[$part[0]] = true;
 
 					$hidden .= '<input type="hidden" name="' . $part[0] . '" value="' . $part[1] . '">';
 				}

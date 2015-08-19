@@ -205,8 +205,18 @@ if (isset($_POST['cmd'])) {
 					l('<div class="panel-body">');
 					// l('Changed to directory: ' . $path);
 
-					$status = shell_exec('git status');
-					l($status);
+					$gitRepo = $path . '.git';
+					$isGit = false;
+					$status = '# modified: #';
+					if (is_dir($gitRepo)) {
+						$isGit = true;
+						$status = shell_exec('git status');
+						l('Has git.');
+						l($status);
+					}
+					else {
+						l('No git.');
+					}
 
 					if (!strpos($status, 'modified:')) {
 						l('up-to-date. Nothing to do.');
@@ -220,9 +230,11 @@ if (isset($_POST['cmd'])) {
 						$json->version = $new;
 						file_put_contents($path . 'app.json', json_encode($json, JSON_PRETTY_PRINT));
 
-						l(shell_exec('git add --all'));
-						l(shell_exec('git commit -m "Automated Dist: ' . $dist . '"'));
-						l(shell_exec('git push -u origin master'));
+						if ($isGit) {
+							l(shell_exec('git add --all'));
+							l(shell_exec('git commit -m "Automated Dist: ' . $dist . '"'));
+							l(shell_exec('git push -u origin master'));
+						}
 
 						if ($exportPath) {
 							$dir = $exportPath . $json->id . '/';

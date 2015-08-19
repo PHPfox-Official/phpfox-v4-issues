@@ -1,5 +1,5 @@
 bef1631c7b661d6d05d14ab18fa751e9 composer.lock
-049cde4079d0d6532f4e92b2f302c252 include/checksum/md5
+1d8d432786d7c5bcb7ed227c4d688ca6 include/checksum/md5
 d7f7e3d45fa8602bec28e7a51c902110 include/cron/exec.php
 68b329da9893e34099c7d8ad5cb9c940 include/cron/index.html
 68b329da9893e34099c7d8ad5cb9c940 include/index.html
@@ -60,7 +60,7 @@ c85137e6da26d1b75517b2f374ed3019 include/library/phpfox/parse/input.class.php
 23060e0d760b3440e7878b044fa87fae include/library/phpfox/parse/output.class.php
 9c2cbf710df26baebd4dc9a5d915e1c3 include/library/phpfox/parse/wiki.class.php
 31204c13d87c066123abba90adfda243 include/library/phpfox/phpfox/api.class.php
-1f9dfadde9096cc44c202ef44a7bfa89 include/library/phpfox/phpfox/phpfox.class.php
+da083d96b7389975b64d4e5043872050 include/library/phpfox/phpfox/phpfox.class.php
 ee2cf709f67660926da5a6a3dbfccbe2 include/library/phpfox/phpfox/process.class.php
 6f979c415396c9a1a3fa3da9f86941de include/library/phpfox/plugin/plugin.class.php
 f99c4dcc70d2f6bbbb4371bf91336156 include/library/phpfox/request/request.class.php
@@ -4455,7 +4455,7 @@ cb861100ed86b388a09980ae4f27bdf4 theme/install/default/template/license.html.php
 68b329da9893e34099c7d8ad5cb9c940 theme/install/index.html
 5d5357cb3704e1f43a1f5bfed2aebf42 tools/bootstrap.css
 f353d08bce4ced416868b72b77504cdc tools/debug.php
-cfa3abf5a245e827bf8ec61f73e2a7c1 tools/dev.php
+84d01d43a02c83e392a165f505b9da94 tools/dev.php
 da34dec69cabadfc41e076fc2796e079 tools/phpfox.json
 723ff3552779a963aa60da31c4a7d237 tools/ping.php
 03d6bb080eec003cccf7e3d030f1383f vendor/autoload.php

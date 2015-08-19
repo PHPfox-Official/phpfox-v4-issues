@@ -56,7 +56,12 @@ class Theme extends Model {
 
 		if ($zip === null) {
 			$zip = $file . 'import.zip';
-			file_put_contents($zip, file_get_contents('php://input'));
+			if (isset($_FILES['ajax_upload'])) {
+				file_put_contents($zip, file_get_contents($_FILES['ajax_upload']['tmp_name']));
+			}
+			else {
+				file_put_contents($zip, file_get_contents('php://input'));
+			}
 		}
 
 		$exists = false;

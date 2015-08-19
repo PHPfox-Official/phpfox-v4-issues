@@ -17,6 +17,9 @@ class Controller {
 	public function get() {
 		if ($this->_request->segment(1) == 'api') {
 			self::$isApi = true;
+			new \Core\Route('/api', function() {
+
+			});
 		}
 
 		$content = false;
@@ -25,7 +28,6 @@ class Controller {
 		$uriParts = explode('/', $uri);
 
 		// d($routes);
-		// d($uriParts); exit;
 		foreach ($routes as $key => $route) {
 			$key = trim($key, '/');
 

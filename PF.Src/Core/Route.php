@@ -18,11 +18,12 @@ class Route {
 	public static $group;
 
 	private static $_active;
+	private static $_buildApi = false;
 
 	public function __construct($route, \Closure $callback = null) {
-		if (!self::$routes) {
+		if (!self::$_buildApi) {
+			self::$_buildApi = true;
 			$routes = require(PHPFOX_DIR_SETTING . 'routes.sett.php');
-			self::$routes = [];
 			foreach ($routes as $key => $value) {
 				self::$routes[trim($key, '/')] = $value;
 			}

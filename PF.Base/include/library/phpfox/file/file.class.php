@@ -1191,9 +1191,11 @@ class Phpfox_File
 		{
 			return $bReturn;
 		}
-		
+
 		if (Phpfox_Image::instance()->isImageExtension($this->_aFile['ext']) && !Phpfox_Image::instance()->isImage($this->_aFile['tmp_name']))
 		{
+			throw new \Exception('Failed: ' . print_r($this->_aFile, true), 0);
+
 			return Phpfox_Error::set(Phpfox::getPhrase('core.not_a_valid_image_we_only_accept_the_following_file_extensions_support', array('support' => implode(', ', $aSupported))));
 		}	
 		
@@ -1259,7 +1261,9 @@ class Phpfox_File
 	    if (defined('PHPFOX_APP_USER_ID') || defined('PHPFOX_HTML5_PHOTO_UPLOAD'))
 		{
 			 @copy($this->_aFile['tmp_name'], $sDest);
-			 @unlink($this->_aFile['tmp_name']);
+			if (!defined('PHPFOX_FILE_DONT_UNLINK')) {
+				@unlink($this->_aFile['tmp_name']);
+			}
 		}
         else if (!@move_uploaded_file($this->_aFile['tmp_name'], $sDest))
         {
@@ -1986,7 +1990,7 @@ class Phpfox_File
      * @param string $sFormItem The ID to connect with the $_FORM variable
      */
     private function _buildFile($sFormItem)
-    { 	
+    {
     	if (strpos($sFormItem, ']') === false)
         {
             $this->_aFile = $_FILES[$sFormItem];

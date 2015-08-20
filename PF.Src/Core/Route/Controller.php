@@ -112,7 +112,7 @@ class Controller {
 				}
 
 				if (isset($routes[$uri]['run'])) {
-					$Controller = new \Core\Controller($routes[$uri]['path'] . 'views');
+					$Controller = new \Core\Controller($routes[$uri]['path'] . 'views', $uri);
 
 					$pass = [$Controller];
 					if (isset($r['args'])) {

@@ -628,7 +628,9 @@ class Phpfox_Module
 
 		//$sController = strtolower($this->_sModule . '.' . $this->_sController);
 		$sController = strtolower($this->_sModule . '.' . str_replace(array('\\', '/'), '.' , $this->_sController));
-
+		if (\Core\Route\Controller::$name) {
+			$sController = 'route_' . \Core\Route\Controller::$name['route'];
+		}
 		// $this->blocks = $this->_aModuleBlocks;
 		// $this->_aModuleBlocks = $this->blocks;
 

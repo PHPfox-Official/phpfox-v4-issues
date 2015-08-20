@@ -23,16 +23,17 @@ class Block {
 		$this->active = (new \Api\User())->get(\Phpfox::getUserId());
 		$this->db = new Db();
 
-		call_user_func($callback, $this);
-
-		$html = '
-		<div class="block">
-			' . (isset($this->_arg['title']) ? '<div class="title">' . $this->_arg['title'] . '</div>' : '') . '
-			<div class="content">
-				' . (isset($this->_arg['content']) ? $this->_arg['content'] : '') . '
+		$html = call_user_func($callback, $this);
+		if (empty($html)) {
+			$html = '
+			<div class="block">
+				' . (isset($this->_arg['title']) ? '<div class="title">' . $this->_arg['title'] . '</div>' : '') . '
+				<div class="content">
+					' . (isset($this->_arg['content']) ? $this->_arg['content'] : '') . '
+				</div>
 			</div>
-		</div>
-		';
+			';
+		}
 		\Phpfox_Module::instance()->block($controller, $location, $html);
 	}
 

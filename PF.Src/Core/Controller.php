@@ -6,20 +6,28 @@ class Controller {
 	public $request;
 	public $url;
 	public $active;
+	public $route;
 
 	private $_view;
 	private $_template;
 
-	public function __construct($path = null) {
+	public function __construct($path = null, $route = null) {
 		$this->request = new Request();
 		$this->url = new Url();
 		$this->active = (new \Api\User())->get(\Phpfox::getUserId());
+		$this->route = $route;
 
 		$this->_template = \Phpfox_Template::instance();
 		$this->_view = new View();
 		if ($path !== null && is_dir($path)) {
 			$this->_view->loader()->addPath($path);
 		}
+	}
+
+	public function block($location, \Closure $callback) {
+		new Block('route_' . $this->route, $location, $callback);
+
+		return $this;
 	}
 
 	public function h1($name, $url) {

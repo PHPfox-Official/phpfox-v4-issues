@@ -1194,8 +1194,6 @@ class Phpfox_File
 
 		if (Phpfox_Image::instance()->isImageExtension($this->_aFile['ext']) && !Phpfox_Image::instance()->isImage($this->_aFile['tmp_name']))
 		{
-			throw new \Exception('Failed: ' . print_r($this->_aFile, true), 0);
-
 			return Phpfox_Error::set(Phpfox::getPhrase('core.not_a_valid_image_we_only_accept_the_following_file_extensions_support', array('support' => implode(', ', $aSupported))));
 		}	
 		

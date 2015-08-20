@@ -11,6 +11,12 @@ return [
 			':id' => '([0-9]+)'
 		]
 	],
+	'/api/feed/:type' => [
+		'call' => '\Api\Feed',
+		'where' => [
+			':type' => '([a-zA-Z_-]+)'
+		]
+	],
 
 	// User
 	'/api/user' => [

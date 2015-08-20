@@ -64,11 +64,9 @@ class Feed extends \Core\Api {
 			$isSingle = true;
 		}
 		else if (is_string($params)) {
+			$type = $params;
 			$params = [];
-			return [
-				'type' => $params
-			];
-			$params['type_id'] = $params;
+			$params['type_id'] = $type;
 		}
 
 		if (isset($_GET['page'])) {

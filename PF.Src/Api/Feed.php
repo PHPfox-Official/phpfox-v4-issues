@@ -54,6 +54,8 @@ class Feed extends \Core\Api {
 	 * @return Feed\Object|Feed\Object[]
 	 */
 	public function get($params = null) {
+		$this->auth();
+
 		$feeds = [];
 		$isSingle = false;
 		if (is_numeric($params)) {

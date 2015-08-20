@@ -96,7 +96,14 @@ class Phpfox_Request
 	}
 
 	public function segment($cnt) {
-		return $this->get('req' . $cnt);
+		static $uri;
+		$cnt--;
+		if (!$uri) {
+			$u = \Phpfox_Url::instance()->getUri();
+			$uri = explode('/', trim($u, '/'));
+		}
+
+		return (isset($uri[$cnt]) ? $uri[$cnt] : null);
 	}
 
 	public function authUser() {
@@ -144,7 +151,7 @@ class Phpfox_Request
 	    }
     	
     	(($sPlugin = Phpfox_Plugin::get('request_get')) ? eval($sPlugin) : false);
-    	
+
     	return (isset($this->_aArgs[$sName]) ? ((empty($this->_aArgs[$sName]) && isset($this->_aName[$sName])) ? true : $this->_aArgs[$sName]) : $mDef);
     }
 

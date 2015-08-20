@@ -337,7 +337,7 @@ class Feed_Service_Feed extends Phpfox_Service
 					$aCond[] = 'AND feed.privacy IN(0)';
 				}
 			}
-			
+
 			// There is no reciprocal feed when you add someone as friend
 			$this->database()->select('feed.*')
 			->from($this->_sTable, 'feed')
@@ -445,7 +445,7 @@ class Feed_Service_Feed extends Phpfox_Service
 					}
 				}
 				else 
-				{				
+				{
 					$sMyFeeds = '1,2,3,4';
 					(($sPlugin = Phpfox_Plugin::get('feed.service_feed_get_buildquery')) ? eval($sPlugin) : '');
 
@@ -518,7 +518,7 @@ class Feed_Service_Feed extends Phpfox_Service
 			return $aRows;
 		}
 		
-		
+
 		$bFirstCheckOnComments = false;
 		if (Phpfox::getParam('feed.allow_comments_on_feeds') && Phpfox::isUser() && Phpfox::isModule('comment'))
 		{

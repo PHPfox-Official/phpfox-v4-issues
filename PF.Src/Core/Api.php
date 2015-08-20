@@ -118,7 +118,9 @@ abstract class Api {
 			throw new \Exception('This resource requires an HTTP USER_ID header.');
 		}
 
-		\User_Service_Auth::instance()->setUserId($_SERVER['HTTP_USER_ID']);
+		if ((int) $_SERVER['HTTP_USER_ID'] > 0) {
+			\User_Service_Auth::instance()->setUserId($_SERVER['HTTP_USER_ID']);
+		}
 	}
 
 	protected function accept(array $keys) {

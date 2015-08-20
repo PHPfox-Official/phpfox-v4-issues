@@ -64,6 +64,7 @@ class Controller {
 									$segment = $this->_request->segment($iteration);
 									if (isset($route['where']) && isset($route['where'][$_arg])) {
 										if (!preg_match('/' . $route['where'][$_arg] . '/i', $segment)) {
+											// p($iteration . ' -> ' . $segment . ' -> ' . $route['where'][$_arg]);
 											// return false;
 											// continue;
 											break 2;

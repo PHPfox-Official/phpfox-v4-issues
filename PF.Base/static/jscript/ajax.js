@@ -184,6 +184,11 @@ $Core.processPostForm = function(e, obj) {
 		$Core.loadInit();
 	}
 
+	if (typeof(e.prepend) == 'object') {
+		$(e.prepend.to).prepend(e.prepend.with);
+		$Core.loadInit();
+	}
+
 	if (typeof(e.html) == 'object') {
 		$(e.html.to).html(e.html.with);
 		$Core.loadInit();
@@ -323,7 +328,7 @@ $Behavior.onAjaxSubmit = function() {
 
 				$Core.processPostForm(e, t);
 				if (callback) {
-					window[callback](e, t, t.serializeArray());
+					// window[callback](e, t, t.serializeArray());
 				}
 			}
 		});

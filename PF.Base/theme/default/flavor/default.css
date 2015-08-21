@@ -11386,6 +11386,9 @@ a.marketplace_contact_seller:hover {
 .app-block-border {
   border: 1px #f2f2f2 solid;
 }
+.app-block-border-color {
+  border-color: #f2f2f2;
+}
 .app-form {
   background: #ffffff;
   color: #999999;

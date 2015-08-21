@@ -2,6 +2,8 @@
 
 namespace Core\Route;
 
+use Core\Cache;
+
 class Controller {
 	public static $active;
 	public static $activeId;
@@ -17,8 +19,16 @@ class Controller {
 	public function get() {
 		if ($this->_request->segment(1) == 'api') {
 			self::$isApi = true;
-			new \Core\Route('/api', function() {
+			new \Core\Route('/api/token/:token', function($controller, $token) {
+				$cachedToken = (new Cache())->get('auth_token_' . $token);
+				(new Cache())->del('auth_token_' . $token);
+				if (!isset($cachedToken['headers'])) {
+					return [
+						'error' => 'Token does not exist.'
+					];
+				}
 
+				return $cachedToken;
 			});
 		}
 
@@ -141,14 +151,38 @@ class Controller {
 
 					\Core\Event::trigger('external_controller', $http);
 
-					$response = $http->auth($App->auth->id, $App->auth->key)
-						->using($this->_request->all())
+					$token = md5(uniqid() . PHPFOX_TIME);
+					$headers = [
+						'API_TOKEN' => $token,
+						'API_CLIENT_ID' => PHPFOX_LICENSE_ID,
+						'API_HOME' => \Phpfox_Url::instance()->makeUrl(''),
+						'API_ENDPOINT' => \Phpfox_Url::instance()->makeUrl('api'),
+						'API_URI' => \Phpfox_Url::instance()->getUri(),
+						'API_USER' => json_encode((\Phpfox::isUser() ? user() : []))
+					];
+
+					(new \Core\Cache())->set('auth_token_' . $token, [
+						'created' => PHPFOX_TIME,
+						'headers' => $headers,
+						'auth' => [
+							'user' => $App->auth->id,
+							'pw' => $App->auth->key
+						]
+					]);
+
+					$http->auth($App->auth->id, $App->auth->key)->using($this->_request->all());
+					foreach ($headers as $key => $value) {
+						$http->header($key, $value);
+					}
+						/*
+						->header('API_TOKEN', $token)
 						->header('API_CLIENT_ID', PHPFOX_LICENSE_ID)
 						->header('API_HOME', \Phpfox_Url::instance()->makeUrl(''))
 						->header('API_ENDPOINT', \Phpfox_Url::instance()->makeUrl('api'))
 						->header('API_URI', \Phpfox_Url::instance()->getUri())
 						->header('API_USER', json_encode((\Phpfox::isUser() ? user() : [])))
-						->call($_SERVER['REQUEST_METHOD']);
+						*/
+					$response = $http->call($_SERVER['REQUEST_METHOD']);
 
 					$parse = function($thisContent, $isJson = false) {
 						$thisContent = preg_replace_callback('/<user-([a-z\-]+) ([a-zA-Z\-0-9="\' ]+)><\/user-\\1>/is', function($matches) use($isJson) {

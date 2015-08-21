@@ -18,18 +18,19 @@ class Admincp_Component_Controller_Apps_index extends Phpfox_Component {
 			}
 		}
 
+		$menu = [];
 		if (defined('PHPFOX_IS_TECHIE') && PHPFOX_IS_TECHIE) {
-			$this->template()->setActionMenu([
-				'New App' => [
-					'url' => $this->url()->makeUrl('admincp/app/add'),
-					'class' => 'popup light'
-				],
-				'Find More Apps' => [
-					'url' => $this->url()->makeUrl('admincp.store', ['load' => 'apps']),
-					'class' => ''
-				]
-			]);
+			$menu['New App'] = [
+				'url' => $this->url()->makeUrl('admincp/app/add'),
+				'class' => 'popup light'
+			];
 		}
+
+		$menu['Find More Apps'] = [
+			'url' => $this->url()->makeUrl('admincp.store', ['load' => 'apps']),
+			'class' => ''
+		];
+		$this->template()->setActionMenu($menu);
 
 		$allApps = $Apps->all('__remove_core');
 		$Home = new Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY);

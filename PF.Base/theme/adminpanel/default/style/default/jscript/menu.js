@@ -46,7 +46,7 @@ $Behavior.adminMenuClick = function()
 
 	var storeFeatured = $('.phpfox_store_featured');
 	if (storeFeatured.length && !storeFeatured.hasClass('is_built')) {
-		var parentUrl = $('.phpfox_store_view_more').attr('href');
+		var parentUrl = storeFeatured.data('parent');
 		var url = 'https://store.phpfox.us/featured';
 
 		storeFeatured.addClass('is_built');

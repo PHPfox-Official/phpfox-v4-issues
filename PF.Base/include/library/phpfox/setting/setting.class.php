@@ -132,7 +132,8 @@ class Phpfox_Setting
 		'ad.ad_ajax_refresh' => false,
 		'ad.ad_ajax_refresh_time' => 2,
 		'ad.how_many_ads_per_location' => 1,
-		'core.log_site_activity' => false
+		'core.log_site_activity' => false,
+		'photo.enabled_watermark_on_photos' => false
 	];
 
 	public $hide = [

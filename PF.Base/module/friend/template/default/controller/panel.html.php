@@ -23,6 +23,7 @@
 						<span class="deny" onclick="$(this).parents('.drop_data_action').find('.js_drop_data_add').show(); {if $aNotification.relation_data_id > 0} $.ajaxCall('custom.processRelationship', 'relation_data_id={$aNotification.relation_data_id}&amp;type=deny&amp;request_id={$aNotification.request_id}'); {else} $.ajaxCall('friend.processRequest', 'type=no&amp;user_id={$aNotification.user_id}&amp;request_id={$aNotification.request_id}&amp;inline=true'); {/if}">Deny</span>
 					{else}
 					<span onclick="$.ajaxCall('friend.processRequest', 'type=yes&amp;user_id={$aNotification.user_id}&amp;request_id={$aNotification.request_id}&amp;inline=true'); return false;">Accept</span>
+					<span onclick="$.ajaxCall('friend.processRequest', 'type=no&amp;user_id={$aNotification.user_id}&amp;request_id={$aNotification.request_id}&amp;inline=true');" class="deny">Deny</span>
 					{/if}
 				</div>
 			</div>
@@ -30,6 +31,9 @@
 	</li>
 	{/foreach}
 </ul>
+<div class="panel_actions">
+	
+</div>
 {else}
 <div class="message">
 	No new friend requests

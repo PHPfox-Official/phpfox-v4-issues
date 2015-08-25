@@ -24,8 +24,20 @@
 	{if isset($bIsViewingComments) && $bIsViewingComments}
 		<div id="comment-view"><a name="#comment-view"></a></div>
 		<div class="message js_feed_comment_border">
-			{phrase var='comment.viewing_a_single_comment'} <a href="{$aFeed.feed_link}">{phrase var='comment.view_all_comments'}</a>
+			{phrase var='comment.viewing_a_single_comment'}
+			<a href="{$aFeed.feed_link}">{phrase var='comment.view_all_comments'}</a>
 		</div>
+		<script>
+			{literal}
+			$Ready(function() {
+				var c = $('#comment-view');
+				if (c.length && !c.hasClass('completed') && c.is(':visible')) {
+					c.addClass('completed');
+					$("html, body").animate({ scrollTop: (c.offset().top - 80) });
+				}
+			});
+			{/literal}
+		</script>
 	{/if}
 
 	{if isset($sFeedType)}

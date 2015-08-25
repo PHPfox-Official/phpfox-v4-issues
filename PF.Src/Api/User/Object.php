@@ -6,6 +6,7 @@ class Object extends \Core\Objectify {
 	public $id;
 	public $url;
 	public $name;
+	public $email;
 	public $name_link;
 	public $photo;
 	public $photo_link;

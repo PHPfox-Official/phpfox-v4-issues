@@ -75,7 +75,17 @@ class Comment_Service_Callback extends Phpfox_Service
 			return false;
 		}
 
-		return Phpfox::callback($aItem['type_id'] . '.getRedirectComment', $aItem['item_id']) . 'comment_' . $aItem['comment_id'] . '/#comment-view';
+		$url = Phpfox::callback($aItem['type_id'] . '.getRedirectComment', $aItem['item_id']);
+		if (strpos($url, '?')) {
+			$url .= '&';
+		}
+		else {
+			$url .= '?';
+		}
+		$url .= 'comment=' . $aItem['comment_id'];
+		// $url .= '#view-comment';
+
+		return $url;
 	}
 	
 	public function getNotificationSettings()

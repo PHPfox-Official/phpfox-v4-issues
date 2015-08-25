@@ -370,9 +370,20 @@ class Phpfox_Parse_Input
 	 * @param string $sTxt Text to parse.
 	 * @return string Parsed string.
 	 */
-	public function prepare($sTxt, $bNoClean = false)
+	public function prepare($sTxt, $bNoClean = false, $extra = [])
 	{
 		(($sPlugin = Phpfox_Plugin::get('parse_input_prepare')) ? eval($sPlugin) : null);
+
+		if (isset($extra['comment'])) {
+			$mentions = Phpfox_Parse_Output::instance()->mentionsRegex($sTxt);
+			$link = Phpfox_Url::instance()->makeUrl('comment.view.' . $extra['comment']);
+			foreach ($mentions as $user) {
+				Phpfox_Mail::instance()->to(Phpfox::getUserBy('email'))
+					->subject($user->name . ' mentioned you in a post.')
+					->message($user->name . ' mentioned you in a post. <a href="' . $link . '">Check it out</a>')
+					->send();
+			}
+		}
 
 		if (isset($override) && is_callable($override)) {
 			return call_user_func($override, $sTxt);

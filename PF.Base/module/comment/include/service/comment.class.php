@@ -247,13 +247,12 @@ class Comment_Service_Comment extends Phpfox_Service
 	
 	public function getCommentsForFeed($sType, $iItemId, $iLimit = 2, $mPager = null, $iCommentId = null)
 	{
-		if ($mPager !== null)
-		{
-			$this->database()->limit(Phpfox_Request::instance()->getInt('page'), $iLimit, $mPager);
-		}
-		else 
-		{
-			$this->database()->limit($iLimit);
+		if ($iCommentId === null) {
+			if ($mPager !== null) {
+				$this->database()->limit(Phpfox_Request::instance()->getInt('page'), $iLimit, $mPager);
+			} else {
+				$this->database()->limit($iLimit);
+			}
 		}
 		
 		if ($iCommentId !== null)
@@ -274,10 +273,10 @@ class Comment_Service_Comment extends Phpfox_Service
 		$aFeedComments = $this->database()->select('c.*, ' . (Phpfox::getParam('core.allow_html') ? "ct.text_parsed" : "ct.text") .' AS text, ' . Phpfox::getUserField())
 			->from(Phpfox::getT('comment'), 'c')
 			->join(Phpfox::getT('comment_text'), 'ct', 'ct.comment_id = c.comment_id')
-			->join(Phpfox::getT('user'), 'u', 'u.user_id = c.user_id')			
+			->join(Phpfox::getT('user'), 'u', 'u.user_id = c.user_id')
 			->order('c.time_stamp DESC')						
 			->execute('getSlaveRows');
-						
+
 		$aComments = array();
 		if (count($aFeedComments))
 		{

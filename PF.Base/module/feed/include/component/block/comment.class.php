@@ -143,11 +143,11 @@ class Feed_Component_Block_Comment extends Phpfox_Component
 					$iCommentId = $this->request()->getInt('comment');
 					$bIsViewingComments = true;
 				}
-							
+
 				$aFeed['comments'] = Comment_Service_Comment::instance()->getCommentsForFeed($aFeed['comment_type_id'], $aFeed['item_id'], $iPageLimit, $mPager, $iCommentId);
 			}
 		}
-		
+
 		if ($sFeedType == 'view')
 		{
 			Phpfox_Pager::instance()->set(array(

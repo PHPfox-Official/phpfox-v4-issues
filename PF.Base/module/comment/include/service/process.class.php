@@ -184,7 +184,9 @@ class Comment_Service_Process extends Phpfox_Service
 		
 		Phpfox::getLib('parse.bbcode')->useVideoImage(($aVals['type'] == 'feed' ? true : false));
 		
-		$aVals['text_parsed'] = Phpfox::getLib('parse.input')->prepare($aVals['text']);
+		$aVals['text_parsed'] = Phpfox::getLib('parse.input')->prepare($aVals['text'], false, [
+			'comment' => $iId
+		]);
 
 		$this->database()->insert(Phpfox::getT('comment_text'), array(
 				'comment_id' => $iId,

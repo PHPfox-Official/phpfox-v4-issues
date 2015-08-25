@@ -117,13 +117,20 @@ class Phpfox_Mail
     {    	
     	$this->_oMail = Phpfox::getLib('mail.driver.phpmailer.' . ($sMethod === null ? Phpfox::getParam('core.method') : $sMethod));
 		$this->_sArray = 'array("site_name" => "'.str_replace('"', '&quot;',Phpfox::getParam('core.site_title')).'","site_email" => "'.Phpfox::getParam('core.email_from_email').'")';
-    }    
+    }
+
+	/**
+	 * @return Phpfox_Mail
+	 */
+	public static function instance() {
+		return Phpfox::getLib('mail');
+	}
     
     /**
      * Run a test if we are able to send out an email using the default method being loaded.
      *
      * @param array $aVals ARRAY of values to test.
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */
     public function test($aVals)
     {
@@ -137,7 +144,7 @@ class Phpfox_Mail
      * emails or user IDs.
      *
      * @param mixed $mTo ARRAY of emails/users or STRING of email/user
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */
     public function to($mTo)
     {    	
@@ -150,7 +157,7 @@ class Phpfox_Mail
      * Subject of the email.
      *
      * @param mixed $aSubject ARRAY if loading a phrase or STRING if we are passing a subject.
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */
     public function subject($aSubject)
     {
@@ -163,7 +170,7 @@ class Phpfox_Mail
      * The name of the person sending out the email.
      *
      * @param string $sFromName Persons name.
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */
     public function fromName($sFromName)
     {
@@ -176,7 +183,7 @@ class Phpfox_Mail
      * Send a copy to our own email.
      *
      * @param bool $bSendToSelf TRUE will send a copy and FALSE will not.
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */
     public function sendToSelf($bSendToSelf)
     {
@@ -189,7 +196,7 @@ class Phpfox_Mail
      * Email of the person sending out this email.
      *
      * @param string $sFromEmail Email.
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */
     public function fromEmail($sFromEmail)
     {
@@ -202,7 +209,7 @@ class Phpfox_Mail
      * Notification param for this specific email to check a users privacy settings.
      *
      * @param string $sNotification Param of the notification.
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */
     public function notification($sNotification)
     {
@@ -215,7 +222,7 @@ class Phpfox_Mail
      * Message of the email.
      *
      * @param mixed $aMessage ARRAY of loading a phrase or STRING of we are passing the message directly.
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */
     public function message($aMessage)
     {
@@ -239,7 +246,7 @@ class Phpfox_Mail
      * Identify if we should load the message header we include by default.
      *
      * @param bool $bMessageHeader Controlls if we should include the default header in the message. Default is TRUE.
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */
     public function messageHeader($bMessageHeader)
     {
@@ -252,7 +259,7 @@ class Phpfox_Mail
      * Message of the email (Plain Text).
      *
      * @param mixed $aMessage ARRAY of loading a phrase or STRING of we are passing the message directly.
-     * @return object Returns this class.
+     * @return Phpfox_Mail
      */    
 	public function messagePlain($aMessage)
 	{		
@@ -266,7 +273,7 @@ class Phpfox_Mail
 	 * an array of their information with this method.
 	 *
 	 * @param array $aUser ARRAY of users information.
-	 * @return object Returns this class.
+	 * @return Phpfox_Mail
 	 */
 	public function aUser($aUser)
 	{
@@ -554,10 +561,13 @@ class Phpfox_Mail
 				{
 					$sSubject = $this->_aSubject;
 				}
+				/*
 				$sEmailSig = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1', {$this->_sArray}, false, null, '". Phpfox::getParam('core.default_lang_id')."') . ''", Phpfox::getParam('core.mail_signature'));
 				$sMessagePlain = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1', {$this->_sArray}, false, null, '". Phpfox::getParam('core.default_lang_id')."') . ''", $sMessagePlain);
 				$sMessage = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1', {$this->_sArray}, false, null, '". Phpfox::getParam('core.default_lang_id')."') . ''", $sMessage);
 				$sSubject = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1', {$this->_sArray}, false, null, '". Phpfox::getParam('core.default_lang_id')."') . ''", $sSubject);
+				*/
+				$sEmailSig = Phpfox::getParam('core.mail_signature');
 				$sSubject = html_entity_decode($sSubject, null, 'UTF-8');
 				
 				// Load plain text template

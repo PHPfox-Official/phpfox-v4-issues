@@ -127,6 +127,30 @@ class Phpfox_Parse_Output
 		return $sTxt;
 	}
 
+	/**
+	 * @param $str
+	 * @return \Api\User\Object[]
+	 */
+	public function mentionsRegex($str) {
+		$users = '';
+		$return = [];
+		preg_match_all($this->_regex['mentions'], $str, $matches);
+		if (isset($matches[1]) && is_array($matches[1])) {
+			foreach ($matches[1] as $match) {
+				$users .= '\'' . str_replace('@', '', $match) . '\',';
+			}
+		}
+		$users = rtrim($users, ',');
+		if ($users) {
+			$search = Phpfox_Database::instance()->select('*')->from(':user')->where(['user_name' => ['in' => $users]])->all();
+			foreach ($search as $user) {
+				$return[] = new \Api\User\Object($user);
+			}
+		}
+
+		return $return;
+	}
+
 	private function _clean($str) {
 		$str = strip_tags($str);
 		$str = str_replace(array('"', "'", ' '), '', $str);

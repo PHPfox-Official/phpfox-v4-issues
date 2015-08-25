@@ -5966,6 +5966,25 @@ div.error_message,
   padding: 15px;
   border: 0px;
 }
+div.message a,
+div.error_message a,
+.valid_message a,
+div.message a:hover,
+div.error_message a:hover,
+.valid_message a:hover {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 0px 10px;
+}
+div.message a:hover,
+div.error_message a:hover,
+.valid_message a:hover {
+  transition: all 0.5s ease;
+  opacity: 0.6;
+}
 div.error_message {
   background: #d9534f;
 }

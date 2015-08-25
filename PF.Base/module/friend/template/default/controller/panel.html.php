@@ -32,7 +32,7 @@
 	{/foreach}
 </ul>
 <div class="panel_actions">
-	
+
 </div>
 {else}
 <div class="message">

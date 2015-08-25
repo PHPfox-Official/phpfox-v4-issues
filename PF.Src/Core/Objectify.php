@@ -72,6 +72,7 @@ class Objectify {
 		$link = \Phpfox_Url::instance()->makeUrl($row['user_name']);
 		return [
 			'id' => (int) $row['user_id'],
+			'email' => (isset($row['email']) ? $row['email'] : null),
 			'group' => (object) [
 				'id' => (int) $row['user_group_id']
 			],

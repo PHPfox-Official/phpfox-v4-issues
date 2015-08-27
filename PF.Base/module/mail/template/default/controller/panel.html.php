@@ -25,6 +25,9 @@
 				</div>
 			</div>
 		</a>
+		<div class="panel_rows_action">
+			<i onclick="$.ajaxCall('mail.delete', 'id={$aMail.thread_id}', 'GET'); $(this).parents('li:first').slideUp('fast');" class="fa fa-remove js_hover_title"><span class="js_hover_info">Archive</span></i>
+		</div>
 	</li>
 	{/foreach}
 </ul>
@@ -35,4 +38,5 @@
 {/if}
 <div class="panel_actions">
 	<a href="{url link='mail.compose'}" class="popup js_hover_title"><i class="fa fa-pencil-square"></i><span class="js_hover_info">Compose</span></a>
+	<a href="#" class="js_hover_title no_ajax" onclick="$('body').toggleClass('mail_in_shift_mode'); return false;"><i class="fa fa-archive"></i><span class="js_hover_info">Archive Message(s)</span></a>
 </div>

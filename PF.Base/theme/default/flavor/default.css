@@ -5785,6 +5785,7 @@ a.item_bar_approve:hover {
 .panel_is_active .panel_actions i {
   font-size: 20px;
   line-height: 50px;
+  margin-right: 10px;
 }
 .panel_is_active #panel:not(.is_feed) .panel_rows {
   position: absolute;
@@ -5810,11 +5811,20 @@ a.item_bar_approve:hover {
 .panel_is_active #panel.is_feed > i {
   position: fixed;
 }
+.mail_in_shift_mode .panel_rows {
+  padding-left: 30px;
+  transition: all 0.5s ease;
+}
 .panel_rows {
+  transition: all 0.5s ease;
   background: #ffffff;
   color: #999999;
   position: relative;
   font-size: 12px;
+}
+.panel_rows li {
+  position: relative;
+  display: block;
 }
 .panel_rows li > a,
 .panel_rows li > a:hover,
@@ -5836,6 +5846,26 @@ a.item_bar_approve:hover {
   content: '\f111';
   color: #298ada;
   margin-right: 5px;
+}
+.panel_rows li .panel_rows_action {
+  position: absolute;
+  left: -30px;
+  top: 0px;
+  bottom: 0px;
+  background: #d9534f;
+  z-index: 10;
+  width: 30px;
+  text-align: center;
+}
+.panel_rows li .panel_rows_action i {
+  cursor: pointer;
+  color: #ffffff;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  top: 50%;
+  margin-top: -14px;
 }
 .panel_rows li .panel_rows_time {
   margin-top: 5px;

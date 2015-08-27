@@ -52,6 +52,7 @@
 		i {
 			font-size:20px;
 			line-height:50px;
+			margin-right:10px;
 		}
 
 		background:darken(@blockBg, 3%)
@@ -88,13 +89,24 @@
 	}
 }
 
+.mail_in_shift_mode {
+	.panel_rows {
+		padding-left:30px;
+		transition:@transition;
+	}
+}
+
 .panel_rows {
+	transition:@transition;
 	background:@blockBg;
 	color:@blockColor;
 	position:relative;
 	font-size:@fontSizeBase - 2;
 
 	li {
+		position:relative;
+		display:block;
+
 		> a, > a:hover, > .panel_row {
 			display:block;
 			color:@blockColor;
@@ -106,6 +118,28 @@
 			.fa('\f111');
 			color:@brandPrimary;
 			margin-right:5px;
+		}
+
+		.panel_rows_action {
+			position:absolute;
+			left:-30px;
+			top:0px;
+			bottom:0px;
+			background:@brandDanger;
+			z-index:10;
+			width:30px;
+			text-align:center;
+
+			i {
+				cursor:pointer;
+				color:@brandPrimaryColor;
+				position:absolute;
+				left:0px;
+				right:0px;
+				text-align:center;
+				top:50%;
+				margin-top:-14px;
+			}
 		}
 
 		.panel_rows_time {
@@ -145,6 +179,7 @@
 			margin-top:10px;
 			padding-top:10px;
 			border-top:1px darken(@blockBg, 6%) solid;
+
 			> span {
 				display:inline-block;
 				background:@brandPrimary;

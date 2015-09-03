@@ -268,7 +268,7 @@ $Behavior.globalThemeInit = function()
 					'allow_custom': true,
 					'panel_mode': true
 				});
-				$Core.searchFriendsInput.buildFriends(this);			
+				$Core.searchFriendsInput.buildFriends(this);
 			// }
 		// }
 	});	

@@ -117,7 +117,7 @@ $Core.searchFriendsInput =
 		
 		if (empty($Cache.friends) && !isset(this.aParams['is_mail']))
 		{
-			$.ajaxCall('friend.buildCache', (this._get('allow_custom') ? '&allow_custom=1' : ''), 'GET');		
+			$.ajaxCall('friend.buildCache', (this._get('allow_custom') ? '&allow_custom=1' : ''), 'GET');
 		}
 	},
 	

@@ -6684,6 +6684,15 @@ table.default_table td {
 .blog-category a {
   color: #999999;
 }
+.feed_info {
+  display: inline-block;
+  margin-left: 5px;
+  max-width: 460px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  white-space: nowrap;
+}
 .js_comment_like_holder {
   min-height: 40px;
 }

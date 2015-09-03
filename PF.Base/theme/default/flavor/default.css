@@ -11221,6 +11221,31 @@ a.marketplace_contact_seller:hover {
   }
 }
 @media (max-device-width: 700px), (max-width: 700px) {
+  .activity_like_holder {
+    display: none;
+  }
+  .activity_like_holder_total.hide_it {
+    display: block !important;
+    position: absolute;
+    left: 40px;
+    top: 0px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    padding: 0px 6px 0px 0px;
+    background: #ebebeb;
+    cursor: pointer;
+  }
+  .activity_like_holder_total.hide_it > i {
+    text-decoration: none;
+    font-style: normal;
+    line-height: normal;
+    padding: 2px 6px;
+    border-radius: 3px;
+    display: inline-block;
+    background: #d6d6d6;
+    color: #b3b3b3 !important;
+  }
   ._app_photo .activity_feed_content_image img {
     max-width: 100%;
   }

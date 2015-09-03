@@ -80,6 +80,7 @@ class Like_Component_Ajax_Ajax extends Phpfox_Ajax
 		}
 		
 		$this->setTitle($sTitle);
+		$this->call('<script>$Core.loadInit();</script>');
 	}
 	
 	private function _loadCommentLikes($bIsDislike = false)

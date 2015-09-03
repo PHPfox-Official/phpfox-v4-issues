@@ -11243,6 +11243,11 @@ a.marketplace_contact_seller:hover {
   .profiles_menu > ul {
     left: 0px;
   }
+  .profiles_menu > ul > li > a,
+  .profiles_menu > ul > li > a:hover {
+    font-size: 13px;
+    padding: 0px 8px;
+  }
   .profiles_info {
     left: 20px;
     text-align: center;
@@ -11254,6 +11259,9 @@ a.marketplace_contact_seller:hover {
     left: auto;
     bottom: auto;
     z-index: 1;
+  }
+  .profile_menu_is_fixed .profiles_menu > ul {
+    left: 0px;
   }
   .profile_image {
     top: auto;

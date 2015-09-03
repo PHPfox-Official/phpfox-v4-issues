@@ -36,7 +36,10 @@ class Theme_Component_Controller_Admincp_Index extends Phpfox_Component {
 
 			$themes[] = $row;
 		}
-		$themes = array_merge([$default], $themes);
+
+		if ($default) {
+			$themes = array_merge([$default], $themes);
+		}
 
 		$Home = new Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY);
 		$products = $Home->downloads(['type' => 2]);

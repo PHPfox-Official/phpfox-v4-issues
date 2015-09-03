@@ -101,8 +101,6 @@ if (isset($_POST['cmd'])) {
 					unlink($touch);
 				}
 
-
-
 				foreach (scandir($themes) as $theme) {
 					$path = $themes . $theme . '/';
 					$json = $path . 'theme.json';
@@ -130,8 +128,8 @@ if (isset($_POST['cmd'])) {
 							$themeObject = (new \Core\Theme())->get($theme);
 							$themeObject->export($zipFile);
 							l('ZIP created: ' . $zipFile);
-							// l('Working to ZIP: ' . $zipFile);
 
+							// l('Working to ZIP: ' . $zipFile);
 							/*
 							$zipArchive = new \ZipArchive();
 

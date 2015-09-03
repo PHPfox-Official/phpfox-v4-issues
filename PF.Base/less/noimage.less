@@ -59,6 +59,28 @@
 	}
 }
 
+.no_image_item_cover::before {
+	.fa('\f05e');
+	position:absolute;
+	left:50%;
+	top:50%;
+	font-size:50px;
+	margin-left:-25px;
+	margin-top:-25px;
+	opacity:0.4;
+	color:@blockColor;
+}
+
+.no_image_item_cover {
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+	background:darken(@blockBg, 4%);
+	z-index:1;
+}
+
 .no_image_item {
 	display:inline-block;
 	background:darken(@blockBg, 2%);

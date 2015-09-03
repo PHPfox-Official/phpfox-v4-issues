@@ -6392,6 +6392,34 @@ i._zz {
   top: 46px;
   font-size: 30px;
 }
+.no_image_item_cover::before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0);
+  text-indent: 0px !important;
+  content: '\f05e';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
+  opacity: 0.4;
+  color: #999999;
+}
+.no_image_item_cover {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: #f5f5f5;
+  z-index: 1;
+}
 .no_image_item {
   display: inline-block;
   background: #fafafa;

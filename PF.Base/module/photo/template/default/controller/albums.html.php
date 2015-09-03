@@ -15,7 +15,10 @@ defined('PHPFOX') or exit('NO DICE!');
 <section class="photo-albums">
 	<h1 class="photo-h1">Albums</h1>
 	{foreach from=$aAlbums item=aAlbum name=albums}
-	<article class="image_load" data-src="{img server_id=$aAlbum.server_id path='photo.url_photo' file=$aAlbum.destination suffix='_500' max_width=500 max_height=500 return_url=true}">
+	<article{if $aAlbum.destination} class="image_load" data-src="{img server_id=$aAlbum.server_id path='photo.url_photo' file=$aAlbum.destination suffix='_500' max_width=500 max_height=500 return_url=true}"{/if}>
+	{if !$aAlbum.destination}
+		<span class="no_image_item_cover"></span>
+	{/if}
 		<header>
 			<h1>
 				<a href="{$aAlbum.link}">

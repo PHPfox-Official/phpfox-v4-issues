@@ -118,7 +118,7 @@ class Photo_Component_Controller_Albums extends Phpfox_Component
 		$this->search()->browse()->params($aBrowseParams)->execute();
 		
 		$aAlbums = $this->search()->browse()->getRows();
-		$iCnt = $this->search()->browse()->getCount();		
+		$iCnt = $this->search()->browse()->getCount();
 		
 		if (defined('PHPFOX_IS_USER_PROFILE'))
 		{

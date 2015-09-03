@@ -760,7 +760,7 @@ class Phpfox_Url
 		{
 			$aExtra = array_merge($aExtra, $aExtraLinks);	
 		}
-		
+
 		$sUrl = Phpfox_Url::instance()->makeUrl($sLink, $aExtra);
 		
 		if ($bRedirect === true)
@@ -887,9 +887,10 @@ class Phpfox_Url
 		{
 			header($this->_aHeaders[$iHeader]);
 		}
-		
+
 		// Send the user to the new location
 		header('Location: ' . $sUrl);
+		exit;
 	}
 	
 	/**

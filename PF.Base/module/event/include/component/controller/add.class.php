@@ -98,7 +98,7 @@ class Event_Component_Controller_Add extends Phpfox_Component
 								break;
 							default:
 								$this->url()->permalink('event', $aEvent['event_id'], $aEvent['title'], true, Phpfox::getPhrase('event.successfully_invited_guests_to_this_event'));
-								break;							
+								break;
 						}	
 					}
 					else
@@ -142,8 +142,8 @@ class Event_Component_Controller_Add extends Phpfox_Component
 			$sStep = (isset($aVals['step']) ? $aVals['step'] : '');
 			$sAction = (isset($aVals['action']) ? $aVals['action'] : '');	
 			$this->template()->assign('aForms', $aVals);		
-		}		
-		
+		}
+
 		if ($bIsEdit)
 		{
 			$aMenus = array(

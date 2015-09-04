@@ -10051,7 +10051,7 @@ ul.activity_feed_form_attach li a:hover {
   left: 0px;
   right: 0px;
   bottom: 0px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
 }
 .profiles_banner_bg h1 a,
 .profiles_banner_bg h1 a:hover,
@@ -10060,7 +10060,9 @@ ul.activity_feed_form_attach li a:hover {
   color: #fff;
 }
 .profiles_banner_bg .profiles_extra_info {
-  color: #bfbfbf;
+  color: #e6e6e6 !important;
+  font-weight: 400 !important;
+  text-shadow: 2px 2px 2px #969696;
 }
 .profiles_banner {
   min-height: 250px;

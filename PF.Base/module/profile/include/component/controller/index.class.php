@@ -167,7 +167,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 		$aRow['is_user_birthday'] = ((empty($aRow['birthday_time_stamp']) ? false : (int) floor(Phpfox::getLib('date')->daysToDate($aRow['birthday_time_stamp'], null, false)) === 0 ? true : false));
 		if (empty($aRow['landing_page']))
 		{
-			$aRow['landing_page'] = Phpfox::getParam('profile.profile_default_landing_page');
+			$aRow['landing_page'] = 'wall';
 		}
 		
 		$this->setParam('aUser', $aRow);

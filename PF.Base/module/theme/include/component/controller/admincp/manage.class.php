@@ -25,6 +25,11 @@ class Theme_Component_Controller_Admincp_Manage extends Phpfox_Component {
 
 			$this->url()->send('admincp.theme.manage', ['id' => $this->request()->get('id')], 'Successfully merged the theme.');
 		}
+		else if ($this->request()->get('rebuild')) {
+			$Theme->rebuild();
+
+			$this->url()->send('admincp.theme.manage', ['id' => $this->request()->get('id')], 'Successfully merged the theme.');
+		}
 
 		$Service = new Core\Theme\Service($Theme);
 

@@ -1057,7 +1057,7 @@ class Phpfox
 	public static function getMasterFiles()
 	{
 		$aOut = array(
-			'<link href="' . Phpfox::getParam('core.url_static') . 'css/font-awesome.min.css" rel="stylesheet">',
+			'<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?v=' . Phpfox_Template::instance()->getStaticVersion() . '" rel="stylesheet">',
 			'layout.css' => 'style_css',
 			'common.css' => 'style_css',
 			'thickbox.css' => 'style_css',

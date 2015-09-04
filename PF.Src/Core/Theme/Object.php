@@ -212,6 +212,21 @@ class Object extends \Core\Objectify {
 		return $flavors;
 	}
 
+	public function rebuild() {
+		$flavorId = $this->flavor_folder;
+		if (!$flavorId) {
+			throw new \Exception('Cannot merge a theme without a flavor.');
+		}
+
+		$css = new CSS($this);
+		try {
+			$data = $css->get();
+			$css->set($data);
+		} catch (\Exception $e) {
+			return false;
+		}
+	}
+
 	public function merge() {
 		$flavorId = $this->flavor_folder;
 		if (!$flavorId) {

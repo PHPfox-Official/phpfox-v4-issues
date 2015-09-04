@@ -29,6 +29,7 @@
 					<li><a href="{url link='admincp.theme.flavor' theme=$theme.theme_id}" class="popup"><i class="fa fa-diamond"></i>New Flavor</a></li>
 					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id export=1}" target="_blank" class="no_ajax"><i class="fa fa-download"></i>Export theme</a></li>
 					<li><a href="{url link='admincp.theme.delete' id=$theme.theme_id sure='yes'}" class="sJsConfirm is_delete"><i class="fa fa-remove"></i>Remove theme</a></li>
+					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id rebuild='yes'}" class="ajax" data-add-process="true"><i class="fa fa-clone"></i>Sync CSS</a></li>
 					{if $theme.name == 'Neutron'}
 					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id merge='yes'}" class="ajax" data-add-process="true"><i class="fa fa-rotate-left"></i>Revert theme</a></li>
 					{/if}

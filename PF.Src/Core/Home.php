@@ -11,7 +11,7 @@ namespace Core;
  * @method Home install()
  * @method Home vendor($name)
  * @method Home admincp()
- * @method Home downloads()
+ * @method Home downloads(array $type)
  * @method Home key()
  * @method Home sync()
  * @method Home user()

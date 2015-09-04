@@ -62,10 +62,15 @@ class CSS extends \Core\Model {
 
 	public function get($returnLess = false) {
 		$html = $this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder . '.less';
+		if (!file_exists($html)) {
+			throw new \Exception('Less file does not exist.');
+		}
+
 		$html = file_get_contents($html);
 
 		$parts = explode('/** START CSS */', $html);
-		if ($returnLess) {
+
+		if ($returnLess === true) {
 			return $parts[0];
 		}
 

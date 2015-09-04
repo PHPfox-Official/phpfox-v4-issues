@@ -5821,7 +5821,8 @@ a.item_bar_approve:hover {
   left: 0px;
   right: 0px;
   bottom: 50px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .panel_is_active #panel.is_feed {
   z-index: 2000;
@@ -10639,7 +10640,7 @@ a.marketplace_contact_seller:hover {
   left: 50%;
   margin-left: -300px;
   display: block;
-  z-index: 500;
+  z-index: 4000;
   position: fixed;
 }
 .mail_thread .js_box_close {
@@ -10655,6 +10656,11 @@ a.marketplace_contact_seller:hover {
   right: 0px;
   z-index: 200;
   text-indent: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 600px;
+  padding-right: 40px;
 }
 .mail_thread .js_box_title h1 {
   height: 40px;

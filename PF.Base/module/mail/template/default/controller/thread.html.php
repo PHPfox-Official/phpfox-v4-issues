@@ -52,7 +52,13 @@ defined('PHPFOX') or exit('NO DICE!');
 		$Behavior.loadMessages = function() {
 			$('.mail_thread_form_holder_inner textarea').focus();
 			$('.mail_messages').scrollTop($('.mail_messages')[0].scrollHeight);
+
+			var m = $('.mail_thread .js_box_title');
+			var names = m.html();
+			m.html('<span class="js_hover_title">' + names + '<span class="js_hover_info">' + names + '</span></span>');
+
 			delete $Behavior.loadMessages;
+			$Core.loadInit();
 		};
 	</script>
 	{/literal}

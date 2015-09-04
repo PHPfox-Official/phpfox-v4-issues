@@ -134,7 +134,8 @@ class Phpfox_Setting
 		'ad.how_many_ads_per_location' => 1,
 		'core.log_site_activity' => false,
 		'photo.enabled_watermark_on_photos' => false,
-		'friend.load_friends_online_ajax' => false
+		'friend.load_friends_online_ajax' => false,
+		'core.auth_user_via_session' => false
 	];
 
 	public $hide = [

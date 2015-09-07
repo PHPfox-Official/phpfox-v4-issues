@@ -1198,7 +1198,11 @@ class Feed_Service_Feed extends Phpfox_Service
 		
         if ($sPlugin = Phpfox_Plugin::get('feed.service_feed_getsharelinks__end')){eval($sPlugin);if (isset($aPluginReturn)){return $aPluginReturn;}}
 
-		// d($aLinks);
+		foreach ($aLinks as $key => $value) {
+			if ($value['module_id'] != 'photo') {
+				unset($aLinks[$key]);
+			}
+		}
 
 		return $aLinks;
 	}

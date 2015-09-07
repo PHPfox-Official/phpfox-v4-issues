@@ -88,6 +88,8 @@ if (!defined('PHPFOX_NO_RUN')) {
 
 		Phpfox::run();
 	} catch (\Exception $e) {
+
+		/*
 		if (\Core\Route\Controller::$isApi) {
 			http_response_code(400);
 			$content = [
@@ -112,6 +114,7 @@ if (!defined('PHPFOX_NO_RUN')) {
 			]);
 			exit;
 		}
+		*/
 
 		header('Content-type: text/html');
 

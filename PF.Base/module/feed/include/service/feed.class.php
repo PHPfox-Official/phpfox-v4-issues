@@ -1197,7 +1197,9 @@ class Feed_Service_Feed extends Phpfox_Service
 		}
 		
         if ($sPlugin = Phpfox_Plugin::get('feed.service_feed_getsharelinks__end')){eval($sPlugin);if (isset($aPluginReturn)){return $aPluginReturn;}}
-        
+
+		// d($aLinks);
+
 		return $aLinks;
 	}
 

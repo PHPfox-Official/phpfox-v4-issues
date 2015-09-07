@@ -379,7 +379,13 @@ class Phpfox
 	public static function getBlock($sClass, $aParams = array(), $bTemplateParams = false)
 	{
 		if (is_array($sClass)) {
-			$content = call_user_func($sClass['callback'], $sClass['object']);
+			if (isset($sClass['callback'])) {
+				$content = call_user_func($sClass['callback'], $sClass['object']);
+			}
+			else {
+				$content = $sClass[0];
+			}
+
 			if (empty($content)) {
 				$obj = $sClass['object'];
 				if ($obj instanceof \Core\Block) {

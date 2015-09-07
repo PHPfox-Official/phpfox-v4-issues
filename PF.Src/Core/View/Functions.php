@@ -150,11 +150,19 @@ class Functions {
 
 		foreach ($blocks as $block) {
 			if (!is_string($block)) {
-				$obj = $block['object'];
-				if ($obj instanceof \Core\Block) {
 
+				$obj = null;
+				if (isset($block['object']) && isset($block['callback'])) {
+					$obj = $block['object'];
+					if ($obj instanceof \Core\Block) {
+						$html = call_user_func($block['callback'], $obj);
+					}
 				}
-				$html = call_user_func($block['callback'], $obj);
+
+				if ($obj === null && is_array($block)) {
+					$html = $block[0];
+				}
+
 				if (empty($html)) {
 					$html = '
 					<div class="block">

@@ -20,7 +20,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$aParentModule = $this->getParam('aParentModule');	
+		$aParentModule = $this->getParam('aParentModule');
 		
 		if ($aParentModule === null && $this->request()->getInt('req2') > 0)
 		{
@@ -246,7 +246,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 				$this->search()->setCondition('AND blog.module_id = \'blog\'');
 			}
 		}
-		
+
 		// http://www.phpfox.com/tracker/view/15375/
 		if (((defined('PHPFOX_IS_PAGES_VIEW') && Phpfox::getService('pages')->hasPerm(null, 'blog.view_browse_blogs'))
 			|| (!defined('PHPFOX_IS_PAGES_VIEW') && $aParentModule['module_id'] == 'pages' && Phpfox::getService('pages')->hasPerm($aParentModule['item_id'], 'blog.view_browse_blogs')))
@@ -293,7 +293,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 		$aItems = $this->search()->browse()->getRows();
 
 		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
-		
+
 		Blog_Service_Blog::instance()->getExtra($aItems, 'user_profile');
 
 		(($sPlugin = Phpfox_Plugin::get('blog.component_controller_index_process_middle')) ? eval($sPlugin) : false);
@@ -312,8 +312,8 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 			{
 				$this->template()->setMeta('keywords', Tag_Service_Tag::instance()->getKeywords($aItem['tag_list']));
 			}
-		}		
-		
+		}
+
 		/**
 		 * Here we assign the needed variables we plan on using in the template. This is used to pass
 		 * on any information that needs to be used with the specific template for this component.
@@ -338,8 +338,8 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 				'pager.css' => 'style_css',
 				'feed.js' => 'module_feed'
 			)
-		);			
-		
+		);
+
 		$this->setParam('global_moderation', array(
 				'name' => 'blog',
 				'ajax' => 'blog.moderation',

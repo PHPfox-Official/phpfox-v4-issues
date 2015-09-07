@@ -219,8 +219,19 @@ class Phpfox_Module
 		return $this->_aModules;
 	}
 
-	public function block($controller, $location, $html) {
-		$this->blocks[$controller][$location][] = [$html];
+	public function block($controller, $location, $html, \Core\Block $object = null) {
+		if ($object !== null) {
+			$cache = $html;
+			$html = [
+				'callback' => $cache,
+				'object' => $object
+			];
+
+			$this->blocks[$controller][$location][] = $html;
+		}
+		else {
+			$this->blocks[$controller][$location][] = [$html];
+		}
 	}
 
 	public function get($sModule) {
@@ -733,11 +744,23 @@ class Phpfox_Module
 		*/
 
 		if (isset($this->blocks['*']) && isset($this->blocks['*'][$iId])) {
-			$aBlocks[$iId] = array_merge($aBlocks[$iId], (array) $this->blocks['*'][$iId]);
+			$content = $this->blocks['*'][$iId];
+			/*
+			if (isset($content['callback'])) {
+				$content = call_user_func($content['callback'], $content['object']);
+			}
+			*/
+			$aBlocks[$iId] = array_merge($aBlocks[$iId], (array) $content);
 		}
 
 		if (isset($this->blocks[$sController]) && isset($this->blocks[$sController][$iId])) {
-			$aBlocks[$iId] = array_merge($aBlocks[$iId], (array) $this->blocks[$sController][$iId]);
+			$content = $this->blocks[$sController][$iId];
+			/*
+			if (isset($content['callback'])) {
+				$content = call_user_func($content['callback'], $content['object']);
+			}
+			*/
+			$aBlocks[$iId] = array_merge($aBlocks[$iId], (array) $content);
 		}
 					
 		return $aBlocks[$iId];

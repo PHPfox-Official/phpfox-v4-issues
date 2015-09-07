@@ -1,14 +1,14 @@
-<?php 
+<?php
 /**
  * [PHPFOX_HEADER]
- * 
+ *
  * @copyright		[PHPFOX_COPYRIGHT]
  * @author  		Raymond Benc
  * @package  		Module_Blog
  * @version 		$Id: index.html.php 7290 2014-04-30 19:14:20Z Fern $
  */
- 
-defined('PHPFOX') or exit('NO DICE!'); 
+
+defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if isset($bSpecialMenu) && $bSpecialMenu == true}

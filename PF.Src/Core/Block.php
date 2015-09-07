@@ -23,6 +23,7 @@ class Block {
 		$this->active = (new \Api\User())->get(\Phpfox::getUserId());
 		$this->db = new Db();
 
+		/*
 		$html = call_user_func($callback, $this);
 		if (empty($html)) {
 			$html = '
@@ -34,7 +35,16 @@ class Block {
 			</div>
 			';
 		}
-		\Phpfox_Module::instance()->block($controller, $location, $html);
+		*/
+
+		\Phpfox_Module::instance()->block($controller, $location, $callback, $this);
+	}
+
+	public function get($arg) {
+		if (!isset($this->_arg[$arg])) {
+			return '';
+		}
+		return $this->_arg[$arg];
 	}
 
 	public function __call($method, $args) {

@@ -149,7 +149,28 @@ class Functions {
 		$blocks = \Phpfox_Module::instance()->getModuleBlocks($location);
 
 		foreach ($blocks as $block) {
-			\Phpfox::getBlock($block);
+			if (!is_string($block)) {
+				$obj = $block['object'];
+				if ($obj instanceof \Core\Block) {
+
+				}
+				$html = call_user_func($block['callback'], $obj);
+				if (empty($html)) {
+					$html = '
+			<div class="block">
+				' . ($obj->get('title') ? '<div class="title">' . $obj->get('title') . '</div>' : '') . '
+				<div class="content">
+					' . $obj->get('content') . '
+				</div>
+			</div>
+			';
+				}
+
+				echo $html;
+			}
+			else {
+				\Phpfox::getBlock($block);
+			}
 		}
 		echo '</div>';
 	}

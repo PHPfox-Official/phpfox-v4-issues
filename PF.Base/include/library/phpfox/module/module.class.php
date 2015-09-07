@@ -642,6 +642,7 @@ class Phpfox_Module
 		if (\Core\Route\Controller::$name) {
 			$sController = 'route_' . \Core\Route\Controller::$name['route'];
 		}
+
 		// $this->blocks = $this->_aModuleBlocks;
 		// $this->_aModuleBlocks = $this->blocks;
 

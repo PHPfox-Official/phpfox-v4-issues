@@ -379,8 +379,26 @@ class Phpfox
 	public static function getBlock($sClass, $aParams = array(), $bTemplateParams = false)
 	{
 		if (is_array($sClass)) {
-			echo $sClass[0];
-			return;
+			$content = call_user_func($sClass['callback'], $sClass['object']);
+			if (empty($content)) {
+				$obj = $sClass['object'];
+				if ($obj instanceof \Core\Block) {
+					if (empty($html)) {
+						$content = '
+						<div class="block">
+							' . ($obj->get('title') ? '<div class="title">' . $obj->get('title') . '</div>' : '') . '
+							<div class="content">
+								' . $obj->get('content') . '
+							</div>
+						</div>
+						';
+					}
+				}
+			}
+
+			echo $content;
+
+			return null;
 		}
 
 		return Phpfox_Module::instance()->getComponent($sClass, $aParams, 'block', $bTemplateParams);

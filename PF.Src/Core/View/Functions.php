@@ -157,13 +157,13 @@ class Functions {
 				$html = call_user_func($block['callback'], $obj);
 				if (empty($html)) {
 					$html = '
-			<div class="block">
-				' . ($obj->get('title') ? '<div class="title">' . $obj->get('title') . '</div>' : '') . '
-				<div class="content">
-					' . $obj->get('content') . '
-				</div>
-			</div>
-			';
+					<div class="block">
+						' . ($obj->get('title') ? '<div class="title">' . $obj->get('title') . '</div>' : '') . '
+						<div class="content">
+							' . $obj->get('content') . '
+						</div>
+					</div>
+					';
 				}
 
 				echo $html;

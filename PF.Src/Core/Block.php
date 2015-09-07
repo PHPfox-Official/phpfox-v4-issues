@@ -48,6 +48,11 @@ class Block {
 	}
 
 	public function __call($method, $args) {
+		if ($method == 'content' && PHPFOX_IS_AJAX_PAGE) {
+			echo $args[0];
+			return;
+		}
+
 		$this->_arg[$method] = $args[0];
 	}
 }

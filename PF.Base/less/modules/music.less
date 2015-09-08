@@ -148,3 +148,88 @@
 		width:100%;
 	}
 }
+
+.music_songs {
+	font-size:@fontSizeBase - 2;
+	border-top:1px darken(@blockBg, 8%) solid;
+	padding-top:10px;
+
+	> div {
+		font-weight:600;
+		text-transform:uppercase;
+	}
+}
+
+.music_album_rows {
+	background:@blockBg;
+	color:@blockColor;
+	display:inline-block;
+	position:relative;
+	width:200px;
+	height:260px;
+
+	img {
+		position:absolute;
+		left:0px;
+		top:0px;
+	}
+
+	h1 {
+		padding:0px;
+		margin:0px;
+		font-size:@fontSizeBase - 2;
+
+		a, a:hover {
+			display:block;
+			position:absolute;
+			left:0px;
+			top:0px;
+			right:0px;
+			bottom:0px;
+
+			> span, > time {
+				display:block;
+				position:absolute;
+				left:10px;
+				bottom:35px;
+				right:0px;
+			}
+
+			> time {
+				bottom:10px;
+				color:lighten(@blockColor, 10%);
+			}
+		}
+	}
+
+	.music_row_image {
+		top:12px;
+		left:10px;
+	}
+
+	.music_time {
+		top:10px;
+		right:10px;
+	}
+}
+
+.music_album_view {
+	position:relative;
+	min-height:210px;
+	margin-bottom:10px;
+
+	.fa {
+		font-size:26px;
+		opacity:0.6;
+	}
+
+	.mav_info {
+		position:absolute;
+		left:0px;
+		top:10px;
+	}
+
+	.mav_tracks {
+		margin-left:220px;
+	}
+}

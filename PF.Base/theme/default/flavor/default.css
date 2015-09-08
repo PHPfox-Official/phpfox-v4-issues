@@ -10917,6 +10917,82 @@ a.marketplace_contact_seller:hover {
 #js_music_player audio {
   width: 100%;
 }
+.music_songs {
+  font-size: 12px;
+  border-top: 1px #ebebeb solid;
+  padding-top: 10px;
+}
+.music_songs > div {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.music_album_rows {
+  background: #ffffff;
+  color: #999999;
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: 260px;
+}
+.music_album_rows img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.music_album_rows h1 {
+  padding: 0px;
+  margin: 0px;
+  font-size: 12px;
+}
+.music_album_rows h1 a,
+.music_album_rows h1 a:hover {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+.music_album_rows h1 a > span,
+.music_album_rows h1 a:hover > span,
+.music_album_rows h1 a > time,
+.music_album_rows h1 a:hover > time {
+  display: block;
+  position: absolute;
+  left: 10px;
+  bottom: 35px;
+  right: 0px;
+}
+.music_album_rows h1 a > time,
+.music_album_rows h1 a:hover > time {
+  bottom: 10px;
+  color: #b3b3b3;
+}
+.music_album_rows .music_row_image {
+  top: 12px;
+  left: 10px;
+}
+.music_album_rows .music_time {
+  top: 10px;
+  right: 10px;
+}
+.music_album_view {
+  position: relative;
+  min-height: 210px;
+  margin-bottom: 10px;
+}
+.music_album_view .fa {
+  font-size: 26px;
+  opacity: 0.6;
+}
+.music_album_view .mav_info {
+  position: absolute;
+  left: 0px;
+  top: 10px;
+}
+.music_album_view .mav_tracks {
+  margin-left: 220px;
+}
 #js_sample_multi_ad_holder {
   background: transparent;
   border-radius: 0px;

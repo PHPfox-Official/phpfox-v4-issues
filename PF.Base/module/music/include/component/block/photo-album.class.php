@@ -20,7 +20,7 @@ class Music_Component_Block_Photo_Album extends Phpfox_Component
 	 */
 	public function process()
 	{
-		
+		return false;
 	}
 	
 	/**

@@ -13,6 +13,8 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 {if count($aAlbums)}
 {foreach from=$aAlbums name=albums item=aAlbum}
+	{template file='music.block.album-rows'}
+{*
 <div id="js_album_{$aAlbum.album_id}" class="js_album_parent {if $aAlbum.is_sponsor}row_sponsored {/if}{if $aAlbum.is_featured}row_featured {/if}{if is_int($phpfox.iteration.albums/2)}row1{else}row2{/if}{if $phpfox.iteration.albums == 1} row_first{/if}">
 	<div class="row_title">		
 
@@ -46,9 +48,11 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>		
 	</div>
 </div>
+*}
+
 {/foreach}
 {if Phpfox::getUserParam('music.can_delete_other_music_albums') || Phpfox::getUserParam('music.can_feature_music_albums')}
-{moderation}
+	{moderation}
 {/if}
 {pager}
 {else}

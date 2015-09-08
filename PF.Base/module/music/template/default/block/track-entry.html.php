@@ -13,7 +13,9 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 <li class="js_music_store_album_holder"{if isset($phpfox.iteration.songs) && $phpfox.iteration.songs > 10} {/if}>
 	<div class="block_listing_image">
-		<a href="#" onclick="$.ajaxCall('music.playInFeed', 'id={$aSong.song_id}&amp;track=js_block_track_player{if isset($bIsMusicPlayer) && $bIsMusicPlayer}&amp;is_player=1{/if}'); return false;" class="no_ajax_link">{img theme='misc/play_button.png'}</a>
+		<a href="#" onclick="$.ajaxCall('music.playInFeed', 'id={$aSong.song_id}&amp;track=js_block_track_player{if isset($bIsMusicPlayer) && $bIsMusicPlayer}&amp;is_player=1{/if}'); return false;" class="no_ajax_link">
+			<i class="fa fa-play-circle-o"></i>
+		</a>
 	</div>
 	<div class="block_listing_title" style="padding-left:38px;">
 		{if isset($bIsMusicPlayer) && $bIsMusicPlayer}

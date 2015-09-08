@@ -15,7 +15,7 @@
 		</div>
 		{/if}
 		<div class="audio_player" data-src="{$aSong.song_path}" data-onplay="{url link='music.view' play=$aSong.song_id}"></div>
-
+		{*
 		<div class="music_song_stats">
 			{if !isset($aSong.is_in_feed)}
 			<a href="#" class="do_like">Like</a>
@@ -27,5 +27,6 @@
 				<li class="total_comments"><a href="#">{$aSong.total_comment}</a></li>
 			</ul>
 		</div>
+		*}
 	</div>
 </article>

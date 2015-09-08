@@ -19,7 +19,9 @@ class Music_Component_Block_Album_Info extends Phpfox_Component
 	 * Controller
 	 */
 	public function process()
-	{		
+	{
+		return false;
+
 		$this->template()->assign(array(
 				'sHeader' => Phpfox::getPhrase('music.basic_info')
 			)

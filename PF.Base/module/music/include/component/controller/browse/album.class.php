@@ -100,7 +100,14 @@ class Music_Component_Controller_Browse_Album extends Phpfox_Component
 		$this->search()->browse()->params($aBrowseParams)->execute();		
 		
 		Phpfox_Pager::instance()->set(array('page' => $this->search()->getPage(), 'size' => $this->search()->getDisplay(), 'count' => $this->search()->browse()->getCount()));
-		
+
+		$albums = $this->search()->browse()->getRows();
+		foreach ($albums as $key => $album) {
+			$albums[$key]['songs'] = Music_Service_Music::instance()->getSongs($album['user_id'], $album['album_id']);
+		}
+
+		// d($albums); exit;
+		$this->template()->menu('Create an Album', $this->url()->makeUrl('music.album.add'));
 		$this->template()->setHeader('cache', array(
 					'pager.css' => 'style_css',
 					'comment.css' => 'style_css',
@@ -109,7 +116,7 @@ class Music_Component_Controller_Browse_Album extends Phpfox_Component
 				)
 			)			
 			->assign(array(
-				'aAlbums' => $this->search()->browse()->getRows()			
+				'aAlbums' => $albums
 			)
 		);		
 		

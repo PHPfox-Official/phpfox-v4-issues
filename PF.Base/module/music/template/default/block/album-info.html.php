@@ -13,14 +13,6 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 <div class="info">
 	<div class="info_left">
-		{phrase var='music.rating'}:
-	</div>	
-	<div class="info_right">
-		{module name='rate.display'}
-	</div>	
-</div>
-<div class="info">
-	<div class="info_left">
 		{phrase var='music.plays'}:
 	</div>
 	<div class="info_right">

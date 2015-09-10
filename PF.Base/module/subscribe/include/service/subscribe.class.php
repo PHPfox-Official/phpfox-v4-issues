@@ -162,6 +162,11 @@ class Subscribe_Service_Subscribe extends Phpfox_Service
 			{
 				continue;	
 			}
+
+			if ($aPackage['recurring_period'] == '0') {
+				$aPackage['recurring_fee'] = $aPackage['default_cost'];
+			}
+
 			$aForCompare['packages'][$aPackage['package_id']] = array(
 					'title' => $aPackage['title'],
 					'package_id' => $aPackage['package_id'],
@@ -169,10 +174,10 @@ class Subscribe_Service_Subscribe extends Phpfox_Service
 					'background_color' => $aPackage['background_color'],
 					'price_phrase' => isset($aPackage['default_recurring_cost']) ? 
 								$aPackage['default_recurring_cost'] 
-								: Phpfox::getService('api.gateway')->getPeriodPhrase($aPackage['recurring_period'], $aPackage['recurring_fee'], $aPackage['initial_fee'], $aPackage['currency_symbol'])
+								: Api_Service_Gateway_Gateway::instance()->getPeriodPhrase($aPackage['recurring_period'], $aPackage['recurring_fee'], $aPackage['initial_fee'], $aPackage['currency_symbol'])
 					);			
 		}
-		
+
 		if ($bIsAdminCP == false)
 		{
 			// Remove unused packages

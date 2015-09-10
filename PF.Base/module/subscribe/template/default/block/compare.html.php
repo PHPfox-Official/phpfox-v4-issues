@@ -42,7 +42,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<td class="tdFee"> {phrase var='subscribe.fee'} </td>
 				{foreach name=iteFee from=$aPackages.packages item=aPackage}
 					<td class="{if is_int($phpfox.iteration.iteFee/2)}tdFeeEven{else}tdFeeOdd{/if}"{if $bIsDisplay && !empty($aPackage.background_color)} style="background-color:{$aPackage.background_color}"{/if}>
-						{$aPackage.price_phrase}	 					
+						{$aPackage.price_phrase}
 					</td>
 				{/foreach}
 			</tr>

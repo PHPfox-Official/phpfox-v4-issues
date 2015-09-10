@@ -1266,7 +1266,7 @@ class Feed_Service_Feed extends Phpfox_Service
 	
 	private function _processFeed($aRow, $sKey, $iUserid, $bFirstCheckOnComments)
 	{
-		$original = $aRow['content'];
+		$original = (isset($aRow['content']) ? $aRow['content'] : '');
 		switch ($aRow['type_id'])
 		{
 			case 'comment_profile':

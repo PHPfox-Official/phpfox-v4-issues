@@ -73,7 +73,7 @@ class Like_Component_Ajax_Ajax extends Phpfox_Ajax
 	{				
 		$this->error(false);
 		Phpfox::getBlock('like.browse');
-		$sTitle = (($this->get('type_id') == 'pages' && $this->get('force_like') == '') ? Phpfox::getPhrase('like.members') : Phpfox::getPhrase('like.people_who_like_this'));
+		$sTitle = (($this->get('type_id') == 'pages' && $this->get('force_like') == '') ? Phpfox::getPhrase('like.members') : 'Followers');
 		if ($this->get('dislike') == 1)
 		{
 			$sTitle = Phpfox::getPhrase('like.people_who_disliked_this');

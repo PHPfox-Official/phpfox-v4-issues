@@ -24,7 +24,7 @@ class Pages_Component_Block_Like extends Phpfox_Component
 		list($iTotalMembers, $aMembers) = Phpfox::getService('pages')->getMembers($aPage['page_id'], 12);
 
 		$this->template()->assign(array(
-				'sHeader' => ($aPage['page_type'] == '1' ? '<a href="#" onclick="return $Core.box(\'like.browse\', 400, \'type_id=pages&amp;item_id=' . $aPage['page_id'] . '\');">' . Phpfox::getPhrase('pages.members_total', array('total' => $iTotalMembers)) . '</a>' : $iTotalMembers . ' Followers'),
+				'sHeader' => '<a href="#" onclick="return $Core.box(\'like.browse\', 400, \'type_id=pages&amp;item_id=' . $aPage['page_id'] . '' . ($aPage['page_type'] != '1' ? '&amp;force_like=1' : '') . '\');">' . ($aPage['page_type'] == '1' ? Phpfox::getPhrase('pages.members_total', array('total' => $iTotalMembers)) : $iTotalMembers . ' Followers') . '</a>',
 				'aMembers' => $aMembers
 			)
 		);

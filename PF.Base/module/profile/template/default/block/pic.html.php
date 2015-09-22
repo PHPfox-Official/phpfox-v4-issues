@@ -53,6 +53,9 @@ defined('PHPFOX') or exit('NO DICE!');
 			{if (isset($aUser.is_friend_request) && $aUser.is_friend_request)}
 			<div><span class="pending-friend-request">Pending Friend Request</span></div>
 			{/if}
+			{if (!empty($aUser.gender_name))}
+			&middot; {$aUser.gender_name}
+			{/if}
 		</div>
 	</div>
 

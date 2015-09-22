@@ -28,7 +28,7 @@ class Language_Component_Controller_Admincp_Import extends Phpfox_Component
 			$base = false;
 			$dir = PHPFOX_DIR_INCLUDE . 'xml/language/' . $install . '/';
 			Language_Service_Process::instance()->installPackFromFolder($install, $dir);
-			
+
 			$this->request()->set('dir', $dir);
 			if (!is_dir($dir)) {
 				Phpfox_Error::set('Language package cannot be found at: ' . $dir);

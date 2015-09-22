@@ -11573,10 +11573,16 @@ a.marketplace_contact_seller:hover {
   .moderation_holder {
     left: 0px;
   }
+  #page_user_browse.show-side-panel-mode #panels {
+    display: block !important;
+    position: fixed !important;
+    bottom: 0px !important;
+    overflow: auto !important;
+  }
   .show-side-panel-mode #panels {
-    left: 0px;
-    right: 0px;
-    width: auto;
+    left: 0px !important;
+    right: 0px !important;
+    width: auto !important;
   }
 }
 .app-block {

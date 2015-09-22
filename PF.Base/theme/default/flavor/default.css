@@ -11582,7 +11582,9 @@ a.marketplace_contact_seller:hover {
   .show-side-panel-mode #panels {
     left: 0px !important;
     right: 0px !important;
+    bottom: 0px !important;
     width: auto !important;
+    overflow: auto !important;
   }
 }
 .app-block {

@@ -49,6 +49,10 @@ class Language_Component_Controller_Admincp_Index extends Phpfox_Component
 					'url' => $this->url()->makeUrl('admincp.language.add'),
 					'class' => 'popup light'
 				],
+				'New Phrase' => [
+					'url' => $this->url()->makeUrl('admincp.language.phrase.add'),
+					'class' => 'light'
+				],
 				'Manual Import' => [
 					'url' => $this->url()->makeUrl('admincp.language.import'),
 					'class' => 'light'

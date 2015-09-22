@@ -68,7 +68,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	<div class="clear"></div>
 </div>
-<div class="table"{if !PHPFOX_IS_TECHIE} style="display:none;"{/if}>
+<div class="table">
 	<div class="table_left">
 		{phrase var='language.module'}:
 	</div>

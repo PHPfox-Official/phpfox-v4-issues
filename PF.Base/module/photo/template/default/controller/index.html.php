@@ -11,7 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-{if (defined('PHPFOX_IS_USER_PROFILE'))}
+{if (defined('PHPFOX_IS_USER_PROFILE') && !PHPFOX_IS_AJAX)}
 <div id="main-photo-albums" data-url="{url link=''$aUser.user_name'.photo.albums'}">
 	<i class="fa fa-spin fa-circle-o-notch"></i>
 </div>
@@ -101,7 +101,7 @@ defined('PHPFOX') or exit('NO DICE!');
 </div>
 {/if}
 
-{if (defined('PHPFOX_IS_USER_PROFILE'))}
+{if (defined('PHPFOX_IS_USER_PROFILE') && !PHPFOX_IS_AJAX)}
 </div>
 {literal}
 <script>

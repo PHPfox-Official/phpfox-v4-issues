@@ -12,7 +12,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>	
 {if !Profile_Service_Profile::instance()->timeline()}
-	<div class="activity_feed_content">							
+	<div class="activity_feed_content">
 {/if}
 	<div class="activity_feed_content_text{if isset($aFeed.comment_type_id) && $aFeed.comment_type_id == 'poll'} js_parent_module_feed_{$aFeed.comment_type_id}{/if}">
 		{if !isset($aFeed.feed_mini) && !Profile_Service_Profile::instance()->timeline()}

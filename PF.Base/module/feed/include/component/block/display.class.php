@@ -206,6 +206,12 @@ class Feed_Component_Block_Display extends Phpfox_Component
 			$aRows = Feed_Service_Feed::instance()->callback($aFeedCallback)->get(($bIsProfile > 0 ? $iUserId : null), ($this->request()->get('feed') ? $this->request()->get('feed') : null), $iFeedPage);
 		}
 		*/
+
+		foreach ($aRows as $iKey => $aRow) {
+			if (isset($aRow['feed_mini'])) {
+				// unset($aRows[$iKey]['feed_mini'], $aRows[$iKey]['feed_mini'], $aRows[$iKey]['feed_mini_content']);
+			}
+		}
 		// d($aRows); exit;
 
 		if (($this->request()->getInt('status-id') 

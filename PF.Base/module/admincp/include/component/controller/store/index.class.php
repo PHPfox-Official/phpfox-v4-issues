@@ -27,7 +27,8 @@ class Admincp_Component_Controller_Store_index extends Phpfox_Component {
 		$this->template()->setSectionTitle('<a href="' . $this->url()->current() . '">Store</a>');
 		$this->template()->assign([
 			'token' => $token,
-			'load' => $load
+			'load' => $load,
+			'storeUrl' => Core\Home::store()
 		]);
 	}
 }

@@ -10144,6 +10144,10 @@ ul.activity_feed_form_attach li a:hover {
   margin-left: -15px;
   margin-top: -15px;
 }
+.profile_menu_is_fixed.panel_is_active .profiles_menu,
+.profile_menu_is_fixed.panel_is_active .profile_image {
+  z-index: 298;
+}
 .profile_menu_is_fixed .profiles_menu {
   position: fixed;
   top: 0px;

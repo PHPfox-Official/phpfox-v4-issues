@@ -134,7 +134,7 @@ class Marketplace_Component_Controller_Index extends Phpfox_Component
 						'most-liked' => array('l.is_sponsor DESC, l.total_like', Phpfox::getPhrase('marketplace.most_liked')),
 						'most-talked' => array('l.is_sponsor DESC, l.total_comment', Phpfox::getPhrase('marketplace.most_discussed'))
 					),
-					'show' => array(12, 15, 18, 21)					
+					'show' => array(12, 15, 18, 21)
 				)
 			);
 			

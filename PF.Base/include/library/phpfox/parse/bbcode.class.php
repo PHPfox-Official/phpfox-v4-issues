@@ -463,7 +463,7 @@ class Phpfox_Parse_Bbcode
 	 * @return string Parsed text.
 	 */
 	private function _parseAttachment($iId, $sText = null)
-	{		
+	{
 		$iOriginalId = stripslashes($iId);
 		$iId = (int) preg_replace("/\W/", "", $iOriginalId);				
 		if (isset($this->_aAttachments[$iId]))
@@ -538,8 +538,8 @@ class Phpfox_Parse_Bbcode
 	private function _attachment($iId, $sText = null)
 	{
 		$iOriginalId = stripslashes($iId);
-		$iId = (int) preg_replace("/\W/", "", $iOriginalId);		
-		
+		$iOriginalId = str_replace('&quot;', '"', $iOriginalId);
+		$iId = (int) preg_replace("/\W/", "", $iOriginalId);
 		if ($iId > 0)
 		{
 			$this->_aAttachments[] = $iId;

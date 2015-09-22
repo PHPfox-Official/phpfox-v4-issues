@@ -187,6 +187,13 @@ $.ajaxProcess = function(sMessage, sSize)
 
 $Behavior.imageHoverHolder = function()
 {
+	$('#panels .block .title').click(function() {
+		var t = $(this).parent().parent();
+		if (t.find('.content').length) {
+			t.find('.content').toggle();
+		}
+	});
+
 	$('#show-side-panel').click(function() {
 		var b = $('body');
 		if (b.hasClass('show-side-panel-mode')) {

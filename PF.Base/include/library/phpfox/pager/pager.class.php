@@ -323,6 +323,7 @@ class Phpfox_Pager
 				    }
 			    }
 		    }
+
 		    $aInfo = array(
 			    'totalPages' => $this->_iPagesCount,
 			    'totalRows'  => $this->_iCnt,

@@ -961,13 +961,13 @@ class Phpfox_Url
 				
 				if (is_array($sValue)) {
 					foreach ($sValue as $subKey => $subValue) {
-						$sUrls .= $sKey . '[' . $subKey . ']=' . str_replace('.', '', $subValue) . '&';
+						$sUrls .= $sKey . '[' . $subKey . ']=' . (Phpfox::isAdminPanel() ? $subValue : str_replace('.', '', $subValue)) . '&';
 					}
 
 					continue;
 				}
 				
-				$sUrls .= $sKey . '=' . str_replace('.', '', $sValue) . '&';
+				$sUrls .= $sKey . '=' . (Phpfox::isAdminPanel() ? $sValue : str_replace('.', '', $sValue)) . '&';
 			}
 			$sUrls = rtrim($sUrls, '&');
 		}		

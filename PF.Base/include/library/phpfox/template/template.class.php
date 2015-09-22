@@ -2319,7 +2319,8 @@ class Phpfox_Template
 		$sName = implode('.', $aParts);		
 		
 		$sName = str_replace('.', PHPFOX_DS, $sName);
-		
+
+		/*
 		if (!defined('PHPFOX_INSTALLER') && !defined('PHPFOX_LIVE_TEMPLATES'))
 		{
 			$oDb = Phpfox_Database::instance();
@@ -2332,7 +2333,8 @@ class Phpfox_Template
 			{
 				return array($aTemplate['html_data']);
 			}
-		}		
+		}
+		*/
 		
 		$bPass = false;		
 		if (file_exists(PHPFOX_DIR_MODULE . $sModule . PHPFOX_DIR_MODULE_TPL . PHPFOX_DS . $this->_sThemeFolder . PHPFOX_DS . $sName . PHPFOX_TPL_SUFFIX))

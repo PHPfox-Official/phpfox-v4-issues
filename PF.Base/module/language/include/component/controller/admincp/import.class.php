@@ -22,9 +22,21 @@ class Language_Component_Controller_Admincp_Import extends Phpfox_Component
 	{		
 		$iPage = $this->request()->getInt('page', 0);
 		$bImportPhrases = false;
+		$base = true;
+
+		if ($install = $this->request()->get('install')) {
+			$base = false;
+			$dir = PHPFOX_DIR_INCLUDE . 'xml/language/' . $install . '/';
+			Language_Service_Process::instance()->installPackFromFolder($install, $dir);
+			
+			$this->request()->set('dir', $dir);
+			if (!is_dir($dir)) {
+				Phpfox_Error::set('Language package cannot be found at: ' . $dir);
+			}
+		}
 
 		if (($dir = $this->request()->get('dir'))) {
-			$dir = base64_decode($dir);
+			$dir = ($base ? base64_decode($dir) : $dir);
 			$parts = explode('language/', rtrim($dir, '/'));
 
 			$bImportPhrases = true;
@@ -45,6 +57,7 @@ class Language_Component_Controller_Admincp_Import extends Phpfox_Component
 				}
 			}
 		}
+
 		/*
 		if (($sModulePackage = $this->request()->get('module')) || $this->request()->get('dir'))
 		{

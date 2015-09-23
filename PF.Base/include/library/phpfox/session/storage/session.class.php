@@ -38,6 +38,9 @@ class Phpfox_Session_Storage_Session
 	public function __construct()
 	{
 		$this->_sPrefix = Phpfox::getParam('core.session_prefix');
+		if (session_status() == PHP_SESSION_NONE) {
+			session_start();
+		}
 	}
 		
 	/**

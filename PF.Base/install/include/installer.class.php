@@ -408,7 +408,7 @@ class Phpfox_Installer
 		$this->_oTpl->setHeader(array(
 				'<script>var BasePath = \'' . self::getHostPath() . '\';</script>',
 				'<link href="' . $base . 'theme/install/default/style/default/css/layout.css" rel="stylesheet">',
-				'<link href="' . $base . 'static/css/font-awesome.min.css" rel="stylesheet">',
+				'<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">',
 				'<script src="' . $base . 'static/jscript/jquery/jquery.js"></script>',
 				'<script src="' . $base . 'static/jscript/install.js"></script>'
 			)

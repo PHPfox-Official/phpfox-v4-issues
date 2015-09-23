@@ -1654,10 +1654,17 @@ class User_Service_Process extends Phpfox_Service
 		}
 		
 		$aUser = Phpfox::getService('user')->getUser(Phpfox::getUserId());
-		
-		if (Phpfox::getLib('hash')->setHash($aVals['old_password'], $aUser['password_salt']) != $aUser['password'])
-		{
-			return Phpfox_Error::set(Phpfox::getPhrase('user.your_current_password_does_not_match_your_old_password'));	
+
+		if (strlen($aUser['password']) > 32) {
+			$Hash = new Core\Hash();
+			if (!$Hash->check($aVals['old_password'], $aUser['password'])) {
+				return Phpfox_Error::set(Phpfox::getPhrase('user.your_current_password_does_not_match_your_old_password'));
+			}
+		}
+		else {
+			if (Phpfox::getLib('hash')->setHash($aVals['old_password'], $aUser['password_salt']) != $aUser['password']) {
+				return Phpfox_Error::set(Phpfox::getPhrase('user.your_current_password_does_not_match_your_old_password'));
+			}
 		}
 		
 		$sSalt = $this->_getSalt();

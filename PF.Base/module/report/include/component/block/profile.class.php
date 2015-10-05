@@ -34,6 +34,9 @@ class Report_Component_Block_Profile extends Phpfox_Component
 		}
 
 		$this->template()->assign('aUser', $aUser);
+		$this->template()->assign([
+			'bIsBlocked' => (Phpfox::isUser() ? Phpfox::getService('user.block')->isBlocked(Phpfox::getUserId(), $aUser['user_id']) : false)
+		]);
 	}
 	
 	/**

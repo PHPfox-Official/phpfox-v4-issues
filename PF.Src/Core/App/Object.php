@@ -133,6 +133,8 @@ class Object extends \Core\Objectify {
 	 */
 	public $credits = [];
 
+	public $menu = [];
+
 	public function __construct($keys) {
 		parent::__construct($keys);
 
@@ -179,6 +181,10 @@ class Object extends \Core\Objectify {
 	}
 
 	public function delete() {
+		if ($this->menu && isset($this->menu->url)) {
+			\Phpfox_Database::instance()->delete(':menu', ['m_connection' => 'main', 'url_value' => $this->menu->url]);
+		}
+
 		(new \Core\Home(PHPFOX_LICENSE_ID, PHPFOX_LICENSE_KEY))->uninstall([
 			'product_id' => $this->internal_id
 		]);

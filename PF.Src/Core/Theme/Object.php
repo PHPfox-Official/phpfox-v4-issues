@@ -178,6 +178,12 @@ class Object extends \Core\Objectify {
 		return true;
 	}
 
+	public function deleteFlavor($id) {
+		\Phpfox_Database::instance()->delete(':theme_style', ['style_id' => (int) $id]);
+
+		return true;
+	}
+
 	public function setFlavor($id) {
 		$flavor = \Phpfox_Database::instance()->select('*')
 			->from(':theme_style')

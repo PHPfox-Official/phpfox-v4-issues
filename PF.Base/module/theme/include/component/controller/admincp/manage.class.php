@@ -17,6 +17,11 @@ class Theme_Component_Controller_Admincp_Manage extends Phpfox_Component {
 		if (($default = $this->request()->get('default'))) {
 			return $Theme->setDefault();
 		}
+		else if ($flavorId = $this->request()->get('flavor-delete')) {
+			$Session->remove($key);
+			$Theme->deleteFlavor($flavorId);
+			$this->url()->send('admincp.theme.manage', ['id' => $this->request()->get('id')], 'Flavor successfully deleted.');
+		}
 		else if ($this->request()->get('export')) {
 			$Theme->export();
 		}

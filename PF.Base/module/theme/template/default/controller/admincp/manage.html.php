@@ -32,6 +32,8 @@
 					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id rebuild='yes'}" class="ajax" data-add-process="true"><i class="fa fa-clone"></i>Sync CSS</a></li>
 					{if $theme.name == 'Neutron'}
 					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id merge='yes'}" class="ajax" data-add-process="true"><i class="fa fa-rotate-left"></i>Revert theme</a></li>
+					{else}
+					<li><a href="{url link='admincp.theme.manage' id=$theme.theme_id flavor-delete=$theme.flavor_id}" class="sJsConfirm is_delete"><i class="fa fa-remove"></i> Remove Flavor</a></li>
 					{/if}
 				</ul>
 			</div>

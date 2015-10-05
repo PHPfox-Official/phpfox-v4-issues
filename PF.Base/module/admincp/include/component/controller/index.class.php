@@ -315,6 +315,7 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			*/
 			'<i class="fa fa-server"></i>Maintenance' => array(
 				Phpfox::getPhrase('admincp.menu_cache_manager') => 'admincp.maintain.cache',
+				'Reported Items' => 'admincp.report',
 				Phpfox::getPhrase('admincp.admincp_menu_reparser') => 'admincp.maintain.reparser',
 				Phpfox::getPhrase('admincp.remove_duplicates') => 'admincp.maintain.duplicate',
 				Phpfox::getPhrase('admincp.counters') => 'admincp.maintain.counter',

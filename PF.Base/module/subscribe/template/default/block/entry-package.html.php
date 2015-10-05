@@ -14,7 +14,9 @@ defined('PHPFOX') or exit('NO DICE!');
 <div class="subscription_package {if is_int($phpfox.iteration.packages/2)}row1{else}row2{/if}{if $phpfox.iteration.packages == 1} row_first{/if}">
 	{if !empty($aPackage.image_path)}
 	<div style="width:130px; float:left; text-align:center;">
-		<a href="#" onclick="{if Phpfox::isUser()}tb_show('{phrase var='subscribe.select_payment_gateway' phpfox_squote=true}', $.ajaxBox('subscribe.upgrade', 'height=400&amp;width=400&amp;id={$aPackage.package_id}'));{else}$('#js_subscribe_package_id').val('{$aPackage.package_id}'); tb_remove(); {/if} return false;">{img server_id=$aPackage.server_id title=$aPackage.title path='subscribe.url_image' file=$aPackage.image_path suffix='_120' max_width='120' max_height='120'}</a>
+		<a href="#" onclick="{if Phpfox::isUser()}tb_show('{phrase var='subscribe.select_payment_gateway' phpfox_squote=true}', $.ajaxBox('subscribe.upgrade', 'height=400&amp;width=400&amp;id={$aPackage.package_id}'));{else}$('#js_subscribe_package_id').val('{$aPackage.package_id}'); tb_remove(); {/if} return false;">
+			{img server_id=$aPackage.server_id title=$aPackage.title path='subscribe.url_image' file=$aPackage.image_path suffix='_120' max_width='120' max_height='120'}
+		</a>
 	</div>
 	<div style="margin-left:135px; min-height:120px; height:auto !important; height:120px;">
 	{/if}

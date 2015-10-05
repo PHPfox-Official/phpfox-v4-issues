@@ -43,6 +43,8 @@ class Subscribe_Component_Ajax_Ajax extends Phpfox_Ajax
 	public function listUpgradesOnSignup()
 	{
 		Phpfox::getBlock('subscribe.list', array('on_signup' => true));
+
+		$this->call('<script> $Core.loadInit(); </script>');
 	}
 	
 	public function ordering()

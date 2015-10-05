@@ -23,6 +23,10 @@ defined('PHPFOX') or exit('NO DICE!');
 		{r}
 		function showGiftsByCategory()
 		{l}
+			if (!$('#selectCategory option:selected').length) {l}
+				return;
+			{r}
+
 			var $sName = $('#selectCategory option:selected').val().toLowerCase();
 			//debug('sName: ' + $sName);
 			$('.egift_category_holder').hide();

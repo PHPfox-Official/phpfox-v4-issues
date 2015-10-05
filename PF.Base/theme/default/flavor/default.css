@@ -10050,6 +10050,26 @@ ul.activity_feed_form_attach li a:hover {
   text-align: center;
   padding-bottom: 20px;
 }
+.photo_mature {
+  height: 300px;
+  background: #727272;
+  color: #808080;
+  position: relative;
+}
+.photo_mature i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+.photo_mature_2 {
+  background: #d9534f;
+}
+.photo_mature_2 i {
+  color: #ffffff;
+}
 .profiles_banner_bg > .cover_bg {
   position: absolute;
   top: 0px;

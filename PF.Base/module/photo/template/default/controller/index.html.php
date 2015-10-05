@@ -74,7 +74,13 @@ defined('PHPFOX') or exit('NO DICE!');
 						</ul>
 					</header>
 					<a href="{$aPhoto.link}">
+						{if $aPhoto.can_view}
 						{img server_id=$aPhoto.server_id path='photo.url_photo' file=$aPhoto.destination suffix='_500' title=$aPhoto.title}
+						{else}
+						<div class="photo_mature photo_mature_{$aPhoto.mature}">
+							<i class="fa fa-warning"></i>
+						</div>
+						{/if}
 					</a>
 				</article>
 				{/foreach}

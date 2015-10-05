@@ -517,6 +517,32 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 		{
 			$this->template()->setMeta('description', Phpfox::getPhrase('photo.site_title_has_a_total_of_total_photo_s', array('site_title' => Phpfox::getParam('core.site_title'), 'total' => $iCnt)));
 		}
+
+		foreach ($aPhotos as $key => $photo) {
+			$aPhotos[$key]['can_view'] = true;
+			if ($photo['user_id'] != Phpfox::getUserId()) {
+				if ($photo['mature'] == 1 && Phpfox::getUserParam(array(
+							'photo.photo_mature_age_limit' => array(
+								'>',
+								(int)Phpfox::getUserBy('age')
+							)
+						)
+					)
+				) {
+					// warning check cookie
+					$aPhotos[$key]['can_view'] = false;
+				} elseif ($photo['mature'] == 2 && Phpfox::getUserParam(array(
+							'photo.photo_mature_age_limit' => array(
+								'>',
+								(int)Phpfox::getUserBy('age')
+							)
+						)
+					)
+				) {
+					$aPhotos[$key]['can_view'] = false;
+				}
+			}
+		}
 			
 		$this->template()->setPhrase(array(
 					'photo.loading'

@@ -52,14 +52,14 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>	
 		{/if}
 		{/if}
-	
+
 		{if isset($aForms.group_id) && $aForms.group_id != '0'}
 		
 		{else}		
 			{if Phpfox::isModule('tag') && Phpfox::getUserParam('photo.can_add_tags_on_photos')}{if isset($aForms.photo_id)}{module name='tag.add' sType='photo' separate=false id=$aForms.photo_id}{else}{module name='tag.add' sType='photo' separate=false}{/if}{/if}
 		{/if}
 			{if Phpfox::getUserParam('photo.can_add_mature_images')}
-			<div class="table" style="display:none;">
+			<div class="table">
 				<div class="table_left">
 					{phrase var='photo.mature_content'}:
 				</div>

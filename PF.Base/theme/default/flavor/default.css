@@ -8852,18 +8852,23 @@ ul.friend_action_drop_down li a.active:hover span {
 #page_pages_add #js_pages_block_info div.table_clear {
   padding-top: 10px;
 }
-#page_pages_index #container > ._block_h1 > h1 {
-  width: auto;
-  margin-bottom: 20px;
+/*
+#page_pages_index {
+	#container > ._block_h1 > h1 {
+		width:auto;
+		margin-bottom:20px;
+	}
+
+	#left, #right {
+		display:none;
+	}
+
+	#content {
+		width:auto;
+		margin-left:0px;
+	}
 }
-#page_pages_index #left,
-#page_pages_index #right {
-  display: none;
-}
-#page_pages_index #content {
-  width: auto;
-  margin-left: 0px;
-}
+*/
 /*
 #js_is_user_profile h2 {
 	color:#808080;

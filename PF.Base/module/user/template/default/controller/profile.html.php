@@ -188,7 +188,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{foreach from=$aSettings item=aSetting}
 			<div class="table js_custom_groups js_custom_group_{$aSetting.group_id}" style="display:none;">
 				<div class="table_left">
-				{if $aSetting.is_required}{/if}{phrase var=$aSetting.phrase_var_name}:
+				{if $aSetting.is_required}{required}{/if}{phrase var=$aSetting.phrase_var_name}:
 				</div>
 				<div class="table_right">
 					{template file='custom.block.form'}

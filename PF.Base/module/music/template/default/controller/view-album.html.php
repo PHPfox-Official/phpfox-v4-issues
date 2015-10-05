@@ -43,7 +43,7 @@ defined('PHPFOX') or exit('NO DICE!');
     <div class="item_content">
 	    <div class="music_album_view">
 		    <div class="mav_info">
-		        {img thickbox=true server_id=$aAlbum.server_id path='music.url_image' file=$aAlbum.image_path suffix='_200' max_width='200' max_height='200'}
+		        {img thickbox=true server_id=$aAlbum.server_id path='music.url_image' file=$aAlbum.image_path suffix='_200_square' max_width='200' max_height='200'}
 			</div>
 		    <div class="mav_tracks">
 				{module name='music.track' inline_album=true}

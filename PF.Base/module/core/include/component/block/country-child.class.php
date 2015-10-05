@@ -33,23 +33,34 @@ class Core_Component_Block_Country_Child extends Phpfox_Component
 		$iSearchId = 0;
 		if ($mCountryChildFilter !== null)
 		{
-			$iSearchId = $this->request()->get('search-id');
-			if (!empty($iSearchId) && isset($_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sCountryChildType][$iSearchId]['country']))
-			{
-				$sCountryChildValue = $_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sCountryChildType][$iSearchId]['country'];				
-			}
+			$search = $this->request()->get('search');
+			if ((Phpfox::isAdminPanel() && isset($search['country']))) {
+				$sCountryChildValue = $search['country'];
+				$sCountryChildId = (isset($search['country_child_id']) ? $search['country_child_id'] : '');
+			} else {
+				$iSearchId = $this->request()->get('search-id');
+				if (!empty($iSearchId) && isset($_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sCountryChildType][$iSearchId]['country']))
+				{
+					$sCountryChildValue = $_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sCountryChildType][$iSearchId]['country'];
+				}
 
-			if (isset($_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sCountryChildType][$iSearchId]['country_child_id']))
-			{
-				$sCountryChildId = $_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sCountryChildType][$iSearchId]['country_child_id'];
+				if (isset($_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sCountryChildType][$iSearchId]['country_child_id']))
+				{
+					$sCountryChildId = $_SESSION[Phpfox::getParam('core.session_prefix')]['search'][$sCountryChildType][$iSearchId]['country_child_id'];
+				}
 			}
 		}
+
+
 		/* Last resort, get is a little heavy but controller didnt provide a child country*/
+		/*
 		if ($sCountryChildId == null && $this->getParam('country_child_id') == null)
 		{
 			$aUser = Phpfox::getService('user')->get(Phpfox::getUserId(), true);			
 			$sCountryChildId = $aUser['country_child_id'];			
 		}
+		*/
+
 		$this->template()->assign(array(
 				'aCountryChildren' => Phpfox::getService('core.country')->getChildren($sCountryChildValue),
 				'iCountryChildId' => (int) $this->getParam('country_child_id', $sCountryChildId),

@@ -188,7 +188,7 @@ class Link_Service_Link extends Phpfox_Service
 			->from(Phpfox::getT('link_embed'))
 			->where('link_id = ' . (int) $iId)
 			->execute('getSlaveRow');
-		
+
 		$iWidth = 640;
 		$iHeight = 390;
 		if (!$bIsPopUp)
@@ -198,9 +198,11 @@ class Link_Service_Link extends Phpfox_Service
 		}
 		
 		$aLinkEmbed['embed_code'] = preg_replace('/width=\"(.*?)\"/i', 'width="' . $iWidth . '"', $aLinkEmbed['embed_code']);
-		$aLinkEmbed['embed_code'] = preg_replace('/height=\"(.*?)\"/i', 'height="' . $iHeight . '"', $aLinkEmbed['embed_code']);		
+		$aLinkEmbed['embed_code'] = preg_replace('/height=\"(.*?)\"/i', 'height="' . $iHeight . '"', $aLinkEmbed['embed_code']);
+		$aLinkEmbed['embed_code'] = str_replace(array('&lt;', '&gt;', '&quot;'), array('<', '>', '"'), $aLinkEmbed['embed_code']);
+
+		/*
 		$aLinkEmbed['embed_code'] = preg_replace_callback('/<object(.*?)>(.*?)<\/object>/is', array($this, '_embedWmode'), $aLinkEmbed['embed_code']);
-		$aLinkEmbed['embed_code'] = str_replace(array('&lt;', '&gt;'), array('<', '>'), $aLinkEmbed['embed_code']);
 		if (Phpfox::isModule('video') && Phpfox::getParam('video.disable_youtube_related_videos'))
 		{
 			 if (preg_match('/src=(["\'])(.*?)\1/', $aLinkEmbed['embed_code'], $aMatch) > 0)
@@ -208,6 +210,7 @@ class Link_Service_Link extends Phpfox_Service
 				$aLinkEmbed['embed_code'] = str_replace($aMatch[2], $aMatch[2] . '&amp;rel=0', $aLinkEmbed['embed_code']);
 			 }
 		}
+		*/
 		
 		// http://www.phpfox.com/tracker/view/14676/
 		if(Phpfox::getParam('core.force_https_secure_pages') && Phpfox::getParam('core.force_secure_site'))

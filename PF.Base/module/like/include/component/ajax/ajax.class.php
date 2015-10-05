@@ -25,6 +25,11 @@ class Like_Component_Ajax_Ajax extends Phpfox_Ajax
         }
 		if (Phpfox::getService('like.process')->add($this->get('type_id'), $this->get('item_id')))
 		{
+			if ($this->get('type_id') == 'pages') {
+				$this->call('window.location.reload();');
+				return;
+			}
+
 			if ($this->get('type_id') == 'feed_mini' && $this->get('custom_inline'))
 			{
 				$this->_loadCommentLikes();

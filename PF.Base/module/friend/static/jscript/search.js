@@ -7,6 +7,7 @@ $Core.searchFriendsInput =
 	aLiveUsers: {},
 	sId: '',
 	bNoSearch: false,
+	isBeingBuilt: false,
 	
 	aFoundUser: {}, // Store the found user here
 	sHtml : '', // Store the final html here. Useful for onBeforePrepend
@@ -32,7 +33,7 @@ $Core.searchFriendsInput =
 		if (!this._get('no_build')){			
 			
 			$sHtml += '<div style="position:relative;" class="js_friend_search_form" id="' + this.sId + '">';
-			$sHtml += '<input type="text" id="' + this._get('search_input_id') + '" name="null" value="' + this._get('default_value') + '" autocomplete="off" onfocus="$Core.searchFriendsInput.buildFriends(this);" onkeyup="$Core.searchFriendsInput.getFriends(this);" style="width:100%;" class="js_temp_friend_search_input" />';
+			$sHtml += '<input type="text" id="' + this._get('search_input_id') + '" name="null" placeholder="' + this._get('default_value') + '" autocomplete="off" onfocus="$Core.searchFriendsInput.buildFriends(this);" onkeyup="$Core.searchFriendsInput.getFriends(this);" style="width:100%;" class="js_temp_friend_search_input" />';
 			$sHtml += '<div class="js_temp_friend_search_form" style="display:none;"></div>';
 			$sHtml += '</div>';
 			
@@ -113,16 +114,16 @@ $Core.searchFriendsInput =
 	
 	buildFriends: function($oObj)
 	{
-		$($oObj).val('');
-		
-		if (empty($Cache.friends) && !isset(this.aParams['is_mail']))
+		if (this.isBeingBuilt === false && empty($Cache.friends) && !isset(this.aParams['is_mail']))
 		{
+			$($oObj).val('');
+			this.isBeingBuilt = true;
 			$.ajaxCall('friend.buildCache', (this._get('allow_custom') ? '&allow_custom=1' : ''), 'GET');
 		}
 	},
 	
 	getFriends: function($oObj)
-	{		
+	{
 		if (empty($oObj.value))
 		{
 			this.closeSearch($oObj);

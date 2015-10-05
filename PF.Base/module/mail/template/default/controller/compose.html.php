@@ -40,29 +40,21 @@ defined('PHPFOX') or exit('NO DICE!');
 				var bRun = true;
 				$Behavior.loadSearchFriendsCompose = function()
 				{l}
+					if (bRun === false) {l}
+				p('reloaded...');
+				return;
+				{r}
+				p('first load...');
 					bRun = false;
-					{if Phpfox::getUserParam('mail.restrict_message_to_friends') == true}
-						$Core.searchFriends({l}
-							'id': '#js_mail_search_friend',
-							'placement': '#js_mail_search_friend_placement',
-							'width': '{if Phpfox::isMobile()}90%{else}400px{/if}',
-							'max_search': 10,
-							'input_name': 'val[to]',
-							'default_value': '{phrase var='mail.search_friends_by_their_name'}',
-							'inline_bubble': true
-						{r});		
-					{else}
-						$Core.searchFriends({l}
-							'id': '#js_mail_search_friend',
-							'placement': '#js_mail_search_friend_placement',
-							'width': '{if Phpfox::isMobile()}90%{else}400px{/if}',
-							'max_search': 10,
-							'input_name': 'val[to]',
-							'default_value': '{phrase var='mail.search_friends_by_their_name'}',
-							'inline_bubble': true,
-							'is_mail' : true
-						{r});		
-					{/if}	
+				$Core.searchFriends({l}
+					'id': '#js_mail_search_friend',
+					'placement': '#js_mail_search_friend_placement',
+					'width': '{if Phpfox::isMobile()}90%{else}400px{/if}',
+					'max_search': 10,
+					'input_name': 'val[to]',
+					'default_value': '{phrase var='mail.search_friends_by_their_name'}',
+					'inline_bubble': true
+				{r});
 				{r}
 				// if (bRun)$Behavior.loadSearchFriendsCompose();
 				</script>				
@@ -100,7 +92,7 @@ defined('PHPFOX') or exit('NO DICE!');
 <script>
 	$Ready(function() {
 		if ($('#js_compose_new_message #message').length) {
-			if (!$('#js_mail_search_friend').length) {
+			if (!$('#js_mail_search_friend_placement').length) {
 				$('#js_compose_new_message #message').focus();
 			}
 			$('#js_compose_new_message #message').parents('form:first').submit(function() {

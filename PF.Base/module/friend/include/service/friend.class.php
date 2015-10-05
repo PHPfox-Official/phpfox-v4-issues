@@ -191,10 +191,10 @@ class Friend_Service_Friend extends Phpfox_Service
 		
 		if ($sUserSearch != false)
 		{
-			if (Phpfox::getUserParam('mail.restrict_message_to_friends') == true)
-			{
-				$this->database()->join($this->_sTable, 'f', 'u.user_id = f.friend_user_id AND f.user_id=' . Phpfox::getUserId());
-			}
+			// if (Phpfox::getUserParam('mail.restrict_message_to_friends') == true)
+			// {
+			$this->database()->join($this->_sTable, 'f', 'u.user_id = f.friend_user_id AND f.user_id=' . Phpfox::getUserId());
+			// }
 			
 			$aRows = $this->database()->select('' . Phpfox::getUserField())
 				->from(Phpfox::getT('user'),'u')

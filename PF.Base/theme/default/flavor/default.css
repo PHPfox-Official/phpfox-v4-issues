@@ -3052,6 +3052,7 @@ button {
   bottom: 0px;
   z-index: 300;
   width: 200px;
+  overflow: auto;
 }
 #header_menu {
   /*width:@navWidth;*/

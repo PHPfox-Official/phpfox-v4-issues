@@ -27,7 +27,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="clear"></div>
 </div>
 
-	<form method="post" action="{url link='user.profile'}"{if !$bIsEdit} onsubmit="{plugin call='user.template_controller_profile_form_onsubmit'} $Core.processing(); $('#js_custom_submit_button').attr('disabled', true).addClass('disabled'); $(this).ajaxCall('custom.updateFields'); return false;"{/if}>
+	<form method="post" action="{url link='user.profile'}"{if !$bIsEdit} onsubmit="{plugin call='user.template_controller_profile_form_onsubmit'} $Core.processing(); $(this).ajaxCall('custom.updateFields'); return false;"{/if}>
 	{if isset($iUserId)}
 		<div><input type="hidden" name="id" value="{$iUserId}" /></div>
 	{/if}

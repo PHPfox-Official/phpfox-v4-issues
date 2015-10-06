@@ -10510,6 +10510,10 @@ ul.activity_feed_form_attach li a:hover {
   font-size: 20px;
   margin-bottom: 4px;
   padding: 2px 0px;
+  width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .listing_info,
 .listing_category {

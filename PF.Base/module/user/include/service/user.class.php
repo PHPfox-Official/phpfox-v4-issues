@@ -93,12 +93,29 @@ class User_Service_User extends Phpfox_Service
 	}
 	
 	public function getByUserName($sUser)
-	{	
-		return $this->database()->select('u.*, user_field.*')
+	{
+		// 	http://www.phpfox.com/tracker/view/15331/
+		if (Phpfox::getParam('core.store_only_users_in_session'))
+		{
+			$this->database()->leftJoin(Phpfox::getT('session'), 'ls', 'ls.user_id = u.user_id');
+		}
+		else
+		{
+			$this->database()->leftJoin(Phpfox::getT('log_session'), 'ls', 'ls.user_id = u.user_id AND ls.im_hide = 0');
+		}
+
+		$aRow = $this->database()->select('u.*, ls.user_id AS is_online, user_field.*')
 			->from($this->_sTable, 'u')
 			->join(Phpfox::getT('user_field'), 'user_field', 'user_field.user_id = u.user_id')
 			->where("u.user_name = '" . $this->database()->escape($sUser) . "'")
 			->execute('getSlaveRow');
+
+		if (isset($aRow['is_invisible']) && $aRow['is_invisible'])
+		{
+			$aRow['is_online'] = '0';
+		}
+
+		return $aRow;
 	}
 	
 	public function getUser($mUser, $sSelect = 'u.*', $bUserName = false)

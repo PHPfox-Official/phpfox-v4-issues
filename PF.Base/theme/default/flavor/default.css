@@ -5431,6 +5431,9 @@ a.item_bar_approve:hover {
   background: #ffffff;
   color: #298ada;
 }
+.user_is_online i {
+  color: #00cd00;
+}
 .comment_mini .pager_view_more_link a,
 .comment_mini .pager_view_more_link a:hover,
 .pager_view_more_link a,

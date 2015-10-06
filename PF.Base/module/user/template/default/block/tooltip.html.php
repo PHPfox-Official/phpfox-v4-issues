@@ -39,7 +39,12 @@ defined('PHPFOX') or exit('NO DICE!');
 		</ul>
 	{else}
 		<ul>
+			{if Phpfox::getParam('user.display_user_online_status') && $aUser.is_online}
+			<li class="js_hover_title user_is_online" title="{phrase var='profile.online'}"><i class="fa fa-circle"></i></li>
+			{/if}
+			{if $aUser.gender_name}
 			<li>{$aUser.gender_name}</li>
+			{/if}
 			<li>
 			{foreach from=$aUser.birthdate_display key=sAgeType item=sBirthDisplay}
 				{if $aUser.dob_setting == '2'}

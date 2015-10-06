@@ -20,7 +20,7 @@ class User_Component_Block_Tooltip extends Phpfox_Component
 	 */
 	public function process()
 	{
-		$oUser = Phpfox::getService('user');
+		$oUser = User_Service_User::instance();
 		
 		$aUser = $oUser->getByUserName($this->request()->get('user_name'));
 

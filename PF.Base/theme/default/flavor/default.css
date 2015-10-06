@@ -5434,6 +5434,10 @@ a.item_bar_approve:hover {
 .user_is_online i {
   color: #00cd00;
 }
+.js_user_tool_tip_holder .js_user_tool_tip_body .user_tooltip_info_user,
+.js_user_tool_tip_holder .js_user_tool_tip_body .user_tooltip_info_user:hover {
+  color: #222222;
+}
 .comment_mini .pager_view_more_link a,
 .comment_mini .pager_view_more_link a:hover,
 .pager_view_more_link a,

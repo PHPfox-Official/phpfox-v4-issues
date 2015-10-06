@@ -10988,6 +10988,13 @@ a.marketplace_contact_seller:hover {
   bottom: 0px;
 }
 .music_album_rows h1 a > span,
+.music_album_rows h1 a:hover > span {
+  width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.music_album_rows h1 a > span,
 .music_album_rows h1 a:hover > span,
 .music_album_rows h1 a > time,
 .music_album_rows h1 a:hover > time {

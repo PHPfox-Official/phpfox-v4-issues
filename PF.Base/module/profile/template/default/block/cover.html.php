@@ -13,7 +13,7 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 <div id="js_cover_photo_iframe_loader_error"></div>
 <div id="js_cover_photo_iframe_loader_upload" style="display:none;">{img theme='ajax/add.gif' class='v_middle'} {phrase var='user.uploading_image'}</div>
-<form onsubmit="$('#js_cover_photo_iframe_loader_error').hide(); $('#js_cover_photo_iframe_loader_upload').show(); $('#js_activity_feed_form').hide();" id="js_activity_feed_form" enctype="multipart/form-data" action="{url link='photo.frame'}" method="post" target="js_cover_photo_iframe_loader">
+<form onsubmit="$('#js_cover_photo_iframe_loader_error').hide(); $('#js_cover_photo_iframe_loader_upload').show(); $('#js_activity_feed_form').hide();" enctype="multipart/form-data" action="{url link='photo.frame'}" method="post" target="js_cover_photo_iframe_loader">
 	<div><input type="hidden" name="val[action]" value="upload_photo_via_share" /></div>
 	<div><input type="hidden" name="val[is_cover_photo]" value="1" /></div>
 	{if isset($iPageId) && !empty($iPageId)}

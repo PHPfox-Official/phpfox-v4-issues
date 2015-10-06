@@ -5812,6 +5812,7 @@ a.item_bar_approve:hover {
   right: 0px;
   height: 50px;
   text-align: center;
+  overflow: hidden;
   background: #f7f7f7;
 }
 .panel_is_active .panel_actions i {

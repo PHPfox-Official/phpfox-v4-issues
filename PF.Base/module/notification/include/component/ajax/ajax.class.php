@@ -78,6 +78,7 @@ class Notification_Component_Ajax_Ajax extends Phpfox_Ajax
 		}
 		
 		$this->hide('.table_clear_ajax');
+		$this->call("\$('.js_notification_trash > i').removeClass('fa-circle-o-notch').removeClass('fa-spin').addClass('fa-trash');");
 	}
 }
 

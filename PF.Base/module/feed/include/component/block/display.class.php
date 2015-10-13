@@ -239,7 +239,10 @@ class Feed_Component_Block_Display extends Phpfox_Component
 		
 		$iUserid = ($bIsProfile > 0 ? $iUserId : null);
 		$iTotalFeeds = (int) Phpfox::getComponentSetting(($iUserid === null ? Phpfox::getUserId() : $iUserid), 'feed.feed_display_limit_' . ($iUserid !== null ? 'profile' : 'dashboard'), Phpfox::getParam('feed.feed_display_limit'));
-
+		
+		if (PHPFOX_IS_AJAX && (!$iTotalFeeds || $iTotalFeeds == 0)) {
+			return false;
+		}
 		/*	
 		if (isset($sActivityFeedHeader))
 		{

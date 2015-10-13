@@ -80,7 +80,14 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/if}
 		{if Phpfox::getParam('mail.threaded_mail_conversation')}
 		<a href="{url link='mail.thread' id=$aMail.thread_id}{if $bIsSentbox}view_sent/{/if}" class="mail_link">		
-			{foreach from=$aMail.users name=mailusers item=aMailUser}{if count($aMail.users) == $phpfox.iteration.mailusers && count($aMail.users) > 1} &amp; {else}{if $phpfox.iteration.mailusers != 1 && count($aMail.users) != 2}, {/if}{/if}{$aMailUser.full_name|clean|shorten:35:'...'}{/foreach}			
+			<!--{*{foreach from=$aMail.users name=mailusers item=aMailUser}
+        {if count($aMail.users) == $phpfox.iteration.mailusers && count($aMail.users) > 1}
+          &amp;
+        {else}{if $phpfox.iteration.mailusers != 1 && count($aMail.users) != 2}, {/if}
+        {/if}
+
+        {$aMailUser.full_name|clean|shorten:35:'...'}{/foreach} *}-->
+      {$aMail.thread_name}
 		</a>		
 		{else}
 		<a href="{url link='mail.view' id=$aMail.mail_id}" class="mail_link">			
@@ -112,11 +119,11 @@ defined('PHPFOX') or exit('NO DICE!');
 </div>
 {/foreach}
 {else}
-<div class="extra_info">
+<div class="extra_info mail_duplication_content">
 	{phrase var='mail.no_messages_found_here'}
 </div>
 {/if}
-<input type="button" value="{phrase var='mail.mark_all_read'}" class="button button_off" onclick="$.ajaxCall('mail.markallread')"/>
+<input type="button" value="{phrase var='mail.mark_all_read'}" class="button button_off mail_duplication_content" onclick="$.ajaxCall('mail.markallread')"/>
 {if $iTotalMessages}
 {moderation}
 {/if}

@@ -79,6 +79,23 @@ defined('PHPFOX') or exit('NO DICE!');
 		{if Phpfox::isModule('captcha') && Phpfox::getUserParam('mail.enable_captcha_on_mail')}
 			{module name='captcha.form' sType='mail'}
 		{/if}
+		
+		<div class="table_clear" style="position:relative;">
+			{if !Phpfox::getParam('mail.threaded_mail_conversation')}
+			<div style="position:absolute; right:0px;">
+				<label><input type="checkbox" name="val[copy_to_self]" value="1" class="v_middle" />{phrase var='mail.send_a_copy_to_myself'}</label>
+			</div>
+			{/if}
+			{if isset($iPageId)}
+			<div id="js_mail_compose_submit">
+				<ul class="table_clear_button">
+					<li><input id="submit_btn" type="submit" value="{phrase var='mail.submit'}" class="button" onclick="submitClaimrequest(this)"/></li>
+					<li class="table_clear_ajax"></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			{/if}			
+		</div>
 	</form>
 </div>
 
@@ -90,6 +107,14 @@ defined('PHPFOX') or exit('NO DICE!');
 {/if}
 {literal}
 <script>
+	function submitClaimrequest(obj) {
+		$(obj).parents('form:first').submit(function() {
+			$Core.processForm('#js_mail_compose_submit');
+			$(this).ajaxCall('mail.composeProcess', 'type=claim-page');
+			return false;
+		});
+	} 
+	
 	$Ready(function() {
 		if ($('#js_compose_new_message #message').length) {
 			if (!$('#js_mail_search_friend_placement').length) {

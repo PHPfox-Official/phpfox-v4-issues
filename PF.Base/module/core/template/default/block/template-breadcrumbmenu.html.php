@@ -30,7 +30,9 @@ defined('PHPFOX') or exit('NO DICE!');
 				</li>
 				{/foreach}
 			{else}
-				<li class="register_menu"><a href="{url link='user.register'}">Register</a></li>
+        {if Phpfox::getParam('user.allow_user_registration')}
+				  <li class="register_menu"><a href="{url link='user.register'}">Register</a></li>
+        {/if}
 				<li class="login_menu"><a href="{url link='user.login'}">Login</a></li>
 			{/if}
 		</ul>

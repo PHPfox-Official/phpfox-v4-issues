@@ -36,6 +36,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<h1><a href="{$aPage.link}" title="{$aPage.title|clean}">{$aPage.title|clean|split:50|shorten:40:'...'}</a>
 	
 	{template file='pages.block.joinpage'}
+	
 	</h1>
 	<div class="profile_info">
 		{$aPage.category_name|convert}

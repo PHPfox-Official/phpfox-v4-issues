@@ -589,7 +589,7 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 		
 		if ($aParentModule === null)
 		{
-			// Phpfox::getService('photo')->buildMenu();
+			 Phpfox::getService('photo')->buildMenu();
 		}		
 		
 		if (!empty($sCategory))

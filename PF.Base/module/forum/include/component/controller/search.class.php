@@ -20,6 +20,7 @@ class Forum_Component_Controller_Search extends Phpfox_Component
 	 */
 	public function process()
 	{
+		Phpfox::getService('forum')->buildMenu();
 		return Phpfox_Module::instance()->setController('forum.forum');
 	}
 	

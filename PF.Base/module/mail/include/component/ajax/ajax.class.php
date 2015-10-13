@@ -221,6 +221,8 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		Phpfox::isUser(true);
 		
+		$sType = $this->get('type');
+		
 		$this->errorSet('#js_ajax_compose_error_message');
 		
 		$oObject = Phpfox::getComponent('mail.compose', null, 'controller');
@@ -228,6 +230,10 @@ class Mail_Component_Ajax_Ajax extends Phpfox_Ajax
 		// if ($oObject->getReturn())
 		{
 			$this->call('$(\'#\' + tb_get_active()).find(\'.js_box_content:first\').html(\'<div class="message">' . str_replace("'", "\\'", Phpfox::getPhrase('mail.your_message_was_successfully_sent')) . '</div>\'); setTimeout(\'tb_remove();\', 2000);');
+		}
+		
+		if (!empty($sType) && $sType == 'claim-page') {
+			$this->call('$(".inlinePopup.js_claim_page").remove();');
 		}
 	}
 

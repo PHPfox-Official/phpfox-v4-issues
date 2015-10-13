@@ -27,12 +27,14 @@ class Friend_Component_Block_Mutual_Browse extends Phpfox_Component
 		$aCond[] = 'AND friend.user_id = ' . Phpfox::getUserId();
 		
 		list($iCnt, $aFriends) = Friend_Service_Friend::instance()->get($aCond, 'friend.time_stamp DESC', $iPage, $iPageSize, true, false, false, $this->request()->getInt('user_id'));
-		
+    $sUserName = Friend_Service_Friend::instance()->getUserName($this->request()->getInt('user_id'));
 		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt, 'ajax' => 'friend.getMutualFriends'));
 		
 		$this->template()->assign(array(
 				'aFriends' => $aFriends,
-				'iPage' => $iPage
+				'iPage' => $iPage,
+        'sUserName' => $sUserName,
+        'iTotalMutualFriends' => $iCnt
 			)
 		);
 	}

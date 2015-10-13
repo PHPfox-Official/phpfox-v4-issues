@@ -748,7 +748,17 @@ class Friend_Service_Friend extends Phpfox_Service
 		}
 		return $aFriendsOfFriends;
 	}
-	
+
+  /*
+   * Get UserName from userId
+   */
+  public function getUserName($iUserId){
+    $sUserName = $this->database()->select('user_name')
+      ->from(Phpfox::getT('user'))
+      ->where('user_id=' . (int) $iUserId)
+      ->execute('getSlaveField');
+    return $sUserName;
+  }
 	/**
 	 * If a call is made to an unknown method attempt to connect
 	 * it to a specific plug-in with the same name thus allowing

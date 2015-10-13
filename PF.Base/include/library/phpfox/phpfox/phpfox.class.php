@@ -1558,6 +1558,16 @@ class Phpfox
 	{
 		return Phpfox_Locale::instance()->getPhrase($sParam, $aParams, $bNoDebug, $sDefault, $sLang);
 	}
+
+  /**
+	 * @see Phpfox_Local::isPhrase()
+	 * @param string $sParam
+	 * @return bool
+	 */
+	public static function isPhrase($sParam)
+	{
+		return Phpfox_Locale::instance()->isPhrase($sParam);
+	}
 	
 	/**
 	 * @see Phpfox_Locale::translate()

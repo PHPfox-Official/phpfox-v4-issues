@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 </div>
 <div class="user_tooltip_info">
 	{plugin call='user.template_block_tooltip_1'}
-	<a href="{url link=$aUser.user_name}" class="user_tooltip_info_user">{$aUser.full_name|clean}</a>
+	<div class="user_tooltip_info_user">{$aUser|user:'':'':30|split:20}</div>
 	{plugin call='user.template_block_tooltip_3'}
 
 	{if $bIsPage}
@@ -40,7 +40,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	{else}
 		<ul>
 			{if Phpfox::getParam('user.display_user_online_status') && $aUser.is_online}
-			<li class="js_hover_title user_is_online"><span class="js_hover_info">{phrase var='profile.online'}</span><i class="fa fa-circle"></i></li>
+			<li class="js_hover_title user_is_online" title="{phrase var='profile.online'}"><i class="fa fa-circle"></i></li>
 			{/if}
 			{if $aUser.gender_name}
 			<li>{$aUser.gender_name}</li>

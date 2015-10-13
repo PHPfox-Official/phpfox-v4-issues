@@ -35,7 +35,6 @@ class Tag_Service_Process extends Phpfox_Service
 			Phpfox::getService('ban')->checkAutomaticBan($sTags);
 			$aTags = explode(',', $sTags);
 		}
-
 		$aCache = array();
 		foreach ($aTags as $sTag)
 		{
@@ -56,7 +55,7 @@ class Tag_Service_Process extends Phpfox_Service
 					'category_id' => $sType,
 					'user_id' => $iUserId,
 					'tag_text' => $oFilter->clean($sTag, 255),
-					'tag_url' => $oFilter->cleanTitle($sTag),
+					'tag_url' => urldecode($sTag),
 					'added' => PHPFOX_TIME
 				)
 			);

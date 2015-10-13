@@ -784,6 +784,8 @@ $Behavior.globalInit = function()
 									var pager = t.parents('.pagination');
 									pager.replaceWith(e.content);
 								} else {
+                  //remove duplication content
+                  t.parent().find('.mail_duplication_content').remove();
 									t.before(e.content);
 									t.remove();
 								}
@@ -2086,6 +2088,15 @@ $Core.loadInit = function(forceIt)
 	});
 };
 
+$(window).load(function(){
+  //setTimeout(function() {
+    if ($('.nano').length) {
+      $('.nano, .nano-content').addClass('dont-unbind');
+      $('.nano').css('visibility', 'visible').nanoScroller( {
+      } );
+    }
+  //}, 1500);
+});
 $Core.init = function()
 {
 	if ($Core.hasPushState())
@@ -2098,10 +2109,10 @@ $Core.init = function()
 	$bDocumentIsLoaded = true;
 	$(document).ready(function()
 	{
-		if ($('.nano').length) {
-			$('.nano, .nano-content').addClass('dont-unbind');
-			$('.nano').css('visibility', 'visible').nanoScroller();
-		}
+    if ($('.nano').length) {
+      $('.nano').css('visibility', 'visible').nanoScroller();
+      $('.nano, .nano-content, .nano-pane').addClass('dont-unbind');
+    }
 
 		$.each($Behavior, function() 
 		{

@@ -190,6 +190,15 @@ class Object extends \Core\Objectify {
 		]);
 
 		$path = $this->path;
+    /*https://github.com/moxi9/phpfox/issues/523*/
+    $json_path = $path . 'app.json';
+    if (file_exists($json_path)){
+      $json = json_decode(file_get_contents($json_path));
+      //remove menu if exist
+      if (isset($json->menu)){
+        \Admincp_Service_Menu_Process::instance()->delete($json->menu->url, true);
+      }
+    }
 		if (is_dir($path)) {
 			\Phpfox_File::instance()->delete_directory($path);
 		}

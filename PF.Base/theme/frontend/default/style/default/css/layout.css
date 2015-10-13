@@ -2655,8 +2655,7 @@ a.global_view_more:hover {
   padding-top: 5px;
   border-top: 1px #6F6F6F solid;
 }
-.user_tooltip_info_user,
-.user_tooltip_info_user:hover {
+.user_tooltip_info_user {
   padding-bottom: 4px;
   font-size: 15px;
   font-weight: bold;

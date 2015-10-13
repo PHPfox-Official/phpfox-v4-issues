@@ -202,6 +202,10 @@ ul.table_clear_button
 	padding:0px;
 	list-style-type:none;
 }
+ul.inline
+{
+    display: inline-flex;
+}
 
 ul.table_clear_button li
 {

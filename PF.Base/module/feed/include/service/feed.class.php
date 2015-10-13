@@ -681,7 +681,9 @@ class Feed_Service_Feed extends Phpfox_Service
 		}
 
 		$sTag = (Phpfox_Request::instance()->get('hashtagsearch') ? Phpfox_Request::instance()->get('hashtagsearch') : $sReq2);
-
+    $sTag = \Phpfox_Parse_Output::instance()->parse($sTag);
+    //https://github.com/moxi9/phpfox/issues/595
+    $sTag = urldecode($sTag);
 		if (empty($sTag))
 		{
 			return;

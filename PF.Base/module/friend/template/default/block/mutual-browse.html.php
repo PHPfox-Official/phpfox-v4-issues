@@ -16,6 +16,15 @@ defined('PHPFOX') or exit('NO DICE!');
 	No mutual friends found.
 </div>
 {else}
+<div id="js_friend_mutual_view_information">
+  <a href="{url link=''$sUserName'.friend.mutual'}">
+    {if $iTotalMutualFriends == 1}
+    {phrase var='friend.1_friend_in_common'}
+    {else}
+    {phrase var='friend.total_friends_in_common' total=$iTotalMutualFriends}
+    {/if}
+  </a>
+</div>
 {foreach from=$aFriends name=friends item=aFriend}
 <div class="row1{if $phpfox.iteration.friends == 1 && !$iPage} row_first{/if}">
 	<div class="go_left" style="width:55px; text-align:center;">
@@ -27,10 +36,16 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="clear"></div>
 </div>
 {/foreach}
-<div id="js_friend_mutual_browse_append_pager">
-	{pager}
-</div>
-{if !$iPage}
-<div id="js_friend_mutual_browse_append"></div>
-{/if}
+  {if !$iPage}
+    <!--<div id="js_friend_mutual_browse_append"></div>-->
+    <div id="js_friend_mutual_view_more_link">
+      <a href="{url link=''$sUserName'.friend.mutual'}">
+        {phrase var='core.view_more'}
+      </a>
+    </div>
+  {else}
+    <div id="js_friend_mutual_browse_append_pager">
+      {pager}
+    </div>
+  {/if}
 {/if}

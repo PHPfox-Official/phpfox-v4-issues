@@ -479,7 +479,7 @@ class Phpfox_Mail
 						*/
 						$sSubject = html_entity_decode($sSubject, null, 'UTF-8'); // http://www.phpfox.com/tracker/view/10392/
 						$sSubject = str_replace(array('&#039;', '&#0039;'), "'", $sSubject);
-						$sEmailSig = Phpfox::getParam('core.mail_signature');
+						$sEmailSig = $this->_getSignature($aUser);
 
 						// Load plain text template
 						$sTextPlain = Phpfox_Template::instance()->assign(array(
@@ -567,7 +567,7 @@ class Phpfox_Mail
 				$sMessage = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1', {$this->_sArray}, false, null, '". Phpfox::getParam('core.default_lang_id')."') . ''", $sMessage);
 				$sSubject = preg_replace('/\{phrase var=\'(.*)\'\}/ise', "'' . Phpfox::getPhrase('\\1', {$this->_sArray}, false, null, '". Phpfox::getParam('core.default_lang_id')."') . ''", $sSubject);
 				*/
-				$sEmailSig = Phpfox::getParam('core.mail_signature');
+				$sEmailSig = $this->_getSignature($aUser);
 				$sSubject = html_entity_decode($sSubject, null, 'UTF-8');
 				
 				// Load plain text template
@@ -617,7 +617,20 @@ class Phpfox_Mail
     	
     	return true;
     }
-    
+
+  /**
+   * Get signature of site when send email out
+   * @param $aUser
+   * @return string
+   */
+  private function _getSignature($aUser){
+    $sSignature = Phpfox::getParam('core.mail_signature');
+    if (Phpfox::isPhrase($sSignature)){
+      return Phpfox::getPhrase($sSignature,  array(), false, null, $aUser['language_id']);
+    } else {
+      return $sSignature;
+    }
+  }
 	/**
 	 * Checks to validate an email.
 	 * 

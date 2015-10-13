@@ -27,6 +27,10 @@ select {
 		margin-bottom:10px;
 	}
 
+    input[type="submit"].button{
+      width: auto;
+    }
+
 	input[type="text"], input[type="email"], input[type="password"], textarea, input:focus, textarea:focus, select {
 		background:darken(@blockBg, 5%);
 		width:100%;
@@ -184,7 +188,7 @@ input.button:hover, a.button:hover {
 }
 
 input.button_off {
-	border:4px transparent solid;
+	border:1px transparent solid;
 	background:transparent;
 	color:lighten(@textColor, 10%);
 }
@@ -245,7 +249,7 @@ a.page_section_menu_link, a.page_section_menu_link:hover {
 	z-index:100;
 	display:block;
 	text-indent:-1000px;
-	color:lighten(@blockColor, 30%);
+	color:lighten(@blockColor, 50%);
 }
 
 a.page_section_menu_link:hover {

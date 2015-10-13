@@ -24,6 +24,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		{
 			return Phpfox_Module::instance()->setController('forum.index');
 		}
+		
 
 		Phpfox::getUserParam('forum.can_view_forum', true);
 		
@@ -32,6 +33,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		$bIsSearch = ($this->request()->get('search') ? true : false);
 		$aCallback = $this->getParam('aCallback', null);
 		$sView = $this->request()->get('view');	
+		
 		$bShowPosts = false;
 		
 		$bIsTagSearch = false;

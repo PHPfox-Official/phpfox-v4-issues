@@ -32,6 +32,13 @@ defined('PHPFOX') or exit('NO DICE!');
 			</header>
 
 			{template file='pages.block.joinpage'}
+			
+			{if !$aPage.is_admin && Phpfox::getUserParam('pages.can_claim_page') && empty($aPage.claim_id)}
+			<a href="#?call=contact.showQuickContact&amp;height=600&amp;width=600&amp;page_id={$aPage.page_id}" class="inlinePopup js_claim_page" title="{phrase var='pages.claim_page'}">
+				{phrase var='pages.claim_page'}
+			</a>
+			{/if}
+			
 		</div>
 
 		{if !Phpfox::isMobile() && (Phpfox::getUserParam('pages.can_moderate_pages') || $aPage.is_admin)}

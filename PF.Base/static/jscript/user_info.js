@@ -2,6 +2,7 @@
 var $bUserToolTipIsHover = false;
 var $bUserActualToolTipIsHover = false;
 var $iUserToolTipWaitTime = 900;
+var $iUserToolTipCloseTime = 1500;
 var $oUserToolTipObject = null;
 var $sHoveringOn = null;
 var aHideUsers = new Array();
@@ -15,12 +16,12 @@ $Core.userInfoLog = function(sLog){
 
 $Core.loadUserToolTip = function($sUserName)
 {
-	$Core.loadInit();
+	//$Core.loadInit();
 	setTimeout('$Core.showUserToolTip(\'' + $sUserName + '\');', $iUserToolTipWaitTime);
 };
 
 $Core.closeUserToolTip = function(sUser)
-{	
+{
 	if ($bUserActualToolTipIsHover === true && sUser == $sHoveringOn){
 		$Core.userInfoLog('CANCEL CLOSE: ' + sUser);
 		return;
@@ -71,11 +72,7 @@ $Core.showUserToolTip = function(sUser)
 };
 
 $Behavior.userHoverToolTip = function()
-{
-	$('#main').click(function() {
-		$('.js_user_tool_tip_holder').hide();
-	});
-
+{	
 	$('.user_profile_link_span a').mouseover(function()
 	{	
 		$Core.userInfoLog('----------------------------- START -----------------------------');
@@ -92,18 +89,15 @@ $Behavior.userHoverToolTip = function()
 			$('body').append('<div class="js_user_tool_tip_holder"><div class="js_user_tool_tip_body"><div id="js_user_tool_tip_cache_' + $sUserName + '"></div></div></div>');
 			
 			$.ajaxCall('user.tooltip', 'user_name=' + $sUserName, 'GET');
-
-	        /*
-			$('#js_user_tool_tip_cache_' + $sUserName + '').hover(function(){
+			$('#js_user_tool_tip_cache_' + $sUserName + '').mouseenter(function(){
 				$bUserActualToolTipIsHover = true;
 				$Core.userInfoLog('MOUSE ON');
-			}, function(){ 		
+			}).mouseleave(function(){
 				oCloseObject = $(this).attr('id').replace('js_user_tool_tip_cache_', '');
-				setTimeout('$Core.closeUserToolTip(\'' + oCloseObject + '\');', $iUserToolTipWaitTime);
+				setTimeout('$Core.closeUserToolTip(\'' + oCloseObject + '\');', $iUserToolTipCloseTime);
 				$bUserActualToolTipIsHover = false;				
 				$Core.userInfoLog('MOUSE OFF'); 
-			});
-			*/
+			});	
 		}		
 		
 		if (isset(aHideUsers[$sUserName])){
@@ -124,14 +118,13 @@ $Behavior.userHoverToolTip = function()
 			$Core.loadUserToolTip($sUserName);
 		}		
 	});
-	/*
+	
 	$('.user_profile_link_span a').mouseout(function()
 	{
 		$bUserToolTipIsHover = false;
 
 		oCloseObject = $(this).parent().attr('id').replace('js_user_name_link_', '');
 		
-		setTimeout('$Core.closeUserToolTip(\'' + oCloseObject + '\');', $iUserToolTipWaitTime);
-	});
-	*/
+		setTimeout('$Core.closeUserToolTip(\'' + oCloseObject + '\');', $iUserToolTipCloseTime);
+	});	
 };

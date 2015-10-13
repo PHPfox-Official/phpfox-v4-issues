@@ -22,7 +22,7 @@ class User_Component_Block_Register extends Phpfox_Component
 	{
 		if (!Phpfox::getParam('user.allow_user_registration'))
 		{
-			//return false;
+			return false;
 		}
 		
 		if (Phpfox::isUser())

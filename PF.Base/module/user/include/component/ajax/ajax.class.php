@@ -975,6 +975,7 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 			$this->call('$Behavior.defer_images();');
 			// $this->call('$Core.loadInit();');
 		}
+    $this->call('$Behavior.globalInit();');
 	}
 	
 	public function addInactiveJob()

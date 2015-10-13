@@ -25,13 +25,14 @@
 {
 	margin-left:85px;
 	position:relative;
+    min-width: 250px;
 }
 
 .mail_action
 {
 	position:absolute;
 	right:4px;
-	top:8px;
+	bottom: 12px;
 	font-size:10px;
 	color:#808080;
 }

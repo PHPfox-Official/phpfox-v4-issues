@@ -296,7 +296,33 @@ class Mail_Service_Mail extends Phpfox_Service
 				}				
 			}
 		}
-
+    //thread name
+    if (Phpfox::getParam('mail.threaded_mail_conversation')){
+      foreach ($aRows as $iKey => $aRow){
+        $iCntUser = 0;
+        $sThreadName = '';
+        $iCut = 0;
+        foreach ($aRow['users'] as $aUser){
+          $sMore = \Phpfox_Parse_Output::instance()->shorten($aUser['full_name'], 30, '...') ;
+          if (strlen($sThreadName . $sMore) < 45){
+            $sThreadName .= $sMore;
+            $iCut++;
+          }
+          $iCntUser++;
+          if ($iCntUser == $iCut && count($aRow['users']) > 1){
+            $sThreadName .= ', ';
+          }
+        }
+        if ($iCntUser > $iCut){
+          if (Phpfox::isPhrase('mail.and_number_other')){
+            $sThreadName .= ' ' . Phpfox::getPhrase('mail.and_number_other', array('number' => ($iCntUser - $iCut))) . ((($iCntUser - $iCut) > 1) ? 's': '');
+          } else {
+            $sThreadName .= ' and ' . ($iCntUser - $iCut) . ' other' . ((($iCntUser - $iCut) > 1) ? 's': '');
+          }
+        }
+        $aRows[$iKey]['thread_name'] = $sThreadName;
+      }
+    }
 		return array($iCnt, $aRows, $aInputs);
 	}
 

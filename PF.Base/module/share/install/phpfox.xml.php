@@ -16,7 +16,6 @@
 		<setting group="" module_id="share" is_hidden="0" type="boolean" var_name="share_google_plus_one" phrase_var_name="setting_share_google_plus_one" ordering="1" version_id="3.0.0beta1">1</setting>
 		<setting group="" module_id="share" is_hidden="0" type="string" var_name="twitter_consumer_key" phrase_var_name="setting_twitter_consumer_key" ordering="1" version_id="3.0.0beta1" />
 		<setting group="" module_id="share" is_hidden="0" type="string" var_name="twitter_consumer_secret" phrase_var_name="setting_twitter_consumer_secret" ordering="1" version_id="3.0.0beta1" />
-		<setting group="" module_id="share" is_hidden="0" type="boolean" var_name="share_on_facebook" phrase_var_name="setting_share_on_facebook" ordering="1" version_id="3.0.0beta1">0</setting>
 		<setting group="" module_id="share" is_hidden="0" type="boolean" var_name="share_on_twitter" phrase_var_name="setting_share_on_twitter" ordering="1" version_id="3.0.0beta1">0</setting>
 	</settings>
 	<hooks>
@@ -132,7 +131,6 @@ Check this out...
 		<phrase module_id="share" version_id="3.0.0beta1" var_name="setting_share_facebook_like" added="1312362742"><![CDATA[<title>Enable Facebook Like</title><info>Set this to true to enable the Facebook Like button on items.</info>]]></phrase>
 		<phrase module_id="share" version_id="3.0.0beta1" var_name="setting_share_twitter_link" added="1312371053"><![CDATA[<title>Enable Twitter Button</title><info>Set this to true to enable the Twitter Button when viewing items.</info>]]></phrase>
 		<phrase module_id="share" version_id="3.0.0beta1" var_name="setting_share_google_plus_one" added="1312371128"><![CDATA[<title>Google +1</title><info>Set this to true to enable the Google +1 button when viewing items.</info>]]></phrase>
-		<phrase module_id="share" version_id="3.0.0beta1" var_name="setting_share_on_facebook" added="1312531324"><![CDATA[<title>Facebook Social Sharing</title><info>Allow your users to share content that they post on this site directly to Facebook.</info>]]></phrase>
 		<phrase module_id="share" version_id="3.0.0beta1" var_name="setting_share_on_twitter" added="1312531396"><![CDATA[<title>Twitter Social Sharing</title><info>Allow users to share content they post on this site directly to Twitter.</info>]]></phrase>
 		<phrase module_id="share" version_id="3.0.0beta5" var_name="social_sharing" added="1319122174">Social Sharing</phrase>
 		<phrase module_id="share" version_id="3.0.0rc1" var_name="before_using_this_feature_you_will_have_to_setup_up_a_connection_with_this_3rd_party_service" added="1320229448">Before using this feature you will have to setup up a connection with this 3rd party service.</phrase>

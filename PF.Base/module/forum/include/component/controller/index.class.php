@@ -159,7 +159,9 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 					// 'aThreads' => $aThreads,
 					'aCallback' => null
 			)
-		);	
+		);
+		
+		Phpfox::getService('forum')->buildMenu();	
 	}
 	
 	/**

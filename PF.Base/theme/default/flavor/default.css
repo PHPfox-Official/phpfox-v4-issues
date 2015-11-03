@@ -2233,6 +2233,7 @@ li {
   font-size: 22px;
   color: #222222;
   letter-spacing: 1px;
+  overflow-wrap: break-word;
 }
 #container #content > ._block_h1 > h1 a,
 #container #content > ._block_h1 > h1 a:hover {
@@ -2571,6 +2572,9 @@ select {
   padding: 0px;
   margin-bottom: 10px;
 }
+.js_box input[type="submit"].button {
+  width: auto;
+}
 .js_box input[type="text"],
 .js_box input[type="email"],
 .js_box input[type="password"],
@@ -2743,7 +2747,7 @@ a.button:hover {
   color: #e5e5e5;
 }
 input.button_off {
-  border: 4px transparent solid;
+  border: 1px transparent solid;
   background: transparent;
   color: #9a9a9a;
 }
@@ -2830,7 +2834,7 @@ a.page_section_menu_link:hover {
   z-index: 100;
   display: block;
   text-indent: -1000px;
-  color: #e5e5e5;
+  color: #ffffff;
 }
 a.page_section_menu_link:hover {
   color: #222222;
@@ -4178,6 +4182,7 @@ div.row_title_info header .row_header > ul > li:not(:first-of-type):before {
   padding: 10px;
   font-size: 14px;
   color: #a6a6a6 !important;
+  overflow-wrap: break-word;
 }
 .item_content * {
   font-size: 14px;
@@ -8869,7 +8874,7 @@ ul.friend_action_drop_down li a.active:hover span {
 	}
 
 	#left, #right {
-		display:none;
+		//display:none;
 	}
 
 	#content {
@@ -8900,7 +8905,9 @@ ul.friend_action_drop_down li a.active:hover span {
   height: 420px;
 }
 .pages_like_join,
-.pages_like_join:hover {
+.pages_like_join:hover,
+.js_claim_page,
+.js_claim_page:hover {
   display: block;
   text-align: center;
   border: 1px #298ada solid;
@@ -8915,7 +8922,8 @@ ul.friend_action_drop_down li a.active:hover span {
   color: #ffffff;
   display: inline-block;
 }
-.pages_like_join:hover {
+.pages_like_join:hover,
+.js_claim_page:hover {
   border-color: #1f6fb1;
   background: #298ada;
   color: #ffffff;
@@ -10514,10 +10522,9 @@ ul.activity_feed_form_attach li a:hover {
   font-size: 20px;
   margin-bottom: 4px;
   padding: 2px 0px;
-  width: 95%;
-  white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .listing_info,
 .listing_category {

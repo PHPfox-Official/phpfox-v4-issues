@@ -155,19 +155,7 @@ defined('PHPFOX') or exit('NO DICE!');
 						</div>						
 					{/if}
 				{/if}
-				{if Phpfox::isModule('share')}
-				<div class="feed_share_on_holder timeline_date_holder">						
-					{if Phpfox::getParam('share.share_on_facebook') && Phpfox::getParam('facebook.facebook_app_id') && Phpfox::getParam('facebook.facebook_secret')}
-					<div class="feed_share_on_item"><a href="#" onclick="$(this).toggleClass('active'); $.ajaxCall('share.connect', 'connect-id=facebook', 'GET'); return false;">{img theme='layout/facebook.png' class='v_middle'} {phrase var='feed.facebook'}</a></div>
-					{/if}
-					{if Phpfox::getParam('share.share_on_twitter')}
-					<div class="feed_share_on_item"><a href="#" onclick="$(this).toggleClass('active'); $.ajaxCall('share.connect', 'connect-id=twitter', 'GET'); return false;">{img theme='layout/twitter.png' class='v_middle'} {phrase var='feed.twitter'}</a></div>
-					{/if}
-					<div class="clear"></div>
-					<div><input type="hidden" name="val[connection][facebook]" value="0" id="js_share_connection_facebook" class="js_share_connection" /></div>
-					<div><input type="hidden" name="val[connection][twitter]" value="0" id="js_share_connection_twitter" class="js_share_connection" /></div>
-				</div>					
-				{/if}
+				
 				{if ((defined('PHPFOX_IS_PAGES_VIEW') && $aPage.is_admin) || (defined('PHPFOX_IS_USER_PROFILE') && isset($aUser.user_id) && $aUser.user_id == Phpfox::getUserId() && Profile_Service_Profile::instance()->timeline() && Phpfox::getParam('feed.can_add_past_dates')))}
 				<div class="timeline_date_holder_share timeline_date_holder">					
 					<div class="t_center p_top_8">{img theme='ajax/add.gif'}</div>					

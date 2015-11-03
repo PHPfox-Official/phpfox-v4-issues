@@ -30,6 +30,10 @@ class Admincp_Component_Controller_Element_Edit extends Phpfox_Component {
 			];
 		}
 
+		if (strpos($name, '/')) {
+			$name = explode('/', $name)[0];
+		}
+
 		$file = $this->template()->getTemplateFile($name);
 		$data = (is_array($file) ? $file[0] : file_get_contents($file));
 

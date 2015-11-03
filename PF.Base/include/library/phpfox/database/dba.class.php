@@ -984,6 +984,9 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 				case 'in':
 					$sWhere .= ' IN(' . $mValue[$sKey] . ')';
 					break;
+				case 'like':
+					$sWhere .= ' LIKE \'' . $sValue . '\' ';
+					break;
 			}
 
 			return $sWhere;

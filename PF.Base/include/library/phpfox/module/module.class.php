@@ -530,20 +530,31 @@ class Phpfox_Module
 		// Get the component
 		$this->_oController = $this->getComponent($this->_sModule . '.' . $this->_sController, array('bNoTemplate' => true), 'controller');
 
-		if (!Phpfox::isAdminPanel() && !defined('PHPFOX_INSTALLER')) {
+		if ((!Phpfox::isAdminPanel() && !defined('PHPFOX_INSTALLER')) || (defined('PHPFOX_DEBUG') && PHPFOX_DEBUG)) {
 			$db = Phpfox_Database::instance();
 			$cache = Phpfox_Cache::instance();
 
 			$name = Phpfox_Module::instance()->getFullControllerName();
 			$pageMeta = $cache->set('page_meta_' . $name);
 			$meta = $cache->get($pageMeta);
+			if (PHPFOX_DEBUG) {
+				$meta = false;
+			}
 			if ($meta === false) {
-				$theme = $db->select('*')->from(':theme_template')->where(['type_id' => 'meta', 'name' => $name])->get();
+				$query = function($name) use($db) {
+					return $db->select('*')->from(':theme_template')->where(['type_id' => 'meta', 'name' => $name])->get();
+				};
+				$theme = $query(['LIKE' => $name . '/' . Phpfox_Request::instance()->segment(3)]);
+				if (!$theme) {
+					$theme = $query($name);
+				}
+
 				$cache->save($pageMeta, (isset($theme['template_id']) ? json_decode($theme['html_data']) : []));
 				$meta = $cache->get($pageMeta);
 			}
 
 			// $this->_meta = $meta;
+			// d($theme); exit;
 			Phpfox_Template::instance()->setPageMeta($meta);
 		}
 	}

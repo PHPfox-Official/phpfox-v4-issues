@@ -216,10 +216,20 @@ class Phpfox_Parse_Output
 		$sTxt = preg_replace_callback("/(&#+[0-9+]+;)/", array($this, '_replaceUnicode'), $sTxt);
 		// http://www.phpfox.com/tracker/view/14956/
 		$sTxt = preg_replace_callback("/(\-?color:)\s*#([A-F0-9]{3,6})/i", array($this, '_replaceHexColor'), $sTxt);
-		$sTxt = preg_replace_callback("/(#[\wa-zA-Z0-9\[\]\/]+)/u", array($this, '_replaceHashTags'), $sTxt);
+		// $sTxt = preg_replace_callback("/(#[\wa-zA-Z0-9\[\]\/]+)/u", array($this, '_replaceHashTags'), $sTxt);
+
 		$sTxt = preg_replace('/\[UNICODE\]([0-9]+)\[\/UNICODE\]/', '&#\\1;', $sTxt);
 
-		return $sTxt;
+		$sReturn = '';
+		$aParts = explode(' ', ' ' . $sTxt);
+		foreach ($aParts as $sPart) {
+			if (substr($sPart, 0, 1) == '#') {
+				$sPart = $this->_replaceHashTags([$sPart, $sPart]);
+			}
+			$sReturn .= $sPart . ' ';
+		}
+
+		return trim($sReturn);
 	}
 
 	public function getHashTags($sTxt)

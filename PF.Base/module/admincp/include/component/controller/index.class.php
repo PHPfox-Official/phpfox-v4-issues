@@ -303,7 +303,8 @@ class Admincp_Component_Controller_Index extends Phpfox_Component
 			'<i class="fa fa-info"></i>Status' => array(
 				Phpfox::getPhrase('core.site_statistics') => 'admincp.core.stat',
 				Phpfox::getPhrase('core.admincp_menu_system_overview') => 'admincp.core.system',
-				Phpfox::getPhrase('admincp.inactive_members') => 'admincp.user.inactivereminder'
+				Phpfox::getPhrase('admincp.inactive_members') => 'admincp.user.inactivereminder',
+				'Cancelled Members' => 'admincp.user.cancellations.feedback'
 				// 'admincp.ip_address' => 'admincp.core.ip',
 				// 'admincp.admincp_privacy' => 'admincp.privacy'
 			),

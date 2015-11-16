@@ -303,7 +303,7 @@ class Friend_Service_Friend extends Phpfox_Service
 		// cache this query
 		$aBirthdays = array();
 		$sCacheId = $this->cache()->set('friend_birthday_' . $iUser);
-		if (!($aBirthdays = $this->cache()->get($sCacheId, Phpfox::getParam('friend.birthdays_cache_time_out') * 60*60))) // cache is in hours
+		if (!($aBirthdays = $this->cache()->get($sCacheId, 5*60*60))) // cache is in 5 hours
 		{
 			$aBirthdays = $this->database()->select('u.user_id, u.user_name, u.full_name, u.user_name, uf.dob_setting, u.birthday, fb.birthday_user_receiver')
 				->from(Phpfox::getT('friend'), 'f')

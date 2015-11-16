@@ -56,7 +56,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	{if isset($iForumId)}
 		<div class="table">
 			<div class="table_right">
-				<input type="text" name="val[title]" placeholder="{phrase var='forum.title'}" value="{value type='input' id='title'}" size="40" id="title" />
+				<input class="form-control" type="text" name="val[title]" placeholder="{phrase var='forum.title'}" value="{value type='input' id='title'}" size="40" id="title" />
 			</div>
 		</div>
 	{/if}
@@ -155,8 +155,8 @@ defined('PHPFOX') or exit('NO DICE!');
 						<div class="table_left">
 							{phrase var='forum.type'}:
 						</div>
-						<div class="table_right label_hover">
-							<select name="val[type_id]" style="width:200px;"{if Phpfox::getUserParam('forum.can_post_announcement') || Phpfox::getService('forum.moderate')->hasAccess('' . $iActualForumId . '', 'post_announcement')} onchange="selectThreadType(this);"{/if}>
+						<div class="table_right label_hover form-inline">
+							<select class="form-control" name="val[type_id]" style="width:200px;"{if Phpfox::getUserParam('forum.can_post_announcement') || Phpfox::getService('forum.moderate')->hasAccess('' . $iActualForumId . '', 'post_announcement')} onchange="selectThreadType(this);"{/if}>
 								<option value="thread"{value type='select' id='type_id' default='thread'}>{phrase var='forum.thread'}</option>
 								{if Phpfox::getUserParam('forum.can_stick_thread') || Phpfox::getService('forum.moderate')->hasAccess('' . $iActualForumId . '', 'post_sticky')}
 								<option value="sticky"{value type='select' id='type_id' default='sticky'}>{phrase var='forum.sticky'}</option>
@@ -172,8 +172,8 @@ defined('PHPFOX') or exit('NO DICE!');
 							{if (Phpfox::getUserParam('forum.can_post_announcement') || Phpfox::getService('forum.moderate')->hasAccess('' . $iActualForumId . '', 'post_announcement')) && !$bIsEdit}
 							<div style="margin-top:10px;{if !$bPosted} display:none;{/if}" class="js_announcement_list">
 								{phrase var='forum.select_a_parent_forum'}:
-								<div class="p_4">
-									<select name="val[announcement_forum_id]" style="width:300px;">
+								<div class="p_4 form-inline">
+									<select class="form-control" name="val[announcement_forum_id]" style="width:300px;">
 										{$sForumParents}
 									</select>
 									<div class="extra_info">

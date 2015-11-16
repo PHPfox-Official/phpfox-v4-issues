@@ -107,8 +107,33 @@ class Mail_Service_Callback extends Phpfox_Service
 	{
 		if (Phpfox::getParam('mail.threaded_mail_conversation'))
 		{
-			$this->database()->delete(Phpfox::getT('mail_thread_text'), 'user_id = ' . $iUser);
-			$this->database()->delete(Phpfox::getT('mail_thread_user'), 'user_id = ' . $iUser);
+			$aThreads = $this->database()->select('thread_id')
+				->from(Phpfox::getT('mail_thread_user'))
+				->where('user_id = ' . (int) $iUser)
+				->execute('getSlaveRows');
+			foreach ($aThreads as $aThread) {
+				$iCount = $this->database()->select('COUNT(*)')
+				->from(Phpfox::getT('mail_thread_user'))
+				->where('thread_id = ' . (int) $aThread['thread_id'])
+				->execute('getField');
+				if ($iCount > 2) {
+					$this->database()->delete(Phpfox::getT('mail_thread_text'), 'user_id = ' . $iUser);
+					$this->database()->delete(Phpfox::getT('mail_thread_user'), 'user_id = ' . $iUser);	
+					
+					$aLastMess = $this->database()->select('message_id, user_id, time_stamp')
+						->from(Phpfox::getT('mail_thread_text'))
+						->where('thread_id = ' . (int) $aThread['thread_id'])
+						->order('time_stamp DESC')
+						->execute('getSlaveRow');
+					
+					$this->database()->update(Phpfox::getT('mail_thread'), array('last_id' => $aLastMess['message_id'], 'time_stamp' => $aLastMess['time_stamp']), 'thread_id = ' . $aThread['thread_id']);
+					$this->database()->update(Phpfox::getT('mail_thread_user'), array('is_read' => 1, 'is_sent' => 1, 'is_sent_update' => 1), 'thread_id = ' . $aThread['thread_id'] . ' AND user_id = ' . $aLastMess['user_id']);
+				}
+				else {
+					$this->database()->delete(Phpfox::getT('mail_thread_text'), 'thread_id = ' . $aThread['thread_id']);
+					$this->database()->delete(Phpfox::getT('mail_thread_user'), 'thread_id = ' . $aThread['thread_id']);
+				} 
+			}
 		}
 
 		// get all the mail in this user's inbox		

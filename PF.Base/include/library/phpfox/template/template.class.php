@@ -266,29 +266,32 @@ class Phpfox_Template
 	 *
 	 */	
 	public function __construct()
-	{        
+	{
+		$this->_sThemeLayout = 'frontend';
+		$this->_sThemeFolder = 'default';
+		$this->_sStyleFolder = 'default';
+
 		if (defined('PHPFOX_INSTALLER'))
 		{
 			$this->_sThemeLayout = 'install';
-			$this->_sThemeFolder = 'default';	
-			$this->_sStyleFolder = 'default';
 		}
 		else 
 		{
 			$this->_theme = new Core\Theme();
 			$this->_bIsAdminCp = (strtolower(Phpfox_Request::instance()->get('req1')) == Phpfox::getParam('admincp.admin_cp'));
-			
+
+			$theme =  $this->_theme->get();
+
+
+			if(!empty($theme->folder)){
+				$this->_sThemeFolder =  $theme->folder;
+			}
+
 			if ($this->_bIsAdminCp)
 			{
 				$this->_sThemeLayout = 'adminpanel';
 				$this->_sThemeFolder = Phpfox::getParam('core.default_theme_name');
 				$this->_sStyleFolder = Phpfox::getParam('core.default_style_name');
-			}
-			else 
-			{
-				$this->_sThemeLayout = 'frontend';
-				$this->_sThemeFolder = 'default';
-				$this->_sStyleFolder = 'default';
 			}
 		}		
 
@@ -804,7 +807,6 @@ class Phpfox_Template
 		$this->_aEditor['toggle_phrase'] = Phpfox::getPhrase('core.toggle_fullscreen');
 
 		$this->setHeader('cache', array(
-				'editor.css' => 'style_css',
 				'editor.js' => 'static_script',
 				'wysiwyg/default/core.js' => 'static_script'
 			)
@@ -1051,8 +1053,6 @@ class Phpfox_Template
 			}
 		}
 
-		// $this->setHeader('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">');
-
 		if (!defined('PHPFOX_INSTALLER')) {
 			Core\Event::trigger('lib_phpfox_template_getheader', $this);
 			foreach ((new Core\App())->all() as $App) {
@@ -1136,11 +1136,11 @@ class Phpfox_Template
 					$aJsVars['notification.notify_ajax_refresh'] = Phpfox::getParam('notification.notify_ajax_refresh');
 				}
 				
-				$sLocalDatepicker = PHPFOX_STATIC .'jscript/jquery/locale/jquery.ui.datepicker-' . strtolower(Phpfox_Locale::instance()->getLangId()) . '.js';
+				$sLocalDatepicker = 'PF.Base/'.PHPFOX_STATIC .'jscript/jquery/locale/jquery.ui.datepicker-' . strtolower(Phpfox_Locale::instance()->getLangId()) . '.js';
 				
 				if (file_exists($sLocalDatepicker))
 				{
-					$sFile = str_replace(PHPFOX_STATIC . 'jscript/', '', $sLocalDatepicker);
+					$sFile = str_replace('PF.Base/'.PHPFOX_STATIC . 'jscript/', '', $sLocalDatepicker);
 					$this->setHeader(array($sFile => 'static_script'));					
 				}
 				
@@ -1157,7 +1157,7 @@ class Phpfox_Template
 			
 			if (Phpfox::isModule('input') && false)
 			{
-				$this->setHeader('cache', array('browse.css' => 'style_css'));
+				// $this->setHeader('cache', array('browse.css' => 'style_css'));
 			}
 			$sJs .= "\t\t\tvar oParams = {";
 			$iCnt = 0;
@@ -1354,7 +1354,6 @@ class Phpfox_Template
             $sJs .= "\t\t\t" . 'var $Behavior = {}, $Ready = $Ready = function(callback) {$Behavior[callback.toString().length] = callback;}, $Events = {}, $Event = function(callback) {$Events[callback.toString().length] = callback;};' . "\n";
             $sJs .= "\t\t\t" .'var $Core = {};' . "\n";
 			$aCustomCssFile = array();
-			
 			foreach ($this->_aHeaders as $aHeaders)
 			{
 				if (!is_array($aHeaders))
@@ -1379,8 +1378,7 @@ class Phpfox_Template
 						}
 						else 
 						{
-							
-                            if (is_string($mValue) && (strpos($mValue, '.js') !== false || strpos($mValue, 'javascript') !== false))
+              if (is_string($mValue) && (strpos($mValue, '.js') !== false || strpos($mValue, 'javascript') !== false))
                             {
 								if (strpos($mValue, 'RecaptchaOptions'))
 								{
@@ -1388,13 +1386,13 @@ class Phpfox_Template
 								}
 								else
 								{
-                                	$this->_sFooter .= "\t\t". $mValue;
+                    $this->_sFooter .= "\t\t". $mValue;
 								}
                             }
 							else if (is_string($mValue))
-                            {
-                                $sData .= "\t\t" . $mValue . "\n";
-                            }
+                {
+                    $sData .= "\t\t" . $mValue . "\n";
+                }
 							else
 							{
 								$sData .= "\t\t" . implode($mValue) . "\n";
@@ -1613,16 +1611,17 @@ class Phpfox_Template
 											}
 										}
 										elseif (substr($mKey, -4) == '.css')
-										{			
-                                            
-                                            $aCacheCSS[] = str_replace(Phpfox::getParam('core.path'),'',$this->getStyle('css', $mKey, $aParts[1]));
+										{
+                      $Theme = $this->theme()->get();
+                      $sFileName = $Theme->getCssFileName(str_replace(Phpfox::getParam('core.path'),'',$this->getStyle('css', $mKey, $aParts[1])));
+//                      $aCacheCSS[] = str_replace(Phpfox::getParam('core.path'),'',$this->getStyle('css', $mKey, $aParts[1]));
+                      $aCacheCSS[] = $sFileName;
 											$bCustomStyle = false;
 											if ($bCustomStyle === false)
 											{
 												if ($bReturnArray)
 												{
-													//$aArrayData[] = $this->getStyle('css', $mKey, $aParts[1]);
-                                                    $aCachesCSS[] = str_replace(Phpfox::getParam('core.path'), '', $this->getStyle('css', $mKey, $aParts[1]));
+                          $aCachesCSS[] = $sFileName;
 												}
 												else 
 												{
@@ -1634,14 +1633,14 @@ class Phpfox_Template
                                                     else
                                                     {
                                                     */
-                                                        $aCachesCSS[] = str_replace(Phpfox::getParam('core.path'), '', $this->getStyle('css', $mKey, $aParts[1]));
+                                                        $aCachesCSS[] = $sFileName;
                                                     // }
 												}
 											}
 											else 
 											{
 												//$sStyleCacheData .= str_replace(Phpfox::getParam('core.path'), '', Phpfox::getParam('core.url_file')) . 'static/' . $this->_aTheme['style_id'] . '_' . $aParts[1] . '_' . $mKey . ',';
-												$aCachesCSS[] = str_replace(Phpfox::getParam('core.path'), '', Phpfox::getParam('core.url_file')) . 'static/' . $this->_aTheme['style_id'] . '_' . $aParts[1] . '_' . $mKey;
+												$aCachesCSS[] = $sFileName;
 											}
 										}
 									}
@@ -1949,7 +1948,9 @@ class Phpfox_Template
 
 		if (Phpfox::isAdmin() && !Phpfox::isAdminPanel()) {
 			$Url = Phpfox_Url::instance();
+
 			$controller = Phpfox_Module::instance()->getFullControllerName();
+
 			if (preg_match('/([blog|photo]\.view)/', $controller)) {
 				$title = Phpfox_Request::instance()->segment(3);
 				$controller = $controller . '/' . $title;
@@ -1965,7 +1966,6 @@ class Phpfox_Template
 			$this->_sFooter .= '</div>';
 		}
 
-		// $this->_sFooter .= '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>';
 		if (!defined('PHPFOX_INSTALLER')) {
 			foreach ((new Core\App())->all() as $App) {
 				if ($App->footer && is_array($App->footer)) {
@@ -1981,6 +1981,9 @@ class Phpfox_Template
 				}
 			}
 		}
+
+
+		$this->_sFooter .=  '<script type="text/javascript" src="'.Phpfox::getParam('core.url_static_script').'/bootstrap.js"></script>';
 
 		return $this->_sFooter;
 	}

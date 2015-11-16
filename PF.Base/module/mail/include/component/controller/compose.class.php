@@ -227,7 +227,7 @@ class Mail_Component_Controller_Compose extends Phpfox_Component
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
 					'mail.js' => 'module_mail',
-					'pager.css' => 'style_css'
+					// 'pager.css' => 'style_css'
 				)
 			)
 			->assign(array(

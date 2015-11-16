@@ -46,7 +46,7 @@
 			{if isset($aPoll.answer)}
 			{foreach from=$aPoll.answer item=answer}
 			{if !empty($answer.answer)}
-			<div class="p_bottom_15">
+			<div class="p_bottom_15 radio">
 				<label {if !isset($aPoll.poll_is_in_feed)}onclick="$('#js_submit_vote{if isset($iKey)}_{$iKey}{/if}').show(); $('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').prop('checked', false); $(this).find('.js_poll_answer{if isset($iKey)}_{$iKey}{/if}').prop('checked', true);"{/if}>
 				{if !isset($aPoll.poll_is_in_feed)}<input class="checkbox js_poll_answer{if isset($iKey)}_{$iKey}{/if}" type="radio" name="val[answer]" value="{$answer.answer_id}" style="vertical-align:middle;" />{/if}
 				<span title="{$answer.answer|clean}">{$answer.answer|clean|split:50|shorten:150:'...'}</span>
@@ -56,7 +56,7 @@
 			{/foreach}
 			{/if}
 		</div>
-		<div><input type="button" value="{phrase var='poll.submit_your_vote'}" class="button_link" onclick="$(this).parent().hide(); $(this).parents('.p_4:first').find('.js_poll_image_ajax:first').show(); $('#js_poll_form_{$aPoll.poll_id}').ajaxCall('poll.addVote');return false;" /></div>
+		<div><input class="btn btn-sm btn-primary" type="button" value="{phrase var='poll.submit_your_vote'}" class="button_link" onclick="$(this).parent().hide(); $(this).parents('.p_4:first').find('.js_poll_image_ajax:first').show(); $('#js_poll_form_{$aPoll.poll_id}').ajaxCall('poll.addVote');return false;" /></div>
 		<div class="js_poll_image_ajax" style="display:none;">
 			{img theme='ajax/add.gif' class='v_middle'}
 		</div>

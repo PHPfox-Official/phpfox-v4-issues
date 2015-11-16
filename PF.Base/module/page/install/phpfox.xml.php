@@ -91,6 +91,9 @@ This includes adding/editing/deleting pages.</phrase>
 		<phrase module_id="page" version_id="2.0.0rc4" var_name="no_pages_have_been_added" added="1255093469">No pages have been added.</phrase>
 		<phrase module_id="page" version_id="2.0.0rc4" var_name="create_a_new_page" added="1255093476">Create a New Page</phrase>
 		<phrase module_id="page" version_id="2.0.0" var_name="update_tags_pages" added="1261056616">Update Tags (Pages)</phrase>
+		<phrase module_id="page" version_id="4.0.10" var_name="custom_pages" added="1445576231">Custom Pages</phrase>
+		<phrase module_id="page" version_id="4.0.10" var_name="create_a_page" added="1445576251">Create a Page</phrase>
+		<phrase module_id="page" version_id="4.0.10" var_name="inactive_page" added="1445576251">Inactive page</phrase>
 	</phrases>
 	<user_group_settings>
 		<setting is_admin_setting="0" module_id="page" type="boolean" admin="1" user="0" guest="0" staff="0" module="page" ordering="0">can_manage_custom_pages</setting>

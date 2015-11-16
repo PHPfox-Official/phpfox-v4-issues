@@ -120,12 +120,11 @@ class Marketplace_Component_Controller_View extends Phpfox_Component
 			->setBreadcrumb($aListing['title'] . ($aListing['view_id'] == '2' ? ' (' . Phpfox::getPhrase('marketplace.sold') . ')' : ''), $this->url()->permalink('marketplace', $aListing['listing_id'], $aListing['title']), true)
 			->setHeader('cache', array(
 					'jquery/plugin/star/jquery.rating.js' => 'static_script',
-					'jquery.rating.css' => 'style_css',	
+					// 'jquery.rating.css' => 'style_css',	
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
 					'quick_edit.js' => 'static_script',
-					'comment.css' => 'style_css',
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'switch_legend.js' => 'static_script',
 					'switch_menu.js' => 'static_script',
 					'view.js' => 'module_marketplace',

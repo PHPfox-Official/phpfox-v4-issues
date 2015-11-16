@@ -22,7 +22,19 @@ select {
 }
 
 .js_box {
-	.table {
+
+    @media (max-width: 480px) {
+      .action_contain{
+        position: inherit !important;
+      }
+      input[type="submit"].button{
+        width: 100% !important;
+      }
+      input.button {
+        font-size: 10px;
+      }
+    }
+    .table {
 		padding:0px;
 		margin-bottom:10px;
 	}
@@ -106,7 +118,7 @@ select {
 
 	    .js_datepicker_core_start {
 		    select {
-			    width:auto;
+			    width: 50px;
 		    }
 	    }
 	}
@@ -281,19 +293,6 @@ a.page_section_menu_link:hover {
 	color:@brandPrimary;
 	display:inline-block;
 	margin:auto;
-}
-
-.form_extra {
-	position:absolute;
-	right:-(@columnWidth + 10);
-	top:0px;
-	width:@columnWidth;
-
-	> div > .table:first-of-type {
-		.table_left {
-			padding-top:0px;
-		}
-	}
 }
 
 .js_tmp_upload_bar {

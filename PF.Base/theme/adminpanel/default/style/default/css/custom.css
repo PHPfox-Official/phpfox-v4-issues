@@ -322,7 +322,7 @@ ul#breadcrumb_menu li.active a:hover {
 }
 #table_hover_action_holder {
   left: 200px;
-  right: 236px;
+  right: 0px;
   width: auto;
   box-shadow: none;
   background: #3f3f3f;
@@ -1065,7 +1065,7 @@ select:focus {
   color: #808080;
   border: 0px;
   padding: 14px 0px;
-  width: 100%;
+  width: 98%;
   outline: none;
   text-indent: 0px;
   /*padding:10px 0px;*/
@@ -6392,6 +6392,18 @@ i._zz {
   top: 46px;
   font-size: 30px;
 }
+@media (max-width: 700px) {
+  ._size__200,
+  ._size__200:hover {
+    width: 100px;
+    height: 100px;
+  }
+  ._size__200 > span,
+  ._size__200:hover > span {
+    top: 38px;
+    font-size: 20px;
+  }
+}
 .no_image_item_cover::before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -7041,4 +7053,7 @@ i._zz {
   background: #f4645f;
   color: #ffffff;
   border-color: #f4645f;
+}
+.inactive_page{
+    text-decoration: line-through;
 }

@@ -54,7 +54,7 @@ function appendAnswer(sId)
 	
 	//debug(oCloned.find('.js_answers').val());
 
-	var sInput = '<input type="text" class="js_answers" size="30" value="" name="val[answer][][answer]"/>';
+	var sInput = '<input type="text" class="form-control js_answers" size="30" value="" name="val[answer][][answer]"/>';
 	oCloned.find('.class_answer').html(sInput);
 	oCloned.find('.js_answers').attr('name', 'val[answer][][answer]');
 	var oFirst = oCloned.clone();

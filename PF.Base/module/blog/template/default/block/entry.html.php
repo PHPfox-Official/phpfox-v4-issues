@@ -30,12 +30,14 @@ defined('PHPFOX') or exit('NO DICE!');
 						<a href="#" class="row_edit_bar_action"><span>{phrase var='blog.actions'}</span></a>							
 				</div>
 			</div>
-			{/if}				
-			{if Phpfox::getUserParam('blog.can_approve_blogs') || Phpfox::getUserParam('blog.delete_user_blog')}<a href="#{$aItem.blog_id}" class="moderate_link" rel="blog">Moderate</a>{/if}		
+			{/if}
+			{if $aItem.user_id == Phpfox::getUserId() || Phpfox::getUserParam('blog.can_approve_blogs') || Phpfox::getUserParam('blog.delete_user_blog')}<a href="#{$aItem.blog_id}" class="moderate_link" {if Phpfox::getUserParam('blog.can_approve_blogs') || Phpfox::getUserParam('blog.delete_user_blog')}data-id="mod" {else} data-id="user"{/if} rel="blog"></a>{/if}
 		</div>
 		<div class="row_title_info">
 			{if $aItem.post_status == 2}
-			{phrase var='blog.draft_info'}
+			  <span class="blog_status_draft">
+          {phrase var='blog.draft_info'}
+        </span>
 			{/if}		
 			<header>			
 				<h1 id="js_blog_edit_title{$aItem.blog_id}" itemprop="name">

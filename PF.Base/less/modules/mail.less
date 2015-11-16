@@ -1,5 +1,13 @@
 
 .mail_thread {
+    @media (max-width: 700px){
+      width: 300px;
+      margin-left: -150px;
+    }
+    @media (max-width: 390px){
+      width: 200px;
+      margin-left: -100px;
+    }
 	width:@contentWidth;
 	top:20px;
 	bottom:20px;
@@ -115,6 +123,9 @@
 	}
 
 	.mail_time_stamp {
+        @media (max-width: 700px){
+          top: 3px;
+        }
 		position:absolute;
 		right:10px;
 		top:10px;

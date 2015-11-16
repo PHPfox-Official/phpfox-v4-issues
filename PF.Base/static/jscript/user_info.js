@@ -2,7 +2,7 @@
 var $bUserToolTipIsHover = false;
 var $bUserActualToolTipIsHover = false;
 var $iUserToolTipWaitTime = 900;
-var $iUserToolTipCloseTime = 1500;
+var $iUserToolTipCloseTime = 900;
 var $oUserToolTipObject = null;
 var $sHoveringOn = null;
 var aHideUsers = new Array();
@@ -17,21 +17,29 @@ $Core.userInfoLog = function(sLog){
 $Core.loadUserToolTip = function($sUserName)
 {
 	//$Core.loadInit();
+  var d = new Date();
+  localStorage.setItem('tooltip_last', d.getTime());
 	setTimeout('$Core.showUserToolTip(\'' + $sUserName + '\');', $iUserToolTipWaitTime);
 };
 
 $Core.closeUserToolTip = function(sUser)
 {
+  var d = new Date();
+  var lastRun = localStorage.getItem('tooltip_last');
+  if (typeof lastRun != 'undefined' && lastRun > 0 && (d.getTime() - lastRun) < 2000){
+    return;
+  }
 	if ($bUserActualToolTipIsHover === true && sUser == $sHoveringOn){
 		$Core.userInfoLog('CANCEL CLOSE: ' + sUser);
 		return;
 	}
-	
+
 	aHideUsers[sUser] = true;
-	
+
 	$Core.userInfoLog('CLOSE: ' + sUser);
-	
+
 	$('#js_user_tool_tip_cache_' + sUser + '').parent().parent().hide();
+  localStorage.setItem('tooltip_last', d.getTime());
 };
 
 $Core.showUserToolTip = function(sUser)
@@ -74,7 +82,10 @@ $Core.showUserToolTip = function(sUser)
 $Behavior.userHoverToolTip = function()
 {	
 	$('.user_profile_link_span a').mouseover(function()
-	{	
+	{
+    $('#main').click(function() {
+      $('.js_user_tool_tip_holder').hide();
+    });
 		$Core.userInfoLog('----------------------------- START -----------------------------');
 
 		var $sUserName = $(this).parent().attr('id').replace('js_user_name_link_', '');
@@ -124,7 +135,7 @@ $Behavior.userHoverToolTip = function()
 		$bUserToolTipIsHover = false;
 
 		oCloseObject = $(this).parent().attr('id').replace('js_user_name_link_', '');
-		
+
 		setTimeout('$Core.closeUserToolTip(\'' + oCloseObject + '\');', $iUserToolTipCloseTime);
 	});	
 };

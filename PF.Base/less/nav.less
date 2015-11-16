@@ -125,6 +125,12 @@
 	overflow:auto;
 }
 
+body:not(.show_mobile_menu) #main_header {
+  @media (max-width: 700px) {
+    display: none;
+  }
+}
+
 #header_menu {
 	/*width:@navWidth;*/
 	background:@navBg;
@@ -240,7 +246,7 @@
 
 	> .content {
 		> ul.action {
-			margin:-@blockContentPadding;
+			margin:-@blockContentPadding 0;
 			padding:0px;
 
 			.block_menu();

@@ -37,11 +37,10 @@ class Page_Component_Controller_Admincp_Index extends Phpfox_Component
 				$this->url()->send('admincp.page', null, Phpfox::getPhrase('page.page_activity_successfully_updated'));
 			}
 		}
-		
 		$this->template()
-			->setSectionTitle('Custom Pages')
+			->setSectionTitle(Phpfox::getPhrase('page.custom_pages'))
 			->setActionMenu([
-				'Create a Page' => [
+				Phpfox::getPhrase('page.create_a_page') => [
 					'custom' => 'data-custom-class="js_box_full"',
 					'class' => 'popup',
 					'url' => $this->url()->makeUrl('admincp.page.add')

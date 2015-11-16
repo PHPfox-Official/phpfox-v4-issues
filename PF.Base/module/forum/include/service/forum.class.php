@@ -202,7 +202,7 @@ class Forum_Service_Forum extends Phpfox_Service
 			->execute('getRow');
 	}
 	
-	public function getSearchFilter($bIsSearchQuery = false, $forumId = 0)
+	public function getSearchFilter($bIsSearchQuery = false, $forumId = 0, $aParam = array())
 	{
 		$aPages = array(20, 25, 30, 35, 40, 45, 50);
 		$aDisplays = array();
@@ -272,7 +272,14 @@ class Forum_Service_Forum extends Phpfox_Service
 				'default_view' => '-1'
 			)
 		);
-		
+		//search forum of pages supported module
+    if (isset($aParam['module_id'])){
+      $moreHide = '<input type="hidden" name="module_id" value="' . $aParam['module_id'] . '">';
+      $moreHide .= '<input type="hidden" name="item" value="' . $aParam['item_id'] . '">';
+      $moreHide .= '<input type="hidden" name="module_url" value="' . $aParam['url'] . '">';
+    } else {
+      $moreHide = '';
+    }
 		$aSettings = array(
 			'type' => 'forum',
 			// 'filters' => $aFilters,
@@ -281,7 +288,7 @@ class Forum_Service_Forum extends Phpfox_Service
 				'table_alias' => 'ft',
 				'search' => array(
 					'action' => Phpfox_Url::instance()->makeUrl('forum.search'),
-					'hidden' => '<input type="hidden" name="forum_id" value="' . $forumId . '">',
+					'hidden' => '<input type="hidden" name="forum_id" value="' . $forumId . '">' . $moreHide,
 					'default_value' => 'Search this forum...',
 					'name' => 'search',
 					'field' => array('ft.title')

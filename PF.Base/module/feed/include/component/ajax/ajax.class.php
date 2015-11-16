@@ -185,6 +185,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function viewMore()
 	{
+    define('FEED_LOAD_MORE_NEWS', true);
 		if ($this->get('callback_module_id') == 'pages' && Phpfox::getService('pages')->isTimelinePage($this->get('callback_item_id')))
 		{
 			define('PAGE_TIME_LINE', true);

@@ -57,7 +57,7 @@ class Profile_Component_Controller_Index_Mobile extends Phpfox_Component
 		
 		$this->template()
 			->setMobileHeader(array(
-					'profile.css' => 'style_css'
+					// 'profile.css' => 'style_css'
 				)
 			);				
 		

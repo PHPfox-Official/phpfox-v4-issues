@@ -99,8 +99,8 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		$this->setTitle(Phpfox::getPhrase('friend.add_to_friends'));
 		
-		Phpfox::getBlock('friend.request', array('user_id' => $this->get('user_id')));			
-		
+		Phpfox::getBlock('friend.request', array('user_id' => $this->get('user_id')));
+    $this->call('<script>$Behavior.globalInit();</script>');
 		echo $this->template()->getHeader();
 	}
 	
@@ -590,6 +590,8 @@ class Friend_Component_Ajax_Ajax extends Phpfox_Ajax
 			$this->remove('#js_friend_mutual_browse_append_pager');
 			$this->append('#js_friend_mutual_browse_append', $this->getContent(false));
 		}
+    //reload user profile, https://github.com/moxi9/phpfox/issues/546
+    $this->call('<script>$Behavior.globalInit();</script>');
 	}
 	
 	public function moderation()

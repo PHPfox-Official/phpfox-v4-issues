@@ -25,6 +25,8 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 	 * @var array
 	 */
 	protected $_aQuery = array();
+
+  protected $_sSingleData = '';
 	
 	/**
 	 * Array of all the words that cannot be used
@@ -160,7 +162,16 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 		
 		return $this;
 	}
-	
+
+  /**
+   * @param $file_name
+   * @return $this
+   */
+  public function singleData($file_name)
+  {
+    $this->_sSingleData = $file_name;
+    return $this;
+  }
     /**
      * Stores the WHERE part of a query
      * Example using a string method:
@@ -539,7 +550,13 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 			$sCacheId = $oCache->set($aParams['cache_name']);
 			if ((isset($aParams['cache_limit']) && ($aRows = $oCache->get($sCacheId, $aParams['cache_limit']))) || ($aRows = $oCache->get($sCacheId)))
 			{
-				return $aRows;
+        if (!empty($this->_sSingleData))
+        {
+          return $this->_singleData($aRows);
+        } else
+        {
+          return $aRows;
+        }
 			}
 		}
 		
@@ -583,9 +600,14 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 		{
 			$this->freeResult();
 		}
-		
-		return $aRows;		
-	}		
+    if (!empty($this->_sSingleData))
+    {
+      return $this->_singleData($aRows);
+    } else
+    {
+      return $aRows;
+    }
+	}
 	
 	/**
 	 * We clean out the query we just ran so another query can be built
@@ -944,6 +966,36 @@ abstract class Phpfox_Database_Dba implements Phpfox_Database_Interface
 		
 		return $sQuery;
 	}
+
+  /**
+   * Return data for you can easier process
+   * @param $data: data return from query
+   * @param $field_name: field you want to use
+   * @return array
+   */
+  private function _singleData($data)
+  {
+    if (isset($this->_sSingleData))
+    {
+      $field_name = $this->_sSingleData;
+      if (count($data))
+      {
+        $result = array();
+        foreach ($data as $sub_data)
+        {
+          $result[] = isset($sub_data[$field_name]) ? $sub_data[$field_name] : null;
+        }
+        return $result;
+      } else
+      {
+        return $data;
+      }
+    } else
+    {
+      return $data;
+    }
+
+  }
 	
 	/**
 	*	Takes into account html entities to return the ucwords and strtolower in an array.

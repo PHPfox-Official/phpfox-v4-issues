@@ -24,15 +24,15 @@ class User_Component_Controller_Browse extends Phpfox_Component
 		    return function() {
 			    $users = [];
 			    if ($this->request()->get('recommend')) {
-				    $title = 'Recommended Users';
+				    $title = Phpfox::getPhrase('user.recommended_users');
 				    $users = Friend_Service_Suggestion::instance()->get();
 				    if (!$users) {
 					    $users = User_Service_Featured_Featured::instance()->getOtherGender();
 				    }
 			    }
 				else {
-					$title = 'Recently Active';
-					$users = User_Service_Featured_Featured::instance()->getNewUsers();
+					$title = Phpfox::getPhrase('user.recently_active');
+					$users = User_Service_Featured_Featured::instance()->getRecentActiveUsers();
 				}
 
 			    if ((is_array($users) && !$users) || $users === true) {
@@ -564,7 +564,7 @@ class User_Component_Controller_Browse extends Phpfox_Component
 
 		$this->template()
 		    ->setHeader('cache', array(
-		    		'pager.css' => 'style_css',
+		    		// 'pager.css' => 'style_css',
 		    		'country.js' => 'module_core'
 		    	)
 		    )
@@ -586,7 +586,7 @@ class User_Component_Controller_Browse extends Phpfox_Component
 		    Phpfox::getUserParam('user.can_browse_users_in_public', true);
 		    
 		    $this->template()->setHeader('cache', array(
-		    		'browse.css' => 'style_css'		    		    	
+		    		// 'browse.css' => 'style_css'		    		    	
 		    	)
 		    );
 			

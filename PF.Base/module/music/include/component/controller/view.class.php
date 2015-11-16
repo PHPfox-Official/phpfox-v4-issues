@@ -135,9 +135,8 @@ class Music_Component_Controller_View extends Phpfox_Component
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
 					'quick_edit.js' => 'static_script',
-					'jquery.rating.css' => 'style_css',				
-					'comment.css' => 'style_css',
-					'pager.css' => 'style_css',
+					// 'jquery.rating.css' => 'style_css',				
+					// 'pager.css' => 'style_css',
 					'feed.js' => 'module_feed',
 					'view.css' => 'module_music'
 				)

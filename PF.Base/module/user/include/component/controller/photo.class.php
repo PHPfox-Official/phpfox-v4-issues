@@ -167,7 +167,7 @@ class User_Component_Controller_Photo extends Phpfox_Component
 			$this->template()->setHeader('cache', array(
 					'jquery/plugin/jquery.crop.js' => 'static_script',
 					'jquery/plugin/imgnotes/jquery.imgareaselect.js' => 'static_script',
-					'imgareaselect-default.css' => 'style_css',
+					// 'imgareaselect-default.css' => 'style_css',
 					'<script type="text/javascript">$Behavior.initPhotoCrop = function(){$Core.photo_crop.init({width: 75, height: 75, image_width: ' . $newWidth . ', image_height: ' . $newHeight . '}); };</script>'
 				)
 			)

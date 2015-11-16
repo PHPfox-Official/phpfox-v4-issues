@@ -220,14 +220,23 @@ class Object extends \Core\Objectify {
 
 	public function rebuild() {
 		$flavorId = $this->flavor_folder;
+
 		if (!$flavorId) {
 			throw new \Exception('Cannot merge a theme without a flavor.');
 		}
-
+    $db = new \Core\Db();
+    $moduleList = $db->select('module_id')
+      ->singleData('module_id')
+      ->from(':module')
+      ->where('is_active=1')
+      ->all();
 		$css = new CSS($this);
 		try {
 			$data = $css->get();
-			$css->set($data);
+      $moduleData = $css->getModule($moduleList);
+      $css->reBuildModule($moduleList);
+      $appData = $css->getApp();
+			$css->set($data, null, $moduleData . $appData, $this->name);
 		} catch (\Exception $e) {
 			return false;
 		}
@@ -284,6 +293,28 @@ class Object extends \Core\Objectify {
 
 		return true;
 	}
+
+  public function getCssFileName($path, $type = 'module'){
+    //check is less file exist
+    if (substr($path, -4) == '.css'){
+      $lessPath = substr($path, 0, -4) . '.less';
+      if (file_exists(PHPFOX_DIR . $lessPath)){
+        $path = $lessPath;
+      }
+    }
+    $path = trim(str_replace('module', '', $path), PHPFOX_DS);
+    $themPath =  'themes/' . $this->folder . '/';
+    if ($this->folder == 'default') {
+      $themPath =  'theme/' . $this->folder . '/';
+    }
+    $filePath = $themPath . 'flavor/' . trim(substr(str_replace([PHPFOX_DS,'/','\\'], ['_','_','_'], $path), 0, -4),'_');
+    $filePath = trim($filePath, '.');
+    $filePath = $filePath . '.css';
+    if (!file_exists($filePath)){
+      (new CSS($this))->buildFile($path, $type);
+    }
+    return $filePath;
+  }
 
 	public function __toArray() {
 

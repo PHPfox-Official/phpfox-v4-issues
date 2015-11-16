@@ -556,7 +556,6 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 					'jquery/plugin/imgnotes/jquery.tag.js' => 'static_script',
 					'imgnotes.css' => 'style_css',
 					'quick_edit.js' => 'static_script',
-					'comment.css' => 'style_css',
 					'pager.css' => 'style_css',
 					'view.js' => 'module_photo',
 					'photo.js' => 'module_photo',

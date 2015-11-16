@@ -71,8 +71,8 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 			->setHeader('cache', array(
 					'switch_legend.js' => 'static_script',
 					'switch_menu.js' => 'static_script',
-					'pager.css' => 'style_css',
-					'forum.css' => 'style_css'
+					// 'pager.css' => 'style_css',
+					// 'forum.css' => 'style_css'
 				)
 			);			
 		
@@ -221,12 +221,12 @@ class Forum_Component_Controller_Post extends Phpfox_Component
 			{	
 				$this->template()->setBreadcrumb($aForum['breadcrumb'])
 					->setBreadcrumb($aForum['name'], $this->url()->permalink('forum', $aForum['forum_id'], $aForum['name']))
-					->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('forum.editing_thread') . ': ' . $aThread['title'] : Phpfox::getPhrase('forum.post_new_thread')), $this->url()->makeUrl('forum.post.thread'), true);
+					->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('forum.editing_thread') . ': ' . $aThread['title'] : Phpfox::getPhrase('forum.post_new_thread')), $this->url()->makeUrl('forum.post.thread', array('edit' => $iEditId)), true);
 			}
 			else 
 			{
 				$this->template()					
-					->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('forum.editing_thread') . ': ' . $aThread['title'] : Phpfox::getPhrase('forum.post_new_thread')), $this->url()->makeUrl('forum.post.thread'), true);	
+					->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('forum.editing_thread') . ': ' . $aThread['title'] : Phpfox::getPhrase('forum.post_new_thread')), $this->url()->makeUrl('forum.post.thread', array('edit' => $iEditId)), true);	
 			}
 				
 			$this->template()->assign(array(

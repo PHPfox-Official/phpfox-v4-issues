@@ -118,9 +118,9 @@ $Behavior.termsAndPrivacy = function()
 					
 					<div class="table_clear">
 					{if isset($bIsPosted) || !Phpfox::getParam('user.multi_step_registration_form')}
-						<input type="submit" value="{phrase var='user.sign_up'}" class="button" id="js_registration_submit" />
+						<input type="submit" value="{phrase var='user.sign_up'}" class="button btn-sm btn-danger" id="js_registration_submit" />
 					{else}
-						<input type="button" value="{phrase var='user.sign_up'}" class="button" id="js_registration_submit" onclick="$Core.registration.submitForm();" />
+						<input type="button" value="{phrase var='user.sign_up'}" class="button btn-sm btn-danger" id="js_registration_submit" onclick="$Core.registration.submitForm();" />
 					{/if}
 					</div>
 				</form>

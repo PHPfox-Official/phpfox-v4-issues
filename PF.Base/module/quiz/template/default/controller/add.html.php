@@ -40,9 +40,9 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="table_right">
 				{if isset($aQuiz.title) && ( ($aQuiz.user_id == Phpfox::getUserId() && Phpfox::getUserParam('quiz.can_edit_own_title')) ||
 				($aQuiz.user_id != Phpfox::getUserId() && Phpfox::getUserParam('quiz.can_edit_others_title')))}
-				<input type="text" name="val[title]" value="{$aQuiz.title}" id="title" maxlength="150" size="40" />
+				<input class="form-control" type="text" name="val[title]" value="{$aQuiz.title}" id="title" maxlength="150" size="40" />
 				{else}
-				<input type="text" name="val[title]" value="{value type='input' id='title'}" id="title" maxlength="150" size="40" />
+				<input class="form-control" type="text" name="val[title]" value="{value type='input' id='title'}" id="title" maxlength="150" size="40" />
 				{/if}
 			</div>
 		</div>
@@ -52,10 +52,10 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 			<div class="table_right">
 				{if isset($aQuiz.description)}
-				<textarea cols="45" rows="6" name="val[description]" id="description" onkeyup="limitChars('description', 255, 'js_limit_info');">{$aQuiz.description}</textarea>
+				<textarea class="form-control" cols="45" rows="6" name="val[description]" id="description" onkeyup="limitChars('description', 255, 'js_limit_info');">{$aQuiz.description}</textarea>
 				<div id="js_limit_info" class="extra_info">{phrase var='quiz.255_character_limit'}</div>
 				{else}
-				<textarea cols="45" rows="6" name="val[description]" id="description" onkeyup="limitChars('description', 255, 'js_limit_info');">{value type='textarea' id='description'}</textarea>
+				<textarea class="form-control" cols="45" rows="6" name="val[description]" id="description" onkeyup="limitChars('description', 255, 'js_limit_info');">{value type='textarea' id='description'}</textarea>
 				<div id="js_limit_info" class="extra_info">{phrase var='quiz.255_character_limit'}</div>
 				{/if}
 			</div>

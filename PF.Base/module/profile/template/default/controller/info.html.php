@@ -11,5 +11,3 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-{module name='custom.display' type_id='user_main'}
-{* module name='custom.display' type_id='user_panel' template='info' *}

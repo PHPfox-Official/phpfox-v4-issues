@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 </div>
 <div class="user_tooltip_info">
 	{plugin call='user.template_block_tooltip_1'}
-	<div class="user_tooltip_info_user">{$aUser|user:'':'':30|split:20}</div>
+  <a href="{url link=$aUser.user_name}" class="user_tooltip_info_user">{$aUser.full_name|clean}</a>
 	{plugin call='user.template_block_tooltip_3'}
 
 	{if $bIsPage}

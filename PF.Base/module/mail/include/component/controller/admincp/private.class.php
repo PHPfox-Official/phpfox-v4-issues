@@ -165,7 +165,7 @@ class Mail_Component_Controller_Admincp_Private extends Phpfox_Component
 		
 		$this->template()->setTitle(Phpfox::getPhrase('mail.private_messages'))
 			->setHeader('cache', array(
-					'mail.css' => 'style_css'					
+					 'mail.css' => 'style_css'					
 				)
 			)			
 			->setBreadCrumb(Phpfox::getPhrase('mail.private_messages'))

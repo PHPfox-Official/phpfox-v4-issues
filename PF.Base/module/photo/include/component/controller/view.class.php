@@ -235,10 +235,9 @@ class Photo_Component_Controller_View extends Phpfox_Component
 						'jquery/plugin/jquery.highlightFade.js' => 'static_script',	
 						'jquery/plugin/jquery.scrollTo.js' => 'static_script',
 						'jquery/plugin/imgnotes/jquery.tag.js' => 'static_script',
-						'imgnotes.css' => 'style_css',
+						// 'imgnotes.css' => 'style_css',
 						'quick_edit.js' => 'static_script',
-						'comment.css' => 'style_css',
-						'pager.css' => 'style_css',
+						// 'pager.css' => 'style_css',
 						'view.js' => 'module_photo',
 						'photo.js' => 'module_photo',
 						'switch_legend.js' => 'static_script',
@@ -272,7 +271,7 @@ class Photo_Component_Controller_View extends Phpfox_Component
 				->setHeader(array(
 					'jquery/plugin/imgnotes/jquery.imgareaselect.js' => 'static_script',
 					'jquery/plugin/imgnotes/jquery.imgnotes.js' => 'static_script',
-					'imgareaselect-default.css' => 'style_css'
+					// 'imgareaselect-default.css' => 'style_css'
 				))
 				->setPhrase(array(
 						'photo.none_of_your_files_were_uploaded_please_make_sure_you_upload_either_a_jpg_gif_or_png_file',

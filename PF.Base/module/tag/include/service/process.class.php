@@ -39,6 +39,7 @@ class Tag_Service_Process extends Phpfox_Service
 		foreach ($aTags as $sTag)
 		{
 			$sTag = trim($sTag);
+			$sTag = mb_convert_case($sTag, MB_CASE_LOWER, "UTF-8");
 			
 			if (empty($sTag))
 			{

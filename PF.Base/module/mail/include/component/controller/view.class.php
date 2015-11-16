@@ -205,7 +205,7 @@ class Mail_Component_Controller_View extends Phpfox_Component
 			->setEditor()			
 			->setHeader('cache', array(
 					'mail.js' => 'module_mail',
-					'mail.css' => 'style_css'
+					// 'mail.css' => 'style_css'
 				)
 			)			
 			->assign(array(

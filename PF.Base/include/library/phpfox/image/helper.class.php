@@ -266,15 +266,28 @@ class Phpfox_Image_Helper
 					}
 
 					$parts = explode(' ', $name);
-					$first = '';
-					$last = '';
-						if (strlen($name) > 2) {
-							$first = $name[0];
-							$last = $name[1];
+          $name = trim($name);
+					$first = 'P';
+					$last = 'F';
+						if (strlen($name) >= 2) {
+              if (ctype_alnum($name[0])){
+                $first = $name[0];
+              }
+              if (ctype_alnum($name[1])){
+                $last = $name[1];
+              }
 							if (isset($parts[1])) {
-								$last = $parts[1][0];
+                $lastChar = trim($parts[1]);
+                if (!empty($lastChar)){
+                  $last = $lastChar[0];
+                }
 							}
-						}
+						} elseif(strlen($name) >= 1){
+              if (ctype_alnum($name[0])){
+                $first = $name[0];
+                $last = $name[0];
+              }
+            }
 
 						if (isset($aParams['max_width'])) {
 							$sImageSize = '_' . $aParams['max_width'];

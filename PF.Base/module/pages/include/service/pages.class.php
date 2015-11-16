@@ -160,18 +160,47 @@ class Pages_Service_Pages extends Phpfox_Service
 		return $this->_aWidgetBlocks;
 	}
 	
-	public function getForProfile($iUserId)
-	{		
-		$aPages = $this->database()->select('p.*, pu.vanity_url, ' . Phpfox::getUserField())
-			->from(Phpfox::getT('like'), 'l')			
-			->join(Phpfox::getT('pages'), 'p', 'p.page_id = l.item_id AND p.view_id = 0')
-			->join(Phpfox::getT('user'), 'u', 'u.profile_page_id = p.page_id')
-			->leftJoin(Phpfox::getT('pages_url'), 'pu', 'pu.page_id = p.page_id')
-			->where('l.type_id = \'pages\' AND l.user_id = ' . (int) $iUserId)
-			->group('p.page_id') // fixes displaying duplicate pages if there are duplicate likes
-			->order('l.time_stamp DESC')
-			->execute('getSlaveRows');		
+	public function getForProfile($iUserId, $iLimit = 0, $bNoCount = false)
+	{
+		if ($bNoCount == false)
+      	{
+            $iCnt = $this->database()->select('p.*, pu.vanity_url, ' . Phpfox::getUserField())
+				->from(Phpfox::getT('like'), 'l')			
+				->join(Phpfox::getT('pages'), 'p', 'p.page_id = l.item_id AND p.view_id = 0')
+				->join(Phpfox::getT('user'), 'u', 'u.profile_page_id = p.page_id')
+				->leftJoin(Phpfox::getT('pages_url'), 'pu', 'pu.page_id = p.page_id')
+				->where('l.type_id = \'pages\' AND l.user_id = ' . (int) $iUserId)
+				->group('p.page_id') // fixes displaying duplicate pages if there are duplicate likes
+				->order('l.time_stamp DESC')
+				->execute('getSlaveRows');
+            $iCnt = count($iCnt);
+            
+        }
 		
+		if ($iLimit) {
+			$aPages = $this->database()->select('p.*, pu.vanity_url, ' . Phpfox::getUserField())
+				->from(Phpfox::getT('like'), 'l')			
+				->join(Phpfox::getT('pages'), 'p', 'p.page_id = l.item_id AND p.view_id = 0')
+				->join(Phpfox::getT('user'), 'u', 'u.profile_page_id = p.page_id')
+				->leftJoin(Phpfox::getT('pages_url'), 'pu', 'pu.page_id = p.page_id')
+				->where('l.type_id = \'pages\' AND l.user_id = ' . (int) $iUserId)
+				->group('p.page_id') // fixes displaying duplicate pages if there are duplicate likes
+				->order('l.time_stamp DESC')
+				->limit($iLimit)
+				->execute('getSlaveRows');
+		}		
+		else {
+			$aPages = $this->database()->select('p.*, pu.vanity_url, ' . Phpfox::getUserField())
+				->from(Phpfox::getT('like'), 'l')			
+				->join(Phpfox::getT('pages'), 'p', 'p.page_id = l.item_id AND p.view_id = 0')
+				->join(Phpfox::getT('user'), 'u', 'u.profile_page_id = p.page_id')
+				->leftJoin(Phpfox::getT('pages_url'), 'pu', 'pu.page_id = p.page_id')
+				->where('l.type_id = \'pages\' AND l.user_id = ' . (int) $iUserId)
+				->group('p.page_id') // fixes displaying duplicate pages if there are duplicate likes
+				->order('l.time_stamp DESC')
+				->execute('getSlaveRows');
+		}		
+	
 		foreach ($aPages as $iKey => $aPage)
 		{
 			$aPages[$iKey]['is_app'] = false;
@@ -218,7 +247,7 @@ class Pages_Service_Pages extends Phpfox_Service
 			$aPages[$iKey]['url'] = $this->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']);
 		}
 		
-		return $aPages;
+		return array($iCnt, $aPages);
 	}
 	
 	public function getForView($mId)
@@ -534,7 +563,7 @@ class Pages_Service_Pages extends Phpfox_Service
 				Phpfox_Template::instance()->assign('aSubMenus', [
 					[
 						'url' => Phpfox::getService('pages')->getUrl($aPage['page_id'], $aPage['title'], $aPage['vanity_url']) . 'pending/',
-						'title' => Phpfox::getPhrase('pages.pending_memberships') . '<span class="pending">' . $iTotalPendingMembers . '</span>'
+						'title' => Phpfox::getPhrase('pages.pending_memberships') . '<span class="pending">&nbsp;(' . $iTotalPendingMembers . ')</span>'
 					]
 				]);
 			}

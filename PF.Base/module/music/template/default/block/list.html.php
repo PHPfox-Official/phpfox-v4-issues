@@ -12,7 +12,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 <div class="sub_section_menu">
-	<ul>
+	<ul class="action">
 	{foreach from=$aGenres item=aGenre}
 		<li {if $iCurrentGenre == $aGenre.genre_id} class="active"{/if}><a href="{$aGenre.link}" id="music_genre_{$aGenre.genre_id}">{$aGenre.name|convert|clean}</a></li>
 	{/foreach}

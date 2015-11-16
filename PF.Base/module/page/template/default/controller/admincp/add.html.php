@@ -12,7 +12,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {$sCreateJs}
-<form method="post" action="{url link='admincp.page.add'}" id="js_form_new_page">
+<form method="post" action="{url link='admincp.page.add'}" id="js_form_new_page" onsubmit="{$sGetJsForm}">
 	<div><input type="hidden" name="val[attachment]" id="js_attachment" value="{value type='input' id='attachment'}" /></div>
 	{if $bIsEdit}
 	<div><input type="hidden" name="page_id" value="{$aForms.page_id}" /></div>
@@ -176,7 +176,11 @@ defined('PHPFOX') or exit('NO DICE!');
 				type: 'POST',
 				data: t.serialize() + '&val[text]=' + encodeURIComponent($AceEditor.obj.getSession().getValue()) + '&core[ajax]=true',
 				success: function(e) {
-					window.location.href = e.redirect;
+          if (typeof e.error !== 'undefined'){
+            alert(e.error);
+          } else if (typeof e.redirect !== 'undefined'){
+            window.location.href = e.redirect;
+          }
 				}
 			});
 

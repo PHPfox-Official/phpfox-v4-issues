@@ -83,7 +83,7 @@ class Forum_Component_Controller_Index extends Phpfox_Component
 				)
 			)			
 			->setHeader('cache', array(					
-					'forum.css' => 'style_css',
+					// 'forum.css' => 'style_css',
 					'forum.js' => 'module_forum'
 				)
 			);

@@ -293,10 +293,9 @@ class Marketplace_Component_Controller_Index extends Phpfox_Component
 		$this->template()->setTitle(($bIsProfile ? Phpfox::getPhrase('marketplace.full_name_s_listings', array('full_name' => $aUser['full_name'])) : Phpfox::getPhrase('marketplace.marketplace')))
 			->setBreadcrumb(Phpfox::getPhrase('marketplace.marketplace'), ($bIsUserProfile ? $this->url()->makeUrl($aUser['user_name'], 'marketplace') : $this->url()->makeUrl('marketplace')))
 			->setHeader('cache', array(
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'country.js' => 'module_core',
 					'browse.css' => 'module_marketplace',
-					'comment.css' => 'style_css',
 					'feed.js' => 'module_feed'						
 				)
 			)

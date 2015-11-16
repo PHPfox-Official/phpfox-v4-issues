@@ -1249,6 +1249,8 @@ If this setting is set to false visitors will have to answer only one question, 
 		<phrase module_id="user" version_id="3.7.5" var_name="month_day" added="1392651040"><![CDATA[Month & Day]]></phrase>
 		<phrase module_id="user" version_id="3.7.5" var_name="show_age" added="1392651054">Show age only</phrase>
 		<phrase module_id="user" version_id="3.7.5" var_name="hide" added="1392651068">Hide</phrase>
+		<phrase module_id="user" version_id="4.0.10" var_name="recently_active" added="1445849785">Recently Active</phrase>
+		<phrase module_id="user" version_id="4.0.10" var_name="recommended_users" added="1445849885">Recommended Users</phrase>
 	</phrases>
 	<user_group_settings>
 		<setting is_admin_setting="0" module_id="user" type="boolean" admin="1" user="0" guest="0" staff="0" module="user" ordering="0">can_add_user_group_setting</setting>

@@ -107,9 +107,8 @@ class Quiz_Component_Controller_View extends Phpfox_Component
 			{
 				$this->template()->assign(array('bShowInputComment' => true))
 					->setHeader(array(
-						'comment.css' => 'style_css',
 						'jquery/plugin/jquery.scrollTo.js' => 'static_script',
-						'pager.css' => 'style_css'
+						// 'pager.css' => 'style_css'
 					)
 				);
 				if (Phpfox::getUserId())
@@ -147,9 +146,8 @@ class Quiz_Component_Controller_View extends Phpfox_Component
 			{
 				$this->template()->assign(array('bShowInputComment' => true))
 					->setHeader(array(
-						'comment.css' => 'style_css',
 						'jquery/plugin/jquery.scrollTo.js' => 'static_script',
-						'pager.css' => 'style_css'
+						// 'pager.css' => 'style_css'
 					)
 				);
 				if (Phpfox::getUserId())

@@ -17,11 +17,6 @@
 		<setting group="" module_id="pages" is_hidden="0" type="boolean" var_name="show_page_admins" phrase_var_name="setting_show_page_admins" ordering="1" version_id="3.4.0beta1">0</setting>
 	</settings>
 	<blocks>
-		<block type_id="0" m_connection="pages.view" module_id="pages" component="photo" location="1" is_active="0" ordering="1" disallow_access="" can_move="1">
-			<title><![CDATA[Pages Photo &amp; Menu]]></title>
-			<source_code />
-			<source_parsed />
-		</block>
 		<block type_id="0" m_connection="pages.view" module_id="pages" component="like" location="1" is_active="1" ordering="3" disallow_access="" can_move="1">
 			<title>Pages Likes/Members</title>
 			<source_code />
@@ -44,11 +39,6 @@
 		</block>
 		<block type_id="0" m_connection="pages.view" module_id="pages" component="admin" location="3" is_active="0" ordering="6" disallow_access="" can_move="1">
 			<title>Page Admins</title>
-			<source_code />
-			<source_parsed />
-		</block>
-		<block type_id="0" m_connection="pages.view" module_id="pages" component="photo" location="12" is_active="0" ordering="11" disallow_access="" can_move="0">
-			<title></title>
 			<source_code />
 			<source_parsed />
 		</block>
@@ -315,7 +305,7 @@ To see the comment thread, follow the link below:
 		<phrase module_id="pages" version_id="3.0.0" var_name="your_page_has_been_approved" added="1322731734"><![CDATA[Your page "{title}" has been approved.]]></phrase>
 		<phrase module_id="pages" version_id="3.0.0" var_name="please_select_a_category" added="1323164314">Please select a category.</phrase>
 		<phrase module_id="pages" version_id="3.0.0" var_name="account" added="1323185644">Account</phrase>
-		<phrase module_id="pages" version_id="3.0.0" var_name="full_name_liked_a_comment_you_made_on_the_page_title" added="1323186791"><![CDATA[{full_name} liked a comment you made on the page "{title"}]]></phrase>
+		<phrase module_id="pages" version_id="3.0.0" var_name="full_name_liked_a_comment_you_made_on_the_page_title" added="1323186791"><![CDATA[{full_name} liked a comment you made on the page "{title}"]]></phrase>
 		<phrase module_id="pages" version_id="3.0.0" var_name="full_name_liked_a_comment_you_made_on_the_page_title_to_view_the_comment_thread_follow_the_link_below_a_href_link_link_a" added="1323186876"><![CDATA[{full_name} liked a comment you made on the page "{title}".
 To view the comment thread follow the link below:
 <a href="{link}">{link}</a>]]></phrase>

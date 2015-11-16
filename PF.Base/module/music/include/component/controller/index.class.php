@@ -181,8 +181,7 @@ class Music_Component_Controller_Index extends Phpfox_Component
 		if ($sPlugin = Phpfox_Plugin::get('music.component_controller_music_index')){ eval($sPlugin); }
 		
 		$this->template()->setHeader('cache', array(
-					'pager.css' => 'style_css',
-					'comment.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'feed.js' => 'module_feed',
 					'browse.css' => 'module_music'
 				)

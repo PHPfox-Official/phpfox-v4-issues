@@ -121,8 +121,8 @@ class Pages_Component_Controller_View extends Phpfox_Component
 				)
 			)
 			->setHeader('cache', array(				
-				'profile.css' => 'style_css',
-				'pages.css' => 'style_css',
+				// 'profile.css' => 'style_css',
+				// 'pages.css' => 'style_css',
 				'pages.js' => 'module_pages'
 			)
 		);
@@ -225,8 +225,7 @@ class Pages_Component_Controller_View extends Phpfox_Component
 						'jquery/plugin/jquery.highlightFade.js' => 'static_script',	
 						'jquery/plugin/jquery.scrollTo.js' => 'static_script',
 						'quick_edit.js' => 'static_script',
-						'comment.css' => 'style_css',
-						'pager.css' => 'style_css',
+						// 'pager.css' => 'style_css',
 						'index.css' => 'module_pages',
 						'feed.js' => 'module_feed'						
 					)

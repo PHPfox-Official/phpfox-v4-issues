@@ -18,13 +18,13 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="email">{phrase var='user.email'}</label>:
 			</div>
 			<div class="table_right">
-				<input type="text" name="email" id="email" value="" size="40" />
+				<input class="form-control" type="text" name="email" id="email" value="" size="40" />
 			</div>
 			<div class="clear"></div>
 		</div>
 		{if Phpfox::isModule('captcha')}{module name='captcha.form' sType='lostpassword'}{/if}
 		<div class="table_clear">
-			<input type="submit" value="{phrase var='user.request_new_password'}" class="button" />
+			<input type="submit" value="{phrase var='user.request_new_password'}" class="button btn-danger" />
 		</div>	
 	</form>
 </div>

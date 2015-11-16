@@ -215,6 +215,7 @@ To see the comment thread, follow the link below:
 		<phrase module_id="custom" version_id="3.0.0beta5" var_name="users_commented_on_span_class_drop_data_user_full_name_s_span_relationship_status_title" added="1319543843"><![CDATA[{users} commented on <span class="drop_data_user">{full_name}'s</span> relationship status "{title}"]]></phrase>
 		<phrase module_id="custom" version_id="3.0.0beta5" var_name="users_liked_gender_own_relationship_status_title" added="1319543942"><![CDATA[{users} liked {gender} own relationship status "{title}"]]></phrase>
 		<phrase module_id="custom" version_id="3.0.0beta5" var_name="users_liked_your_relationship_status_title" added="1319543985"><![CDATA[{users} liked your relationship status "{title}"]]></phrase>
+		<phrase module_id="custom" version_id="4.0.10" var_name="users_commented_your_relationship_status" added="1446783689"><![CDATA[{users} commented your relationship status]]></phrase>
 		<phrase module_id="custom" version_id="3.0.0beta5" var_name="users_liked_span_class_drop_data_user_full_name_s_span_relationship_status_title" added="1319544025"><![CDATA[{users} liked <span class="drop_data_user">{full_name}'s</span> relationship status "{title}"]]></phrase>
 		<phrase module_id="custom" version_id="3.0.0beta5" var_name="import_custom_fields" added="1319544058">Import Custom Fields</phrase>
 		<phrase module_id="custom" version_id="3.0.0beta5" var_name="invalid_callback_on_comment" added="1319544079">Invalid callback on comment.</phrase>
@@ -265,6 +266,7 @@ To see the comment thread, follow the link below:
 		<phrase module_id="custom" version_id="3.0.0rc2" var_name="status_deleted" added="1321350243">Status deleted</phrase>
 		<phrase module_id="custom" version_id="3.0.0rc2" var_name="not_found" added="1321350256">Not found</phrase>
 		<phrase module_id="custom" version_id="3.1.0beta1" var_name="relationship_status_confirmation" added="1331647154">Relationship Status Confirmation</phrase>
+		<phrase module_id="custom" version_id="4.0.10" var_name="users_liked_your_relationship_status" added="1444722150"><![CDATA[{users} liked your relationship status]]></phrase>
 		<phrase module_id="custom" version_id="3.1.0beta1" var_name="full_name_wants_to_list_you_both_as_phrase_var_name" added="1331647215"><![CDATA[{full_name} wants to list you both as "{phrase_var_name}"
 This view all your relationship requests follow the link below:
 <a href="{link}">{link}</a>]]></phrase>

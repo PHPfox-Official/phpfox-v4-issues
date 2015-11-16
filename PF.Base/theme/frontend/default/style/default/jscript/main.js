@@ -253,7 +253,8 @@ $Behavior.globalThemeInit = function()
 	*/		
    // $('#header_sub_menu_search_input').before('<div id="header_sub_menu_search_input_value" style="display:none;">' + $('#header_sub_menu_search_input').val() + '</div>');
 
-	$('#header_sub_menu_search_input').focus(function() {
+	$('#header_sub_menu_search_input, #header_sub_menu_search_input_xs').focus(function() {
+
 		$(this).parents('form:first').addClass('active');
 		$(this).parent().find('#header_sub_menu_search_input').addClass('focus');
 		// if ($(this).val() == $('#header_sub_menu_search_input_value').html()){
@@ -280,6 +281,9 @@ $Behavior.globalThemeInit = function()
 	if ((isset(oModules['friend']) ))
 	{
 		$('#header_sub_menu_search_input').keyup(function(){
+			$Core.searchFriendsInput.getFriends(this);
+		});
+    $('#header_sub_menu_search_input_xs').keyup(function(){
 			$Core.searchFriendsInput.getFriends(this);
 		});
 	}	
@@ -340,7 +344,7 @@ $Behavior.globalThemeInit = function()
 	
 	$('.item_bar_action').click(function()
 	{
-		$(this).parent().find('ul:first').toggle();
+		$(this).parent().find('ul:first').addClass('dropdown-menu').toggle();
 		$(this).blur();
 		if ($(this).hasClass('item_bar_action_clicked'))
 		{
@@ -355,9 +359,13 @@ $Behavior.globalThemeInit = function()
 	});
 	
 	$('.row_edit_bar_action').click(function()
-	{		
-		$(this).parents('.row_edit_bar_parent:first').find('.row_edit_bar_holder:first').toggle();
+	{
+		var _parent  = $(this).parents('.row_edit_bar_parent:first');
+			$('.row_edit_bar_holder:first', _parent).addClass('open').toggle();
+			$('.row_edit_bar_holder:first ul', _parent).addClass('dropdown-menu dropdown-menu-right');
+
 		$(this).blur();
+
 		if ($(this).hasClass('row_edit_bar_action_clicked'))
 		{
 			$(this).removeClass('row_edit_bar_action_clicked');

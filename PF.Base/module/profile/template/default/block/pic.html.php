@@ -92,12 +92,12 @@ defined('PHPFOX') or exit('NO DICE!');
 </div>
 <div class="profiles_menu set_to_fixed" data-class="profile_menu_is_fixed">
 	<ul>
-		<li><a href="{url link=$aUser.user_name}">Profile</a></li>
-		<li><a href="{url link=''$aUser.user_name'.info'}">Info</a></li>
-		<li><a href="{url link=''$aUser.user_name'.friend'}">Friends{if $aUser.total_friend > 0}<span>{$aUser.total_friend}</span>{/if}</a></li>
+		<li><a href="{url link=$aUser.user_name}">{phrase var='profile.profile'}</a></li>
+		<li><a href="{url link=''$aUser.user_name'.info'}">{phrase var='profile.info'}</a></li>
+		<li><a href="{url link=''$aUser.user_name'.friend'}">{phrase var='profile.friends'}{if $aUser.total_friend > 0}<span>{$aUser.total_friend}</span>{/if}</a></li>
 		{if $aProfileLinks}
 		<li>
-			<a href="#" class="explore"><i class="fa fa-ellipsis-h"></i></a>
+			<a href="javascript:void(0)" class="explore"><i class="fa fa-ellipsis-h"></i></a>
 			<ul>
 				{foreach from=$aProfileLinks item=aProfileLink}
 					<li class="{if isset($aProfileLink.is_selected)} active{/if}">
@@ -116,16 +116,16 @@ defined('PHPFOX') or exit('NO DICE!');
 			<li>
 				<a href="#" onclick="return false;">
 					<i class="fa fa-cog"></i>
-					<span>Manage</span>
+					<span>{phrase var='profile.manage'}</span>
 				</a>
 				<ul>
 					{if Phpfox::getUserParam('profile.can_change_cover_photo')}
 					<li>
 						<a href="#" id="js_change_cover_photo" onclick="$Core.box('profile.logo', 500); return false;">
-							{if empty($aUser.cover_photo)}{phrase var='user.add_a_cover'}{else}Change Cover Photo{/if}
+							{if empty($aUser.cover_photo)}{phrase var='user.add_a_cover'}{else}{phrase var='profile.change_cover_photo'}{/if}
 						</a>
 						{if !empty($aUser.cover_photo)}
-						<li><a href="#" onclick="$('#cover_section_menu_drop').hide(); $.ajaxCall('user.removeLogo'); return false;">Remove Cover Photo</a></li>
+						<li><a href="#" onclick="$('#cover_section_menu_drop').hide(); $.ajaxCall('user.removeLogo'); return false;">{phrase var='profile.remove_cover_photo'}</a></li>
 						{/if}
 					</li>
 					{/if}

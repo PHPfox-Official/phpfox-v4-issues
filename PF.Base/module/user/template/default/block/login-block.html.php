@@ -27,7 +27,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	
 	<div class="table_clear">
-		{*<input type="submit" value="{phrase var='user.login_button'}" class="button" />*}
+		{*<input type="submit" value="{phrase var='user.login_button'}" class="button btn-sm btn-danger" />*}
 		<div class="user_rem_me">
 			<label><input type="checkbox" name="val[remember_me]" value="" class="checkbox" /> {phrase var='user.remember'}</label>
 		</div>

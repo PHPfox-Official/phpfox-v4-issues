@@ -16,6 +16,10 @@
 		letter-spacing:2px;
 		font-weight:300;
 	}
+	
+  &._size__200, &._size__120 {
+    max-width: 100%;
+  }
 }
 
 ._size__50, ._size__50:hover {
@@ -57,6 +61,14 @@
 		top:46px;
 		font-size:30px;
 	}
+    @media  (max-width: 700px) {
+      width: 100px;
+      height: 100px;
+      > span {
+        top: 38px;
+        font-size: 20px;
+      }
+    }
 }
 
 .no_image_item_cover::before {

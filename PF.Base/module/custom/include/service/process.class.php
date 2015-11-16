@@ -254,7 +254,6 @@ class Custom_Service_Process extends Phpfox_Service
 			'is_block' => '1',
 			'is_active' => '1'
 		));
-		
 		$sBlockTitle = array_values(array_pop($aVals['name']));
 		$sBlockTitle = array_pop($sBlockTitle);
 		// in order to display the field in profile.info we need to add a component 
@@ -266,7 +265,7 @@ class Custom_Service_Process extends Phpfox_Service
 			'product_id' => Phpfox::getLib('parse.input')->clean($aVals['product_id']),
 			'component' => 'cf_' . $sFieldName,
 			'location' => '2',
-			'is_active' => '1',
+			'is_active' => 1,
 			'ordering' => '10',
 			'disallow_access' => null,
 			'can_move' => '1',

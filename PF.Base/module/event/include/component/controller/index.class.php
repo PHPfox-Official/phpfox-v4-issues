@@ -265,9 +265,8 @@ class Event_Component_Controller_Index extends Phpfox_Component
 		
 		$this->template()->setTitle(($bIsUserProfile ? Phpfox::getPhrase('event.full_name_s_events', array('full_name' => $aUser['full_name'])) : Phpfox::getPhrase('event.events')))->setBreadcrumb(Phpfox::getPhrase('event.events'), ($aCallback !== false ? $this->url()->makeUrl($aCallback['url_home'][0], array_merge($aCallback['url_home'][1], array('event'))) : ($bIsUserProfile ? $this->url()->makeUrl($aUser['user_name'], 'event') : $this->url()->makeUrl('event'))))
 			->setHeader('cache', array(
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'country.js' => 'module_core',
-					'comment.css' => 'style_css',
 					'browse.css' => 'module_event',
 					'feed.js' => 'module_feed'				
 				)

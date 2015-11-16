@@ -307,7 +307,7 @@ class Marketplace_Service_Category_Category extends Phpfox_Service
 			else 
 			{
 				$this->_sOutput .= '<div class="js_mp_parent_holder" id="js_mp_holder_' . $iParentId . '" ' . ($iParentId > 0 ? ' style="display:none; padding:5px 0px 0px 0px;"' : '') . '>';
-				$this->_sOutput .= '<select name="val[category][]" class="js_mp_category_list" id="js_mp_id_' . $iParentId . '">' . "\n";
+				$this->_sOutput .= '<div class="form-inline"><select class="form-control" name="val[category][]" class="js_mp_category_list" id="js_mp_id_' . $iParentId . '">' . "\n";
 				$this->_sOutput .= '<option value="">' . ($iParentId === 0 ? Phpfox::getPhrase('marketplace.select') : Phpfox::getPhrase('marketplace.select_a_sub_category')) . ':</option>' . "\n";
 			}
 			
@@ -342,7 +342,7 @@ class Marketplace_Service_Category_Category extends Phpfox_Service
 			}
 			else 
 			{			
-				$this->_sOutput .= '</select>' . "\n";
+				$this->_sOutput .= '</select></div>' . "\n";
 				$this->_sOutput .= '</div>';
 				
 				foreach ($aCache as $iCateoryId)

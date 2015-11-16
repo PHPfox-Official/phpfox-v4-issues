@@ -23,7 +23,7 @@ class Search_Component_Controller_Index extends Phpfox_Component
 		Phpfox::getUserParam('search.can_use_global_search', true);
 		
 		$this->template()->setHeader(array(
-					'search.css' => 'style_css'
+					// 'search.css' => 'style_css'
 				)
 			)
 			->setTitle(Phpfox::getPhrase('search.results'))

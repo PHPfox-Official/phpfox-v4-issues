@@ -39,7 +39,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table">
 			<div class="table_left"></div>
 			<div class="table_right">			
-				<input type="button" value="{phrase var='core.submit'}" class="button" onclick="if ( ($('#js_report').val() != '' || $('#feedback').val() != '' ) && confirm('{phrase var='core.are_you_sure' phpfox_squote=true}')) {left_curly} $.ajaxCall('report.insert', 'id={$iItemId}&amp;type={$sType}&amp;report=' + $('#js_report').val() + '&feedback='+$('#feedback').val()); tb_remove(); {right_curly}" />
+				<input type="button" value="{phrase var='core.submit'}" class="button" onclick="if ( ($('#js_report').val() != '' || $('#feedback').val() != '' ) && confirm('{phrase var='core.are_you_sure' phpfox_squote=true}')) {left_curly} $.ajaxCall('report.insert', 'id={$iItemId}&amp;type={$sType}&amp;report=' + $('#js_report').val() + '&feedback='+$('#feedback').val()); {right_curly}" />
 			</div>
 		</div>
 			

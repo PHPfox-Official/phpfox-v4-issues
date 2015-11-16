@@ -30,12 +30,25 @@
 	</div>
 
 </div>
-
-<script type="text/javascript">$Behavior.tagPhoto = function() {l} $Core.photo_tag.init({l}{$sPhotoJsContent}{r}); {r};
+<script type="text/javascript">
+	$Behavior.tagPhoto = function() {l} $Core.photo_tag.init({l}{$sPhotoJsContent}{r}); {r};
 	$Behavior.removeTagBox = function()
 	{l}
 	{literal}
 	if ($('#noteform').length > 0)$('#noteform').hide(); if ($('#js_photo_view_image').length > 0 && typeof $('#js_photo_view_image').imgAreaSelect == 'function')$('#js_photo_view_image').imgAreaSelect({ hide: true });
+	{/literal}
+	{r};
+	
+	
+	$Behavior.removeImgareaselectBox = function()
+	{l}
+	{literal}
+	if ($('body#page_photo_view').length == 0) {
+		$('.imgareaselect-outer').remove();
+		$('.imgareaselect-selection').each(function() {
+		   $(this).parent().remove();
+		});
+	}
 	{/literal}
 	{r};
 </script>

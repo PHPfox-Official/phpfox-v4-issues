@@ -12,50 +12,35 @@ defined('PHPFOX') or exit('NO DICE!');
 
 ?>
 {if count($aSettings)}
-{*
-<div class="p_4 t_right">
-{phrase var='admincp.quick_jump'}:
-<select name="jump" class="goJump">
-		<option value="">Select</option>
-		<optgroup label="{phrase var='admincp.global_settings'}">
-			{foreach from=$aGroups item=aGroup}
-				<option value="{url link="admincp.setting.edit" group-id=""$aGroup.group_id""}"{if $sSettingTitle == $aGroup.var_name} selected="selected"{/if}>{$aGroup.var_name}</option>
-			{/foreach}
-		</optgroup>
-		<optgroup label="{phrase var='admincp.module_settings'}">
-			{foreach from=$aModules item=aModule}
-				<option value="{url link="admincp.setting.edit" module-id=""$aModule.module_id""}"{if $sSettingTitle == $aModule.module_id} selected="selected"{/if}>{$aModule.module_id}</option>
-			{/foreach}
-		</optgroup>		
-		{if count($aProductGroups)}		
-		<optgroup label="{phrase var='admincp.product_settings'}">
-			{foreach from=$aProductGroups item=aProductGroup}
-				<option value="{url link="admincp.setting.edit" product-id=""$aProductGroup.product_id""}"{if strtolower($sSettingTitle) == $aProductGroup.product_id} selected="selected"{/if}>{$aProductGroup.var_name}</option>
-			{/foreach}
-		</optgroup>		
-		{/if}	
-</select>
-</div>
-*}
 
-{literal}
 <script type="text/javascript">
-<!--
 function addInput(oObj, sVarName)
-{
-{/literal}
+{l}
 	var sValue = $(oObj).parents('.js_array_holder:first').find('.js_add_to_array').val();
 	var iCnt = (parseInt($(oObj).parents('.js_array_holder:first').find('#js_array_count').html()) + 1);
 	$(oObj).parents('.js_array_holder:first').find('.js_array_data').append('<div class="p_4" id="js_array' + iCnt + '"><input type="text" name="val[value][' + sVarName + '][]" value="' + sValue + '" size="30" /> - <a href="#" onclick="$(this).parent().remove(); return false;">{phrase var='admincp.remove' phpfox_squote=true}</a></div>');
 	$(oObj).parents('.js_array_holder:first').find('.js_array_count').html(iCnt);
 	$(oObj).parents('.js_array_holder:first').find('.js_add_to_array').val('').focus();
-	
-	return false;
-{literal}
-}
--->
-</script>
+  {literal}
+  var t = $(oObj).parents('form:first');
+  if (t.attr('action') == '#') {
+    $(oObj).parents('form:first').trigger('submit');
+  }
+  else {
+    $Core.processing();
+    $.ajax({
+      url: t.attr('action'),
+      type: 'POST',
+      data: t.serialize(),
+      success: function(e) {
+        $('.ajax_processing').fadeOut();
+      }
+    });
+  }
 {/literal}
+	return false;
+{r}
+</script>
 <form method="post" action="{url link='current'}" enctype="multipart/form-data" class="on_change_submit">
 {foreach from=$aSettings item=aSetting}
 <div id="{$aSetting.var_name}"></div>

@@ -22,16 +22,16 @@ class Pages_Component_Block_Profile extends Phpfox_Component
 	{
 		$aUser = $this->getParam('aUser');
 		
-		$aPages = Phpfox::getService('pages')->getForProfile($aUser['user_id']);
+		list($iTotal, $aPages) = Phpfox::getService('pages')->getForProfile($aUser['user_id'], 10);
 		
-		if (!count($aPages))
+		if (!$iTotal)
 		{
 			return false;
 		}
 		
 		$this->template()->assign(array(
-				'sHeader' => Phpfox::getPhrase('pages.pages'),
-				'aPagesList' => $aPages
+				'sHeader' => '<a href="javascript:void(0)">' . Phpfox::getPhrase('pages.pages') . '<span>' . $iTotal . '</span></a>',
+				'aPagesList' => $aPages,
 			)
 		);
 		

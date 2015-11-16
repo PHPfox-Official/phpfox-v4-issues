@@ -180,6 +180,7 @@ Advised size is max 16 pixels (Width & Height).]]></phrase>
 		<phrase module_id="language" version_id="2.0.8" var_name="phrases_updated_successfully" added="1298383306">Phrases updated successfully</phrase>
 		<phrase module_id="language" version_id="3.1.0beta1" var_name="setting_auto_detect_language_on_ip" added="1330012352"><![CDATA[<title>Auto Detect Language Package</title><info>Enable this feature to auto detect a language package based on the users IP when they first visit the site. In order to use this option you must have an API key for the setting <b>"<a href="{url link='admincp/setting/edit/group-id_ip_infodb'}">IP InfoDB API Key</a>"</b>.</info>]]></phrase>
 		<phrase module_id="language" version_id="3.1.0beta1" var_name="view_more_search_options" added="1331655642">View More Search Options</phrase>
+		<phrase module_id="language" version_id="4.0.10" var_name="new_phrase" added="1446451568">New phrase</phrase>
 		<phrase module_id="language" version_id="3.7.0beta2" var_name="setting_no_string_restriction" added="1376910146"><![CDATA[<title>No String Restriction</title><info>Enable this option if your site is using characters other then alphanumeric.</info>]]></phrase>
 	</phrases>
 	<user_group_settings>

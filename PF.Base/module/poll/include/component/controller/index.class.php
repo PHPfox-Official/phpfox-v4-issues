@@ -193,9 +193,8 @@ class Poll_Component_Controller_Index extends Phpfox_Component
 			->setMeta('description', Phpfox::getParam('poll.poll_meta_description'))
 			->setMeta('keywords', Phpfox::getParam('poll.poll_meta_keywords'))
 			->setHeader('cache', array(
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'poll.css' => 'module_poll',
-					'comment.css' => 'style_css'
 				)
 			)
 			->assign(array(

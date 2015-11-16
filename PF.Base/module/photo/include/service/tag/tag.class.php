@@ -68,7 +68,7 @@ class Photo_Service_Tag_Tag extends Phpfox_Service
 			$sNotes .= 'width: ' . $aTag['width'] . ', ';
 			$sNotes .= 'height: ' . $aTag['height'] . ', ';
 
-			$sRemove = (($aTag['post_user_id'] == Phpfox::getUserId() || $aTag['photo_owner_id'] == Phpfox::getUserId() || $aTag['user_id'] == Phpfox::getUserId()) ? ' <a href="#" onclick="if (confirm(\\\'' . Phpfox::getPhrase('photo.are_you_sure') . '\\\')) { $(\\\'#noteform\\\').hide(); $(\\\'#js_photo_view_image\\\').imgAreaSelect({ hide: true }); $(this).parent(\\\'span:first\\\').remove(); $.ajaxCall(\\\'photo.removePhotoTag\\\', \\\'tag_id=' . $aTag['tag_id'] . '\\\'); } return false;"><i class="fa fa-remove"></i></a>' : '');
+			$sRemove = (($aTag['post_user_id'] == Phpfox::getUserId() || $aTag['photo_owner_id'] == Phpfox::getUserId() || $aTag['user_id'] == Phpfox::getUserId()) ? ' <a href="#" onclick="if (confirm(\\\'' . Phpfox::getPhrase('photo.are_you_sure') . '\\\')) { $(\\\'#noteform\\\').hide(); $(\\\'#js_photo_view_image\\\').imgAreaSelect({ hide: true }); $(this).parent(\\\'span:first\\\').remove();$(\\\'.notep#notep_'. $aTag['tag_id'] . '\\\').remove();$.ajaxCall(\\\'photo.removePhotoTag\\\', \\\'tag_id=' . $aTag['tag_id'] . '\\\'); } return false;"><i class="fa fa-remove"></i></a>' : '');
 			
 			if (!empty($aTag['user_id']))
 			{

@@ -27,7 +27,9 @@ defined('PHPFOX') or exit('NO DICE!');
 				{if ($bIsProcess && ($iImageWidth <= 75 || $iImageHeight <= 75))}
 					{$sProfileImage}
 					<div class="extra_info">
+            <span id="no_crop_user_avatar" data-id="1">
 						{phrase var='user.the_image_you_uploaded_is_rather_small_so_we_are_unable_to_crop_it_however_you_can_still_save_this_image_if_you_want_to_use_it'}
+            </span>
 					</div>	
 					<form method="post" action="#" onsubmit="return $Core.photo_crop.save(this);">
 						{plugin call='user.template_controller_photo_3'}

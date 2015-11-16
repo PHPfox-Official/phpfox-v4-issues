@@ -121,7 +121,7 @@ class Mail_Component_Controller_Thread extends Phpfox_Component
 			->setTitle(Phpfox::getPhrase('mail.mail'))			
 			->setHeader('cache', array(
 					'mail.js' => 'module_mail',
-					'mail.css' => 'style_css',
+					// 'mail.css' => 'style_css',
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script'
 				)
 			)					

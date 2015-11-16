@@ -32,6 +32,15 @@ class Functions {
 				case 'menu':
 					\Phpfox::getBlock('core.template-menu');
 					break;
+				case 'sticky_bar':
+					\Phpfox::getBlock('core.template-notification');
+					break;
+				case 'menu_sub':
+					\Phpfox::getBlock('core.template-menusub');
+					break;
+				case 'breadcrumb_menu':
+					\Phpfox::getBlock('core.template-breadcrumbmenu');
+					break;
 				case 'nav':
 					\Phpfox::getBlock('feed.form2', ['menu' => true]);
 					\Phpfox::getBlock('core.template-notification');
@@ -63,17 +72,62 @@ class Functions {
 					if (!PHPFOX_IS_AJAX_PAGE) {
 						echo '</div>';
 					}
-
 					if (PHPFOX_IS_AJAX_PAGE) {
 						$content = ob_get_contents(); ob_clean();
 						return $content;
 					}
+					break;
+				case 'location_1':
+					$this->_loadBlocks(1);
+					break;
+				case 'location_2':
+					$this->_loadBlocks(2);
+					break;
+				case 'location_3':
+					$this->_loadBlocks(3);
+					break;
+				case 'location_4':
+					$this->_loadBlocks(4);
+					break;
+				case 'location_5':
+					$this->_loadBlocks(5);
+					break;
+				case 'location_6':
+					$this->_loadBlocks(6);
+					break;
+				case 'location_7':
+					$this->_loadBlocks(7);
+					break;
+				case 'location_8':
+					$this->_loadBlocks(8);
+					break;
+				case 'location_9':
+					$this->_loadBlocks(9);
+					break;
+				case 'location_10':
+					$this->_loadBlocks(10);
+					break;
+				case 'location_11':
+					$this->_loadBlocks(11);
+					break;
+				case 'location_12':
+					$this->_loadBlocks(12);
+					break;
+				case 'main_top':
+					if (!PHPFOX_IS_AJAX_PAGE) {
+						echo '<div class="_block_top">';
+					}
+					$Template->getLayout('search');
+					if (!PHPFOX_IS_AJAX_PAGE) {
+						echo '</div>';
+					}
 
+					$this->_loadBlocks(7);
 					break;
 				case 'top':
 					$this->_loadBlocks(11);
 					if (!PHPFOX_IS_AJAX_PAGE) {
-						echo '<div class="_block_' . $this->_method . '">';
+						echo '<div class="_block_top">';
 					}
 					$Template->getLayout('search');
 					if (!PHPFOX_IS_AJAX_PAGE) {
@@ -121,12 +175,6 @@ class Functions {
 			}
 
 		} catch (\Exception $e) {
-			// throw new \Exception($e->getMessage(), $e->getCode(), $e);
-			/*
-			ob_clean();
-			echo $e->getMessage();
-			exit;
-			*/
 			register_shutdown_function(function() use($e) {
 				ob_clean();
 				throw new \Exception($e->getMessage(), $e->getCode(), $e);
@@ -142,7 +190,7 @@ class Functions {
 			return;
 		}
 
-		echo '<div class="_block" data-location="' . $location . '">';
+		echo '<div class="_block location_'.$location.'" data-location="' . $location . '">';
 		if ($location == 3) {
 			echo \Phpfox_Template::instance()->getSubMenu();
 		}
@@ -150,7 +198,6 @@ class Functions {
 
 		foreach ($blocks as $block) {
 			if (!is_string($block)) {
-
 				$obj = null;
 				if (isset($block['object']) && isset($block['callback'])) {
 					$obj = $block['object'];

@@ -61,7 +61,7 @@ class Core_Component_Controller_Index_Member extends Phpfox_Component
 							)
 						)
 						->setHeader('cache', array(
-								'style.css' => 'style_css',
+								// 'style.css' => 'style_css',
 								'video.css' => 'module_video',
 								'design.js' => 'module_theme',
 								'select.js' => 'module_theme'
@@ -114,9 +114,8 @@ class Core_Component_Controller_Index_Member extends Phpfox_Component
 		
 		$this->template()->setHeader('cache', array(
 					'feed.js' => 'module_feed',
-					'welcome.css' => 'style_css',
-					'announcement.css' => 'style_css',
-					'comment.css' => 'style_css',
+					// 'welcome.css' => 'style_css',
+					// 'announcement.css' => 'style_css',
 					'quick_edit.js' => 'static_script',
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script'

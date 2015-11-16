@@ -42,7 +42,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{required}{phrase var='music.song_name'}:
 		</div>
 		<div class="table_right">
-			<input type="text" name="val[title]" value="{value type='input' id='title'}" size="30" id="title" />
+			<input class="form-control" type="text" name="val[title]" value="{value type='input' id='title'}" size="30" id="title" />
 		</div>
 	</div>
 
@@ -57,9 +57,9 @@ defined('PHPFOX') or exit('NO DICE!');
 				{phrase var='music.album_name'}:
 				{/if}
 			</div>
-			<div class="table_right">
+			<div class="table_right form-inline">
 				{if isset($aUploadAlbums) && count($aUploadAlbums)}
-				<select name="val[album_id]" id="music_album_id_select" onchange="if (empty(this.value)) {l} $('#js_song_privacy_holder').slideDown(); {r} else {l} $('#js_song_privacy_holder').slideUp(); {r}">
+				<select class="form-control" name="val[album_id]" id="music_album_id_select" onchange="if (empty(this.value)) {l} $('#js_song_privacy_holder').slideDown(); {r} else {l} $('#js_song_privacy_holder').slideUp(); {r}">
 					<option value="">{phrase var='music.select'}:</option>
 					{foreach from=$aUploadAlbums item=aAlbum}
 					<option value="{$aAlbum.album_id}"{value type='select' id='album_id' default=$aAlbum.album_id}>{$aAlbum.name|clean}</option>
@@ -67,10 +67,10 @@ defined('PHPFOX') or exit('NO DICE!');
 				</select>
 				<div class="extra_info_link"><a href="#" onclick="$('#js_create_new_music_album').show(); $('#js_create_new_music_album input').focus(); return false;">{phrase var='music.or_create_a_new_album'}</a></div>
 				<div id="js_create_new_music_album" class="p_top_8" style="display:none;">
-					<input type="text" name="val[new_album_title]" value="{value type='input' id='new_album_title'}" size="30" />
+					<input class="form-control" type="text" name="val[new_album_title]" value="{value type='input' id='new_album_title'}" size="30" />
 				</div>
 				{else}
-				<input type="text" name="val[new_album_title]" value="{value type='input' id='new_album_title'}" size="30" /> <span class="extra_info">{phrase var='music.optional'}</span>
+				<input class="form-control" type="text" name="val[new_album_title]" value="{value type='input' id='new_album_title'}" size="30" /> <span class="extra_info">{phrase var='music.optional'}</span>
 				{/if}
 			</div>
 		</div>
@@ -80,8 +80,8 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="table_left">
 				{phrase var='music.genre'}:
 			</div>
-			<div class="table_right">
-				<select name="val[genre_id]">
+			<div class="table_right form-inline">
+				<select class="form-control" name="val[genre_id]">
 					<option value="">{phrase var='music.select'}:</option>
 				{foreach from=$aGenres item=aGenre}
 					<option value="{$aGenre.genre_id}"{value type='select' id='genre_id' default=$aGenre.genre_id}>{$aGenre.name|convert}</option>

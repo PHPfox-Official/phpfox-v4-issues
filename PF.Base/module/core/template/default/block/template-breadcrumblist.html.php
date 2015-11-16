@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div id="breadcrumb_list">
 			<ul>
 			{foreach from=$aBreadCrumbs key=sLink item=sCrumb name=link}
-				<li>{if !empty($sLink)}<a href="{$sLink}" class="ajax_link{if $phpfox.iteration.link == '1'} first{/if}">{/if}{$sCrumb|clean}{if !empty($sLink)}</a>{/if}</li>
+				<li>{if !empty($sLink)}<a href="{$sLink}" class="ajax_link{if $phpfox.iteration.link == '1'} first{/if}">{/if}<span title="{$sCrumb|clean}">{$sCrumb|clean|shorten:40:'...'}</span>{if !empty($sLink)}</a>{/if}</li>
 			{/foreach}
 			</ul>
 		</div>

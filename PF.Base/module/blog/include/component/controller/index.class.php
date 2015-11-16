@@ -334,8 +334,7 @@ class Blog_Component_Controller_Index extends Phpfox_Component
 				'quick_submit.js' => 'module_blog',
 				'jquery/plugin/jquery.highlightFade.js' => 'static_script',				
 				'quick_edit.js' => 'static_script',				
-				'comment.css' => 'style_css',
-				'pager.css' => 'style_css',
+				// 'pager.css' => 'style_css',
 				'feed.js' => 'module_feed'
 			)
 		);

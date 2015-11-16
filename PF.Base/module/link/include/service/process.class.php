@@ -43,7 +43,7 @@ class Link_Service_Process extends Phpfox_Service
 		}
 
 		// d($aVals); exit;
-		if (trim($aVals['link']['url']) == trim($aVals['status_info'])) {
+		if ((trim($aVals['link']['url']) == trim($aVals['status_info'])) && (!empty($aVals['link']['title']) || !empty($aVals['link']['description']))) {
 			$aVals['status_info'] = null;
 		}
 		

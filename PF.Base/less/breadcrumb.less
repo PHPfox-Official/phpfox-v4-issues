@@ -267,58 +267,102 @@ div.header_bar_menu ul.header_bar_drop li a, div.header_bar_menu ul.header_bar_d
 	left:@navWidth;
 	padding-left:20px;
 }
+@media (max-width: 700px) {
+  .breadcrumbs_menu:before {
+    content: "\f078";
+    color: (@headerColor);
+    position: fixed;
+    top: 8px;
+    right: 14px;
+    font-size: (@headerFontSize + 2);
+    font-family: FontAwesome;
+    cursor: pointer;
+  }
 
+  .breadcrumbs_menu:hover{
+    ul{
+      display: block;
+    }
+  }
+  .breadcrumbs:hover{
+    ul{
+      display: block;
+    }
+  }
+}
 .breadcrumbs_menu {
-	position:fixed;
-	top:5px;
-	right:10px;
+  @media (max-width: 700px) {
+    ul {
+      position: fixed;
+      top: (@headerHeight);
+      right: 2px;
+      min-width: 150px;
+      background-color: (@headerBg);
+      display: none;
+      :hover{
+        display: block;
+      }
+    }
 
-	li {
-		display:inline-block;
-		height:(@headerHeight - 15);
-		line-height:(@headerHeight - 15);
-		vertical-align:top;
-	}
+    li {
+      display: block;
+      height: (@headerHeight - 15);
+      padding: 5px 5px;
+      border-top: solid 1px;
+    }
+  }
+  @media (min-width: 701px) {
+    position: fixed;
+    top: 5px;
+    right: 10px;
 
-	li {
-		a, a:hover {
-			display:block;
-			background:transparent;
-			color:#fff;
-			border:2px transparent solid;
-			padding:0px 10px;
-			font-size:@fontSizeBase - 4;
-			text-transform:uppercase;
-			font-weight:300;
-			letter-spacing:1px;
-			transition:@transition;
-			border-radius:3px;
-			margin-left:8px;
+    li {
+      display: inline-block;
+      height: (@headerHeight - 15);
+      line-height: (@headerHeight - 15);
+      vertical-align: top;
+    }
 
-			> span.pending {
-				display:inline-block;
-				background:@brandPrimary;
-				color:@brandPrimaryColor;
-				font-size:10px;
-				font-weight:600;
-				border-radius:4px;
-				padding:3px 8px;
-				margin-bottom:4px;
-				margin-left:10px;
-			}
-		}
+    li {
+      a, a:hover {
+        display: block;
+        background: transparent;
+        color: #fff;
+        border: 2px transparent solid;
+        padding: 0px 10px;
+        font-size: @fontSizeBase - 4;
+        text-transform: uppercase;
+        font-weight: 300;
+        letter-spacing: 1px;
+        transition: @transition;
+        border-radius: 3px;
+        margin-left: 8px;
 
-		a:hover {
-			background:#fff;
-			color:#222;
-		}
-	}
+        > span.pending {
+          display: inline-block;
+          background: @brandPrimary;
+          color: @brandPrimaryColor;
+          font-size: 10px;
+          font-weight: 600;
+          border-radius: 4px;
+          padding: 3px 8px;
+          margin-bottom: 4px;
+          margin-left: 10px;
+        }
+      }
 
-	li:last-of-type {
-		a {
-			border-color:#fff;
-		}
-	}
+      a:hover {
+        background: #fff;
+        color: #222;
+      }
+    }
+
+    li:last-of-type {
+      a {
+        border-color: #fff;
+      }
+    }
+  }
 }
 
 ._block_menu_sub {

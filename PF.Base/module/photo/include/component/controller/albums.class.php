@@ -161,7 +161,7 @@ class Photo_Component_Controller_Albums extends Phpfox_Component
 		
 		$this->template()->setTitle(Phpfox::getPhrase('photo.photo_albums'))
 			->setHeader(array(
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'albums.css' => 'module_photo'
 				)
 			)

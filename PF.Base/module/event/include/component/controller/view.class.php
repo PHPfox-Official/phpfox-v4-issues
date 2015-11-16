@@ -146,8 +146,7 @@ class Event_Component_Controller_View extends Phpfox_Component
 			->setHeader('cache', array(
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',	
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
-					'comment.css' => 'style_css',
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'feed.js' => 'module_feed',
 					'event.js' => 'module_event'
 				)

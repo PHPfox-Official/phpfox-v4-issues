@@ -364,8 +364,8 @@ class Mail_Component_Controller_Index extends Phpfox_Component
 						'quick_edit.js' => 'static_script',	
 						'selector.js' => 'static_script',
 						'mail.js' => 'module_mail',
-						'pager.css' => 'style_css',
-						'mail.css' => 'style_css'
+						// 'pager.css' => 'style_css',
+						// 'mail.css' => 'style_css'
 					)
 				)			
 				->assign(array(

@@ -13,11 +13,11 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 		<div class="custom_block_form">
 			{if $aSetting.var_type == 'textarea'}
-				<textarea class="custom_textarea" cols="60" style="width:90%;" rows="8" name="custom[{$aSetting.field_id}]">{if isset($aSetting.value)}{$aSetting.value|clean}{/if}</textarea>
+				<textarea class="form-control custom_textarea" rows="5" name="custom[{$aSetting.field_id}]">{if isset($aSetting.value)}{$aSetting.value|clean}{/if}</textarea>
 			{elseif $aSetting.var_type == 'text'}
-				<input type="text" name="custom[{$aSetting.field_id}]" value="{if isset($aSetting.value)}{$aSetting.value|clean}{/if}" size="30" maxlength="255"{if PHPFOX_IS_AJAX} style="width:90%;"{/if} />
+				<input class="form-control" type="text" name="custom[{$aSetting.field_id}]" value="{if isset($aSetting.value)}{$aSetting.value|clean}{/if}" size="30" maxlength="255"{if PHPFOX_IS_AJAX} style="width:90%;"{/if} />
 			{elseif $aSetting.var_type == 'select'}
-				<select name="custom[{$aSetting.field_id}]" id="custom_field_{$aSetting.field_id}">
+				<select class="form-control" name="custom[{$aSetting.field_id}]" id="custom_field_{$aSetting.field_id}">
 					{if !$aSetting.is_required && !isset($aSetting.value)}
 						{if !isset($aSetting.value)}
 							<option value="">{phrase var='custom.select'}:</option>
@@ -37,7 +37,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					{/foreach}
 				</select>
 			{elseif $aSetting.var_type == 'multiselect'}
-				<select name="custom[{$aSetting.field_id}][]" multiple="multiple" id="custom_field_{$aSetting.field_id}">
+				<select class="form-control" name="custom[{$aSetting.field_id}][]" multiple="multiple" id="custom_field_{$aSetting.field_id}">
 					{*					
 						{if !$aSetting.is_required}
 							{if !isset($aSetting.value)}
@@ -64,7 +64,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{/foreach}
 			{elseif $aSetting.var_type == 'checkbox'}
 				{foreach from=$aSetting.options key=iKey item=aOption}
-					<div class="custom_block_form_checkbox">
+					<div class="custom_block_form_checkbox checkbox">
 						<input id="checkbox_{$aSetting.field_id}_{$iKey}" type="checkbox" name="custom[{$aSetting.field_id}][]" value="{$iKey}" {if isset($aOption.selected) && $aOption.selected == true}checked="checked"{/if}>
 						<label for="checkbox_{$aSetting.field_id}_{$iKey}">{$aOption.value} </label>
 					</div>

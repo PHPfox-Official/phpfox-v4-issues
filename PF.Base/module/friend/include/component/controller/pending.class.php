@@ -33,7 +33,7 @@ class Friend_Component_Controller_Pending extends Phpfox_Component
 		$iPage = $this->request()->getInt('page');
 		$iPageSize = 12;
 		
-		list($iCnt, $aPendingRequests) = Phpfox::getService('friend.request')->getPending($iPage, $iPageSize);
+		list($iCnt, $aPendingRequests) = Friend_Service_Request_Request::instance()->getPending($iPage, $iPageSize);
 		
 		Phpfox_Pager::instance()->set(array('page' => $iPage, 'size' => $iPageSize, 'count' => $iCnt));
 		
@@ -42,8 +42,8 @@ class Friend_Component_Controller_Pending extends Phpfox_Component
 		$this->template()->setTitle('Friends')->setBreadcrumb(Phpfox::getPhrase('friend.my_friends'), $this->url()->makeUrl('friend'));
 		$this->template()->setTitle(Phpfox::getPhrase('friend.pending_friend_requests'))
 			->setHeader('cache', array(
-					'pager.css' => 'style_css',
-					'friend.css' => 'style_css'
+					// 'pager.css' => 'style_css',
+					// 'friend.css' => 'style_css'
 				)
 			)
 			->assign(array(

@@ -33,7 +33,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<i class="fa fa-arrows-v"></i>
 		</span>
 		<span class="class_answer">
-			<input type="text" name="val[answer][][answer]" value="" size="30" class="js_answers v_middle" />
+			<input type="text" name="val[answer][][answer]" value="" size="30" class="form-control js_answers v_middle" />
 		</span>
 		<div class="poll_add_more">
 			<a href="#" onclick="return appendAnswer(this);">
@@ -71,7 +71,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{required}{phrase var='poll.question'}:
 			</div>
 			<div class="table_right">
-				<input tabindex="1" type="text" name="val[question]" id="question" value="{value type='input' id='question'}" size="40" />
+				<input class="form-control" tabindex="1" type="text" name="val[question]" id="question" value="{value type='input' id='question'}" size="40" />
 			</div>
 		</div>
 		{* Check if user is editing and has permissions to edit the questions *}
@@ -95,7 +95,7 @@ defined('PHPFOX') or exit('NO DICE!');
 							<span class="js_arrow_up_down">
 								<i class="fa fa-arrows-v"></i>
 							</span>
-							<input type="text" name="val[answer][{$phpfox.iteration.iAnswer}][answer]" value="{$aAnswer.answer|clean}" size="30" class="js_answers v_middle" />
+							<input type="text" name="val[answer][{$phpfox.iteration.iAnswer}][answer]" value="{$aAnswer.answer|clean}" size="30" class="form-control js_answers v_middle" />
 							{if isset($aAnswer.answer_id)}
 								   <input type="hidden" name="val[answer][{$phpfox.iteration.iAnswer}][answer_id]" class="hdnAnswerId" value="{$aAnswer.answer_id}">
 							{/if}
@@ -116,7 +116,7 @@ defined('PHPFOX') or exit('NO DICE!');
 							<span class="js_arrow_up_down">
 								<i class="fa fa-arrows-v"></i>
 							</span>
-							<input type="text" tabindex="{$i + 1}" name="val[answer][{$i}][answer]" value="" size="30" class="js_answers v_middle" />
+							<input type="text" tabindex="{$i + 1}" name="val[answer][{$i}][answer]" value="" size="30" class="form-control js_answers v_middle" />
 
 							<div class="poll_add_more">
 								<a href="#" onclick="if(iMaxAnswers == 0) {l} iMaxAnswers = {$iMaxAnswers}; {r} return appendAnswer(this);" >

@@ -32,7 +32,7 @@ class Friend_Component_Controller_Invoice extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('friend.friend'), $this->url()->makeUrl('friend'))
 			->setBreadcrumb(Phpfox::getPhrase('friend.invoices'), null, true)
 			->setHeader('cache', array(
-					'table.css' => 'style_css'
+					// 'table.css' => 'style_css'
 				)
 			)
 			->assign(array(

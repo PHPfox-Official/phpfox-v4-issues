@@ -19,7 +19,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="category_id">{required}{phrase var='contact.category'}:</label>
 			</div>
 			<div class="table_right">
-				<select name="val[category_id]" id="category_id">
+				<select class="form-control" name="val[category_id]" id="category_id">
 				<option value="">{phrase var='contact.select'}:</option>
 				{foreach from=$aCategories item=sCategory}
 					<option value="{$sCategory.title}"{value type='select' id='category_id' default=$sCategory.title}>{$sCategory.title|convert|clean}</option>
@@ -50,7 +50,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="subject">{required}{phrase var='contact.subject'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[subject]" id="subject" value="{value type='input' id='subject'}" size="30" />
+				<input class="form-control" type="text" name="val[subject]" id="subject" value="{value type='input' id='subject'}" size="30" />
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -62,7 +62,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="email">{required}{phrase var='contact.email'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[email]" id="email" value="{value type='input' id='email'}" size="30" />
+				<input class="form-control" type="text" name="val[email]" id="email" value="{value type='input' id='email'}" size="30" />
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -73,7 +73,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="message">{required}{phrase var='contact.message'}:</label>
 			</div>
 			<div class="table_right">
-				<textarea cols="60" rows="10" name="val[text]">{value id='text' type='textarea'}</textarea>
+				<textarea class="form-control" cols="60" rows="10" name="val[text]">{value id='text' type='textarea'}</textarea>
 			</div>
 			<div class="clear"></div>
 		</div>

@@ -989,6 +989,9 @@ class Phpfox_Url
 	}
 
 	public function getUri() {
+		if(empty($_SERVER['REQUEST_URI']))
+			return '/';
+
 		if (Phpfox::getParam('core.url_rewrite') == '2' && (
 				!strpos($_SERVER['REQUEST_URI'], 'index.php')
 				|| substr($_SERVER['REQUEST_URI'], -9) == 'index.php'

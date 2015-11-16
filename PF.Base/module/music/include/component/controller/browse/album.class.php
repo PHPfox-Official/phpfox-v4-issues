@@ -109,8 +109,7 @@ class Music_Component_Controller_Browse_Album extends Phpfox_Component
 		// d($albums); exit;
 		$this->template()->menu('Create an Album', $this->url()->makeUrl('music.album.add'));
 		$this->template()->setHeader('cache', array(
-					'pager.css' => 'style_css',
-					'comment.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'feed.js' => 'module_feed',
 					'browse.css' => 'module_music'											
 				)

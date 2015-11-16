@@ -60,7 +60,7 @@ class Music_Component_Controller_Player extends Phpfox_Component
 				)
 			)
 			->setHeader(array(
-					'blank.css' => 'style_css',
+					// 'blank.css' => 'style_css',
 					'<script type="text/javascript">$Behavior.music_player_load_player = function() { $Core.player.load({id: \'js_music_player'. ($bPlayAll ? '_all' : '') . '\', type: \'music\', playlist: '.$sPlaylist.', aNextSong: '.$sNextSong.'}); };</script>'
 				)
 			)

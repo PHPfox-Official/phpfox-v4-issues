@@ -178,7 +178,7 @@ class Event_Component_Controller_Add extends Phpfox_Component
 			)				
 			->setHeader('cache', array(	
 					'add.js' => 'module_event',
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'progress.js' => 'static_script',					
 					'country.js' => 'module_core'					
 				)

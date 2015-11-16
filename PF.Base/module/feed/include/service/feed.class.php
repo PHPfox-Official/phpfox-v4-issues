@@ -268,7 +268,7 @@ class Feed_Service_Feed extends Phpfox_Service
 				->join(Phpfox::getT('user'), 'u', 'u.user_id = feed.user_id')			
 				->where((isset($aCustomCondition) ? $aCustomCondition : $aNewCond))
 				->order($sOrder)
-				->limit($iOffset, $iTotalFeeds)
+				->limit($iOffset, $iTotalFeeds, null, false, true)
 				->execute('getSlaveRows');			
 				
 			// Fixes missing page_user_id, required to create the proper feed target
@@ -392,7 +392,7 @@ class Feed_Service_Feed extends Phpfox_Service
 				->join(Phpfox::getT('user'), 'u', 'u.user_id = feed.user_id')
 				->order('feed.time_stamp DESC')
 				->group('feed.feed_id')
-				->limit($iOffset, $iTotalFeeds)			
+				->limit($iOffset, $iTotalFeeds, null, false, true)			
 				->execute('getSlaveRows');		
 		}
 		else
@@ -690,6 +690,7 @@ class Feed_Service_Feed extends Phpfox_Service
 		}
 		
 		$sTag = Phpfox::getLib('parse.input')->clean($sTag, 255);		
+		$sTag = mb_convert_case($sTag, MB_CASE_LOWER, "UTF-8");
 		
 		$this->database()->join(Phpfox::getT('tag'), 'hashtag', 'hashtag.item_id = feed.item_id AND hashtag.category_id = feed.type_id AND (tag_text = \'' . Phpfox_Database::instance()->escape($sTag) . '\' OR tag_url = \''. Phpfox_Database::instance()->escape($sTag) .'\')');
 	}

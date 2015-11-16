@@ -114,7 +114,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{if isset($aQuiz.question)}
 				<form class="p_top_15" name="js_form_answer" method="post" action="{permalink module='quiz' id=$aQuiz.quiz_id title=$aQuiz.title}answer/">
 						{foreach from=$aQuiz.question key=iQuestionId name=questions item=aQuestion}
-						<div class="quiz_questions">
+						<div class="quiz_questions radio">
 							<strong>{$phpfox.iteration.questions}. {$aQuestion.question}</strong>
 							{foreach from=$aQuestion.answer key=iAnswerId name=answers item=sAnswer}
 								<div class="quiz_answers">
@@ -124,7 +124,7 @@ defined('PHPFOX') or exit('NO DICE!');
 						</div>
 						{/foreach}
 					{if isset($aQuiz.view_id) && $aQuiz.view_id != 1}
-						<input type="submit" value="{phrase var='quiz.submit_your_answers'}" class="button_link" />
+						<input type="submit" value="{phrase var='quiz.submit_your_answers'}" class="btn btn-danger button_link" />
 					{/if}
 				</form>
 				{/if}

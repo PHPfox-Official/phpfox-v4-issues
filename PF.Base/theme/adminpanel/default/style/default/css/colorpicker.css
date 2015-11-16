@@ -344,6 +344,7 @@ colpick Color Picker / colpick.com
 .colpick_hex .colpick_hex_field div, .colpick_hex .colpick_hex_field input {
 	height: 25px;
 	line-height: 25px;
+    padding: inherit;
 }
 .colpick_hex .colpick_new_color {
 	left:9px;

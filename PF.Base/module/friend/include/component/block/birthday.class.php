@@ -21,14 +21,19 @@ class Friend_Component_Block_Birthday extends Phpfox_Component
 		{
 			return false;
 		}
-		
+
 		if (!Phpfox::isUser())
 		{
 			return false;
 		}
 
 		$aBirthdays = Friend_Service_Friend::instance()->getBirthdays(Phpfox::getuserId());
-
+    $iDayToCheck = Phpfox::getParam('friend.days_to_check_for_birthday');
+    foreach ($aBirthdays as $key => $aBirthday){
+      if (isset($aBirthday['days_left']) && ($aBirthday['days_left'] > $iDayToCheck)){
+        unset($aBirthdays[$key]);
+      }
+    }
 		$bIsEventSection = true;
 		/*
 		$bIsEventSection = (Phpfox_Module::instance()->getFullControllerName() == 'event.index' ? true : false);
@@ -51,35 +56,35 @@ class Friend_Component_Block_Birthday extends Phpfox_Component
 				$sEventCacheId = Phpfox::getLib('cache')->set(array('events', Phpfox::getUserId()));
 				if (!($aUpcomingEvents = Phpfox::getLib('cache')->get($sEventCacheId, (Phpfox::getParam('event.cache_upcoming_events_info') * 60))))
 				{
-					$this->search()->set(array(				
+					$this->search()->set(array(
 							'type' => 'event',
-							'field' => 'm.event_id',				
+							'field' => 'm.event_id',
 							'search_tool' => array(
 								'default_when' => 'upcoming',
 								'when_field' => 'start_time',
 								'when_upcoming' => true,
-								'table_alias' => 'm',	
+								'table_alias' => 'm',
 								'sort' => array(
-									'latest' => array('m.start_time', 'Latest', 'ASC')						
+									'latest' => array('m.start_time', 'Latest', 'ASC')
 								),
 								'show' => array(5)
 							)
 						)
-					);			
-					
+					);
+
 					$aBrowseParams = array(
 						'module_id' => 'event',
 						'alias' => 'm',
 						'field' => 'event_id',
 						'table' => Phpfox::getT('event'),
 						'hide_view' => array('pending', 'my')
-					);			
-					
+					);
+
 					$this->search()->setCondition('AND m.view_id = 0 AND m.privacy IN(%PRIVACY%)');
 					$this->search()->browse()->params($aBrowseParams)->execute();
 
 					$aUpcomingEvents = $this->search()->browse()->getRows();
-					
+
 					// http://www.phpfox.com/tracker/view/14796/
 					// iterate among dates
 					foreach($aUpcomingEvents as $sUpcomingDate => $aEvents)
@@ -107,7 +112,7 @@ class Friend_Component_Block_Birthday extends Phpfox_Component
 							}
 						}
 					}
-					
+
 					Phpfox::getLib('cache')->save($sEventCacheId, $aUpcomingEvents);
 				}
 			}

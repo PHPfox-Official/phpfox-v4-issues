@@ -473,7 +473,11 @@ class Custom_Service_Callback extends Phpfox_Service
 		}
 		elseif ($aRow['user_id'] == Phpfox::getUserId())
 		{
-			$sPhrase = Phpfox::getPhrase('custom.users_commented_on_your_relationship_status_title', array('users' => $sUsers, 'title' => $sTitle));
+      if (isset($sTitle) && !empty($sTitle)){
+        $sPhrase = Phpfox::getPhrase('custom.users_commented_on_your_relationship_status_title', array('users' => $sUsers, 'title' => $sTitle));
+      } else {
+        $sPhrase = Phpfox::getPhrase('custom.users_commented_your_relationship_status', array('users' => $sUsers));
+      }
 		}
 		else 
 		{
@@ -520,7 +524,11 @@ class Custom_Service_Callback extends Phpfox_Service
 		}
 		elseif ($aRow['user_id'] == Phpfox::getUserId())		
 		{
-			$sPhrase = Phpfox::getPhrase('custom.users_liked_your_relationship_status_title', array('users' => $sUsers, 'title' => $sTitle));
+      if (!empty($sTitle)){
+        $sPhrase = Phpfox::getPhrase('custom.users_liked_your_relationship_status_title', array('users' => $sUsers, 'title' => $sTitle));
+      } else {
+        $sPhrase = Phpfox::getPhrase('custom.users_liked_your_relationship_status', array('users' => $sUsers));
+      }
 		}
 		else 
 		{

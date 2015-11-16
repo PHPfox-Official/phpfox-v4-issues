@@ -157,10 +157,9 @@ class Quiz_Component_Controller_Index extends Phpfox_Component
 			->setMeta('keywords', Phpfox::getParam('quiz.quiz_meta_keywords'))
 			->setMeta('description', Phpfox::getParam('quiz.quiz_meta_description'))
 			->setHeader('cache', array(
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'quiz.js' => 'module_quiz',				
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',
-					'comment.css' => 'style_css'
 				)
 			)
 			->setPhrase(array(

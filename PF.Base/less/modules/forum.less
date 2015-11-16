@@ -344,8 +344,9 @@ div.forum_outer {
 }
 
 div.forum_content {
-	padding:@blockContentPadding;
-	min-height:auto;
+	padding: @blockContentPadding;
+	min-height: auto;
+    text-align: justify;
 }
 
 .forum_user_info .extra_info {
@@ -412,7 +413,7 @@ div.forum_content {
 	.reset();
 
 	position:absolute;
-	top:110px;
+	top:20px;
 	right:20px;
 	z-index:20;
 }
@@ -917,10 +918,4 @@ span.forum_tag_sticky {
 
 .view_all_previous.is-clicked, .view_all_previous.is-clicked:hover {
 	display:none;
-}
-
-#page_forum_post {
-	#panels {
-		visibility:hidden;
-	}
 }

@@ -21,7 +21,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="forum_mini_{$aThread.css_class} js_hover_title"><div class="js_hover_info">{$aThread.css_class_phrase}</div></div>
 				{img user=$aThread suffix='_50_square'}			
 			</div>		
-			{if Phpfox::getUserParam('forum.can_approve_forum_thread') || Phpfox::getUserParam('forum.can_delete_other_posts')}<a href="#{$aThread.thread_id}" class="moderate_link" rel="forum">{phrase var='forum.moderate'}</a>{/if}
+			{if Phpfox::getUserParam('forum.can_approve_forum_thread') || Phpfox::getUserParam('forum.can_delete_other_posts')}<a href="#{$aThread.thread_id}" class="moderate_link" rel="forum" data-id="mod">{phrase var='forum.moderate'}</a>{/if}
 		</div>
 		<div class="forum_title">
 			<div class="forum_title_inner_holder">

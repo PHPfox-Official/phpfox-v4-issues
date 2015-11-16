@@ -204,7 +204,7 @@ class Quiz_Component_Controller_Add extends Phpfox_Component
 					'jquery/plugin/jquery.limitTextarea.js' => 'static_script',
 					'add.js' => 'module_quiz',
 					'add.css' => 'module_quiz',
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'<script type="text/javascript">$Behavior.quizAddQuestion = function() { $Core.quiz.init({sRequired:"'.Phpfox::getParam('core.required_symbol').'", isAdd: '.$bIsAdd.', bErrors: '.$bErrors.', iMaxAnswers: '.$iMaxAnswers.', iMinAnswers: '.$iMinAnswers.', iMaxQuestions: '.$iMaxQuestions.', iMinQuestions: '.$iMinQuestions.'}); }</script>'
 				)
 			)

@@ -48,7 +48,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="city_location">{phrase var='user.city'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[city_location]" id="city_location" value="{value type='input' id='city_location'}" size="30" />
+				<input class="form-control" type="text" name="val[city_location]" id="city_location" value="{value type='input' id='city_location'}" size="30" />
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -58,7 +58,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="postal_code">{phrase var='user.zip_postal_code'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[postal_code]" id="postal_code" value="{value type='input' id='postal_code'}" size="10" />
+				<input class="form-control" type="text" name="val[postal_code]" id="postal_code" value="{value type='input' id='postal_code'}" size="10" />
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -93,7 +93,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{phrase var='custom.relationship_status'}
 			</div>
 			<div class="table_right">
-				<select name="val[relation]" id="relation" onchange="$Behavior.displayRelationshipChange()">
+				<select class="form-control" name="val[relation]" id="relation" onchange="$Behavior.displayRelationshipChange()">
 					{foreach from=$aRelations item=aRelation}
 						<option value="{$aRelation.relation_id}" {if isset($aForms.relation_id) && $aForms.relation_id == $aRelation.relation_id} selected="selected"{/if}>{phrase var=$aRelation.phrase_var_name} </option>
 					{/foreach}

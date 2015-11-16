@@ -342,6 +342,13 @@ For this to work you need to have entered the Google API Key (<setting>google_ap
 		<phrase module_id="feed" version_id="3.7.0beta1" var_name="user_setting_can_purchase_sponsor" added="1375264862">Can members of this user group sponsor feeds?</phrase>
 		<phrase module_id="feed" version_id="3.7.0beta1" var_name="sponsor_in_feed" added="1375265039">Sponsor In Feed</phrase>
 		<phrase module_id="feed" version_id="3.7.0rc1" var_name="user_setting_can_view_feed" added="1377073464">Can members of this user group view feeds anywhere in the site?</phrase>
+		<phrase module_id="feed" version_id="4.0.10" var_name="what_s_up" added="1446431801">What's up?</phrase>
+		<phrase module_id="feed" version_id="4.0.10" var_name="logout" added="1446431824">Logout</phrase>
+		<phrase module_id="feed" version_id="4.0.10" var_name="privacy_settings" added="1446431968">Privacy Settings</phrase>
+		<phrase module_id="feed" version_id="4.0.10" var_name="manage_friends" added="1446432045">Manage Friends</phrase>
+		<phrase module_id="feed" version_id="4.0.10" var_name="edit_profile" added="1446432099">Edit Profile</phrase>
+		<phrase module_id="feed" version_id="4.0.10" var_name="account_settings" added="1446432159">Account Settings</phrase>
+		<phrase module_id="feed" version_id="4.0.10" var_name="view_profile" added="1446432212">View Profile</phrase>
 	</phrases>
 	<user_group_settings>
 		<setting is_admin_setting="0" module_id="feed" type="boolean" admin="1" user="1" guest="0" staff="1" module="feed" ordering="0">can_post_comment_on_feed</setting>

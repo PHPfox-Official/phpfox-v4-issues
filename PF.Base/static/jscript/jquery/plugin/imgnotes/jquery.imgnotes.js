@@ -80,8 +80,8 @@
 						
 		note_area_div = $("<div id='js_note_" + note_data.note_id + "' class='note'></div>").css({ left: note_left + 'px', top: note_top + 'px', width: note_data.width + 'px', height: note_data.height + 'px' });
 		
-		note_text_div = $('<div class="notep" >'+note_data.note+'</div>').css({ left: note_left + 'px', top: note_p_top + 'px'});
-		
+		note_text_div = $('<div class="notep" id="notep_' + note_data.note_id + '">'+note_data.note+'</div>').css({ left: note_left + 'px', top: note_p_top + 'px'});
+
 		$('body').append(note_area_div);
 		$('body').append(note_text_div);		
 	}

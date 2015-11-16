@@ -17,7 +17,9 @@ defined('PHPFOX') or exit('NO DICE!');
     {foreach from=$aPurchases item=aPurchase name=purchases}
         {plugin call='subscribe.template_controller_list__3'}
         <div class="{if is_int($phpfox.iteration.purchases/2)}row1{else}row2{/if}{if $phpfox.iteration.purchases == 1} row_first{/if}">
+            <div class="item_content">
             {template file='subscribe.block.entry'}
+            </div>
         </div>
         {plugin call='subscribe.template_controller_list__4'}
     {/foreach}

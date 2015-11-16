@@ -67,7 +67,6 @@ class Core_Component_Controller_Index_Visitor extends Phpfox_Component
 		$this->template()->setHeader('cache', array(
 					'register.js' => 'module_user',
 					'country.js' => 'module_core',
-					'comment.css' => 'style_css'
 				)
 			)
 			->setBreadCrumb(Phpfox::getParam('core.site_title'))

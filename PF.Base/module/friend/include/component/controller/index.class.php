@@ -104,9 +104,9 @@ class Friend_Component_Controller_Index extends Phpfox_Component
 
 		$this->template()->setHeader('jquery/ui.js', 'static_script');
 		$this->template()->setHeader('cache', array(
-				'pager.css' => 'style_css',
+				// 'pager.css' => 'style_css',
 				'friend.js' => 'module_friend',
-				'friend.css' => 'style_css'
+				// 'friend.css' => 'style_css'
 			)
 		)
 			->assign(array(

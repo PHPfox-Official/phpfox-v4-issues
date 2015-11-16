@@ -235,7 +235,7 @@ class Blog_Component_Controller_Add extends Phpfox_Component
 				'switch_legend.js' => 'static_script',
 				'switch_menu.js' => 'static_script',
 				'quick_edit.js' => 'static_script',
-				'pager.css' => 'style_css'
+				// 'pager.css' => 'style_css'
 			)
 		);	
 		

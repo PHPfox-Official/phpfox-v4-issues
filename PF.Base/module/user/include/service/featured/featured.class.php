@@ -105,6 +105,24 @@ class User_Service_Featured_Featured extends Phpfox_Service
 
 		return $users;
 	}
+  public function getRecentActiveUsers() {
+		$cache = $this->cache()->set('recent_active_users');
+    // We should cached it only 2 minutes. This block always changes
+		$users = $this->cache()->get($cache, 2);
+		if ($users === false) {
+			$users = $this->database()
+				->select('u.*')
+				->from(':user', 'u')
+				->where(['u.profile_page_id' => 0, 'u.view_id' => 0, 'u.is_invisible' => 0])
+				->limit(12)
+				->order('u.last_activity DESC')
+				->all();
+
+			$this->cache()->save($cache, $users);
+		}
+
+		return $users;
+	}
 	
 	/**
 	 * If a call is made to an unknown method attempt to connect

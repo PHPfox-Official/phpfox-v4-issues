@@ -93,7 +93,7 @@ a:hover
 input, textarea
 {
 	font-size:13px;
-	background:#f4f4f4 url('../image/layout/input.png') repeat-x;
+	background:#f4f4f4 url('@{imageFolder}layout/input.png') repeat-x;
 	padding:4px;
 	border:1px #D7D7D7 solid;
 	color: #333;	
@@ -112,7 +112,8 @@ input.default_value
 input:focus, 
 textarea:focus
 {
-	border:1px #6FC5FF solid;	
+	//border:1px #6FC5FF solid;
+  outline: none;
 }
 
 input[type=checkbox],
@@ -124,14 +125,6 @@ input[type=radio]
 	margin-right:2px;
 }
 
-select
-{
-	background:#f4f4f4;	
-	border:1px solid #D7D7D7;
-	color:#333;	
-	padding:6px 4px 4px 4px;
-	font-size:11px;
-}
 
 .clear
 {
@@ -1033,11 +1026,7 @@ input.button_register,
 */
 #left
 {
-	float:left;
-	width:180px;
-	overflow:hidden;
-	padding:10px 0px 10px 0px;
-	border-right:1px #D7D7D7 solid;	
+
 }
 
 #main_content_holder
@@ -1102,9 +1091,7 @@ input.button_register,
 
 #right
 {
-	width:250px;
-	float:right;
-	overflow:hidden;	
+
 }
 
 /**
@@ -1126,65 +1113,6 @@ input.button_register,
 	min-height:30px;
 	height:auto !important;
 	height:30px;		
-}
-
-#breadcrumb_list
-{
-	padding:12px 0px 10px 0px;		
-}
-
-#breadcrumb_list ul
-{
-	margin:0px;
-	padding:0px;	
-}
-
-#breadcrumb_list ul li
-{
-	list-style-type:none;
-	float:left;
-	display:block;
-	margin-right:2px;
-	line-height:18px;
-}
-
-#breadcrumb_list ul li a,
-#breadcrumb_list ul li a:hover
-{	
-	background:#fff;
-	border:1px #fff solid;
-	line-height:18px;
-	padding:0px 2px 0px 2px;
-	display:block;
-	text-decoration:none;	
-}
-
-#breadcrumb_list ul li a:hover
-{
-	background:#f8f8f8;	
-	border:1px #EFEFEF solid;
-	-moz-border-radius:4px;
-	-webkit-border-radius:4px;
-  	border-radius:4px;  		
-}
-
-#breadcrumb_list ul li a.home,
-#breadcrumb_list ul li a.home:hover
-{
-	background:url('../image/layout/breadcrumb_list_home.png') no-repeat 50% 50%;
-	width:12px;
-	height:18px;
-	overflow:hidden;
-	text-indent:-1000px;
-	position:relative;
-	display:block;
-	line-height:18px;
-}
-
-#breadcrumb_list ul li a.home:hover
-{
-	background-color:#fff;
-	border:1px #fff solid;
 }
 
 h1,
@@ -1719,13 +1647,8 @@ a.item_bar_flag:hover
 #left .block .title,
 #right .block .title
 {	
-	padding:0px 0px 0px 4px;
-	line-height:25px;
-	height:25px;
 	font-weight:bold;
 	color:#333;	
-	border-bottom:1px #DFDFDF solid;
-	background:#ECECEC;
 }
 
 #content .block .title
@@ -1748,7 +1671,7 @@ a.item_bar_flag:hover
 	color:#BFBFBF;
 	padding-top:4px;
 	margin-top:8px;
-	border-top:1px #dfdfdf solid;
+	border-top:1px @border-base-color solid;
 	color:#333;	
 	font-weight:bold;
 	padding-bottom:6px;
@@ -2744,9 +2667,7 @@ a.activity_feed_content_view_more:hover
 
 .page_section_menu_header
 {
-	border-top:1px #DFDFDF solid;
 	padding-top:10px;
-	height:28px;	
 }
 
 a.page_section_menu_link,

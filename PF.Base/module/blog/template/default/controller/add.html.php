@@ -54,7 +54,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="title">{required}{phrase var='blog.title'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[title]" value="{value type='input' id='title'}" id="title" size="40" />
+				<input class="form-control" type="text" name="val[title]" value="{value type='input' id='title'}" id="title" size="40" />
 			</div>			
 		</div>
 		

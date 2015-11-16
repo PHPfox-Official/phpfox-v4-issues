@@ -33,7 +33,7 @@ $Core.searchFriendsInput =
 		if (!this._get('no_build')){			
 			
 			$sHtml += '<div style="position:relative;" class="js_friend_search_form" id="' + this.sId + '">';
-			$sHtml += '<input type="text" id="' + this._get('search_input_id') + '" name="null" placeholder="' + this._get('default_value') + '" autocomplete="off" onfocus="$Core.searchFriendsInput.buildFriends(this);" onkeyup="$Core.searchFriendsInput.getFriends(this);" style="width:100%;" class="js_temp_friend_search_input" />';
+			$sHtml += '<input type="text" id="' + this._get('search_input_id') + '" name="null" placeholder="' + this._get('default_value') + '" autocomplete="off" onfocus="$Core.searchFriendsInput.buildFriends(this);" onkeyup="$Core.searchFriendsInput.getFriends(this);" style="width:100%;" class="form-control js_temp_friend_search_input" />';
 			$sHtml += '<div class="js_temp_friend_search_form" style="display:none;"></div>';
 			$sHtml += '</div>';
 			
@@ -127,26 +127,20 @@ $Core.searchFriendsInput =
 		if (empty($oObj.value))
 		{
 			this.closeSearch($oObj);
-			
 			return;
 		}
-		
 		if (this.bNoSearch)
 		{
 			this.bNoSearch = false;
-			
 			return;
 		}			
-		
-		
 		if (isset(this.aParams['is_mail']) && this.aParams['is_mail'] == true)
 		{
 			$.ajaxCall('friend.getLiveSearch', 'parent_id=' + $($oObj).attr('id') + '&search_for=' + $($oObj).val() + '&width=' + this._get('width') + '&total_search=' + $Core.searchFriendsInput._get('max_search'), 'GET');
 			return;
 		}
-
 		var $iFound = 0;
-		var $sHtml = '';		
+		var $sHtml = '';
 		$($Cache.friends).each(function($sKey, $aUser)
 		{
 			var $mRegSearch = new RegExp($oObj.value, 'i');
@@ -157,8 +151,7 @@ $Core.searchFriendsInput =
 				{
 					return;
 				}
-
-				$iFound++;								
+				$iFound++;
 				
 				$Core.searchFriendsInput.storeUser($aUser['user_id'], $aUser);
 
@@ -174,13 +167,25 @@ $Core.searchFriendsInput =
 		});
 
 		var obj = $($oObj).parent().find('.js_temp_friend_search_form');
+    var m_global = 0;
 		if (this._get('panel_mode')) {
-			obj = $('#panel').find('.js_temp_friend_search_form');
+      if ($('.panel_xs').length && $('.panel_xs').is(':visible')){
+        obj = $('.panel_xs').find('.js_temp_friend_search_form');
+        m_global = true;
+      } else {
+        obj = $('#panel').find('.js_temp_friend_search_form');
+        m_global = false;
+      }
 		}
-		
+    if ($('.panel_xs').length && $('.panel_xs').is(':visible')){
+      obj = $('.panel_xs').find('.js_temp_friend_search_form');
+      m_global = true;
+    }
+		console.log(obj);
+		console.log(m_global);
 		if ($iFound)
 		{
-			if (this._get('global_search')) {
+			if (this._get('global_search') || m_global) {
 				$sHtml += '<li><a href="#" class="holder_notify_drop_link" onclick="$(\'#header_search_form\').submit(); return false;">' + oTranslations['friend.show_more_results_for_search_term'].replace('{search_term}',htmlspecialchars($oObj.value)) + '</a></li>';
 			}
 

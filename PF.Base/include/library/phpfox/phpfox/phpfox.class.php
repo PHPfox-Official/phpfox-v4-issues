@@ -27,7 +27,7 @@ class Phpfox
 	/**
  	* Product Version : major.minor.maintenance [alphaX, betaX or rcX]
  	*/
-	const VERSION = '4.0.9';
+	const VERSION = '4.0.10';
 	
 	/**
 	 * Product Code Name
@@ -1082,12 +1082,6 @@ class Phpfox
 	{
 		$aOut = array(
 			'<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css?v=' . Phpfox_Template::instance()->getStaticVersion() . '" rel="stylesheet">',
-			'layout.css' => 'style_css',
-			'common.css' => 'style_css',
-			'thickbox.css' => 'style_css',
-			'jquery.css' => 'style_css',
-			'comment.css' => 'style_css',
-			'pager.css' => 'style_css',
 			'jquery/jquery.js' => 'static_script',
 			'jquery/ui.js' => 'static_script',
 			'jquery/plugin/jquery.nanoscroller.min.js' => 'static_script',
@@ -1099,6 +1093,15 @@ class Phpfox
 			'feed.js' => 'module_feed'
 		);
 		
+		if(Phpfox::isAdminPanel()) {
+			$aOut = array_merge(array('layout.css' => 'style_css',
+			'common.css' => 'style_css',
+			'thickbox.css' => 'style_css',
+			'jquery.css' => 'style_css',
+			'comment.css' => 'style_css',
+			'pager.css' => 'style_css'), $aOut);	
+		}
+				
 		(($sPlugin = Phpfox_Plugin::get('get_master_files')) ? eval($sPlugin) : false);
 		return $aOut;
 	}
@@ -1130,10 +1133,13 @@ class Phpfox
 		$aLocale = Phpfox_Locale::instance()->getLang();
 		$oReq = Phpfox_Request::instance();
 		$oModule = Phpfox_Module::instance();
-
 		if ($oReq->segment(1) == 'favicon.ico') {
 			header('Content-type: image/x-icon');
-			echo file_get_contents('http://www.phpfox.com/favicon.ico');
+      if (file_exists(PHPFOX_DIR . '../favicon.ico')){
+        echo file_get_contents(PHPFOX_DIR . '../favicon.ico');
+      } else {
+        echo file_get_contents('http://www.phpfox.com/favicon.ico');
+      }
 			exit;
 		}
 
@@ -1201,7 +1207,11 @@ class Phpfox
 				$Theme = $oTpl->theme()->get();
 				$Service = new Core\Theme\Service($Theme);
 				if ($sType == 'text/css') {
-					echo $Service->css()->getParsed();
+          if (file_exists($sPath)){
+            echo @file_get_contents($sPath);
+          } else {
+            echo $Service->css()->getParsed();
+          }
 				}
 				else {
 					echo $Service->js()->get();
@@ -1251,7 +1261,8 @@ class Phpfox
 				);			
 				
 				$oTpl->setHeader(array(
-							'<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />',
+							'<meta http-equiv="X-UA-Compatible" content="IE=edge">',
+							'<meta name="viewport" content="width=device-width, initial-scale=1">',
 							'<meta http-equiv="Content-Type" content="text/html; charset=' . $aLocale['charset'] . '" />',
 							'<meta http-equiv="cache-control" content="no-cache" />',
 							'<meta http-equiv="expires" content="-1" />',
@@ -1269,7 +1280,7 @@ class Phpfox
 					$oTpl->setPhrase(array('friend.show_more_results_for_search_term'));		
 				}
 		
-				if (PHPFOX_DEBUG)
+				if (PHPFOX_DEBUG && self::isAdminPanel())
 				{
 					$oTpl->setHeader('cache', array('debug.css' => 'style_css'));
 				}		
@@ -1492,7 +1503,6 @@ class Phpfox
 				$blocks[$location] = [];
 				foreach ($aBlocks as $sBlock) {
 					Phpfox::getBlock($sBlock);
-
 					$blocks[$location][] = ob_get_contents(); ob_clean();
 				}
 			}
@@ -1512,6 +1522,7 @@ class Phpfox
 			$error = ob_get_contents(); ob_clean();
 
 			$controller = Phpfox_Module::instance()->getFullControllerName();
+
 			$data = json_encode([
 				'content' => str_replace(['&#039;'], ["'"], Phpfox_Parse_Input::instance()->convert($content)),
 				'title' => html_entity_decode($oTpl->instance()->getTitle()),

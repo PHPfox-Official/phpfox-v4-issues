@@ -28,7 +28,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<form method="post" action="#" onsubmit="return sendFeed(this);">
 		<div><input type="hidden" name="val[parent_feed_id]" value="{$iFeedId}" /></div>
 		<div><input type="hidden" name="val[parent_module_id]" value="{$sShareModule|clean}" /></div>
-		<select name="val[post_type]" onchange="if (this.value == '1') {l} $('#js_feed_share_friend_holder').hide(); {r} else {l} $('#js_feed_share_friend_holder').show(); {r}">
+		<select class="form-control" name="val[post_type]" onchange="if (this.value == '1') {l} $('#js_feed_share_friend_holder').hide(); {r} else {l} $('#js_feed_share_friend_holder').show(); {r}">
 			<option value="1">{phrase var='share.on_your_wall'}</option>
 			<option value="2">{phrase var='share.on_a_friend_s_wall'}</option>
 		</select>
@@ -55,10 +55,10 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 
 		<div class="p_top_8">
-			<textarea cols="50" rows="4" name="val[post_content]"></textarea>
+			<textarea class="form-control" cols="50" rows="4" name="val[post_content]"></textarea>
 		</div>
 		<div class="p_top_8">
-			<input type="submit" id="btnShareFeed" value="{phrase var='share.post'}" class="button" />
+			<input type="submit" id="btnShareFeed" value="{phrase var='share.post'}" class="button btn btn-primary" />
 			{img theme='ajax/small.gif' style="display:none" id="imgShareFeedLoading"}
 		</div>
 	</form>

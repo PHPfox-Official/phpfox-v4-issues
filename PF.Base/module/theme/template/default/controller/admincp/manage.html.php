@@ -68,7 +68,7 @@
 {literal}
 <script>
 	$Ready(function() {
-		$('._colorpicker:not(.built').each(function() {
+		$('._colorpicker:not(.built)').each(function() {
 			var t = $(this),
 				h = t.parent().find('._colorpicker_holder');
 

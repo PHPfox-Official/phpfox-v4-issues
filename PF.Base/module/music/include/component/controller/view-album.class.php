@@ -136,10 +136,9 @@ class Music_Component_Controller_View_Album extends Phpfox_Component
 					'jquery/plugin/star/jquery.rating.js' => 'static_script',
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
-					'jquery.rating.css' => 'style_css',
+					// 'jquery.rating.css' => 'style_css',
 					'quick_edit.js' => 'static_script',
-					'comment.css' => 'style_css',
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'feed.js' => 'module_feed',
 					'album.js' => 'module_music'
 				)

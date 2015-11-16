@@ -42,11 +42,11 @@ defined('PHPFOX') or exit('NO DICE!');
 	
 	<div class="p_top_8">
 		{if Phpfox::getParam('user.allow_user_registration')}
-		<div style="position:absolute; right:15px;">
-			<input type="button" value="{phrase var='user.register_for_an_account'}" class="button" onclick="window.location.href = '{url link='user.register'}';" />
+		<div class="action_contain" style="position:absolute; right:15px;">
+			<input type="button" value="{phrase var='user.register_for_an_account'}" class="button btn-sm btn-danger" onclick="window.location.href = '{url link='user.register'}';" />
 		</div>			
 		{/if}
-		<input type="submit" value="{phrase var='user.login_button'}" class="button" />
+		<input type="submit" value="{phrase var='user.login_button'}" class="button btn-sm btn-danger" />
 	</div>
 </form>
 {/if}

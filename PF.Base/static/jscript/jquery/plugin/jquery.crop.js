@@ -16,8 +16,13 @@ $Core.photo_crop =
 	save: function(oObj)
 	{
 		$('#js_photo_preview_ajax').html($.ajaxProcess());
-		
-		$(oObj).ajaxCall('user.cropPhoto', 'js_disable_ajax_restart=true'); 
+		var isCrop = $('#no_crop_user_avatar').data('id');
+    if (typeof isCrop != 'undefined'){
+      $(oObj).ajaxCall('user.cropPhoto', 'js_disable_ajax_restart=true&crop=' + isCrop);
+    } else {
+      $(oObj).ajaxCall('user.cropPhoto', 'js_disable_ajax_restart=true');
+    }
+
 		
 		return false;
 	},

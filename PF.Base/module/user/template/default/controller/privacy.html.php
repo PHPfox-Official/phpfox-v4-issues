@@ -53,13 +53,15 @@ defined('PHPFOX') or exit('NO DICE!');
 					{phrase var='user.date_of_birth'}:
 				</div>
 				<div class="table_right">
-					<select name="val[special][dob_setting]">
-						<option value="0"{if empty($aUserInfo.dob_setting)} selected="selected"{/if}>{phrase var='core.select'}:</option>					
-						<option value="1"{if $aUserInfo.dob_setting == '1'} selected="selected"{/if}>{phrase var='user.show_only_month_amp_day_in_my_profile'}</option>		
-						<option value="2"{if $aUserInfo.dob_setting == '2'} selected="selected"{/if}>{phrase var='user.display_only_my_age'}</option>
-						<option value="3"{if $aUserInfo.dob_setting == '3'} selected="selected"{/if}>{phrase var='user.don_t_show_my_birthday_in_my_profile'}</option>
-						<option value="4"{if $aUserInfo.dob_setting == '4'} selected="selected"{/if}>{phrase var='user.show_my_full_birthday_in_my_profile'}</option>
-					</select>
+					<div class="form-inline">
+						<select class="form-control" name="val[special][dob_setting]">
+							<option value="0"{if empty($aUserInfo.dob_setting)} selected="selected"{/if}>{phrase var='core.select'}:</option>
+							<option value="1"{if $aUserInfo.dob_setting == '1'} selected="selected"{/if}>{phrase var='user.show_only_month_amp_day_in_my_profile'}</option>
+							<option value="2"{if $aUserInfo.dob_setting == '2'} selected="selected"{/if}>{phrase var='user.display_only_my_age'}</option>
+							<option value="3"{if $aUserInfo.dob_setting == '3'} selected="selected"{/if}>{phrase var='user.don_t_show_my_birthday_in_my_profile'}</option>
+							<option value="4"{if $aUserInfo.dob_setting == '4'} selected="selected"{/if}>{phrase var='user.show_my_full_birthday_in_my_profile'}</option>
+						</select>
+					</div>
 				</div>
 			</div>		
 			

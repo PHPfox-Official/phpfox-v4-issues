@@ -140,7 +140,7 @@ class Pages_Component_Controller_Add extends Phpfox_Component
 				)
 			)			
 			->setHeader(array(
-					'pages.css' => 'style_css',
+					// 'pages.css' => 'style_css',
 					'privacy.css' => 'module_user',
 					'progress.js' => 'static_script',
 					'pages.js' => 'module_pages'

@@ -30,7 +30,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<span id="js_captcha_process"></span>
 			<div class="clear"></div>
 			<div class="captcha_form">
-				<input type="text" name="val[image_verification]" size="10" id="image_verification" />
+				<input class="form-control" type="text" name="val[image_verification]" size="10" id="image_verification" />
 				<div class="extra_info">
 					{phrase var='captcha.type_verification_code_above'}
 				</div>

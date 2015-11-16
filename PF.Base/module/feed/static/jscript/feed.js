@@ -182,8 +182,9 @@ $Core.handlePasteInFeed = function(oObj)
 	if (postingFeedUrl) {
 		return;
 	}
-
-	if ((substr($(oObj).val(), 0, 7) == 'http://' || substr($(oObj).val(), 0, 8) == 'https://' || (substr($(oObj).val(), 0, 4) == 'www.')))
+	
+	 var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|(www\\.)?){1}([0-9A-Za-z-\\.@:%_\‌​+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?"); 
+	if (regex.test($(oObj).val()))
 	{
 		bCheckUrlCheck = true;
 		postingFeedUrl = true;
@@ -330,7 +331,15 @@ $Behavior.activityFeedProcess = function() {
 
 		return false;
 	});
-
+	
+	$('.comment_mini_link_like_empty').each(function() {
+		var p = $(this).closest('.comment_mini_content_border');
+		if (p.length > 0) {
+			console.log(1);
+			p.eq(0).find('.feed_options').hide();	
+		} 	
+	});
+	
 	$('.feed_options').click(function() {
 		var t = $(this);
 
@@ -570,11 +579,11 @@ $Behavior.activityFeedProcess = function() {
 					|| (!$bButtonSubmitActive && $bHasDefaultValue)
 				)
 				{
-					$oCustomTextarea.attr('placeholder', $sCustomPhrase).css({height: $sCssHeight});
+					$oCustomTextarea.val($sCustomPhrase).css({height: $sCssHeight});
 				}
 				else if ($sStatusUpdateTextarea != $sStatusUpdateValue && $bButtonSubmitActive && !empty($sStatusUpdateTextarea))
 				{
-					$oCustomTextarea.attr('placeholder', $sStatusUpdateTextarea);
+					$oCustomTextarea.val($sStatusUpdateTextarea);
 				}								
 				
 				$('.activity_feed_form_button .button').addClass('button_not_active');

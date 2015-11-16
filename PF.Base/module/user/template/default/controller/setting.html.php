@@ -23,7 +23,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="first_name">{required}{phrase var='user.first_name'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[first_name]" id="first_name" value="{value type='input' id='first_name'}" size="30" {if $iTotalFullNameChangesAllowed != 0 && $aForms.total_full_name_change >= $iTotalFullNameChangesAllowed}readonly="readonly"{/if} />
+				<input class="form-control" type="text" name="val[first_name]" id="first_name" value="{value type='input' id='first_name'}" size="30" {if $iTotalFullNameChangesAllowed != 0 && $aForms.total_full_name_change >= $iTotalFullNameChangesAllowed}readonly="readonly"{/if} />
 			</div>			
 		</div>		
 		<div class="table">
@@ -31,7 +31,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="last_name">{required}{phrase var='user.last_name'}:</label>				
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[last_name]" id="last_name" value="{value type='input' id='last_name'}" size="30" {if $iTotalFullNameChangesAllowed != 0 && $aForms.total_full_name_change >= $iTotalFullNameChangesAllowed}readonly="readonly"{/if} />
+				<input class="form-control" type="text" name="val[last_name]" id="last_name" value="{value type='input' id='last_name'}" size="30" {if $iTotalFullNameChangesAllowed != 0 && $aForms.total_full_name_change >= $iTotalFullNameChangesAllowed}readonly="readonly"{/if} />
 			</div>			
 		</div>
 
@@ -48,9 +48,9 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 			<div class="table_right">
 				{if $iTotalFullNameChangesAllowed != 0 && $aForms.total_full_name_change >= $iTotalFullNameChangesAllowed}
-				<input type="text" name="val[full_name]" id="full_name" value="{value type='input' id='full_name'}" size="30" readonly="readonly" />
+				<input class="form-control" type="text" name="val[full_name]" id="full_name" value="{value type='input' id='full_name'}" size="30" readonly="readonly" />
 				{else}
-				<input type="text" name="val[full_name]" id="full_name" value="{value type='input' id='full_name'}" size="30" />
+				<input class="form-control" type="text" name="val[full_name]" id="full_name" value="{value type='input' id='full_name'}" size="30" />
 				{/if}
 
 				{if $iTotalFullNameChangesAllowed > 0}
@@ -70,9 +70,9 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 			<div class="table_right">
 				{if $aForms.total_user_change >= $iTotalChangesAllowed}
-				<input type="text" name="val[user_name]" id="user_name" value="{value type='input' id='user_name'}" size="30" readonly="readonly" />
+				<input class="form-control" type="text" name="val[user_name]" id="user_name" value="{value type='input' id='user_name'}" size="30" readonly="readonly" />
 				{else}
-				<input type="text" name="val[user_name]" id="user_name" value="{value type='input' id='user_name'}" size="30" />
+				<input class="form-control" type="text" name="val[user_name]" id="user_name" value="{value type='input' id='user_name'}" size="30" />
 				{/if}
 				<div class="extra_info">
 					{phrase var='user.total_user_change_out_of_total_user_name_changes' total_user_change=$aForms.total_user_change total=$iTotalChangesAllowed}
@@ -88,7 +88,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="email">{required}{phrase var='user.email_address'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" {if Phpfox::getParam('user.verify_email_at_signup')}onfocus="$('#js_email_warning').show();" {/if}name="val[email]" id="email" value="{value type='input' id='email'}" size="30" />
+				<input class="form-control" type="text" {if Phpfox::getParam('user.verify_email_at_signup')}onfocus="$('#js_email_warning').show();" {/if}name="val[email]" id="email" value="{value type='input' id='email'}" size="30" />
 					   {if Phpfox::getParam('user.verify_email_at_signup')}
 					   <div class="extra_info" style="display:none;" id="js_email_warning">
 					{phrase var='user.changing_your_email_address_requires_you_to_verify_your_new_email'}
@@ -115,7 +115,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="language_id">{phrase var='user.primary_language'}:</label>
 			</div>
 			<div class="table_right">
-				<select name="val[language_id]" id="language_id">					
+				<select class="form-control" name="val[language_id]" id="language_id">
 				{foreach from=$aLanguages item=aLanguage}
 					<option value="{$aLanguage.language_id}"{value type='select' id='language_id' default=$aLanguage.language_id}>{$aLanguage.title|clean}</option>
 				{/foreach}
@@ -129,7 +129,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{phrase var='user.time_zone'}:
 			</div>
 			<div class="table_right">
-				<select name="val[time_zone]" id="time_zone">
+				<select class="form-control" name="val[time_zone]" id="time_zone">
 					{foreach from=$aTimeZones key=sTimeZoneKey item=sTimeZone}
 					<option value="{$sTimeZoneKey}"{if (empty($aForms.time_zone) && $sTimeZoneKey == Phpfox::getParam('core.default_time_zone_offset')) || (!empty($aForms.time_zone) && $aForms.time_zone == $sTimeZoneKey)} selected="selected"{/if}>{$sTimeZone}</option>
 					{/foreach}
@@ -151,7 +151,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{phrase var='user.preferred_currency'}:
 			</div>
 			<div class="table_right">		
-				<select name="val[default_currency]">
+				<select  class="form-control" name="val[default_currency]">
 					<option value="">{phrase var='user.select'}:</option>
 				{foreach from=$aCurrencies key=sCurrency item=aCurrency}
 					<option value="{$sCurrency}"{if $aForms.default_currency == $sCurrency} selected="selected"{/if}>{phrase var=$aCurrency.name}</option>
@@ -187,9 +187,9 @@ defined('PHPFOX') or exit('NO DICE!');
 				</div>
 				<div class="table_right">
 					{if (isset($aCustom.type) && $aCustom.type == 'textarea')}
-						<textarea name="val[gateway_detail][{$aGateway.gateway_id}][{$sFormField}]" cols="50" rows="8">{if isset($aCustom.user_value)}{$aCustom.user_value|clean}{/if}</textarea>
+						<textarea  class="form-control" name="val[gateway_detail][{$aGateway.gateway_id}][{$sFormField}]" cols="50" rows="8">{if isset($aCustom.user_value)}{$aCustom.user_value|clean}{/if}</textarea>
 					{else}
-						<input type="text" name="val[gateway_detail][{$aGateway.gateway_id}][{$sFormField}]" value="{if isset($aCustom.user_value)}{$aCustom.user_value|clean}{/if}" size="40" />
+						<input  class="form-control" type="text" name="val[gateway_detail][{$aGateway.gateway_id}][{$sFormField}]" value="{if isset($aCustom.user_value)}{$aCustom.user_value|clean}{/if}" size="40" />
 					{/if}
 					{if !empty($aCustom.phrase_info)}
 					<div class="extra_info">

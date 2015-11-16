@@ -70,7 +70,7 @@ class Invite_Component_Controller_Invitations extends Phpfox_Component
 				)
 			)
 			->setHeader('cache', array(
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'pending.js' => 'module_invite'
 				)
 			);

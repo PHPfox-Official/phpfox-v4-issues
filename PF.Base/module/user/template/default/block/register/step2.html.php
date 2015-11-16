@@ -40,7 +40,7 @@
 				<label for="city_location">{phrase var='user.city'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[city_location]" id="city_location" value="{value type='input' id='city_location'}" size="30" />
+				<input class="form-control" type="text" name="val[city_location]" id="city_location" value="{value type='input' id='city_location'}" size="30" />
 			</div>			
 		</div>		
 	{/if}
@@ -51,7 +51,7 @@
 				{phrase var='user.time_zone'}:	
 			</div>
 			<div class="table_right">
-				<select name="val[time_zone]">
+				<select class="form-control" name="val[time_zone]">
 				{foreach from=$aTimeZones key=sTimeZoneKey item=sTimeZone}
 					<option value="{$sTimeZoneKey}"{if (Phpfox::getTimeZone() == $sTimeZoneKey && !isset($iTimeZonePosted)) || (isset($iTimeZonePosted) && $iTimeZonePosted == $sTimeZoneKey) || (Phpfox::getParam('core.default_time_zone_offset') == $sTimeZoneKey)} selected="selected"{/if}>{$sTimeZone}</option>
 				{/foreach}
@@ -70,7 +70,7 @@
 				{if Phpfox::getParam('subscribe.subscribe_is_required_on_sign_up')}{required}{/if}{phrase var='user.membership'}:	
 			</div>
 			<div class="table_right">
-				<select name="val[package_id]" id="js_subscribe_package_id">
+				<select class="form-control" name="val[package_id]" id="js_subscribe_package_id">
 				{if Phpfox::getParam('subscribe.subscribe_is_required_on_sign_up')}				
 					<option value=""{value type='select' id='package_id' default='0'}>{phrase var='user.select'}:</option>
 				{else}

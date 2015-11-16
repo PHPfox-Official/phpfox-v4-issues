@@ -110,7 +110,7 @@ class Phpfox_Editor
 			$sStr .= '<div class="edit_menu_container">' . "\n";
 			// $sStr .= '<div id="js_editor_menu_' . $iId . '" class="editor_menu"></div>' . "\n";
 			$sStr .= '<script type="text/javascript">$Behavior.getEditor = function() { Editor.setId(\'' . $iId . '\'); };</script>' . "\n";
-			$sStr .= '<div id="layer_' . $iId . '"><textarea ' . $placeholder . (isset($aParams['enter']) ? 'class="on_enter_submit"' : '') . ' name="val[' . $iId . ']" rows="' . (isset($aParams['rows']) ? $aParams['rows'] : '12') . '" cols="' . (isset($aParams['cols']) ? $aParams['cols'] : '50') . '" id="' . $iId . '"' . (isset($aParams['tabindex']) ? ' tabindex="' . $aParams['tabindex'] . '"' : '') . '>' . $this->getValue($iId, (isset($aParams['default_value']) ? $aParams['default_value'] : null)) . '</textarea></div>';
+			$sStr .= '<div id="layer_' . $iId . '"><textarea ' . $placeholder . (isset($aParams['enter']) ? 'class="form-control on_enter_submit"' : 'class="form-control"') . ' name="val[' . $iId . ']" rows="' . (isset($aParams['rows']) ? $aParams['rows'] : '12') . '" cols="' . (isset($aParams['cols']) ? $aParams['cols'] : '50') . '" id="' . $iId . '"' . (isset($aParams['tabindex']) ? ' tabindex="' . $aParams['tabindex'] . '"' : '') . '>' . $this->getValue($iId, (isset($aParams['default_value']) ? $aParams['default_value'] : null)) . '</textarea></div>';
 			$sStr .= "\n" . '</div>';
 		}
 		else 

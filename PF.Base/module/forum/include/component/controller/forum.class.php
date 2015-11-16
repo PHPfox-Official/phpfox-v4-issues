@@ -24,12 +24,18 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		{
 			return Phpfox_Module::instance()->setController('forum.index');
 		}
-		
+
 
 		Phpfox::getUserParam('forum.can_view_forum', true);
-		
-		$aParentModule = $this->getParam('aParentModule');
 
+		$aParentModule = $this->getParam('aParentModule');
+    //Check if search on page
+    $module_id = $this->request()->get('module_id');
+    if (!empty($module_id)){
+      $aParentModule['module_id'] = $this->request()->get('module_id');
+      $aParentModule['item_id'] = $this->request()->get('item');
+      $aParentModule['url'] = $this->request()->get('module_url');
+    }
 		$bIsSearch = ($this->request()->get('search') ? true : false);
 		$aCallback = $this->getParam('aCallback', null);
 		$sView = $this->request()->get('view');	
@@ -55,9 +61,9 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			}			
 		}
 
-		$oSearch = Forum_Service_Forum::instance()->getSearchFilter($this->getParam('bIsSearchQuery', false), ($this->request()->get('forum_id') ? $this->request()->get('forum_id') : $this->request()->getInt('req2')));
+		$oSearch = Forum_Service_Forum::instance()->getSearchFilter($this->getParam('bIsSearchQuery', false), ($this->request()->get('forum_id') ? $this->request()->get('forum_id') : $this->request()->getInt('req2')), $aParentModule);
 
-		if ($oSearch->isSearch() && $this->request()->getInt('req2') == 'search')
+		if (empty($module_id) && $oSearch->isSearch() && $this->request()->getInt('req2') == 'search')
 		{
 			$aIds = [];
 			$aForums = ($this->request()->get('forum_id') ? Forum_Service_Forum::instance()->id($this->request()->get('forum_id'))->live()->getForums() : Forum_Service_Forum::instance()->live()->getForums());
@@ -74,8 +80,9 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 			}
 
 			$oSearch->setCondition('AND ft.forum_id IN(' . implode(',', $aIds) . ')');
-		}					
-		
+		} elseif (!empty($module_id)){
+      $oSearch->setCondition('AND ft.forum_id = 0 AND ft.group_id = ' . $aParentModule['item_id'] . ' AND ft.is_announcement = 0');
+    }
 		define('PHPFOX_PAGER_FORCE_COUNT', true);
 		
 		$iPage = $this->request()->getInt('page');
@@ -90,7 +97,6 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				$sViewId = 'ft.view_id >= 0';	
 			}
 		}
-
 		if ($aParentModule == null)
 		{
 			$iForumId = $this->request()->getInt('req2');
@@ -109,7 +115,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 		if (!$bIsSearch && $this->request()->get('view') != 'pending-post')
 		{
 			if ($aParentModule === null)
-			{							
+			{
 				if (!isset($aForum['forum_id']) && empty($sView))
 				{				
 					return Phpfox_Error::display(Phpfox::getPhrase('forum.not_a_valid_forum'));
@@ -149,7 +155,7 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				}				
 			}
 			else 
-			{				
+			{
 				$oSearch->setCondition('AND ft.forum_id = 0 AND ft.group_id = ' . $aParentModule['item_id'] . ' AND ' . $sViewId . ' AND ft.is_announcement = 0');
 			}
 			
@@ -169,11 +175,10 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 				$bForceResult = true;				
 				$oSearch->setCondition('AND fp.view_id = 1');	
 			}
-			
-			list($iCnt, $aThreads) = Phpfox::getService('forum.post')->callback($aCallback)->get($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iPageSize);						
+			list($iCnt, $aThreads) = Phpfox::getService('forum.post')->callback($aCallback)->get($oSearch->getConditions(), $oSearch->getSort(), $oSearch->getPage(), $iPageSize);
 		}
 		else 
-		{			
+		{
 			if (($iDaysPrune = $oSearch->get('days_prune')) && $iDaysPrune != '-1')
 			{
 				$oSearch->setCondition('AND ft.time_stamp >= ' . (PHPFOX_TIME - ($iDaysPrune * 86400)));					
@@ -190,7 +195,6 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 					$oSearch->setCondition("AND ft.group_id = 0 AND tag.tag_url = '" . Phpfox_Database::instance()->escape($this->request()->get('req3')) . "'");
 				}
 			}
-
 			list($iCnt, $aThreads) = Forum_Service_Thread_Thread::instance()->isSearch($bIsSearch)
 				->isTagSearch($bIsTagSearch)
 				->isNewSearch(($sView == 'new' ? true : false))
@@ -213,8 +217,8 @@ class Forum_Component_Controller_Forum extends Phpfox_Component
 					)
 				)		
 				->setHeader('cache', array(
-						'forum.css' => 'style_css',
-						'pager.css' => 'style_css',
+						// 'forum.css' => 'style_css',
+						// 'pager.css' => 'style_css',
 						'selector.js' => 'static_script'
 					)					
 				);				

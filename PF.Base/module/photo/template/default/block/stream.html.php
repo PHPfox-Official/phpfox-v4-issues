@@ -60,7 +60,9 @@
 	<span class="_a_back"><i class="fa fa-close"></i></span>
 	{/if}
 	<div class="photos_actions">
+		<span class="photo_tag_in_photo">
 		{phrase var='photo.in_this_photo'}: <span id="js_photo_in_this_photo"></span>
+		</span>
 		<ul>
 			{if (Phpfox::getUserParam('photo.can_edit_own_photo') && $aForms.user_id == Phpfox::getUserId()) || Phpfox::getUserParam('photo.can_edit_other_photo')}
 			<li>

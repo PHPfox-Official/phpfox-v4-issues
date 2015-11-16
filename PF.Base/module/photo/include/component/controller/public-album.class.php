@@ -38,7 +38,7 @@ class Photo_Component_Controller_Public_Album extends Phpfox_Component
 		
 		$this->template()->setTitle(Phpfox::getPhrase('photo.photo_albums'))
 			->setHeader(array(
-					'pager.css' => 'style_css'
+					// 'pager.css' => 'style_css'
 				)
 			)
 			->setBreadcrumb(Phpfox::getPhrase('photo.photos'), $this->url()->makeUrl('photo'))

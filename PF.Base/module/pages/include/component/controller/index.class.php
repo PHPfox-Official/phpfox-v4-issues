@@ -222,8 +222,7 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 		}
 
 		$this->template()->setHeader('cache', array(
-					'comment.css' => 'style_css',
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'feed.js' => 'module_feed',
 					'pages.js' => 'module_pages'
 				)

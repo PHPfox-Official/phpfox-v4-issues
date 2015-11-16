@@ -6,7 +6,7 @@
 @media (max-device-width: 1430px), (max-width: 1430px) {
 
 	#page_pages_view, ._is_pages_view {
-		#container, .pages_header {
+		#container, .pages_header, div.header_bar_menu {
 			margin-left:auto;
 			width:@containerMaxWidth;
 		}
@@ -32,6 +32,12 @@
 
 	#content {
 		margin-left:0px;
+	}
+}
+
+@media (max-width: 700px){
+	.show_mobile_menu .user_block_toggle{
+		display:none;
 	}
 }
 
@@ -66,6 +72,13 @@
 			opacity:1;
 		}
 	}
+
+  .feed_form_user ._size__50, .feed_form_user ._size__50:hover{
+    }
+    .feed_form_user ._size__50 > span {
+      top: 5px;
+      left: 2px;
+    }
 
 	body.user_block_is_active {
 		.user_block_toggle {
@@ -107,13 +120,13 @@
 		}
 
 		.feed_form_user img {
-			max-width:22px;
-			max-height:22px;
+			//max-width:22px;
+			//max-height:22px;
 			position:static;
 		}
 
 		._load_is_feed, .feed_form_user_info {
-			display:none;
+			//display:none;
 		}
 	}
 
@@ -261,15 +274,16 @@
 
 	.activity_like_holder_total.hide_it {
 		display:block !important;
-		position:absolute;
-		left:40px;
-		top:0px;
+		position: relative;
+		float: right;
 		height:40px;
 		line-height:40px;
 		text-align:center;
-		padding:0px 6px 0px 0px;
+		padding:0px 6px 0px 6px;
 		background:darken(@blockBg, 8%);
 		cursor:pointer;
+        width: auto;
+        margin-right: 10px;
 
 		> i {
 			text-decoration:none;
@@ -323,6 +337,7 @@
 	.profiles_info {
 		left:20px;
 		text-align:center;
+        width: 100%;
 	}
 
 	.profile_menu_is_fixed .profiles_menu {
@@ -411,7 +426,11 @@
 		margin:auto;
 		width:95%;
 	}
-
+  @media (max-width: 700px) {
+    #breadcrumb_list{
+        display: block;
+    }
+  }
 	.breadcrumbs {
 		padding-left:10px;
 		> h1, ._block_menu_sub {
@@ -422,6 +441,12 @@
 	#header_search, #header_menu, #breadcrumb_list {
 		display:none;
 	}
+
+  @media (max-width: 700px) {
+    #breadcrumb_list{
+      display: block;
+    }
+  }
 
 	#container > ._block_h1 > h1 {
 		width:auto;

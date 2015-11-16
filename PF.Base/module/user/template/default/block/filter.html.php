@@ -26,8 +26,8 @@ defined('PHPFOX') or exit('NO DICE!');
 {if Phpfox::getUserParam('user.can_search_user_age')}
 	<div class="table">
 		<div class="table_left">{phrase var='user.between_ages'}</div>
-		<div class="table_right">
-			{filter key='from'}{filter key='to'}
+		<div class="table_right form-inline">
+			{filter key='from'}&nbsp;{filter key='to'}
 		</div>
 	</div>
 {/if}

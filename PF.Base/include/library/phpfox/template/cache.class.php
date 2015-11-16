@@ -1060,7 +1060,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 					$bUseJquery = false;
 				}
 				
-				$sMonth = '<select name="val[' . $sPrefix . 'month]" id="' . $sPrefix . 'month" class="js_datepicker_month">' . "\n";
+				$sMonth = '<select class="form-control" name="val[' . $sPrefix . 'month]" id="' . $sPrefix . 'month" class="js_datepicker_month">' . "\n";
 				if (!isset($aArgs['default_all']))
 				{
 					$sMonth .= "\t\t" . '<option value=""><?php echo Phpfox::getPhrase(\'core.month\'); ?>:</option>'  . "\n";
@@ -1088,7 +1088,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				}
 				$sMonth .= "\t\t" . '</select>' . "\n";
 
-				$sDay = "\t\t" . '<select name="val[' . $sPrefix . 'day]" id="' . $sPrefix . 'day" class="js_datepicker_day">' . "\n";
+				$sDay = "\t\t" . '<select class="form-control" name="val[' . $sPrefix . 'day]" id="' . $sPrefix . 'day" class="js_datepicker_day">' . "\n";
 				if (!isset($aArgs['default_all']))
 				{
 					$sDay .= "\t\t" . '<option value=""><?php echo Phpfox::getPhrase(\'core.day\'); ?>:</option>' . "\n";
@@ -1127,7 +1127,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 
 				$sYear = '<?php $aYears = range(' . $aArgs['start_year'] . ', ' . $aArgs['end_year'] . ');  ?>';
 				$sYear .= '<?php $aParams = (isset($aParams) ? $aParams : Phpfox::getLib(\'phpfox.request\')->getArray(\'val\')); ?>';
-				$sYear .= "\t\t" . '<select name="val[' . $sPrefix . 'year]" id="' . $sPrefix . 'year" class="js_datepicker_year">' . "\n";
+				$sYear .= "\t\t" . '<select class="form-control" name="val[' . $sPrefix . 'year]" id="' . $sPrefix . 'year" class="js_datepicker_year">' . "\n";
 				if (!isset($aArgs['default_all']))
 				{
 					$sYear .= "\t\t" . '<option value=""><?php echo Phpfox::getPhrase(\'core.year\'); ?>:</option>' . "\n";
@@ -1206,7 +1206,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 						$sReturn .= Phpfox::getPhrase($sCustomPhrase);
 					}
 					$aHours = range(0, 23);
-					$sReturn .= "\t\t" . '<select name="val[' . $sPrefix . 'hour]" id="' . $sPrefix . 'hour">' . "\n";
+					$sReturn .= "\t\t" . '<select class="form-control" name="val[' . $sPrefix . 'hour]" id="' . $sPrefix . 'hour">' . "\n";
 					foreach ($aHours as $iHour)
 					{
 						if (isset($aArgs['start_hour']))
@@ -1244,7 +1244,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 					$sReturn .= '</div>';
 				}
 
-				return $sReturn;
+				return '<div class="form-inline select_date">'. $sReturn . '</div>';
 
 				break;
 			case 'select_location':
@@ -1255,7 +1255,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				}
 				$bIsMultiple = isset($aArgs['multiple']) && !empty($aArgs['multiple']);
 				
-				$sCountries = '<select '. ( $bIsMultiple ? 'multiple="multiple" ' : '') .'name="val[' . (isset($aArgs['name']) ? $this->_removeQuote($aArgs['name']) : 'country_iso') . ']'. ($bIsMultiple ? '[]':'') .'" id="' . (isset($aArgs['name']) ? $this->_removeQuote($aArgs['name']) : 'country_iso') . '"' . (isset($aArgs['style']) ? ' style=' . $aArgs['style'] . '' : '') . '>' . "\n";
+				$sCountries = '<select class="form-control" '. ( $bIsMultiple ? 'multiple="multiple" ' : '') .'name="val[' . (isset($aArgs['name']) ? $this->_removeQuote($aArgs['name']) : 'country_iso') . ']'. ($bIsMultiple ? '[]':'') .'" id="' . (isset($aArgs['name']) ? $this->_removeQuote($aArgs['name']) : 'country_iso') . '"' . (isset($aArgs['style']) ? ' style=' . $aArgs['style'] . '' : '') . '>' . "\n";
 				$sCountries .= "\t\t" . '<option value="">' . (isset($aArgs['value_title']) ? $this->_removeQuote($aArgs['value_title']) : '<?php echo Phpfox::getPhrase(\'core.select\'); ?>:') . '</option>' . "\n";
 				foreach (Phpfox::getService('core.country')->get() as $sIso => $sCountry)
 				{
@@ -1278,7 +1278,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				{
 					$aArgs['value_title'] = Phpfox::getPhrase(str_replace(array('phrase var=','"',"'"),'',$aArgs['value_title']));
 				}
-				$sGenders = '<select name="val[gender]" id="gender">' . "\n";
+				$sGenders = '<select class="form-control" name="val[gender]" id="gender">' . "\n";
 				$sGenders .= "\t\t" . '<option value="">' . (isset($aArgs['value_title']) ? $this->_removeQuote($aArgs['value_title']) : '<?php echo Phpfox::getPhrase(\'core.select\'); ?>:') . '</option>' . "\n";
 				foreach (Phpfox::getService('core')->getGenders(true) as $iKey => $sGender)
 				{

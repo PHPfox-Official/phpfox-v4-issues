@@ -47,7 +47,7 @@ class Admincp_Component_Controller_Block_Index extends Phpfox_Component
 			}
 
 			if ($aRow['m_connection'] == 'admincp.index') {
-				continue;
+//				continue;
 			}
 
 			$aBlocks[$aRow['m_connection']][$aRow['location']][] = $aRow;

@@ -173,7 +173,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 		$this->setParam('aUser', $aRow);
 		define('PHPFOX_CURRENT_TIMELINE_PROFILE', $aRow['user_id']);
 		$this->template()->setHeader('cache', array(
-					'profile.css' => 'style_css'
+					// 'profile.css' => 'style_css'
 				)
 			)		
 			->assign(array(
@@ -235,12 +235,13 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 		)
 		{
 			return Phpfox_Module::instance()->setController('profile.private');
-		}		
-		
+		}
+    if ((($sReq2 = $this->request()->get('req2')) == 'activity-point') || ($sReq2 == 'activity-points')){
+      return Phpfox_Module::instance()->setController('profile.points');
+    }
 		if ($bIsSubSection === true)
 		{
 			$this->template()->setUrl(Phpfox::callback($sSection . '.getProfileLink'));
-
 			return Phpfox_Module::instance()->setController($sSection . '.profile');
 		}
 		
@@ -374,8 +375,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 			->setUrl('profile')
 			->setHeader('cache', array(
 					'feed.js' => 'module_feed',
-					'comment.css' => 'style_css',
-					'pager.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
 					'quick_edit.js' => 'static_script',
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script'
@@ -443,11 +443,11 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 						->setHeader('cache', array(
 							// 'jquery/plugin/jquery.bgiframe.js' => 'static_script',
 							'jquery/ui.js' => 'static_script',							
-							'style.css' => 'style_css',
+							// 'style.css' => 'style_css',
 							'select.js' => 'module_theme',
 							'design.js' => 'module_theme',										
 							'colorpicker.js' => 'static_script',
-							'colorpicker.css' => 'style_css',
+							// 'colorpicker.css' => 'style_css',
 							'colorpicker/js/colorpicker.js' => 'static_script',
 							'switch_legend.js' => 'static_script',
 							'switch_menu.js' => 'static_script',
@@ -465,7 +465,7 @@ class Profile_Component_Controller_Index extends Phpfox_Component
 						)
 					)
 					;			
-				
+
 				if (isset($aAdvanced))
 				{
 				    $this->template()->assign(array(

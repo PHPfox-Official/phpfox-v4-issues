@@ -25,6 +25,9 @@ class Report_Service_Data_Process extends Phpfox_Service
 	
 	public function add($iReportId, $sType, $iItemId, $sFeedback = '')
 	{
+    if (empty($iReportId)){
+      return Phpfox_Error::set(Phpfox::getPhrase('report.provide_a_category_name'));
+    }
 		$this->database()->insert($this->_sTable, array(
 				'report_id' => (int) $iReportId,
 				'item_id' => $sType . '_' . (int) $iItemId,

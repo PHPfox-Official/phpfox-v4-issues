@@ -47,7 +47,10 @@ class User_Component_Controller_Privacy extends Phpfox_Component
 				'notifications' => Phpfox::getPhrase('user.notifications'),
 				'blocked' => Phpfox::getPhrase('user.blocked_users')				
 			);
-			
+			//https://github.com/moxi9/phpfox/issues/612
+      if (Phpfox::getUserParam('user.hide_from_browse')){
+        $aMenus['invisible'] = Phpfox::getPhrase('user.invisible_mode');
+      }
 			if (!Phpfox::isModule('privacy'))
 			{
 				unset($aMenus['items']);
@@ -67,7 +70,7 @@ class User_Component_Controller_Privacy extends Phpfox_Component
 				)				
 			);		
 		
-		
+
 		if ($this->request()->get('view') == 'blocked')
 		{
 			$this->template()->assign(array('bGoToBlocked' => true));

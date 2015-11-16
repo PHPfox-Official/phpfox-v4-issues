@@ -58,7 +58,9 @@ class Custom_Component_Block_Display extends Phpfox_Component
 		{
 			$aOutput = $aCustomMain[$this->getParam('type_id')];
 		}
-
+    if (empty($aOutput)){
+      return false;
+    }
 		$this->_sTemplate = $this->getParam('template');
 
 		$this->template()->assign(array(

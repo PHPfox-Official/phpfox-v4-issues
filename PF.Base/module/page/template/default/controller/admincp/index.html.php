@@ -16,7 +16,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<table cellpadding="0" cellspacing="0">
 	{foreach from=$aPages key=iKey item=aPage}
 	<tr class="checkRow{if is_int($iKey/2)} tr{else}{/if}">
-		<td><a href="{url link=$aPage.title_url}" class="targetBlank">{if $aPage.is_phrase}{phrase var=$aPage.title}{else}{$aPage.title}{/if}</a></td>
+		<td><a href="{url link=$aPage.title_url}" class="targetBlank {if !$aPage.is_active}inactive_page{/if}" {if !$aPage.is_active} title="{phrase var='page.inactive_page'}"{/if}>{if $aPage.is_phrase}{phrase var=$aPage.title}{else}{$aPage.title}{/if}</a></td>
 		<td>
 			<ul class="table_actions">
 				<li>

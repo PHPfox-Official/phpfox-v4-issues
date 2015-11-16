@@ -61,7 +61,7 @@ class Photo_Component_Controller_Rate extends Phpfox_Component
 				->setBreadcrumb(Phpfox::getPhrase('photo.photos'), $this->url()->makeUrl('photo'))
 				// ->setBreadcrumb(Phpfox::getPhrase('photo.rate'), $this->url()->makeUrl('photo.rate'), true)			
 				->setHeader('cache', array(		
-						'rate_bar.css' => 'style_css'											
+						// 'rate_bar.css' => 'style_css'											
 					)
 			)			
 			->assign(array(

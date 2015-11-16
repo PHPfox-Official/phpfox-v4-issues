@@ -30,7 +30,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<a href="#" onclick="return $Core.quiz.removeQuestion(this);"><i class="fa fa-close"></i></a>
 		</div>
 		
-		<input type="text" class="question_title" name="val[q][{if isset($Question.question_id)}{$Question.question_id}{elseif isset($phpfox.iteration.question)}{$phpfox.iteration.question}{else}0{/if}][question]" value="{if isset($Question.question)}{$Question.question}{/if}" maxlength="200" size="30" />
+		<input  type="text" class="form-control question_title" name="val[q][{if isset($Question.question_id)}{$Question.question_id}{elseif isset($phpfox.iteration.question)}{$phpfox.iteration.question}{else}0{/if}][question]" value="{if isset($Question.question)}{$Question.question}{/if}" maxlength="200" size="30" />
 		
 		<div class="table">
 			<div class="table_left">{phrase var='quiz.answers'}:</div>
@@ -46,7 +46,7 @@ defined('PHPFOX') or exit('NO DICE!');
 							{else}
 								{* This happens when there is an error submitting (forgot to add a question title maybe) *}
 							{/if}
-							<input type="text" name="val[q][{if isset($Question.question_id)}{$Question.question_id}{elseif isset($phpfox.iteration.question)}{$phpfox.iteration.question}{else}0{/if}][answers][{if isset($aAnswer.answer_id) && $aAnswer.answer_id != ''}{$aAnswer.answer_id}{elseif isset($phpfox.iteration.iAnswer)}{$phpfox.iteration.iAnswer}{else}{$phpfox.iteration.iAnswer}{/if}][answer]" tabindex="" class="answer " value="{$aAnswer.answer}" maxlength="100" onblur="{literal}if(this.value == ''){ this.value = '{/literal}{$aAnswer.answer}{literal}';}{/literal}" onfocus="{literal}if ( (this.value.length == 'Answer X...'.length || this.value.length == 'Answer XY...'.length) && (this.value.substr(0,'Answer '.length) == 'Answer ') && (this.value.substr('Answer X'.length, 3) == '...')){this.value = '';}{/literal}" />
+							<input type="text" name="val[q][{if isset($Question.question_id)}{$Question.question_id}{elseif isset($phpfox.iteration.question)}{$phpfox.iteration.question}{else}0{/if}][answers][{if isset($aAnswer.answer_id) && $aAnswer.answer_id != ''}{$aAnswer.answer_id}{elseif isset($phpfox.iteration.iAnswer)}{$phpfox.iteration.iAnswer}{else}{$phpfox.iteration.iAnswer}{/if}][answer]" tabindex="" class="form-control answer " value="{$aAnswer.answer}" maxlength="100" onblur="{literal}if(this.value == ''){ this.value = '{/literal}{$aAnswer.answer}{literal}';}{/literal}" onfocus="{literal}if ( (this.value.length == 'Answer X...'.length || this.value.length == 'Answer XY...'.length) && (this.value.substr(0,'Answer '.length) == 'Answer ') && (this.value.substr('Answer X'.length, 3) == '...')){this.value = '';}{/literal}" />
 
 							<a href="#" class="a_addAnswer" onclick="return $Core.quiz.appendAnswer(this);">
 								<i class="fa fa-plus-square"></i>

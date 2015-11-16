@@ -207,6 +207,10 @@ If this setting is disabled that sub-menu will not be shown, and instead a bigge
 Please note that this is only valid if Timeline is disabled.</info>]]></phrase>
 		<phrase module_id="profile" version_id="3.6.0rc1" var_name="setting_cache_blocks_design" added="1371724344"><![CDATA[<title>Profile/Dashboard Design</title><info>Stops querying the table user_dashboard, which is used to store information about the block positioning on a users profiles or dashboard.</info>]]></phrase>
 		<phrase module_id="profile" version_id="3.6.0rc1" var_name="setting_profile_caches" added="1371724865"><![CDATA[<title>Profile Tracking</title><info>This cache removes the track from profiles. It goes against privacy and is very difficult to circumvent efficiently.</info>]]></phrase>
+		<phrase module_id="profile" version_id="4.0.10" var_name="manage" added="1446447315">Manage</phrase>
+		<phrase module_id="profile" version_id="4.0.10" var_name="change_cover_photo" added="1446447578">Change Cover Photo</phrase>
+		<phrase module_id="profile" version_id="4.0.10" var_name="remove_cover_photo" added="1446447637">Remove Cover Photo</phrase>
+		<phrase module_id="profile" version_id="4.0.10" var_name="activity_points" added="1446447637">Activity points</phrase>
 	</phrases>
 	<user_group_settings>
 		<setting is_admin_setting="0" module_id="profile" type="boolean" admin="1" user="1" guest="0" staff="1" module="profile" ordering="0">can_post_comment_on_profile</setting>

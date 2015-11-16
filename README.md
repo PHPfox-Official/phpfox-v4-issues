@@ -61,5 +61,33 @@ Your final step will be to setup your Admin account.
 
 Done!
 
-Feel free to report any issues you find [here](https://github.com/moxi9/phpfox/issues).
+## Upgrade From PhpFox 4.x
 
+Upgrade source code & Dependencies
+Download source code, extract content then overwrite to PhpFox root directory
+
+Access your web server via SSH:
+
+```
+cd PF.Base
+```
+
+```
+php composer.phar update
+```
+
+Rebuild Theme
+Open web browser to access your site
+
+```
+Access AdminCP / Themes
+```
+
+```
+Run "Sync CSS" 
+```
+
+Done!
+
+
+Feel free to report any issues you find [here](https://github.com/moxi9/phpfox/issues).

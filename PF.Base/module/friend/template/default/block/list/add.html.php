@@ -13,7 +13,7 @@ defined('PHPFOX') or exit('NO DICE!');
 ?>
 <div class="error_message" id="js_friend_list_add_error" style="display:none;"></div>
 <form method="post" action="#" onsubmit="$Core.processForm('#js_friend_list_add_submit'); $(this).ajaxCall('friend.addList'); return false;">
-	<input type="text" name="name" value="" size="40" /> 
+	<input type="text" name="name" value="" size="40" class="form-control"/>
 	<div class="extra_info">
 		{phrase var='friend.enter_the_name_of_your_custom_friends_list'}
 	</div>

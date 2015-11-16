@@ -66,7 +66,7 @@ class Page_Component_Controller_Admincp_Add extends Phpfox_Component
 		
 		if ($aVals = $this->request()->getArray('val'))
 		{
-			Phpfox::getLib('parse.input')->allowTitle(Phpfox::getLib('parse.input')->cleanTitle($aVals['title_url']), Phpfox::getPhrase('page.invalid_title'));	
+			Phpfox::getLib('parse.input')->allowTitle(Phpfox::getLib('parse.input')->cleanTitle($aVals['title_url']), Phpfox::getPhrase('page.invalid_title'));
 			
 			if ($oValid->isValid($aVals))
 			{
@@ -86,10 +86,21 @@ class Page_Component_Controller_Admincp_Add extends Phpfox_Component
 				if ($sReturn)
 				{
 					return [
-						'redirect' => $this->url()->makeUrl($sReturn)
+						'redirect' => $this->url()->makeUrl($sReturn, null, $sMessage)
 					];
 				}
-			}
+			} else {
+        $aError = Phpfox_Error::get();
+        $sError = '';
+        if (is_array($aError)){
+          $sError = implode(' ', $aError);
+        } else {
+          $sError = $aError;
+        }
+        return [
+          'error' => $sError
+        ];
+      }
 		}		
 
 		$this->template()

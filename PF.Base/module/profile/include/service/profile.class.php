@@ -140,23 +140,6 @@ class Profile_Service_Profile extends Phpfox_Service
 	public function getProfileMenu($aUser)
 	{
 		$aMenus = array();
-		/*
-		if (Phpfox::getService('user.privacy')->hasAccess($aUser['user_id'], 'feed.view_wall'))
-		{
-			$aMenus[] = array(
-				'phrase' => 'Profile',
-				'url' => 'profile' . ($aUser['landing_page'] == 'info' ? '.wall' : ''),
-				'icon' => 'misc/comment.png'	
-			);
-		}
-		
-		$aMenus[] = array(
-			'phrase' => Phpfox::getPhrase('profile.info'),
-			'url' => 'profile' . ($aUser['landing_page'] == 'info' ? '' : '.info' . (defined('PHPFOX_IN_DESIGN_MODE') ? '.design' : '')),
-			'icon' => 'misc/application_view_list.png'	
-		);	
-		*/
-
 		if (!Phpfox::getUserBy('profile_page_id') && !defined('PHPFOX_IN_DESIGN_MODE'))
 		{
 			$aModuleCalls = Phpfox::massCallback('getProfileMenu', $aUser);
@@ -232,7 +215,15 @@ class Profile_Service_Profile extends Phpfox_Service
 				$aMenus[$iKey]['url'] = $aUser['user_name'] . '.' . Phpfox_Url::instance()->doRewrite(preg_replace("/^profile\.(.*)$/i", "\\1", $aMenu['url']));
 			}
 		}
-
+    //Activity points info
+    if ($aUser['user_id'] == Phpfox::getUserId()){
+      $aMenus[] = array(
+        'phrase' => Phpfox::getPhrase('profile.activity_points'),
+        'url' => $aUser['user_name'] . '.activity-points',
+        'total' => $aUser['activity_points'],
+        'actual_url' => 'profile_activity-points'
+      );
+    }
 		/* Reminder for purefan add a hook here */
 		if ($sPlugin = Phpfox_Plugin::get('profile.service_profile_get_profile_menu'))
 		{

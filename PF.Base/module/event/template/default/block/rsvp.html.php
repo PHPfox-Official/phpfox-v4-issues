@@ -17,13 +17,13 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div><input type="hidden" name="item" value="{$aCallback.item}" /></div>
 {/if}
 	<div class="p_2{if $aEvent.rsvp_id == 1} active{/if}">
-		<input type="radio" name="rsvp" value="1" class="checkbox v_middle js_event_rsvp" {if $aEvent.rsvp_id == 1}checked="checked" {/if}/> {phrase var='event.attending'}
+		<input type="radio" name="rsvp" value="1" class="v_middle js_event_rsvp" {if $aEvent.rsvp_id == 1}checked="checked" {/if}/> {phrase var='event.attending'}
 	</div>
 	<div class="p_2{if $aEvent.rsvp_id == 2} active{/if}">
-		<input type="radio" name="rsvp" value="2" class="checkbox v_middle js_event_rsvp" {if $aEvent.rsvp_id == 2}checked="checked" {/if}/> {phrase var='event.maybe_attending'}
+		<input type="radio" name="rsvp" value="2" class="v_middle js_event_rsvp" {if $aEvent.rsvp_id == 2}checked="checked" {/if}/> {phrase var='event.maybe_attending'}
 	</div>
 	<div class="p_2{if $aEvent.rsvp_id == 3} active{/if}">
-		<input type="radio" name="rsvp" value="3" class="checkbox v_middle js_event_rsvp" {if $aEvent.rsvp_id == 3}checked="checked" {/if}/> {phrase var='event.not_attending'}
+		<input type="radio" name="rsvp" value="3" class="v_middle js_event_rsvp" {if $aEvent.rsvp_id == 3}checked="checked" {/if}/> {phrase var='event.not_attending'}
 	</div>
 {*
 	<div id="js_event_rsvp_button" class="p_2" style="margin-top:10px;{if $aEvent.rsvp_id} display:none;{/if}">

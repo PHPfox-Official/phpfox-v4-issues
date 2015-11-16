@@ -209,9 +209,12 @@ class Page_Service_Process extends Phpfox_Service
 		}
 		
 		$this->cache()->remove('page', 'substr');
-
-		return $aVals['title_url'];
-	}	
+    if ($aVals['is_active']){
+      return $aVals['title_url'];
+    } else {
+      return Phpfox::getLib('url')->makeUrl('admincp.page');
+    }
+	}
 	
 	public function update($iId, $aVals, $iUserId = null)
 	{

@@ -288,15 +288,14 @@ class Forum_Component_Controller_Thread extends Phpfox_Component
 			)
 			->setEditor()
 			->setHeader('cache', array(
-					'forum.css' => 'style_css',
-					'pager.css' => 'style_css',
+					// 'forum.css' => 'style_css',
+					// 'pager.css' => 'style_css',
 					'jquery/plugin/jquery.scrollTo.js' => 'static_script',
 					'quick_edit.js' => 'static_script',
 					'forum.js' => 'module_forum',
 					'jquery/plugin/jquery.highlightFade.js' => 'static_script',					
 					'switch_legend.js' => 'static_script',
 					'switch_menu.js' => 'static_script',
-					'comment.css' => 'style_css',
 					'feed.js' => 'module_feed'
 				)
 			)

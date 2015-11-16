@@ -17,7 +17,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{phrase var='music.genre_total' total=$i}:
 		</div>
 		<div class="{if PHPFOX_IS_AJAX && !$bIsGlobalEdit}info{else}table{/if}_right">
-			<select name="custom[music_genre][{$i}]">
+			<select class="form-control" name="custom[music_genre][{$i}]">
 				<option value="">{phrase var='music.none'}</option>
 			{foreach from=$aGenres item=aGenre}
 				<option value="{$aGenre.genre_id}"{if isset($aUserGenres[$i]) && $aUserGenres[$i].genre_id == $aGenre.genre_id} selected="selected"{/if}>{$aGenre.name|convert|clean}</option>

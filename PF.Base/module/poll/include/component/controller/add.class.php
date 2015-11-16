@@ -207,7 +207,7 @@ class Poll_Component_Controller_Add extends Phpfox_Component
 					'jquery/ui.js' => 'static_script',
 					'poll.css' => 'module_poll',					
 					'<script type="text/javascript">$Behavior.loadSortableAnswers = function() {$(".sortable").sortable({placeholder: "placeholder", axis: "y"});}</script>',		
-					'pager.css' => 'style_css'			
+					// 'pager.css' => 'style_css'			
 				)
 			)
 			->setPhrase(array(

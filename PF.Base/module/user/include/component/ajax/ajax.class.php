@@ -631,9 +631,13 @@ class User_Component_Ajax_Ajax extends Phpfox_Ajax
 	}
 	
 	public function cropPhoto()
-	{		
+	{
+    if ($this->get('crop')){
+      $this->call('window.location.href = \'' . Phpfox_Url::instance()->makeUrl('profile') . '\';');
+      return true;
+    }
 		$aPostVals = $this->get('val');
-		
+
 		if (empty($aPostVals['w']) && !isset($aPostVals['skip_croping']))
 		{			
 			$this->show('#js_photo_preview_ajax')->html('#js_photo_preview_ajax', '');

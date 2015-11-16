@@ -15,13 +15,14 @@
 
 .js_comment_feed_textarea, .js_comment_feed_textarea:focus {
 	width:100%;
-	padding:14px 0px 8px 0px;
+	padding:16px 0px 8px 0px;
 	text-indent:8px;
 	border:0px;
 	background:@blockBg;
 	color:@blockColor;
 	height:20px;
 	font-size:@fontSizeBase - 2;
+    line-height: 1.2;
 }
 
 .row_feed_loop {
@@ -143,10 +144,10 @@ div.comment_mini_content {
 }
 
 .js_comment_feed_form div.comment_mini_content {
-	margin:0px !important;
+	margin: 0 0 0 50px !important;
 
 	textarea, textarea:focus {
-		text-indent:50px !important;
+		//text-indent:50px !important;
 	}
 }
 
@@ -372,11 +373,25 @@ div.comment_mini_end {
 	}
 }
 
+.user_block {
+	display: none;
+}
+@media (min-width: 1160px) {
+	.user_block {
+		display: block;
+	}
+}
+
+.user_block_is_active .user_block{
+	display:block;
+}
+
+
 .feed_form_menu {
 	display:none;
 	margin-left:-@blockContentPadding;
 	margin-right:-@blockContentPadding;
-	margin-top:-@blockContentPadding;
+	margin-top:0;
 	margin-bottom:10px;
 	border-bottom:1px darken(@blockBg, 7%) solid;
 	font-size:@fontSizeBase - 1;

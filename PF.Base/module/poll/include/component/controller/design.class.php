@@ -106,7 +106,7 @@ class Poll_Component_Controller_Design extends Phpfox_Component
 		$this->template()->setHeader(array(
 						'<script type="text/javascript">var iMaxAnswers = 10; var iMinAnswers = 2;</script>',						
 						'colorpicker.js' => 'static_script',
-						'colorpicker.css' => 'style_css',
+						// 'colorpicker.css' => 'style_css',
 						'colorpicker/js/colorpicker.js' => 'static_script',
 						'design.js' => 'module_poll',
 						'poll.css' => 'module_poll',

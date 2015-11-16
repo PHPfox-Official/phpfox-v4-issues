@@ -29,10 +29,10 @@ class Report_Component_Ajax_Ajax extends Phpfox_Ajax
 	public function insert()
 	{
 		Phpfox::isUser(true);
-		
+
 		if (Phpfox::getService('report.data.process')->add($this->get('report'), $this->get('type'), $this->get('id'), $this->get('feedback')))
 		{
-			// $this->call('tb_remove();');
+			 $this->call('tb_remove();');
 		}
 	}
 	

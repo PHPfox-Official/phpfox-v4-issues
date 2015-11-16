@@ -19,7 +19,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{phrase var='user.old_password'}:
 		</div>
 		<div class="table_right">
-			<input type="password" name="val[old_password]" value="" size="30" />
+			<input type="password" name="val[old_password]" value="" size="30" class="form-control"/>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -31,7 +31,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{phrase var='user.new_password'}:
 		</div>
 		<div class="table_right">
-			<input type="password" name="val[new_password]" value="" size="30" />
+			<input type="password" name="val[new_password]" value="" size="30" class="form-control"/>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -40,7 +40,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{phrase var='user.confirm_password'}:
 		</div>
 		<div class="table_right">
-			<input type="password" name="val[confirm_password]" value="" size="30" />
+			<input type="password" name="val[confirm_password]" value="" size="30" class="form-control" />
 		</div>
 		<div class="clear"></div>
 	</div>	

@@ -147,7 +147,7 @@ class Theme extends Model {
 	 * @param null $files
 	 * @return Theme\Object
 	 */
-	public function make($val, $files = null, $isUpdate = false) {
+	public function make($val, $files = null, $isUpdate = false, $sCustomFolder = null) {
 		/*
 		$check = $this->db->select('COUNT(*) AS total')
 			->from(':theme')
@@ -167,7 +167,12 @@ class Theme extends Model {
 				'created' => PHPFOX_TIME,
 				'is_active' => 1
 			]);
-			$this->db->update(':theme', ['folder' => $id], ['theme_id' => $id]);
+      if (isset($sCustomFolder) && !empty($sCustomFolder)){
+        $folderTheme = strtolower($sCustomFolder);
+      } else {
+        $folderTheme = $id;
+      }
+			$this->db->update(':theme', ['folder' => $folderTheme], ['theme_id' => $id]);
 		}
 		else {
 			$id = $isUpdate;
@@ -175,7 +180,7 @@ class Theme extends Model {
 
 		if ($files !== null) {
 			foreach ($files as $name => $content) {
-				$path = PHPFOX_DIR_SITE . 'themes/' . $id . '/' . $name;
+				$path = PHPFOX_DIR_SITE . 'themes/' . $folderTheme . '/' . $name;
 
 				$parts = pathinfo($path);
 				if (!is_dir($parts['dirname'])) {
@@ -196,12 +201,21 @@ class Theme extends Model {
 			'created' => PHPFOX_TIME,
 			'folder' => '__'
 		]);
-		$this->db->update(':theme_style', ['folder' => $flavorId], ['style_id' => $flavorId]);
+    if (isset($sCustomFolder) && !empty($sCustomFolder)){
+      $folderName = strtolower($sCustomFolder);
+    } else {
+      $folderName = $flavorId;
+    }
+		$this->db->update(':theme_style', ['folder' => $folderName], ['style_id' => $flavorId]);
 
 		$File = \Phpfox_File::instance();
 		$copy = [];
 		$dirs = [];
-		$files = $File->getAllFiles(PHPFOX_DIR. 'theme/default/');
+    if (isset($sCustomFolder) && !empty($sCustomFolder)){
+      $files = $File->getAllFiles(PHPFOX_DIR. 'theme/'.strtolower($sCustomFolder).'/');
+    } else {
+      $files = $File->getAllFiles(PHPFOX_DIR. 'theme/default/');
+    }
 		foreach ($files as $file) {
 			if (!in_array($File->extension($file), [
 				'html', 'js', 'css', 'less'
@@ -210,12 +224,15 @@ class Theme extends Model {
 			}
 
 			$parts = pathinfo($file);
-
-			$dirs[] = str_replace(PHPFOX_DIR . 'theme/default/', '', $parts['dirname']);
+      if (isset($sCustomFolder) && !empty($sCustomFolder)){
+        $dirs[] = str_replace(PHPFOX_DIR . 'theme/'.strtolower($sCustomFolder).'/', '', $parts['dirname']);
+      } else {
+        $dirs[] = str_replace(PHPFOX_DIR . 'theme/default/', '', $parts['dirname']);
+      }
 			$copy[] = $file;
 		}
 
-		$path = PHPFOX_DIR_SITE . 'themes/' . $id . '/';
+		$path = PHPFOX_DIR_SITE . 'themes/' . $folderTheme . '/';
 		foreach ($dirs as $dir) {
 			if (!is_dir($path . $dir)) {
 				mkdir($path . $dir, 0777, true);
@@ -223,9 +240,13 @@ class Theme extends Model {
 		}
 
 		foreach ($copy as $file) {
-			$newFile = $path . str_replace(PHPFOX_DIR . 'theme/default/', '', $file);
+      if (isset($sCustomFolder) && !empty($sCustomFolder)){
+        $newFile = $path . str_replace(PHPFOX_DIR . 'theme/'.strtolower($sCustomFolder).'/', '', $file);
+      } else {
+        $newFile = $path . str_replace(PHPFOX_DIR . 'theme/default/', '', $file);
+      }
 			if (in_array($File->extension($file), ['less', 'css'])) {
-				$newFile = str_replace('default.' . $File->extension($file), $flavorId . '.' . $File->extension($file), $newFile);
+				$newFile = str_replace('default.' . $File->extension($file), $folderName . '.' . $File->extension($file), $newFile);
 			}
 
 			copy($file, $newFile);

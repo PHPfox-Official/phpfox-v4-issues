@@ -100,7 +100,7 @@ Site Name</setting>
 		<setting group="" module_id="core" is_hidden="0" type="string" var_name="amazon_bucket" phrase_var_name="setting_amazon_bucket" ordering="4" version_id="2.0.5" />
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="amazon_bucket_created" phrase_var_name="setting_amazon_bucket_created" ordering="5" version_id="2.0.5">0</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="force_https_secure_pages" phrase_var_name="setting_force_https_secure_pages" ordering="10" version_id="2.0.5dev1">0</setting>
-		<setting group="" module_id="core" is_hidden="0" type="array" var_name="global_genders" phrase_var_name="setting_global_genders" ordering="1" version_id="2.0.5dev2"><![CDATA[s:112:"array(
+		<setting group="registration" module_id="core" is_hidden="0" type="array" var_name="global_genders" phrase_var_name="setting_global_genders" ordering="1" version_id="2.0.5dev2"><![CDATA[s:112:"array(
   0 => '1|core.his|profile.male|core.himself',
   1 => '2|core.her|profile.female|core.herself|female',
 );";]]></setting>

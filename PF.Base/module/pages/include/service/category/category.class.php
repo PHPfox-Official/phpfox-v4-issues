@@ -77,8 +77,19 @@ class Pages_Service_Category_Category extends Phpfox_Service
 	}
 
 	public function getLatestPages($iId, $userId = null) {
+		
+		Privacy_Service_Privacy::instance()->buildPrivacy(array(
+				'module_id' => 'pages',
+				'alias' => 'pages',
+				'field' => 'page_id',
+				'table' => Phpfox::getT('pages'),
+				'service' => 'pages.browse'
+			)
+		);
+		
+		$this->database()->unionFrom('pages');
+				
 		return $this->database()->select('pages.*, pu.vanity_url, ' . Phpfox::getUserField('u2', 'profile_'))
-			->from(Phpfox::getT('pages'), 'pages')
 			->join(Phpfox::getT('user'), 'u2', 'u2.profile_page_id = pages.page_id')
 			->leftJoin(Phpfox::getT('pages_url'), 'pu', 'pu.page_id = pages.page_id')
 			->limit(8)

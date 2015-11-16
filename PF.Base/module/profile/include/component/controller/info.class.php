@@ -29,7 +29,7 @@ class Profile_Component_Controller_Info extends Phpfox_Component
 		{
 			$aRow['has_rated'] = false;
 		}
-
+    $this->setParam('template', 'info');
 		$this->template()->setTitle(Profile_Service_Profile::instance()->getProfileTitle($aRow));
 		$this->template()->setEditor();
 	}

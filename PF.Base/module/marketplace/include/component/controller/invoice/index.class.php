@@ -34,7 +34,7 @@ class Marketplace_Component_Controller_Invoice_Index extends Phpfox_Component
 			->setBreadcrumb(Phpfox::getPhrase('marketplace.marketplace'), $this->url()->makeUrl('marketplace'))
 			->setBreadcrumb(Phpfox::getPhrase('marketplace.invoices'), null, true)
 			->setHeader('cache', array(
-					'table.css' => 'style_css'
+					// 'table.css' => 'style_css'
 				)
 			)					
 			->assign(array(

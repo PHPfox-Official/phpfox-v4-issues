@@ -24,7 +24,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="extra_info">
 			{$aGateway.description}
 		</div>
-		<div class="p_4 t_right">
+		<div class="p_4">
 			{if $aGateway.gateway_id == 'activitypoints'}
 			{phrase var='user.purchase_points_info' yourpoints=$aGateway.yourpoints|number_format yourcost=$aGateway.yourcost|number_format}
 			{/if}

@@ -120,8 +120,8 @@ class Friend_Component_Controller_Profile extends Phpfox_Component
 		$this->template()->setTitle(Phpfox::getPhrase('friend.full_name_s_friends', array('full_name' => $aUser['full_name'])))
 			->setBreadcrumb(Phpfox::getPhrase('friend.friends'))
 			->setHeader('cache', array(
-					'pager.css' => 'style_css',
-					'friend.css' => 'style_css'
+					// 'pager.css' => 'style_css',
+					// 'friend.css' => 'style_css'
 				)
 			)
 			->assign(array(

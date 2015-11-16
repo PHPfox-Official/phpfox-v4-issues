@@ -744,6 +744,11 @@ class Phpfox_Module
 			$aBlocks[$iId] = true;
 		}
 
+		// support clean template
+		if($iId == 1 && !Phpfox::isAdminPanel() && Phpfox_Template::instance()->getThemeFolder() == 'bootstrap'){
+			array_unshift($aBlocks[ $iId ],'core.template-menusub');
+		}
+
 		if ($iId == '3' && !Phpfox::isAdminPanel()) {
 			// \Phpfox::getBlock('ad.display', array('block_id' => 3));
 			$aBlocks[$iId][] = 'ad.display';

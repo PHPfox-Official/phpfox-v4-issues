@@ -312,10 +312,10 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 			'most-talked' => array('photo.total_comment', Phpfox::getPhrase('photo.most_discussed'))
 		);
 		
-		if (Phpfox::getParam('photo.can_rate_on_photos'))
+		/*if (Phpfox::getParam('photo.can_rate_on_photos'))
 		{
 			$aSort['top-rating'] = array('photo.total_rating', Phpfox::getPhrase('photo.top_rated'));
-		}
+		}*/
 		
 		if (Phpfox::getParam('photo.enable_photo_battle'))
 		{
@@ -461,10 +461,14 @@ class Photo_Component_Controller_Index extends Phpfox_Component
 		}		
 		
 		Phpfox::getService('photo.browse')->category($sCategory);
-		
+
+		// disable this options https://github.com/moxi9/phpfox/issues/688
+		if(defined('PHPFOX_IS_USER_PROFILE')){
+
+		}else
 		if (!Phpfox::getParam('photo.display_profile_photo_within_gallery'))
 		{
-			$this->search()->setCondition('AND photo.is_profile_photo = 0');
+//			 $this->search()->setCondition('AND photo.is_profile_photo IN (0,1)');
 		}
 
 		$this->search()->browse()->params($aBrowseParams)->execute();

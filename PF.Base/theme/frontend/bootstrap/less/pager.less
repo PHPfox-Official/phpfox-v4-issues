@@ -1,0 +1,64 @@
+
+.comment_mini .pager_view_more_link a, .comment_mini .pager_view_more_link a:hover, .pager_view_more_link a, .pager_view_more_link a:hover {
+	.reset();
+
+	text-align:center;
+	.button();
+	border-color:darken(@bodyBg, 2%);
+	color:lighten(@textColor, 10%);
+	height:50px;
+	line-height:50px;
+
+	> img {
+		display:none;
+	}
+
+	> span {
+		display:none;
+	}
+}
+
+.comment_mini .pager_view_more_link a:hover, .pager_view_more_link a:hover {
+	.button_hover();
+}
+
+.comment_mini .pager_view_more_link a, .comment_mini .pager_view_more_link a:hover {
+	border:0px;
+}
+
+.js_pager_view_more_link {
+	text-align:center;
+	margin-bottom:20px;
+	opacity:0.6;
+}
+
+.next_page, .next_page:hover {
+	visibility:hidden;
+	display:inline-block;
+	background:@brandPrimaryColor;
+	text-align:center;
+	height:50px;
+	line-height:50px;
+	width:50px;
+	text-transform:uppercase;
+	font-size:@fontSizeBase + 2;
+	border-radius:50%;
+	position:relative;
+
+	i {
+		position:absolute;
+		left:14px;
+		top:14px;
+		color:lighten(@brandPrimary, 4%);
+		font-size:22px;
+	}
+
+	span {
+		display:none;
+	}
+}
+
+.next_page.focus {
+	visibility:visible;
+}
+

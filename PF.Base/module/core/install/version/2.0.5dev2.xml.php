@@ -13,7 +13,7 @@
 		</setting>
 		<setting>
 			<group />
-			<module_id>core</module_id>
+			<module_id>user</module_id>
 			<is_hidden>0</is_hidden>
 			<type>array</type>
 			<var_name>global_genders</var_name>

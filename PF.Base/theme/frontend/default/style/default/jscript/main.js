@@ -452,3 +452,16 @@ $Behavior.globalThemeInit = function()
 		$(this).find('.p_4:first').hide();
 	});		
 };
+
+$Behavior.repositionCoverPhoto = function(){
+	function repositionCoverPhoto(sModule, iId){
+		$('.pages_header_cover img').draggable({
+			axis: 'y',
+			stop: function(evt,ui){
+				$.ajaxCall('pages.repositionCoverPhoto', 'page_id='+iId + '&position=' + ui.position.top);
+			}
+		});
+	}
+
+	window.repositionCoverPhoto  = repositionCoverPhoto;
+}

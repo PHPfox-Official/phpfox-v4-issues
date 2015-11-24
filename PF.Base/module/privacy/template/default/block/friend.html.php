@@ -105,7 +105,11 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div style="margin-top:10px;">
 				<div id="js_custom_search_friend_holder"></div>
 				<form method="post" action="#" onsubmit="return false;">
-					<div><input type="text" name="name" value="{phrase var='friend.create_new_list'}" maxlength="255" size="15" onclick="if (this.value == '{phrase var='friend.create_new_list' phpfox_squote=true}') this.value = '';" onblur="if (this.value == '') this.value = '{phrase var='friend.create_new_list' phpfox_squote=true}';" id="js_add_new_list" style="vertical-align:middle;" /> <input type="submit" value="{phrase var='friend.add'}" class="button" onclick="if ($('#js_add_new_list').val() != '') $('#js_add_new_list').ajaxCall('friend.addList', 'custom=true'); " /></div>
+					<div class="form-group">
+						<input type="text" name="name" class="form-control" value="{phrase var='friend.create_new_list'}" maxlength="255" size="15" onclick="if (this.value == '{phrase var='friend.create_new_list' phpfox_squote=true}') this.value = '';" onblur="if (this.value == '') this.value = '{phrase var='friend.create_new_list' phpfox_squote=true}';" id="js_add_new_list" style="vertical-align:middle;" /> </div>
+					<div class="form-group">
+						<input type="submit" value="{phrase var='friend.add'}" class="button" onclick="if ($('#js_add_new_list').val() != '') $('#js_add_new_list').ajaxCall('friend.addList', 'custom=true'); " />
+					</div>
 				</form>		
 			</div>
 		</div>

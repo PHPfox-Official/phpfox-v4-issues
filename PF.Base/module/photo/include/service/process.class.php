@@ -83,7 +83,7 @@ class Photo_Service_Process extends Phpfox_Service
 		    // Make sure we only update the fields that the user is allowed to
 		    (Phpfox::getUserParam('photo.can_add_mature_images') ? $aFields['mature'] = 'int' : null);
 		    (Phpfox::getUserParam('photo.can_control_comments_on_photos') ? $aFields['allow_comment'] = 'int' : null);
-		    ((Phpfox::getUserParam('photo.can_add_to_rating_module') && Phpfox::getParam('photo.can_rate_on_photos')) ? $aFields['allow_rate'] = 'int' : null);
+		    ((Phpfox::getUserParam('photo.can_add_to_rating_module') /*&& Phpfox::getParam('photo.can_rate_on_photos')*/) ? $aFields['allow_rate'] = 'int' : null);
 		    (!empty($aVals['destination']) ? $aFields[] = 'destination' : null);
 		    $aFields['allow_download'] = 'int';
 		    $aFields['server_id'] = 'int';

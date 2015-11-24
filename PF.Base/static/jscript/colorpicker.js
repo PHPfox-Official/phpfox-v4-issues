@@ -40,8 +40,7 @@ $Behavior.designProfilePage = function()
 	
 	$('.colorpicker_select').click(function(e)
 	{		
-		console.log('Check 43');
-		var aArgsFinal = this.href.split('#?');	
+		var aArgsFinal = this.href.split('#?');
 		var aFinal = aArgsFinal[1].split('&');
 		
 		for (var i = 0; i < aFinal.length; i++)

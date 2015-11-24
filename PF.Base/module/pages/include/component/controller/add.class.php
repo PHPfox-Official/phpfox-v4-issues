@@ -132,7 +132,7 @@ class Pages_Component_Controller_Add extends Phpfox_Component
 		
 		$this->template()->setTitle(($bIsEdit ? '' . Phpfox::getPhrase('pages.editing_page') . ': ' . $aPage['title']: Phpfox::getPhrase('pages.creating_a_page')))
 			->setBreadcrumb(Phpfox::getPhrase('pages.pages'), $this->url()->makeUrl('pages'))
-			->setBreadcrumb(($bIsEdit ? '' . Phpfox::getPhrase('pages.editing_page') . ': ' . $aPage['title']: Phpfox::getPhrase('pages.creating_a_page')), $this->url()->makeUrl('pages.add'), true)
+			->setBreadcrumb(($bIsEdit ? '' . Phpfox::getPhrase('pages.editing_page') . ': ' . $aPage['title']: Phpfox::getPhrase('pages.creating_a_page')), $this->url()->makeUrl('pages.add', ['id'=>$iEditId]), true)
 			->setEditor()
 			->setFullSite()
 			->setPhrase(array(

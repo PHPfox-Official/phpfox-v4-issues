@@ -11,7 +11,7 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-	<div class="table">
+	<div class="table form-group">
 		<div class="table_left">
 		{required}{phrase var='photo.name'}:
 		</div>
@@ -20,17 +20,17 @@ defined('PHPFOX') or exit('NO DICE!');
 			<input type="hidden" name="val[name]" id="name" value="{phrase var='photo.profile_pictures'}" size="30" maxlength="150" />	
 			{phrase var='photo.profile_pictures'}
 			{else}
-			<input type="text" name="val[name]" id="name" value="{value type='input' id='name'}" size="30" maxlength="150" />	
+			<input type="text" name="val[name]" id="name" value="{value type='input' id='name'}" size="30" maxlength="150" class="form-control" />
 			{/if}
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div class="table">
+	<div class="table form-group">
 		<div class="table_left">
 			{phrase var='photo.description'}:
 		</div>
 		<div class="table_right">
-			<textarea name="val[description]" id="description" cols="40" rows="5">{value type='textarea' id='description'}</textarea>
+			<textarea name="val[description]" id="description" cols="40" rows="5" class="form-control">{value type='textarea' id='description'}</textarea>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -38,7 +38,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	
 	{else}
 	{if Phpfox::isModule('privacy')}
-	<div class="table">
+	<div class="table form-group">
 		<div class="table_left">
 			{phrase var='photo.album_s_privacy'}:
 		</div>
@@ -46,7 +46,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{module name='privacy.form' privacy_name='privacy' privacy_info='photo.control_who_can_see_this_photo_album_and_any_photos_associated_with_it' privacy_custom_id='js_custom_privacy_input_holder_album'}
 		</div>			
 	</div>
-	<div class="table" style="display:none;">
+	<div class="table from-group" style="display:none;">
 		<div class="table_left">
 			{phrase var='photo.comment_privacy'}:
 		</div>

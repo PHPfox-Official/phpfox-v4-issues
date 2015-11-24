@@ -20,7 +20,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{phrase var='forum.url'}:
 		</div>
 		<div class="table_right">
-			<input type="text" name="url" value="" size="30" />
+			<input type="text" name="url" value="" size="30" class="form-control" />
 		</div>
 	</div>
 	{if !$bIsGroup}
@@ -28,8 +28,8 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_left">
 			{phrase var='forum.destination_forum'}:
 		</div>
-		<div class="table_right">
-			<select name="forum_id" style="width:300px;">
+		<div class="table_right form-inline">
+			<select name="forum_id" class="form-group">
 				{$sForums}
 			</select>
 		</div>

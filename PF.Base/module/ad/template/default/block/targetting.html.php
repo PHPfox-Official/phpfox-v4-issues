@@ -16,9 +16,9 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div class="table_left">
 		{phrase var='ad.location'}:
 	</div>
-	<div class="table_right">
+	<div class="table_right form-inline">
 		{if isset($aAllCountries)}
-			<select multiple="multiple" name="val[country_iso_custom][]" id="country_iso_custom">
+			<select multiple="multiple" name="val[country_iso_custom][]" id="country_iso_custom" class="form-control">
 				<option value="">{phrase var='core.any'}
 				{foreach from=$aAllCountries key=sIso item=aCountry}
 					<option value="{$sIso}" {if isset($aForms) && isset($aForms.countries_list)}{foreach from=$aForms.countries_list item=sChosen} {if $sChosen == $sIso} selected="selected" {/if}{/foreach}{/if}> {$aCountry.name}

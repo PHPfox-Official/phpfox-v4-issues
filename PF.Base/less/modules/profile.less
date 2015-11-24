@@ -155,7 +155,7 @@
 				display:none;
 				position:absolute;
 				right:0px;
-				width:250px;
+				width:200px;
 				background:@blockBg;
 				box-shadow:@blockBoxShadowLight;
 				line-height:normal;
@@ -186,6 +186,12 @@
 				a:hover {
 					color:@linkColor;
 					transition:@transition;
+				}
+			}
+
+			> ul {
+				@media(max-width: @screen-xs-min){
+					right: -40px;
 				}
 			}
 

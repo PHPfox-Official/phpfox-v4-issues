@@ -21,7 +21,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="friend_action">
 				<div class="js_friend_sort_handler js_friend_edit_order"></div>
 				<div class="friend_action_holder">
-					<a href="{url link='friend.pending' id=$aFriend.request_id}" class="friend_action_delete js_hover_title"><span class="js_hover_info">{phrase var='friend.remove_this_request'}</span></a>
+					<a href="{url link='friend.pending' id=$aFriend.request_id}" class="friend_action_delete js_hover_title"><span class="js_hover_info friend-option btn btn-default btn-xs">{phrase var='friend.remove_this_request'}</span></a>
 				</div>				
 			</div>			
 		</div>

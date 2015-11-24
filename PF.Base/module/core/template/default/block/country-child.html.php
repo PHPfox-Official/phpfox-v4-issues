@@ -15,10 +15,10 @@ defined('PHPFOX') or exit('NO DICE!');
 {if $mCountryChildFilter !== null}
 <div><input type="hidden" name="null" id="js_country_child_is_search" value="1" /></div>
 {/if}
-<div style="padding: 5px 0px 0px;" id="js_country_child_id">
+<div style="padding: 5px 0px 0px;" id="js_country_child_id" class="form-inline">
 {/if}
 {if count($aCountryChildren)}
-	<select name="{if $mCountryChildFilter === null}val{else}search{/if}[country_child_id]" id="js_country_child_id_value">
+	<select name="{if $mCountryChildFilter === null}val{else}search{/if}[country_child_id]" id="js_country_child_id_value" class="form-control">
 		<option value="0">{phrase var='core.state_province'}:</option>
 	{foreach from=$aCountryChildren key=iChildId item=sChildValue}
 		<option value="{$iChildId}"{if $iCountryChildId == $iChildId} selected="selected"{/if}>{$sChildValue}</option>

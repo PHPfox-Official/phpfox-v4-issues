@@ -1,0 +1,105 @@
+
+.notify(@font) {
+	.fa(@font);
+	position:absolute;
+	left:10px;
+	top:10px;
+	font-size:18px;
+	color:lighten(@headerColor, 5%);
+}
+
+.notifications {
+	border-bottom:1px darken(@navBg, 8%) solid;
+	padding-bottom:5px;
+	margin-bottom:5px;
+}
+
+#holder_notify {
+	position:absolute;
+	left:auto;
+	right:0px;
+	top:0px;
+	z-index:10;
+	background:transparent;
+
+	> ul {
+		> li {
+			> a, > a:hover {
+				background:transparent !important;
+			}
+
+			> a:hover {
+				background:darken(@headerBg, 1%) !important;
+			}
+		}
+
+		> li.is_active {
+
+			> a, > a:hover {
+				background:@brandPrimary !important;
+			}
+		}
+	}
+}
+
+#holder_notify ul li:hover a:before {
+	color:lighten(@headerColor, 40%);
+}
+
+#holder_notify ul li a.notification:before {
+	.notify('\f0f3');
+}
+
+#holder_notify ul li a.message:before {
+	.notify('\f01c');
+}
+
+#holder_notify ul li a.friend_notification:before {
+	.notify('\f234');
+}
+
+#holder_notify ul li.is_active a:before {
+	color:@brandPrimaryColor;
+}
+
+/*
+#holder_notify ul li a.user_notify_info, #holder_notify ul li a.user_notify_info:hover {
+	text-indent:0px;
+	width:auto;
+	color:lighten(@headerColor, 5%);
+	border-right:1px darken(@headerBg, 1%) solid;
+	padding:0px 10px;
+}
+*/
+
+#holder_notify ul li div.holder_notify_drop {
+	border:0px;
+	background:@blockBg;
+	color:@blockColor;
+	border-bottom:4px darken(@blockBg, 12%) solid;
+	box-shadow:@boxShadow;
+}
+
+#holder_notify ul li div.holder_notify_drop a.holder_notify_drop_link, #holder_notify ul li div.holder_notify_drop a.holder_notify_drop_link:hover, .js_temp_friend_search_form_holder ul li a.holder_notify_drop_link, .js_temp_friend_search_form_holder ul li a.holder_notify_drop_link:hover {
+	.reset();
+	.button(darken(@blockBg, 4));
+	font-size:@fontSizeBase - 4 !important;
+	margin-top:10px;
+}
+
+#js_total_new_friend_requests,
+#js_total_new_notifications,
+#js_total_new_messages{
+  display:none;
+  position: absolute;
+  top: -2px;
+  left: 15px;
+  font-size: smaller;
+  color: white;
+  background-color: #c00;
+  line-height: 1em;
+  padding: 3pt;
+  border-radius: 3px;
+  text-align: center;
+  opacity: 0.99;
+}

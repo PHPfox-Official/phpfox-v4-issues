@@ -27,7 +27,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_left">
 			{required}{phrase var='admincp.country'}:
 		</div>
-		<div class="table_right">
+		<div class="table_right form-inline">
 			{select_location}
 		</div>
 		<div class="clear"></div>

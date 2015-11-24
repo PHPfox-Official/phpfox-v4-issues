@@ -17,7 +17,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 	<div class="table_right">
 		{if $aField.var_type == 'textarea'}
-			<textarea name="static[{$aField.field_id}]"></textarea>
+			<textarea class="form-control" name="static[{$aField.field_id}]"></textarea>
 		{/if}
 	</div>
 </div>

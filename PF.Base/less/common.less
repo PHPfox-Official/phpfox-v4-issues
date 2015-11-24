@@ -939,7 +939,7 @@ a.row_edit_bar_action:hover
 	z-index:1000;
 	position:absolute;
 	left:0px;
-	margin-top:32px;
+	margin-top:16px;
 }
 
 a.row_edit_bar_action_clicked,
@@ -948,7 +948,6 @@ a.row_edit_bar_action_clicked:hover
 	background:url('@{imageFolder}layout/row_edit_bar_action.png') no-repeat 0px -30px;
 }
 
-.row_edit_bar_holder ul,
 .image_hover_menu ul
 {
 	margin:0px;
@@ -964,15 +963,12 @@ a.row_edit_bar_action_clicked:hover
 	width:130px;
 }
 
-.row_edit_bar_holder ul li,
-.image_hover_menu ul li,
+.image_hover_menu ul li
 {
 	float:none;
 	display:block;
 }
 
-.row_edit_bar_holder ul li a,
-.row_edit_bar_holder ul li a:hover,
 .image_hover_menu ul li a,
 .image_hover_menu ul li a:hover
 {
@@ -986,13 +982,11 @@ a.row_edit_bar_action_clicked:hover
 	text-decoration:none;
 }
 
-.row_edit_bar_holder ul li a:hover,
 .image_hover_menu ul li a:hover
 {
 	background:#3F3F3F;
 }
 
-.row_edit_bar_holder ul li.item_delete a:hover,
 .image_hover_menu ul li.item_delete a:hover
 {
 	background:#8F2C2C;
@@ -1408,7 +1402,7 @@ ul.mini_action
 {	
 	text-align:left;
 	
-	a
+  > li >a
 	{
     display: block;
     padding:0px 4px 0px 4px;
@@ -1419,19 +1413,13 @@ ul.mini_action
     color:#2D2E30;
     
     &:hover {
-      display: block;
-      padding:0px 4px 0px 4px;
-      height:25px;
-      line-height:25px;
-      background:#fff;  
-      text-decoration:none;
       color:#2D2E30;
       text-decoration:underline;
     }  
   }
   
-  li a.is_already_open,
-  li a.is_already_open:hover
+  > li > a.is_already_open,
+  > li > a.is_already_open:hover
   {
     background:#333;
     color:#fff;
@@ -1689,18 +1677,6 @@ input.disabled:hover
 .link_menu
 {
 	position:absolute;
-	background:#fff;
-	border:1px #195B85 solid;
-	border-top:5px #333 solid;
-	border-bottom:2px #333 solid;
-	color:#fff;
-	width:250px;
-	padding:0;
-	margin:0;
-	z-index:10;
-	display:none;
-	text-align:left;
-	
 }
 
 .forum_header_menu .link_menu
@@ -1725,30 +1701,7 @@ input.disabled:hover
 
 .link_menu li a, .sub_menu_bar .dropContent li a, .link_menu .div_menu
 {
-	display: block;	
-	color:#333;
-	text-decoration: none;	
-	padding:5px;
-	margin:0;
-	background:#fff;	
-	border-top:1px #dfdfdf solid;	
-	border-bottom:none;
-	width:95%;
-}
-
-.link_menu li a, .sub_menu_bar .dropContent li a,
-.link_menu li a, .sub_menu_bar .dropContent li a:hover
-{
-	line-height:15px;
-	height:15px;
-}
-
-.link_menu li a:hover, .sub_menu_bar .dropContent li a:hover
-{
-	background:#333;
-	color: #fff;
-	border-top:1px #dfdfdf solid;
-	border-bottom:none;
+	display: block;
 }
 
 #content a.drop_down_link	
@@ -2526,9 +2479,9 @@ a.friend_search_remove:hover
 
 .privacy_setting
 {
-	position:relative;		
+	position:relative;
 	width:202px;
-	
+
 	a.privacy_setting_active,
   a.privacy_setting_active:hover
   {
@@ -2545,16 +2498,16 @@ a.friend_search_remove:hover
     color:#333;
     font-weight:bold;
   }
-  
+
   a.is_active,
   a.is_active:hover
-  { 
+  {
     background:url('@{imageFolder}layout/privacy_setting_active.png') no-repeat 0px -25px;
     border:1px #000 solid;
     border-bottom:1px #fff solid;
     color:#fff;
   }
-  
+
   .privacy_setting_holder
   {
     left:0px;
@@ -2563,9 +2516,9 @@ a.friend_search_remove:hover
 
 .privacy_setting_mini
 {
-	position:relative;		
+	position:relative;
 	width:45px;
-	
+
 	a.privacy_setting_active,
   a.privacy_setting_active:hover
   {
@@ -2577,20 +2530,20 @@ a.friend_search_remove:hover
     z-index:1;
     color:#333;
     font-weight:bold;
-    overflow:hidden;  
-    text-indent:-1000px;  
+    overflow:hidden;
+    text-indent:-1000px;
   }
   a.privacy_setting_active:hover
   {
     background:url('@{imageFolder}layout/privacy_setting_active_mini.png') no-repeat 0px -50px;
   }
-  
+
   a.is_active,
   a.is_active:hover
-  { 
+  {
     background:url('@{imageFolder}layout/privacy_setting_active_mini.png') no-repeat 0px -25px;
   }
-  
+
   .privacy_setting_holder
   {
     right:0px;
@@ -2598,62 +2551,86 @@ a.friend_search_remove:hover
   }
 }
 
+.privacy_setting_mini
+{
+  position:relative;
+  width:45px;
+
+  a.privacy_setting_active,
+  a.privacy_setting_active:hover
+  {
+    display:block;
+    background:url('@{imageFolder}layout/privacy_setting_active_mini.png') no-repeat;
+    line-height:25px;
+    text-decoration:none;
+    padding:0px 0px 0px 25px;
+    z-index:1;
+    color:#333;
+    font-weight:bold;
+    overflow:hidden;
+    text-indent:-1000px;
+  }
+  a.privacy_setting_active:hover
+  {
+    background:url('@{imageFolder}layout/privacy_setting_active_mini.png') no-repeat 0px -50px;
+  }
+
+  a.is_active,
+  a.is_active:hover
+  {
+    background:url('@{imageFolder}layout/privacy_setting_active_mini.png') no-repeat 0px -25px;
+  }
+
+  .privacy_setting_holder
+  {
+    right:0px;
+  }
+}
+
+
 .privacy_setting_holder
 {
-	position:absolute;	
-	background:#fff;
-	border-right:1px #333 solid;
-	border-left:1px #333 solid;
-	border-bottom:2px #333 solid;
-	width:200px;
-	z-index:2000;
-	display:none;
-	
-	ul
-  {
-    margin:0px;
-    padding:0px;
-    list-style-type:none;
-    
-    li
-    {
-      margin:0px;
-      padding:0px;
-      
-      a,
-      a:hover
-      {
-        display:block;
-        background:#fff;
-        text-decoration:none;
-        line-height:25px; 
-        padding:0px 0px 0px 25px;   
-      }
-      a:hover
-      {
-        background:#333;
-        color:#fff;
-      }
-      
-      a.is_active_image
-      {
-        background-image:url('@{imageFolder}misc/is_active_image.png');
-        background-repeat:no-repeat;  
-        background-position:5px 0px;
-        
-        &:hover
-        {
-          background-position:5px -25px;
-        }
-      }
-      
-      a span
-      {
-        margin-left:4px;
-        font-weight:bold; 
-      }
-    } 
+  position:absolute;
+  z-index:2000;
+  display:none;
+}
+
+.privacy_setting_mini .privacy_setting_holder .dropdown-menu{
+  right: 0;
+  left: auto;
+}
+
+.privacy_setting_holder .dropdown-menu{
+  display:block;
+  > li > a{
+    padding: 3px 20px 3px 30px;
   }
+}
+
+.privacy_setting_mini .privacy_setting_holder
+{
+  right: 0;
+  left: auto;
+}
+
+
+.privacy_setting_holder ul li a.is_active_image:before
+{
+  display: inline-block;
+  font-family: "FontAwesome";
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  content: "\f00c";
+  position: absolute;
+  left: 8px;
+}
+
+
+
+.privacy_setting_holder ul li a.is_active_image:hover
+{
+  background-position:5px -25px;
 }
 
 /**

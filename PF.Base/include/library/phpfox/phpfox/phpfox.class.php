@@ -10,13 +10,13 @@ defined('PHPFOX') or exit('NO DICE!');
  * All interactions with anything phpFox related is executed via this class.
  * It is the engine that runs phpFox and all of the other libraries and modules.
  * All methods, variables and constants are static.
- * 
+ *
  * All libraries are located within the folder: include/library/phpfox/
  * Example of connect to request library:
  * <code>
  * $oObject = Phpfox_Request::instance();
  * </code>
- * 
+ *
  * @copyright		[PHPFOX_COPYRIGHT]
  * @author			Raymond Benc
  * @package 		Phpfox
@@ -27,8 +27,8 @@ class Phpfox
 	/**
  	* Product Version : major.minor.maintenance [alphaX, betaX or rcX]
  	*/
-	const VERSION = '4.0.10';
-	
+	const VERSION = '4.1.0';
+
 	/**
 	 * Product Code Name
 	 * 
@@ -865,8 +865,8 @@ class Phpfox
 			else 
 			{
 				// Create a session so we know where we plan to redirect the user after they login
-				Phpfox::getLib('session')->set('redirect', Phpfox_Url::instance()->getFullUrl(true));
-				
+        $url = Phpfox_Url::instance()->getFullUrl();
+				Phpfox::getLib('session')->set('redirect', $url);
 				Phpfox_Url::instance()->send('user.login');
 			}
 		}
@@ -1262,8 +1262,8 @@ class Phpfox
 				
 				$oTpl->setHeader(array(
 							'<meta http-equiv="X-UA-Compatible" content="IE=edge">',
-							'<meta name="viewport" content="width=device-width, initial-scale=1">',
-							'<meta http-equiv="Content-Type" content="text/html; charset=' . $aLocale['charset'] . '" />',
+							'<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">',
+							'<meta http-equiv="Content-Type" content="text/html;charset=' . $aLocale['charset'] . '" />',
 							'<meta http-equiv="cache-control" content="no-cache" />',
 							'<meta http-equiv="expires" content="-1" />',
 							'<meta http-equiv="pragma" content="no-cache" />',						
@@ -1731,6 +1731,17 @@ class Phpfox
 			}
 		}
 		return $sSection;
+	}
+
+	/**
+	 * Get base url
+	 * strip "index.php" from core.path
+	 *
+	 * @return string
+	 */
+	public static function getBaseUrl()
+	{
+		return str_replace('/index.php/','/',Phpfox::getParam('core.path'));
 	}
 }
 

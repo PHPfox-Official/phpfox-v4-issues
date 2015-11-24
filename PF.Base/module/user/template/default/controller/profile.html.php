@@ -36,7 +36,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="table_left">
 				<label for="country_iso">{phrase var='user.location'}:</label>
 			</div>
-			<div class="table_right">
+			<div class="table_right form-inline">
 				{select_location}
 				{module name='core.country-child'}
 			</div>

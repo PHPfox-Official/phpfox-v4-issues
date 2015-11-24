@@ -200,6 +200,7 @@ class Marketplace_Component_Controller_Index extends Phpfox_Component
 					$this->search()->setCondition('AND l.time_stamp < ' . $iExpireTime);
 					break;
 				}
+				break;
 			case 'invoice':
 				$this->url()->send('marketplace.invoice');
 				break;

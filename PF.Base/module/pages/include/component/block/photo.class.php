@@ -24,18 +24,20 @@ class Pages_Component_Block_Photo extends Phpfox_Component
 		{
 			return false;
 		}
-		
+
 		$aPage = $this->getParam('aPage');
 		$aCoverPhoto = ($aPage['cover_photo_id'] ? Phpfox::getService('photo')->getCoverPhoto($aPage['cover_photo_id']) : false);
+		$iCoverPhotoPosition = $aPage['cover_photo_position'];
 
 		$aPageMenus = Pages_Service_Pages::instance()->getMenu($aPage);
 
 		$this->template()->assign([
 			'aCoverPhoto' => $aCoverPhoto,
+			'iConverPhotoPosition'=>$iCoverPhotoPosition,
 			'aPageMenus' => $aPageMenus
 		]);
 	}
-	
+
 	/**
 	 * Garbage collector. Is executed after this class has completed
 	 * its job and the template has also been displayed.

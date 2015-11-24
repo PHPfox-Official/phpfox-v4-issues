@@ -24,7 +24,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="title">{phrase var='photo.title'}</label>:
 			</div>
 			<div class="table_right">
-				<input type="text" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[title]" value="{if isset($aForms.title)}{$aForms.title|clean}{else}{value type='input' id='title'}{/if}" size="30" maxlength="150" onfocus="this.select();" />
+				<input type="text" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[title]" value="{if isset($aForms.title)}{$aForms.title|clean}{else}{value type='input' id='title'}{/if}" size="30" maxlength="150" onfocus="this.select();" class="form-control" />
 			</div>			
 		</div>
 		<div class="table">
@@ -32,7 +32,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{phrase var='photo.description'}:
 			</div>
 			<div class="table_right">
-				<textarea cols="30" rows="4" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[description]">{if isset($aForms.description)}{$aForms.description|clean}{else}{value type='input' id='description'}{/if}</textarea>
+				<textarea cols="30" rows="4" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[description]" class="form-control">{if isset($aForms.description)}{$aForms.description|clean}{else}{value type='input' id='description'}{/if}</textarea>
 			</div>			
 		</div>		
 		
@@ -64,14 +64,20 @@ defined('PHPFOX') or exit('NO DICE!');
 					{phrase var='photo.mature_content'}:
 				</div>
 				<div class="table_right">
-					<label><input type="radio" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[mature]" value="2" style="vertical-align:middle;" class="checkbox"{value type='radio' id='mature' default='2'}/> {phrase var='photo.yes_strict'}</label>
-					<label><input type="radio" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[mature]" value="1" style="vertical-align:middle;" class="checkbox"{value type='radio' id='mature' default='1'}/> {phrase var='photo.yes_warning'}</label>
-					<label><input type="radio" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[mature]" value="0" style="vertical-align:middle;" class="checkbox"{value type='radio' id='mature' default='0' selected=true}/> {phrase var='photo.no'}</label>
+					<div class="radio">
+						<label><input type="radio" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[mature]" value="2" style="vertical-align:middle;" class="checkbox"{value type='radio' id='mature' default='2'}/> {phrase var='photo.yes_strict'}</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[mature]" value="1" style="vertical-align:middle;" class="checkbox"{value type='radio' id='mature' default='1'}/> {phrase var='photo.yes_warning'}</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[mature]" value="0" style="vertical-align:middle;" class="checkbox"{value type='radio' id='mature' default='0' selected=true}/> {phrase var='photo.no'}</label>
+					</div>
 				</div>			
 			</div>
 			{/if}
 			
-			{if Phpfox::getParam('photo.can_rate_on_photos') && Phpfox::getUserParam('photo.can_add_to_rating_module')}
+			<!--{*
 			<div class="table js_public_rating" style="display:none;">
 				<div class="table_left">
 					{phrase var='photo.public_rating'}:
@@ -81,7 +87,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					<label><input type="radio" name="val{if isset($aForms.photo_id)}[{$aForms.photo_id}]{/if}[allow_rate]" value="0" style="vertical-align:middle;" class="checkbox"{value type='radio' id='allow_rate' default='0'}/> {phrase var='photo.no'}</label>				
 				</div>
 			</div>
-			{/if}			
+			*}-->
 			
 			<div class="table" style="display:none;">
 				<div class="table_left">

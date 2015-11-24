@@ -59,7 +59,22 @@ class Page_Service_Process extends Phpfox_Service
 		}
 		
 		$aVals['disallow_access'] = (count($aDisallow) ? serialize($aDisallow) : null);		
-		
+		//Add to home menu
+    if (isset($aVals['add_menu']) && $aVals['add_menu']){
+      $aMenuVals = [
+        'product_id' => 'phpfox',
+        'module_id' => 'page|page',
+        'm_connection' => 'main',
+        'url_value' => $aVals['title_url'],
+        'url_value_page' => '',
+        'mobile_icon' => '',
+        'text' => [
+          'en' => $aVals['text']
+          ],
+        'allow_access' => $aVals['allow_access'],
+      ];
+      Admincp_Service_Menu_Process::instance()->add($aMenuVals);
+    }
 		// Fix HTML
 		$aVals['text_parsed'] = Phpfox::getLib('parse.input')->fixHtml($aVals['text']);		
 		

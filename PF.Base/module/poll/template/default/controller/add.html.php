@@ -99,12 +99,14 @@ defined('PHPFOX') or exit('NO DICE!');
 							{if isset($aAnswer.answer_id)}
 								   <input type="hidden" name="val[answer][{$phpfox.iteration.iAnswer}][answer_id]" class="hdnAnswerId" value="{$aAnswer.answer_id}">
 							{/if}
-							<a href="#" onclick="return appendAnswer(this);">
-								<i class="fa fa-plus"></i>
-							</a>
-							<a href="#" onclick="return removeAnswer(this);">
-								<i class="fa fa-minus"></i>
-							</a>
+							<div class="poll_add_more">
+								<a href="#" onclick="return appendAnswer(this);">
+									<i class="fa fa-plus"></i>
+								</a>
+								<a href="#" onclick="return removeAnswer(this);">
+									<i class="fa fa-minus"></i>
+								</a>
+							</div>
 						</div>
 						<div class="js_next_block"></div>
 					</div>

@@ -222,7 +222,7 @@ class Phpfox_Image_Helper
 					if ($aGenders === null)
 					{
 						$aGenders = array();
-						foreach ((array) Phpfox::getParam('core.global_genders') as $iKey => $aGender)
+						foreach ((array) Phpfox::getParam('user.global_genders') as $iKey => $aGender)
 						{
 							if (isset($aGender[3]))
 							{
@@ -298,7 +298,9 @@ class Phpfox_Image_Helper
 							$ele = 'span';
 						}
 
-						$image = '<' . $ele . '' . ($ele == 'a' ? ' href="' . $sLink . '"' : '') . ' class="no_image_user _size_' . $sImageSize . ' _gender_' . $sGender . ' _first_' . strtolower($first . $last) . '"><span>' . $first . $last . '</span></' . $ele . '>';
+						$namekey  = preg_replace('/[^a-z]/m','p',strtolower($first.$last));
+
+						$image = '<' . $ele . '' . ($ele == 'a' ? ' href="' . $sLink . '"' : '') . ' class="no_image_user _size_' . $sImageSize . ' _gender_' . $sGender . ' _first_' . $namekey . '"><span>' . $first . $last . '</span></' . $ele . '>';
 
 						return $image;
 					// }

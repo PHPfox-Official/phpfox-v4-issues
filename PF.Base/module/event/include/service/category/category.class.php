@@ -309,7 +309,7 @@ class Event_Service_Category_Category extends Phpfox_Service
 			else 
 			{
 				$this->_sOutput .= '<div class="js_mp_parent_holder" id="js_mp_holder_' . $iParentId . '" ' . ($iParentId > 0 ? ' style="display:none; padding:5px 0px 0px 0px;"' : '') . '>';
-				$this->_sOutput .= '<select name="val[category][]" class="js_mp_category_list" id="js_mp_id_' . $iParentId . '">' . "\n";
+				$this->_sOutput .= '<select class="form-control" name="val[category][]" class="js_mp_category_list" id="js_mp_id_' . $iParentId . '">' . "\n";
 				$this->_sOutput .= '<option value="">' . ($iParentId === 0 ? Phpfox::getPhrase('event.select') : Phpfox::getPhrase('event.select_a_sub_category')) . ':</option>' . "\n";
 			}
 			

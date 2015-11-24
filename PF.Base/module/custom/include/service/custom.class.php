@@ -623,11 +623,11 @@ class Custom_Service_Custom extends Phpfox_Service
 		switch ($aField['var_type'])
 		{
 			case 'textarea':
-				$sContent .= '<div class="table"><div class="table_right"><textarea cols="50" rows="8" name="custom_field_value" id="js_custom_field_post_' . $aField['field_id'] . '">' . Phpfox::getLib('parse.output')->ajax($sUserValue) . '</textarea></div></div>';
+				$sContent .= '<div class="table"><div class="table_right"><textarea class="form-control" cols="50" rows="8" name="custom_field_value" id="js_custom_field_post_' . $aField['field_id'] . '">' . Phpfox::getLib('parse.output')->ajax($sUserValue) . '</textarea></div></div>';
 				$sContent .= '<div class="table_clear"><input type="button" value="' . Phpfox::getPhrase('custom.update') . '" class="button" onclick="if (function_exists(\'\' + Editor.sEditor + \'_wysiwyg_custom_field\')) { eval(\'\' + Editor.sEditor + \'_wysiwyg_custom_field();\'); } $(this).parent().html($.ajaxProcess(\'' . str_replace("\\'", "", Phpfox::getPhrase('custom.updating', array('phpfox_squote' => true))) . '\')); $(\'#js_custom_field_post_' . $aField['field_id'] . '\').ajaxCall(\'custom.update\', \'field_id=' . $aField['field_id'] . '&amp;item_id=' . $iItemId . '&amp;edit_user_id=' . $iEditUserId . '\');" /><div class="p_top_8"><a href="#" onclick="$(this).parents(\'.js_custom_content_holder:first\').find(\'.js_custom_content\').show(); $(this).parents(\'.js_custom_content_holder:first\').find(\'.js_custon_field\').hide(); return false;">' . Phpfox::getPhrase('custom.cancel') . '</a></div></div>';
 				break;
 			case 'text':
-				$sContent .= '<input style="width:90%;" type="text" name="custom_field_value" id="js_custom_field_post_' . $aField['field_id'] . '" value="' . Phpfox::getLib('parse.output')->ajax(Phpfox::getLib('parse.output')->clean($sUserValue)) . '" />';
+				$sContent .= '<input class="form-control" type="text" name="custom_field_value" id="js_custom_field_post_' . $aField['field_id'] . '" value="' . Phpfox::getLib('parse.output')->ajax(Phpfox::getLib('parse.output')->clean($sUserValue)) . '" />';
 				$sContent .= '<div style="margin-top:8px;"><input type="button" value="' . Phpfox::getPhrase('custom.update') . '" class="button" onclick="if (function_exists(\'\' + Editor.sEditor + \'_wysiwyg_custom_field\')) { eval(\'\' + Editor.sEditor + \'_wysiwyg_custom_field();\'); } $(this).parent().html($.ajaxProcess(\'' . Phpfox::getPhrase('custom.updating', array('phpfox_squote' => true)) . '\')); $(\'#js_custom_field_post_' . $aField['field_id'] . '\').ajaxCall(\'custom.update\', \'field_id=' . $aField['field_id'] . '&amp;item_id=' . $iItemId . '&amp;edit_user_id=' . $iEditUserId . '\');" /> - <a href="#" onclick="$(this).parents(\'.js_custom_content_holder:first\').find(\'.js_custom_content\').show(); $(this).parents(\'.js_custom_content_holder:first\').find(\'.js_custon_field\').hide(); return false;">' . Phpfox::getPhrase('custom.cancel') . '</a></div>';
 				break;
 			case 'select':
@@ -636,7 +636,7 @@ class Custom_Service_Custom extends Phpfox_Service
 					->from(Phpfox::getT('custom_option'))
 					->where('field_id = ' . $aField['field_id'])
 					->execute('getSlaveRows');
-				$sContent .= '<select name="custom_field_value" id="js_custom_field_post_' . $aField['field_id'] . '">';
+				$sContent .= '<select class="form-control" name="custom_field_value" id="js_custom_field_post_' . $aField['field_id'] . '">';
 				foreach ($aOptions as $aOption)
 				{
 					$sContent .= '<option value="' . $aOption['option_id'] . '"' . ($sUserValue == $aOption['option_id'] ? ' selected="selected"' : '') . '>' . Phpfox::getPhrase($aOption['phrase_var_name']) . '</option>';
@@ -650,7 +650,7 @@ class Custom_Service_Custom extends Phpfox_Service
 					->where('field_id = ' . $aField['field_id'])
 					->group('option_id')
 					->execute('getSlaveRows');
-				$sContent .= '<select multiple name="custom_field_value" id="js_custom_field_post_' . $aField['field_id'] . '">';
+				$sContent .= '<select class="form-control" multiple name="custom_field_value" id="js_custom_field_post_' . $aField['field_id'] . '">';
 				foreach ($aOptions as $iKey => $aOption)
 				{
 				    foreach ($aUserValues as $iOptionChosen)

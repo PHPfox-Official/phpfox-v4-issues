@@ -15,6 +15,49 @@ defined('PHPFOX') or exit('NO DICE!');
  */
 class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 {
+	public function checkNew()
+	{
+		$iLastFeedId = $this->get('iLastFeedId');
+
+		define('PHPFOX_CHECK_FOR_UPDATE_FEED',true);
+		define('PHPFOX_CHECK_FOR_UPDATE_FEED_ID', $iLastFeedId);
+
+		Phpfox::getBlock('feed.checknew');
+
+		$this->html('#js_new_feed_update', $this->getContent(false));
+		$this->call('$Core.loadInit();');
+	}
+
+	public function loadNew()
+	{
+		$iLastFeedId = $this->get('iLastFeedId');
+
+		define('FEED_LOAD_MORE_NEWS', false);
+		define('FEED_LOAD_NEW_NEWS', true);
+
+		define('PHPFOX_CHECK_FOR_UPDATE_FEED',true);
+		define('PHPFOX_CHECK_FOR_UPDATE_FEED_ID', $iLastFeedId);
+
+		if ($this->get('callback_module_id') == 'pages' && Phpfox::getService('pages')->isTimelinePage($this->get('callback_item_id')))
+		{
+			define('PAGE_TIME_LINE', true);
+		}
+
+		Phpfox::getBlock('feed.display');
+
+		if (!$this->get('forceview') && !$this->get('resettimeline'))
+		{
+			$this->html('#js_new_feed_comment','');
+			$this->insertAfter('#js_new_feed_comment', $this->getContent(false));
+		}
+		else
+		{
+//			$this->call('$.scrollTo(\'.timeline_left\', 800);');
+			$this->html('#js_new_feed_comment','');
+			$this->insertAfter('#js_new_feed_comment', $this->getContent(false));
+		}
+		$this->call('$Core.loadInit();');
+	}
 	public function hashtag()
 	{
 		$this->setTitle('#' . strip_tags($this->get('hashtagsearch')));
@@ -185,7 +228,7 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 	
 	public function viewMore()
 	{
-    define('FEED_LOAD_MORE_NEWS', true);
+    	define('FEED_LOAD_MORE_NEWS', true);
 		if ($this->get('callback_module_id') == 'pages' && Phpfox::getService('pages')->isTimelinePage($this->get('callback_item_id')))
 		{
 			define('PAGE_TIME_LINE', true);
@@ -265,7 +308,8 @@ class Feed_Component_Ajax_Ajax extends Phpfox_Ajax
 		
 		if (!isset($bHasPluginCall))
 		{			
-			$this->call("$('#js_quick_edit_id" . $this->get('id') . "').html('<textarea style=\"width:95%; height:80px;\" name=\"quick_edit_input\" cols=\"90\" rows=\"10\" id=\"js_quick_edit" . $this->get('id') . "\">" . str_replace("'", "\'", Phpfox::getLib('parse.output')->ajax($aRow['content'])) . "</textarea>');");		
+			$this->call("$('#js_quick_edit_id" . $this->get('id') . "').html('<textarea class=\"form-control\" style=\"height:80px;\" name=\"quick_edit_input\" cols=\"90\" rows=\"10\" id=\"js_quick_edit" . $this->get('id') . "\">" . str_replace("'", "\'", Phpfox::getLib('parse.output')->ajax($aRow['content'])) . "</textarea>');");
+
 		}
 	}	
 	

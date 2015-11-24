@@ -22,7 +22,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					{required}{phrase var='custom.location'}:
 				</div>
 				<div class="table_right">
-					<select name="val[type_id]" class="type_id">
+					<select name="val[type_id]" class="form-control type_id">
 						<option value="">{phrase var='custom.select'}:</option>
 					{foreach from=$aGroupTypes key=sVar item=sPhrase}
 						<option value="{$sVar}"{value type='select' id='type_id' default=$sVar}>{$sPhrase}</option>

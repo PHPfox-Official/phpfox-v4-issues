@@ -61,11 +61,11 @@ defined('PHPFOX') or exit('NO DICE!');
 					{/foreach}
 				{else}
 					{for $i=1; $i <= Phpfox::getParam('quiz.default_answers_count'); $i++}
-						<div id="answer_[iQuestionId]_{$i}" class="p_2 answer_parent">
+						<div id="answer_[iQuestionId]_{$i}" class="p_2 answer_parent form-group">
 							<input name="val[q][{if isset($Question.question_id)}{$Question.question_id}{elseif isset($phpfox.iteration.question)}{$phpfox.iteration.question}{else}0{/if}][answers][{$i}][is_correct]" type="hidden" class="hdnCorrectAnswer" value="0">
 							<input type="hidden" class="hdnAnswerId"  value="">
 							<input type="hidden" class="hdnQuestionId"  value="">
-							<input type="text" name="" tabindex="{$i}" class="answer answer_{$i}" value="" maxlength="100" />
+							<input class="form-control answer" type="text" name="" tabindex="{$i}" class="answer answer_{$i}" value="" maxlength="100" />
 							<a href="#" class="a_addAnswer" onclick="return $Core.quiz.appendAnswer(this);">
 								<i class="fa fa-plus-square"></i>
 							</a>

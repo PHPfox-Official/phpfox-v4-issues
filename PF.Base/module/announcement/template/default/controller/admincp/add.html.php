@@ -169,7 +169,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="table_left">
 					{phrase var='announcement.location'}:
 				</div>
-				<div class="table_right">
+				<div class="table_right form-inline">
 					{select_location value_title='phrase var=core.any'}
 				</div>
 				<div class="clear"></div>

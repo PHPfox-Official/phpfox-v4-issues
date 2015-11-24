@@ -68,7 +68,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<form method="post" action="{url link='mail.thread' id=$aThread.thread_id}" id="js_form_mail" class="ajax_post" data-callback="mailOnSuccess">
 				<div><input type="hidden" name="val[thread_id]" value="{$aThread.thread_id}" /></div>
 				<div><input type="hidden" name="val[attachment]" class="js_attachment" value="{value type='input' id='attachment'}" /></div>
-				<textarea id="message" name="val[message]" class="on_enter_submit"></textarea>
+				<textarea id="message" name="val[message]" class="on_enter_submit form-control"></textarea>
 			</form>
 		</div>
 	</div>

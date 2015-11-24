@@ -82,7 +82,7 @@ class Quiz_Component_Controller_Add extends Phpfox_Component
 		}
 		else
 		{
-			$this->template()->setTitle(Phpfox::getPhrase('quiz.add_new_quiz'))
+			$this->template()->setTitle(Phpfox::getPhrase('quiz.add_new_quiz'),$this->url()->makeUrl('quiz.add'))
 				->setBreadcrumb(Phpfox::getPhrase('quiz.quizzes'), $this->url()->makeUrl('quiz'))
 				->setBreadcrumb(Phpfox::getPhrase('quiz.add_new_quiz'), $this->url()->makeUrl('quiz.add'), true);
 		}

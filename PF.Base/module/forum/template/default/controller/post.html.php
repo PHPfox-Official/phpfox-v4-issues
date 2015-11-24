@@ -156,7 +156,7 @@ defined('PHPFOX') or exit('NO DICE!');
 							{phrase var='forum.type'}:
 						</div>
 						<div class="table_right label_hover form-inline">
-							<select class="form-control" name="val[type_id]" style="width:200px;"{if Phpfox::getUserParam('forum.can_post_announcement') || Phpfox::getService('forum.moderate')->hasAccess('' . $iActualForumId . '', 'post_announcement')} onchange="selectThreadType(this);"{/if}>
+							<select class="form-control" name="val[type_id]" {if Phpfox::getUserParam('forum.can_post_announcement') || Phpfox::getService('forum.moderate')->hasAccess('' . $iActualForumId . '', 'post_announcement')} onchange="selectThreadType(this);"{/if}>
 								<option value="thread"{value type='select' id='type_id' default='thread'}>{phrase var='forum.thread'}</option>
 								{if Phpfox::getUserParam('forum.can_stick_thread') || Phpfox::getService('forum.moderate')->hasAccess('' . $iActualForumId . '', 'post_sticky')}
 								<option value="sticky"{value type='select' id='type_id' default='sticky'}>{phrase var='forum.sticky'}</option>
@@ -215,7 +215,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	</div>
 
 	<div class="table_clear">
-		<input type="submit" value="{if isset($iEditId)}{phrase var='forum.update'}{else}{phrase var='forum.submit'}{/if}" class="button" />
+		<input type="button" value="{if isset($iEditId)}{phrase var='forum.update'}{else}{phrase var='forum.submit'}{/if}" class="button" onclick="$(this).prop('disabled',true);this.form.submit();" />
 	</div>
 	
 </form>

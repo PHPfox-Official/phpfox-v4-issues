@@ -22,7 +22,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{phrase var='report.reason'}:
 			</div>
 			<div class="table_right">
-				<select name="reason" id="js_report">
+				<select class="form-control" name="reason" id="js_report">
 				<option value="">{phrase var='report.choose_one'}</option>
 				{foreach from=$aOptions item=aOption}
 					<option value="{$aOption.report_id}">{$aOption.message|convert}</option>
@@ -33,7 +33,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				{phrase var='report.a_comment_optional'}:
 			</div>
 			<div class="table_right">
-				<textarea name="feedback" id="feedback" cols="19" rows="3"></textarea>
+				<textarea class="form-control" name="feedback" id="feedback" cols="19" rows="3"></textarea>
 			</div>			
 		</div>
 		<div class="table">

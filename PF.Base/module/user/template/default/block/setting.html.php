@@ -37,7 +37,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="info_left">
 			<label for="country_iso">{required}{phrase var='user.location'}:</label>
 		</div>
-		<div class="info_right">
+		<div class="info_right form-inline">
 			{select_location style='width:100px;'}
 		</div>			
 	</div>

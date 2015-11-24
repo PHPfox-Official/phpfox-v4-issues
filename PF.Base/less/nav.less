@@ -417,7 +417,7 @@ div#content div.menu, div#left div.menu, div#right div.menu {
 	padding:4px 10px;
 }
 
-.sub_menu_bar a, .sub_menu_bar a:hover {
+.sub_menu_bar >li > a{
 	color:@linkColor;
 	height:auto;
 	line-height:normal;
@@ -426,7 +426,7 @@ div#content div.menu, div#left div.menu, div#right div.menu {
 	font-size:@fontSizeBase - 2;
 }
 
-.sub_menu_bar li {
+.sub_menu_bar  > li {
 	position:relative;
 }
 
@@ -436,30 +436,9 @@ div#content div.menu, div#left div.menu, div#right div.menu {
 }
 
 .link_menu {
-	.reset();
-
 	display:none;
 	position:absolute;
 	right:0px;
-	width:250px;
-	z-index:20;
-	background:@bodyBg;
-	color:@textColor;
-	box-shadow:@blockBoxShadowLight;
-}
-
-.link_menu li a, .sub_menu_bar .dropContent li a, .link_menu li a, .sub_menu_bar .dropContent li a:hover {
-	border:0px;
-	display:block;
-	color:@textColor;
-	padding:8px 12px;
-	width:auto;
-}
-
-.link_menu li a:hover, .sub_menu_bar .dropContent li a:hover, .link_menu li a:hover, .sub_menu_bar .dropContent li a:hover {
-	background:darken(@blockBg, 6%);
-	color:@linkColor;
-	transition:@transition;
 }
 
 #pf_admin {

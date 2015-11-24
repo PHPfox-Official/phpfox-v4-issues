@@ -128,7 +128,7 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 				}
 			}				
 		}
-		
+    $sView = trim($sView, '/');
 		switch ($sView)
 		{
 			case 'my':
@@ -141,7 +141,12 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 				{
 					$this->search()->setCondition('AND pages.app_id = 0 AND pages.view_id = 1');
 				}				
-				break;			
+				break;
+      case 'all':
+        if ($bIsUserProfile) {
+          Phpfox_Module::instance()->setController('pages.all');
+        }
+        break;
 			default:
 				if (Phpfox::getUserParam('privacy.can_view_all_items'))
 				{
@@ -154,7 +159,7 @@ class Pages_Component_Controller_Index extends Phpfox_Component
 				break;
 		}		
 		
-		// $this->template()->buildSectionMenu('pages', $aFilterMenu);
+		 $this->template()->buildSectionMenu('pages', $aFilterMenu);
 		$bIsValidCategory = false;
 		
 		if ($this->request()->get('req2') == 'category' && ($iCategoryId = $this->request()->getInt('req3')) && ($aType = Phpfox::getService('pages.type')->getById($iCategoryId)))

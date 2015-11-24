@@ -26,18 +26,18 @@ defined('PHPFOX') or exit('NO DICE!');
 					{if $aForms.is_app}
 						{phrase var='pages.app'}
 					{else}					
-					<div class="pages_add_category">
-						<select name="val[type_id]">
+					<div class="pages_add_category form-group">
+						<select name="val[type_id]" class="form-control inline">
 						{foreach from=$aTypes item=aType}
 							<option value="{$aType.type_id}"{value type='select' id='type_id' default=$aType.type_id}>{$aType.name|convert}</option>
 						{/foreach}			
 						</select>
 					</div>
-					<div class="pages_sub_category">						
+					<div class="pages_sub_category form-group">
 						{foreach from=$aTypes item=aType}
 							{if isset($aType.categories) && is_array($aType.categories) && count($aType.categories)}					
-								<div class="js_pages_add_sub_category" id="js_pages_add_sub_category_{$aType.type_id}"{if $aType.type_id != $aForms.type_id} style="display:none;"{/if}>
-									<select name="js_category_{$aType.type_id}">
+								<div class="js_pages_add_sub_category form-inline" id="js_pages_add_sub_category_{$aType.type_id}"{if $aType.type_id != $aForms.type_id} style="display:none;"{/if}>
+									<select name="js_category_{$aType.type_id}" class="form-control inline">
 										<option value="">{phrase var='core.select'}</option>
 										{foreach from=$aType.categories item=aCategory}
 										<option value="{$aCategory.category_id}"{value type='select' id='category_id' default=$aCategory.category_id}>{$aCategory.name|convert}</option>
@@ -71,7 +71,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div><input type="hidden" name="val[title]" value="{$aForms.title|clean}" maxlength="200" size="40" /></div>
 					<a href="{permalink module='apps' id=$aForms.app_id title=$aForms.title}">{$aForms.title|clean}</a>
 					{else}
-					<input type="text" name="val[title]" value="{value type='input' id='title'}" maxlength="200" size="40" />
+					<input type="text" name="val[title]" value="{value type='input' id='title'}" maxlength="200" size="40" class="form-control"/>
 					{/if}
 				</div>
 			</div>
@@ -80,8 +80,8 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="table_left">
 					{phrase var='pages.landing_page'}:
 				</div>
-				<div class="table_right">
-					<select name="val[landing_page]">
+				<div class="table_right form-inline">
+					<select name="val[landing_page]" class="form-control">
 						{foreach from=$aForms.landing_pages item=aLanding}
 						{if isset($aLanding.landing)}
 						<option value="{$aLanding.landing}"{if isset($aLanding.is_selected) && $aLanding.is_selected} selected="selected"{/if}>{$aLanding.phrase}</option>
@@ -103,7 +103,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					{phrase var='pages.vanity_url'}:
 				</div>
 				<div class="table_right">
-					<input type="text" name="val[vanity_url]" value="{value type='input' id='vanity_url'}" size="20" id="js_vanity_url_new" />
+					<input type="text" name="val[vanity_url]" value="{value type='input' id='vanity_url'}" size="20" id="js_vanity_url_new" class="form-control"/>
 				</div>
 			</div>		
 			
@@ -187,8 +187,8 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div class="table_left">
 						{phrase var='pages.page_registration_method'}
 					</div>
-					<div class="table_right">					
-						<select name="val[reg_method]">
+					<div class="table_right form-inline">
+						<select name="val[reg_method]" class="form-control">
 							<option value="0"{if $aForms.reg_method == '0'} selected="selected"{/if}>{phrase var='pages.anyone'}</option>
 							<option value="1"{if $aForms.reg_method == '1'} selected="selected"{/if}>{phrase var='pages.approval_first'}</option>
 							<option value="2"{if $aForms.reg_method == '2'} selected="selected"{/if}>{phrase var='pages.invite_only'}</option>						
@@ -201,8 +201,8 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div class="table_left">
 						{$aPerm.phrase}
 					</div>
-					<div class="table_right">					
-						<select name="val[perms][{$aPerm.id}]">
+					<div class="table_right form-inline">
+						<select name="val[perms][{$aPerm.id}]" class="form-control">
 							<option value="0"{if $aPerm.is_active == '0'} selected="selected"{/if}>{phrase var='pages.anyone'}</option>
 							<option value="1"{if $aPerm.is_active == '1'} selected="selected"{/if}>{phrase var='pages.members_only'}</option>
 							<option value="2"{if $aPerm.is_active == '2'} selected="selected"{/if}>{phrase var='pages.admins_only'}</option>						
@@ -360,8 +360,8 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div><input type="hidden" name="val[type_id]" value="{$aType.type_id}" /></div>
 					{if isset($aType.categories) && is_array($aType.categories) && count($aType.categories)}					
 					<div class="table">
-						<div class="table_right">
-							<select name="val[category_id]">
+						<div class="table_right form-inline">
+							<select name="val[category_id]" class="form-control">
 								<option value="">{phrase var='pages.choose_a_category'}</option>
 								{foreach from=$aType.categories item=aCategory}
 								<option value="{$aCategory.category_id}">{$aCategory.name|convert}</option>
@@ -372,7 +372,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					{/if}
 					<div class="table">
 						<div class="table_right">
-							<input type="text" name="val[title]" value="" class="pages_type_add_input" placeholder="Name" />
+							<input type="text" name="val[title]" value="" class="form-control pages_type_add_input" placeholder="Name" />
 						</div>
 					</div>
 

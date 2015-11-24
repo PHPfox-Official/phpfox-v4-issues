@@ -18,10 +18,10 @@ defined('PHPFOX') or exit('NO DICE!');
 			</div>
 			<div class="table_right">
 					{if $aField.var_type == 'textarea' || $aField.var_type == 'text'}
-						<input type="text" class="js_custom_search" name="custom[{$aField.field_id}]" value="{value id=''$aField.field_id'' type='input'}" size="25" />
+						<input type="text" class="form-control js_custom_search" name="custom[{$aField.field_id}]" value="{value id=''$aField.field_id'' type='input'}" size="25" />
 					{elseif $aField.var_type == 'select'}
 					 <!-- custom input type select -->
-						<select name="custom[{$aField.field_id}]" class="js_custom_search">
+						<select name="custom[{$aField.field_id}]" class="form-control js_custom_search">
 							<option value="">{phrase var='user.any'}</option>
 										{foreach from=$aField.options item=aOption}
 							<option value="{$aOption.option_id}"{value parent=''$aField.field_id'' id=''$aOption.option_id'' type='select' default=''$aOption.option_id''}>{phrase var=$aOption.phrase_var_name}</option>
@@ -29,7 +29,7 @@ defined('PHPFOX') or exit('NO DICE!');
 						</select>
 					{elseif $aField.var_type == 'multiselect'}
 						<!-- custom input type multi select -->
-						<select name="custom[{$aField.field_id}][]" multiple class="js_custom_search" >
+						<select name="custom[{$aField.field_id}][]" multiple class="form-control js_custom_search" >
 							<option value="">{phrase var='user.any'}</option>
 								{foreach from=$aField.options item=aOption}
 									<option value="{$aOption.option_id}"{value parent=''$aField.field_id'' id=''$aOption.option_id'' type='multiselect' default=''$aOption.option_id''}>{phrase var=$aOption.phrase_var_name}</option>
@@ -38,13 +38,22 @@ defined('PHPFOX') or exit('NO DICE!');
 					{elseif $aField.var_type == 'radio'}
 					
 						{foreach from=$aField.options item=aOption}
-				<input type="radio" name="custom[{$aField.field_id}]" value="{$aOption.option_id}"{value id=''$aOption.option_id'' type='radio' default=''$aOption.option_id''} class="js_custom_search">{phrase var=$aOption.phrase_var_name} <br />
+				<div class="radio">
+					<label>
+				<input type="radio" name="custom[{$aField.field_id}]" value="{$aOption.option_id}"{value id=''$aOption.option_id'' type='radio' default=''$aOption.option_id''} class="js_custom_search">{phrase var=$aOption.phrase_var_name}
+					</label>
+				</div>
 						{/foreach}
 					{elseif $aField.var_type == 'checkbox'}
 						{foreach from=$aField.options item=aOption}
-				<input type="checkbox" name="custom[{$aField.field_id}][{$aOption.option_id}]" value="{$aOption.option_id}"{value id=''$aOption.option_id'' parent=''$aField.field_id'' type='checkbox' default=''$aOption.option_id''} class="js_custom_search v_middle"> {phrase var=$aOption.phrase_var_name} <br />
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="custom[{$aField.field_id}][{$aOption.option_id}]" value="{$aOption.option_id}"{value id=''$aOption.option_id'' parent=''$aField.field_id'' type='checkbox' default=''$aOption.option_id''} class="js_custom_search v_middle"> {phrase var=$aOption.phrase_var_name}
+					</label>
+					</div>
 						{/foreach}
 					{/if}
+
 			</div>
 			<div class="clear"></div>
 		</div>

@@ -1060,7 +1060,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 					$bUseJquery = false;
 				}
 				
-				$sMonth = '<select class="form-control" name="val[' . $sPrefix . 'month]" id="' . $sPrefix . 'month" class="js_datepicker_month">' . "\n";
+				$sMonth = '<select  name="val[' . $sPrefix . 'month]" id="' . $sPrefix . 'month" class="form-control js_datepicker_month">' . "\n";
 				if (!isset($aArgs['default_all']))
 				{
 					$sMonth .= "\t\t" . '<option value=""><?php echo Phpfox::getPhrase(\'core.month\'); ?>:</option>'  . "\n";
@@ -1088,7 +1088,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 				}
 				$sMonth .= "\t\t" . '</select>' . "\n";
 
-				$sDay = "\t\t" . '<select class="form-control" name="val[' . $sPrefix . 'day]" id="' . $sPrefix . 'day" class="js_datepicker_day">' . "\n";
+				$sDay = "\t\t" . '<select name="val[' . $sPrefix . 'day]" id="' . $sPrefix . 'day" class="form-control js_datepicker_day">' . "\n";
 				if (!isset($aArgs['default_all']))
 				{
 					$sDay .= "\t\t" . '<option value=""><?php echo Phpfox::getPhrase(\'core.day\'); ?>:</option>' . "\n";
@@ -1127,7 +1127,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 
 				$sYear = '<?php $aYears = range(' . $aArgs['start_year'] . ', ' . $aArgs['end_year'] . ');  ?>';
 				$sYear .= '<?php $aParams = (isset($aParams) ? $aParams : Phpfox::getLib(\'phpfox.request\')->getArray(\'val\')); ?>';
-				$sYear .= "\t\t" . '<select class="form-control" name="val[' . $sPrefix . 'year]" id="' . $sPrefix . 'year" class="js_datepicker_year">' . "\n";
+				$sYear .= "\t\t" . '<select name="val[' . $sPrefix . 'year]" id="' . $sPrefix . 'year" class="form-control js_datepicker_year">' . "\n";
 				if (!isset($aArgs['default_all']))
 				{
 					$sYear .= "\t\t" . '<option value=""><?php echo Phpfox::getPhrase(\'core.year\'); ?>:</option>' . "\n";
@@ -1194,7 +1194,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 					$sValue .= '<?php echo Phpfox::getTime(\'Y\'); ?>';		*/		
 					$sValue .= '<?php endif; ?>';
 					
-					$sReturn = '<div class="js_datepicker_core'. (isset($aArgs['id']) ? str_replace(array('"',"'"),'',$aArgs['id']) : '')  .'"><div class="js_datepicker_image"></div><span class="js_datepicker_holder"><div style="display:none;">' . $sReturn . '</div><input type="text" name="js_' . $sPrefix . '_datepicker" value="' . $sValue . '" class="js_date_picker" /></span> ';
+					$sReturn = '<div class="js_datepicker_core'. (isset($aArgs['id']) ? str_replace(array('"',"'"),'',$aArgs['id']) : '')  .'"><span class="js_datepicker_holder"><div style="display:none;">' . $sReturn . '</div><input type="text" name="js_' . $sPrefix . '_datepicker" value="' . $sValue . '" class="form-control js_date_picker" /><div class="js_datepicker_image"></div></span> ';
 				}
 				
 				if (isset($aArgs['add_time']))
@@ -1227,7 +1227,7 @@ class Phpfox_Template_Cache extends Phpfox_Template
 					$sReturn .= "\t\t" . '</select>&nbsp;&nbsp;:&nbsp;&nbsp;' . "\n";
 
 					$aMinutes = range(0, 59);
-					$sReturn .= "\t\t" . '<select name="val[' . $sPrefix . 'minute]" id="' . $sPrefix . 'minute">' . "\n";
+					$sReturn .= "\t\t" . '<select class="form-control" name="val[' . $sPrefix . 'minute]" id="' . $sPrefix . 'minute">' . "\n";
 					foreach ($aMinutes as $iMinute)
 					{
 						if (strlen($iMinute) < 2)

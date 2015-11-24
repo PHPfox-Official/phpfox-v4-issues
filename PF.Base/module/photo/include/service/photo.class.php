@@ -576,7 +576,7 @@ class Photo_Service_Photo extends Phpfox_Service
         }
 		if (!Phpfox::getParam('photo.display_profile_photo_within_gallery') && !$bIsProfilePhotoAlbum)
 		{
-			$sQuery .= ' AND photo.is_profile_photo = 0';
+//			$sQuery .= ' AND photo.is_profile_photo IN (0,1)';
 		}
         
 		// Check permissions
@@ -784,15 +784,15 @@ class Photo_Service_Photo extends Phpfox_Service
 				$aFilterMenu[Phpfox::getPhrase('photo.my_albums')] = 'photo.albums.view_myalbums';
 			}
 			
-			if (Phpfox::getParam('photo.can_rate_on_photos') || Phpfox::getParam('photo.enable_photo_battle'))
+			if (/*Phpfox::getParam('photo.can_rate_on_photos') ||*/ Phpfox::getParam('photo.enable_photo_battle'))
 			{
 				$aFilterMenu[] = true;
 			}
 			
-			if (Phpfox::getParam('photo.can_rate_on_photos'))
+			/*if (Phpfox::getParam('photo.can_rate_on_photos'))
 			{
 				$aFilterMenu[Phpfox::getPhrase('photo.rate_photos')] = 'photo.rate';	
-			}
+			}*/
 			
 			if (Phpfox::getParam('photo.enable_photo_battle'))
 			{

@@ -1074,6 +1074,7 @@ class Phpfox_Template
 		}
 
 		$aArrayData = array();
+        $sQmark =  '?';
 		$sData = '';
 		$sJs = '';
 		$iVersion = $this->getStaticVersion();
@@ -1409,11 +1410,11 @@ class Phpfox_Template
 							{
 								if ($sValVal == 'style_css')							
 								{
-									$aMaster['css'][] = 'theme' . PHPFOX_DS . 'frontend' . PHPFOX_DS . $this->getThemeFolder() . PHPFOX_DS . 'style' . PHPFOX_DS . $this->getStyleFolder() . PHPFOX_DS . 'css' . PHPFOX_DS . $sValKey;
+									$aMaster['css'][] = 'PF.Base/theme' . PHPFOX_DS . 'frontend' . PHPFOX_DS . $this->getThemeFolder() . PHPFOX_DS . 'style' . PHPFOX_DS . $this->getStyleFolder() . PHPFOX_DS . 'css' . PHPFOX_DS . $sValKey;
 								}
 								else if (strpos($sValVal, 'module_') !== false)
 								{
-									$aMaster['css'][] = 'module' . PHPFOX_DS . (str_replace('module_','',$sValVal)) . PHPFOX_DS . 'static' . PHPFOX_DS . 'css' . PHFPFOX_DS . $this->getThemeFolder() . PHPFOX_DS . $this->getStyleFolder() . PHPFOX_DS . $sValKey;
+									$aMaster['css'][] = 'PF.Base/module' . PHPFOX_DS . (str_replace('module_','',$sValVal)) . PHPFOX_DS . 'static' . PHPFOX_DS . 'css' . PHFPFOX_DS . $this->getThemeFolder() . PHPFOX_DS . $this->getStyleFolder() . PHPFOX_DS . $sValKey;
 								}
 							}
 							else if (strpos($sValKey, '.js') !== false)
@@ -1693,7 +1694,14 @@ class Phpfox_Template
 					continue;
 				}
 				$aSubCacheCheck[$sFile] = true;
-				$sData .= "\t\t" . '<link rel="stylesheet" type="text/css" href="' . Phpfox::getParam('core.path') . $sFile . $sQmark .'v=' . $iVersion . '" />' . "\n";
+
+				if(strpos($sFile,'PF.Site') === false){
+					$sData .= "\t\t" . '<link rel="stylesheet" type="text/css" href="' . Phpfox::getBaseUrl() . 'PF.Base/'. $sFile . $sQmark .'v=' . $iVersion . '" />' . "\n";
+				}else{
+					$sData .= "\t\t" . '<link rel="stylesheet" type="text/css" href="' . Phpfox::getBaseUrl(). $sFile . $sQmark .'v=' . $iVersion . '" />' . "\n";
+				}
+
+
 			}
 		}
 
@@ -1729,11 +1737,11 @@ class Phpfox_Template
 		if (!defined('PHPFOX_INSTALLER') && !Phpfox::isAdminPanel()) {
 			$Request = \Phpfox_Request::instance();
 			if ($Request->segment(1) == 'theme' && $Request->segment(2) == 'demo') {
-				$sData .= '<link href="' . Phpfox::getParam('core.path') . 'theme/default/flavor/default.css?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
+				$sData .= '<link href="' . Phpfox::getBaseUrl() . 'PF.Site/themes/default/flavor/default.css?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
 			}
 			else {
 				$Theme = $this->_theme->get();
-				$sData .= '<link href="' . Phpfox::getParam('core.path') . 'themes/' . $Theme->folder . '/flavor/' . $Theme->flavor_folder . '.css?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
+				$sData .= '<link href="' . Phpfox::getBaseUrl() . 'PF.Site/themes/' . $Theme->folder . '/flavor/' . $Theme->flavor_folder . '.css?v=' . Phpfox::internalVersion() . '" rel="stylesheet">';
 			}
 		}
 

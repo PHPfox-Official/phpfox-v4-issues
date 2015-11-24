@@ -1,0 +1,419 @@
+
+.profiles_banner_bg {
+	> .cover_bg {
+		position:absolute;
+		top:0px;
+		left:0px;
+		right:0px;
+		bottom:0px;
+		background:rgba(0, 0, 0, 0.4);
+	}
+
+	h1 a, h1 a:hover, .h1 a, .h1 a:hover {
+		color:#fff;
+	}
+
+	.profiles_extra_info {
+		color:darken(#fff, 10%) !important;
+		font-weight:400 !important;
+		text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+	}
+}
+
+.profiles_banner {
+	min-height:250px;
+	max-height:500px;
+	position:relative;
+	background:lighten(#0c0c0c, 10%);
+
+	.cover > img {
+		background-size:cover;
+		height:100%;
+		width:100%;
+		max-height:500px;
+	}
+
+	h1 a, h1 a:hover, .h1 a, .h1 a:hover {
+		color:#fff;
+	}
+
+	.profiles_extra_info {
+		color:darken(#fff, 25%);
+	}
+}
+
+.profile_image {
+	background:@blockBg;
+	border:2px darken(@blockBg, 10%) solid;
+	border-radius:@borderRadiusBase;
+	position:absolute;
+	left:20px;
+	bottom:-20px;
+	width:160px;
+	height:160px;
+	overflow:hidden;
+	z-index:4;
+
+	img {
+		width:100%;
+		height:100%;
+		background-size:contain;
+	}
+
+	> .p_4 {
+		display:none;
+
+		input {
+			position:absolute;
+			top:0px;
+			left:0px;
+			right:0px;
+			height:100%;
+			opacity:0;
+			z-index:2;
+		}
+	}
+
+	> .p_4 > span {
+		display:block;
+		position:absolute;
+		overflow:hidden;
+		text-indent:-1000px;
+		background:rgba(0, 0, 0, 0.4);
+		color:#fff;
+		top:0px;
+		right:0px;
+		left:0px;
+		bottom:0px;
+		z-index:1;
+	}
+
+	> .p_4 > span:before {
+		.fa('\f093');
+		position:absolute;
+		left:50%;
+		top:50%;
+		font-size:30px;
+		margin-left:-15px;
+		margin-top:-15px;
+	}
+}
+
+.profile_menu_is_fixed.panel_is_active {
+	.profiles_menu, .profile_image {
+		z-index:298;
+	}
+}
+
+.profile_menu_is_fixed {
+
+	.profiles_menu {
+		position:fixed;
+		top:0;
+		left:0;
+		right:0;
+		z-index:1000;
+
+		> ul {
+			transition:@transition;
+			left:(@headerHeight - 15) + 20;
+		}
+	}
+
+	.profile_image {
+		position:fixed;
+		bottom:auto;
+		top:7px;
+		left: 15px;
+		height:@headerHeight - 15;
+		width:@headerHeight - 15;
+		z-index:2000;
+	}
+}
+
+.profiles_menu {
+	background:@headerBg;
+	height:@headerHeight;
+	position:relative;
+
+	> ul {
+		position:absolute;
+		left:200px;
+		top:0px;
+		z-index:4008;
+
+		> li {
+			vertical-align:top;
+			border-bottom:3px transparent solid;
+			display:inline-block;
+			height:@headerHeight;
+			line-height:@headerHeight;
+			margin-right:-2px;
+			position:relative;
+
+			> ul {
+				display:none;
+				position:absolute;
+				right:0px;
+				width:200px;
+				background:@blockBg;
+				box-shadow:@blockBoxShadowLight;
+				line-height:normal;
+
+				a, a:hover {
+					.reset();
+
+					display:block;
+					padding:8px 12px;
+					font-weight:normal;
+					color:@blockColor;
+					font-size:@fontSizeBase - 1;
+					position:relative;
+
+					> span {
+						position:absolute;
+						right:5px;
+						top:5px;
+						font-size:@fontSizeBase - 4;
+						display:inline-block;
+						background:darken(@blockBg, 5%);
+						height:auto;
+						line-height:normal;
+						padding:4px 6px;
+					}
+				}
+
+				a:hover {
+					color:@linkColor;
+					transition:@transition;
+				}
+			}
+
+			> ul {
+				@media(max-width: @screen-xs-min){
+					right: -40px;
+				}
+			}
+
+			> a.explore, > a.explore:hover {
+				font-size:24px;
+				border-left:2px darken(@headerBg, 6%) solid;
+			}
+
+			> a.explore:hover {
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+
+				i:hover {
+					color:@brandPrimaryColor;
+				}
+			}
+
+			> a, > a:hover {
+				display:block;
+				color:darken(@headerColor, 20%);
+				padding:0px 20px;
+				font-size:@fontSizeBase + 1;
+				font-weight:300;
+				letter-spacing:1px;
+
+				> span {
+					font-size:@fontSizeBase - 4;
+					display:inline-block;
+					vertical-align:middle;
+					margin-left:8px;
+					margin-bottom:2px;
+					background:darken(@headerBg, 5%);
+					height:auto;
+					line-height:normal;
+					padding:4px 6px;
+				}
+			}
+		}
+
+		> li:hover {
+			border-color:@brandPrimary;
+			transition:@transition;
+
+			> a, > a:hover {
+				color:lighten(@headerColor, 10%);
+			}
+
+			> a.explore, > a.explore:hover {
+				background:@brandPrimary;
+				color:@brandPrimaryColor;
+			}
+
+			> ul {
+				display:block;
+			}
+		}
+
+		> li.active {
+			border-color:@brandPrimary;
+		}
+	}
+}
+
+.profiles_info {
+	position:absolute;
+	bottom:20px;
+	left:200px;
+
+	h1 {
+		font-size:32px;
+		font-weight:200;
+		letter-spacing:1px;
+		padding-bottom:4px;
+	}
+}
+
+.profiles_action {
+	position:absolute;
+	right:0px;
+	top:0px;
+
+	> ul {
+		> li:hover {
+			background:@brandPrimary;
+			color:@brandPrimaryColor;
+
+			> ul {
+				display:block;
+			}
+		}
+
+		> li {
+
+			> ul {
+				position:absolute;
+				right:0px;
+				width:300px;
+				background:@blockBg;
+				box-shadow:@blockBoxShadowLight;
+				border-top:0px;
+				font-size:@fontSizeBase - 1;
+				z-index:100;
+				display:none;
+
+				> li {
+					a, a:hover {
+						display:block;
+						padding:8px 12px;
+						text-indent:10px;
+						color:@blockColor;
+					}
+
+					a:hover {
+						color:@linkColor;
+						transition:@transition;
+					}
+				}
+			}
+
+			float:left;
+			display:block;
+			position:relative;
+
+			> a, > a:hover {
+				display:block;
+				height:@headerHeight;
+				line-height:@headerHeight;
+				font-size:20px;
+				padding:0px 10px;
+				border-left:1px darken(@headerBg, 8%) solid;
+
+				i {
+					color:darken(@headerColor, 4%);
+				}
+
+				span {
+					display:none;
+				}
+			}
+
+			> a:hover {
+				i {
+					color:@brandPrimaryColor;
+				}
+			}
+		}
+	}
+}
+
+.pages_view_sub_menu {
+	border:0px;
+	font-size:@fontSizeBase - 1;
+	padding:0px;
+
+	a, a:hover {
+		color:darken(@blockBg, 30%);
+	}
+
+	a:hover {
+		color:@linkColor;
+		transition:@transition;
+	}
+}
+
+.threeColumn(page_profile_index);
+#page_profile_index {
+	#panels #right {
+		right:-@columnWidth;
+	}
+}
+
+.noHeader(page_profile_index);
+
+.profile_image_holder {
+	i {
+		position:absolute;
+		left:50%;
+		top:50%;
+		font-size:30px;
+		margin-left:-15px;
+		margin-top:-15px;
+	}
+}
+
+/*
+.profile_image_holder {
+	position:absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+
+	span {
+		display:block;
+		position:absolute;
+		top:0px;
+		left:0px;
+		right:0px;
+		bottom:0px;
+
+		> span {
+			width:100%;
+			height:100%;
+		}
+	}
+}
+*/
+
+._is_profile_view {
+	#top {
+		margin-top:0px;
+	}
+
+	#header {
+		display:none;
+	}
+
+	.profiles_banner .breadcrumbs_menu {
+		top:auto;
+		position:absolute;
+		bottom:15px;
+		right:10px;
+		z-index:10;
+	}
+}

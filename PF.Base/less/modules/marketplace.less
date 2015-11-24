@@ -33,8 +33,7 @@
 #content .listing_content {
 	margin-left:130px;
 	height:120px;
-	margin-right:110px;
-
+	//margin-right:110px;
 	h1 {
 		line-height:normal;
 		font-size:@fontSizeBase + 6;
@@ -44,6 +43,11 @@
         overflow: hidden;
         white-space: nowrap;
 	}
+}
+@media (max-width: 480px) {
+  ul.listing_info .user_profile_link_span{
+    display: none;
+  }
 }
 
 .listing_info, .listing_category {

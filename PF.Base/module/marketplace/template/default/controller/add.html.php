@@ -83,7 +83,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					<div class="p_top_8">
 						<input class="form-control" type="text" name="val[price]" value="{value type='input' id='price'}" id="price" size="10" maxlength="100" onfocus="this.select();" />
 					</div>
-				</div>
+        </div>
 			</div>
 		</div>	
 		
@@ -125,7 +125,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="table_left">
 				{required}<label for="country_iso">{phrase var='marketplace.location'}:</label>
 			</div>
-			<div class="table_right">
+			<div class="table_right form-inline">
 				{select_location}
 				{module name='core.country-child'}
 				{if !$bIsEdit}
@@ -235,7 +235,6 @@ defined('PHPFOX') or exit('NO DICE!');
 	
 			{if Phpfox::isModule('friend')}
 			<div class="block">
-
 				<div class="title">{phrase var='marketplace.invite_friends'}</div>
 				<div class="content">
 				{if isset($aForms.listing_id)}
@@ -247,20 +246,22 @@ defined('PHPFOX') or exit('NO DICE!');
 
 				<div class="title">{phrase var='marketplace.invite_people_via_email'}</div>
 				<div class="content">
-					<textarea cols="40" rows="8" name="val[emails]"></textarea>
+					<textarea cols="40" rows="8" name="val[emails]" class="form-control"></textarea>
 					<div class="extra_info">
 						{phrase var='marketplace.separate_multiple_emails_with_a_comma'}
-						<div>
-							<input class="form-control" type="checkbox" name="val[invite_from]" value="1"> {phrase var='mail.send_from_my_own_address_semail' sEmail=$sMyEmail}
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="val[invite_from]" value="1"> {phrase var='mail.send_from_my_own_address_semail' sEmail=$sMyEmail}
+							</label>
 						</div>
 					</div>
 				</div>
 
 				<div class="title">{phrase var='marketplace.add_a_personal_message'}</div>
 				<div class="content">
-					<textarea cols="40" rows="8" name="val[personal_message]"></textarea>
+					<textarea cols="40" rows="8" name="val[personal_message]" class="form-control"></textarea>
 					<div class="p_top_8">
-						<input type="submit" value="{phrase var='marketplace.send_invitations'}" class="button" />
+						<input type="submit" value="{phrase var='marketplace.send_invitations'}" class="button btn btn-danger" />
 					</div>
 				</div>
 			</div>

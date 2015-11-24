@@ -7,7 +7,6 @@ return function(Phpfox_Installer $Installer) {
   $Installer->db->query("UPDATE ". Phpfox::getT('setting') ." SET `group_id` = 'registration' WHERE `module_id` = 'core' AND `var_name`='global_genders';");
 
   $Installer->db->query("DELETE FROM " . Phpfox::getT('setting') . " WHERE `module_id`='friend' AND `var_name`='birthdays_cache_time_out';");
-  //UPDATE `core_default`.`phpfox_language_phrase` SET `text` = '{full_name} liked a comment you made on the page "{title}"' WHERE `phpfox_language_phrase`.`phrase_id` = 6250;
   //https://github.com/moxi9/phpfox/issues/406
   $Installer->db->query("UPDATE `" . Phpfox::getT('setting') . "` SET `value_actual`=1, `value_default`=1 WHERE `var_name`='hide_denied_requests_from_pending_list' AND `module_id`='friend';");
 

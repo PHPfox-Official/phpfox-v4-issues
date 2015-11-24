@@ -234,8 +234,11 @@ class Theme extends Model {
 
 		$path = PHPFOX_DIR_SITE . 'themes/' . $folderTheme . '/';
 		foreach ($dirs as $dir) {
-			if (!is_dir($path . $dir)) {
-				mkdir($path . $dir, 0777, true);
+			if (!is_dir($fullpath =  $path . $dir)) {
+				if(!@mkdir($fullpath, 0777, true)){
+					exit("Could not write to $fullpath");
+				}
+				@chmod($fullpath,0755);
 			}
 		}
 

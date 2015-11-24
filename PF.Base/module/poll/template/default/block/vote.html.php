@@ -56,7 +56,7 @@
 			{/foreach}
 			{/if}
 		</div>
-		<div><input class="btn btn-sm btn-primary" type="button" value="{phrase var='poll.submit_your_vote'}" class="button_link" onclick="$(this).parent().hide(); $(this).parents('.p_4:first').find('.js_poll_image_ajax:first').show(); $('#js_poll_form_{$aPoll.poll_id}').ajaxCall('poll.addVote');return false;" /></div>
+		<div><input class="button btn-sm btn-primary" type="button" value="{phrase var='poll.submit_your_vote'}" class="button_link" onclick="$(this).parent().hide(); $(this).parents('.p_4:first').find('.js_poll_image_ajax:first').show(); $('#js_poll_form_{$aPoll.poll_id}').ajaxCall('poll.addVote');return false;" /></div>
 		<div class="js_poll_image_ajax" style="display:none;">
 			{img theme='ajax/add.gif' class='v_middle'}
 		</div>

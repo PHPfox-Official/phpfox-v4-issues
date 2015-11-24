@@ -378,6 +378,22 @@ class Pages_Component_Ajax_Ajax extends Phpfox_Ajax
 			$sErr = implode($aErr);
 		}
 	}
+
+	public function repositionCoverPhoto()
+	{
+		if (Phpfox::getService('pages.process')->updateCoverPosition($this->get('page_id'), $this->get('position')))
+		{
+//			$this->call('window.location.href = "' . Phpfox::permalink('pages', $this->get('page_id'), '') . '";');
+			//$this->call('location.reload();');
+//			$this->setMessage(Phpfox::getPhrase('pages.position_set_correctly'));
+			Phpfox::addMessage(Phpfox::getPhrase('pages.position_set_correctly'));
+		}
+		else
+		{
+			$aErr = Phpfox_Error::get();
+			$sErr = implode($aErr);
+		}
+	}
 	
 	public function updateCoverPosition()
 	{

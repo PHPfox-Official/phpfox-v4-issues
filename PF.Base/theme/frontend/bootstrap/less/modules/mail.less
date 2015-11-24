@@ -1,0 +1,158 @@
+
+.mail_thread {
+    @media (max-width: 700px){
+      width: 300px;
+      margin-left: -150px;
+      ._image_50{
+        width: 25px;
+        height: 25px;
+      }
+      .is_user .mail_content{
+        margin-right: 40px !important;
+      }
+      .mail_text img{
+        width: 100%;
+      }
+    }
+    @media (max-width: 390px){
+      width: 200px;
+      margin-left: -100px;
+    }
+	width:@contentWidth;
+	top:20px;
+	bottom:20px;
+	left:50%;
+	margin-left:-(@contentWidth / 2);
+	display:block;
+	z-index:4500;
+	position:fixed;
+
+	.js_box_close {
+		z-index:300;
+	}
+
+	.js_box_title {
+		padding: 0;
+		height:40px;
+		line-height:40px;
+		position:absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index:200;
+		text-indent:10px;
+		overflow:hidden;
+		white-space:nowrap;
+		text-overflow:ellipsis;
+		max-width:@contentWidth;
+		padding-right:40px;
+
+		h1 {
+			height:40px;
+			line-height:40px;
+			font-size:@fontSizeBase + 2;
+			padding:0;
+			margin:0;
+		}
+	}
+
+	.js_box_content, .mail_messages {
+		position:absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
+	.mail_messages {
+		background:@bodyBg;
+		top:40px;
+		bottom:65px;
+		overflow:auto;
+		padding:10px 0;
+	}
+
+	.mail_thread_form_holder {
+		position:absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index:100;
+		height:60px;
+		margin: 0;
+		padding: 0;
+
+		textarea, textarea:focus {
+			height:50px;
+			padding: 0;
+			margin: 0;
+			width:100%;
+			border: 0;
+			text-indent: 0;
+			font-size:@fontSizeBase - 1;
+			background:@blockBg;
+			color:@blockColor;
+		}
+	}
+}
+
+.mail_thread_holder.is_user {
+	margin-right: 0;
+	margin-left:auto;
+
+	.mail_user_image {
+		left:auto;
+		right:10px;
+	}
+
+	.mail_content {
+		margin-left:auto;
+		margin-right:70px;
+	}
+}
+
+.mail_thread_holder {
+	width:80%;
+	position:relative;
+	font-size:@fontSizeBase - 1;
+
+	.mail_user_image {
+		position:absolute;
+		left:10px;
+		top: 0;
+	}
+
+	.mail_content {
+		margin-left:70px;
+		min-height:50px;
+		position:relative;
+		background:@blockBg;
+		color:@blockColor;
+		padding:@blockContentPadding;
+		margin-bottom:@blockMarginBottom;
+	}
+
+	.mail_time_stamp {
+        @media (max-width: 700px){
+          top: 3px;
+        }
+		position:absolute;
+		right:10px;
+		top:10px;
+		font-size:@fontSizeBase - 4;
+	}
+}
+
+.mail_thread_form_holder_inner {
+	padding:5px;
+	background:@blockBg;
+}
+
+.mail_view_more, .mail_view_more:hover {
+	display:block;
+	text-align:center;
+	padding:6px  0;
+	text-decoration:none;
+	text-transform:uppercase;
+	font-size:@fontSizeBase - 2;
+}

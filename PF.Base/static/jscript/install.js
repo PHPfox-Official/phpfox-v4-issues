@@ -55,10 +55,6 @@
 				},
 				success: function(e) {
 
-					console.log(e);
-
-					// e = $.parseJSON(e);
-
 					if (typeof(e.next) == 'string') {
 						if (typeof(e.message) == 'string') {
 							$('#installer').html('<div class="process">' + e.message + '<i class="fa fa-spin fa-circle-o-notch"></i></div>');

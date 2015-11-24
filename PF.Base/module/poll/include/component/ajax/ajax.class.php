@@ -139,6 +139,8 @@ class Poll_Component_Ajax_Ajax extends Phpfox_Ajax
 	{
 		$this->setTitle(Phpfox::getPhrase('poll.poll_results'));
 		Phpfox::getBlock('poll.votes');
+
+		echo '<script type="text/javascript">$Core.loadInit();</script>';
 	}
 
 	/**

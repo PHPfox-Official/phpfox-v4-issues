@@ -37,17 +37,6 @@
 			<group />
 			<module_id>photo</module_id>
 			<is_hidden>1</is_hidden>
-			<type>boolean</type>
-			<var_name>can_rate_on_photos</var_name>
-			<phrase_var_name>setting_can_rate_on_photos</phrase_var_name>
-			<ordering>1</ordering>
-			<version_id>2.0.0alpha1</version_id>
-			<value>0</value>
-		</setting>
-		<setting>
-			<group />
-			<module_id>photo</module_id>
-			<is_hidden>1</is_hidden>
 			<type>integer</type>
 			<var_name>rating_total_photos_cache</var_name>
 			<phrase_var_name>setting_rating_total_photos_cache</phrase_var_name>

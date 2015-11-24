@@ -2,7 +2,7 @@
 	{if isset($aPageSectionMenu) && count($aPageSectionMenu)}
 	<div class="page_section_menu page_section_menu_header">
 		{if $aPageExtraLink !== null}
-		<a href="{$aPageExtraLink.link}" class="page_section_menu_link">{$aPageExtraLink.phrase}</a>
+		<a href="{$aPageExtraLink.link}" class="page_section_menu_link" title="{$aPageExtraLink.phrase}">{$aPageExtraLink.phrase}</a>
 		{/if}
 		<ul>
 		{foreach from=$aPageSectionMenu key=sPageSectionKey item=sPageSectionMenu name=pagesectionmenu}

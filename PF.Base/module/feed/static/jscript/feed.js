@@ -184,36 +184,41 @@ $Core.handlePasteInFeed = function(oObj)
 	}
 	
 	 var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|(www\\.)?){1}([0-9A-Za-z-\\.@:%_\‌​+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?"); 
-	if (regex.test($(oObj).val()))
+	var value = $(oObj).val();
+	if (regex.test(value))
 	{
-		bCheckUrlCheck = true;
-		postingFeedUrl = true;
-		
-		$('#activity_feed_submit').attr("disabled","disabled");
-
-		$('.activity_feed_form_share_process').show();
-		$(oObj).parent().append('<div id="js_preview_link_attachment_custom_form_sub" class="js_preview_link_attachment_custom_form" style="margin-top:5px;"></div>');
-		$Core.ajax('link.preview',{		
-			type: 'POST',
-			params:{				
-				'no_page_update': '1',
-				value: $(oObj).val()
-			},
-			success: function($sOutput) {
-				postingFeedUrl = false;
-				$('.activity_feed_form_share_process').hide();
-				if (substr($sOutput, 0, 1) == '{'){
-					
-					
+		setTimeout(function(){
+			var newValue = $(oObj).val();
+			if (value != newValue || !regex.test(newValue)) return;
+			bCheckUrlCheck = true;
+			postingFeedUrl = true;
+			
+			$('#activity_feed_submit').attr("disabled","disabled");
+	
+			$('.activity_feed_form_share_process').show();
+			$(oObj).parent().append('<div id="js_preview_link_attachment_custom_form_sub" class="js_preview_link_attachment_custom_form" style="margin-top:5px;"></div>');
+			$Core.ajax('link.preview',{		
+				type: 'POST',
+				params:{				
+					'no_page_update': '1',
+					value: $(oObj).val()
+				},
+				success: function($sOutput) {
+					postingFeedUrl = false;
+					$('.activity_feed_form_share_process').hide();
+					if (substr($sOutput, 0, 1) == '{'){
+						
+						
+					}
+					else{
+						$('#js_global_attach_value').val($(oObj).val());
+						bCheckUrlForceAdd = true;	
+						/* bCheckUrlCheck = false; */
+						$('#js_preview_link_attachment_custom_form_sub').html($sOutput);
+					}
 				}
-				else{
-					$('#js_global_attach_value').val($(oObj).val());
-					bCheckUrlForceAdd = true;	
-					/* bCheckUrlCheck = false; */
-					$('#js_preview_link_attachment_custom_form_sub').html($sOutput);
-				}
-			}
-		});		
+			});
+		}, 500);		
 	}
 }
 
@@ -335,8 +340,7 @@ $Behavior.activityFeedProcess = function() {
 	$('.comment_mini_link_like_empty').each(function() {
 		var p = $(this).closest('.comment_mini_content_border');
 		if (p.length > 0) {
-			console.log(1);
-			p.eq(0).find('.feed_options').hide();	
+			p.eq(0).find('.feed_options').hide();
 		} 	
 	});
 	
@@ -440,7 +444,7 @@ $Behavior.activityFeedProcess = function() {
 			{
 				if ($(this).html() == $sDefaultValue)
 				{
-					$bIsDefault = false;	
+					$bIsDefault = false;
 					
 					return false;
 				}
@@ -450,7 +454,6 @@ $Behavior.activityFeedProcess = function() {
 			{
 				// $(this).val('');
 				$(this).css({height: '50px'});
-				
 				$(this).addClass('focus');
 				$('#global_attachment_status textarea').addClass('focus');				
 			}
@@ -469,9 +472,9 @@ $Behavior.activityFeedProcess = function() {
 				var oCustomTextareaFilled = $('.activity_feed_form_button_status_info textarea');
 			
 				if ($sCustomPhrase == oCustomTextareaFilled.val()){
-					// oCustomTextareaFilled.val('');
+					 oCustomTextareaFilled.val('');
 				}				
-			}			
+			}
 			
 			if ($bButtonSubmitActive === false)
 			{
@@ -579,7 +582,7 @@ $Behavior.activityFeedProcess = function() {
 					|| (!$bButtonSubmitActive && $bHasDefaultValue)
 				)
 				{
-					$oCustomTextarea.val($sCustomPhrase).css({height: $sCssHeight});
+					$oCustomTextarea.css({height: $sCssHeight}).val('').prop({placeholder: $sCustomPhrase});
 				}
 				else if ($sStatusUpdateTextarea != $sStatusUpdateValue && $bButtonSubmitActive && !empty($sStatusUpdateTextarea))
 				{
@@ -993,3 +996,48 @@ $Behavior.tagger = function()
 	}
 	*/
 };
+
+
+$Behavior.checkForNewFeed  = function(){
+
+	if(typeof window.isRegisteredCheckForNewFeed != 'undefined')
+		return ;
+
+	window.isRegisteredCheckForNewFeed = true;
+
+	function _isHomePage(){
+		return !!$('body#page_core_index-member #js_feed_content').length
+		 && ! $('#sHashTagValue').length;
+	}
+
+	function _getLastFeedId(){
+		var val = $('#js_feed_content > .row_feed_loop:first').data('feedId');
+		return val ? val : 0;
+	}
+
+	function _checkForNewFeed() {
+
+		var $ele = $('#js_feed_content');
+
+		if(!_isHomePage()) return;
+
+		if($ele.data('loading'))
+			return;
+
+		$ele.data('loading',true);
+
+		$.ajaxCall('feed.checkNew','iLastFeedId=' + _getLastFeedId())
+				.always(function(){
+			$ele.data('loading',false);
+		}).done(function(){
+
+		});
+	}
+
+	window.setInterval(_checkForNewFeed, 10000);
+
+	window.loadNewFeeds  = function(){
+		$('#js_new_feed_update').html('');
+		$.ajaxCall('feed.loadNew','iLastFeedId=' + _getLastFeedId());
+	}
+}

@@ -383,7 +383,7 @@ class Core_Service_Core extends Phpfox_Service
 		$aGenders = array();
 		if (!defined('PHPFOX_INSTALLER'))
 		{
-			foreach ((array) Phpfox::getParam('core.global_genders') as $iKey => $aGender)
+			foreach ((array) Phpfox::getParam('user.global_genders') as $iKey => $aGender)
 			{
 				$aGenders[$iKey] = ($bReturnPhrase ? $aGender[1] : Phpfox::getPhrase($aGender[1]));
 			}

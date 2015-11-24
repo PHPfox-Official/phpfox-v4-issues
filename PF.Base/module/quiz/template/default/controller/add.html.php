@@ -106,7 +106,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		
 		<div class="quiz_add_new_question">
-			<a href="#" id="js_add_question">{phrase var='quiz.add_another_question'}</a>				
+			<a href="#" id="js_add_question" class="btn btn-block btn-primary">{phrase var='quiz.add_another_question'}</a>
 		</div>		
 		
 	{if !$bShowQuestions}</div>{/if}

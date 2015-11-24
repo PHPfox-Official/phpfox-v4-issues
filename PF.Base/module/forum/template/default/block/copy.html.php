@@ -19,20 +19,21 @@ defined('PHPFOX') or exit('NO DICE!');
 			{phrase var='forum.new_title'}:
 		</div>
 		<div class="table_right">
-			<input type="text" name="title" value="{$aThread.title|clean}" size="30" />
+			<input type="text" name="title" value="{$aThread.title|clean}" size="30" class="form-control" />
 		</div>
 	</div>	
 	<div class="table">
 		<div class="table_left">
 			{phrase var='forum.destination_forum'}:
 		</div>
-		<div class="table_right">
-			<select name="forum_id" style="width:300px;">
+		<div class="table_right form-inline">
+			<select name="forum_id" class="form-control">
 				{$sForums}
 			</select>
 		</div>
 	</div>
 	<div class="table_clear">
-		<input type="submit" value="{phrase var='forum.copy_thread'}" class="button" /> <span id="js_copying_forum"></span>
+		<input type="submit" value="{phrase var='forum.copy_thread'}" class="button" />
+		<span id="js_copying_forum"></span>
 	</div>
 </form>

@@ -52,9 +52,9 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="table_left">
 					{phrase var='photo.photo_album'}
 				</div>
-				<div class="table_right table_right_text">
+				<div class="table_right table_right_text form-inline">
 					<span id="js_photo_albums"{if !count($aAlbums)} style="display:none;"{/if}>
-						<select name="val[album_id]" id="js_photo_album_select" onchange="if (empty(this.value)) {l} $('#js_photo_privacy_holder').slideDown(); {r} else {l} $('#js_photo_privacy_holder').slideUp(); {r}">
+						<select class="form-control" name="val[album_id]" id="js_photo_album_select" onchange="if (empty(this.value)) {l} $('#js_photo_privacy_holder').slideDown(); {r} else {l} $('#js_photo_privacy_holder').slideUp(); {r}">
 							<option value="">{phrase var='photo.select_an_album'}:</option>
 								{foreach from=$aAlbums item=aAlbum}
 									<option value="{$aAlbum.album_id}"{if $iAlbumId == $aAlbum.album_id} selected="selected"{/if}>{$aAlbum.name|clean}</option>

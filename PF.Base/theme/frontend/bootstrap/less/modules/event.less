@@ -1,0 +1,73 @@
+
+#page_event_index {
+	.row_banner {
+		.event_date {
+			position:absolute;
+			left:10px;
+			top:16px;
+			width:60px;
+			height:60px;
+			background:#fff;
+			border:1px #dfdfdf solid;
+			text-align:center;
+
+			.month {
+				display:block;
+				background:#e74c3c;
+				color:#fff;
+				font-size:12px;
+				text-transform:uppercase;
+				padding:2px 0px;
+			}
+
+			.day {
+				display:block;
+				font-size:25px;
+				font-weight:200;
+				position:absolute;
+				left:-5px;
+				text-align:center;
+				right:0px;
+				top:20px;
+			}
+		}
+
+		header {
+			padding-left:80px;
+			min-height:70px;
+		}
+	}
+}
+
+#js_block_border_event_rsvp.block {
+	background:@blockBg;
+	padding:0px 10px;
+	margin-top:50px;
+
+	> .title {
+		margin-bottom:10px;
+	}
+
+	form {
+		> .p_2 {
+			display:block;
+			padding:10px 0px;
+			cursor:pointer;
+			border:1px transparent solid;
+			border-radius:30px;
+
+			input[type="checkbox"], input[type="radio"] {
+				visibility:hidden;
+			}
+		}
+
+		> .p_2:hover {
+			color:darken(@textColor, 20%);
+		}
+
+		> .p_2.active {
+			border-color:@brandPrimary;
+			color:darken(@textColor, 20%);
+		}
+	}
+}

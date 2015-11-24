@@ -134,13 +134,7 @@
 .pages_header_info {
 	background:rgba(0, 0, 0, 0.6);
 	padding:10px 0px;
-	position:absolute;
-	z-index:100;
-	top:0px;
-	right:0px;
-	left:0px;
 	min-height:100px;
-
 	/*
 	.pages_like_join {
 		position:absolute;
@@ -155,10 +149,14 @@
 		display:block;
 
 		h1 {
-			color:#fff;
-			line-height:normal;
-			padding:0px;
-			margin:0px;
+          color:#fff;
+          line-height:normal;
+          padding: 0;
+          margin: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 600px;
 		}
 
 		ul {
@@ -414,4 +412,13 @@ ul.activity_feed_form_attach li {
 
 .nav_pages a, .nav_pages a:hover {
 	vertical-align:top;
+}
+#js_block_border_pages_like .title a {
+  display: inline-block !important;
+  clear: both;
+}
+#js_block_border_pages_profile{
+  ._size__120 > span, ._size__120:hover > span{
+    top: 22px;
+  }
 }

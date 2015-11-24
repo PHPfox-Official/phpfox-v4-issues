@@ -1,5 +1,14 @@
 <article id="js_mp_item_holder_{$aListing.listing_id}" class="listing_row {if $aListing.is_sponsor}is_sponsored {/if}{if $aListing.is_featured}is_featured {/if}{if $aListing.view_id == 1 && !isset($bIsInPendingMode)}is_moderate {/if}">
-
+	{if $aListing.is_featured}
+	<div id="js_featured_phrase_{$aListing.listing_id}" class="row_featured_link">
+		{phrase var='marketplace.featured'}
+	</div>
+	{/if}					
+	{if $aListing.is_sponsor}	
+	<div id="js_sponsor_phrase_{$aListing.listing_id}" class="js_sponsor_event row_sponsored_link">
+		{phrase var='marketplace.sponsored'}
+	</div>
+	{/if}
 	<div class="listing_image">
 		<a href="{$aListing.url}">
 			{img server_id=$aListing.server_id title=$aListing.title path='marketplace.url_image' file=$aListing.image_path suffix='_120_square' itemprop='image'}

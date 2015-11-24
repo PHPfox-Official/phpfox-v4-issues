@@ -102,7 +102,6 @@ function debug(sMessage)
 	{			
 		return false;
 	}
-	console.log(sMessage);
 }
 
 function p(sMessage)

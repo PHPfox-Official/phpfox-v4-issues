@@ -32,7 +32,6 @@
 		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="delete_original_after_resize" phrase_var_name="setting_delete_original_after_resize" ordering="1" version_id="3.5.0beta1">0</setting>
 		<setting group="" module_id="photo" is_hidden="0" type="boolean" var_name="enabled_watermark_on_photos" phrase_var_name="setting_enabled_watermark_on_photos" ordering="1" version_id="2.0.0rc1">0</setting>
 		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="protect_photos_from_public" phrase_var_name="setting_protect_photos_from_public" ordering="1" version_id="2.0.0alpha1">0</setting>
-		<setting group="" module_id="photo" is_hidden="1" type="boolean" var_name="can_rate_on_photos" phrase_var_name="setting_can_rate_on_photos" ordering="1" version_id="2.0.0alpha1">0</setting>
 		<setting group="" module_id="photo" is_hidden="1" type="integer" var_name="rating_total_photos_cache" phrase_var_name="setting_rating_total_photos_cache" ordering="1" version_id="2.0.0alpha1">10</setting>
 		<setting group="" module_id="photo" is_hidden="1" type="integer" var_name="photo_battle_image_cache" phrase_var_name="setting_photo_battle_image_cache" ordering="1" version_id="2.0.0alpha1">10</setting>
 		<setting group="" module_id="photo" is_hidden="1" type="large_string" var_name="photo_meta_description" phrase_var_name="setting_photo_meta_description" ordering="8" version_id="2.0.0rc1" />
@@ -303,8 +302,6 @@ RewriteRule ^file/pic/photo/(.*).(.*)$ static/image.php?file=$1&ext=$2
 
 <b>Note:</b>The age you define will allow users with that age or older the ability to view mature photos.]]></phrase>
 		<phrase module_id="photo" version_id="2.0.0alpha1" var_name="feed_user_add_photos" added="1235639996"><![CDATA[<a href="{owner_link}">{owner_full_name}</a> added photos to their album "<a href="{link}">{album_name}</a>".]]></phrase>
-		<phrase module_id="photo" version_id="2.0.0alpha1" var_name="setting_can_rate_on_photos" added="1235920519"><![CDATA[<title>Photo Rating</title><info>Set to <b>True</b> if you would like to enable the ability for users to rate on photos uploaded by other users.</info>]]></phrase>
-		<phrase module_id="photo" version_id="2.0.0alpha1" var_name="user_setting_can_rate_on_photos" added="1235920668">Can rate photos?</phrase>
 		<phrase module_id="photo" version_id="2.0.0alpha1" var_name="setting_rating_total_photos_cache" added="1235920999"><![CDATA[<title>Total Photos to Cache for Rating Section</title><info>Define how many images to cache when rating images. This will load X photos when visiting the rating section and will allow users the ability to rate images at a very fast rate. Once X images have been rated the script will use AJAX to load the next round of X images.
 
 <b>Notice:</b> "X" is the value of this specific setting.</info>]]></phrase>
@@ -864,7 +861,6 @@ This setting changes a few aspects related to the photo section:<br/>
 		<setting is_admin_setting="0" module_id="photo" type="boolean" admin="1" user="1" guest="0" staff="1" module="photo" ordering="0">can_edit_own_photo</setting>
 		<setting is_admin_setting="0" module_id="photo" type="boolean" admin="1" user="0" guest="0" staff="1" module="photo" ordering="0">can_edit_other_photo</setting>
 		<setting is_admin_setting="0" module_id="photo" type="integer" admin="18" user="18" guest="18" staff="18" module="photo" ordering="0">photo_mature_age_limit</setting>
-		<setting is_admin_setting="0" module_id="photo" type="boolean" admin="1" user="1" guest="0" staff="1" module="photo" ordering="0">can_rate_on_photos</setting>
 		<setting is_admin_setting="0" module_id="photo" type="boolean" admin="1" user="0" guest="0" staff="1" module="photo" ordering="0">can_edit_photo_categories</setting>
 		<setting is_admin_setting="0" module_id="photo" type="boolean" admin="1" user="0" guest="0" staff="1" module="photo" ordering="0">can_add_public_categories</setting>
 		<setting is_admin_setting="0" module_id="photo" type="boolean" admin="0" user="0" guest="1" staff="0" module="photo" ordering="0">photo_must_be_approved</setting>

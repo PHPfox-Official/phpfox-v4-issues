@@ -778,6 +778,20 @@ if (typeof jQuery === 'undefined') {
     return $parent && $parent.length ? $parent : $this.parent()
   }
 
+  function pageChangeStart(){
+    $(backdrop).remove();
+
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
+    })
+  }
+
   function clearMenus(e) {
     if (e && e.which === 3) return
     $(backdrop).remove()
@@ -796,8 +810,6 @@ if (typeof jQuery === 'undefined') {
 
       $this.attr('aria-expanded', 'false')
       $parent.removeClass('open').trigger('hidden.bs.dropdown', relatedTarget)
-
-
     })
   }
 
@@ -812,7 +824,7 @@ if (typeof jQuery === 'undefined') {
     clearMenus()
 
     if (!isActive) {
-      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+      if ('ontouchstart' in document.documentElement) {
         // if mobile we use a backdrop because click events don't delegate
         $(document.createElement('div'))
           .addClass('dropdown-backdrop')
@@ -917,6 +929,8 @@ if (typeof jQuery === 'undefined') {
   // ===================================
 
   $(document)
+      .on('pageChangeStart',pageChangeStart)
+      .on('touchstart','.dropdown-backdrop',clearMenus)
     .on('click.bs.dropdown.data-api', clearMenus)
     .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)

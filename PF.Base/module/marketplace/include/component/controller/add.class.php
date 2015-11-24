@@ -180,7 +180,7 @@ class Marketplace_Component_Controller_Add extends Phpfox_Component
 		
 		$this->template()->setTitle(($bIsEdit ? Phpfox::getPhrase('marketplace.editing_listing') . ': ' . $aListing['title'] : Phpfox::getPhrase('marketplace.create_a_marketplace_listing')))
 			->setBreadcrumb(Phpfox::getPhrase('marketplace.marketplace'), $this->url()->makeUrl('marketplace'))
-			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('marketplace.editing_listing') . ': ' . $aListing['title'] : Phpfox::getPhrase('marketplace.create_a_listing')), $this->url()->makeUrl('marketplace.add'), true)
+			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('marketplace.editing_listing') . ': ' . $aListing['title'] : Phpfox::getPhrase('marketplace.create_a_listing')), $this->url()->makeUrl('marketplace.add', ['id'=>$iEditId]), true)
 			->setEditor()
 			->setFullSite()			
 			->setPhrase(array(

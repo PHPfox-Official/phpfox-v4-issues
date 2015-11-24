@@ -181,6 +181,9 @@ class Feed_Service_Feed extends Phpfox_Service
 		$oUrl = Phpfox_Url::instance();
 		$oReq = Phpfox_Request::instance();
 		$oParseOutput = Phpfox::getLib('parse.output');
+		$bIsCheckForUpdate = defined('PHPFOX_CHECK_FOR_UPDATE_FEED')?1:0;
+		$iLastFeedId = defined('PHPFOX_CHECK_FOR_UPDATE_FEED_ID') ? PHPFOX_CHECK_FOR_UPDATE_FEED_ID: 0;
+
 		
 		if ($oReq->get('get-new'))
 		{
@@ -410,13 +413,19 @@ class Feed_Service_Feed extends Phpfox_Service
 					$this->database()->leftJoin(Phpfox::getT('friend'), 'f', 'f.user_id = feed.user_id AND f.friend_user_id = ' . Phpfox::getUserId());
 				}
 
+				$sWhere  = 'feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' ' . $extra . ' AND feed.feed_reference = 0';
+
+				if($bIsCheckForUpdate){
+					$sWhere .= ' AND feed.feed_id>'. intval($iLastFeedId);
+				}
+
 				$aRows = $this->database()->select($sSelect)
 						->from(Phpfox::getT('feed'), 'feed')			
 						->join(Phpfox::getT('user'), 'u', 'u.user_id = feed.user_id')
 						->order($sOrder)
 						->group('feed.feed_id')
 						->limit($iOffset, $iTotalFeeds)			
-						->where('feed.time_stamp > \'' . $iLastActiveTimeStamp . '\' ' . $extra . ' AND feed.feed_reference = 0')
+						->where($sWhere)
 						->execute('getSlaveRows');
 			}
 			else
@@ -502,10 +511,16 @@ class Feed_Service_Feed extends Phpfox_Service
 					$sSelect .= ', f.friend_id AS is_friend';
 					$this->database()->leftJoin(Phpfox::getT('friend'), 'f', 'f.user_id = feed.user_id AND f.friend_user_id = ' . Phpfox::getUserId());
 				}
+
+				$sWhere = ' 1 ';
+				if($bIsCheckForUpdate){
+					$sWhere .= ' AND feed.feed_id > '. intval($iLastFeedId);
+				}
 					
 				$aRows = $this->database()->select($sSelect)
 						->unionFrom('feed')			
 						->join(Phpfox::getT('user'), 'u', 'u.user_id = feed.user_id')
+						->where($sWhere)
 						->order($sOrder)
 						->group('feed.feed_id')
 						->limit($iOffset, $iTotalFeeds, null, false, true)

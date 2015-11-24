@@ -92,7 +92,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<label for="emails">{phrase var='invite.to'}:</label>
 			</div>
 			<div class="table_right">
-				<textarea class="form-control" cols="40" rows="3" id="emails" name="val[emails]" style="width:90%; height:20px;" onkeydown="$Core.resizeTextarea($(this));" onkeyup="$Core.resizeTextarea($(this));"></textarea>
+				<textarea class="form-control autogrow" cols="40" rows="3" id="emails" name="val[emails]" style="width:90%; height:20px;" onkeydown="$Core.resizeTextarea($(this));" onkeyup="$Core.resizeTextarea($(this));"></textarea>
 				<div class="extra_info">
 					{phrase var='invite.separate_multiple_emails_with_a_comma'}
 				</div>

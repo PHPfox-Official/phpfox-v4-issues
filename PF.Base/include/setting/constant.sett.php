@@ -74,7 +74,7 @@ define('PHPFOX_DIR_SITE', PHPFOX_DIR . '../PF.Site/');
 
 // URL & Request
 
-define('PHPFOX_GET_METHOD', 'do');
+define('PHPFOX_GET_METHOD', '');
 
 define('PHPFOX_STATIC', 'static/');
 

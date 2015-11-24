@@ -364,11 +364,11 @@ class Comment_Component_Ajax_Ajax extends Phpfox_Ajax
 		{
 			if ($this->get('simple'))
 			{
-				$this->call("$('#js_quick_edit_id" . $this->get('id') . "').html('<textarea style=\"width:95%; height:80px;\" name=\"quick_edit_input\" cols=\"90\" rows=\"10\" id=\"js_quick_edit" . $this->get('id') . "\">" . Phpfox::getLib('parse.output')->ajax($aRow['text']) . "</textarea>');");
+				$this->call("$('#js_quick_edit_id" . $this->get('id') . "').html('<textarea class=\"form-control\" name=\"quick_edit_input\" cols=\"90\" rows=\"10\" id=\"js_quick_edit" . $this->get('id') . "\">" . Phpfox::getLib('parse.output')->ajax($aRow['text']) . "</textarea>');");
 			}
 			else 
 			{
-				$this->call("$('#js_quick_edit_id" . $this->get('id') . "').html('<div id=\"sJsEditorMenu\" class=\"editor_menu\" style=\"display:block;\">' + Editor.setId('js_quick_edit" . $this->get('id') . "').getEditor(true) + '</div><textarea style=\"width:98%;\" name=\"quick_edit_input\" cols=\"90\" rows=\"10\" id=\"js_quick_edit" . $this->get('id') . "\">" . Phpfox::getLib('parse.output')->ajax($aRow['text']) . "</textarea>');");
+				$this->call("$('#js_quick_edit_id" . $this->get('id') . "').html('<div id=\"sJsEditorMenu\" class=\"editor_menu\" style=\"display:block;\">' + Editor.setId('js_quick_edit" . $this->get('id') . "').getEditor(true) + '</div><textarea class=\"form-control\" name=\"quick_edit_input\" cols=\"90\" rows=\"10\" id=\"js_quick_edit" . $this->get('id') . "\">" . Phpfox::getLib('parse.output')->ajax($aRow['text']) . "</textarea>');");
 			}
 			
 			if (Phpfox::getUserParam('comment.wysiwyg_on_comments') && Phpfox::getParam('core.wysiwyg') == 'tiny_mce')

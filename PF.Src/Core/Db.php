@@ -8,6 +8,7 @@ namespace Core;
  *
  * @method Db select($select)
  * @method Db from($table, $alias = null)
+ * @method Db singleData($field_name)
  * @method Db order($order)
  * @method Db get()
  * @method Db join($table, $alias, $where)

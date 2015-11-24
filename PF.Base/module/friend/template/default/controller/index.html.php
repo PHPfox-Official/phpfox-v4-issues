@@ -67,7 +67,7 @@ defined('PHPFOX') or exit('NO DICE!');
 							</ul>
 						</div>
 					</div>
-					<a href="#" class="friend_action_delete js_hover_title" rel="{$aFriend.friend_id}"><span class="js_hover_info">{phrase var='friend.remove_this_friend'}</span></a>
+					<a href="#" class="friend_action_delete js_hover_title" rel="{$aFriend.friend_id}"><span class="js_hover_info friend-option btn btn-default btn-xs">{phrase var='friend.remove_this_friend'}</span></a>
 				</div>				
 			</div>			
 		</div>

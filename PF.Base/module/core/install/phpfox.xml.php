@@ -11,6 +11,7 @@
 	</data>
 	<menus>
 		<menu module_id="core" parent_var_name="" m_connection="main" var_name="menu_home" ordering="1" url_value="" version_id="2.0.0alpha1" disallow_access="" module="core" mobile_icon="dashboard" />
+        <menu module_id="core" parent_var_name="" m_connection="main" var_name="menu_core_pages" ordering="103" url_value="pages" version_id="4.1.0" disallow_access="" module="core" />
 		<menu module_id="core" parent_var_name="" m_connection="main_right" var_name="menu_admincp" ordering="1" url_value="admincp" version_id="2.0.0alpha1" disallow_access="" module="core" />
 		<menu module_id="core" parent_var_name="" m_connection="" var_name="menu_log_out" ordering="10" url_value="user.logout" version_id="2.0.0alpha1" disallow_access="a:1:{i:0;s:1:&quot;3&quot;;}" module="core" />
 		<menu module_id="core" parent_var_name="" m_connection="friend.index" var_name="menu_core_create_a_list_a441eadc1389cdf0ffe6c4f8babdd66e" ordering="101" url_value="#friend-add-list" version_id="3.0.0beta1" disallow_access="" module="core" />
@@ -100,7 +101,7 @@ Site Name</setting>
 		<setting group="" module_id="core" is_hidden="0" type="string" var_name="amazon_bucket" phrase_var_name="setting_amazon_bucket" ordering="4" version_id="2.0.5" />
 		<setting group="" module_id="core" is_hidden="0" type="boolean" var_name="amazon_bucket_created" phrase_var_name="setting_amazon_bucket_created" ordering="5" version_id="2.0.5">0</setting>
 		<setting group="server_settings" module_id="core" is_hidden="0" type="boolean" var_name="force_https_secure_pages" phrase_var_name="setting_force_https_secure_pages" ordering="10" version_id="2.0.5dev1">0</setting>
-		<setting group="registration" module_id="core" is_hidden="0" type="array" var_name="global_genders" phrase_var_name="setting_global_genders" ordering="1" version_id="2.0.5dev2"><![CDATA[s:112:"array(
+		<setting group="registration" module_id="user" is_hidden="0" type="array" var_name="global_genders" phrase_var_name="setting_global_genders" ordering="1" version_id="2.0.5dev2"><![CDATA[s:112:"array(
   0 => '1|core.his|profile.male|core.himself',
   1 => '2|core.her|profile.female|core.herself|female',
 );";]]></setting>
@@ -1309,6 +1310,7 @@ http://htmlpurifier.org/live/configdoc/plain.html#HTML.Allowed</info>]]></phrase
 		<phrase module_id="core" version_id="4.0.0rc1" var_name="menu_core_my_new_sample_d41d8cd98f00b204e9800998ecf8427e" added="1428132724">My New Sample</phrase>
 		<phrase module_id="core" version_id="4.0.0rc2" var_name="menu_core_hello_world_fad58de7366495db4650cfefac2fcd61" added="1433244089">Hello World!</phrase>
 		<phrase module_id="core" version_id="4.0.0rc2" var_name="menu_core_videos_fad58de7366495db4650cfefac2fcd61" added="1434443481">Videos</phrase>
+		<phrase module_id="core" version_id="4.1.0" var_name="menu_core_pages" added="1444443481">Pages</phrase>
 	</phrases>
 	<user_delete>
 		<option module_id="core" phrase_var="core.user_cancellation_9" />

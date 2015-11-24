@@ -11,8 +11,8 @@
 defined('PHPFOX') or exit('NO DICE!'); 
 
 ?>
-<div class="t_right" style="margin-top:50px;">
-	<select name="#" style="width:300px;" class="goJump">
+<div class="t_right form-inline" style="margin-top:50px;">
+	<select name="#" class="goJump form-control">
 		{$sJumpTool}
 	</select>
 </div>

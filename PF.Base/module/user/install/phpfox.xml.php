@@ -24,6 +24,10 @@
 		<menu module_id="user" parent_var_name="menu_settings" m_connection="" var_name="menu_user_privacy_settings_73c8da87d666df89aabd61620c81c24c" ordering="108" url_value="user.privacy" version_id="3.0.0beta4" disallow_access="" module="user" />
 	</menus>
 	<settings>
+        <setting group="registration" module_id="user" is_hidden="0" type="array" var_name="global_genders" phrase_var_name="setting_global_genders" ordering="1" version_id="2.0.5dev2"><![CDATA[s:112:"array(
+  0 => '1|core.his|profile.male|core.himself',
+  1 => '2|core.her|profile.female|core.herself|female',
+);";]]></setting>
 		<setting group="" module_id="user" is_hidden="0" type="string" var_name="redirect_after_login" phrase_var_name="setting_redirect_after_login" ordering="2" version_id="2.0.0alpha1" />
 		<setting group="" module_id="user" is_hidden="0" type="array" var_name="user_pic_sizes" phrase_var_name="setting_user_pic_sizes" ordering="1" version_id="2.0.0alpha1"><![CDATA[s:103:"array(
   0 => '20',

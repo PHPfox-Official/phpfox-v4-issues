@@ -18,8 +18,8 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_left">
 			{phrase var='forum.destination_forum'}:
 		</div>
-		<div class="table_right">
-			<select name="forum_id" style="width:300px;">
+		<div class="table_right form-inline">
+			<select name="forum_id" class="form-control">
 				{$sForums}
 			</select>
 		</div>

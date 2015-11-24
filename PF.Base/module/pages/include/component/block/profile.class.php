@@ -30,7 +30,7 @@ class Pages_Component_Block_Profile extends Phpfox_Component
 		}
 		
 		$this->template()->assign(array(
-				'sHeader' => '<a href="javascript:void(0)">' . Phpfox::getPhrase('pages.pages') . '<span>' . $iTotal . '</span></a>',
+				'sHeader' => '<a href="'.$this->url()->makeUrl($aUser['user_name'], 'pages/?view=all').'">' . Phpfox::getPhrase('pages.pages') . '<span>' . $iTotal . '</span></a>',
 				'aPagesList' => $aPages,
 			)
 		);

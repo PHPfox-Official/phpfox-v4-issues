@@ -35,7 +35,7 @@ class Marketplace_Service_Marketplace extends Phpfox_Service
 		
 		$this->database()->select('f.friend_id AS is_friend, ')->leftJoin(Phpfox::getT('friend'), 'f', "f.user_id = l.user_id AND f.friend_user_id = " . Phpfox::getUserId());
 		
-		$aListing = $this->database()->select('l.*, ml.invite_id, ml.visited_id, uf.total_score, uf.total_rating, ua.activity_points, ' . (Phpfox::getParam('core.allow_html') ? 'mt.description_parsed' : 'mt.description') . ' AS description, ' . Phpfox::getUserField())
+		$aListing = $this->database()->select(Phpfox::getUserField(). ', l.*, ml.invite_id, ml.visited_id, uf.total_score, uf.total_rating, ua.activity_points, ' . (Phpfox::getParam('core.allow_html') ? 'mt.description_parsed' : 'mt.description') . ' AS description')
 			->from($this->_sTable, 'l')
 			->join(Phpfox::getT('marketplace_text'), 'mt', 'mt.listing_id = l.listing_id')
 			->join(Phpfox::getT('user'), 'u', 'u.user_id = l.user_id')
@@ -44,7 +44,6 @@ class Marketplace_Service_Marketplace extends Phpfox_Service
 			->leftJoin(Phpfox::getT('marketplace_invite'), 'ml', 'ml.listing_id = l.listing_id AND ml.invited_user_id = ' . Phpfox::getUserId())
 			->where('l.listing_id = ' . (int) $iId)
 			->execute('getSlaveRow');
-		
 		if (!isset($aListing['listing_id']))
 		{
 			return false;

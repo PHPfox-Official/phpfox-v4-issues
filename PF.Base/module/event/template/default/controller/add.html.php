@@ -28,7 +28,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="table_left">
 				<label for="category">{phrase var='event.category'}:</label>
 			</div>
-			<div class="table_right">
+			<div class="table_right form-inline">
 				{$sCategories}
 			</div>
 		</div>
@@ -39,7 +39,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{required}<label for="title">{phrase var='event.what_are_you_planning'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[title]" value="{value type='input' id='title'}" id="title" size="40" maxlength="100" />
+				<input type="text" name="val[title]" value="{value type='input' id='title'}" id="title" size="40" maxlength="100" class="form-control" />
 			</div>
 		</div>		
 		
@@ -79,7 +79,7 @@ defined('PHPFOX') or exit('NO DICE!');
 			{required}<label for="location">{phrase var='event.location_venue'}:</label>
 			</div>
 			<div class="table_right">
-				<input type="text" name="val[location]" value="{value type='input' id='location'}" id="location" size="40" maxlength="200" />
+				<input type="text" name="val[location]" value="{value type='input' id='location'}" id="location" size="40" maxlength="200" class="form-control" />
 				{if !$bIsEdit}
 				<div class="extra_info">
 					<a href="#" onclick="$(this).parent().hide(); $('#js_event_add_country').show(); return false;">{phrase var='event.add_address_city_zip_country'}</a>
@@ -95,7 +95,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					<label for="street_address">{phrase var='event.address'}</label>
 				</div>
 				<div class="table_right">
-					<input type="text" name="val[address]" value="{value type='input' id='address'}" id="address" size="30" maxlength="200" />
+					<input type="text" name="val[address]" value="{value type='input' id='address'}" id="address" size="30" maxlength="200" class="form-control" />
 				</div>
 			</div>			 			 
 				
@@ -104,7 +104,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					<label for="city">{phrase var='event.city'}:</label>
 				</div>
 				<div class="table_right">
-					<input type="text" name="val[city]" value="{value type='input' id='city'}" id="city" size="20" maxlength="200" />
+					<input type="text" name="val[city]" value="{value type='input' id='city'}" id="city" size="20" maxlength="200" class="form-control" />
 				</div>
 			</div>		
 			
@@ -113,7 +113,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					<label for="postal_code">{phrase var='event.zip_postal_code'}:</label>
 				</div>
 				<div class="table_right">
-					<input type="text" name="val[postal_code]" value="{value type='input' id='postal_code'}" id="postal_code" size="10" maxlength="20" />
+					<input type="text" name="val[postal_code]" value="{value type='input' id='postal_code'}" id="postal_code" size="10" maxlength="20" class="form-control" />
 				</div>
 			</div>		
 			 
@@ -121,7 +121,7 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="table_left">
 					<label for="country_iso">{phrase var='event.country'}:</label>
 				</div>
-				<div class="table_right">
+				<div class="table_right form-inline">
 					{select_location}
 					{module name='core.country-child'}
 				</div>

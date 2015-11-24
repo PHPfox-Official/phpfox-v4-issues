@@ -21,6 +21,9 @@ class Poke_Component_Ajax_Ajax extends Phpfox_Ajax
 		$this->setTitle(Phpfox::getPhrase('poke.poke'));
 		
 		Phpfox::getBlock('poke.poke');
+
+		echo '<script type="text/javascript">$Core.loadInit();</script>';
+
 	}
 	
 	public function doPoke()

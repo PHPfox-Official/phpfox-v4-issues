@@ -22,7 +22,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		<div>
 			<header class="pages_header_name">
-				<h1>{$aPage.title|clean}</h1>
+				<h1 title="{$aPage.title|clean}">{$aPage.title|clean}</h1>
 				<ul>
 					<li>{$aPage.category_name|convert}</li>
 					<li>
@@ -82,7 +82,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		</div>
 		{/if}
 
-		<div class="pages_menu">
+		<div class="pages_menu hidden-xs">
 			<ul>
 				{foreach from=$aPageMenus item=aPageMenu}
 				<li><a href="{$aPageMenu.url}">{$aPageMenu.phrase}</a></li>
@@ -96,5 +96,34 @@ defined('PHPFOX') or exit('NO DICE!');
 		{img server_id=$aCoverPhoto.server_id path='photo.url_photo' file=$aCoverPhoto.destination suffix='_1024' title=$aCoverPhoto.title}
 	</div>
 	{/if}
+	<style type="text/css">
+		.pages_header .pages_header_cover img
+		{l}
+			position: relative;
+			left: 0;
+			top: {$iConverPhotoPosition}px;
+		{r}
+	</style>
+</div>
+<div class="profiles_second_nav visible-xs">
+	<ul>
+		{foreach from=$aPageMenus item=aPageMenu name=link}
+		{if $phpfox.iteration.link == 4 }
+		<li class="pull-right">
+			<a role="button" data-toggle="dropdown"><i class="fa fa-cog"></i></a>
+			<ul class="dropdown-menu dropdown-menu-right">
+				<li>
+					<a href="{$aPageMenu.url}">{$aPageMenu.phrase}</a>
 
+				</li>
+				{else}
+				<li>
+					<a href="{$aPageMenu.url}">{$aPageMenu.phrase}</a>
+
+				</li>
+				{/if}
+				{/foreach}
+			</ul>
+		</li>
+	</ul>
 </div>

@@ -266,16 +266,73 @@ class Phpfox_Ajax
 	 */
 	public function html($sId, $sContent, $sExtra = '')
 	{
+		return $this->execElement($sId,'html', $sContent, $sExtra);
+	}
+
+	/**
+	 * @param        $sId
+	 * @param        $sContent
+	 * @param string $sExtra
+	 *
+	 * @return \Phpfox_Ajax
+	 */
+	public function insertAfter($sId, $sContent, $sExtra = '')
+	{
+		return $this->execToElement($sId,'insertAfter', $sContent, $sExtra);
+	}
+
+	/**
+	 * @param        $sId
+	 * @param        $sContent
+	 * @param string $sExtra
+	 *
+	 * @return \Phpfox_Ajax
+	 */
+	public function insertBefore($sId, $sContent, $sExtra = '')
+	{
+		return $this->execToElement($sId,'insertBefore', $sContent, $sExtra);
+	}
+
+	/**
+	 * @param        $sId
+	 * @param        $sMethod
+	 * @param        $sContent
+	 * @param string $sExtra
+	 *
+	 * @return $this
+	 */
+	public function execElement($sId, $sMethod, $sContent, $sExtra = '')
+	{
 		$sContent = str_replace('\\', '\\\\', $sContent);
 		$sContent = str_replace('"', '\"', $sContent);
 		
 		(($sPlugin = Phpfox_Plugin::get('ajax_html')) ? eval($sPlugin) : false);
-		
-		$this->call("$('" . $sId . "').html(\"" . $sContent . "\")" . $sExtra . ";");
-		
+
+		$this->call("$('" . $sId . "').{$sMethod}(\"" . $sContent . "\")" . $sExtra . ";");
+
 		return $this;
 	}
-	
+
+	/**
+	 * @param        $sId
+	 * @param        $sMethod
+	 * @param        $sContent
+	 * @param string $sExtra
+	 *
+	 * @return $this
+	 */
+	public function execToElement($sId, $sMethod, $sContent, $sExtra = '')
+	{
+		$sContent = str_replace('\\', '\\\\', $sContent);
+		$sContent = str_replace('"', '\"', $sContent);
+
+		(($sPlugin = Phpfox_Plugin::get('ajax_html')) ? eval($sPlugin) : false);
+
+		$this->call("$(\"" . $sContent . "\").{$sMethod}('" . $sId . "')" . $sExtra . ";");
+
+		return $this;
+	}
+
 	/**
 	 * jQuery has support for prepend() and we use that method, however we add a little extra
 	 * protection with our routine.

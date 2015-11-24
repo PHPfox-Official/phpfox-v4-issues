@@ -378,7 +378,7 @@ class User_Service_User extends Phpfox_Service
 	public function gender($iGender, $iType = 0)
 	{
 		$sGender = false;
-		foreach ((array) Phpfox::getParam('core.global_genders') as $iKey => $aGender)
+		foreach ((array) Phpfox::getParam('user.global_genders') as $iKey => $aGender)
 		{
 			if ($iGender == $iKey)
 			{

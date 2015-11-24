@@ -43,7 +43,7 @@ defined('PHPFOX') or exit('NO DICE!');
 
 	{/if}
 	<div id="feed"><a name="feed"></a></div>
-
+	{if !PHPFOX_IS_AJAX && !defined('FEED_LOAD_NEW_FEEDS') && !defined('FEED_LOAD_MORE_NEWS') }
 <div id="js_feed_content" class="js_feed_content">
 	{if $sCustomViewType !== null}
 		<h2>{$sCustomViewType}</h2>
@@ -51,7 +51,7 @@ defined('PHPFOX') or exit('NO DICE!');
 	<div id="js_new_feed_update"></div>
 	<div id="js_new_feed_comment"></div>
 
-
+	{/if}
 	{if isset($bStreamMode) && $bStreamMode}
 	{foreach from=$aFeeds item=aFeed}
 		<div class="feed_stream" data-feed-url="{if (isset($aFeedCallback.module))}{url link='feed.stream' id=$aFeed.feed_id module=$aFeedCallback.module item_id=$aFeedCallback.item_id}{else}{url link='feed.stream' id=$aFeed.feed_id}{/if}"></div>
@@ -90,11 +90,11 @@ defined('PHPFOX') or exit('NO DICE!');
 		{/if}
 
 	{/if}
-	
-	{if isset($bHasRecentShow)}
+
+	{if isset($bHasRecentShow) && !PHPFOX_IS_AJAX && !defined('FEED_LOAD_NEW_FEEDS') && !defined('FEED_LOAD_MORE_NEWS')}
 		</div>
 	{/if}	
-	{if $sCustomViewType === null}
+	{if $sCustomViewType === null && !defined('FEED_LOAD_NEW_FEEDS')}
 		{if defined('PHPFOX_IN_DESIGN_MODE')}		
 		{else}
 			{if count($aFeeds) || (isset($bForceReloadOnPage) && $bForceReloadOnPage)}
@@ -113,8 +113,10 @@ defined('PHPFOX') or exit('NO DICE!');
 				{if defined('PHPFOX_IS_USER_PROFILE') && Profile_Service_Profile::instance()->timeline()}
 					{module name='user.birth'}
 				{else}
+					{if !defined('FEED_LOAD_NEW_FEEDS') }
 					<br />
 					<div class="message js_no_feed_to_show">{phrase var='feed.there_are_no_new_feeds_to_view_at_this_time'}</div>
+					{/if}
 				{/if}
 			{/if}
 		{/if}

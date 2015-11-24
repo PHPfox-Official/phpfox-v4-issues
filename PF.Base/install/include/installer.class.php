@@ -144,9 +144,10 @@ class Phpfox_Installer
 		'4.0.5',
 		'4.0.6',
 		'4.0.7',
-    '4.0.8',
-    '4.0.9',
-    '4.0.10'
+		'4.0.8',
+		'4.0.9',
+		'4.0.10',
+		'4.1.0'
 	);
 
 	private $_sTempDir = '';
@@ -790,9 +791,11 @@ class Phpfox_Installer
 
 		if (!is_dir(PHPFOX_DIR_SITE . 'Apps/')) {
 			mkdir(PHPFOX_DIR_SITE . 'Apps/');
+			@chmod(PHPFOX_DIR_SITE . 'Apps/',0777);
 		}
 		if (!is_dir(PHPFOX_DIR_SITE . 'themes/')) {
 			mkdir(PHPFOX_DIR_SITE . 'themes/');
+			@chmod(PHPFOX_DIR_SITE . 'themes/',0777);
 		}
 
 		/*
@@ -1081,19 +1084,17 @@ class Phpfox_Installer
 		]);
 
 		$Theme = new Core\Theme();
-		$newTheme = $Theme->make([
+		$Theme->make([
 			'name' => 'Neutron'
 		]);
-		$this->_db()->update(Phpfox::getT('theme'), ['is_default' => 1], ['theme_id' => $newTheme->theme_id]);
 
-		/*
-		$this->_pass();
-		$this->_oTpl->assign(array(
-				'sMessage' => 'Language package imported...',
-				'sNext' => $this->_step('module')
-			)
-		);
-		*/
+		// Install bootstrap template
+		$Theme = new Core\Theme();
+    $newTheme = $Theme->make([
+				'name' => 'Bootstrap'
+		], null, false, 'bootstrap');
+
+    $this->_db()->update(Phpfox::getT('theme'), ['is_default' => 1], ['theme_id' => $newTheme->theme_id]);
 
 		return [
 			'message' => 'Setting up apps',

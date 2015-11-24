@@ -260,7 +260,7 @@ class Music_Component_Controller_Upload extends Phpfox_Component
 
 		$this->template()->setTitle(($bIsEdit ? Phpfox::getPhrase('music.editing_song') . ': ' . $aEditSong['title'] : Phpfox::getPhrase('music.upload_a_song')))
 			->setBreadcrumb(Phpfox::getPhrase('music.music'), ($aCallback === false ? $this->url()->makeUrl('music') : $aCallback['url_home_photo']))
-			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('music.editing_song') . ': ' . $aEditSong['title'] : Phpfox::getPhrase('music.upload_a_song')), $this->url()->makeUrl('music.upload'), true)
+			->setBreadcrumb(($bIsEdit ? Phpfox::getPhrase('music.editing_song') . ': ' . $aEditSong['title'] : Phpfox::getPhrase('music.upload_a_song')), ($bIsEdit) ? $this->url()->makeUrl('music.upload', array('id'=>$iId)) : $this->url()->makeUrl('music.upload'), true)
 			->setFullSite()
 			->setPhrase(array(
 					'music.select_an_mp3'

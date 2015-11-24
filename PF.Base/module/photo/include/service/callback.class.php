@@ -2067,7 +2067,7 @@ class Photo_Service_Callback extends Phpfox_Service
 			return false;
 		}
 		$sPhrase = '';
-		if ($aRow['user_id'] == Phpfox::getUserId())		
+		if ($aRow['user_id'] == Phpfox::getUserId())
 		{
 			$sPhrase = Phpfox::getPhrase('photo.you_tagged_yourself_in_your_photo_title', array('title' => Phpfox::getLib('parse.output')->shorten($aRow['title'], (Phpfox::isModule('notification') ? Phpfox::getParam('notification.total_notification_title_length') : $this->_iFallbackLength ), '...')));				
 		}
@@ -2090,6 +2090,12 @@ class Photo_Service_Callback extends Phpfox_Service
 	
 	public function getProfileMenu($aUser)
 	{
+		$countResult = $this->getTotalItemCount($aUser['user_id']);
+
+		if(!empty($countResult)){
+			$aUser['total_photo'] = $countResult['total'];
+		}
+
 	    if (!empty($aUser['user_image']))
 	    {
 			// $aUser['total_photo']++;
@@ -2133,7 +2139,7 @@ class Photo_Service_Callback extends Phpfox_Service
 	{
 		return array(
 			'field' => 'total_photo',
-			'total' => $this->database()->select('COUNT(*)')->from(Phpfox::getT('photo'))->where('view_id = 0 AND group_id = 0 AND type_id = 0 AND user_id = ' . (int) $iUserId . ' AND is_profile_photo IN(' . (Phpfox::getParam('photo.display_profile_photo_within_gallery') ? '0,1' : '0') . ')')->execute('getSlaveField')
+			'total' => $this->database()->select('COUNT(*)')->from(Phpfox::getT('photo'))->where('view_id = 0 AND group_id = 0 AND type_id = 0 AND user_id = ' . (int) $iUserId . ' AND is_profile_photo IN(' . (Phpfox::getParam('photo.display_profile_photo_within_gallery') ? '0,1' : '0,1') . ')')->execute('getSlaveField')
 		);	
 	}		
 

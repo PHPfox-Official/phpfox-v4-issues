@@ -1,0 +1,95 @@
+
+.votes {
+	background:transparent;
+	width:auto;
+	border-radius:0px;
+	border:0px;
+	padding:0px;
+	margin:0px;
+
+	.answers_container:last-of-type {
+		padding-bottom:0px;
+	}
+}
+
+.poll_question {
+	background:darken(@blockBg, 4%);
+	padding:@blockContentPadding;
+	margin-bottom:10px;
+}
+
+.answers_container.user_answered_this {
+	background:transparent;
+	border-radius:0px;
+	background:@brandPrimary;
+	padding:10px;
+	color:@brandPrimaryColor !important;
+
+	* {
+		color:@brandPrimaryColor !important;
+	}
+
+	.poll_answer_percentage {
+		background:@brandPrimaryColor;
+	}
+}
+
+.answers_container {
+	padding:10px 0px 20px 0px;
+	border-top:1px darken(@blockBg, 10%) solid;
+}
+
+.poll_answer_percentage {
+	background:@brandPrimary;
+}
+
+#page_poll_add {
+	.js_prev_block, .js_prev_block:hover {
+		background:transparent;
+	}
+
+	.placeholder {
+		position:relative;
+		margin-bottom:15px;
+
+		input[type="text"] {
+			//background:darken(@formBg, 10%);
+			text-indent:32px;
+			//padding:15px 0px;
+		}
+
+		> div > span > i {
+			position:absolute;
+			left:15px;
+			top:10px;
+			color:@formColor;
+			font-size:14px;
+			cursor:move;
+		}
+	}
+}
+
+.poll_add_more {
+	display:table;
+	table-layout:fixed;
+	width:100%;
+	background:lighten(@formBg, 6%);
+	border:@formBorder;
+	color:@formColor;
+
+	a, a:hover {
+		display:table-cell;
+		width:50%;
+		text-align:center;
+		padding:4px;
+	}
+
+	a:hover {
+		background:@brandPrimary;
+		transition:@transition;
+
+		i {
+			color:@brandPrimaryColor !important;
+		}
+	}
+}

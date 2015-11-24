@@ -56,10 +56,10 @@ class User_Component_Controller_Login extends Phpfox_Component
 						if (is_bool($sReturn))
 						{
 							$sReturn = '';
-						}		
-						
-						if ($sReturn)
-						{
+						}
+            if (!filter_var($sReturn, FILTER_VALIDATE_URL) === false) {
+
+            } elseif ($sReturn) {
 							$aParts = explode('/', trim($sReturn, '/'));		
 							if (isset($aParts[0]))
 							{

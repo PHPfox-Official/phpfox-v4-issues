@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html {{ html }}>
+<head>
+	<title>{{ title }}</title>
+	{{ header }}
+</head>
+<body {{ body }}>
+<div id="section-header">
+	<div class="sticky-bar">
+		<div class="container-fluid">
+			{% if is_user() == true %}
+			<div class="row">
+				<div class="col-md-3 col-sm-3 hidden-xs">
+					{{ logo }}
+				</div>
+				<div id="search-panel" class="col-md-4 col-sm-4 hidden-xs">
+					<div class="js_temp_friend_search_form"></div>
+					<form method="get" action="{{url('search')}}" class="header_search_form" id="header_search_form">
+						<div class="form-group has-feedback">
+							<input type="text" name="q" placeholder="Search..." autocomplete="off" class="form-control js_temp_friend_search_input in_focus" id="header_sub_menu_search_input" />
+							<span class="fa fa-search form-control-feedback" aria-hidden="true"></span>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-5 col-sm-5">
+					{{sticky_bar}}
+				</div>
+			</div>
+			<div class="row visible-xs" id="header_search_form_xs">
+				<div class="col-md-12 panel_xs">
+					<div class="js_temp_friend_search_form"></div>
+					<form method="get" action="{{url('search')}}" class="header_search_form_sm" id="header_search_form">
+						<div class="form-group-sm has-feedback relative">
+							<input type="text" name="q" placeholder="Search..." autocomplete="off" class="form-control js_temp_friend_search_input in_focus" id="header_sub_menu_search_input_xs">
+							<span class="fa fa-search form-control-feedback" aria-hidden="true"></span>
+						</div>
+					</form>
+				</div>
+			</div>
+			{% else %}
+			<div class="row">
+				<div class="col-md-4 col-sm-4 hidden-xs">
+					{{ logo }}
+				</div>
+				<div class="col-md-8 col-sm-8">
+					{{sticky_bar}}
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand visible-xs" href="#">{{ site_logo }}</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				{{menu}}
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+</div>
+
+<div id="main">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				{{ location_11 }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 col-sm-3" id="left">
+				{{left}}
+			</div>
+			<div class="col-md-9 col-sm-9" id="content-holder">
+				<div id="content-stage" class="row_image">
+					<div class="">
+						{{ breadcrumb }}
+					</div>
+					<div class="">
+						<div id="top">
+							{{ main_top }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8 col-sm-8" id="content">
+							{{ errors }}
+							{{ content }}
+						</div>
+						<div class="col-md-4 col-sm-4" id="right">
+							{{ right }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer id="section-footer">
+	<div class="container-fluid">
+		{{ footer }}
+		{{ copyright }}
+	</div>
+</footer>
+{{ js }}
+
+</body>
+</html>

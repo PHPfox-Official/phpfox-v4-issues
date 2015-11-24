@@ -173,47 +173,6 @@ a.item_bar_action:before {
 	top:11px;
 }
 
-.item_bar_action_holder ul {
-	background:transparent;
-	border:0px;
-	left:auto;
-	right:0px;
-	margin:0px;
-	padding:0px;
-	box-shadow:@blockBoxShadow;
-	font-size:@fontSizeBase - 1;
-	background:@blockBg;
-	z-index:400;
-
-	li {
-		a, a:hover {
-			display:block;
-			padding:4px 0px;
-			text-indent:6px;
-			background:@blockBg;
-			color:@blockColor;
-		}
-
-		a:hover {
-			background:darken(@blockBg, 6%);
-		}
-	}
-
-	li.item_delete {
-		margin-top:10px;
-		padding-top:10px;
-		border-top:1px darken(@blockBg, 8%) solid;
-		a, a:hover {
-			background:#e74c3c;
-			color:#fff;
-			opacity:0.4;
-		}
-
-		a:hover {
-			opacity:1;
-		}
-	}
-}
 
 .user_rows_mini {
 	/*margin:-@blockContentPadding;*/
@@ -279,7 +238,8 @@ a.item_bar_action:before {
 }
 
 .row_banner {
-	height:90px;
+	min-height:90px;
+    height: auto;
 	margin-bottom:@blockMarginBottom;
 	position:relative;
 

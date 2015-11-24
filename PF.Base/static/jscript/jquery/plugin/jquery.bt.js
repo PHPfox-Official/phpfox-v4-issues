@@ -76,7 +76,9 @@ jQuery.bt = {version: '0.9.5-rc1'};
    */ 
   
   jQuery.fn.bt = function(content, options) {
-  
+
+    if('ontouchstart' in document) return this;
+
     if (typeof content != 'string') {
       var contentSelect = true;
       options = content;

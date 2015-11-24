@@ -25,13 +25,13 @@ class CSS extends \Core\Model {
     $saveLestContent = $lessContent . trim($content);
 		$newContent = $saveLestContent . trim($more_content);
     if (strtolower($themeName) == 'bootstrap'){
-      $less->setImportDir([PHPFOX_DIR . 'theme/frontend/bootstrap/less/']);
+      $less->setImportDir(PHPFOX_DIR . 'theme/frontend/bootstrap/less/');
     } else {
       $less->setImportDir(PHPFOX_DIR . 'less/');
     }
 		$content = str_replace('../../../../PF.Base/less/', '', $newContent);
-        $content = '@import "variables";'  . PHP_EOL . $content;
-        $parsed =  null;
+    $content = '@import "variables";' . PHP_EOL .  $content;
+    $parsed =  null;
     try {
       $parsed = $less->compile($content);
     } catch (\Exception $ex) {
@@ -42,7 +42,12 @@ class CSS extends \Core\Model {
 
 		$path = $this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder;
 		file_put_contents($path . '.less', $saveLestContent);
-		file_put_contents($path . '.css', $parsed);
+    /* remove comments */
+    $minify = preg_replace( '!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $parsed );
+
+    /* remove tabs, spaces, newlines, etc. */
+    $minify = str_replace( array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $minify );
+		file_put_contents($path . '.css', $minify);
 
 		$this->db->update(':setting', array('value_actual' => ((int) \Phpfox::getParam('core.css_edit_id') + 1)), 'var_name = \'css_edit_id\'');
 		$this->cache->del('setting');
@@ -117,7 +122,7 @@ class CSS extends \Core\Model {
    * @param $moduleLists
    * @throws \Exception
    */
-  public function reBuildModule($moduleLists){
+  public function reBuildModule($moduleLists, $themeName = 'default'){
     $buildFiles = array();
     if (is_array($moduleLists)){
       foreach ($moduleLists as $moduleName){
@@ -128,12 +133,12 @@ class CSS extends \Core\Model {
     }
     if (count($buildFiles)){
       foreach ($buildFiles as $fileName){
-        $this->buildFile($fileName);
+        $this->buildFile($fileName, 'module', $themeName);
       }
     }
   }
 
-  public function buildFile($fileName, $locationBuild = 'module'){
+  public function buildFile($fileName, $locationBuild = 'module', $themeName = 'default'){
     switch ($locationBuild){
       case 'app':
         $suffixPath = '';//check later
@@ -162,9 +167,14 @@ class CSS extends \Core\Model {
     $less = new \lessc();
     //build
     $lessContent = $variable . file_get_contents($suffixPath . $fileName);
-    $less->setImportDir(PHPFOX_DIR . 'less/');
+    if (strtolower($themeName) == 'bootstrap'){
+      $less->setImportDir([PHPFOX_DIR . 'theme/frontend/bootstrap/less/']);
+    } else {
+      $less->setImportDir(PHPFOX_DIR . 'less/');
+    }
     $content = str_replace('../../../../PF.Base/less/', '', $lessContent);
     $parsed = $less->compile($content);
+    $fileName = trim($fileName, '/');
     $path = $this->_theme->getPath() . 'flavor/' . substr(str_replace([PHPFOX_DS,'/','\\'], ['_','_','_'], $fileName), 0, -4);
     $path = trim($path, '.');
     file_put_contents($path . '.css', $parsed);
@@ -209,6 +219,8 @@ class CSS extends \Core\Model {
 	*/
 
   public function scanLessFiles($path){
+    if(!is_dir($path))
+      return [];
     $ffs = scandir($path);
     $extension = array('.css', 'less');
     $listFiles = array();

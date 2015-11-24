@@ -32,8 +32,8 @@ defined('PHPFOX') or exit('NO DICE!');
 				<div class="table_left">
 					{phrase var='pages.is_a_block'}
 				</div>
-				<div class="table_right">
-					<select name="val[is_block]" onchange="if (this.value == '1') {l} $('#js_pages_widget_block').slideUp(); {r} else {l} $('#js_pages_widget_block').slideDown(); {r}">
+				<div class="table_right form-inline">
+					<select name="val[is_block]" class="form-control" onchange="if (this.value == '1') {l} $('#js_pages_widget_block').slideUp(); {r} else {l} $('#js_pages_widget_block').slideDown(); {r}">
 						<option value="0"{value type='select' id='is_block' default='0'}> {phrase var='pages.no'}</option>
 						<option value="1"{value type='select' id='is_block' default='1'}> {phrase var='pages.yes'}</option>						
 					</select>

@@ -49,7 +49,7 @@ defined('PHPFOX') or exit('NO DICE!');
 					    {img theme='ajax/add.gif'}
 				    </div>		
 				    <div id="js_photo_multi_edit_submit">
-					    <input type="submit" value="{phrase var='photo.update_photo_s'}" class="button" />
+					    <input type="submit" value="{phrase var='photo.update_photo_s'}" class="button btn btn-danger" />
 				    </div>
 			    </div>
 			    

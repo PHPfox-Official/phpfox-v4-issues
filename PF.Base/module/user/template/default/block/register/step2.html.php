@@ -28,7 +28,7 @@
 			<div class="table_left">
 				<label for="country_iso">{required}{phrase var='user.location'}:</label>
 			</div>
-			<div class="table_right">
+			<div class="table_right form-inline">
 				{select_location}
 				{module name='core.country-child' country_force_div=true}
 			</div>			

@@ -31,7 +31,9 @@ class Mail_Service_Process extends Phpfox_Service
 			unset($aVals['copy_to_self']);
 			return $this->add($aVals);
 		}		
-		
+		if (empty($aVals['message'])){
+      return null;
+    }
 		$bIsThreadReply = false;
 		if (!isset($aVals['to']) && !empty($aVals['thread_id']) && Phpfox::getParam('mail.threaded_mail_conversation') && !isset($aVals['claim_page']))
 		{
@@ -44,7 +46,7 @@ class Mail_Service_Process extends Phpfox_Service
 			
 			if (!isset($aPastThread['thread_id']))
 			{
-				return Phpfox_Error::set('Unable to find this conversation');
+				return Phpfox_Error::set(Phpfox::getPhrase('mail.unable_to_find_this_conversation'));
 			}
 			
 			$aThreadUsers = $this->database()->select('*')
@@ -91,7 +93,6 @@ class Mail_Service_Process extends Phpfox_Service
 						{
 							continue;
 						}
-						
 						// Make sure we found a user
 						if (($iTemp = $this->add($aVals, true)) && is_numeric($iTemp))
 						{

@@ -40,8 +40,8 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_left">
 			{phrase var='forum.find_in_forum'}:
 		</div>
-		<div class="table_right">
-			<select name="search[forum][]" style="width:90%;" multiple="multiple" size="10">
+		<div class="table_right form-inline">
+			<select name="search[forum][]" multiple="multiple" size="10" class="form-control">
 				{$sForumList}
 			</select>
 		</div>

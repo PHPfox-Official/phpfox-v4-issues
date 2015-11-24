@@ -1301,7 +1301,7 @@ class Phpfox_Search
 					}
 					else
 					{
-						$this->_aHtml[$iKey] = '<select '. ($aValue['type'] == 'multiselect' ? 'multiple ' :'') . (isset($aValue['id']) ? 'id="' . $aValue['id'] . '" ' : '') . 'name="search[' . $iKey . ']"' . (isset($aValue['style']) ? ' style="' . $aValue['style'] . '"' : '') . '>';
+						$this->_aHtml[$iKey] = '<select class="form-control" '. ($aValue['type'] == 'multiselect' ? 'multiple ' :'') . (isset($aValue['id']) ? 'id="' . $aValue['id'] . '" ' : '') . 'name="search[' . $iKey . ']"' . (isset($aValue['style']) ? ' style="' . $aValue['style'] . '"' : '') . '>';
 	
 						if (isset($aValue['add_select']))
 						{
@@ -1379,7 +1379,7 @@ class Phpfox_Search
 						$sInputValue = Phpfox_Url::instance()->decode($sInputValue);
 					}
 					
-					$this->_aHtml[$iKey] = '<input type="text" name="search[' . $iKey . ']" value="' . $oFilterOutput->clean($sInputValue) . '"';
+					$this->_aHtml[$iKey] = '<input class="form-control" type="text" name="search[' . $iKey . ']" value="' . $oFilterOutput->clean($sInputValue) . '"';
 					
 					if (isset($aValue['size']))
 					{
@@ -1449,7 +1449,7 @@ class Phpfox_Search
 							}							
 						}
 										
-						$this->_aHtml[$iKey] .= (isset($aValue['prefix']) ? $aValue['prefix'] : '') . '<label><input type="radio" name="search[' . $iKey . ']" ' . (isset($aValue['size']) ? ' size="' . (int) $aValue['size'] . '"' : '') . 'value="' . $mKey . '"' . ($bIsSelected ? ' checked="checked"' : '') . '' . ($bIsDefault ? '[DEFAULT]' : '') . ' class="v_middle" />' . $mValue. '</label>' . (isset($aValue['suffix']) ? $aValue['suffix'] : '');
+						$this->_aHtml[$iKey] .= '<div class="radio">'. (isset($aValue['prefix']) ? $aValue['prefix'] : '') . '<label><input type="radio" name="search[' . $iKey . ']" ' . (isset($aValue['size']) ? ' size="' . (int) $aValue['size'] . '"' : '') . 'value="' . $mKey . '"' . ($bIsSelected ? ' checked="checked"' : '') . '' . ($bIsDefault ? '[DEFAULT]' : '') . ' class="v_middle" />' . $mValue. '</label>' . (isset($aValue['suffix']) ? $aValue['suffix'] : '') . '</div>';
 					}
 					
 					$this->_aHtml[$iKey] = str_replace('[DEFAULT]', ($bIsChecked ? '' : ' checked="checked"'), $this->_aHtml[$iKey]);					

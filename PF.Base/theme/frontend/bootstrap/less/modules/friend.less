@@ -1,0 +1,287 @@
+
+#panel {
+	.js_friend_search_link {
+		border-bottom:1px darken(@blockBg, 6%) solid;
+		padding:4px 0px;
+		cursor:pointer;
+	}
+}
+
+.js_temp_friend_search_form_holder {
+	background:@blockBg;
+	color:@blockColor;
+	border:1px darken(@blockBg, 8%) solid;
+	padding:0px;
+
+	.js_friend_search_link {
+		> span {
+			img, .no_image_user {
+				max-width:32px;
+				max-height:32px;
+				padding:0px;
+			}
+
+			display:inline-block;
+			vertical-align:middle;
+			margin-right:6px;
+		}
+	}
+}
+
+.js_friend_search_link:hover {
+	background:darken(@blockBg, 6%);
+	transition:@transition;
+	cursor:pointer;
+}
+
+.js_custom_search_friend_holder {
+	border:@formBorder;
+	background:@formBg;
+	padding:0px;
+
+	> ul {
+		margin:10px;
+
+		> li {
+			border:0px;
+			padding:2px 20px 2px 4px;
+			display:inline-block;
+			margin:0px 8px 8px 0px;
+			background:@blockBg;
+			color:@blockColor;
+
+			.friend_search_image, .friend_search_name {
+				.reset();
+				display:inline-block;
+				vertical-align:middle;
+				margin-right:5px;
+			}
+
+			.friend_search_image {
+				margin-top:5px;
+			}
+		}
+
+		> li:hover {
+			background:@brandPrimary;
+			color:@brandPrimaryColor;
+		}
+	}
+}
+
+#js_friend_search_content {
+	.friend_search_holder {
+		font-size:@fontSizeBase - 2;
+	}
+}
+
+#js_friend_loader input {
+	.full_input();
+}
+
+.friend_search_holder, .friend_search_holder:hover {
+	.reset();
+	background:transparent;
+	display:inline-block;
+	width:31%;
+	margin:0px 6px 10px 0px;
+	vertical-align:top;
+
+	> span {
+		display:inline-block;
+		vertical-align:middle;
+	}
+}
+
+.friend_search_holder:hover {
+	background:darken(@blockBg, 5%);
+}
+
+.friend_search_active, .friend_search_active:hover {
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+}
+
+.friend_search_holder_active, .friend_search_holder_active:hover {
+	background:transparent;
+	color:inherit;
+	opacity:0.4;
+}
+
+.fullContent(page_friend_profile);
+
+#js_block_content_profile_friend {
+	.user_rows_mini .user_rows {
+		width:79px;
+		height:110px;
+	}
+
+	.user_rows .user_profile_link_span > a, .user_rows .user_profile_link_span > a:hover {
+		text-align:left;
+		text-indent:2px;
+	}
+
+	._size__120 > span, ._size__120:hover > span {
+		top:20px;
+		left:0px;
+		width:81px;
+	}
+}
+
+.list_manager_holder {
+	position:relative;
+}
+
+.list_manager {
+	position:absolute;
+	left:0px;
+	top:0px;
+	right:0px;
+	bottom:0px;
+	display:block;
+	z-index:100000;
+	i {
+		display:none;
+		font-size:40px;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-20px;
+		margin-top:-20px;
+	}
+}
+
+.list_manager.active, .list_manager:hover {
+	background:rgba(0, 0, 0, 0.6);
+	i {
+		display:block;
+	}
+}
+
+.list_manager.active {
+	background:rgba(255, 255, 255, 0.6);
+	i {
+		color:@brandPrimary;
+	}
+}
+
+#sFriendImage {
+	border:1px @brandPrimary dashed;
+
+	img {
+		max-width:30px;
+		max-height:30px;
+	}
+}
+
+#sFriendInput {
+	background:darken(@blockBg, 5%);
+	color:@blockColor;
+}
+
+.pending-friend-request {
+	opacity:0.8;
+	background:fade(@brandPrimary, 80%);
+	color:@brandPrimaryColor;
+	font-size:10px;
+	display:inline-block;
+	padding:2px 4px;
+}
+
+.friend_action {
+	position:static;
+}
+
+.friend_action_edit_list_holder {
+	left:5px;
+	right:5px;
+	top:5px;
+}
+
+a.friend_action_edit_list, a.friend_action_edit_list:hover, a.friend_action_edit_list_active, a.friend_action_edit_list_active:hover {
+	width:auto;
+	background:@blockBg;
+	border:0px;
+	box-shadow:none;
+	color:@blockColor;
+	font-weight:normal;
+	margin:0px;
+	font-size:11px;
+	text-indent:25px;
+}
+
+a.friend_action_edit_list:before {
+	.fa('\f078');
+	position:absolute;
+	left:7px;
+	top:7px;
+	font-size:11px;
+}
+
+ul.friend_action_drop_down {
+	left:0px;
+	right:0px;
+	width:auto;
+}
+
+#page_friend_index {
+	.user_rows {
+		overflow:visible;
+		position:relative;
+	}
+}
+
+.friend_action_holder {
+	width:auto;
+	position:static;
+}
+
+ul.friend_action_drop_down {
+	border:0px;
+	border-top:1px darken(@blockBg, 8%) solid;
+	background:@blockBg;
+}
+
+ul.friend_action_drop_down li a, ul.friend_action_drop_down li a:hover {
+	border:0px;
+	font-size:11px;
+	font-weight:normal;
+	background:transparent;
+	padding:2px 0px;
+	text-indent:5px;
+	color:@blockColor;
+}
+
+ul.friend_action_drop_down li a:hover {
+	color:darken(@blockColor, 10%);
+	background:darken(@blockBg, 4%);
+}
+
+ul.friend_action_drop_down li a.active, ul.friend_action_drop_down li a.active:hover {
+	background:@brandPrimary;
+	color:@brandPrimaryColor;
+	font-weight:normal;
+}
+
+a.friend_action_delete, a.friend_action_delete:hover {
+	display:none;
+	top:auto;
+	right:5px;
+	bottom:35px;
+	background-color:#dd4444;
+}
+
+.user_rows:hover {
+	a.friend_action_delete {
+		display:block;
+	}
+}
+
+ul.friend_action_drop_down li a.active span, ul.friend_action_drop_down li a.active:hover span {
+	display:none;
+}
+.friend-option{
+  position: absolute;
+  bottom: 40px;
+  white-space: normal !important;
+}

@@ -22,12 +22,12 @@ class Photo_Component_Controller_Rate extends Phpfox_Component
 	{
 		Phpfox::getUserParam('photo.can_view_photos', true);
 		
-		if (!Phpfox::getParam('photo.can_rate_on_photos'))
+		/*if (!Phpfox::getParam('photo.can_rate_on_photos'))
 		{
 			return Phpfox_Error::display(Phpfox::getPhrase('photo.photo_rating_is_disabled'));
-		}
+		}*/
 		
-		Phpfox::getUserParam('photo.can_rate_on_photos', true);
+//		Phpfox::getUserParam('photo.can_rate_on_photos', true);
 		
 		if (($iPhotoId = $this->request()->getInt('photo-id')))
 		{

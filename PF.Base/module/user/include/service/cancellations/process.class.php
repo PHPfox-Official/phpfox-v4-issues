@@ -140,7 +140,7 @@ class User_Service_Cancellations_Process extends Phpfox_Service
 			if (strlen($aRow['password']) > 32) {
 				$Hash = new Core\Hash();
 				if (!$Hash->check($aVal['password'], $aRow['password'])) {
-					Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
+//					Phpfox_Error::set(Phpfox::getPhrase('user.invalid_password'));
 					$error = true;
 				}
 			}

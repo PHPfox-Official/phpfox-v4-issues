@@ -23,7 +23,7 @@ defined('PHPFOX') or exit('NO DICE!');
  * @version 		$Id: phpfox.class.php 7299 2014-05-06 15:41:28Z Fern $
  */
 class Phpfox
-{	
+{
 	/**
  	* Product Version : major.minor.maintenance [alphaX, betaX or rcX]
  	*/
@@ -31,34 +31,34 @@ class Phpfox
 
 	/**
 	 * Product Code Name
-	 * 
-	 */	
+	 *
+	 */
 	const CODE_NAME = 'Neutron';
-	
+
 	/**
 	 * Browser agent used with API curl requests.
 	 *
 	 */
 	const BROWSER_AGENT = 'PHPfox';
-	
+
 	/**
 	 * Product build number.
 	 *
 	 */
 	const PRODUCT_BUILD = '1';
-	
+
 	/**
 	 * phpFox API server.
 	 *
 	 */
 	const PHPFOX_API = 'http://api.phpfox.com/deepspace/';
-	
+
 	/**
 	 * phpFox package ID.
 	 *
 	 */
 	const PHPFOX_PACKAGE = '[PHPFOX_PACKAGE_NAME]';
-	
+
 	/**
 	 * ARRAY of objects initiated. Used to keep a static history
 	 * so we don't call the same class more then once.
@@ -66,35 +66,35 @@ class Phpfox
 	 * @var array
 	 */
 	private static $_aObject = array();
-	
+
 	/**
 	 * ARRAY of libraries being loaded.
 	 *
 	 * @var array
 	 */
 	private static $_aLibs = array();
-	
+
 	/**
 	 * ARRAY of custom pages the site admins have created.
 	 *
 	 * @var array
 	 */
 	private static $_aPages = array();
-	
+
 	/**
 	 * Used to keep a static variable to see if we are within the AdminCP.
 	 *
 	 * @var bool
 	 */
-	private static $_bIsAdminCp = false;	
-	
+	private static $_bIsAdminCp = false;
+
 	/**
 	 * History of any logs we save for debug purposes.
 	 *
 	 * @var array
 	 */
-	private static $_aLogs = array();	
-	
+	private static $_aLogs = array();
+
 	/**
 	 * Get the current phpFox version.
 	 *
@@ -114,7 +114,7 @@ class Phpfox
 	{
 		return (defined('PHPFOX_TRIAL') ? true : false);
 	}
-	
+
 	/**
 	 * Get the current phpFox version ID.
 	 *
@@ -124,7 +124,7 @@ class Phpfox
 	{
 		return self::getVersion();
 	}
-	
+
 	/**
 	 * Get the products code name.
 	 *
@@ -134,7 +134,7 @@ class Phpfox
 	{
 		return self::CODE_NAME;
 	}
-	
+
 	/**
 	 * Get the products build number.
 	 *
@@ -144,7 +144,7 @@ class Phpfox
 	{
 		return self::PRODUCT_BUILD;
 	}
-	
+
 	/**
 	 * Get the clean numerical value of the phpFox version.
 	 *
@@ -164,16 +164,16 @@ class Phpfox
 
 		return $version;
 	}
-	
+
 	/**
 	 * Check if a feature can be used based on the package the client
 	 * has installed.
-	 * 
+	 *
 	 * Example (STRING):
 	 * <code>
 	 * if (Phpfox::isPackage('1') { }
 	 * </code>
-	 * 
+	 *
 	 * Example (ARRAY):
 	 * <code>
 	 * if (Phpfox::isPackage(array('1', '2')) { }
@@ -188,15 +188,15 @@ class Phpfox
 		{
 			return false;
 		}
-		
+
 		if (!is_array($mPackage))
 		{
 			$mPackage = array($mPackage);
 		}
-		
+
 		return (in_array(self::PHPFOX_PACKAGE, $mPackage) ? true : false);
 	}
-	
+
 	/**
 	 * Provide "powered by" link.
 	 *
@@ -210,10 +210,10 @@ class Phpfox
 		{
 			return '';
 		}
-		
+
 		return '' . ($bLink ? '<a href="http://www.phpfox.com/">' : '') . 'Powered By PHPFox' . ($bVersion ? ' Version ' . PhpFox::getVersion() : '') . ($bLink ? '</a>' : '');
 	}
-	
+
 	/**
 	 * Gets and creates an object for a class.
 	 *
@@ -222,42 +222,42 @@ class Phpfox
 	 * @return object Object created will be returned.
 	 */
 	public static function &getObject($sClass, $aParams = array())
-	{		
+	{
 		$sHash = md5($sClass . serialize($aParams));
-		
+
 		if (isset(self::$_aObject[$sHash]))
 		{
 			return self::$_aObject[$sHash];
-		}	
+		}
 
 		(PHPFOX_DEBUG ? Phpfox_Debug::start('object') : false);
-		
-		$sClass = str_replace(array('.', '-'), '_', $sClass);		
-		
+
+		$sClass = str_replace(array('.', '-'), '_', $sClass);
+
 		if (!class_exists($sClass))
 		{
 			Phpfox_Error::trigger('Unable to call class: ' . $sClass, E_USER_ERROR);
-		}		
+		}
 
 		if ($aParams)
 		{
 			self::$_aObject[$sHash] = new $sClass($aParams);
 		}
-		else 
-		{		
+		else
+		{
 			self::$_aObject[$sHash] = new $sClass();
 		}
 
 		(PHPFOX_DEBUG ? Phpfox_Debug::end('object', array('name' => $sClass)) : false);
-		
+
 		if (method_exists(self::$_aObject[$sHash], 'getInstance'))
 		{
 			return self::$_aObject[$sHash]->getInstance();
-		}				
-		
+		}
+
 		return self::$_aObject[$sHash];
 	}
-	
+
 	/**
 	 * @see Phpfox_Setting::getParam()
 	 * @param string $sVar
@@ -275,7 +275,7 @@ class Phpfox
 
 		return Phpfox::getLib('setting')->getParam($sVar);
 	}
-	
+
 	/**
 	 * Fine and load a library class and make sure it exists.
 	 *
@@ -290,21 +290,21 @@ class Phpfox
 			return true;
 		}
 
-		self::$_aLibs[$sClass] = md5($sClass);		
-		
+		self::$_aLibs[$sClass] = md5($sClass);
+
 		$sClass = str_replace('.', PHPFOX_DS, $sClass);
 		$sFile = PHPFOX_DIR_LIB . $sClass . '.class.php';
-		
+
 		if (file_exists($sFile))
-		{			
+		{
 			require($sFile);
 			return true;
-		}		
-		
-		$aParts = explode(PHPFOX_DS, $sClass);		
+		}
+
+		$aParts = explode(PHPFOX_DS, $sClass);
 		if (isset($aParts[1]))
 		{
-			$sSubClassFile = PHPFOX_DIR_LIB . $sClass . PHPFOX_DS . $aParts[1] . '.class.php';			
+			$sSubClassFile = PHPFOX_DIR_LIB . $sClass . PHPFOX_DS . $aParts[1] . '.class.php';
 			if (file_exists($sSubClassFile))
 			{
 				require($sSubClassFile);
@@ -315,16 +315,16 @@ class Phpfox
 		if (class_exists($sClass)) {
 			return true;
 		}
-	
+
         (($sPlugin = Phpfox_Plugin::get('library_phpfox_getlibclass_1')) ? eval($sPlugin) : false);if(isset($mPluginReturn)){return $mPluginReturn;}
 		Phpfox_Error::trigger('Unable to load class: ' . $sClass, E_USER_ERROR);
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Get a phpFox library. This includes the class file and creates the object for you.
-	 * 
+	 *
 	 * Example usage:
 	 * <code>
 	 * Phpfox_Url::instance()->makeUrl('test');
@@ -337,29 +337,29 @@ class Phpfox
 	 * @return object Object of the library class is returned.
 	 */
 	public static function &getLib($sClass, $aParams = array())
-	{	
+	{
 		(class_exists('Phpfox_Plugin') && ($sPlugin = Phpfox_Plugin::get('library_phpfox_getlib_0')) ? eval($sPlugin) : false);
 		if ((substr($sClass, 0, 7) != 'phpfox.') || ($sClass == 'phpfox.api' || $sClass == 'phpfox.process'))
 		{
 			$sClass = 'phpfox.' . $sClass;
 		}
-		
-		$sHash = md5($sClass . serialize($aParams));
-		
-		if (isset(self::$_aObject[$sHash]))
-		{	
-			return self::$_aObject[$sHash];
-		}		
-		
-		Phpfox::getLibClass($sClass);		
 
-		$sClass = str_replace('phpfox.phpfox.', 'phpfox.', $sClass);		
+		$sHash = md5($sClass . serialize($aParams));
+
+		if (isset(self::$_aObject[$sHash]))
+		{
+			return self::$_aObject[$sHash];
+		}
+
+		Phpfox::getLibClass($sClass);
+
+		$sClass = str_replace('phpfox.phpfox.', 'phpfox.', $sClass);
 
 		self::$_aObject[$sHash] = Phpfox::getObject($sClass, $aParams);
-		
+
 		return self::$_aObject[$sHash];
 	}
-	
+
 	/**
 	 * @see Phpfox_Module::isModule()
 	 * @param string $sModule
@@ -369,7 +369,7 @@ class Phpfox
 	{
 		return Phpfox_Module::instance()->isModule($sModule);
 	}
-	
+
 	/**
 	 * @see Phpfox_Module::getComponent()
 	 * @param string $sClass
@@ -408,8 +408,8 @@ class Phpfox
 		}
 
 		return Phpfox_Module::instance()->getComponent($sClass, $aParams, 'block', $bTemplateParams);
-	}	
-	
+	}
+
 	/**
 	 * @see Phpfox_Module::callback()
 	 * @param string $sCall
@@ -419,14 +419,14 @@ class Phpfox
 	{
 		if (func_num_args() > 1)
 		{
-			$aParams = func_get_args();			
-			
+			$aParams = func_get_args();
+
 			return Phpfox_Module::instance()->callback($sCall, $aParams);
 		}
-		
+
 		return Phpfox_Module::instance()->callback($sCall);
 	}
-	
+
 	/**
 	 * @see Phpfox_Module::massCallback()
 	 * @param string $sMethod
@@ -436,14 +436,14 @@ class Phpfox
 	{
 		if (func_num_args() > 1)
 		{
-			$aParams = func_get_args();			
-			
+			$aParams = func_get_args();
+
 			return Phpfox_Module::instance()->massCallback($sMethod, $aParams);
 		}
-		
+
 		return Phpfox_Module::instance()->massCallback($sMethod);
 	}
-	
+
 	/**
 	 * @see Phpfox_Module::hasCallback()
 	 * @param string $sModule
@@ -454,7 +454,7 @@ class Phpfox
 	{
 		return Phpfox_Module::instance()->hasCallback($sModule, $sMethod);
 	}
-	
+
 	/**
 	 * @see Phpfox_Module::getComponent()
 	 * @param string $sClass Class name.
@@ -463,10 +463,10 @@ class Phpfox
 	 * @return object We return the object of the component class.
 	 */
 	public static function getComponent($sClass, $aParams = array(), $sType = 'block', $bTemplateParams = false)
-	{		
+	{
 		return Phpfox_Module::instance()->getComponent($sClass, $aParams, $sType, $bTemplateParams);
 	}
-	
+
 	/**
 	 * @see Phpfox_Module::getComponentSetting()
 	 * @param int $iUserId
@@ -478,15 +478,15 @@ class Phpfox
 	{
 		return Phpfox_Module::instance()->getComponentSetting($iUserId, $sVarName, $mDefaultValue);
 	}
-	
+
 	/**
 	 * Returns the token name for forms
 	 */
 	public static function getTokenName()
 	{
-		return 'core';	
+		return 'core';
 	}
-	
+
 	/**
 	 * @see Phpfox_Module::getService()
 	 * @param string $sClass
@@ -497,7 +497,7 @@ class Phpfox
 	{
 		return Phpfox_Module::instance()->getService($sClass, $aParams);
 	}
-	
+
 	/**
 	 * Builds a database table prefix.
 	 *
@@ -508,7 +508,7 @@ class Phpfox
 	{
         return Phpfox::getParam(array('db', 'prefix')) . $sTable;
 	}
-	
+
 	/**
 	 * @see User_Service_Auth::getUserId()
 	 * @return int
@@ -527,7 +527,7 @@ class Phpfox
 				JOIN ' . Phpfox::getT('user') . ' AS u ON(u.profile_page_id = p.page_id)
 				WHERE p.page_id = ' . (int) $_REQUEST['custom_pages_post_as_page'] . '
 			');
-			
+
 			$iActualUserId = Phpfox::getService('user.auth')->getUserId();
 
 			if(!defined('PHPFOX_POSTING_AS_PAGE'))
@@ -542,7 +542,7 @@ class Phpfox
 				{
 					$bPass = true;
 				}
-				
+
 				if (!$bPass)
 				{
 					$aAdmin = Phpfox_Database::instance()->getRow('
@@ -550,39 +550,39 @@ class Phpfox
 						FROM ' . Phpfox::getT('pages_admin') . '
 						WHERE page_id = ' . (int) $aPage['page_id'] . ' AND user_id = ' . (int) $iActualUserId . '
 					');
-					
+
 					if (isset($aAdmin['page_id']))
 					{
 						$bPass = true;
 					}
 				}
-				
+
 				if ($bPass)
 				{
 					return $aPage['user_id'];
 				}
 			}
 		}
-		
+
         if ($sPlugin = Phpfox_Plugin::get('library_phpfox_phpfox_getuserid__1')){eval($sPlugin);}
-        
+
 		if (defined('PHPFOX_APP_USER_ID'))
-		{			
+		{
 			return PHPFOX_APP_USER_ID;
 		}
-		
+
 		return Phpfox::getService('user.auth')->getUserId();
 	}
-	
+
 	/**
 	 * @see User_Service_Auth::getUserBy()
 	 * @return string
-	 */	
+	 */
 	public static function getUserBy($sVar = null)
-	{		
+	{
 		return Phpfox::getService('user.auth')->getUserBy($sVar);
 	}
-	
+
 	/**
 	 * @see Phpfox_Request::isMobile()
 	 * @return bool
@@ -591,7 +591,7 @@ class Phpfox
 	{
 		return false;
 	}
-	
+
 	/**
 	 * @see Phpfox_Request::getIp()
 	 * @return string
@@ -600,7 +600,7 @@ class Phpfox
 	{
 		return Phpfox_Request::instance()->getIp($bReturnNum);
 	}
-	
+
 	/**
 	 * Checks to see if the user that is logged in has been marked as a spammer.
 	 *
@@ -612,20 +612,20 @@ class Phpfox
 		{
 			return false;
 		}
-		
+
 		if (!Phpfox::getParam('core.enable_spam_check'))
 		{
 			return false;
 		}
-		
+
 		if (Phpfox::isUser() && Phpfox::getUserBy('total_spam') > Phpfox::getParam('core.auto_deny_items'))
-		{			
+		{
 			return true;
 		}
 
-		return false;	
+		return false;
 	}
-	
+
 	/**
 	 * Get all the user fields when joining with the user database table.
 	 *
@@ -636,54 +636,54 @@ class Phpfox
 	public static function getUserField($sAlias = 'u', $sPrefix = '')
 	{
 		static $aValues = array();
-		
+
 		// Create hash
 		$sHash = md5($sAlias . $sPrefix);
-		
+
 		// Have we already cached it? We do not want to run an extra foreach() for nothing.
 		if (isset($aValues[$sHash]))
 		{
 			return $aValues[$sHash];
 		}
-		
+
 		$aFields = User_Service_User::instance()->getUserFields();
-		
+
 		$aValues[$sHash] = '';
 		foreach ($aFields as $sField)
 		{
-			$aValues[$sHash] .= ", {$sAlias}.{$sField}";	
-			
+			$aValues[$sHash] .= ", {$sAlias}.{$sField}";
+
 			if ($sAlias == 'u' && $sField == 'server_id')
 			{
 				// $sPrefix = 'user_' . (empty($sPrefix) ? '' : $sPrefix);
-				
-				$aValues[$sHash] .= " AS user_{$sPrefix}{$sField}";	
-				
+
+				$aValues[$sHash] .= " AS user_{$sPrefix}{$sField}";
+
 				// unset($sPrefix);
-				
+
 				continue;
 			}
-			
+
 			if (!empty($sPrefix))
 			{
-				$aValues[$sHash] .= " AS {$sPrefix}{$sField}";	
+				$aValues[$sHash] .= " AS {$sPrefix}{$sField}";
 			}
 		}
 		$aValues[$sHash] = ltrim($aValues[$sHash], ',');
-		
+
 		return $aValues[$sHash];
 	}
-	
+
 	/**
 	 * @see Phpfox_Date::getTimeZone()
 	 * @param bool $bDst
 	 * @return string
 	 */
 	public static function getTimeZone($bDst = true)
-	{		
-		return Phpfox::getLib('date')->getTimeZone($bDst);	
+	{
+		return Phpfox::getLib('date')->getTimeZone($bDst);
 	}
-	
+
 	/**
 	 * Gets a time stamp, Works similar to PHP date() function.
 	 * We also take into account locale and time zone settings.
@@ -696,7 +696,7 @@ class Phpfox
 	public static function getTime($sStamp = null, $iTime = PHPFOX_TIME, $bTimeZone = true)
 	{
 		static $sUserOffSet;
-		
+
 		if ($bTimeZone)
 		{
 			if (!$sUserOffSet)
@@ -733,7 +733,7 @@ class Phpfox
 						$bSet = true;
 					}
 				}
-			}	
+			}
 
 			if ($sStamp === null)
 			{
@@ -749,7 +749,7 @@ class Phpfox
 		{
 			$iNewTime = date($sStamp, $iTime);
 		}
-		
+
 		$aFind = array(
 			'Monday',
 			'Tuesday',
@@ -771,8 +771,8 @@ class Phpfox
 			'November',
 			'December'
 		);
-		
-		$aReplace = array(			
+
+		$aReplace = array(
 			Phpfox::getPhrase('core.monday'),
 			Phpfox::getPhrase('core.tuesday'),
 			Phpfox::getPhrase('core.wednesday'),
@@ -792,8 +792,8 @@ class Phpfox
 			Phpfox::getPhrase('core.october'),
 			Phpfox::getPhrase('core.november'),
 			Phpfox::getPhrase('core.december')
-		);		
-		
+		);
+
 		$iNewTime = str_replace('Mon', 'Monday', $iNewTime);
 		$iNewTime = str_replace('Tue', 'Tuesday', $iNewTime);
 		$iNewTime = str_replace('Wed', 'Wednesday', $iNewTime);
@@ -813,9 +813,9 @@ class Phpfox
 		$iNewTime = str_replace('Oct', 'October',$iNewTime);
 		$iNewTime = str_replace('Nov', 'November',$iNewTime);
 		$iNewTime = str_replace('Dec', 'December',$iNewTime);
-		
+
 		$iNewTime = str_replace('Mondayday', 'Monday', $iNewTime);
-		$iNewTime = str_replace('Tuesdaysday', 'Tuesday', $iNewTime);		
+		$iNewTime = str_replace('Tuesdaysday', 'Tuesday', $iNewTime);
 		$iNewTime = str_replace('Wednesdaynesday', 'Wednesday', $iNewTime);
 		$iNewTime = str_replace('Thursdayrsday', 'Thursday', $iNewTime);
 		$iNewTime = str_replace('Fridayday', 'Friday', $iNewTime);
@@ -831,18 +831,18 @@ class Phpfox
 		$iNewTime = str_replace('Septembertember', 'September',$iNewTime);
 		$iNewTime = str_replace('Octoberober', 'October',$iNewTime);
 		$iNewTime = str_replace('Novemberember', 'November',$iNewTime);
-		$iNewTime = str_replace('Decemberember', 'December',$iNewTime);		
-		
+		$iNewTime = str_replace('Decemberember', 'December',$iNewTime);
+
 		$iNewTime = str_replace($aFind, $aReplace, $iNewTime);
 		$iNewTime = str_replace('PM', Phpfox::getPhrase('core.pm'), $iNewTime);
 		$iNewTime = str_replace('AM', Phpfox::getPhrase('core.am'), $iNewTime);
-		
+
 		return $iNewTime;
 	}
-	
+
 	/**
 	 * Used to see if a user is logged in or not. By passing the first argument as TRUE
-	 * we can also do an auto redirect to guide the user to login first before using a 
+	 * we can also do an auto redirect to guide the user to login first before using a
 	 * feature.
 	 *
 	 * @param bool $bRedirect User will be redirected to the login page if they are not logged int.
@@ -855,14 +855,14 @@ class Phpfox
 			return true;
 		}
 		$bIsUser =  Phpfox::getService('user.auth')->isUser();
-		
+
 		if ($bRedirect && !$bIsUser)
 		{
 			if (PHPFOX_IS_AJAX || PHPFOX_IS_AJAX_PAGE)
 			{
 				return Phpfox_Ajax::instance()->isUser();
 			}
-			else 
+			else
 			{
 				// Create a session so we know where we plan to redirect the user after they login
         $url = Phpfox_Url::instance()->getFullUrl();
@@ -870,33 +870,33 @@ class Phpfox
 				Phpfox_Url::instance()->send('user.login');
 			}
 		}
-		
+
 		return $bIsUser;
 	}
-	
+
 	/**
 	 * Used to see if a user is an Admin. By passing the first argument as TRUE
-	 * we can also do an auto redirect to guide the user to login first before using a 
+	 * we can also do an auto redirect to guide the user to login first before using a
 	 * feature in the AdminCP.
 	 *
 	 * @param bool $bRedirect User will be redirected to the AdminCP login page if they are not logged int.
 	 * @return bool If the 1st argument is FALSE, it will return a BOOL TRUE if the user is logged in, otherwise FALSE.
-	 */	
+	 */
 	public static function isAdmin($bRedirect = false)
-	{	
+	{
 		if (!Phpfox::isUser($bRedirect))
 		{
 			return false;
 		}
-		
+
 		if (!Phpfox::getUserParam('admincp.has_admin_access', $bRedirect))
 		{
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Creates a URL for an item that is connected with a users profile.
 	 *
@@ -908,16 +908,16 @@ class Phpfox
 	 */
 	public static function itemUrl($sUrl, $mParams, $sUserName)
 	{
-		$bUserProfileUrl = true;	
-		
+		$bUserProfileUrl = true;
+
 		if ($bUserProfileUrl)
 		{
 			return self::getLib('phpfox.url')->makeUrl($sUserName, array_merge(array($sUrl), (is_array($mParams) ? $mParams : array($mParams))));
 		}
-		
+
 		return self::getLib('phpfox.url')->makeUrl($sUrl, $mParams);
 	}
-	
+
 	/**
 	 * @see User_Service_Group_Setting_Setting::getGroupParam()
 	 * @param int $iGroupId
@@ -928,7 +928,7 @@ class Phpfox
 	{
 		return Phpfox::getService('user.group.setting')->getGroupParam($iGroupId, $sName);
 	}
-	
+
 	/**
 	 * Get a user group setting.
 	 *
@@ -939,25 +939,25 @@ class Phpfox
 	 * @return unknown
 	 */
 	public static function getUserParam($sName, $bRedirect = false, $sJsCall = null)
-	{		
+	{
 		if (defined('PHPFOX_INSTALLER'))
 		{
 			return true;
 		}
-		
+
 		// Is this an array
 		if (is_array($sName))
 		{
 			// Get the array key
 			$sKey = array_keys($sName);
-			
+
 			// Get the setting value
 			$sValue = Phpfox::getService('user.group.setting')->getParam($sKey[0]);
 
 			// Do the evil eval to get our new value
-			eval('$bPass = (' . $sValue . ' ' . $sName[$sKey[0]][0] . ' ' . $sName[$sKey[0]][1] . ');');	
+			eval('$bPass = (' . $sValue . ' ' . $sName[$sKey[0]][0] . ' ' . $sName[$sKey[0]][1] . ');');
 		}
-		else 
+		else
 		{
 			$bPass = (Phpfox::getService('user.group.setting')->getParam($sName) ? true : false);
 			if ($sName == 'admincp.has_admin_access' && Phpfox::getParam('core.protect_admincp_with_ips') != '')
@@ -980,7 +980,7 @@ class Phpfox
 				}
 			}
 		}
-		
+
 		if ($bRedirect)
 		{
 			if (PHPFOX_IS_AJAX && !$bPass)
@@ -990,38 +990,38 @@ class Phpfox
 					// Are we using thickbox?
 					if (Phpfox_Request::instance()->get('tb'))
 					{
-						Phpfox::getBlock('user.login-ajax');	
+						Phpfox::getBlock('user.login-ajax');
 					}
-					else 
-					{				
+					else
+					{
 						// If we passed an AJAX call we execute it
 						if ($sJsCall !== null)
 						{
 							echo $sJsCall;
 						}
 						echo "tb_show('" . Phpfox::getPhrase('user.login_title') . "', \$.ajaxBox('user.login', 'height=250&width=400'));";
-					}				
+					}
 				}
-				else 
+				else
 				{
 					// Are we using thickbox?
 					if (Phpfox_Request::instance()->get('tb'))
 					{
 						Phpfox::getBlock('subscribe.message');
 					}
-					else 
+					else
 					{
 						// If we passed an AJAX call we execute it
 						if ($sJsCall !== null)
 						{
 							// echo $sJsCall;
-						}						
+						}
 						 echo "/*<script type='text/javascript'>*/window.location.href = '" . Phpfox_Url::instance()->makeUrl('subscribe.message') . "';/*</script>*/";
 					}
 				}
-				exit;				
+				exit;
 			}
-			else 
+			else
 			{
 				if (!$bPass)
 				{
@@ -1029,30 +1029,30 @@ class Phpfox
 					{
 						// Create a session so we know where we plan to redirect the user after they login
 						Phpfox::getLib('session')->set('redirect', Phpfox_Url::instance()->getFullUrl(true));
-			
+
 						// Okay thats it lets send them away so they can login
 						Phpfox_Url::instance()->send('user.login');
-					}	
-					else 
-					{				
+					}
+					else
+					{
 						Phpfox_Url::instance()->send('subscribe');
 					}
 				}
 				return true;
 			}
 		}
-		else 
+		else
 		{
 			if (is_array($sName))
 			{
-				return $bPass;	
+				return $bPass;
 			}
 			else
-			{			
+			{
 				return Phpfox::getService('user.group.setting')->getParam($sName);
-			}			
+			}
 		}
-	}	
+	}
 
 	/**
 	 * Check to see if we are in the AdminCP or not.
@@ -1063,7 +1063,7 @@ class Phpfox
 	{
 		return (self::$_bIsAdminCp ? true : false);
 	}
-	
+
 	/**
 	 * Check to see if items are to be displayed in a public manner or within a persons profile.
 	 *
@@ -1074,10 +1074,10 @@ class Phpfox
 	{
 		return (Phpfox::getParam('core.item_view_area') == 'public' ? true : false);
 	}
-	
+
 	/**
 	 * Returns an array with the css and js files to be loaded in every controller
-	 */ 
+	 */
 	public static function getMasterFiles()
 	{
 		$aOut = array(
@@ -1092,20 +1092,20 @@ class Phpfox
 			'search.js' => 'module_friend',
 			'feed.js' => 'module_feed'
 		);
-		
+
 		if(Phpfox::isAdminPanel()) {
 			$aOut = array_merge(array('layout.css' => 'style_css',
 			'common.css' => 'style_css',
 			'thickbox.css' => 'style_css',
 			'jquery.css' => 'style_css',
 			'comment.css' => 'style_css',
-			'pager.css' => 'style_css'), $aOut);	
+			'pager.css' => 'style_css'), $aOut);
 		}
-				
+
 		(($sPlugin = Phpfox_Plugin::get('get_master_files')) ? eval($sPlugin) : false);
 		return $aOut;
 	}
-	
+
 	/**
 	 * Starts the phpFox engine. Used to get and display the pages controller.
 	 *
@@ -1222,9 +1222,9 @@ class Phpfox
 			}
 			exit;
 		}
-		
+
 		(($sPlugin = Phpfox_Plugin::get('run_start')) ? eval($sPlugin) : false);
-		
+
 		// Load module blocks
 		$oModule->loadBlocks();
 
@@ -1232,7 +1232,7 @@ class Phpfox
 		{
 			$oTpl->setHeader(array('<meta name="author" content="PHPfox" />'));
 		}
-		
+
 		if (strtolower(Phpfox_Request::instance()->get('req1')) == Phpfox::getParam('admincp.admin_cp'))
 		{
 			self::$_bIsAdminCp = true;
@@ -1258,15 +1258,15 @@ class Phpfox
 						'move' => 'misc/move.png',
 						'calendar' => 'jquery/calendar.gif'
 					)
-				);			
-				
+				);
+
 				$oTpl->setHeader(array(
 							'<meta http-equiv="X-UA-Compatible" content="IE=edge">',
 							'<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">',
 							'<meta http-equiv="Content-Type" content="text/html;charset=' . $aLocale['charset'] . '" />',
 							'<meta http-equiv="cache-control" content="no-cache" />',
 							'<meta http-equiv="expires" content="-1" />',
-							'<meta http-equiv="pragma" content="no-cache" />',						
+							'<meta http-equiv="pragma" content="no-cache" />',
 							'<link rel="shortcut icon" type="image/x-icon" href="' . Phpfox::getParam('core.path') . 'favicon.ico?v=' . $oTpl->getStaticVersion() . '" />'
 						)
 					)
@@ -1274,25 +1274,25 @@ class Phpfox
 					->setMeta('robots', 'index,follow');
 
 				$oTpl->setHeader('cache', Phpfox::getMasterFiles());
-					
+
 				if (Phpfox::isModule('friend'))
 				{
-					$oTpl->setPhrase(array('friend.show_more_results_for_search_term'));		
+					$oTpl->setPhrase(array('friend.show_more_results_for_search_term'));
 				}
-		
+
 				if (PHPFOX_DEBUG && self::isAdminPanel())
 				{
 					$oTpl->setHeader('cache', array('debug.css' => 'style_css'));
-				}		
-				
+				}
+
 				if (!Phpfox::isMobile() && Phpfox::isUser() && Phpfox::getParam('user.enable_user_tooltip'))
 				{
 					$oTpl->setHeader('cache', array(
 							'user_info.js' => 'static_script'
 						)
-					);			
+					);
 				}
-				
+
 				if (Phpfox::isModule('captcha') && Phpfox::getParam('captcha.recaptcha'))
 				{
 					// http://www.phpfox.com/tracker/view/14456/
@@ -1313,19 +1313,19 @@ class Phpfox
 		$oModule->getController();
 
 		Phpfox::getService('admincp.seo')->setHeaders();
-		
+
 		if (!defined('PHPFOX_DONT_SAVE_PAGE'))
 		{
 			Phpfox::getLib('session')->set('redirect', Phpfox_Url::instance()->getFullUrl(true));
 		}
-	
+
 		if (!defined('PHPFOX_NO_CSRF'))
-		{			
-			Phpfox::getService('log.session')->verifyToken();	
+		{
+			Phpfox::getService('log.session')->verifyToken();
 		}
 
 		(($sPlugin = Phpfox_Plugin::get('run')) ? eval($sPlugin) : false);
-	
+
 		if (!self::isAdminPanel())
 		{
 			if (!Phpfox::isMobile() && !PHPFOX_IS_AJAX_PAGE && Phpfox::isModule('rss') && !defined('PHPFOX_IS_USER_PROFILE'))
@@ -1408,10 +1408,10 @@ class Phpfox
 			)
 		);
 
-		Phpfox::clearMessage();		
-		
-		unset($_SESSION['phpfox']['image']);		
-	
+		Phpfox::clearMessage();
+
+		unset($_SESSION['phpfox']['image']);
+
 		if (Phpfox::getParam('core.cron'))
 		{
 			require_once(PHPFOX_DIR_CRON . 'exec.php');
@@ -1555,7 +1555,7 @@ class Phpfox
 			}
 		}
 	}
-	
+
 	/**
 	 * @see Phpfox_Local::getPhrase()
 	 * @param string $sParam
@@ -1579,18 +1579,18 @@ class Phpfox
 	{
 		return Phpfox_Locale::instance()->isPhrase($sParam);
 	}
-	
+
 	/**
 	 * @see Phpfox_Locale::translate()
 	 * @param string $sParam
 	 * @param string $sPrefix
 	 * @return string
-	 */	
+	 */
 	public static function getPhraseT($sParam, $sPrefix)
 	{
 		return Phpfox_Locale::instance()->translate($sParam, $sPrefix);
-	}	
-	
+	}
+
 	/**
 	 * Add a public message which can be used later on to display information to a user.
 	 * Message gets stored in a $_SESSION so the message can be viewed after page reload in case
@@ -1612,9 +1612,9 @@ class Phpfox
 	 */
 	public static function getMessage()
 	{
-		return Phpfox::getLib('session')->get('message');		
+		return Phpfox::getLib('session')->get('message');
 	}
-	
+
 	/**
 	 * Clear the public message we set earlier
 	 *
@@ -1623,13 +1623,13 @@ class Phpfox
 	public static function clearMessage()
 	{
 		Phpfox::getLib('session')->remove('message');
-	}	
-	
+	}
+
 	/**
 	 * Set a cookie with PHP setcookie()
 	 *
 	 * @see setcookie()
-	 * @param string $sName The name of the cookie. 
+	 * @param string $sName The name of the cookie.
 	 * @param string $sValue The value of the cookie.
 	 * @param int $iExpire The time the cookie expires. This is a Unix timestamp so is in number of seconds since the epoch.
 	 */
@@ -1646,7 +1646,7 @@ class Phpfox
 			setcookie($sName, $sValue, (($iExpire != 0 || $iExpire != -1) ? $iExpire : (PHPFOX_TIME + (60*60*24*$iExpire))), Phpfox::getParam('core.cookie_path'), Phpfox::getParam('core.cookie_domain'), $bSecure);
 		}
 	}
-	
+
 	/**
 	 * Gets a cookie set by the method self::setCookie().
 	 *
@@ -1659,7 +1659,7 @@ class Phpfox
 
 		return (isset($_COOKIE[$sName]) ? $_COOKIE[$sName] : '');
 	}
-	
+
 	/**
 	 * Start a new log.
 	 *
@@ -1668,13 +1668,13 @@ class Phpfox
 	public static function startLog($sLog = null)
 	{
 		self::$_aLogs[] = array();
-		
+
 		if ($sLog !== null)
 		{
 			self::log($sLog);
 		}
 	}
-	
+
 	/**
 	 * Log a message.
 	 *
@@ -1684,7 +1684,7 @@ class Phpfox
 	{
 		self::$_aLogs[] = $sLog;
 	}
-	
+
 	/**
 	 * End the log and get it.
 	 *
@@ -1694,32 +1694,32 @@ class Phpfox
 	{
 		return self::$_aLogs;
 	}
-	
+
 	/**
 	 * Permalink for items.
 	 *
 	 * @return	string	Returns the full URL of the link.
 	 */
 	public static function permalink($sLink, $iId, $sTitle = null, $bRedirect = false, $sMessage = null, $aExtra = array())
-	{		
+	{
 		return Phpfox_Url::instance()->permalink($sLink, $iId, $sTitle, $bRedirect, $sMessage, $aExtra);
 	}
-	
+
 	/**
 	 * Get CDN path
-	 * 
+	 *
 	 * @return string Returns CDN full URL
 	 */
 	public static function getCdnPath()
 	{
 		return 'http://cdn.oncloud.ly/' . self::getVersion() . '/';
 	}
-	
+
 	/**
 	 * Since we allow urls to be rewritten we use this function to get the original value no matter what
 	 * @param $sSection <string>
 	 * @return <string>
-	 */ 
+	 */
 	public static function getNonRewritten($sSection)
 	{
 		$aRewrites = Phpfox::getService('core.redirect')->getRewrites();

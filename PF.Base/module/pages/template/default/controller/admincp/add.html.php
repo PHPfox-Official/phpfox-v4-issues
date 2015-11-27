@@ -27,8 +27,8 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_left">
 			{phrase var='pages.parent_category'}:
 		</div>
-		<div class="table_right">
-			<select name="val[type_id]" id="add_select">
+		<div class="table_right form-inline">
+			<select name="val[type_id]" id="add_select" class="form-control">
 				{if !$bIsEdit}
 				<option value="0">{phrase var='pages.none'}</option>
 				{/if}

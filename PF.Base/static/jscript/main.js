@@ -222,7 +222,7 @@ $Behavior.imageHoverHolder = function()
 			$(this).addClass('image_hover_holder_hover').find('.image_hover_menu_link:first').show();
 		}
 	});
-	
+
 	$('.image_hover_holder').mouseout(function()
 	{
 		if (!$(this).find('.image_hover_menu_link').hasClass('image_hover_active'))

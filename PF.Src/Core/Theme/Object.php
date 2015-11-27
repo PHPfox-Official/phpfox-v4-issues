@@ -220,7 +220,6 @@ class Object extends \Core\Objectify {
 
 	public function rebuild() {
 		$flavorId = $this->flavor_folder;
-
 		if (!$flavorId) {
 			throw new \Exception('Cannot merge a theme without a flavor.');
 		}

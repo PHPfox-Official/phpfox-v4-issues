@@ -19,7 +19,7 @@ defined('PHPFOX') or exit('NO DICE!');
 		{phrase var='forum.user_group'}:
 	</div>
 	<div class="table_right">
-		<select name="user_group_id" onchange="$('#js_display_perms').slideUp(); $('#js_form_user_group_id').val(this.value); $(this).ajaxCall('forum.loadPermissions', 'forum_id={$iForumId}');">
+		<select class="form-control" name="user_group_id" onchange="$('#js_display_perms').slideUp(); $('#js_form_user_group_id').val(this.value); $(this).ajaxCall('forum.loadPermissions', 'forum_id={$iForumId}');">
 			<option value="">{phrase var='forum.select'}:</option>
 		{foreach from=$aUserGroups item=aUserGroup}
 			<option value="{$aUserGroup.user_group_id}">{$aUserGroup.title|clean}</option>

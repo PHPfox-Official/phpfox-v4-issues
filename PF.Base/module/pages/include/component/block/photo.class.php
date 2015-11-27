@@ -6,8 +6,8 @@
 defined('PHPFOX') or exit('NO DICE!');
 
 /**
- * 
- * 
+ *
+ *
  * @copyright		[PHPFOX_COPYRIGHT]
  * @author  		Raymond_Benc
  * @package 		Phpfox_Component

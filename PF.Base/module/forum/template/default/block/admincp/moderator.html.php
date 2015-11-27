@@ -40,8 +40,8 @@ defined('PHPFOX') or exit('NO DICE!');
 			<div class="table_left">
 				{phrase var='forum.forums'}:
 			</div>			
-			<div class="table_right">
-				<select name="val[forum]" id="js_forum_list_drop" style="width:300px;">
+			<div class="table_right form-inline">
+				<select name="val[forum]" id="js_forum_list_drop" class="form-control">
 					{$sForumDropDown}
 				</select>
 			</div>			

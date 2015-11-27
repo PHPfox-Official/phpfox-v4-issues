@@ -386,6 +386,7 @@ To reply to this message, follow the link below:
 		<phrase module_id="mail" version_id="3.5.1" var_name="who_can_view_blogs" added="1366632054">Who can view blogs</phrase>
 		<phrase module_id="mail" version_id="3.7.1" var_name="mark_all_read" added="1381234465">Mark All As Read</phrase>
 		<phrase module_id="mail" version_id="4.0.10" var_name="and_number_other" added="1444297425">and {number} other</phrase>
+		<phrase module_id="mail" version_id="4.1.1" var_name="unable_to_find_this_conversation" added="1448250648">Unable to find this conversation</phrase>
 	</phrases>
 	<user_group_settings>
 		<setting is_admin_setting="0" module_id="mail" type="integer" admin="10" user="10" guest="0" staff="10" module="mail" ordering="0">total_folders</setting>

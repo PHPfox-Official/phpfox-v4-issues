@@ -1,10 +1,7 @@
-#pages_menu li
-{
-	clear: both;
-	margin-left: 0px;
+#pages_menu li {
+  clear: both;
+  margin-left: 0px;
 }
-
-.profile_header_timeline h1
-{
-    height: 24px;
+.profile_header_timeline h1 {
+  height: 24px;
 }

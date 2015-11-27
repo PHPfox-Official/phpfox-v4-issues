@@ -305,7 +305,7 @@ class Phpfox_Ajax
 	{
 		$sContent = str_replace('\\', '\\\\', $sContent);
 		$sContent = str_replace('"', '\"', $sContent);
-		
+
 		(($sPlugin = Phpfox_Plugin::get('ajax_html')) ? eval($sPlugin) : false);
 
 		$this->call("$('" . $sId . "').{$sMethod}(\"" . $sContent . "\")" . $sExtra . ";");

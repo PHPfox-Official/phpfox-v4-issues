@@ -167,6 +167,7 @@ class Theme extends Model {
 				'created' => PHPFOX_TIME,
 				'is_active' => 1
 			]);
+
       if (isset($sCustomFolder) && !empty($sCustomFolder)){
         $folderTheme = strtolower($sCustomFolder);
       } else {
@@ -181,7 +182,6 @@ class Theme extends Model {
 		if ($files !== null) {
 			foreach ($files as $name => $content) {
 				$path = PHPFOX_DIR_SITE . 'themes/' . $folderTheme . '/' . $name;
-
 				$parts = pathinfo($path);
 				if (!is_dir($parts['dirname'])) {
 					mkdir($parts['dirname'], 0777, true);
@@ -193,6 +193,7 @@ class Theme extends Model {
 			return $id;
 		}
 
+
 		$flavorId = $this->db->insert(':theme_style', [
 			'theme_id' => $id,
 			'is_active' => 1,
@@ -201,6 +202,7 @@ class Theme extends Model {
 			'created' => PHPFOX_TIME,
 			'folder' => '__'
 		]);
+
     if (isset($sCustomFolder) && !empty($sCustomFolder)){
       $folderName = strtolower($sCustomFolder);
     } else {

@@ -32,8 +32,8 @@ defined('PHPFOX') or exit('NO DICE!');
 		<div class="table_left">
 			{phrase var='forum.parent_forum'}:
 		</div>
-		<div class="table_right">
-			<select name="val[parent_id]" style="width:300px;">
+		<div class="table_right form-inline">
+			<select name="val[parent_id]" class="form-control">
 				<option value="">{phrase var='forum.select'}:</option>
 				{$sForumParents}
 			</select>

@@ -29,9 +29,9 @@ defined('PHPFOX') or exit('NO DICE!');
         {/if}
 			<a href="#" onclick="return $Core.quiz.removeQuestion(this);"><i class="fa fa-close"></i></a>
 		</div>
-		
+
 		<input  type="text" class="form-control question_title" name="val[q][{if isset($Question.question_id)}{$Question.question_id}{elseif isset($phpfox.iteration.question)}{$phpfox.iteration.question}{else}0{/if}][question]" value="{if isset($Question.question)}{$Question.question}{/if}" maxlength="200" size="30" />
-		
+
 		<div class="table">
 			<div class="table_left">{phrase var='quiz.answers'}:</div>
 			<div class="table_right answer_holder answers_holder" id="">

@@ -18,8 +18,6 @@ class CSS extends \Core\Model {
    * @return bool
    */
 	public function set($content, $vars = null, $more_content = '', $themeName = 'default') {
-
-
 		$less = new \lessc();
 		$lessContent = ($vars === null ? $this->get(true) : $vars) . "/** START CSS */\n";
     $saveLestContent = $lessContent . trim($content);
@@ -39,7 +37,6 @@ class CSS extends \Core\Model {
         \Phpfox_Error::trigger($ex->getMessage(), E_USER_ERROR);
       }
     }
-
 		$path = $this->_theme->getPath() . 'flavor/' . $this->_theme->flavor_folder;
 		file_put_contents($path . '.less', $saveLestContent);
     /* remove comments */

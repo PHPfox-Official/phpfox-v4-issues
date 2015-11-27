@@ -2100,6 +2100,7 @@ class Photo_Service_Callback extends Phpfox_Service
 	    {
 			// $aUser['total_photo']++;
 	    }
+
 		if (!Phpfox::getParam('profile.show_empty_tabs'))
 		{		
 			if (!isset($aUser['total_photo']))

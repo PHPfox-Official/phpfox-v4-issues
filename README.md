@@ -17,14 +17,14 @@ When submitting a bug report, please post the following in order for us to consi
 
 **Don't:**
 
-1. Open an issue with a description with a link to a closed bug. Please put all details
-2. Say a one word thing for what the issue is. That's far too vague.
+1. Don't open an issue with a description with a link to a closed bug. Please put all details
+2. Don't say a one word thing for what the issue is. That's far too vague.
 3. Don't put more than one bug per issue. We will close any issues with more than one thing as we can only work on one thing per revision number.
 4. Don't post unnecessary comments not related to the issue itself. Issues with any statements derogatory to phpFox will be rejected and closed immediately. 
 5. Don't bash staff or harass staff or clients. 
 6. Don't post any porn or adult type of images.
 
-*We reserve the right to remove, edit or alter any comments or feature requests or block anyone from posting to our tracker should they voilate these terms.*
+*We reserve the right to remove, edit or alter any comments or feature requests or block anyone from posting to our tracker should they violate these terms.*
 
 **No feature requests in this tracker**
 

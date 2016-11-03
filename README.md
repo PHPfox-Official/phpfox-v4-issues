@@ -13,7 +13,7 @@ When submitting a bug report, please post the following in order for us to consi
 3. If possible, include a screen shot
 4. Only put one bug per issue.
 5. Include the browser version, os and version, mobile device(if using mobile), phpFox version that you are testing.
-
+6. Try to reproduce on our Demo site at - https://v4.phpfox.com/ since it might be the issue due to 3rd party application on your site
 
 **Don't:**
 

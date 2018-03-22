@@ -1,4 +1,4 @@
-## What happened?:
+## What happened?
 ...
 
 ## Steps to reproduce:
@@ -10,14 +10,16 @@
 ...
 
 ## Browsers and Devices tested
-(Example: Browses: Chrome, Firefox and Microsoft Edge, ...; Devies: Macbook Pro 13", iPhone X, ...)
+(Example: Chrome on iPhone X, Safari on Macbook, Miscrosoft Edge on Windown 10, Firefox on Ubuntu 16.04, ...)
 
 ## Server information
 (Example: CentOS 7, php 7.1 apache)
+
 ...
 
 ## phpFox version
 (Example: phpFox 4.6.0)
+
 ...
 
 ## Screenshots

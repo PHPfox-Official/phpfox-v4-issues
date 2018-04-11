@@ -1,6 +1,6 @@
 # phpFox Issue Tracker
 
-Use this [issue tracker](https://github.com/moxi9/phpfox/issues) to report any problems you encounter with phpFox.
+Use this [issue tracker](https://github.com/PHPfox-Official/phpfox-v4-issues) to report any problems you encounter with phpFox.
 
 Please search the bug tracker for your issue before posting, in order to avoid duplicating issues.
 
@@ -28,5 +28,5 @@ When submitting a bug report, please post the following in order for us to consi
 
 **No feature requests in this tracker**
 
-If you have a feature request, please post it [here](https://github.com/moxi9/phpfox-feature-requests/issues).
+If you have a feature request, please post it [here](https://github.com/PHPfox-Official/phpfox-v4-feature-requests/issues).
 

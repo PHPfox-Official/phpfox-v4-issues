@@ -1,3 +1,7 @@
+# Important!
+We will ignore and close your issue if you don't follow this template
+----------------------------------------
+
 ## What happened?
 ...
 
